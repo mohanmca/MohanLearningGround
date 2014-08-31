@@ -1,8 +1,5 @@
 package ground.learning.scala.traits
 
-;
-
-
 /**
  * Created by Mohan on 31/08/2014.
  *
@@ -17,35 +14,30 @@ object TraitMain {
       new Stranger("Ray") with Bad,
       new Stranger("Ray") with Good,
       new Stranger("Ray") with Good with Bad,
-      new Stranger("Ray") with Bad with Good)
+      new Stranger("Ray") with Bad with Good,
+      new Wanderer("John")
+    )
     println(strangers.map(_.hi + "\n"))
   }
 }
 
 trait NoEmotion {
-  def hi = {
-    "I am Ray"
-  }
+  def value: String
+
+  def hi = "I am " + value
 }
 
 trait Good extends NoEmotion {
-  def value: String
-
-  override def hi = {
-    "I am " + value + ", It is a beautiful day!"
-  }
+  override def hi = "I am " + value + ", It is a beautiful day!"
 }
 
 trait Bad extends NoEmotion {
-  def value: String
-
-  override def hi = {
-    "I am " + value + ", It is a bad day!"
-  }
-
-  def sayHello = hi
+  override def hi = "I am " + value + ", It is a bad day!"
 }
 
 case class Stranger(value: String) {
+}
+
+case class Wanderer(value: String) extends Good with Bad {
 }
 
