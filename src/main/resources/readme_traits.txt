@@ -1,5 +1,7 @@
 Traits
 
+Traits are used for Dependency management.
+
 Reference :
 
 1) http://joelabrahamsson.com/learning-scala-part-seven-traits/
