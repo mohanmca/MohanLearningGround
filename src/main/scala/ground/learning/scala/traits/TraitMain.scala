@@ -15,9 +15,16 @@ object TraitMain {
       new Stranger("Ray") with Good,
       new Stranger("Ray") with Good with Bad,
       new Stranger("Ray") with Bad with Good,
-      new Wanderer("John")
-    )
-    println(strangers.map(_.hi + "\n"))
+      new Wanderer("John"))
+    val messages = List("I am Ray",
+      "I am Ray, It is a bad day!",
+      "I am Ray, It is a beautiful day!",
+      "I am Ray, It is a bad day!",
+      "I am Ray, It is a beautiful day!",
+      "I am John, It is a bad day!")
+
+    if (strangers.map(_.hi).equals(messages))
+      println(strangers.map(_.hi + "\n"))
   }
 }
 
