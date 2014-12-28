@@ -1,7 +1,7 @@
 package ground.learning.scala.types
 
 //Older version of scala
-import scala.reflect._
+//import scala.reflect._
 import scala.reflect.runtime.universe._
 
 // reverse the extension, and expand the trait hierarchy, and keep unique moving from Right.

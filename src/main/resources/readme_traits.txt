@@ -27,3 +27,12 @@ Reference :
 7) http://stackoverflow.com/questions/7378901/scala-illegal-inheritance-self-type-y-does-not-conform-to-xs-selftype-self
 
     Self type is more akin to generic constraint than to inheritance. When you have class C[A <: B], the constraint must be repeated all along in subclasses : class D[A <: B] extends C[A]. The constraint must be repeated until it is satisfied, that is until you have chosen an actual parameter type which indeed satisfy <: B. Same for the self type. Writing self: A => does not makes your type extends A. It ensures that it will ultimately have to be mixed in with A before it is actually instantiated.
+
+    
+---------------
+
+Scala parser combinator
+
+http://bitwalker.org/blog/2013/08/10/learn-by-example-scala-parser-combinators/
+
+    
