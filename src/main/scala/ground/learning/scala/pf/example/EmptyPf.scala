@@ -5,6 +5,10 @@ object EmptyPf {
     case _ if false => ()
   }
 
+  def emptyPfTwo(value: AnyRef): PartialFunction[AnyRef, Unit] = {
+    case _ if false => ()
+  }
+
   val emptyPf: PartialFunction[AnyRef, Unit] = { case _ if false => () }
 
   val emptyPfWinner: PartialFunction[AnyRef, Unit] = Map()
