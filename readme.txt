@@ -11,5 +11,9 @@ http://www.scala-sbt.org/0.12.1/docs/Detailed-Topics/Launcher.html
 
 ----
 git log master
+
+//Find all the branches
+git branch -a
+
 git fetch origin
 git diff master remotes/origin/master..origin/master
