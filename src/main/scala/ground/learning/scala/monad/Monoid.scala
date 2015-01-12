@@ -13,7 +13,7 @@ object Application {
 
   implicit val optionEach: Each[Option] = new Each[Option] {
     def each[A](op: Option[A])(f: (A => Unit)): Unit = {
-      op.foreach { f }
+      op foreach f
     }
   }
 
@@ -31,7 +31,7 @@ object Application {
     val mzero = ""
     def mappend(a: String, b: String): String = a + b
   }
-/*
+  /*
   def sum[A](xs: List[A])(implicit monoid: Monoid[A]): A = {
     xs.foldLeft(monoid.mzero)(monoid.mappend)
   }
@@ -42,8 +42,12 @@ object Application {
     result
   }
 
+  //val t: Each[Option] = Some(5)
+  //val t: Each[List] = List(5)
+
   def main(args: Array[String]) {
     println(sum(List(1, 2, 3)))
     println(sum(List("1", "2", "3")))
+    //  println(sum(Some(5)))
   }
 }
