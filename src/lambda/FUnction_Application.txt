@@ -1,0 +1,29 @@
+//Call by name evaluation
+
+f(x,y) = (\x . ((\y.(* 2 y )) (+ x y)))
+f(x,y).(y) = (\x . ((\y.(* 2 y )) (+ x y))) (y)
+f(y) = ((\y.(* 2 y )) (+ y y)) 
+f(y) = (\y.(* 2 y )) (+ y y)
+=  (* 2 (+ y y) )
+=  (* 2 (2y) )
+=  (* 2 2y )
+=  (* 4y )
+
+-----------------
+
+//Call by value evaluation
+
+f(x,y) = (\x . ((\y.(* 2 y )) (+ x y)))
+f(x,y).(argument) = (\x . ((\y.(* 2 y )) (+ x y))) (Partially apply function for first parameter)
+f(x,y).(y) = (\x . ((\y.(* 2 y )) (+ x y))) (Partially apply function for x alone with value y)
+f(x,y).(y) = (\x . ((\y.(* 2 y )) (+ x y))).y 
+#f(x,y).(y) = (\y . ((\y.(* 2 y )) (+ y y))) - Not valid reduction, but just to understand that all the above x replaced with value y.
+f(y) =  ((\y.(* 2 y )) . (+ y y))
+f(y) =  ((\y.(* 2 y )) . (+ 2y))
+f(y) =  (\y.(* 2 y )) . 2y (Now 2y is value, pass this argument  to inner function)
+f(y) =  (* 2 (2y) )  
+f(y) =  (* 2 2y )  
+f(y) =  4y  
+
+
+-----------------
