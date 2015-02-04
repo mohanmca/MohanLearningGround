@@ -31,3 +31,18 @@ exit
 console
 eit
 exit
+compile
+exit
+console
+val i = 5
+console
+exit
+console
+val i = 5
+console
+last compile:compile
+qit
+:quit
+quit
+exit
+console

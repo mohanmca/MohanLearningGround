@@ -18,6 +18,8 @@ git branch -a
 git fetch origin
 git diff master remotes/origin/master..origin/master
 
+--find untracked files
+git ls-files --others --exclude-standard
 
 -----
 

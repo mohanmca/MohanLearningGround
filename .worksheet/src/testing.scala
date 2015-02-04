@@ -1,5 +1,6 @@
 object testing {
 
+
   trait greeting[A] {
     val value: A
     def greet: String
@@ -17,7 +18,7 @@ object testing {
     }
   }
 
-  import greeting._;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; def main(args: Array[String])=$execute{;$skip(528); 
+  import greeting._;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; def main(args: Array[String])=$execute{;$skip(529); 
 
   def printGreetMessaage[A](implicit a: greeting[A]): String = "Hello! " + a.greet;System.out.println("""printGreetMessaage: [A](implicit a: testing.greeting[A])String""");$skip(61); 
 
@@ -27,4 +28,7 @@ object testing {
 - type mismatch;  found   : Int(3)  required: A
 - inferred type arguments [Int] do not conform to method printGreetMessaage's type parameter bounds [A <: testing.greeting[A]]
 */
+
+
+
 }
