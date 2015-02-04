@@ -14,7 +14,8 @@ libraryDependencies <++= (scalaVersion)(sv =>
 
 libraryDependencies <++= (scalaVersion)(sv =>
   Seq(
-    "org.apache.commons" % "commons-io" % "1.3.2",
+    "org.apache.commons" % "commons-io" % "1.3.2" withSources(),
+    "commons-lang" % "commons-lang" % "2.6" withSources(),
     "junit" % "junit" % "4.12"
       ))
   
