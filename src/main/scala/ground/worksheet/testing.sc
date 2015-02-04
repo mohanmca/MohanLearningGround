@@ -1,5 +1,6 @@
 object testing {
 
+
   trait greeting[A] {
     val value: A
     def greet: String
@@ -27,4 +28,8 @@ object testing {
 - type mismatch;  found   : Int(3)  required: A
 - inferred type arguments [Int] do not conform to method printGreetMessaage's type parameter bounds [A <: testing.greeting[A]]
 */
+
+
+
 }
+
