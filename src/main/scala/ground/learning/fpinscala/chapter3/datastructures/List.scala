@@ -50,6 +50,16 @@ object List {
     case Cons(x, ys) => foldLeft(ys, f(z, x))(f)
   }
 
+  def sum3(xs: List[Int]): Int = foldLeft(xs, 0)(_ + _)
+
+  def product3(xs: List[Double]): Double = foldLeft(xs, 1.0)(_ * _)
+
+  def length3[A](xs: List[A]): Int = foldLeft(xs, 0)((x, y) => x + 1)
+
+  def foldRight2[A, B](xs: List[A], z: B)(f: (A, B) => B): B = foldLeft(xs, z)(altFun(f))
+
+  def altFun[A, B](f: (A, B) => B): (B, A) => B = (b: B, a: A) => f(a, b)
+
   //  val x = List(1, 2, 3, 4, 5) match {
   //    case Cons(x, Cons(2, Cons(4, _))) => x
   //    case Nil => 42
