@@ -43,11 +43,11 @@ object List {
   def sum2(xs: List[Int]): Int = foldRight(xs, 0)((x, y) => x + y)
   def product2(xs: List[Double]): Double = foldRight(xs, 1.0)((x, y) => x * y)
   def concat(xs: List[Int]): List[Int] = foldRight(xs, (Nil: List[Int]))((x, y) => Cons(x, y))
-  def length[A](xs: List[A]): Int = foldRight(xs, 0)((x, y) => 1 + y )
-  
-  def foldLeft[A,B](xs: List[A], z: B)(f: (B,A) => B) : B = xs match {
+  def length[A](xs: List[A]): Int = foldRight(xs, 0)((x, y) => 1 + y)
+
+  def foldLeft[A, B](xs: List[A], z: B)(f: (B, A) => B): B = xs match {
     case Nil => z
-//    case Cons(x, Cons(y, ys)) => f(x,y)  
+    case Cons(x, ys) => foldLeft(ys, f(z, x))(f)
   }
 
   //  val x = List(1, 2, 3, 4, 5) match {
