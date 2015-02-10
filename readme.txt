@@ -38,3 +38,9 @@ Reader Monad
 
 
 object creation impossible, since method foldr in trait List of type [B](z: B)(op: (Nothing, B) => B)B is not defined	
+----
+
+Todo:
+
+Find side-effect-free short-cut for debugging.. on the lines..
+val output = expression ~~ println

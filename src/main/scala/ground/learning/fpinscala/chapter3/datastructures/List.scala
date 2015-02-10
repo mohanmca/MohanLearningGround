@@ -1,10 +1,15 @@
-package ground.learning.scala.fpinscala.chapter3.datastructures
+package ground.learning.fpinscala.chapter3.datastructures
 
 sealed trait List[+A]
 case object Nil extends List[Nothing]
 case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
 object List {
+
+  def ~~:[A](f: A => Unit, a: A): A = {
+    f(a)
+    a
+  }
 
   def sum(xs: List[Int]): Int = {
     xs match {
@@ -31,15 +36,35 @@ object List {
     case Cons(x, ys) => f(x, foldRight(ys, z)(f))
   }
 
-  def tail[A](xs: List[A]): List[A] = ???
+  def tail[A](xs: List[A]): List[A] = xs match {
+    case Nil => throw new NoSuchElementException("Nil")
+    case Cons(head, tail) => tail
+  }
 
-  def setHead[A](xs: List[A], newHead: A) = ???
+  def setHead[A](xs: List[A], newHead: A) = xs match {
+    case Nil => Cons(newHead, Nil)
+    case other => Cons(newHead, other)
+  }
 
-  def drop[A](xs: List[A], n: Int): List[A] = ???
+  def drop[A](xs: List[A], n: Int): List[A] = n match {
+    case 0 => xs
+    case n => xs match {
+      case Nil => throw new NoSuchElementException("No element at " + n)
+      case _ => drop(tail(xs), n - 1)
+    }
+  }
 
-  def dropWhile[A](xs: List[A], f: A => Boolean): List[A] = ???
+  def dropWhile[A](xs: List[A], f: A => Boolean): List[A] = xs match {
+    case Cons(head, tail) if f(head) => dropWhile(tail, f)
+    case _ => xs
+  }
 
-  def init[A](xs: List[A]): List[A] = ???
+  def init[A](xs: List[A]): List[A] = xs match {
+    case Nil => throw new UnsupportedOperationException("empty.init")
+    case Cons(head, Cons(tail, Nil)) => Cons(head, Nil)
+    case Cons(head, tail) => Cons(head, init(tail))
+  }
+
   def sum2(xs: List[Int]): Int = foldRight(xs, 0)((x, y) => x + y)
   def product2(xs: List[Double]): Double = foldRight(xs, 1.0)((x, y) => x * y)
   def concat(xs: List[Int]): List[Int] = foldRight(xs, (Nil: List[Int]))((x, y) => Cons(x, y))
@@ -59,12 +84,13 @@ object List {
   def foldRight2[A, B](xs: List[A], z: B)(f: (A, B) => B): B = foldLeft(xs, z)(altFun(f))
 
   def altFun[A, B](f: (A, B) => B): (B, A) => B = (b: B, a: A) => f(a, b)
+}
 
-  //  val x = List(1, 2, 3, 4, 5) match {
-  //    case Cons(x, Cons(2, Cons(4, _))) => x
-  //    case Nil => 42
-  //    case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => x + y
-  //    case Cons(h, t) => h + sum(t)
-  //    case _ => 101
-  //  }
+object ListApp extends App {
+  import List._
+  val items: List[String] = List("1", "2", "3", "4", "5", "6")
+  //println(setHead(items, String.valueOf(length(items) + 1)))
+  println(init(items))
+  println(foldLeft(items, Nil: List[Int])((b, a) => Cons(a.toInt, b)))
+
 }
