@@ -89,8 +89,8 @@ object List {
 object ListApp extends App {
   import List._
   val items: List[String] = List("1", "2", "3", "4", "5", "6")
-  //println(setHead(items, String.valueOf(length(items) + 1)))
   println(init(items))
   println(foldLeft(items, Nil: List[Int])((b, a) => Cons(a.toInt, b)))
+  val intItems = foldLeft(items, Nil: List[Int])((b, a) => Cons(a.toInt, b))
 
 }
