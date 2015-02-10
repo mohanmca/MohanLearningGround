@@ -84,6 +84,25 @@ object List {
   def foldRight2[A, B](xs: List[A], z: B)(f: (A, B) => B): B = foldLeft(xs, z)(altFun(f))
 
   def altFun[A, B](f: (A, B) => B): (B, A) => B = (b: B, a: A) => f(a, b)
+
+  //3.14 -- append using foldRight
+  def append[A](xs: List[A], x: A): List[A] = foldLeft(xs, Nil: List[A])((b, a) => Cons(a, b))
+
+  //3.15 -- combine
+  def combine[A](xs: List[A], ys: List[A]): List[A] = xs match {
+    case Nil => ys
+    case Cons(head, tail) => Cons(head, combine(tail, ys))
+  }
+
+  //3.16 -- increment each element by 1 with foldLeft
+  def incrementEach(xs: List[Int]): List[Int] = foldLeft(xs, Nil: List[Int])((b, a) => Cons(a + 1, b))
+
+  def doubleToString(xs: List[Double]): List[String] = foldLeft(xs, Nil: List[String])((b, a) => Cons(a.toString(), b))
+
+  //3.18 map using foldLeft/foldRight
+  def map[A, B](xs: List[A])(f: A => B): List[B] = foldLeft(xs, Nil: List[B])((b, a) => Cons(f(a), b))
+  def map2[A, B](xs: List[A])(f: A => B): List[B] = foldRight(xs, Nil: List[B])((a, b) => Cons(f(a), b))
+
 }
 
 object ListApp extends App {
@@ -92,5 +111,7 @@ object ListApp extends App {
   println(init(items))
   println(foldLeft(items, Nil: List[Int])((b, a) => Cons(a.toInt, b)))
   val intItems = foldLeft(items, Nil: List[Int])((b, a) => Cons(a.toInt, b))
+  println(intItems)
+  println("Map using foldLeft => " + map(items)(item => item.toInt))
 
 }
