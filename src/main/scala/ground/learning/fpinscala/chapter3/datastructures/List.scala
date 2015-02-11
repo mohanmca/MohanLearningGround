@@ -26,6 +26,11 @@ object List {
     }
   }
 
+  def head[A](xs: List[A]): A = xs match {
+    case Cons(head, tail) => head
+    case Nil => throw new RuntimeException("head in null list")
+  }
+
   def apply[A](as: A*): List[A] = {
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
@@ -103,15 +108,40 @@ object List {
   def map[A, B](xs: List[A])(f: A => B): List[B] = foldLeft(xs, Nil: List[B])((b, a) => Cons(f(a), b))
   def map2[A, B](xs: List[A])(f: A => B): List[B] = foldRight(xs, Nil: List[B])((a, b) => Cons(f(a), b))
 
+  // 3.19
+  def filter[A](xs: List[A], f: A => Boolean): List[A] = foldLeft(xs, Nil: List[A])((b, a) => if (f(a)) Cons(a, b) else b)
+  def filter2[A](xs: List[A], f: A => Boolean): List[A] = foldRight(xs, Nil: List[A])((a, b) => if (f(a)) Cons(a, b) else b)
+
+  //From blog excercise
+  def last[A](xs: List[A]): A = foldLeft(xs, head(xs))((b, a) => b)
+
+  //3.20
+  def flatMap[A, B](xs: List[A], f: A => List[B]): List[B] = {
+    val listOfxs: List[List[B]] = map(xs)(f)
+    foldRight(listOfxs, Nil: List[B])((ys, b) => foldLeft(b, ys)((a1, b1) => Cons(b1, a1)))
+  }
+
+  def rangeToList(x: Int): List[Int] = x match {
+    case 0 => Nil
+    case n => Cons(n, rangeToList(n - 1))
+  }
+
 }
 
 object ListApp extends App {
   import List._
   val items: List[String] = List("1", "2", "3", "4", "5", "6")
-  println(init(items))
-  println(foldLeft(items, Nil: List[Int])((b, a) => Cons(a.toInt, b)))
+  //println(init(items))
+  //println(foldLeft(items, Nil: List[Int])((b, a) => Cons(a.toInt, b)))
   val intItems = foldLeft(items, Nil: List[Int])((b, a) => Cons(a.toInt, b))
-  println(intItems)
-  println("Map using foldLeft => " + map(items)(item => item.toInt))
+  //println(intItems)
+  //println("Map using foldLeft => " + map(items)(item => item.toInt))
+  //println(combine(intItems, intItems))
+  //println(filter(intItems, (x: Int) => x > 3))
+  //  println(last(intItems))
+
+ // val explosive = map(intItems)(rangeToList)
+
+  println(flatMap(intItems, rangeToList))
 
 }
