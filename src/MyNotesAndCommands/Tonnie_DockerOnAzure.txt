@@ -1,0 +1,57 @@
+Notes - 
+https://msopentech.com/blog/2014/09/11/docker_host_in_azure/
+https://www.npmjs.com/package/azure-cli
+
+Account access.
+1) http://azure.microsoft.com/en-us/documentation/articles/xplat-cli/
+2) https://msdn.microsoft.com/library/azure/hh531793.aspx#BKMK_AccountVCert
+
+
+1) azureuserhotmail.onmicrosoft.com - domain name
+2) admin@azureuserhotmail.onmicrosoft.com  - temporary password password
+3) azure login -u admin@azureuserhotmail.onmicrosoft.com  -p password
+
+azure account download
+azure account import C:\Users\mohan\Downloads\publish.settings
+azure config list
+azure account storage list
+azure vm location list
+azure site location list
+
+azure vm docker create -e 22 -t ~/.ssh/docker_ssh.pem -P -l "West US" jlm-docker-host ubuntu-new-agent azureuser
+docker --tls -H tcp://azureuserhotmail.onmicrosoft.com:4243 info
+docker --tls -H 168.63.233.129:4243 info
+sudo docker attach 5b676874f140
+sudo docker exec -i -t 5b676874f140 bash
+
+168.63.233.129
+
+
+1) Create ubuntu virtual machine
+2) sudo apt-get install docker.io
+3) My docker gist can be found at https://gist.github.com/azureuser/c771005780dcdf9538bc
+4) for Ubuntu 14.04LTS, we need to use https for apt-get.
+	curl -sSL https://get.docker.io/ubuntu/ | sudo sh
+5) azure vm image list | grep 14_04
+6) Find one of the image, and create docker image in that instance.
+	azure vm docker create -e 22 -l 'West US' ubuntu-docker "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140618.1-en-us-30GB" rgardler 1234abcdE$	
+	azure vm docker create -e 22 -l 'West US' ubuntu-docker "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_1-LTS-amd64-server-20150123-en-us-30GB" --vm-size ExtraSmall/Small	 
+	
+7) By default, ~/.docker directory has certificate, and default docker port is 4243
+8) Could be overriden using following two switches.
+	--docker-port [port]        Port to use for docker [4243]
+	--docker-cert-dir [dir]     Directory containing docker cert	
+9) Export the hostname of the docker using following variable.
+	export DOCKER_HOST="tcp://ubuntu-docker.cloudapp.net:4243"
+	docker --tls info  --Run the info command
+	docker --tls -H tcp://ubuntu-docker.cloudapp.net:4243 info
+10)	docker --tls run busybox echo hello world
+		1) Creates a Busybox container, by retrieving an image of that container from the Docker Hub
+		2) The container will then start running and execute the “echo hello world” command .
+		3) The container will shut down after this operation is complete.
+
+11)	docker -tls run -t -i ubuntu bash
+	touch 	hello.txt
+	ls -l
+	docker --tls ps -a
+			
