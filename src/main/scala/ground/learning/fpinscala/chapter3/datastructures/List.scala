@@ -126,6 +126,54 @@ object List {
     case n => Cons(n, rangeToList(n - 1))
   }
 
+  //3.21
+  def filter3[A](xs: List[A], predicate: A => Boolean): List[A] = {
+    def predicateFun[B <: A](x: B): List[B] = if (predicate(x)) Cons(x, Nil) else Nil
+    flatMap[A, A](xs, predicateFun)
+  }
+
+  implicit def sum(x: Int, y: Int): Int = x + y
+
+  //3.22
+  def addPosistion(xs: List[Int], ys: List[Int])(implicit adder: (Int, Int) => Int): List[Int] = {
+    xs match {
+      case Nil => ys match {
+        case Nil => Nil
+        case _ => throw new RuntimeException("Two variable length lists.")
+      }
+      case Cons(x, tailx) => ys match {
+        case Nil => throw new RuntimeException("Two variable length lists.")
+        case Cons(y, taily) => Cons(adder(x,y), addPosistion(tailx, taily))
+      }
+    }
+  }
+  
+  //3.23
+  def zipWith[A,B](xs: List[A], ys: List[A])(implicit adder: (A, A) => B): List[B] = {
+    xs match {
+      case Nil => ys match {
+        case Nil => Nil
+        case _ => throw new RuntimeException("Two variable length lists.")
+      }
+      case Cons(x, tailx) => ys match {
+        case Nil => throw new RuntimeException("Two variable length lists.")
+        case Cons(y, taily) => Cons(adder(x,y), zipWith(tailx, taily))
+      }
+    }    
+  }
+  
+  //3.24
+  def hasSubsequnce[A](xs: List[A], ys: List[A]) : Boolean = {
+    ys match {
+      case Nil => true
+      case Cons(head, tail) => {
+        val newList = dropWhile(xs, (x: A) => head != x)
+      }
+    } 
+    true
+  }
+  
+
 }
 
 object ListApp extends App {
@@ -140,8 +188,12 @@ object ListApp extends App {
   //println(filter(intItems, (x: Int) => x > 3))
   //  println(last(intItems))
 
- // val explosive = map(intItems)(rangeToList)
+  // val explosive = map(intItems)(rangeToList)
 
-  println(flatMap(intItems, rangeToList))
+  //println(flatMap(intItems, rangeToList))
+
+  //println(filter3(intItems, (x: Int) => x > 3))
+  //println(addPosistion(intItems, intItems))
+  println(zipWith(intItems, intItems))
 
 }
