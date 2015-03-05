@@ -1,3 +1,13 @@
+Week 1: Functions & Evaluations
+Week 2: Higher Order Functions
+Week 3: Data and Abstraction
+Week 4: Types and Pattern Matching
+Week 6: Collections
+Week 7: Lazy Evaluation
+
+C:\Mohan\Coursera\Scala\Assignments
+
+//New April 2014 Course
 https://class.coursera.org/progfun-004/assignment/view?assignment_id=2
 https://class.coursera.org/progfun-004/assignment/view?assignment_id=3
 https://class.coursera.org/progfun-004/assignment/view?assignment_id=4
@@ -5,6 +15,15 @@ https://class.coursera.org/progfun-004/assignment/view?assignment_id=9
 https://class.coursera.org/progfun-004/assignment/view?assignment_id=15
 https://class.coursera.org/progfun-004/assignment/view?assignment_id=17
 https://class.coursera.org/progfun-004/assignment/view?assignment_id=19
+
+//Old 2012 Course
+https://class.coursera.org/progfun-2012-001/assignment/view?assignment_id=2
+https://class.coursera.org/progfun-2012-001/assignment/view?assignment_id=3
+https://class.coursera.org/progfun-2012-001/assignment/view?assignment_id=4
+https://class.coursera.org/progfun-2012-001/assignment/view?assignment_id=9
+https://class.coursera.org/progfun-2012-001/assignment/view?assignment_id=15
+https://class.coursera.org/progfun-2012-001/assignment/view?assignment_id=17
+https://class.coursera.org/progfun-2012-001/assignment/view?assignment_id=19
 
 http://help.coursera.org/customer/widget/emails/new
 http://www.dessci.com/en/products/mathplayer/

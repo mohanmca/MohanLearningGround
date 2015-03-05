@@ -21,10 +21,7 @@ git diff master remotes/origin/master..origin/master
 --find untracked files
 git ls-files --others --exclude-standard
 
------
-
 git remote add origin https://github.com/mohanmca/PrologLearningGround
-
 git checkout readme.txt
 
 -----
@@ -44,3 +41,7 @@ Todo:
 
 Find side-effect-free short-cut for debugging.. on the lines..
 val output = expression ~~ println
+
+----
+
+I write all the personal notes to LectureNotes directory with Tonnie_***

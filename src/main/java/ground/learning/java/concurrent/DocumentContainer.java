@@ -106,10 +106,11 @@ class Document {
 
 	private String[] content = null;
 	public static final int DEFAULT_DOCUMENTS_COUNT = 5;
+	private static final int DEFAULT_LINE_COUNT = 5;	
 
 	public static Document createDocument() {
-		String[] element = new String[DEFAULT_DOCUMENTS_COUNT];
-		for (int i = 0; i < DEFAULT_DOCUMENTS_COUNT; i++) {
+		String[] element = new String[DEFAULT_LINE_COUNT];
+		for (int i = 0; i < element.length; i++) {
 			element[i] = UUID.randomUUID().toString()
 					+ UUID.randomUUID().toString();
 		}
@@ -137,7 +138,7 @@ class Document {
 	private void doTimeConsumingWork() {
 		Random rand = new Random();
 		try {
-			Thread.sleep(rand.nextInt(DEFAULT_DOCUMENTS_COUNT));
+			Thread.sleep(rand.nextInt(100));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
