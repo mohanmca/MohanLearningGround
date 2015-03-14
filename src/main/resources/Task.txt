@@ -1,0 +1,7 @@
+When bored
+(Refer corresponding course text file more tasks)
+
+1) Watch video about Rasperry PI, setup and project
+2) Learn css from js1k.com using google chrome
+3) Learn Javascript from js1k.com using google chrome
+4) Learn Typescript, BootStrap

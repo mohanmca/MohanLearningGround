@@ -1,0 +1,7 @@
+TypeScript
+1) http://channel9.msdn.com/posts/Anders-Hejlsberg-Introducing-TypeScript
+2) https://www.youtube.com/watch?v=3dqZW_DqHIQ
+3) https://www.youtube.com/watch?v=ku9kA4zQUhg
+4) https://www.youtube.com/watch?v=5UPMqtrbw7E
+5) http://www.slideshare.net/dsheiko/typescript-introduction
+
