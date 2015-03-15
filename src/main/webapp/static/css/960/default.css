@@ -1,4 +1,5 @@
 #container {
+	padding: 1em;
 	background: #ccffff;
 }
 
@@ -16,4 +17,5 @@ div>p {
 
 #secondary1 p, #secondary2 p {
 	padding: 2em;
+	border: 2px solid;
 }
