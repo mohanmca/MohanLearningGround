@@ -1,0 +1,19 @@
+#container {
+	background: #ccffff;
+}
+
+#secondary1, #secondary2 {
+	background: gray;
+}
+
+#header, #footer {
+	background: brown;
+}
+
+div>p {
+	margin: 2px;
+}
+
+#secondary1 p, #secondary2 p {
+	padding: 2em;
+}
