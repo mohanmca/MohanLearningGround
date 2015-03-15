@@ -1,0 +1,22 @@
+Eric Meyer’s “Reset CSS”  - Defult values for all the browser.
+http://meyerweb.com/eric/thoughts/2007/04/18/reset-reasoning/ - Resets some of the default properties.
+
+http://960.gs/demo.html
+
+To debug CSS.. use inline style using attribute.
+style="border: 2px solid;"
+
+//Let us assume div with id container.
+//we can set background using following.
+
+#container {
+	background: #ccffff;
+}
+
+#secondary1, #secondary2 {
+	background: gray;
+}
+
+#header, #footer {
+	background: brown;
+}
