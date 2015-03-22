@@ -8,7 +8,9 @@
 }
 
 #header, #footer {
-	background: brown;
+	padding: 10px;
+	background: cyan;
+	text-align: center
 }
 
 div>p {
