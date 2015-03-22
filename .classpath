@@ -6,6 +6,7 @@
 	<classpathentry kind="src" output="target/scala-2.11/test-classes" path="src/test/java"/>
 	<classpathentry kind="src" path="src/main/resources/js"/>
 	<classpathentry kind="src" path="src/MyNotesAndCommands"/>
+	<classpathentry kind="src" path="src/main/webapp"/>
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_COMPILER_CONTAINER"/>
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-lang.modules/scala-xml_2.11/bundles/scala-xml_2.11-1.0.2.jar"/>
