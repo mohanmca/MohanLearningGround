@@ -4,6 +4,7 @@ public class Trade {
 	public String trader, broker, symbol;
 	public int quantity;
 	public float price;
+	private boolean shortTrade = false;
 
 	public Trade(String _trader, String _broker, String _symbol, int _quantity,
 			float _price) {
@@ -12,6 +13,16 @@ public class Trade {
 		this.symbol = _symbol;
 		this.quantity = _quantity;
 		this.price = _price;
+		if (quantity < 0)
+			shortTrade = true;
+	}
+
+	public boolean isShort() {
+		return shortTrade;
+	}
+
+	public boolean isLong() {
+		return !isShort();
 	}
 
 	@Override
