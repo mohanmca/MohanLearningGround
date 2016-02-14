@@ -1,10 +1,10 @@
-package ground.learning.scala.monad
+package ground.learning.monoid
 
 import language.postfixOps
 import scala.language.implicitConversions
 import scala.language.higherKinds
 
-object Application {
+object MonoidApp {
 
   trait Monoid[A] {
     val mzero: A

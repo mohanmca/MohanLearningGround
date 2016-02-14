@@ -1,4 +1,4 @@
-package ground.learning.scala.monad;
+package ground.learning.monoid
 
 class ReaderMonad {
 

@@ -21,9 +21,9 @@ public class BoxedPositionCalculatorTest {
 		calculator.add(trade);
 		Collection<Position> result = calculator.getOutstandingPosition();
 		Assert.assertEquals(result.size(), 1);
-		Position pos = new Position("Joe");
-		pos.update("IBM.N", 100);
-		Assert.assertTrue(result.toArray()[0].equals(pos));
+		Position expectedPos = new Position("Joe");
+		expectedPos.update("IBM.N", 100);
+		Assert.assertTrue(result.toArray()[0].equals(expectedPos));
 	}
 
 	@Test
