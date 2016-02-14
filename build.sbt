@@ -2,7 +2,7 @@ name := "MohanLearningGround"
 
 version := "1.0"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 transitiveClassifiers := Seq("sources")
 
@@ -15,6 +15,8 @@ libraryDependencies ++= Seq(
   "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test" withSources(),
   "org.scalacheck" % "scalacheck_2.11" % "1.12.2"  withSources() 
 )
+
+logLevel := Level.Debug
 
 libraryDependencies <++= (scalaVersion)(sv =>
   Seq(
