@@ -2,3 +2,6 @@
 /.worksheet/
 /src/
 /target/
+/project/
+/project/target/
+/project/project/
