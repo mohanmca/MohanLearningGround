@@ -2,7 +2,14 @@ name := "MohanLearningGround"
 
 version := "1.0"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
+
+initialize := {
+   val _ = initialize.value 
+   val specVersion = sys.props("java.specification.version")
+   val required = "1.8"
+   assert(required == specVersion, "Java 1.8 or above required")
+}
 
 transitiveClassifiers := Seq("sources")
 
@@ -28,14 +35,15 @@ libraryDependencies <++= (scalaVersion)(sv =>
 
 libraryDependencies <++= (scalaVersion)(sv =>
   Seq(
-    "org.apache.commons" % "commons-io" % "1.3.2" withSources(),
-    "commons-lang" % "commons-lang" % "2.6" withSources(),
-    "junit" % "junit" % "4.12"
-      ))
+        "org.apache.commons" % "commons-io" % "1.3.2" withSources(),
+        "commons-lang" % "commons-lang" % "2.6" withSources(),
+        "junit" % "junit" % "4.12"
+  ))
  
 resolvers += "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
  
 libraryDependencies += "com.typesafe.scala-logging" % "scala-logging_2.11" % "3.1.0"
+libraryDependencies += "org.scalaz" % "scalaz-core_2.11" % "7.2.4"  withSources()
  
 libraryDependencies ++= Seq(
     "io.reactivex" %% "rxscala" % "0.23.0" withSources(),
@@ -50,10 +58,12 @@ libraryDependencies ++= Seq(
     "org.scala-lang.modules" %% "scala-async" % "0.9.2"
   )
   
+
+  
 val depsAkka = Seq(
-    "com.typesafe.akka" %% "akka-actor" % "2.3.9" withSources(),
-    "com.typesafe.akka" %% "akka-testkit" % "2.3.9" withSources(),
-    "com.typesafe.akka" %% "akka-persistence-experimental" % "2.3.9"  withSources()
+    "com.typesafe.akka" %% "akka-actor" % "2.4.1" withSources(),
+    "com.typesafe.akka" %% "akka-testkit" % "2.4.1" withSources()
+//    "com.typesafe.akka" %% "akka-persistence-experimental" % "2.4.1"  withSources()
 )
   
 libraryDependencies ++= depsAkka

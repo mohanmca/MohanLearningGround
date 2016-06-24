@@ -2,8 +2,9 @@ package ground.learning.java.position;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Arrays;
 
-import scala.actors.threadpool.Arrays;
+
 
 public class Position {
 

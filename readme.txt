@@ -3,7 +3,7 @@ java -Xmx1024M -XX:MaxPermSize=1024M -Dsbt.log.noformat=true -Dsbt.repository.co
 
 ----
 
-sbt eclipse
+sbt eclipse update-sbt-classifiers
 sbt update-sbt-classifiers
 
 //Decorate classifier in SBT
