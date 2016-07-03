@@ -1,19 +1,28 @@
 package ground.learning.fp.Monad
 
-case class State[S, A](f : S => (S, A)) {
+case class State[S, A](runState : S => (S, A)) {
+
   def map[B](g : A => B) : State[S, B] = State { s =>
     {
-      val v = f(s)
+      val v = runState(s)
       (s, g(v._2))
     }
   }
 
   def flatMap[B](g : A => State[S, B]) : State[S, B] = State { s : S =>
     {
-      val v = f(s)
-      g(v._2).f(v._1)
+      val v = runState(s)
+      g(v._2).runState(v._1)
     }
   }
+
+
+}
+
+object State {
+  def init[S] : State[S, S] = State(s => (s, s))
+
+  def modify[S](f : S => S) = init[S] flatMap (s => State(_ => (f(s), ())))
 }
 
 case class Reader[Cx, A](rd : Cx => A) {

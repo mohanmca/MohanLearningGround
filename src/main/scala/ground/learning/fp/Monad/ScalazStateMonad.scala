@@ -24,7 +24,7 @@ object ScalazStateMonad extends App {
       r2 <- dice
     } yield (r1, r2)
 
-    println(TwoDice().f(new Random(1L)))
+//    println(TwoDice().f(new Random(1L)))
 
     val list = List.fill(10)(TwoDice())
 
