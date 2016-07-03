@@ -1,32 +1,63 @@
 package ground.learning.fp.Monad.State2
 //http://patricknoir.blogspot.sg/2014/12/demistify-state-monad-with-scala-22.html
-object StackApp extends App {
+object state extends App {
+  trait StateMonad[+T, S] {
+    owner =>
+    def apply(state : S) : (T, S)
 
-  type Stack[A] = List[A]
-  type State[S, A] = S => (A, S)
+    def flatMap[U](f : T => StateMonad[U, S]) = new StateMonad[U, S] {
+      override def apply(state : S) = {
+        val (a, y) = owner.apply(state)
+        f(a)(y)
+      }
+    }
 
-  def push[A](a : A) : State[Stack[A], Unit] = stack => ((), a :: stack)
-
-  def map[S, A, B](sa : State[S, A])(f : A => B) : State[S, B] = s => {
-    val t = sa.apply(s)
-    (f(t._1), t._2)
+    def map[U](f : T => U) = new StateMonad[U, S] {
+      def apply(state : S) = {
+        val (a, y) = owner.apply(state)
+        (f(a), y)
+      }
+    }
   }
 
-  def flatMap[S, A, B](sa : State[S, A])(f : A => State[S, B]) : State[S, B] = s => {
-    val t = sa.apply(s)
-    f(t._1).apply(t._2)
+  object Stack {
+    def push[A](x : A) = new StateMonad[Unit, List[A]] {
+      def apply(state : List[A]) = ((), x :: state)
+    }
+
+    def pop[A] = new StateMonad[Option[A], List[A]] {
+      def apply(state : List[A]) =
+        state match {
+          case x :: xs => (Some(x), xs)
+          case _ => (None, state)
+        }
+    }
   }
 
-  def pop[A] : State[Stack[A], Option[A]] = {
-    case a :: tail => (Some(a), tail)
-    case Nil => (None, Nil)
-  }
+  import Stack._
 
-  //  def popPairs[A] : State[Stack[A], (Option[A], Option[A])] = stack => {
-  //    val (opt1, stack1) = pop(stack)
-  //    val (opt2, stack2) = pop(stack1)
-  //    ((opt1, opt2), stack2)
-  //  }
-  //  
-  def popPairs[A] : State[Stack[A], (Option[A], Option[A])] =    flatMap(pop[A])(opt1 => map(pop[A])(opt2 => (opt1, opt2)))
+  val result = for {
+    _ <- push(3)
+    _ <- push(5)
+    _ <- push(7)
+    _ <- push(9)
+    _ <- pop
+  } yield ()                                      //> result  : state.StateMonad[Unit,List[Int]] = state$StateMonad$$anon$1@6a38e5
+                                                  //| 7f
+
+  println(result(List(1))._2)                     //> List(7, 5, 3, 1)
+
+  val otherResult = push(3).flatMap { _ =>
+    push(5).flatMap { _ =>
+      push(7).flatMap { _ =>
+        push(9).flatMap { _ =>
+          pop.map { _ => () }
+        }
+      }
+    }
+  }                                               //> otherResult  : state.StateMonad[Unit,List[Int]] = state$StateMonad$$anon$1@
+                                                  //| 5c3bd550
+
+  println(otherResult(List(1))._2)                //> List(7, 5, 3, 1)
+
 }
