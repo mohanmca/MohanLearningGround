@@ -16,7 +16,6 @@ case class State[S, A](runState : S => (S, A)) {
     }
   }
 
-
 }
 
 object State {
