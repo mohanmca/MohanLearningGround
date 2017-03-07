@@ -1,8 +1,14 @@
+/*
+ * babel-node multiurl.js links.txt
+ */
 let http = require('http')
 let fs = require('fs')
 
 let fileName = process.argv[2]
 let urls = fs.readFileSync(fileName).toString().split("\n").map(line => line.trim()).filter(line => line.length > 10)
+let arrayOfUrls =urls.map(url => url.split(","))
+
+urls = [].concat.apply([],arrayOfUrls).filter(function(v,i,a) { return a.indexOf(v) == i; });
 
 console.log(urls)
 

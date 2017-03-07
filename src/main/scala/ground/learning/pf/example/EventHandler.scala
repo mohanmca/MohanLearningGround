@@ -5,20 +5,20 @@ class EventHandler {
 }
 
 trait Event
-case class Click(x: Int, y: Int) extends Event
+case class Click(x : Int, y : Int) extends Event
 object Event {
   type Handler[A <: Event] = PartialFunction[Click, Any]
 }
 object Application extends App {
-  val handleLeftClick: Event.Handler[Click] = {
+  val handleLeftClick : Event.Handler[Click] = {
     case Click(x, y) if x <= 20 && y <= 20 =>
       println("Clicked the left corner!")
   }
-  val diagonalLeftClick: Event.Handler[Click] = {
+  val diagonalLeftClick : Event.Handler[Click] = {
     case Click(x, y) if x == y =>
       println("Clicked somewhere digonal!")
   }
-  val default: Event.Handler[Click] = {
+  val default : Event.Handler[Click] = {
     case Click(x, y) =>
       println("Clicked somewhere!")
   }
