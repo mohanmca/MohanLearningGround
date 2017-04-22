@@ -1,41 +1,44 @@
 package ground.learning.fp.Monad
 
+import scala.collection.immutable.List
+
 object ScalazStateMonad extends App {
-  def example1() {
-    import scalaz._
-    val s = State[Int, String](i => (i + 1, "str"))
-    // start with state of 1, pass it to s, returns result value "str"
-    assert(s.eval(1) == "str")
 
-    //same but only retrieve the state
-    assert(s.exec(1) == 2)
+  def counter = State[Int, Int](counter => (counter + 1, counter + 1))
+  def dice = State[java.util.Random, Int](r => (r, r.nextInt(1000) + 1))
 
-    // get both state and value or s.run(1)
-    assert(s(1) == (2, "str"))
-
-  }
+  val _list : List[State[java.util.Random, Int]] = List.fill(10)(dice)
+  val _counterList : List[State[Int, Int]] = List.fill(10)(counter)
 
   def example2() {
     import java.util.Random
-    def dice = State[Random, Int](r => (r, r.nextInt(1000) + 1))
 
     def TwoDice() = for {
       r1 <- dice
       r2 <- dice
     } yield (r1, r2)
 
-//    println(TwoDice().f(new Random(1L)))
-
-    val list = List.fill(10)(TwoDice())
-
   }
 
-  def example3() {
+  /*
+   * type mismatch; found : ((List[Int], ground.learning.fp.Monad.State[java.util.Random,Int])) ⇒ List[Int] required: (List[Int], ground.learning.fp.Monad.State[java.util.Random,Int]) ⇒ List[Int]
+   */
+  def fill(list : List[State[java.util.Random, Int]], random : java.util.Random) : List[Int] = {
+    val fop : (List[Int], State[java.util.Random, Int]) => List[Int] = (accu, state) => state.runState(random)._2 :: accu
+    list.foldLeft(List[Int]())(fop)
   }
 
-  //  example1()
-  //  example2()
-  example3()
+  println(fill(_list, new java.util.Random()))
+
+  def fill(list : List[State[Int, Int]], counter : Int) : List[Int] = {
+    val fop : (List[Int], State[Int, Int]) => List[Int] = (accu, state) => state.runState(counter)._2 :: accu
+    list.foldLeft(List[Int]())(fop)
+  }
+
+  println(fill(_counterList, 11))
+
 }
 
 
+
+ 

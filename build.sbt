@@ -19,8 +19,7 @@ libraryDependencies ++= Seq(
   "org.scalatra" %% "scalatra-specs2" % "2.3.1" % "test" withSources(),
   "ch.qos.logback" % "logback-classic" % "1.0.0" % "runtime" withSources(),
   "javax.servlet" % "servlet-api" % "2.5" % "provided" withSources(),
-  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test" withSources(),
-  "org.scalacheck" % "scalacheck_2.11" % "1.12.2"  withSources() 
+  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test" withSources()
 )
 
 logLevel := Level.Debug

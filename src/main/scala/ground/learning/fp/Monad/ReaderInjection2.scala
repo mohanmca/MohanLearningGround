@@ -1,7 +1,6 @@
 package ground.learning.fp.Monad
 
 import java.sql.DriverManager
-import org.eclipse.jetty.server.ConnectionFactory
 import java.sql.Connection
 import scala.Function1
 
