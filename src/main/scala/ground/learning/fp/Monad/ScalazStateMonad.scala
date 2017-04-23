@@ -30,9 +30,17 @@ object ScalazStateMonad extends App {
 
   println(fill(_list, new java.util.Random()))
 
+  /**
+   * type mismatch;
+   * found : (ground.learning.fp.Monad.State[Int,Int], ground.learning.fp.Monad.State[Int,List[Int]]) ⇒ ground.learning.fp.Monad.State[Int,List[Int]]
+   * required: (ground.learning.fp.Monad.State[Int, _ >: Int with List[Int]], ground.learning.fp.Monad.State[Int, _ >: Int with List[Int]]) ⇒ ground.learning.fp.Monad.State[Int, _ >: Int with List[Int]]
+   */
+
   def fill(list : List[State[Int, Int]], counter : Int) : List[Int] = {
-    val fop : (List[Int], State[Int, Int]) => List[Int] = (accu, state) => state.runState(counter)._2 :: accu
-    list.foldLeft(List[Int]())(fop)
+    val op : (State[Int, List[Int]], State[Int, Int]) => State[Int, List[Int]] = (y, x) => x.flatMap(counter => y.map(accumulator => counter :: accumulator))
+    val idState = State[Int, List[Int]](r => (r, List[Int]()))
+    val t2 = list.foldLeft(idState)(op)
+    t2.runState(counter)._2
   }
 
   println(fill(_counterList, 11))
