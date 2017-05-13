@@ -20,14 +20,10 @@ public class CoffeeToJs {
 
 	public CoffeeToJs() {
 		String script = readScript("/js/coffee-script.js");
-
-		ScriptEngine nashorn = new ScriptEngineManager()
-				.getEngineByName("nashorn");
+		ScriptEngine nashorn = new ScriptEngineManager().getEngineByName("nashorn");
 		try {
-			compiledScript = ((Compilable) nashorn).compile(script
-					+ "\nCoffeeScript.compile(__source, {bare: true});");
+			compiledScript = ((Compilable) nashorn).compile(script + "\nCoffeeScript.compile(__source, {bare: true});");
 			bindings = nashorn.getBindings(ENGINE_SCOPE);
-
 		} catch (ScriptException e) {
 			throw new RuntimeException("Unable to compile script", e);
 		}
@@ -48,8 +44,7 @@ public class CoffeeToJs {
 	}
 
 	public synchronized Object executeJs(String script) throws ScriptException {
-		ScriptEngine nashorn = new ScriptEngineManager()
-				.getEngineByName("nashorn");
+		ScriptEngine nashorn = new ScriptEngineManager().getEngineByName("nashorn");
 		nashorn.eval("console = {   log: print,    warn: print,    error: print};");
 		return nashorn.eval(script);
 	}

@@ -50,3 +50,9 @@ val output = expression ~~ println
 ----
 
 I write all the personal notes to LectureNotes directory with Tonnie_***
+
+
+
+[warn]  :: com.typesafe.scala-logging#scala-logging_2.12;3.1.0: not found
+[warn]  :: org.scala-lang.modules#scala-async_2.12;0.9.2: not found
+[warn]  :: com.typesafe.akka#akka-persistence-experimental_2.12;2.5.1: not found
