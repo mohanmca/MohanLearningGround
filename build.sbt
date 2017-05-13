@@ -53,7 +53,7 @@ libraryDependencies ++= Seq(
     "io.reactivex" % "rxswing" % "0.27.0" withSources(), // for Swing Scheduler in suggestions
     "org.json4s" %% "json4s-native" % "3.5.2" withSources(),
     "org.scala-lang.modules" %% "scala-swing" % "2.0.0" withSources(),
-    "net.databinder.dispatch" % "dispatch-core_2.10" % "0.11.3",
+//    "net.databinder.dispatch" % "dispatch-core_2.10" % "0.11.3",
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.slf4j" % "slf4j-api" % "1.7.5" withSources(),
     "org.slf4j" % "slf4j-simple" % "1.7.5" withSources(),
