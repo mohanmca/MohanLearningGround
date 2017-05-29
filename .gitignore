@@ -5,3 +5,7 @@
 /project/
 /project/target/
 /project/project/
+.cache
+.cache-*
+org.eclipse*
+.classpath

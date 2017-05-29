@@ -4,7 +4,7 @@ version := "1.0"
 
 scalaVersion := "2.12.2"
 
-enablePlugins(ScalaJSPlugin)
+//enablePlugins(ScalaJSPlugin)
 
 initialize := {
    val _ = initialize.value
@@ -26,7 +26,11 @@ libraryDependencies ++= Seq(
   "org.scalatest" % "scalatest_2.12" % "3.0.1" % "test"
 )
 
-logLevel := Level.Debug
+logLevel := Level.Warn
+
+libraryDependencies ++= Seq(
+  "com.chuusai" %% "shapeless" % "2.3.2" withSources()
+)
 
 libraryDependencies <++= (scalaVersion)(sv =>
   Seq(
