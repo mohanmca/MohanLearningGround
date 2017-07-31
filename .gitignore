@@ -1,6 +1,5 @@
 /bin/
 /.worksheet/
-/src/
 /target/
 /project/
 /project/target/
@@ -9,3 +8,4 @@
 .cache-*
 org.eclipse*
 .classpath
+*.iml
