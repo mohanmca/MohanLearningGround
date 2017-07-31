@@ -1,8 +1,9 @@
-//*[@id="rso"]/div/div
-//*[@id="rso"]/div/div/div[1]/div/div/h3/a
-
-//Google the results
-
+/**
+    1) Search for Google the results
+    2) Open developer console
+    3) Paste below code
+    4) Allow multiple links (download) in popup- Voila.. enjoy 
+**/
 function downloadURI(uri, name) {
   var link = document.createElement("a");
   link.download = name;
