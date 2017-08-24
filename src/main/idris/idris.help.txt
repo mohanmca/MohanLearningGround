@@ -1,0 +1,52 @@
+Idris version 1.1.1
+-------------------
+
+   Command         Arguments   Purpose
+
+   <expr>                      Evaluate an expression
+   :t :type        <expr>      Check the type of an expression
+   :core           <expr>      View the core language representation of a term
+   :miss :missing  <name>      Show missing clauses
+   :doc            <name>      Show internal documentation
+   :mkdoc          <namespace> Generate IdrisDoc for namespace(s) and dependencies
+   :apropos        [<package list>] <name> Search names, types, and documentation
+   :s :search      [<package list>] <expr> Search for values by type
+   :wc :whocalls   <name>      List the callers of some name
+   :cw :callswho   <name>      List the callees of some name
+   :browse         <namespace> List the contents of some namespace
+   :total          <name>      Check the totality of a name
+   :r :reload                  Reload current file
+   :w :watch                   Watch the current file for changes
+   :l :load        <filename>  Load a new file
+   :!              <command>   Run a shell command
+   :cd             <filename>  Change working directory
+   :module         <module>    Import an extra module
+   :e :edit                    Edit current file using $EDITOR or $VISUAL
+   :m :metavars                Show remaining proof obligations (metavariables or holes)
+   :p :prove       <hole>      Prove a metavariable
+   :elab           <hole>      Build a metavariable using the elaboration shell
+   :a :addproof    <name>      Add proof to source file
+   :rmproof        <name>      Remove proof from proof stack
+   :showproof      <name>      Show proof
+   :proofs                     Show available proofs
+   :x              <expr>      Execute IO actions resulting from an expression using the interpreter
+   :c :compile     <filename>  Compile to an executable [codegen] <filename>
+   :exec :execute  [<expr>]    Compile to an executable and run
+   :dynamic        <filename>  Dynamically load a C library (similar to %dynamic)
+   :dynamic                    List dynamically loaded C libraries
+   :? :h :help                 Display this help text
+   :set            <option>    Set an option (errorcontext, showimplicits, originalerrors, autosolve, nobanner, warnreach, evaltypes, desugarnats)
+   :unset          <option>    Unset an option
+   :color :colour  <option>    Turn REPL colours on or off; set a specific colour
+   :consolewidth   auto|infinite|<number>Set the width of the console
+   :printerdepth   [<number>]  Set the maximum pretty-printer depth (no arg for infinite)
+   :q :quit                    Exit the Idris system
+   :warranty                   Displays warranty information
+   :let            (<top-level declaration>)...Evaluate a declaration, such as a function definition, instance implementation, or fixity declaration
+   :unlet :undefine(<name>)... Remove the listed repl definitions, or all repl definitions if no names given
+   :printdef       <name>      Show the definition of a function
+   :pp :pprint     <option> <number> <name>Pretty prints an Idris function in either LaTeX or HTML and for a specified width.
+   :verbosity      <number>    Set verbosity level
+
+Holes: Main.quadrable
+*func>

@@ -1,0 +1,15 @@
+# Traits of a good programmer
+* Many other developers decorating or extending their existing solution, Meaning they already solved one or many important issues of the project/product.
+* Good developers have a knack of breaking requirements and finding gaps. they are very opinionated.
+* They challenge requirements and ensure that they knew what problem they are solving before thinking about library, language and platform
+* They are very good with set of tools and its intricacies
+* They can work faster and code more lines of program. 
+* How they act and, more deeply, how they think.
+* They Plan ahead - It wasn't raining when Noah built the Ark
+* They do their research - Measure once and cut once, They don't reinvent the wheel
+* They read error messages and stacktraces
+* They read source code, and learn from actual documentation (not from blog or some guide)
+* They enjoy solving problem, and would take head on the most complex problem and code themselves
+* They are good at more than one programming languages, but exceptionally good in their core programming language, and its eco-system.
+* They write (and maintain) programs that other people wouldn't say bad things about.
+* 

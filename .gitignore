@@ -9,4 +9,5 @@
 org.eclipse*
 .classpath
 *.iml
+*.ibc
 **/node_modules/*

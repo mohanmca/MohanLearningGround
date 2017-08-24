@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml" svgns="http://www.w3.org/2000/svg">
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+        }
+        
+        #main {
+            display: flex;
+            min-height: calc(100vh - 40vh);
+        }
+        
+        #main>article {
+            flex: 1;
+        }
+        
+        #main>nav,
+        #main>aside {
+            flex: 0 0 20vw;
+            background: beige;
+        }
+        
+        #main>nav {
+            order: -1;
+        }
+        
+        header,
+        footer,
+        article,
+        nav,
+        aside {
+            padding: 1em;
+        }
+        
+        header,
+        footer {
+            background: yellowgreen;
+            height: 20vh;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.24.1/ramda.min.js"></script>
+</head>
+
+<body>
+    <header>Header</header>
+    <div id="main">
+        <div id="svg">
+            <svg id="svgOne" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000"> 
+                    <rect x="50" y="50"
+                    width="50" height="50"
+                    fill="black" 
+                    />
+                    <rect x="50" y="500"
+                    width="50" height="50"
+                    fill="black" 
+                    />
+                    <rect x="500" y="50"
+                    width="50" height="50"
+                    fill="black" 
+                    />
+                    <circle cx="200" cy="200" r="40" stroke="black" stroke-width="3" fill="red"/>
+                </svg>
+            <input type="hidden" id="x" value="1">
+            <input type="hidden" id="y" value="2">
+            <button type="button" onclick="increment(document.getElementById('x'));">Increment X</button>
+            <button type="button" onclick="increment(document.getElementById('y'));">Increment Y</button>
+        </div>
+        <nav>Nav</nav>
+        <aside>Aside</aside>
+    </div>
+    <footer>Footer</footer>
+</body>
+<script>
+    function increment(elem) {
+        let currentValue = elem.value
+        elem.value = parseInt(currentValue, 10) + 1
+        console.log(elem.value)
+    }
+</script>
+<html>
