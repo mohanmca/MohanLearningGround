@@ -14,8 +14,8 @@
 # Applicative laws
 * pure id <*> v = v                            -- Identity
 * pure f <*> pure x = pure (f x)               -- Homomorphism
-* u <*> pure y = pure ($ y) <*> u              -- Interchange
-* pure (.) <*> u <*> v <*> w = u <*> (v <*> w) -- Composition
+* u <\*> pure y = pure ($ y) <\*> u              -- Interchange
+* pure (.) <\*> u <\*> v <\*> w = u <\*> (v <\*> w) -- Composition
 * * *pure as a way to inject values into the functor in a default,*
 * * *The interchange law says that applying a morphism to a "pure" value pure y is the same as applying pure ($ y) to the morphism. 
 * * *($ y) is the function that supplies y as argument to another function.*
