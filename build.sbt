@@ -2,7 +2,7 @@ name := "MohanLearningGround"
 
 version := "1.0"
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.12.3"
 
 //enablePlugins(ScalaJSPlugin)
 
@@ -23,7 +23,7 @@ libraryDependencies ++= Seq(
   "javax.servlet" % "servlet-api" % "2.5" % "provided" withSources(),
   "org.scalactic" % "scalactic_2.12" % "3.0.1" withSources(),
   "org.scalatest" % "scalatest_2.12" % "3.0.1" % "test" withSources(),
-  "org.scalatest" % "scalatest_2.12" % "3.0.1" % "test"
+  "org.scalacheck" %% "scalacheck" % "1.13.4" % "test"  withSources()
 )
 
 logLevel := Level.Warn
@@ -74,3 +74,17 @@ val depsAkka = Seq(
 )
 
 libraryDependencies ++= depsAkka
+
+unmanagedSourceDirectories in Compile <++= baseDirectory { base =>
+  Seq(
+    base / "src/main/scala",
+    base / "src/main/java",
+    base / "src/main/resources",
+    base / "src/test/scala",
+    base / "src/test/java",
+    base / "src/main/js",
+    base / "src/main/webapp",
+    base / "src/main/python",
+    base / "src/main/md"
+   )
+}
