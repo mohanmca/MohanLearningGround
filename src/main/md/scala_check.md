@@ -29,4 +29,4 @@
     * Handle it in the implementation code, and repurcusion may impact test case, hence handle it in testcase
     * Handle the exception in the propery-based test case
     * Ignore the particular case, by filtering out possibility in the test-case
-*    
+* ScalaCheck  == Properties ++ Generators   
