@@ -8,22 +8,25 @@
 	<classpathentry kind="src" path="src/main/js"/>
 	<classpathentry kind="src" path="src/main/webapp"/>
 	<classpathentry kind="src" path="src/main/python"/>
+	<classpathentry kind="src" path="src/main/md"/>
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_COMPILER_CONTAINER"/>
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-js/scalajs-library_2.12/jars/scalajs-library_2.12-0.6.16.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra_2.12/jars/scalatra_2.12-2.5.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-common_2.12/jars/scalatra-common_2.12-2.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra_2.12/jars/scalatra_2.12-2.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-common_2.12/jars/scalatra-common_2.12-2.5.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.21.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.clapper/grizzled-slf4j_2.12/jars/grizzled-slf4j_2.12-1.3.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.googlecode.juniversalchardet/juniversalchardet/jars/juniversalchardet-1.0.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/eu.medsea.mimeutil/mime-util/bundles/mime-util-2.1.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/bundles/scala-parser-combinators_2.12-1.0.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-scalate_2.12/jars/scalatra-scalate_2.12-2.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-scalate_2.12/jars/scalatra-scalate_2.12-2.5.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra.scalate/scalate-core_2.12/jars/scalate-core_2.12-1.8.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra.scalate/scalate-util_2.12/jars/scalate-util_2.12-1.8.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalactic/scalactic_2.12/jars/scalactic_2.12-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalactic/scalactic_2.12/jars/scalactic_2.12-3.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatest/scalatest_2.12/jars/scalatest_2.12-3.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalacheck/scalacheck_2.12/jars/scalacheck_2.12-1.13.5.jar" sourcepath="C:/Users/mohan/.ivy2/cache/org.scalacheck/scalacheck_2.12/srcs/scalacheck_2.12-1.13.5-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-sbt/test-interface/jars/test-interface-1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.chuusai/shapeless_2.12/jars/shapeless_2.12-2.3.2.jar" sourcepath="C:/Users/mohan/.ivy2/cache/com.chuusai/shapeless_2.12/srcs/shapeless_2.12-2.3.2-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.typelevel/macro-compat_2.12/jars/macro-compat_2.12-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.apache.commons/commons-io/jars/commons-io-1.3.2.jar"/>
@@ -46,24 +49,23 @@
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.squareup.retrofit/retrofit/jars/retrofit-1.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.google.code.gson/gson/jars/gson-2.2.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-lang.modules/scala-async_2.12/bundles/scala-async_2.12-0.9.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/jars/akka-actor_2.12-2.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/jars/akka-actor_2.12-2.5.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe/config/bundles/config-1.3.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.12/bundles/scala-java8-compat_2.12-0.8.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-testkit_2.12/jars/akka-testkit_2.12-2.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-persistence_2.12/jars/akka-persistence_2.12-2.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-protobuf_2.12/jars/akka-protobuf_2.12-2.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-testkit_2.12/jars/akka-testkit_2.12-2.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-persistence_2.12/jars/akka-persistence_2.12-2.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-protobuf_2.12/jars/akka-protobuf_2.12-2.5.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/ch.qos.logback/logback-classic/jars/logback-classic-1.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/ch.qos.logback/logback-core/jars/logback-core-1.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-js/scalajs-test-interface_2.12/jars/scalajs-test-interface_2.12-0.6.16.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-specs2_2.12/jars/scalatra-specs2_2.12-2.5.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-test_2.12/jars/scalatra-test_2.12-2.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-specs2_2.12/jars/scalatra-specs2_2.12-2.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-test_2.12/jars/scalatra-test_2.12-2.5.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-webapp/jars/jetty-webapp-9.2.19.v20160908.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-xml/jars/jetty-xml-9.2.19.v20160908.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-util/jars/jetty-util-9.2.19.v20160908.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-servlet/jars/jetty-servlet-9.2.19.v20160908.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-security/jars/jetty-security-9.2.19.v20160908.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-server/jars/jetty-server-9.2.19.v20160908.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/javax.servlet/javax.servlet-api/jars/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/javax.servlet/javax.servlet-api/jars/javax.servlet-api-4.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-http/jars/jetty-http-9.2.19.v20160908.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-io/jars/jetty-io-9.2.19.v20160908.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.mockito/mockito-all/jars/mockito-all-1.10.19.jar"/>
@@ -84,8 +86,6 @@
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/specs2-matcher-extra_2.12/jars/specs2-matcher-extra_2.12-3.8.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/specs2-analysis_2.12/jars/specs2-analysis_2.12-3.8.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/classycle/jars/classycle-1.4.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatest/scalatest_2.12/jars/scalatest_2.12-3.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/javax.servlet/servlet-api/jars/servlet-api-2.5.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
