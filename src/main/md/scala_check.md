@@ -4,10 +4,11 @@
 * Tests are concrete examples of how a program should behave in particular situations and it is formal.
 * In TDD and BDD,  tests as specification is to make your specification more test-centered. It is also known as executable specification.
 * Property-based testing goes in the opposite direction by making your tests more specification-like
-* Every system has structure and behaviour, in BDD we test behaviour of the system, Test cases are coarse grained level or use-case level.
+* Every system has structure and behaviour. In BDD we test behaviour of the system, Test cases are coarse grained level or use-case level.
 
 * Sample scala check
 ```Scala
+    /** Dependency -- "org.scalacheck" %% "scalacheck" % "1.13.5" **/
     import org.scalacheck.Properties
     import org.scalacheck.Prop.forAll
   
@@ -21,29 +22,32 @@
     }
 ``` 
 * Properties are sometimes called parameterized tests
-* Benefits
+* Benefits of properties based testing
   * Increased - Test coverage due to randomized input
   * Specification completeness - due to abstract test
   * Maintenance - less code to maintain and refactor
   * Test case simplification  - Finding smallest set for which test case fails
-  * When property based test case fails.
-    * Handle it in the implementation code, and repurcusion may impact test case, hence handle it in testcase
-    * Handle the exception in the propery-based test case
-    * Ignore the particular case, by filtering out possibility in the test-case
+* When property based test case fails.
+  * Handle it in the implementation code, and repurcusion may impact test case, hence handle it in testcase
+  * Handle the exception in the propery-based test case
+  * Ignore the particular case, by filtering out possibility in the test-case
 * ScalaCheck  == Properties ++ Generators
-* A single property in ScalaCheck is the smallest testable unit. It is represented by an instance of the org.scalacheck.Prop class.   
-* org.scalacheck.Properties is a class with lot of operators to compose multiple Property. 
-* org.scalacheck.Properties.property method is used to add named properties to the set.
-* Generator can generate for any type, Implicit used instead of reflection to find the type T.
-```Scala
-  class Gen[+T] {
-    def apply(prms: Gen.Params): Option[T]
-  }
-```
-* Generator might sometime fail, That is why return type is Option[T]
-* org.scalacheck.Gen has function to accept function that expects Generated value, normally we don't need to deal with Generator including custom generator.
-* Ensure instance of Arbitrary[T]  is in path would be enough to supply T for any testcase
-* Sample..
+* Properties
+  * A single property in ScalaCheck is the smallest testable unit. It is represented by an instance of the org.scalacheck.Prop class.   
+  * org.scalacheck.Properties is a class with lot of operators to compose multiple Property. 
+  * org.scalacheck.Properties.property method is used to add named properties to the set.
+* Generator
+  * Generator can generate for any type, Implicit used instead of reflection to find the type T.
+  ```Scala
+    class Gen[+T] {
+      def apply(prms: Gen.Params): Option[T]
+    }
+  ```
+  * Generator might sometime fail, That is why return type is Option[T]
+  * org.scalacheck.Gen has function to accept function that expects Generated value, normally we don't need to deal with Generator including custom generator.
+  * Ensure instance of Arbitrary[T]  is in path would be enough to supply T for any testcase
+
+* Sample custom generator.
 ```Scala
   import org.scalacheck.Gen.{choose, oneOf}
   
@@ -143,17 +147,23 @@
 
       ```
 # Generators in Details
-* Generators could be composed to create complex or recursive Generators
-* One way of creating a new generator is to attach a filter to an existing one, by using the Gen.suchThat method
-* If you use this generator in a property, each filtered generator value results in a discarded property evaluation.
-* If you add a filter that is too narrow, too many values will be discarded and ScalaCheck will give up on checking the property. In those cases using  Gen.retryUntil with caution.
-* Gen.sized and Gen.resize When ScalaCheck produces data with a generator, it tells the generator what data size it wants. 
-* Size lets you test a property with increasingly larger data sets. A generator may interpret the data size parameter freely, or even ignore it if it doesn't make sense to use it.
-* When you implement your own generator, you can use the size variable by utilizing the Gen.sized or Gen.resize methods. 
-* The Gen.size method takes an anonymous function as its only parameter, and this function in turn takes an integer value as its parameter.
-* import org.scalacheck.Gen.{choose, negNum, posNum}
-* AlphaChar, String Generator 
-  ```Scala
+* Give up and discarded
+  * One way of creating a new generator is to attach a filter to an existing one, by using the Gen.suchThat method
+  * If you use this generator in a property, each filtered generator value results in a **discarded property** evaluation.
+  * If you add a filter that is too narrow, too many values will be discarded and ScalaCheck will **give up on checking the property**. In those cases using  Gen.retryUntil with caution.
+* Size and resize for custom generators
+  * Gen.sized and Gen.resize When ScalaCheck produces data with a generator, it tells the generator what data size it wants. 
+  * Size lets you test a property with increasingly larger data sets. A generator may interpret the data size parameter freely, or even ignore it if it doesn't make sense to use it.
+  * When you implement your own generator, you can use the size variable by utilizing the Gen.sized or Gen.resize methods. 
+  * The Gen.size method takes an anonymous function as its only parameter, and this function in turn takes an integer value as its parameter.
+* Gen.const, Gen.fail
+* Generators could be composed to create Higher-order generators or recursive Generators
+* Higher-order generators
+  * Gen.sequence
+  * Gen.frequency
+```Scala
+  import org.scalacheck.Gen.{choose, negNum, posNum} /** show few more generatos **/
+  /** AlphaChar, String Generator **/
   val genString = for {
     c1 <- Gen.numChar
     c2 <- Gen.alphaUpperChar
@@ -166,13 +176,9 @@
     num <- Gen.numStr
     id <- Gen.identifier
 ``` 
-* Gen.const, Gen.fail
-* Higher-order generators
-  * Gen.sequence
-  * Gen.frequency
 
+* Some reusable template
 ```Scala
-Generators
     Gen.sequence(List(choose(1,10), const(20), const(30)))
     Gen.frequency((1, oddNumberGen),    (2, evenNumberGen),    (4, 0)  )
     val genNotZero = Gen.oneOf(choose(-10,-1), choose(1,10))
@@ -194,13 +200,24 @@ Generators
         list <- Gen.listOfN(listSize, genElem)
       } yield list
     }
-  }    
-```    
+  }
+```
 
-
+* Shrink framework narrow down failed cases.
+* Shrink framework use Stream type to evaluates all elements lazily, which makes the process of simplifying test cases more performant.
+* The shrink method takes a value and returns a stream of simpler variants of that value.
+  * You are free to implement the shrink method in a way that makes sense for your particular type. 
+  * Shrink method must converge towards an empty stream.
+  * if you run shrink on elements in its output, the original value is not allowed to re-appear.
+  * org.scalacheck.Shrink.shrink(10).check => 0, 5, -5, 8, -8, 9, -9, empty  
+```Scala
+  trait Shrink[T] {
+    def shrink(x: T): scala.collection.immutable.Stream[T]
+  }
+```
+* Runtime considerations
 * Prefer using PropertyChecks style when using scalaTest
-
- * ScalaCheck runtime parameters
+* ScalaCheck runtime parameters
    * maxDiscardedRatio - determines how hard ScalaCheck will try before giving up on a property
    * minSuccessfulTests - parameter, default value is 100. - Default is 5.
      * if the minimum number of successful tests is 100, then 500 discarded attempts are allowed before property evaluation is aborted.
@@ -223,4 +240,3 @@ Generators
         )
       ```
   * scala -cp scalacheck.jar:. ListSpec --help
-  * 
