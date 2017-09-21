@@ -202,9 +202,11 @@
     }
   }
 ```
-
-* Shrink framework narrow down failed cases.
+# Shrink framework
+* Shrink allows to find a case that fails for 100s parameters into a case `as simple as` possible.
+* Shrink framework would try to narrow down failed cases.
 * Shrink framework use Stream type to evaluates all elements lazily, which makes the process of simplifying test cases more performant.
+* Sometime shrink framework would try to minimize and would end-up other problem.
 * The shrink method takes a value and returns a stream of simpler variants of that value.
   * You are free to implement the shrink method in a way that makes sense for your particular type. 
   * Shrink method must converge towards an empty stream.
