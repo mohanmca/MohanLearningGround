@@ -217,7 +217,7 @@
     def shrink(x: T): scala.collection.immutable.Stream[T]
   }
 ```
-* Runtime considerations
+# Runtime considerations
 * Prefer using PropertyChecks style when using scalaTest
 * ScalaCheck runtime parameters
    * maxDiscardedRatio - determines how hard ScalaCheck will try before giving up on a property
