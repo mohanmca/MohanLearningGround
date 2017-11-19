@@ -167,3 +167,33 @@ console.log(links.join("\n"))
 
 * https://atom.io/packages/list?direction=desc&sort=stars
 * https://atom.io/packages/list?direction=desc&sort=downloads
+
+
+let links = Array.from(document.getElementsByTagName("a")).filter(link => link.href.endsWith("pdf")).map(link => link.href)
+
+function downloadURI(uri) {
+  var link = document.createElement("a");
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  delete link;
+}
+
+
+### How to extract youtube motivational speech text
+
+* https://www.youtube.com/watch?v=I22Lf0xF0UE and skip advertisement
+*  find "...More" button, and click that button and select "Transcript"
+*  Select english as language
+*  press f12 > select console
+*  paste below lines of code, and get transcript.
+
+
+```Javascript
+{
+    let transcriptLines = Array.from(document.getElementById("transcript-scrollbox").childNodes)
+    let text = transcriptLines.map(text => text.childNodes[1].innerHTML) 
+    let result = text.filter(text => text.indexOf("MUSIC") == -1) 
+    console.log(result)
+}
+```
