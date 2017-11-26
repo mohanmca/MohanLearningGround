@@ -17,6 +17,7 @@ initialize := {
 transitiveClassifiers := Seq("sources")
 
 libraryDependencies ++= Seq(
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0" withSources(),
   "org.scalatra" %% "scalatra" % "2.5.+" withSources(),
   "org.scalatra" %% "scalatra-scalate" % "2.5.+" withSources(),
   "org.scalatra" %% "scalatra-specs2" % "2.5.+" % "test" withSources(),
@@ -29,15 +30,19 @@ libraryDependencies ++= Seq(
 
 logLevel := Level.Warn
 
+scalacOptions += "-Ypartial-unification"
+
 libraryDependencies ++= Seq(
-  "com.chuusai" %% "shapeless" % "2.3.2" withSources()
+  "com.chuusai" %% "shapeless" % "2.3.2" withSources(),
+  "org.typelevel" %% "cats-core" % "1.0.0-RC1" withSources(),
+   "org.scalaz" %% "scalaz-core" % "7.2.17"  withSources()
 )
 
 libraryDependencies ++=  Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
 	"org.scala-lang" % "scala-reflect" % scalaVersion.value,
-    "org.scala-lang.modules" % "scala-parser-combinators_2.12" % "1.0.3"
+    "org.scala-lang.modules" % "scala-parser-combinators_2.12" % "1.0.6"
   )
 
 libraryDependencies <++= (scalaVersion)(sv =>
@@ -46,11 +51,6 @@ libraryDependencies <++= (scalaVersion)(sv =>
         "commons-lang" % "commons-lang" % "2.6" withSources(),
         "junit" % "junit" % "4.12"
   ))
-
-resolvers += "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
-
-libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0"
-libraryDependencies += "org.scalaz" % "scalaz-core_2.12" % "7.2.12"  withSources()
 
 libraryDependencies ++= Seq(
     "io.reactivex" %% "rxscala" % "0.26.5" withSources(),
