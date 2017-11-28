@@ -1,91 +1,93 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/main/scala"/>
-	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="src" path="src/test/scala"/>
-	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry kind="src" path="src/main/js"/>
-	<classpathentry kind="src" path="src/main/webapp"/>
-	<classpathentry kind="src" path="src/main/python"/>
-	<classpathentry kind="src" path="src/main/md"/>
-	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_COMPILER_CONTAINER"/>
-	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra_2.12/jars/scalatra_2.12-2.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-common_2.12/jars/scalatra-common_2.12-2.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.21.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.clapper/grizzled-slf4j_2.12/jars/grizzled-slf4j_2.12-1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.googlecode.juniversalchardet/juniversalchardet/jars/juniversalchardet-1.0.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/eu.medsea.mimeutil/mime-util/bundles/mime-util-2.1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/bundles/scala-parser-combinators_2.12-1.0.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-scalate_2.12/jars/scalatra-scalate_2.12-2.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra.scalate/scalate-core_2.12/jars/scalate-core_2.12-1.8.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra.scalate/scalate-util_2.12/jars/scalate-util_2.12-1.8.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalactic/scalactic_2.12/jars/scalactic_2.12-3.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatest/scalatest_2.12/jars/scalatest_2.12-3.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalacheck/scalacheck_2.12/jars/scalacheck_2.12-1.13.5.jar" sourcepath="C:/Users/mohan/.ivy2/cache/org.scalacheck/scalacheck_2.12/srcs/scalacheck_2.12-1.13.5-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-sbt/test-interface/jars/test-interface-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.chuusai/shapeless_2.12/jars/shapeless_2.12-2.3.2.jar" sourcepath="C:/Users/mohan/.ivy2/cache/com.chuusai/shapeless_2.12/srcs/shapeless_2.12-2.3.2-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.typelevel/macro-compat_2.12/jars/macro-compat_2.12-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.apache.commons/commons-io/jars/commons-io-1.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/commons-io/commons-io/jars/commons-io-1.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/commons-lang/commons-lang/jars/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/junit/junit/jars/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.hamcrest/hamcrest-core/jars/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.scala-logging/scala-logging_2.12/bundles/scala-logging_2.12-3.5.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalaz/scalaz-core_2.12/jars/scalaz-core_2.12-7.2.12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/io.reactivex/rxscala_2.12/jars/rxscala_2.12-0.26.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/io.reactivex/rxjava/jars/rxjava-1.2.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/io.reactivex/rxswing/jars/rxswing-0.27.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.json4s/json4s-native_2.12/jars/json4s-native_2.12-3.5.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.json4s/json4s-core_2.12/jars/json4s-core_2.12-3.5.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.json4s/json4s-ast_2.12/jars/json4s-ast_2.12-3.5.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.json4s/json4s-scalap_2.12/jars/json4s-scalap_2.12-3.5.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.thoughtworks.paranamer/paranamer/bundles/paranamer-2.8.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-lang.modules/scala-swing_2.12/jars/scala-swing_2.12-2.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.slf4j/slf4j-simple/jars/slf4j-simple-1.7.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.squareup.retrofit/retrofit/jars/retrofit-1.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.google.code.gson/gson/jars/gson-2.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-lang.modules/scala-async_2.12/bundles/scala-async_2.12-0.9.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/jars/akka-actor_2.12-2.5.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe/config/bundles/config-1.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.12/bundles/scala-java8-compat_2.12-0.8.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-testkit_2.12/jars/akka-testkit_2.12-2.5.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-persistence_2.12/jars/akka-persistence_2.12-2.5.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/com.typesafe.akka/akka-protobuf_2.12/jars/akka-protobuf_2.12-2.5.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/ch.qos.logback/logback-classic/jars/logback-classic-1.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/ch.qos.logback/logback-core/jars/logback-core-1.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-specs2_2.12/jars/scalatra-specs2_2.12-2.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalatra/scalatra-test_2.12/jars/scalatra-test_2.12-2.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-webapp/jars/jetty-webapp-9.2.19.v20160908.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-xml/jars/jetty-xml-9.2.19.v20160908.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-util/jars/jetty-util-9.2.19.v20160908.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-servlet/jars/jetty-servlet-9.2.19.v20160908.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-security/jars/jetty-security-9.2.19.v20160908.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-server/jars/jetty-server-9.2.19.v20160908.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/javax.servlet/javax.servlet-api/jars/javax.servlet-api-4.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-http/jars/jetty-http-9.2.19.v20160908.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.eclipse.jetty/jetty-io/jars/jetty-io-9.2.19.v20160908.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.mockito/mockito-all/jars/mockito-all-1.10.19.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.5.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.4.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.9.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.apache.httpcomponents/httpmime/jars/httpmime-4.5.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/specs2-core_2.12/jars/specs2-core_2.12-3.8.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/specs2-matcher_2.12/jars/specs2-matcher_2.12-3.8.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/specs2-common_2.12/jars/specs2-common_2.12-3.8.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/specs2-codata_2.12/jars/specs2-codata_2.12-3.8.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalaz/scalaz-effect_2.12/bundles/scalaz-effect_2.12-7.2.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.scalaz/scalaz-concurrent_2.12/bundles/scalaz-concurrent_2.12-7.2.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/specs2-mock_2.12/jars/specs2-mock_2.12-3.8.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.mockito/mockito-core/jars/mockito-core-1.9.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.objenesis/objenesis/jars/objenesis-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/specs2-matcher-extra_2.12/jars/specs2-matcher-extra_2.12-3.8.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/specs2-analysis_2.12/jars/specs2-analysis_2.12-3.8.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohan/.ivy2/cache/org.specs2/classycle/jars/classycle-1.4.3.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="output" path="bin"/>
+  <classpathentry kind="src" path="src\main\scala"/>
+  <classpathentry kind="src" path="src\main\java"/>
+  <classpathentry kind="src" path="src\main\resources"/>
+  <classpathentry kind="src" path="src\test\scala"/>
+  <classpathentry kind="src" path="src\test\java"/>
+  <classpathentry kind="src" path="src\main\js"/>
+  <classpathentry kind="src" path="src\main\webapp"/>
+  <classpathentry kind="src" path="src\main\python"/>
+  <classpathentry kind="src" path="src\main\md"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-actor_2.12\2.5.4\akka-actor_2.12-2.5.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-actor_2.12\2.5.4\akka-actor_2.12-2.5.4.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-common_2.12\3.8.6\specs2-common_2.12-3.8.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-common_2.12\3.8.6\specs2-common_2.12-3.8.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-analysis_2.12\3.8.6\specs2-analysis_2.12-3.8.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-analysis_2.12\3.8.6\specs2-analysis_2.12-3.8.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalatra-common_2.12\2.5.4\scalatra-common_2.12-2.5.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalatra-common_2.12\2.5.4\scalatra-common_2.12-2.5.4.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\commons-lang\commons-lang\2.6\commons-lang-2.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\commons-lang\commons-lang\2.6\commons-lang-2.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-io\9.2.19.v20160908\jetty-io-9.2.19.v20160908-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-io\9.2.19.v20160908\jetty-io-9.2.19.v20160908.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-mock_2.12\3.8.6\specs2-mock_2.12-3.8.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-mock_2.12\3.8.6\specs2-mock_2.12-3.8.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalatra_2.12\2.5.4\scalatra_2.12-2.5.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalatra_2.12\2.5.4\scalatra_2.12-2.5.4.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalaz\scalaz-effect_2.12\7.2.7\scalaz-effect_2.12-7.2.7-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalaz\scalaz-effect_2.12\7.2.7\scalaz-effect_2.12-7.2.7.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-codata_2.12\3.8.6\specs2-codata_2.12-3.8.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-codata_2.12\3.8.6\specs2-codata_2.12-3.8.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\commons-codec\commons-codec\1.9\commons-codec-1.9-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\commons-codec\commons-codec\1.9\commons-codec-1.9.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalaz\scalaz-core_2.12\7.2.17\scalaz-core_2.12-7.2.17-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalaz\scalaz-core_2.12\7.2.17\scalaz-core_2.12-7.2.17.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-util\9.2.19.v20160908\jetty-util-9.2.19.v20160908-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-util\9.2.19.v20160908\jetty-util-9.2.19.v20160908.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\classycle\1.4.3\classycle-1.4.3-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\classycle\1.4.3\classycle-1.4.3.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalacheck\scalacheck_2.12\1.13.5\scalacheck_2.12-1.13.5-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalacheck\scalacheck_2.12\1.13.5\scalacheck_2.12-1.13.5.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\slf4j\slf4j-api\1.7.21\slf4j-api-1.7.21-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\slf4j\slf4j-api\1.7.21\slf4j-api-1.7.21.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalactic\scalactic_2.12\3.0.2\scalactic_2.12-3.0.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalactic\scalactic_2.12\3.0.2\scalactic_2.12-3.0.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\json4s\json4s-core_2.12\3.5.2\json4s-core_2.12-3.5.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\json4s\json4s-core_2.12\3.5.2\json4s-core_2.12-3.5.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\config\1.3.1\config-1.3.1-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\config\1.3.1\config-1.3.1.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\objenesis\objenesis\1.0\objenesis-1.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\objenesis\objenesis\1.0\objenesis-1.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\commons-logging\commons-logging\1.2\commons-logging-1.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\commons-logging\commons-logging\1.2\commons-logging-1.2.jar"/>
+  <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_COMPILER_CONTAINER"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\io\reactivex\rxjava\1.2.4\rxjava-1.2.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\io\reactivex\rxjava\1.2.4\rxjava-1.2.4.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\ch\qos\logback\logback-classic\1.0.0\logback-classic-1.0.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\ch\qos\logback\logback-classic\1.0.0\logback-classic-1.0.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-server\9.2.19.v20160908\jetty-server-9.2.19.v20160908-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-server\9.2.19.v20160908\jetty-server-9.2.19.v20160908.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\mockito\mockito-all\1.10.19\mockito-all-1.10.19-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\mockito\mockito-all\1.10.19\mockito-all-1.10.19.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-testkit_2.12\2.5.4\akka-testkit_2.12-2.5.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-testkit_2.12\2.5.4\akka-testkit_2.12-2.5.4.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\typelevel\cats-macros_2.12\1.0.0-RC1\cats-macros_2.12-1.0.0-RC1-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\typelevel\cats-macros_2.12\1.0.0-RC1\cats-macros_2.12-1.0.0-RC1.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalatra-test_2.12\2.5.4\scalatra-test_2.12-2.5.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalatra-test_2.12\2.5.4\scalatra-test_2.12-2.5.4.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalate\scalate-util_2.12\1.8.0\scalate-util_2.12-1.8.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalate\scalate-util_2.12\1.8.0\scalate-util_2.12-1.8.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalaz\scalaz-concurrent_2.12\7.2.7\scalaz-concurrent_2.12-7.2.7-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalaz\scalaz-concurrent_2.12\7.2.7\scalaz-concurrent_2.12-7.2.7.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\typelevel\machinist_2.12\0.6.2\machinist_2.12-0.6.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\typelevel\machinist_2.12\0.6.2\machinist_2.12-0.6.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\mockito\mockito-core\1.9.5\mockito-core-1.9.5-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\mockito\mockito-core\1.9.5\mockito-core-1.9.5.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-xml\9.2.19.v20160908\jetty-xml-9.2.19.v20160908-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-xml\9.2.19.v20160908\jetty-xml-9.2.19.v20160908.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\commons-io\commons-io\1.3.2\commons-io-1.3.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\commons-io\commons-io\1.3.2\commons-io-1.3.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-java8-compat_2.12\0.8.0\scala-java8-compat_2.12-0.8.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-java8-compat_2.12\0.8.0\scala-java8-compat_2.12-0.8.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\ch\qos\logback\logback-core\1.0.0\logback-core-1.0.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\ch\qos\logback\logback-core\1.0.0\logback-core-1.0.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\squareup\retrofit\retrofit\1.0.0\retrofit-1.0.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\squareup\retrofit\retrofit\1.0.0\retrofit-1.0.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-matcher-extra_2.12\3.8.6\specs2-matcher-extra_2.12-3.8.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-matcher-extra_2.12\3.8.6\specs2-matcher-extra_2.12-3.8.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-sbt\test-interface\1.0\test-interface-1.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-sbt\test-interface\1.0\test-interface-1.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-matcher_2.12\3.8.6\specs2-matcher_2.12-3.8.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-matcher_2.12\3.8.6\specs2-matcher_2.12-3.8.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-async_2.12\0.9.6\scala-async_2.12-0.9.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-async_2.12\0.9.6\scala-async_2.12-0.9.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalate\scalate-core_2.12\1.8.0\scalate-core_2.12-1.8.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalate\scalate-core_2.12\1.8.0\scalate-core_2.12-1.8.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-persistence_2.12\2.5.4\akka-persistence_2.12-2.5.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-persistence_2.12\2.5.4\akka-persistence_2.12-2.5.4.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-swing_2.12\2.0.0\scala-swing_2.12-2.0.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-swing_2.12\2.0.0\scala-swing_2.12-2.0.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\scala-logging\scala-logging_2.12\3.5.0\scala-logging_2.12-3.5.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\scala-logging\scala-logging_2.12\3.5.0\scala-logging_2.12-3.5.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\typelevel\cats-kernel_2.12\1.0.0-RC1\cats-kernel_2.12-1.0.0-RC1-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\typelevel\cats-kernel_2.12\1.0.0-RC1\cats-kernel_2.12-1.0.0-RC1.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-webapp\9.2.19.v20160908\jetty-webapp-9.2.19.v20160908-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-webapp\9.2.19.v20160908\jetty-webapp-9.2.19.v20160908.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\apache\commons\commons-lang3\3.5\commons-lang3-3.5-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\apache\commons\commons-lang3\3.5\commons-lang3-3.5.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\typelevel\cats-core_2.12\1.0.0-RC1\cats-core_2.12-1.0.0-RC1-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\typelevel\cats-core_2.12\1.0.0-RC1\cats-core_2.12-1.0.0-RC1.jar"/>
+  <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-xml_2.12\1.0.6\scala-xml_2.12-1.0.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-xml_2.12\1.0.6\scala-xml_2.12-1.0.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\google\code\gson\gson\2.2.3\gson-2.2.3-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\google\code\gson\gson\2.2.3\gson-2.2.3.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\apache\httpcomponents\httpmime\4.5.2\httpmime-4.5.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\apache\httpcomponents\httpmime\4.5.2\httpmime-4.5.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-protobuf_2.12\2.5.4\akka-protobuf_2.12-2.5.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-protobuf_2.12\2.5.4\akka-protobuf_2.12-2.5.4.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-core_2.12\3.8.6\specs2-core_2.12-3.8.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\specs2\specs2-core_2.12\3.8.6\specs2-core_2.12-3.8.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\chuusai\shapeless_2.12\2.3.2\shapeless_2.12-2.3.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\chuusai\shapeless_2.12\2.3.2\shapeless_2.12-2.3.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-parser-combinators_2.12\1.0.6\scala-parser-combinators_2.12-1.0.6-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-parser-combinators_2.12\1.0.6\scala-parser-combinators_2.12-1.0.6.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\javax\servlet\javax.servlet-api\4.0.0\javax.servlet-api-4.0.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\javax\servlet\javax.servlet-api\4.0.0\javax.servlet-api-4.0.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\io\reactivex\rxswing\0.27.0\rxswing-0.27.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\io\reactivex\rxswing\0.27.0\rxswing-0.27.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalatra-scalate_2.12\2.5.4\scalatra-scalate_2.12-2.5.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalatra-scalate_2.12\2.5.4\scalatra-scalate_2.12-2.5.4.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatest\scalatest_2.12\3.0.2\scalatest_2.12-3.0.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatest\scalatest_2.12\3.0.2\scalatest_2.12-3.0.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-http\9.2.19.v20160908\jetty-http-9.2.19.v20160908-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-http\9.2.19.v20160908\jetty-http-9.2.19.v20160908.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\typelevel\macro-compat_2.12\1.1.1\macro-compat_2.12-1.1.1-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\typelevel\macro-compat_2.12\1.1.1\macro-compat_2.12-1.1.1.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\apache\httpcomponents\httpclient\4.5.2\httpclient-4.5.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\apache\httpcomponents\httpclient\4.5.2\httpclient-4.5.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\io\reactivex\rxscala_2.12\0.26.5\rxscala_2.12-0.26.5-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\io\reactivex\rxscala_2.12\0.26.5\rxscala_2.12-0.26.5.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\json4s\json4s-scalap_2.12\3.5.2\json4s-scalap_2.12-3.5.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\json4s\json4s-scalap_2.12\3.5.2\json4s-scalap_2.12-3.5.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-servlet\9.2.19.v20160908\jetty-servlet-9.2.19.v20160908-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-servlet\9.2.19.v20160908\jetty-servlet-9.2.19.v20160908.jar"/>
+  <classpathentry kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\eu\medsea\mimeutil\mime-util\2.1.3\mime-util-2.1.3.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\clapper\grizzled-slf4j_2.12\1.3.0\grizzled-slf4j_2.12-1.3.0-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\clapper\grizzled-slf4j_2.12\1.3.0\grizzled-slf4j_2.12-1.3.0.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\thoughtworks\paranamer\paranamer\2.8\paranamer-2.8-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\thoughtworks\paranamer\paranamer\2.8\paranamer-2.8.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\slf4j\slf4j-simple\1.7.5\slf4j-simple-1.7.5-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\slf4j\slf4j-simple\1.7.5\slf4j-simple-1.7.5.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\junit\junit\4.12\junit-4.12-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\junit\junit\4.12\junit-4.12.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\googlecode\juniversalchardet\juniversalchardet\1.0.3\juniversalchardet-1.0.3-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\com\googlecode\juniversalchardet\juniversalchardet\1.0.3\juniversalchardet-1.0.3.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-security\9.2.19.v20160908\jetty-security-9.2.19.v20160908-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\eclipse\jetty\jetty-security\9.2.19.v20160908\jetty-security-9.2.19.v20160908.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalatra-specs2_2.12\2.5.4\scalatra-specs2_2.12-2.5.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\scalatra\scalatra-specs2_2.12\2.5.4\scalatra-specs2_2.12-2.5.4.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\json4s\json4s-native_2.12\3.5.2\json4s-native_2.12-3.5.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\json4s\json4s-native_2.12\3.5.2\json4s-native_2.12-3.5.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\json4s\json4s-ast_2.12\3.5.2\json4s-ast_2.12-3.5.2-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\json4s\json4s-ast_2.12\3.5.2\json4s-ast_2.12-3.5.2.jar"/>
+  <classpathentry sourcepath="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\apache\httpcomponents\httpcore\4.4.4\httpcore-4.4.4-sources.jar" kind="lib" path="C:\Users\mohan\.coursier\cache\v1\https\repo1.maven.org\maven2\org\apache\httpcomponents\httpcore\4.4.4\httpcore-4.4.4.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="output" path="bin"/>
 </classpath>
