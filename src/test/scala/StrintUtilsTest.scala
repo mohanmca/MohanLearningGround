@@ -4,10 +4,11 @@ import org.scalacheck.Arbitrary.arbString
 import org.scalatest.Finders
 import org.scalatest.PropSpec
 import org.scalatest.prop.PropertyChecks
-import org.specs2.matcher.ShouldMatchers
+import org.scalatest.Matchers
+
 
 //learning.scalacheck.StringUtilsSuite
-class StringUtilsSuite extends PropSpec with PropertyChecks with ShouldMatchers {
+class StringUtilsSuite extends PropSpec with PropertyChecks with Matchers {
 
   property("String contains should either return true or false") {
 

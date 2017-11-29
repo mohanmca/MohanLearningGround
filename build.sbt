@@ -49,6 +49,8 @@ libraryDependencies <++= (scalaVersion)(sv =>
   Seq(
         "org.apache.commons" % "commons-io" % "1.3.2" withSources(),
         "commons-lang" % "commons-lang" % "2.6" withSources(),
+         "com.fasterxml.jackson.core" % "jackson-core" % "2.9.2" withSources(),
+         "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.2",
         "junit" % "junit" % "4.12"
   ))
 
