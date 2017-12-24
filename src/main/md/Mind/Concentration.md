@@ -24,7 +24,7 @@
 
 ## Natural concentration
 * When you watch movie and cricket
- * We don't fee discomfort
+ * We don't feel discomfort
  * Won't feel hungry
  * When you are deeply obsorbed you won't notice other senses feedback
 
@@ -38,7 +38,7 @@
 * Nepolean opens the drawyer of issue and close all the other drawyer, don't worry and confuse with other drawyer
 
 
-## Challenges vs skills
+## Challenges vs skills - Flow model
 * Arousel (ready to face challenge) (Highest challenge, moderate skill)
 * Anxiety (Highest challenge, lower than moderate skill)
 * Worry (Moderate challenge, lower skill)
@@ -53,9 +53,9 @@
  * Completely involved in what you are doing- focused, concentrated. Even lossing other senses (hot, hungry, time)
  * A sense of ecstasy - of being outside everyday reality
  * Great inner clarity knowing what needs to be done, and how well we are doing (feedback)
- * A sense of serenity - no worries about oneselft, and a feeling of growing beyond the boundaries of the  ego
+ * A sense of serenity - no worries about oneself, and a feeling of growing beyond the boundaries of the  ego
  * Intrinsic motivation - whatever produces flow becomes its own reward
- * Timelessness - thoroughly focused one the present, hours seem to pass by in minutes
+ * Timelessness - thoroughly focused on the present, hours seem to pass by in minutes or minutes looks like years.
 
 
 ## Vivekananda About Goal
@@ -66,8 +66,8 @@
 
 ## Flow and Yoga
 * Start with  right posture, sit straight. Don't lean forward like sleeping or releaxed
-* Do pranayama - concentration will make breathing in both nostril
-  * Can try with "Nadi suddhi pranayama" 
+* Do pranayama - concentration will make breathing in both nostril, Balanced breath should be there to focus.
+  * We can try with "Nadi suddhi pranayama" (In the ration of - Breath in 1 vs breath out 2)
 * Arouse curiosity, setup a problem and read material so you will be curious and concentrate more.
 * Avoid polluted, noisy area and try to withdraw from rest of the world.
 * Focus (Dharana)
@@ -76,18 +76,18 @@
 
 ## Yoga
 * Yama - Moral life
-* Niyama - Decipline life
+* Niyama - Discipline life
 * Asana - Posture
 * Pranayama - Deep breath regularly
-* Prathyara - With drawing from world. Means literally “control of ahara,” or “gaining mastery over external influences.”. Intelligent but don't struggle.
+* Prathyara - Withdrawing from world. Means literally “control of ahara,” or “gaining mastery over external influences.”. Intelligent but don't struggle.
 * Dharana - Focus, Concentration
-* Dyana - Meditation, Unbroken forus
+* Dyana - Meditation, Unbroken focus
 * Samadhi
 
 ## Flow : is a function that involves Skill, Challenge and produces new state
 * Flow : (Skill, Challenge) => State 
 * Concentraion: directly proportionate to mental purity (uncomplicated life is also mental purity)
-* Kama (pleasure), Artha (money, success, awards, promotion), we need them instinctively. But they should be regulated by Dharna (Morality)
+* Kama (pleasure (ex:partying, movie, etc), Artha (money, success, awards, promotion), we need them instinctively. But they should be regulated by Dharana (Morality)
 * Pamara = [(Kama + Artha) - Moral] ~~> Produces unpleasant life
 * Visayi = [(Kama + Artha) + Moral] ~~> Leads life within bounds, and laws
 * Gandhi, Anna Hasare, Social Workers = [(Moksha + Dharma) - Karma - Artha ] ~~> Gives up personal gain, works for wellfare of thers.

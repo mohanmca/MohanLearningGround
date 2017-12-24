@@ -197,3 +197,12 @@ function downloadURI(uri) {
     console.log(result)
 }
 ```
+
+
+```Javascript
+{
+    let transcript = Array.from(document.getElementsByClassName("ytd-transcript-renderer")).filter(element => element.id == "body")[0].innerText
+ let result = transcript.split("\n").filter(text => text.indexOf(":") == -1).filter(text => text.toLocaleLowerCase().indexOf("music") == -1)
+ console.log(result.join("\n"))
+}
+```
