@@ -1,6 +1,7 @@
 ## Important steps to follow
 
 * [Rob Norris](http://tpolecat.github.io/presos.html)
+  * [Pure Functional Database Programming with Fixpoint Types—Rob Norris](https://www.youtube.com/watch?v=7xSfLPD6tiQ)
   * http://tpolecat.github.io/presentations/sw2016/slides.html#1
 * [Dave Gurnell](http://davegurnell.com/])
 * [John A. De Goes](http://degoes.net/)

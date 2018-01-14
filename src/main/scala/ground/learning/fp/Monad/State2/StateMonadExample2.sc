@@ -1,4 +1,4 @@
-
+package ground.learning.fp.Monad.State2
 import scalaz.Scalaz
 
 //http://scalaz.github.io/scalaz/scalaz-2.9.1-6.0.2/doc.sxr/scalaz/example/ExampleState.scala.html#772357
