@@ -1,3 +1,4 @@
+package ground.learning.fp.Monad.State2
 //http://patterngazer.blogspot.sg/2012/01/changing-my-state-of-mind-with-monad-in.html
 
 object state {
@@ -42,10 +43,9 @@ object state {
     _ <- push(7)
     _ <- push(9)
     _ <- pop
-  } yield ()                                      //> result  : state.StateMonad[Unit,List[Int]] = state$StateMonad$$anon$1@6a38e5
-                                                  //| 7f
+  } yield ()
 
-  println(result(List(1))._2)                     //> List(7, 5, 3, 1)
+  println(result(List(1))._2)
 
   val otherResult = push(3).flatMap { _ =>
     push(5).flatMap { _ =>
@@ -55,9 +55,8 @@ object state {
         }
       }
     }
-  }                                               //> otherResult  : state.StateMonad[Unit,List[Int]] = state$StateMonad$$anon$1@
-                                                  //| 5c3bd550
+  }
 
-  println(otherResult(List(1))._2)                //> List(7, 5, 3, 1)
+  println(otherResult(List(1))._2)
 
 }

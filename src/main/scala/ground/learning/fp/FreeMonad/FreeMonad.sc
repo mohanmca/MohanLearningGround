@@ -1,3 +1,4 @@
+package ground.learning.fp.FreeMonad
 object FreeMonad {
   println("https://www.youtube.com/watch?v=7xSfLPD6tiQ")
   println("Pure Functional Database Programming with Fixpoint Types—Rob Norris")

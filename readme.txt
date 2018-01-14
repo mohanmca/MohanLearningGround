@@ -1,5 +1,5 @@
 set JAVA_OPTS=-Dhttp.proxySet=true -Dhttp.proxyHost=proxy.server.com -Dhttp.proxyPort=8080
-java -Xmx1024M -XX:MaxPermSize=1024M -Dsbt.log.noformat=true -Dsbt.repository.config=project/sbt.repositories -Dsbt.override.build.repos=true -jar build/sbt-launch.jar compile package publish
+java -Xmx1G -Dsbt.log.noformat=true -Dsbt.repository.config=project/sbt.repositories -Dsbt.override.build.repos=true -jar build/sbt-launch.jar compile package publish
 
 ----
 
