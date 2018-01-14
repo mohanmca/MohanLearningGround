@@ -8,6 +8,16 @@ class Foldable t where
   foldMap :: Monoid m => (a -> m) -> t a -> m
 ```
 
+```Scala
+trait Foldable[F[_]] {
+
+  def foldMap[A,B](fa: F[A])(f: A => B): B
+  
+   /** Map each element of the structure to a [[scalaz.Monoid]], and combine the results. */
+  def foldMap[A,B](fa: F[A])(f: A => B)(implicit F: Monoid[B]): B
+}  
+```  
+
 * Instances: Map, Set, Tree, and Sequence
 
 
