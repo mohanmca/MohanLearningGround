@@ -113,6 +113,10 @@ object FreeMonad {
   	//In typed method signature if _ comes, it means "partially applied"
   	type Cofree[F[_], A] = Fix[CofreeF[F, A, ?]]
   	type Free[F[_], A] = Fix[FreeF[F, A, ?]]
+  	
+  	//Annotated and un-annotated ProfF trees.
+  	type Prof   = Fix[ProfF]
+		type IdProf = Cofree[ProfF, Int]
     
   }
 }
