@@ -26,7 +26,8 @@ object StateMonadExample2 {
     }
   }
 
-  val increment = (x : Int) => (x, x + 1)         //> increment  : Int => (Int, Int) = <function1>
+  val increment = (x : Int) => (x, x + 1)         //> increment  : Int => (Int, Int) = ground.learning.fp.Monad.State2.StateMonadE
+                                                  //| xample2$$$Lambda$3/1213415012@e2d56bf
 
   def number[A](tree : Tree[A]) : State[Int, Tree[(A, Int)]] = tree match {
     case Leaf(x) => State { s => (s + 1, Leaf(x, s)) }
@@ -37,14 +38,16 @@ object StateMonadExample2 {
         (u._1, Branch(t._2, u._2))
       }
     }
-  }                                               //> number: [A](tree: StateMonadExample2.Tree[A])StateMonadExample2.State[Int,S
-                                                  //| tateMonadExample2.Tree[(A, Int)]]
+  }                                               //> number: [A](tree: ground.learning.fp.Monad.State2.StateMonadExample2.Tree[A
+                                                  //| ])ground.learning.fp.Monad.State2.StateMonadExample2.State[Int,ground.learn
+                                                  //| ing.fp.Monad.State2.StateMonadExample2.Tree[(A, Int)]]
 
   val tree = Branch(Leaf("one"), Branch(Leaf("two"), Branch(Leaf("three"), Branch(Leaf("four"), Leaf("five")))))
-                                                  //> tree  : StateMonadExample2.Branch[String] = Branch(Leaf(one),Branch(Leaf(tw
-                                                  //| o),Branch(Leaf(three),Branch(Leaf(four),Leaf(five)))))
+                                                  //> tree  : ground.learning.fp.Monad.State2.StateMonadExample2.Branch[String] =
+                                                  //|  Branch(Leaf(one),Branch(Leaf(two),Branch(Leaf(three),Branch(Leaf(four),Lea
+                                                  //| f(five)))))
 
-  number(tree).run(1)                             //> res0: (Int, StateMonadExample2.Tree[(String, Int)]) = (6,Branch(Leaf((one,1
-                                                  //| )),Branch(Leaf((two,2)),Branch(Leaf((three,3)),Branch(Leaf((four,4)),Leaf((
-                                                  //| five,5)))))))
+  number(tree).run(1)                             //> res0: (Int, ground.learning.fp.Monad.State2.StateMonadExample2.Tree[(String
+                                                  //| , Int)]) = (6,Branch(Leaf((one,1)),Branch(Leaf((two,2)),Branch(Leaf((three,
+                                                  //| 3)),Branch(Leaf((four,4)),Leaf((five,5)))))))
 }
