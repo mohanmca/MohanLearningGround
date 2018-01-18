@@ -1,9 +1,14 @@
 ## Important steps to follow
 
+* Paweł Szulc
+  * [Going bananas with recursion schemes for fixed point data types - Paweł Szulc](https://www.youtube.com/watch?v=IlvJnkWH6CA)
+* Ratan Sebastian
+  * [Introduction to Recursion Schemes](https://www.youtube.com/watch?v=6m0J_XllHqQ)  
 * [Rob Norris](http://tpolecat.github.io/presos.html)
   * [Pure Functional Database Programming with Fixpoint Types—Rob Norris](https://www.youtube.com/watch?v=7xSfLPD6tiQ)
   * http://tpolecat.github.io/presentations/sw2016/slides.html#1
 * [Dave Gurnell](http://davegurnell.com/])
+  *[The Type Astronaut's Guide to Shapeless—Dave Gurnell](https://www.youtube.com/watch?v=Zt6LjUnOcFQ)
 * [John A. De Goes](http://degoes.net/)
   * https://gist.github.com/jdegoes
 * Daniel Spiewak
