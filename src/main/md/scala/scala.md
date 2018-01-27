@@ -21,3 +21,5 @@
 * Alissa Pajer
   * [Alissa Pajer - Products, limits and more!](https://vimeo.com/165852490)  
   * [Alissa Pajer - Free all the functors](https://vidmoon.co/video/0UWBJFXEwwBBsRH)
+* Philip Wadler
+  * [Category Theory for the Working Hacker](https://www.infoq.com/presentations/category-theory-propositions-principle?utm_source=twitter&utm_medium=link&utm_campaign=calendar)  
