@@ -1,0 +1,8 @@
+* [Swami Sarvapriyananda-"BHAGVAD GITA FOR STUDENTS" at IIT Kanpur](https://www.youtube.com/watch?v=_EqwlOeTj7Y)
+* [Swami Sarvapriyananda-"PURPOSEFUL LIVING WITH VEDANTA" at IIT Kanpur](https://www.youtube.com/watch?v=U2z1zdOsVEg)
+* [Swami Sarvapriyanandaji, Ramana Jayanti, Arunachal Ashram, Jamaica, NY](https://www.youtube.com/watch?v=X2rfZ1ytWD8)
+* [Practical Methods of Meditation | Swami Sarvapriyananda](https://www.youtube.com/watch?v=h8m8ac_aBao)
+* [Swami Sarvapriyananda at IITK - "Who Am I?" according to Mandukya Upanishad-Part 1](https://www.youtube.com/watch?v=eGKFTUuJppU)
+* [Swami Sarvapriyananda-"Secret of Concentration" at IIT Kanpur](https://www.youtube.com/watch?v=BGswR0tMqCM)
+* [Swamini Vimalananda - Mastering the Mind](https://www.youtube.com/watch?v=EXniWH9dMf8&t=6s)
+* [Swamini Vimalananda speaks on Mind Management at IIT Kanpur on 26 Sept. 2014](https://www.youtube.com/watch?v=PhwtixXNbjs)
