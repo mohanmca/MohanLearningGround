@@ -5,3 +5,4 @@
     * “The idea is, if you hear a word, that helps you see something?”"
   * “My bet is that self-talk works best on problems where you’re trying to stay on task and there are possible distractions,”
   *  “For tasks with a multistep sequence, talking to yourself out loud can help you keep out distractions and remind yourself where you are.”
+  * Don't stop the chain - https://jamesclear.com/stop-procrastinating-seinfeld-strategy
