@@ -50,6 +50,7 @@
   * Greater is the happiness as this will is more successfully manifest
   * **This very ability that I can control my thought, that I can control my activities, behavior and speech gives happiness*
   * **This very power over my life that I can control it that gives happiness** 
+  * Control the mind every moment, and be blissful always 
   
 
 * Marshmallow self control test
