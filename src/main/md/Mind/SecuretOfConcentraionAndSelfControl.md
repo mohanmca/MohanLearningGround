@@ -46,9 +46,10 @@
   * Ability to read the Encyclopedia
   
 * Does will power and concentration reduce Joy in the present for the benefit of Future?
- * As per "Vivekananda", Greater is the happiness as this will is more successfully manifest
- * **This very ability that I can control my thought, that I can control my activities, behavior and speech gives happiness*
- * **This very power over my life that I can control it that gives happiness** 
+  * Ans:  As per "Vivekananda", 
+  * Greater is the happiness as this will is more successfully manifest
+  * **This very ability that I can control my thought, that I can control my activities, behavior and speech gives happiness*
+  * **This very power over my life that I can control it that gives happiness** 
   
 
 * Marshmallow self control test
