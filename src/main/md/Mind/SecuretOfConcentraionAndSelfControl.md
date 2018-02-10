@@ -44,6 +44,12 @@
     * Self regulation, self will
 # Concentration
   * Ability to read the Encyclopedia
+  
+* Does will power and concentration reduce Joy in the present for the benefit of Future?
+ * As per "Vivekananda", Greater is the happiness as this will is more successfully manifest
+ * **This very ability that I can control my thought, that I can control my activities, behavior and speech gives happiness*
+ * **This very power over my life that I can control it that gives happiness** 
+  
 
 * Marshmallow self control test
   * Kids who doesn't learn if=>then relationship, waiting would give more benefit, But they failed even in schools
