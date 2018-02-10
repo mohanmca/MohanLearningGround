@@ -2,6 +2,7 @@
 
 ## Conentration
 * Whatever you need to acheive, you require conentration, conentration gives **richer experience**.
+* The degree between ordinary and extra-ordinary person lies in degree of concentration
 * Quality of life
   * Life depends on quality of experience
   * Experience depends on quality  of conentration
@@ -37,7 +38,11 @@
  * Education is all about power of concentration.
 * Nepolean opens the drawyer of issue and close all the other drawyer, don't worry and confuse with other drawyer
 
-
+## How to improve
+  * Cultivate the habit of paying fullest attention to what you are doing
+  * Train the mind to concentrate, by keep concentrating
+  * If we keep our mind wander, it wound wander always, it won't be good concentraion
+  * Read two books Flow and RAPT
 ## Challenges vs skills - Flow model
 * Arousel (ready to face challenge) (Highest challenge, moderate skill)
 * Anxiety (Highest challenge, lower than moderate skill)
