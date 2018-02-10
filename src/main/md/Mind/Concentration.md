@@ -98,8 +98,8 @@
 * Gandhi, Anna Hasare, Social Workers = [(Moksha + Dharma) - Karma - Artha ] ~~> Gives up personal gain, works for wellfare of thers.
 
 ## Reference
-"Yoga is one of the oldest and most systematic methods of producing the flow experience"
-[Ted Talk by Martin Seligman](http://www.ted.com/talks/martin_seligman_on_the_state_of_psychology?language=en#t-9177)
-[Ted Talk by Mihaly Csikszentmihalyi](http://www.ted.com/talks/mihaly_csikszentmihalyi_on_flow?language=en﻿)
-[Sharatchandra Chakravarti experience of Vivekananda](http://www.swamivivekanandaquotes.org/2014/05/swami-vivekanandas-reading-speed-and-memory-power.html)
-[Attaining flow](https://images.google.com/?q=attaining+flow)
+* "Yoga is one of the oldest and most systematic methods of producing the flow experience"
+* [Ted Talk by Martin Seligman](http://www.ted.com/talks/martin_seligman_on_the_state_of_psychology?language=en#t-9177)
+* [Ted Talk by Mihaly Csikszentmihalyi](http://www.ted.com/talks/mihaly_csikszentmihalyi_on_flow?language=en﻿)
+* [Sharatchandra Chakravarti experience of Vivekananda](http://www.swamivivekanandaquotes.org/2014/05/swami-vivekanandas-reading-speed-and-memory-power.html)
+* [Attaining flow](https://images.google.com/?q=attaining+flow)
