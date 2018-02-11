@@ -6,3 +6,13 @@
   * “My bet is that self-talk works best on problems where you’re trying to stay on task and there are possible distractions,”
   *  “For tasks with a multistep sequence, talking to yourself out loud can help you keep out distractions and remind yourself where you are.”
   * Don't stop the chain - https://jamesclear.com/stop-procrastinating-seinfeld-strategy
+
+ * [Practising Affirmation](https://www.youtube.com/watch?v=Gku2OodrnQ0)
+   * Practicse using paryer beats
+   * Each beat chant an affirmation
+   * Repeat same chant over and over again
+   * Good Affirmation
+     * Concise choice of positive words (Example: I love red gala apple, rather I love apple)
+     * Clear visualization
+     * Corresponding Feeling 
+   * To find the secrets of the univers think in terms of "Energy", "Frequency vibration"
