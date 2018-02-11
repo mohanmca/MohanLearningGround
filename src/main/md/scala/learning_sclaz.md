@@ -55,9 +55,10 @@ implicit val OptionEach: Each[Option] = new Each[Option] {
 * To define new monoid for custom type, define mzero[type] and semiGroup[type]
 * Monoids for Float and Double break the laws due to how they are represented, hence they are not monoids 
 * Create monoid for Currency
+```Scala
 implicit def MoneyZero(implicy ccy: Currency): Zero[Money] = zero(Money.zero(ccy))
 implicit val ccySemiGroup: SemiGroup[Money] =  semiGroup[Money] (_ add _)
-
+```
 
 ```Scala
 1 |+| 2
