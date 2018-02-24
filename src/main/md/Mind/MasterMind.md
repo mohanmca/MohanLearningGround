@@ -7,3 +7,30 @@
   * Within you, you ask yourself what you like? what you don't like?
   * Do you like sport xyz? do you like psychology? computer?
   * Spend time with yourself as if you are third party
+  
+# [Swami Niranjanananda on "How You control the Mind ?"](https://www.youtube.com/watch?v=Ll5Z8m8YOoM&t=14s)
+* You can't train a horse within a day, it requires months/year to train, and daily practice
+* Horses are wild, run when it runs, rest when it runs
+* Just like kid followed the horses to become its friend, you could become friend of your mind.
+* We have four horses, Manas, Putthi, Chittha and Ahankara. We can't become instant master
+* We should work harder daily to master, not within hours could attain
+* We should become friend to ourselves
+* Pratiyahara - secret is controlling mind
+  * Lesson of  Pratiyahara, become friend of your mind
+  * If we are not friend to our mind, we would fight with that
+* Those who meditate more than 20 minutes (without doing their work) are lazy as per "Niranjanananda" joke, but he claims as joke
+* We should become friend of "Manas, Putthi, Chittha and Ahankara"
+* Self friendship, inner process of Yoga begins
+* Knowing unknown dimensions of our personalities will help
+
+# How to control Negative thought & Excessive Sexual Desire by Swami Niranjananda Sarswati
+* Cultivate opposite thought
+  * Connect with positive thought
+  * When your mind says "I don't like xyz", cultivate "I like xyz because of behaviour 123"
+* We have passion and lust
+  * We can cultivate into opposite, +ve one and convert into seeking passion
+  * Ramakrishna thought her wife as "Kali-devi", Treated her Cosmic mother
+* How they teach in Ashram  
+  * Through asana you can control urge
+  * Through meditation, you can change the attitude
+* One who is connected with positive for uplift is bramhacharia (Celibacy)  
