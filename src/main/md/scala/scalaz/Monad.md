@@ -11,7 +11,7 @@
   * Result may not be available due to failure, lack of result
   * There could be one or more result
   * Computation may never return result and still in computation mode
-* No one can peek into the result, rather they can pass the dependent computation to the monad. (Hollywood principle, Monad type would call dependent method)
+* No one can peek into the result from outside, rather they could pass the dependent computation to the monad. (Hollywood principle, Monad type would call dependent method)
 * Monad also gives a way to invoke sequence dependent operation using flatMap or bind operation
 
 
