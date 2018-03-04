@@ -7,6 +7,22 @@ $('a[target="_blank"]').filter((index,tag) => tag.href.contains("documentation/D
 * https://gist.github.com/TomyJaya/6468ce42e43b8e0dad20
 
 
+* Convert HTML Table to JSON
+```
+http://singapores100.com/Ranking.aspx
+var table = document.getElementById("ranking")
+console.log(hTableToJson(table))
+
+function hTableToJson(table) {
+	var rows = Array.from(table.rows)
+	var content = rows.map(row => Array.from(row.cells).map(cell => cell.innerText))
+	var headers = content[0]
+	var result = content.map(record => { var r = {}; record.map( (v,i,a) => r[headers[i]] = v.replace(/^\s+|\s+$/g,'') ); return r } )
+	return JSON.stringify(result, null, 2);
+}
+
+```
+
 * Download an URL to a file using Javascript code
 ```
 function downloadURI(uri, name) {
