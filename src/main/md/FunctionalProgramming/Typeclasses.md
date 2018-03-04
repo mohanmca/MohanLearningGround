@@ -20,6 +20,37 @@ trait Foldable[F[_]] {
 
 * Instances: Map, Set, Tree, and Sequence
 
+## Equal
+* equal has the same implementation requirements as Object.equals
+* commutative f1 === f2 implies f2 === f1
+* reflexive f === f
+* transitive f1 === f2 && f2 === f3 implies f1 === f3
+
+## Order
+* Can be thought like java.lang.Comparable
+* def order(x: F, y: F): Ordering
+* @op("<" ) def lt(x: F, y: F): Boolean = ...
+* @op("<=") def lte(x: F, y: F): Boolean = ...
+* @op(">" ) def gt(x: F, y: F): Boolean = ...
+* @op(">=") def gte(x: F, y: F): Boolean = ...
+```Scala
+  sealed abstract class Ordering
+  object Ordering {
+    case object LT extends Ordering
+    case object EQ extends Ordering
+    case object GT extends Ordering
+  }
+```
+
+## Show
+* Can be thought like toString of Object method
+* Scala’s default implicit conversions in Predef, and language level support for toString in interpolated strings, it is hard to remember to use shows instead of toString
+```Scala
+  trait Show[F] {
+    def show(f: F): Cord = ...
+    def shows(f: F): String = ...
+  }
+```
 
 ## Functor
 
@@ -34,6 +65,21 @@ class Functor f where
   fmap :: (a -> b) -> f a -> f b
   (<$) :: a -> f b -> f a
   (<$) = fmap . const
+```
+```Scala
+  @typeclass trait Functor[F[_]] {
+    def map[A, B](fa: F[A])(f: A => B): F[B]
+  
+    def void[A](fa: F[A]): F[Unit] = map(fa)(_ => ())
+    def fproduct[A, B](fa: F[A])(f: A => B): F[(A, B)] = map(fa)(a => (a, f(a)))
+  
+    def fpair[A](fa: F[A]): F[(A, A)] = map(fa)(a => (a, a))
+    def strengthL[A, B](a: A, f: F[B]): F[(A, B)] = map(f)(b => (a, b))
+    def strengthR[A, B](f: F[A], b: B): F[(A, B)] = map(f)(a => (a, b))
+  
+    def lift[A, B](f: A => B): F[A] => F[B] = map(_)(f)
+    def mapply[A, B](a: A)(f: F[A => B]): F[B] = map(f)((ff: A => B) => ff(a))
+  }
 ```
 
 
@@ -140,7 +186,10 @@ class Category arr => Arrow arr where
   first :: (b `arr` c) -> ((b, d) `arr` (c, d))
 ```
 
-
+* Idempotent: Applying an action multiple times has the same result as applying the same action one
+  * f(f(x)) = f(x) 
+  * "mkdir -p /tmp/dummy"
+  * In matrices and determinant, A * A = A, then A is idempotent
 * Conjunction: The condition of being joined; Compound statement that uses the word AND.
 * Disjunction: The condition of being disjoined; separation, disunion 'either/or'.
 * Homomorphism: The most important functions between two groups are those that “preserve” the group operations, and they are called homomorphisms. (Homo=same)
@@ -154,6 +203,9 @@ class Category arr => Arrow arr where
   * The functor F is called a left adjoint functor, while G is called a right adjoint functor. “F is left adjoint to G” (or equivalently, “G is right adjoint to F”)
   * Endofunctors : An endofunctor is a functor from one category back to the same category. It maps objects of the category to objects of the same category. The simplest example is the identity functor which maps every object inside a category back to itself; more interesting examples map objects to other objects in the same category.  
 
+
+* Typeclass should be coherent, don’t break typeclass coherence.
+  * There should one Monoid[Option[Boolean]] in the program, it should not change based on scope or different imports
 
 ### Reference
 * [Second functor law is redundant](https://github.com/quchen/articles/blob/master/second_functor_law.md)
