@@ -190,6 +190,8 @@ class Category arr => Arrow arr where
   * f(f(x)) = f(x) 
   * "mkdir -p /tmp/dummy"
   * In matrices and determinant, A * A = A, then A is idempotent
+* Covariant: If Cat extends Animal, if list constructor is covariant then List[Cat] extends List[Animal]   
+* Contravariant: If Cat extends Animal, if list constructor is contraVariant then List[Animal] extends List[Cat]   (reversal of covariant)
 * Conjunction: The condition of being joined; Compound statement that uses the word AND.
 * Disjunction: The condition of being disjoined; separation, disunion 'either/or'.
 * Homomorphism: The most important functions between two groups are those that “preserve” the group operations, and they are called homomorphisms. (Homo=same)
