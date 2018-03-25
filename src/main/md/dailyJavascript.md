@@ -1,4 +1,4 @@
-* Array with 10 numbers - Array.from(Array(10).keys())
+* Array with 10 numbers - [...Array(10).keys()]
 * Goto https://www.omgeo.com/documentation/?p=alert And run below script to download documents..
 $('a[target="_blank"]').filter((index,tag) => tag.href.contains("documentation/D")).map((index, tag) => console.log(tag.href))
 
@@ -14,7 +14,7 @@ var table = document.getElementById("ranking")
 console.log(hTableToJson(table))
 
 function hTableToJson(table) {
-	var rows = Array.from(table.rows)
+	var rows = [...table.rows]
 	var content = rows.map(row => Array.from(row.cells).map(cell => cell.innerText))
 	var headers = content[0]
 	var result = content.map(record => { var r = {}; record.map( (v,i,a) => r[headers[i]] = v.replace(/^\s+|\s+$/g,'') ); return r } )
@@ -184,8 +184,8 @@ console.log(links.join("\n"))
 * https://atom.io/packages/list?direction=desc&sort=stars
 * https://atom.io/packages/list?direction=desc&sort=downloads
 
-
-let links = Array.from(document.getElementsByTagName("a")).filter(link => link.href.endsWith("pdf")).map(link => link.href)
+```Javascript
+let links = [...document.getElementsByTagName("a")].filter(link => link.href.endsWith("pdf")).map(link => link.href)
 
 function downloadURI(uri) {
   var link = document.createElement("a");
@@ -194,7 +194,7 @@ function downloadURI(uri) {
   link.click();
   delete link;
 }
-
+```
 
 ### How to extract youtube motivational speech text
 
@@ -207,7 +207,7 @@ function downloadURI(uri) {
 
 ```Javascript
 {
-    let transcriptLines = Array.from(document.getElementById("transcript-scrollbox").childNodes)
+    let transcriptLines = [...document.getElementById("transcript-scrollbox").childNodes]
     let text = transcriptLines.map(text => text.childNodes[1].innerHTML) 
     let result = text.filter(text => text.indexOf("MUSIC") == -1) 
     console.log(result)
@@ -217,7 +217,7 @@ function downloadURI(uri) {
 
 ```Javascript
 {
-    let transcript = Array.from(document.getElementsByClassName("ytd-transcript-renderer")).filter(element => element.id == "body")[0].innerText
+    let transcript = [...document.getElementsByClassName("ytd-transcript-renderer")].filter(element => element.id == "body")[0].innerText
  let result = transcript.split("\n").filter(text => text.indexOf(":") == -1).filter(text => text.toLocaleLowerCase().indexOf("music") == -1)
  console.log(result.join("\n"))
 }

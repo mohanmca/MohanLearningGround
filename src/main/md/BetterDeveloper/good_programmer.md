@@ -12,4 +12,13 @@
 * They enjoy solving problem, and would take head on the most complex problem and code themselves
 * They are good at more than one programming languages, but exceptionally good in their core programming language, and its eco-system.
 * They write (and maintain) programs that other people wouldn't say bad things about.
-* 
+
+
+# 20 skill to improve for any programmer
+* Familiarize and memorize coding standard
+* Familiarize and usage of code snippets
+* Keyboard shortcuts to some of the often used tools
+* Read some of the key open-source frameworks documentation and they aware basics of them
+* Read some of the formally used proprietary frameworks and documentation
+* Knowing and using basic Unit test-frameworks
+* Strong knowledge about SCM, especially git
