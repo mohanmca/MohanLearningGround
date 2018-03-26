@@ -59,6 +59,11 @@
   * addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "5.2.4")
   * addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.1")        
 
+* Sbt plugins {within scala console}
+  * reload plugins
+  * libraryDependencies
+  * reload return {/within scala console}
+
 * build.sbt settings
   * logLevel := Level.Debug [Level](https://www.scala-sbt.org/0.13.15/sxr/sbt/Level.scala.html)
   * scalaVersion := "2.11.8"
