@@ -1,11 +1,13 @@
-* IDRIS - Pure total functional programming
-
+* IDRIS - Dependently Typed Functional Programming Language
+  * Software bugs would become pretty costly in future, In Typed programs many errors are found during compile time. With dependent types compilers will do more work than simple typed programs
+  * Supports tactic based theorem proving
+  * Types may be predicated on values
 * Total Function
   * A total function is guaranteed to produce a result
   * Total function will return a value in a finite time for every possible well-typed input
   * Total function guaranteed not to throw any exceptions
 * Type driven development 
-  * Types are a first-class language construct. 
+  * Types are first class language construct, function can accept, manipulate and return types
   * Types can be manipulated, used, passed as arguments to functions, and returned from functions just like any other value, such as numbers, strings, or list
   * It allows relationships to be expressed between values; for example, that two lists have the same length.
   * It allows assumptions to be made explicit and checkable by the compiler. 
