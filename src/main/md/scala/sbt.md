@@ -73,3 +73,6 @@
   * lazy val hello = taskKey[Unit]("An example task") //sample for custom taskKey
   * .settings(    hello := { println("Hello!") }  ) //invoke the task
   *  
+  
+* Sbt basic usages
+  * sbt "~runMain ground.learning.App.FetchJavascriptStyleGuide"*

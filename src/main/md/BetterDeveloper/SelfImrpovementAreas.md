@@ -10,4 +10,7 @@
   * Effective Java
   * Effective Javascript
   * Typeclass signatures
-  * Airbnb code signatures  
+  * Airbnb code signatures
+
+# Improving Coding Skills  
+  * Reading 2K lines of code each day continiously for a month    
