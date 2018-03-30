@@ -1,0 +1,2 @@
+* [Cross Stitching: Elegant Concurrency Patterns for JavaScript](https://www.youtube.com/watch?v=726eZyVtC0Y)
+* [IIAFEs - ES8 Immediately invoked async function expression](https://stackoverflow.com/questions/40745153/es8-immediately-invoked-async-function-expression)
