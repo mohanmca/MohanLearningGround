@@ -171,13 +171,19 @@ copy(result)
 ```
 
 
-* Copy list of links from ycombinator articles
+* Copy list of links from ycombinator articles - Hacker news
 ```Javascript
-// Navigate to - https://news.ycombinator.com/item?id=15154903
-var container = document.evaluate('//a', document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE , null)
-var items = Array.from(Array(container.snapshotLength).keys())
-var _links = items.map(i => container.snapshotItem(i).innerHTML).filter(text => text.indexOf("http")!=-1)
-var links = _links.sort().filter((e,i,a) => a.indexOf(e)==i)
+// Navigate to - https://news.ycombinator.com/item?id=15154903 or https://news.ycombinator.com/item?id=16745042
+const container = document.evaluate('//a', document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE , null)
+const items = Array.from(Array(container.snapshotLength).keys())
+const _links = items.map(i => container.snapshotItem(i).innerHTML).filter(text => text.indexOf("http")!=-1)
+const links = _links.sort().filter((e,i,a) => a.indexOf(e)==i)
+console.log("Unique links \n" + links.join("\n"))
+let map = {}
+_links.sort().map(link => link.substring(0,100)).forEach(link => map[link] = (map[link] || 0) + 1)
+Object.entries(map).sort(kv => kv[1]).map(kv =>  kv[1].toString().padEnd(4) + kv[0]).join("\n")
+
+
 console.log(links.join("\n"))
 ```
 
