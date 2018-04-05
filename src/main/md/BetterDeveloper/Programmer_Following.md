@@ -1,5 +1,6 @@
 ## Important steps to follow
 
+### Scala 
 * Paweł Szulc
   * [Going bananas with recursion schemes for fixed point data types - Paweł Szulc](https://www.youtube.com/watch?v=IlvJnkWH6CA)
 * Ratan Sebastian
@@ -23,3 +24,7 @@
   * [Alissa Pajer - Free all the functors](https://vidmoon.co/video/0UWBJFXEwwBBsRH)
 * Philip Wadler
   * [Category Theory for the Working Hacker](https://www.infoq.com/presentations/category-theory-propositions-principle?utm_source=twitter&utm_medium=link&utm_campaign=calendar)  
+  
+### Javascript
+* [Brian Lonsdorf](https://medium.com/@drboolean)
+  
