@@ -15,6 +15,8 @@
   * https://github.com/search?q=hot+module+reload+express+js&type=Wikis
 * Search document without a word
   * hot module reload express js NOT react
+* Search a sample configuration for babel-preset-env within any of package.json
+  * babel-preset-env filename:package.json  created:>2017-12-31
   
 ## References   
 * https://github.com/search
