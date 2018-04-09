@@ -23,6 +23,16 @@
 * Self friendship, inner process of Yoga begins
 * Knowing unknown dimensions of our personalities will help
 
+# [The Science Of Yogic Breathing | Sundar Balasubramanian | TEDxCharleston](https://www.youtube.com/watch?v=aIfwbEvXtwo)
+  * Controlling mind is not easy mind is very elusive as the eastern philosophy puts it mind is a monkey it's not a normal monkey it's a drunken munkey stung by scorpion.
+  * Thirumoolar says there is an easy way, mind cannot travel on its own mind needs a vehicle
+  * Mind is using a horse that horse is our breathing.
+  * So if you want to control the mind the rider, you have to control the vehicle the horse the breathing 
+  * Controlling the mind is possible by controlling the breathing 
+  * Therefore whether you sing chant or hum or practice sophisticated yogic breathing techniques mind your breathing all ways
+  * It will improve your health.
+  
+
 # How to control Negative thought & Excessive Sexual Desire by Swami Niranjananda Sarswati
 * Cultivate opposite thought
   * Connect with positive thought
