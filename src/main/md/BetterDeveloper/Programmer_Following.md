@@ -24,6 +24,11 @@
   * [Alissa Pajer - Free all the functors](https://vidmoon.co/video/0UWBJFXEwwBBsRH)
 * Philip Wadler
   * [Category Theory for the Working Hacker](https://www.infoq.com/presentations/category-theory-propositions-principle?utm_source=twitter&utm_medium=link&utm_campaign=calendar)  
+
+# Semantic Web and de-duplication
+* Lars Marius Garshol
+  * https://www.slideshare.net/larsga/nosql-and-einsteins-theory-of-relativity
+  * 
   
 ### Javascript
 * [Brian Lonsdorf](https://medium.com/@drboolean)
