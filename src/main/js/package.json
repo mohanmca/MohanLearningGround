@@ -15,16 +15,22 @@
     "babel": {
         "presets": [
             "env"
+        ],
+        "plugins": [
+            "transform-async-generator-functions"
         ]
     },
     "license": "ISC",
     "devDependencies": {
-        "babel-plugin-syntax-async-generators": "^6.13.0",
+        "babel-plugin-transform-async-generator-functions": "^6.24.1",
         "babel-preset-env": "^1.6.1",
         "fetch": "^1.1.0",
         "node-fetch": "^2.0.0",
         "npm-watch": "^0.2.0",
         "ramda": "^0.22.1",
         "whatwg-fetch": "^2.0.3"
+    },
+    "dependencies": {
+        "babel-plugin-transform-async-to-generator": "^6.24.1"
     }
 }

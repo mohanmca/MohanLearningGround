@@ -31,6 +31,8 @@ object Json4sJacksonParser extends App {
 
   println(jsonObject.getClass)
   println(jsonObject)
-  
+
+  //implicit def something(t: JValue): MonadicJValue = ???
+
   println(jsonObject \ "name")
 }
