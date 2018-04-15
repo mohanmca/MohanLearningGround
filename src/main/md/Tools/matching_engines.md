@@ -10,11 +10,22 @@
   * Above would punish probablity if simularity is low using square technnique
   * record_prob = Utils.computeBayes(record_prob, property_prob); //Combine the record matching problity using Naive bayes
   * Refer duke-core\src\main\java\no\priv\garshol\duke\PropertyImpl.java and duke-core\src\main\java\no\priv\garshol\duke\Processor.java
+* Alternative algorithm using cosine similarity, Bag-of-words_model
+  * Treat each word as a vector dimension.
+  * Each document is a vector
+  * The values on each dimension are the word coun
+  * Cosine similarity is straightforward from this representation
+  * 
+
 
 # References
 * [Bayesian identity resolution](http://www.garshol.priv.no/blog/217.html)
 * [Record_linkage#Identity_resolution](https://en.wikipedia.org/wiki/Record_linkage#Identity_resolution)
 * [Mike Mull: The Art and Science of Data Matching](https://www.youtube.com/watch?v=Y-nYEOgq3YE)
+* https://docs.dedupe.io/en/latest/How-it-works.html
+* [Naive Bayes spam filtering](https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering)
+* [Bag-of-words_model](https://en.wikipedia.org/wiki/Bag-of-words_model)
+* [Email Filtering](https://en.wikipedia.org/wiki/Email_filtering)
 * [Peter Christen: Session 1 - Record Linkage Workshop at the ADRC-Scotland, 13 July 2015](https://www.youtube.com/watch?v=DyGonV7A_EY)
   * https://www.youtube.com/watch?v=DyGonV7A_EY&list=PL1gmpH4hgt0bSIOTWCOujVLRjhtwRIG7R 
 
