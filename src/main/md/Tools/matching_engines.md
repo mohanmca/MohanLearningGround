@@ -29,6 +29,8 @@
 * [Peter Christen: Session 1 - Record Linkage Workshop at the ADRC-Scotland, 13 July 2015](https://www.youtube.com/watch?v=DyGonV7A_EY)
   * https://www.youtube.com/watch?v=DyGonV7A_EY&list=PL1gmpH4hgt0bSIOTWCOujVLRjhtwRIG7R
 * [Text similarity](https://commons.apache.org/proper/commons-text/apidocs/org/apache/commons/text/similarity/package-summary.html)
+* https://github.com/eklem/stopword-trainer
+* https://github.com/eklem/stopword
 
 # Configurations
   --progress            show progress report while running
