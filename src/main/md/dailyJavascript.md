@@ -17,7 +17,7 @@ function hTableToJson(table) {
 	var rows = [...table.rows]
 	var content = rows.map(row => Array.from(row.cells).map(cell => cell.innerText))
 	var headers = content[0]
-	var result = content.map(record => { var r = {}; record.map( (v,i,a) => r[headers[i]] = v.replace(/^\s+|\s+$/g,'') ); return r } )
+	var result = content.map(record => { var r = {}; record.map( (v,i,a) => r[headers[i]] = v.replace(/^\s+|\s+$/g,'') ); delete r[""]; return r } )
 	return JSON.stringify(result, null, 2);
 }
 
