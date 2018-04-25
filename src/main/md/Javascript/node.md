@@ -17,7 +17,16 @@
   
 * Raw babel compiler
   * npx babel src --out-dir dist
-  *   
+
+* (node:5904) UnhandledPromiseRejectionWarning: Error: Evaluation failed: ReferenceError: _toConsumableArray is not defined
+  *   var rows = [...table.rows] was changed to var rows = Array.from(table.rows)
+
+* TypeError: (intermediate value)(intermediate value)(...) is not a function
+
+* Never mix the logic of extracting data from dom-node and extracting dom-node
+  * Extract dom node
+  * Finally extract data from dom node
+    
 
 ## webpack
   * [Compiler plugin](https://github.com/webpack/docs/wiki/plugins)
@@ -33,3 +42,7 @@
 	}	
  }
 ```
+
+## PUPPETEER
+* await page.addScriptTag({ path: './node_modules/varname/build/varname.js' });
+* Try to avoid raising events, but manipulate dom if possible instead of events 

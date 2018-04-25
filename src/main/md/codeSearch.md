@@ -18,6 +18,10 @@
 * Search a sample configuration for babel-preset-env within any of package.json
   * babel-preset-env filename:package.json  created:>2017-12-31
   
+* Search the repo that uses puppeteer and fs module
+  * fs puppeteer extension:js language:js  
+  * use sort by using "recenly indexed"
+  
 ## References   
 * https://github.com/search
 * https://github.com/search/advanced
