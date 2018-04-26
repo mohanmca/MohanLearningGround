@@ -7,6 +7,7 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/main/python"/>
 	<classpathentry kind="src" path="src/main/md"/>
+	<classpathentry kind="src" path="src/main/js"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.coursier/cache/v1/https/repo1.maven.org/maven2/org/specs2/specs2-common_2.12/3.8.6/specs2-common_2.12-3.8.6.jar" sourcepath="C:/Users/mohan/.coursier/cache/v1/https/repo1.maven.org/maven2/org/specs2/specs2-common_2.12/3.8.6/specs2-common_2.12-3.8.6-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.coursier/cache/v1/https/repo1.maven.org/maven2/org/specs2/specs2-analysis_2.12/3.8.6/specs2-analysis_2.12-3.8.6.jar" sourcepath="C:/Users/mohan/.coursier/cache/v1/https/repo1.maven.org/maven2/org/specs2/specs2-analysis_2.12/3.8.6/specs2-analysis_2.12-3.8.6-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mohan/.coursier/cache/v1/https/repo1.maven.org/maven2/org/scalatra/scalatra-common_2.12/2.5.4/scalatra-common_2.12-2.5.4.jar" sourcepath="C:/Users/mohan/.coursier/cache/v1/https/repo1.maven.org/maven2/org/scalatra/scalatra-common_2.12/2.5.4/scalatra-common_2.12-2.5.4-sources.jar"/>
