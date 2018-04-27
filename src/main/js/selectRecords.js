@@ -3,7 +3,6 @@
     let lastControl = document.querySelectorAll('#tnt_pagination li.Control')[1]
     let lastPage = parseInt(lastControl.previousSibling.textContent.match(/[0-9]+/g)[0])
     debugger;
-    
     /** start parsing the table into json */
     let rows = Array.from(table.rows)
     let [header, ...tail] =  Array.from(table.rows)
@@ -16,6 +15,7 @@
         return r
     })
     /** end-of parsing the table into json */
+    console.log("Size of the content ~~" + result.length)
      
     return {
         result,

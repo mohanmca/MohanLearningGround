@@ -9,12 +9,16 @@
 const fs = require('fs');
 const puppeteer = require('puppeteer');
 const selectRecords = require('./selectRecords');
-const jsonStream = fs.createWriteStream('rippedRecords.json');
+const selectPastRecords = require('./selectPastRecords');
+
+const timeString = (new Date).toISOString().slice(0,16).replace(/-|:/g,'_')
+const outFileName = `rippedRecords_${timeString}.json`
+const jsonStream = fs.createWriteStream(outFileName);
 let content = []
 
 async function run() {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         devtools: false
     })
     const page = await browser.newPage()
@@ -34,16 +38,18 @@ async function run() {
     await page.on('console', msg => console.log('PAGE LOG:', msg.text()));
     let records = await page.evaluate(selectRecords)
     records.result.forEach((record) => content.push(record))
-    let numberOfTables = (records.lastPage - 40)
+    let numberOfTables = (records.lastPage)
+    //let numberOfTables = 10    
     for (let j = 2; j <= numberOfTables; j++) {
         await page.evaluate((txtPageNumber) => {
             document.querySelector('#txtPageNumber').value = txtPageNumber;
             document.querySelector('a.pgbtn-next').click();
         }, j);
 
-        await page.waitForSelector('#fnCtrBulkDealsListingLibTblBulkDeals_BSE_Recent_Listing')
-        let values = await page.evaluate(selectRecords)
-        records.result.forEach((record) => content.push(record))
+        await page.waitForSelector('#LibTblBulkDeals_BSE_Recent_Listing')
+        let values = await page.evaluate(selectPastRecords)
+        values.result.forEach((record) => content.push(record))
+        console.log("Size of the content " + content.length)
     }
 
     return content;
@@ -71,4 +77,5 @@ run().then((content) => {
     }
     jsonStream.write(JSON.stringify(result, '', 2));
     jsonStream.close();
+    process.exit()
 })
