@@ -26,7 +26,8 @@
 * Never mix the logic of extracting data from dom-node and extracting dom-node
   * Extract dom node
   * Finally extract data from dom node
-    
+
+* babel-node is buggy, always try to use node    
 
 ## webpack
   * [Compiler plugin](https://github.com/webpack/docs/wiki/plugins)
