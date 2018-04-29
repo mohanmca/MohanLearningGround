@@ -73,7 +73,8 @@
 * gperftools is a collection of a high-performance multi-threaded malloc() implementation, plus some pretty nifty performance analysis tools. 
  
 
-# References   
+# References
+* [GeeCON Prague 2017: Chris Thalinger - Twitter's quest for a wholly Graal runtime](https://www.youtube.com/watch?v=pR5NDkIZBOA)   
 * https://shipilev.net/blog/2015/black-magic-method-dispatch/#_monomorphic_cases
 * http://www.oracle.com/technetwork/articles/java/architect-evans-pt1-2266278.html
 * https://github.com/gperftools/gperftools
