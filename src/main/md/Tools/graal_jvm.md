@@ -1,5 +1,6 @@
 # Graal
-* Modular compiler
+* JIT with API (Truffle layer)
+* Modular JIT compiler
   * https://github.com/oracle/graal/tree/master/compiler/src
   * core, debug, hotspot, api, asm
   * loop, phases, truffle
@@ -18,8 +19,8 @@
   * It is not free 
 
 # How Graal works
-* Polyglot VM
-  * Languages are implemented again to suit Graal-VM
+* Polyglot JIT VM
+  * Languages are implemented again to suit Graal-JIT-VM
   * Call from Ruby to JS, and return would be within GraalVM
   * No performance punishment
 * Graal :: function(bytecode) => Machinecode
@@ -40,7 +41,7 @@
 * Cross language AST can be combined
   * If ruby method often calls JS
   * JS method is cloned and inlined into Ruby methods AST
-  
+
 
 # Truffle
 * Infrastructure for languages to interoperate
