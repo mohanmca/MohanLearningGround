@@ -1,5 +1,4 @@
 # Graal
-
 * Modular compiler
   * https://github.com/oracle/graal/tree/master/compiler/src
   * core, debug, hotspot, api, asm
@@ -17,6 +16,45 @@
 * Enterprise graal was giving 22% improvement compared to Open source Graal
   * It is doing better inline, and better escape analysis
   * It is not free 
+
+# How Graal works
+* Polyglot VM
+  * Languages are implemented again to suit Graal-VM
+  * Call from Ruby to JS, and return would be within GraalVM
+  * No performance punishment
+* Graal :: function(bytecode) => Machinecode
+* Graal :: JIT (+ JIT Library)
+* Truffle is a layer on top of Grall, and provides lots of interfaces for other languages to use JIT
+* Prior to Graal, Host language compiled into bytecode, and bytecode at runtime compiled into machine code, and host langauge itself can't access JIT compiler (one way)  
+* In Graal, language can interact with JIT (two way)  using Truffle, and change the parameters of optimization
+* Works using technique called "AST self specialization"
+  * A node starts as generic type with un-initialized stated
+  * Over time its type becomes specialized, and compiled to optimized machine code
+  * Compilation using Partial evaluation produces Machine code
+  * Partial evaluation
+    * Take all the java code that interprets host language
+    * Inline the above with the host-language specialized AST tree
+    * Produce optimized machine code (Tom Stuart - https://www.youtube.com/watch?v=n_k6O50Nd-4) 
+* Using truffle we can deoptimize the machine code and deconstruct the AST
+  * It is required for languages like JS, Ruby are so dynamic, anything could happen there
+* Cross language AST can be combined
+  * If ruby method often calls JS
+  * JS method is cloned and inlined into Ruby methods AST
+  
+
+# Truffle
+* Infrastructure for languages to interoperate
+* All the lanugages are implemented using common interface inside VM
+* So two different language can invoke each other since they are implemented using common infrastructure
+* 
+```javascript
+Truffle::Interop.eval('application/javascript',"
+function add(a,b) { return a + b; }
+Interop.export('add',add.bind(this));
+")
+add = Truffle::Interop.import('add');
+puts add.call(42,24) 
+``` 
 
 # Hotspot JVM
 
@@ -57,11 +95,13 @@
     * Customize the log file name  
 
 # Hotspot JVM Issues
+
 * Old and complex
 * Old code base
 * No real optimization in the last two years (as on 2018)
 
 # Other
+
 * Java 9 introduced compact string
   * Many characters require 16 bits to represent them but statistically most require only 8 bits — LATIN-1 character representation. 
   * private final byte coder; static final byte LATIN1 = 0; static final byte UTF16 = 1; //in java.lang.String
@@ -69,12 +109,17 @@
   * java -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI -XX:+UseJVMCICompiler => can unlock GraalVM on JDK9
 
 # Tools
+
 * Heapster provides an agent library to do heap profiling for JVM processes with output compatible with Google perftools. The goal of Heapster is to be able to do meaningful (sampled) heap profiling in a production setting.
 * gperftools is a collection of a high-performance multi-threaded malloc() implementation, plus some pretty nifty performance analysis tools. 
  
 
 # References
-* [GeeCON Prague 2017: Chris Thalinger - Twitter's quest for a wholly Graal runtime](https://www.youtube.com/watch?v=pR5NDkIZBOA)   
+
+* [GeeCON Prague 2017: Chris Thalinger - Twitter's quest for a wholly Graal runtime](https://www.youtube.com/watch?v=pR5NDkIZBOA)
+* [Graal: High-Performance Polyglot Runtime by Thomas Wuerthinger and Aleksandar Prokopec](https://www.youtube.com/watch?v=TQMKPRc6cbE
+* [Compilers For Free by Tom Stuart](https://www.youtube.com/watch?v=n_k6O50Nd-4))
+* https://www.slideshare.net/ThomasWuerthinger/graal-truffle-ethdec2013   
 * https://shipilev.net/blog/2015/black-magic-method-dispatch/#_monomorphic_cases
 * http://www.oracle.com/technetwork/articles/java/architect-evans-pt1-2266278.html
 * https://github.com/gperftools/gperftools
