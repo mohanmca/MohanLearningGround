@@ -1,3 +1,4 @@
+* Watch some youtube tech talk video and take notes
 * Recollect or memorize 10 shortcuts
   * Eclipse
   * VSCode
@@ -17,4 +18,4 @@
   * Read about some implementation of xyz/kuber-netes/cache in large scale internet companies
 * Browse useful slides from slideshare
  * https://www.slideshare.net/larsga/nosql-and-einsteins-theory-of-relativity
- * https://www.slideshare.net/larsga/deduplication     
+ * https://www.slideshare.net/larsga/deduplication
