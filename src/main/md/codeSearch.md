@@ -1,6 +1,6 @@
-* function language:javascript stars:>100 -- in https://gist.github.com/search
+* function language:javascript
 * Search repository containing a word "aws.Polly" but written using Javascript
-  * aws.Polly language:javascript
+  * aws.Polly language:javascript stars:>10
 * (search "AWS SWF" in file name or in path name)
   * AWS SWF in:file,path 
 * Find project using below libraries on Maven
