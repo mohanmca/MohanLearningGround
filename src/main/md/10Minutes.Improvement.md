@@ -1,3 +1,5 @@
+* Read 100 lines of code
+* Find project that has worthy 100 lines of code for next code reading
 * Watch some youtube tech talk video and take notes
 * Recollect or memorize 10 shortcuts
   * Eclipse
