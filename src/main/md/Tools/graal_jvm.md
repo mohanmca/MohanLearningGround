@@ -126,4 +126,4 @@ puts add.call(42,24)
 * https://github.com/gperftools/gperftools
 * https://github.com/mariusae/heapster
 * http://www.baeldung.com/java-9-compact-string
-
+* [One VM to Rule Them All, One VM to Bind Them](https://www.youtube.com/watch?time_continue=1959&v=FJY96_6Y3a4)

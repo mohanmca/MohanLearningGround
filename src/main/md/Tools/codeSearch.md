@@ -1,3 +1,8 @@
+* Quick search operators
+  * filename:pom.xml
+  * extension:conf or extension:yaml
+  * language:scala
+  * stars:>10
 * function language:javascript
 * Search repository containing a word "aws.Polly" but written using Javascript
   * aws.Polly language:javascript stars:>10
@@ -16,8 +21,7 @@
 * Search document without a word
   * hot module reload express js NOT react
 * Search a sample configuration for babel-preset-env within any of package.json
-  * babel-preset-env filename:package.json  created:>2017-12-31
-  
+  * babel-preset-env filename:package.json  created:>2017-12-31  
 * Search the repo that uses puppeteer and fs module
   * fs puppeteer extension:js language:js  
   * use sort by using "recenly indexed"
