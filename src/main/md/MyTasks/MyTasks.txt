@@ -1,0 +1,14 @@
+# Mysql Reset Root password
+    net stop mysql 
+    mysqld --defaults-file="..." --skip-grant-tables 
+    mysql (Another parallel session)
+    select user,host,authentication_string from mysql.user; 
+
+    -- reset authentication_string (password before 5.5.7) for the admin user ...
+
+    update mysql.user  
+    set authentication_string=PASSWORD('new_pass'),password_expired='N', where user='root'; 
+    flush privileges; 
+    exit;  (Another parallel session - stops)
+    mysqladmin shutdown 
+    net stop mysql 
