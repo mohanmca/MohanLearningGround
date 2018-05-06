@@ -1,7 +1,5 @@
-* https://www.khanacademy.org/math/in-eighth-grade-math - Aswath tracking
-* https://www.khanacademy.org/math/in-seventh-grade-math - Rithvik tracking
-
-
+* [Aswath tracking](https://www.khanacademy.org/math/in-eighth-grade-math)
+* [Rithvik tracking](https://www.khanacademy.org/math/in-seventh-grade-math)
 
 
 Number System
