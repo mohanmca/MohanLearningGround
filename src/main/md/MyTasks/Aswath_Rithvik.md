@@ -1,8 +1,12 @@
 * [Aswath tracking](https://www.khanacademy.org/math/in-eighth-grade-math)
 * [Rithvik tracking](https://www.khanacademy.org/math/in-seventh-grade-math)
 
+# Rules
+* Read your questions properly, if you read question wrong, your answer will be always wrong
+* Loose concentration, become a fool
+  * Use 1-2-3 to gain concentration, Close your eyes, deep breath 5 times, think only your breath
 
-Number System
+# Number System
 # Rational Numbers:
 * Properties of rational numbers. (including identities). Using general form of expression to describe properties
 * Consolidation of operations on rational numbers.
