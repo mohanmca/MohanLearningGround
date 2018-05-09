@@ -13,6 +13,10 @@
 * They are good at more than one programming languages, but exceptionally good in their core programming language, and its eco-system.
 * They write (and maintain) programs that other people wouldn't say bad things about.
 
+# Make it order
+* 1) Make it work [in the nominal case]
+* 2) Make it correct [in the edge cases]
+* 3) Make it fast [without breaking the other two]
 
 # 20 skill to improve for any programmer
 * Familiarize and memorize coding standard
