@@ -1,0 +1,7 @@
+* [Transforming Programming - Dave Thomas](https://www.youtube.com/watch?v=A76hM3MpEKo)
+* [ITT 2016 - Kevlin Henney - Seven Ineffective Coding Habits of Many Programmers](https://www.youtube.com/watch?v=ZsHMHukIlJY)
+* [GOTO 2016 • The Error of Our Ways • Kevlin Henney](https://www.youtube.com/watch?v=IiGXq3yY70o)
+* [GOTO 2016 • Small Is Beautiful • Kevlin Henney](https://www.youtube.com/watch?v=B3b4tremI5o)
+* [GOTO 2017 • Code as Risk • Kevlin Henney](https://www.youtube.com/watch?v=YyhfK-aBo-Y)
+* [Beauty in Code 2018 — Kevlin Henney — 1968](https://www.youtube.com/watch?v=KjgvffBlWAg)
+* [Opher Vishnia: Wait, you can do that with JavaScript…!? | JSConf Iceland 2018](https://www.youtube.com/watch?v=JCATu2WkOq8)
