@@ -1,9 +1,21 @@
+# MySQL Initialize on Windows
+
+ C:\apps\mysql-5.7.22-winx64\bin\>
+ --initialize --> Generates default random password
+ c:/> mysqld --initialize-insecure --> No password, we have to reset
+
+
+# Basic MySql 
+ * SHOW {DATABASES | SCHEMAS}
+ * CREATE DATABASE project_database charset=utf8mb4; 
+ * CREATE USER 'project_user'@'localhost' IDENTIFIED BY 'PASSWORD';
+ * GRANT ALL ON `project_database`.* TO 'project_user'@'localhost';
+
 # Mysql Reset Root password
     net stop mysql 
     mysqld --defaults-file="..." --skip-grant-tables 
     mysql (Another parallel session)
     select user,host,authentication_string from mysql.user; 
-
     -- reset authentication_string (password before 5.5.7) for the admin user ...
 
     update mysql.user  
@@ -12,3 +24,6 @@
     exit;  (Another parallel session - stops)
     mysqladmin shutdown 
     net stop mysql 
+
+# NGNIX
+ * nginx -s reload
