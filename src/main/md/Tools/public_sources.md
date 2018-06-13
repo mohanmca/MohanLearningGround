@@ -1,4 +1,5 @@
 * Red Flagged stocks - https://www.fpi.nsdl.co.in/web/Reports/frmRedFlagList.html
+* FPI Monitor - https://www.fpi.nsdl.co.in/web/Default.aspx
 * Loan feed - https://cdn.ihs.com/www/pdf/WSOWeb-factsheet.pdf
 * Financial Calenar - http://www.financialcalendar.com/Data/Trading-Hours/Overview
 * Exchange Codes - https://www.iso20022.org/10383/iso-10383-market-identifier-codes
