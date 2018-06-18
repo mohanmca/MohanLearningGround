@@ -8,12 +8,14 @@ val akkaHttpVersion = "10.1.0"
 
 //enablePlugins(ScalaJSPlugin)
 
-initialize := {
-   val _ = initialize.value
-   val specVersion = sys.props("java.specification.version")
-   val required = "1.8"
-   assert(required == specVersion, "Java 1.8 or above required")
-}
+/*
+    initialize := {
+    val _ = initialize.value
+    val specVersion = sys.props("java.specification.version")
+    val required = "1.10"
+    assert(required == specVersion, "Java 1.10.1 or above required")
+    }
+*/
 
 transitiveClassifiers := Seq("sources")
 
@@ -55,15 +57,14 @@ libraryDependencies ++=  Seq(
     "org.scala-lang.modules" % "scala-parser-combinators_2.12" % "1.0.6"
   )
 
-libraryDependencies <++= (scalaVersion)(sv =>
-  Seq(
+libraryDependencies ++=  Seq(
         "org.apache.commons" % "commons-text" % "1.3" withSources(),
         "org.apache.commons" % "commons-io" % "1.3.2" withSources(),
         "commons-lang" % "commons-lang" % "2.6" withSources(),
-         "com.fasterxml.jackson.core" % "jackson-core" % "2.9.2" withSources(),
-         "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.2",
+         "com.fasterxml.jackson.core" % "jackson-core" % "2.9.3" withSources(),
+         "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.3",
         "junit" % "junit" % "4.12"
-  ))
+  )
 
 libraryDependencies ++= Seq(
     "io.reactivex" %% "rxscala" % "0.26.5" withSources(),
