@@ -14,3 +14,4 @@
 * [Event Source](https://ookami86.github.io/event-sourcing-in-practice/#further-reading-1.md)
 * [Domain Event | Command](https://www.martinfowler.com/eaaDev/DomainEvent.html)
 * [Microsoft EventSource document](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
+* [How Events Are Reshaping Modern Systems](https://www.infoq.com/presentations/systems-event-driven)
