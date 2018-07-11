@@ -1,12 +1,23 @@
-* Event - Immutable object, input to the system
-* Event (Lean) - Only required details (Moust click, Address Change, NewOrder)
-* Event (Rich or Fat) - Event with past, present and additional context, so that processing system no need to query other system to know the details. 
+* Event 
+  * Facts, Already happened
+  * Immutable object, input to the system
+  * New events can invalidate old events
+  * Cannot be deleted, retracted  
+* Event 
+  * (Lean) - Only required details (Mouse click, Address Change, NewOrder)
+  * (Rich or Fat) - Event with past, present and additional context, so that processing system no need to query other system to know the details.   
+* Reactor
+  * Receive and React (or not) to events (facts)
+* Event Sourcing architecture should rely on eventual consistency
+  * There is no current accurate instance of state
 * GetExchangeRateUSD_JPY
   * Is above event?
   * Result would change depends on time.
 * CommandSource :: State -> Command -> Event
+  * Object form of method/Action request
+  * Represents side effects
+  * CreateOrder, UpdateInventory, ShiptProduct
 * EventSource :: State -> Event -> Event
-
 * [Command Source](http://thinkbeforecoding.com/post/2013/07/28/Event-Sourcing-vs-Command-Sourcing)
 * [Event Source](https://www.martinfowler.com/eaaDev/EventSourcing.html)
 * [Event Source](https://goodenoughsoftware.net/tag/event-sourcing/)
