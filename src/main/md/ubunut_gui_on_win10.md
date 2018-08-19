@@ -1,3 +1,8 @@
+# Recover root password
+* boot in recovery mode and select root
+* mount -rw -remount/
+* passwd <<user_name>>
+
 echo "export DISPLAY=:0.0" >> ~/.bashrc
 
 sudo apt-get install xvfb
