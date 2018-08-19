@@ -19,6 +19,11 @@
   * The Sequential indicator alone showed statistically significant price moves on a wide range of commodities
 * Recent research suggests that combining various trading signals into a Combined Signal Approach may be able to increase profitability and reduce dependence on any single rule.
 
+# MACD
+* [Technical Analysis Indicator MACD](https://www.youtube.com/watch?v=OR8vwFv-5iU)
+* Centered oscillator - Oscillator above zero line is bullish, below zero line is bearish mode
+* If you compare MA with MACD, MACD would have given signals much sooner
+
 # EFH
 * The efficient-market hypothesis (EMH) states price inclusive of all the information 
 * As per EMH  contradicts the basic tenets of technical analysis by stating that past prices cannot be used to profitably predict future prices.
