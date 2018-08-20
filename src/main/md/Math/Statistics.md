@@ -108,4 +108,16 @@
   * Simple regression two variable (y =ax + b)
   * Multi-variate - matrix based, multiple independent variables are involved
   * QStatistic (short/tall, poor or rich) Derive binary from continious data
-  *   
+  * Point-biserial correlation
+  * Person's triserial correlation
+  * Rank order correlation
+  * Tau coefficient
+  * Statistical Hypothesis
+  * Gosset guiness z-test
+    * When sample size is smaller, normal distribution won't fit
+    * First one used in quality control
+    * t-test is replacement for z-test
+  * Analysis of variance  
+* Inferential Statistics
+  * Formal testing and estimation theory
+  * Based on random variation
