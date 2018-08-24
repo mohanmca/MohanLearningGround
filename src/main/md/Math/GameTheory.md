@@ -112,3 +112,4 @@
 * A Theory of Exit in Duopoly
 * Tax evasion - mixed nash equilibrium
 * https://en.wikipedia.org/wiki/Arrow%27s_impossibility_theorem
+* "The game theory of applied economists" alias "The primer in Game theory" Robert Gibbon
