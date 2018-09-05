@@ -1,14 +1,5 @@
-* Collateral Management
-  * Agreement setup
-  * Collateral allocation
-  * Margin Call
-  * Confirmations
-  * Inventory management
-  * Dispute management
-  * Data management
-  * Portofolio reoncilliations
-  * Interest
-* Collateral is one way to mitigate credit risk
+* Collateral is one of the way to mitigate the credit risk
+* Collateral - Something a borrower is expected to put up to indemnify the lender against price movements or counterparty risks. (Example: Cash, Equities or Bonds)
 * Credit risk exists when counterparty has an obligation to make payments or deliveries in future
 * First leg - Initiation of Collateral Agreement
 	* Borrower offers securities as collateral
@@ -16,6 +7,16 @@
 * Second leg - Termination of Collateral Agreement
 	* Borrower - returns cash + interest
 	* Lender - hands over collateralized securities
+* Collateral Management
+  * Agreement setup
+  * Collateral allocation
+  * Margin Call & Margin Management
+  * Confirmations
+  * Inventory management
+  * Dispute management
+  * Data management
+  * Portfolio reoncilliations
+  * Interest
 * OTC derivatives should be centrally cleared and reported using CCP (Central counter party)
 * Collateral advantages
   * Reduced credit risk
@@ -82,17 +83,49 @@
     * Valuation Agent, Date, Time and Notification Time
   * Termination Events
     * Illegality, Tax Event, Tax Event upon Merger, Credit Event Upong Merger
-* When there is dispute
+* When if there is a dispute?
   * What is disputed?
   * What is not disputed that should be settled  
+* Why CCP?
+  * When there are multiple banks, when one bank goes bankrupt, there could be dominos effect
+  * CCP should be the central counter party and dominos effect is avoided
+  * CCP capitalized to withstand dealer default
+  * All collateral moves to/from CCP
+* When there are multiple asset class as collateral, how to utilize all sorts of asset classes effectively
+  * Cheapest to deliver (Try to use cheapest to deliver to borrow)
+  * Hardest to place (Try to use hardest place to borrow)   
+  * Hardest to please (Try to use hardest please to borrow)
+* Collateral management optimization: ![Collateral management optimization][cmo]
+* Collateral management IT: ![Collateral management IT Architecture][cmit]
 
+
+
+# Stock borrowing and lending
+* Fee or Rebate
+  * The cost to borrow/lend a financial instrument
+* Borrow gets a quote for borrowing using broker
+* Broker mediates and gets a quote from multiple lender
+* Stock borrowing quote: ![Stock borrowing quote][sblq]
+
+
+     
 [ev]: img/EnterpriseCM.PNG "Enterprise View"  
-[cmf2b]: img/CMF2B.PNG "Collateral Management Front to Bank"  
+[cmf2b]: img/CMF2B.PNG "Collateral Management Front to Bank"
+[cmo]: img/CollateralOptimization.PNG "Collateral Optimization"
+[cmit]: img/CMIT.PNG "Collateral IT Architecture"  
+[sblq]: img/SBL_Quote.PNG "Stock borrowing"  
 
 # References
 * [Collateral Management Part 1 Basics] (https://www.youtube.com/watch?v=zt4WQqu1qqQ)
+* [Collateral Management Part 3](https://www.youtube.com/watch?v=MmSVQjQQFgA)
+* [SBL 101](https://www.youtube.com/watch?v=OAPOqh3v1Ak)
+* [SBL 102](https://www.youtube.com/watch?v=tKvATCGFlY0)
 * [Investment Grade](https://www.google.com/search?tbm=isch&q=investment+grade)
 * [Bond Rating](https://www.google.com/search?tbm=isch&q=bond+rating)
 * [Calypso Workflows & Messaging](http://www2.calypso.com/Portals/0/Documents/Brochures/Calypso-Collateral-Management.pdf)
 * [AcadiaSoft Hub](http://www.acadiasoft.com/wp-content/uploads/2017/04/Protocoll-Fact-Sheet-Final.pdf)
 * AcadiaSoft, Inc. is a provider of margin automation for counterparties engaged in collateral management worldwide.
+* (Portfolio reconciliation)[https://www.trioptima.com/triresolve/portfolio-reconciliation/]
+* (UMR|Margin for non-cleared OTC derivatives)[https://www.ey.com/Publication/vwLUAssets/ey-margin-policy-for-non-cleared-otc-derivatives/$FILE/ey-margin-policy-for-non-cleared-otc-derivatives.pdf]
+* (Uncleared Margin Rules)[https://www.bnymellon.com/_global-assets/pdf/markets-group/adapting-to-the-new-uncleared-margin-rules-global.pdf]
+* (Uncleared margin rules in EU and US)[https://www.fieldfisher.com/media/5054275/margin-rules-12-16-v4.pdf]
