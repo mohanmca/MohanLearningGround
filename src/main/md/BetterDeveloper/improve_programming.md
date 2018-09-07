@@ -8,3 +8,4 @@
 * http://wiki.c2.com/?HowToImproveProgrammingSkills
 * http://wiki.c2.com/?SoftwareMasterpiece
 * http://wiki.c2.com/?ReadGreatPrograms
+* https://www.reddit.com/r/javascript/comments/8frt24/the_secret_to_being_a_top_developer_is_building/?utm_source=reddit-android
