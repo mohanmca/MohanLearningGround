@@ -45,7 +45,7 @@
  
 
  # Image references
- [arch]: k82/Kubernetes_Architecture1.png "Kubernetes Architecture"  
+ [arch]: k8s/Kubernetes_Architecture1.png "Kubernetes Architecture"  
  
  # Reference 
  * (Case Studies)[https://kubernetes.io/case-studies/]
