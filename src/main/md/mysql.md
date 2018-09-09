@@ -43,3 +43,5 @@ datadir=<MYSQLDIR>\data
   mysql> describe tableName;
   ```
   
+# Refernces
+* [Mysql manual] (http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm)
