@@ -11,8 +11,11 @@ set password='yourPass'
 # Change root password
 
 ## Create file mypassword.ini with the following content (change the passord):
+* shutdown mysqld process
+```
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
 <MYSQLDIR>\bin\mysqld --init-file=<PATH>\mypassword.ini
+```
 
 # Now the password was changed, start database normally:
 
