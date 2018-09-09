@@ -39,10 +39,16 @@
 
 * Kubernetes Architecture
   * K8S Architecture: ![K8S Architecture][arch]
-  * One or more master nodes
+  * One or more master nodes,  only one of them will be the leader
   * One or more worker nodes
   * Distributed key-value store, like etcd.
  
+* Master node
+  * API server
+  * Scheduler
+  * Controller manager
+  * etcd (Key value store)
+
 
  # Image references
  [arch]: k8s/Kubernetes_Architecture1.png "Kubernetes Architecture"  

@@ -41,6 +41,7 @@ datadir=<MYSQLDIR>\data
   mysql> show tables;
   mysql> show databases;
   mysql> describe tableName;
+  mysql> CREATE DATABASE thales;
   ```
   
 # Refernces
