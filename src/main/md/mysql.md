@@ -34,3 +34,12 @@ basedir=<MYSQLDIR>
 datadir=<MYSQLDIR>\data
 
 <MYSQLDIR>\bin\mysqld --init-file=<MYSQLDIR>\my.ini
+  
+  # MYSQL
+  ```sql
+  mysql> use mysql;
+  mysql> show tables;
+  mysql> show databases;
+  mysql> describe tableName;
+  ```
+  
