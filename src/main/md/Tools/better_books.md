@@ -8,3 +8,5 @@
 * Thinking in Systems: A Primer 
 * The Design of Everyday Things: Revised and Expanded Edition 
 * Principles: Life and Work 
+
+* ["Cartoon guide to Physics"](https://www.amazon.com/Cartoon-Guide-Physics/dp/0062731009)
