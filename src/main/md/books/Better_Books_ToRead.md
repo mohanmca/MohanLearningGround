@@ -26,3 +26,19 @@
 * Probability Demystified 2/E 2nd Edition
 * Geometry DeMYSTiFieD, 2nd Edition Stan Gibilisco
 * Trigonometry Demystified 2/E 
+
+# Other books
+* Amazon "Best Sellers in Computer Science"
+* https://www.amazon.com/Best-Sellers-Books-Computer-Science/zgbs/books/3508/ref=zg_bs_nav_b_2_5
+* Tech books that were translated to other languages
+* https://www.amazon.com/Best-Sellers-Kindle-Store-Information-Management/zgbs/digital-text/154927011/ref=zg_bs_nav_kstore_5_154902011
+
+* The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win 5th Anniversary Edition
+* Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are
+* Thinking in Systems: A Primer 
+* The Design of Everyday Things: Revised and Expanded Edition 
+* Principles: Life and Work 
+
+* ["Cartoon guide to Physics"](https://www.amazon.com/Cartoon-Guide-Physics/dp/0062731009)
+* ["The Cartoon Guide to Calculus"](https://www.amazon.com/Cartoon-Guide-Calculus/dp/0061689092/ref=sr_1_5?s=books&ie=UTF8&qid=1537065864&sr=1-5&keywords=cartoon+guide+to+statistics&dpID=51gQZ9XpaYL&preST=_SX218_BO1,204,203,200_QL40_&dpSrc=srch)
+* Larry Gonick - books - https://www.amazon.com/Larry-Gonick/e/B000AQ75IY/ref=dp_byline_cont_book_1
