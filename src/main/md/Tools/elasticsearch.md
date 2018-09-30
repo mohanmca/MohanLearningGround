@@ -73,6 +73,13 @@ http://localhost:9200/_xpack?categories=build,features
   * This is sufficient for us to ask, “Is there a follower who is 26 years old?”
   * We can’t get an accurate answer to this: “Is there a follower who is 26 years old and who is called Alex Jones?”
 
+# Type
+* Lucene has no concept of document types. The type name of each document is stored with the document in a metadata field called _type.
+* Lucene also has no concept of mappings. Mappings are the layer that Elasticsearch uses to map complex JSON documents into the simple flat documents that Lucene expects to receive.
+* If different type has similar field, analyzer would be same, to avoid, we can change field name slightly different
+  * title_en, title_es instead of title
+* 
+
 # Query Theory
 * You can find only terms that exist in your index, so both the indexed text and the query string must be normalized into the same form.
 * Process of tokenization and normalization is called analysis
@@ -95,6 +102,7 @@ http://localhost:9200/_xpack?categories=build,features
 * _all - concatenated field
 * You can always update partial mappings without explicitly mention about existing fields
 * Same field can be analyzed and not_analyzed using mappings. (both raw search and full-text search)
+* *  _id and _index fields are neither indexed nor stored
 
 # TF/IDF
 * Term frequency - How often does the term appear in the field? The more often, the more relevant. A field containing five mentions of the same term is more likely to be relevant than a field containing just one mention.
@@ -108,6 +116,36 @@ http://localhost:9200/_xpack?categories=build,features
 * To make sorting efficient, Elasticsearch loads all the values for the field that you want to sort on into memory. This is referred to as fielddata.
 * Elasticsearch doesn’t just load the values for the documents that matched a particular query. It loads the values from every document in your index, regardless of the document type.
 * query-then-fetch process (Two phase process is being used by ES for searching), It internally uses priority-queue, And try not-to-use deep paging unless spider needs to be supported
+* 
+
+# Analyzer
+* We can create, or compose existing analyzer
+* Can test independently with sample text
+* The analyzer is not much use unless we tell Elasticsearch where to use it. 
+* Analyzer = char_filter + tokenizer + filter + analyzer
+
+# Settings
+* action.auto_create_index: false
+* number_of_shards, number_of_replicas - Two most important
+* By default, the stopwords filter is disabled. 
+  * GET /spanish_docs/_analyze?analyzer=es_std 
+* "date_detection": false -- inside mappings
+* dynamic_date_formats
+* dynamic_templates
+* The _default_ mapping is a good place to specify index-wide dynamic templates.
+* 
+
+# REINDEXING
+* Reindex using latest mapping using sroll and scan
+* GET /old_index/_search?search_type=scan&scroll=1m
+* Break a big reindex down into smaller jobs by filtering on a date or timestamp field:
+* During reindexing, we should also filtering on a date field to match only documents that have been added since the last reindex process started. They are not available using scroll and scan, since they use snapshot view
+* Index Aliases and Zero Downtime - Using alias to hide the reindex process
+* Alias use cases
+  * Switch transparently between one index and another on a running cluster
+  * Group multiple indices (for example, last_three_months)
+  * Create “views” on a subset of the documents in an index
+* Prefer to use index name with version number and hide the version of the index using alias
 * 
 
 # Weird Problems
