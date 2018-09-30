@@ -4,8 +4,11 @@
 * /_cluster/health
 * /gb/_mapping/tweet  - mapping for type tweet that is under index -gb
 * GET /gb/tweet/_validate/query query
-* GET /gb/tweet/_validate/query?explain 1
-  
+* GET /gb/tweet/_validate/query?explain 
+* GET /_search?explain or /_search?explain?format=yaml
+* GET /_search?routing=user_1,user2
+* GET /_search?search_type=count  
+* GET /old_index/_search?search_type=scan&scroll=1m
 
 * To count the number of documents in the cluster
  * ```{"query": { "match_all": {} }}```
@@ -53,6 +56,9 @@
 * /_all/user,tweet/_search - Search types user and tweet in all indices
 * GET /_search?size=5
 * GET /_search?size=5&from=10
+* ?format=yaml
+* ?preference=prefrences, _primary, _primary_first, _local, _only_node:xyz, _prefer_node:xyz
+* 
 
 # Query DSL
 * Query DSL = Query DSL + Filter DSL.
@@ -72,6 +78,18 @@
 * Always analyze production queries
   * GET /gb/tweet/_validate/query query
   * GET /gb/tweet/_validate/query?explain 1
+* Query debug for a document
+   ```
+	GET /us/tweet/12/_explain
+	{
+	   "query" : {
+	      "filtered" : {
+	         "filter" : { "term" :  { "user_id" : 2           }},
+	         "query" :  { "match" : { "tweet" :   "honeymoon" }}
+	      }
+	   }
+	}
+```   
 
 
 # Filter DSL
@@ -93,11 +111,14 @@
   * The bool query combines the _score from each must or should clause that matches.
   
 * Example of fitlered query 
-  * ```{"filtered":{"query":{"match":{"email":"business opportunity"}},"filter":{"term":{"folder":"inbox"}}}}```  
+  * ```{"filtered":{"query":{"match":{"email":"business opportunity"}},"filter":{"term":{"folder":"inbox"}}}}``` 
+ * ```{"sort": { "date": { "order": "desc" }}}```   
 
 # Search tips
 * +means that the word must be present.
-* 
+* Default sort order is _score descending.
+* _score can be quite expensive, and usually its only purpose is for sorting, can be forced =  track_scores parameter to true.
+* Multiple sorts - ```{"sort":[{"date":{"order":"desc"}},{"_score":{"order":"desc"}}]}```
 
 # Analyzer
 * GET /_analyze?analyzer=standard
@@ -107,7 +128,7 @@
 * Name has john and tweet has mary ---> +name:john +tweet:mary ---> GET /_search?q=%2Bname%3Ajohn+%2Btweet%3Amary
 * mary in any field (_all field) ---> +name:john +tweet:mary ---> GET /_search?q=mary
 * The _all field contains either of the words aggregations or geo ---> +name:(mary john) +date:>2014-09-10 ---> (aggregations geo) ---> ?q=%2Bname%3A(mary+john)+%2Bdate%3A%3E2014-09-10+%2B(aggregations+geo)
-* 
+* GET /_search?sort=date:desc&sort=_score&q=search
 
 Search types user and tweet in all indices
 
@@ -205,4 +226,8 @@ POST /_bulk
 { "update": { "_index": "website", "_type": "blog", "_id": "123", "_retry_on_conflict" : 3} }
 { "doc" : {"title" : "My updated blog post"} }
  
+```
+Multi value use mode (min, max, avg) for sorting
+```
+{"sort":{"dates":{"order":"asc","mode":"min"}}}
 ```

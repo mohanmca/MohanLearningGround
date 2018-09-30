@@ -18,6 +18,9 @@ abc + (1 - a)(1 - b)(1 - c)
     (.60)(.72) + (1 - .60)(1 - .72)
 ```
 
+# Gregory's Theorem
+* https://divisbyzero.com/2018/09/28/proof-without-word-gregorys-theorem/
+
 # References
 * http://www.paulgraham.com/naivebayes.html
 * https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering

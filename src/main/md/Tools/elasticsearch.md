@@ -42,6 +42,7 @@ http://localhost:9200/_xpack?categories=build,features
   * Node client - The node client joins a local cluster as a non data node. In other words, it doesn’t hold any data itself, but it knows what data lives on which node in the cluster, and can forward requests directly to the correct node.
   * Transport client - The lighter-weight transport client can be used to send requests to a remote cluster. It doesn’t join the cluster itself, but simply forwards requests to a node in the cluster.
 
+
 # Theory
 * In Elasticsearch, all data in every field is indexed by default. ES can use all of those inverted indices in the same query, to return results at breathtaking speed.
 * A node is a running instance of Elasticsearch
@@ -93,7 +94,26 @@ http://localhost:9200/_xpack?categories=build,features
 * timeout, sync (disable for performance)
 * _all - concatenated field
 * You can always update partial mappings without explicitly mention about existing fields
+* Same field can be analyzed and not_analyzed using mappings. (both raw search and full-text search)
+
+# TF/IDF
+* Term frequency - How often does the term appear in the field? The more often, the more relevant. A field containing five mentions of the same term is more likely to be relevant than a field containing just one mention.
+  * How many times did the term honeymoon appear in the tweet field in this document?
+* Inverse document frequency - How often does each term appear in the index? The more often, the less relevant. Terms that appear in many documents have a lower weight than more-uncommon terms.
+  * How many times did the term honeymoon appear in the tweet field of all documents in the index?
+* Field-length norm - How long is the field? The longer it is, the less likely it is that words in the field will be relevant. A term appearing in a short title field carries more weight than the same term appearing in a long content field.
+  * How long is the tweet field in this document? The longer the field, the smaller this number.
+
+# Performance considerations
+* To make sorting efficient, Elasticsearch loads all the values for the field that you want to sort on into memory. This is referred to as fielddata.
+* Elasticsearch doesn’t just load the values for the documents that matched a particular query. It loads the values from every document in your index, regardless of the document type.
+* query-then-fetch process (Two phase process is being used by ES for searching), It internally uses priority-queue, And try not-to-use deep paging unless spider needs to be supported
 * 
+
+# Weird Problems
+* BOUNCING RESULTS - If two scores are same, two shards can list in two different order, prefer to use same shards to avoid surprise
+* The timeout parameter tells the coordinating node how long it should wait before giving up and just returning the results that it already has.  
+
 
 # Plugins
 bin/elasticsearch-plugin install http://some.domain/path/to/plugin.zip
