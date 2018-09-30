@@ -9,7 +9,9 @@
 * GET /_search?routing=user_1,user2
 * GET /_search?search_type=count  
 * GET /old_index/_search?search_type=scan&scroll=1m
-
+* DELETE /index_one,index_two or DELETE /index_* or DELETE /_all
+* PUT /my_index_v1/_alias/my_index and/or GET /*/_alias/my_index
+* 
 * To count the number of documents in the cluster
  * ```{"query": { "match_all": {} }}```
 * To count the number of documents in the cluster
@@ -58,6 +60,7 @@
 * GET /_search?size=5&from=10
 * ?format=yaml
 * ?preference=prefrences, _primary, _primary_first, _local, _only_node:xyz, _prefer_node:xyz
+* _id=hash_uuid and _uid = concatenare(_type, _id) = type#id
 * 
 
 # Query DSL
@@ -227,7 +230,48 @@ POST /_bulk
 { "doc" : {"title" : "My updated blog post"} }
  
 ```
-Multi value use mode (min, max, avg) for sorting
+* Multi value use mode (min, max, avg) for sorting
 ```
 {"sort":{"dates":{"order":"asc","mode":"min"}}}
+```
+```
+PUT /my_temp_index/_settings
+{
+    "number_of_replicas": 1
+}
+PUT /my_temp_index
+{
+    "settings": {
+        "number_of_shards" :   1,
+        "number_of_replicas" : 0
+    }
+}
+```
+
+```
+PUT /my_index
+{
+    "mappings": {
+        "my_type": {
+            "_id": {
+                "path": "doc_id" 1
+            },
+            "properties": {
+                "doc_id": {
+                    "type":   "string",
+                    "index":  "not_analyzed"
+                }
+            }
+        }
+    }
+}
+```
+```
+POST /_aliases
+{
+    "actions": [
+        { "remove": { "index": "my_index_v1", "alias": "my_index" }},
+        { "add":    { "index": "my_index_v2", "alias": "my_index" }}
+    ]
+}
 ```
