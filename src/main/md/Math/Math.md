@@ -24,3 +24,7 @@ abc + (1 - a)(1 - b)(1 - c)
 # References
 * http://www.paulgraham.com/naivebayes.html
 * https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering
+
+# Youtube math tricks
+* https://www.youtube.com/watch?v=Rgw9Ik5ZGaY
+* Channel name - tecmath
