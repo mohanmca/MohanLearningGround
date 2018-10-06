@@ -12,6 +12,10 @@
 * Bayes' Theorem Examples: A Visual Introduction For Beginners
 * How Not to Be Wrong - Jordan Ellenberg
 
+# Memory
+* Unlimited Memory: How to Use Advanced Learning Strategies to Learn Faster, Remember More and be More Productive Kindle Edition by Kevin Horsley
+* 
+
 # Demystified Math series
 * Discrete Mathematics 
 * Calculus DeMYSTiFieD
