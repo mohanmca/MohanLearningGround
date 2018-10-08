@@ -1,8 +1,9 @@
 # Priority
 * [Elasticsearch: The Definitive Guide] (https://www.safaribooksonline.com/library/view/elasticsearch-the-definitive/9781449358532/)
 * [Event-Driven Microservices - Chris Richardson] (https://www.safaribooksonline.com/videos/event-driven-microservices/9781491944165)
-
 * Databases DeMYSTiFieD, 2nd Edition by Andy Oppel
+* Code: The Hidden Language of Computer Hardware and Software
+* Understanding Computation - From Simple Machines to Impossible Programs
 
 # Math series
 * The Signal and the Noise: Why So Many Predictions Fail--but Some Don't (Statistics)
