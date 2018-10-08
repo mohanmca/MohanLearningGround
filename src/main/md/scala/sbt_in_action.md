@@ -36,6 +36,17 @@
 * sbt uses Ivy for its dependency resolution, whereas Maven uses Aether.
 * The ability to explore your project using the Scala REPL
 
+# SBT Session
+```
+sbt
+console
+reload #sbt has been changed in another console
+tasks
+settings <tab>
+test
+testOnly <tab>
+```
+
  
 * Define a task in sbt that takes the output of a shell command and retrieves the first line:
 ```SBT
