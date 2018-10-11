@@ -53,6 +53,35 @@
 * Compile, Test, Runtime, IntegrationTest
 * ThisBuild configuration would be used for catch-all scenario
 
+
+# SBT Plugins
+* plugins brings additional settings and tasks
+* /project - is a project about build itself, build-project
+* /project/plugins.sbt - name doesn't matter, you can call it myaddonplugins.sbt, or anything.sbt
+  * Example to add plugins - addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.5.0")
+  * plugins can have its own resolvers - resolvers += "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases/"
+  * resolvers in build.sbt and plugins.sbt are dedicated, we may not to declare sometime in both the places
+  * %% in plugins would resolve to sbt version 0.13, 0.12 or 1.11
+* Scala version used when resolving plugins for sbt may be different from build.sbt Scala version
+* Important plugins
+  * SbtResolver
+    * addSbtPlugin("io.spray" % "sbt-revolver" % "0.7.2") - restarts main application if there are code change
+    * sbt-resolver is not spray specific, and reStart and reStop command can be used with ~
+    * ~reStart - would automatically restarts the application
+  * Uber jar assembler - addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.11.2")
+    * import AssemblyKeys._; assemblySettings
+    * mainClass in assembly := Some("Global")
+    * declare merge stategy (in build.sbt) for handling duplicate (concatenate, use new, use old)
+    * mainClass in assembly := Some("Global") -- should be mentioned for executable jar
+    * You might even have - libraryDependencies ++= Seq( "org.apache.velocity" % "velocity" % "1.7") in order for Build.scala to use plugins
+    * $HOME/.sbt/0.13/credentials.sbt:
+    * credentials += Credentials("Sonatype Nexus Repository Manager",                           "oss.sonatype.org", "myusername","mypassword")
+
+# build.sbt vs Build.scala
+* build.sbt - declarative approach like Maven, Gradle
+* Build.scala - pure scala centric approach
+* 
+
 # SBT Session
 ```
 sbt
@@ -74,3 +103,7 @@ testOnly <tab>
 val gitHeadCommitSha = taskKey[String]("Determines the current git commit SHA")
 gitHeadCommitSha := Process("git rev-parse HEAD").lines.head
 ```
+
+
+# References
+* [SBT in Action source code](https://github.com/jsuereth/sbt-in-action-examples)
