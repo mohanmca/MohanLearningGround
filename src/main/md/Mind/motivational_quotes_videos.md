@@ -1,3 +1,13 @@
+# Going fast
+* If you want to go fast, go alone; if you want to go far; go togther.
+* If everything seems under control you’re just not going fast enough. 
+* "Move fast and break things. Unless you are breaking stuff, you are not moving fast enough."
+* Sometimes you need to slow down to go fast
+* If you wish to travel Far and Fast, travel light
+* Innovation is moving at a scarily fast pace
+* Fail fast, learn fast and improve fast
+* 
+
 # Motivational videos
 * [Why it Pays to Be Hungry | Les Brown | Goalcast](https://youtu.be/xFr0FKnaLDk)
 
