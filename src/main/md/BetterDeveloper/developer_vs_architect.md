@@ -69,7 +69,10 @@
 * Architects not necessarily need to code, if they coded in the past, and know the business domain well, and take part actively in building system with *skin in the game*
 * There are many architects (business architect, domain architect, security architect, solution architect, enterprise architect, application architect), Not everyone needs to code.
 * Dedicated application architect without "skin in the game" is counter productive and useless
-* Architect who solved similar problem for a given business domain is asset provided he starts with Spec even before others begin their work. 
+* Architect who solved similar problem for a given business domain is asset provided he starts with Spec even before others begin their work.
+* If we could work with Architect would coded/code, and also acts as an Architect, probablity of delivering world-class system is high
+  * Assume if "Doug Cutting" helps to build big-data archiecture for a bank.
+ 
 
 # References
 * https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/
