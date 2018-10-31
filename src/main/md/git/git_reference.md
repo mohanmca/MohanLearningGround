@@ -34,27 +34,33 @@ git checkout origin/master <local_filepath>
 
 Find lat n commit by author
 
-Git Merging
-~~~~~~~~~~~~~
-git log -n 2 --author=Mohan --pretty=format:%H  
+# Git RCA commands
+* To find how a commit ended up in a revision
+```bash
+git tag --contains shacommit
 
-2bbfedb7998608298e669c0b4989f3225c4ab79e
-6db4270dec5d0035430683c399c6c1340cc83c67
+git log <olderTag>..<newerTag> --name-only --format="%aN <%aE>" --reverse
 
+git log tag1..tag2
+git diff tag1 tag2 --stat
+git diff tag1 tag2 -- some/file/name
+```
+
+# Git Merging
+```bash
 git log -n 2 --author=Mohan --pretty=format:%H  | tac
-
-
 git checkout branch (to merge content added in HEAD
 git cherry-pick 6db4270dec5d0035430683c399c6c1340cc83c67
 git cherry-pick 2bbfedb7998608298e669c0b4989f3225c4ab79e
+```
 
 
-Handling git line feed
-~~~~~~~~~~~~~~~~~~~~~~
+# Handling git line feed
 Eclispe > Window > Preferences > General > Workspace > New File line Delimiter > Unix
 Eclipse Preferences / Team / Git / Configuration / User Settings @ Core Section - key: autocrlf value: false
 git config --system core.whitespace cr-at-eol
 git config --system core.autocrlf false
 
+# Reference
 * [Tomy's reference](https://gist.github.com/mohanmca/d405dd27fdfa92b51975)
 * [Ashish Rawat's reference](https://gist.github.com/eashish93/3eca6a90fef1ea6e586b7ec211ff72a5)
