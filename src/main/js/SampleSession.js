@@ -48,4 +48,4 @@ let parseTypeVsColumns = function (data) {
 	return _t;
 }
 
-parseTypeVsColumns(data)
+console.log(parseTypeVsColumns(data))
