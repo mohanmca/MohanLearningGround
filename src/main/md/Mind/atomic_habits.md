@@ -73,7 +73,9 @@
 
 # Quotes
 * Until you make unconscious conscious, it will direct your life and you call it fate - Carl Jung
-* Plant a tiny seed in right spot, and it will grow without coaxing 
+* Plant a tiny seed in right spot, and it will grow without coaxing
+* B=F(P,E) = Behaviour is function of person in an environment 
+* B=MATHS = Behaviour = Motivation + Ability + Trigger + Habit + Success 
 
 # Useful tiny habits
 * Use behaviour stack, behave, Dance/reward/Bingo/IAmSUPER
