@@ -51,3 +51,9 @@
 * ["Cartoon guide to Physics"](https://www.amazon.com/Cartoon-Guide-Physics/dp/0062731009)
 * ["The Cartoon Guide to Calculus"](https://www.amazon.com/Cartoon-Guide-Calculus/dp/0061689092/ref=sr_1_5?s=books&ie=UTF8&qid=1537065864&sr=1-5&keywords=cartoon+guide+to+statistics&dpID=51gQZ9XpaYL&preST=_SX218_BO1,204,203,200_QL40_&dpSrc=srch)
 * Larry Gonick - books - https://www.amazon.com/Larry-Gonick/e/B000AQ75IY/ref=dp_byline_cont_book_1
+
+# Self help books
+* The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life - Mark Manson
+* Thinking in Bets - Annie Duke  
+* How will you measure your Life - Clayton M/Christensen
+* Stress Proof - Mithu Storoni
