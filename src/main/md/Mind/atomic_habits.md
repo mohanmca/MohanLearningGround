@@ -42,6 +42,17 @@
 * Response: Make it easy
 * Reward: Make it satisfying
 
+# Habit formation
+* Prepare babit table
+* Point and call (don't just think)
+  * After 3:00PM, I would book flight ticket (loud and clear)
+* Specify DTP, (date, time and place) to perform a habit
+  * Everyday 5:55PM, I would double check the office todo
+* Habit Stacking - Diderot Effect
+  * One spending leads to another, one purchase leads to another, One habit can be stacked with another   
+  * Right after brushing my teeth, I would weigh my wait, and do 10 push ups at the hall.
+  * 
+  
 # To find a bad Habit
 * List all your habits
 * Score +/-/=
@@ -54,7 +65,7 @@
 * Craving: Make it un-attractive
 * Response: Make it hard
 * Reward: Make it unsatisfying
-
+    
 # Pointing and Calling
 * Use eyes, mouth, ear and hands
 * "I have got my keys, wallet, phone, train-pass and ear-phone"
@@ -62,4 +73,19 @@
 
 # Quotes
 * Until you make unconscious conscious, it will direct your life and you call it fate - Carl Jung
-*  
+* Plant a tiny seed in right spot, and it will grow without coaxing 
+
+# Useful tiny habits
+* Use behaviour stack, behave, Dance/reward/Bingo/IAmSUPER
+* After I pee, I do 2 push-ups
+* BehaviourGrid: ![alt text][BehaviourGrid]
+* After I drink a glass of water, I will do 10-15 body-weight squats.
+* After I pour a cup of tea, I will do a 30-second plank.
+* After I go the restroom, I will do four or five push-ups.
+* After I walk in my office, I will do 10-15 reverse dumbbell flies.
+* After I walk in my apartment, I will do 10-15 lateral dumbbell raises.
+* After I watch video, I will leave a comment
+
+# Reference
+* [BJ Fogg - Tiny habits - Stanford Behavior Design Lab](https://www.bjfogg.com/)
+* [BehaviourGrid]: img/bjfogg.png "BehaviourGrid"
