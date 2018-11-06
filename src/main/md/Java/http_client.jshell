@@ -6,7 +6,7 @@ var request = HttpRequest.newBuilder(URI.create("https://developer.mozilla.org/b
 var response = client.send(request,HttpResponse.BodyHandlers.ofString())
 var content = response.body().toString()
 System.out.println(content)
-response.stausCode()
+response.statusCode()
 response.headers()
 var asyncResponse = client.sendAsync(request,HttpResponse.BodyHandlers.ofString())
 asyncResponse.thenApply(HttpResponse::body).get()
