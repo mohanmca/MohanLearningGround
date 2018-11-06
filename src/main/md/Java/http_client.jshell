@@ -1,0 +1,12 @@
+import java.net.http.HttpClient.*
+import java.net.http.*;
+
+var client = HttpClient.newBuilder().version(Version.HTTP_2).followRedirects(Redirect.NORMAL).build()
+var request = HttpRequest.newBuilder(URI.create("https://developer.mozilla.org/bm/docs/Web/JavaScript/Reference/Functions/Arrow_functions")).build()
+var response = client.send(request,HttpResponse.BodyHandlers.ofString())
+var content = response.body().toString()
+System.out.println(content)
+response.stausCode()
+response.headers()
+var asyncResponse = client.sendAsync(request,HttpResponse.BodyHandlers.ofString())
+asyncResponse.thenApply(HttpResponse::body).get()
