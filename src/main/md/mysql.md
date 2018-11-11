@@ -44,5 +44,10 @@ datadir=<MYSQLDIR>\data
   mysql> CREATE DATABASE thales;
   ```
   
+# Most often used SQLs
+```sql
+SELECT table_name FROM information_schema.tables where table_schema='emp';
+```  
+  
 # Refernces
 * [Mysql manual] (http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm)
