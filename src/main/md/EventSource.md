@@ -2,7 +2,8 @@
   * Facts, Already happened
   * Immutable object, input to the system
   * New events can invalidate old events
-  * Cannot be deleted, retracted  
+  * Cannot be deleted, retracted
+  * Even name should be in past tense - *NameChanged, OrderPlaced, UserDeleted, SettlementInitiated, TradeSettled, GoodsDelivered*
 * Event 
   * (Lean) - Only required details (Mouse click, Address Change, NewOrder)
   * (Rich or Fat) - Event with past, present and additional context, so that processing system no need to query other system to know the details.   
@@ -17,6 +18,7 @@
   * Object form of method/Action request
   * Represents side effects
   * CreateOrder, UpdateInventory, ShiptProduct
+  * Command name should not ask, it should tell. "ShipIt, TransferIt, DeliverIt, CloseOrder, DelteUser"
 * EventSource :: State -> Event -> Event
 * [Command Source](http://thinkbeforecoding.com/post/2013/07/28/Event-Sourcing-vs-Command-Sourcing)
 * [Event Source](https://www.martinfowler.com/eaaDev/EventSourcing.html)
