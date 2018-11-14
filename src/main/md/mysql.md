@@ -21,8 +21,17 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
 
 <MYSQLDIR>\bin\mysqld
 # ACCESS database shell
-
 <MYSQLDIR>\bin\mysql -u root -p
+
+```SQL
+mysqld --initialize-insecure set password='root'
+mysqld --console --port 3306
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';  //this content should be inside the password.ini
+SET GLOBAL default_storage_engine = 'InnoDB';
+mysqld --init-file=password.ini
+mysql -u root -p
+CREATE DATABASE thales CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
 
 # You can create a configuration file my.ini and use to set configuration parameters to database:
 
