@@ -18,7 +18,7 @@
   * Object form of method/Action request
   * Represents side effects
   * CreateOrder, UpdateInventory, ShiptProduct
-  * Command name should not ask, it should tell. "ShipIt, TransferIt, DeliverIt, CloseOrder, DelteUser"
+  * "Tell Don't Ask" - Command name should not ask, it should tell. "ShipIt, TransferIt, DeliverIt, CloseOrder, DelteUser"
 * EventSource :: State -> Event -> Event
 * [Command Source](http://thinkbeforecoding.com/post/2013/07/28/Event-Sourcing-vs-Command-Sourcing)
 * [Event Source](https://www.martinfowler.com/eaaDev/EventSourcing.html)
@@ -28,3 +28,4 @@
 * [Domain Event | Command](https://www.martinfowler.com/eaaDev/DomainEvent.html)
 * [Microsoft EventSource document](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
 * [How Events Are Reshaping Modern Systems](https://www.infoq.com/presentations/systems-event-driven)
+* [TellDontAsk](https://martinfowler.com/bliki/TellDontAsk.html)
