@@ -1,17 +1,17 @@
 ## [Swami Sarvapriyananda-"Secret of Concentration" at IIT Kanpur](https://www.youtube.com/watch?v=BGswR0tMqCM)
 
 ## Conentration
-* Whatever you need to acheive, you require conentration, conentration gives **richer experience**.
+* Whatever you need to achieve, you require concentration, concentration gives **richer experience**.
 * The degree between ordinary and extra-ordinary person lies in degree of concentration
 * Quality of life
   * Life depends on quality of experience
-  * Experience depends on quality  of conentration
+  * Experience depends on quality  of concentration
 * We all have limited cognitive capacity
 * We are 128 bit processing person
-* when we use all of that 128 bit, will ignore everything else like hunger, weather, senses. Becuase there is no bandwidth
+* when we use all of that 128 bit, will ignore everything else like hunger, weather, senses. Because there is no bandwidth
 * 128 bit is based on book Flow, fact may vary but context remains same.
-* Choose what to conentrate on, how much you want to concentrate-on.
-* Milton - “The mind is its own place, and in itself can make a heaven of hell, a hell of heaven..”
+* Choose what to concentrate on, how much you want to concentrate-on.
+* Milton - "The mind is its own place, and in itself can make a heaven of hell, a hell of heaven.."
   * By choosing what to concentrate
   * By choosing how much to concentrate
 
@@ -27,22 +27,23 @@
 * When you watch movie and cricket
  * We don't feel discomfort
  * Won't feel hungry
- * When you are deeply obsorbed you won't notice other senses feedback
+ * When you are deeply Absorbed you won't notice other senses feedback
 
 ## Vivekananda
  * Vivekananda was able to read entire volume of "Encyclopedia Britanica" and able to answer the questions
  * He also mentioned that with meditation (and concentration) and purity, anybody can do it.
  * He also symbolised Snake for concentration
  * Learn the power of detachment
- * Detachment should be practicsed, detach from all the other issues.
+ * Detachment should be practiced, detach from all the other issues.
  * Education is all about power of concentration.
-* Nepolean opens the drawyer of issue and close all the other drawyer, don't worry and confuse with other drawyer
+* Napoleon opens the drawyer of issue and close all the other drawyer, don't worry and confuse with other drawyer
 
 ## How to improve
-  * Cultivate the habit of paying fullest attention to what you are doing
-  * Train the mind to concentrate, by keep concentrating
-  * If we keep our mind wander, it wound wander always, it won't be good concentraion
-  * Read two books Flow and RAPT
+ * Cultivate the habit of paying fullest attention to what you are doing
+ * Train the mind to concentrate, by keep concentrating
+ * If we keep our mind wander, it wound wander always, it won't be good concentration
+ * Read two books Flow and RAPT
+
 ## Challenges vs skills - Flow model
 * Arousel (ready to face challenge) (Highest challenge, moderate skill)
 * Anxiety (Highest challenge, lower than moderate skill)
@@ -70,7 +71,7 @@
 * Clear goals are necessary for flow, without clear goals we will end up in Anxiety 
 
 ## Flow and Yoga
-* Start with  right posture, sit straight. Don't lean forward like sleeping or releaxed
+* Start with  right posture, sit straight. Don't lean forward like sleeping or relaxed
 * Do pranayama - concentration will make breathing in both nostril, Balanced breath should be there to focus.
   * We can try with "Nadi suddhi pranayama" (In the ration of - Breath in 1 vs breath out 2)
 * Arouse curiosity, setup a problem and read material so you will be curious and concentrate more.
@@ -84,10 +85,19 @@
 * Niyama - Discipline life
 * Asana - Posture
 * Pranayama - Deep breath regularly
-* Prathyara - Withdrawing from world. Means literally “control of ahara,” or “gaining mastery over external influences.”. Intelligent but don't struggle.
+* Prathyara - Withdrawing from world. Means literally â€œcontrol of ahara,â€� or â€œgaining mastery over external influences.â€�. Intelligent but don't struggle.
 * Dharana - Focus, Concentration
 * Dyana - Meditation, Unbroken focus
 * Samadhi
+
+
+# Quotes
+* Concentration comes out of a combination of confidence and hunger
+* Focusing is about saying "NO"
+* Deciding what not to do is as important as deciding what to do
+* Avoid everything in general and foucs one thing in particular.
+* Your goal is not to battle with the mind (distractions), but to witness the mind.
+
 
 ## Flow : is a function that involves Skill, Challenge and produces new state
 * Flow : (Skill, Challenge) => State 
@@ -100,6 +110,6 @@
 ## Reference
 * "Yoga is one of the oldest and most systematic methods of producing the flow experience"
 * [Ted Talk by Martin Seligman](http://www.ted.com/talks/martin_seligman_on_the_state_of_psychology?language=en#t-9177)
-* [Ted Talk by Mihaly Csikszentmihalyi](http://www.ted.com/talks/mihaly_csikszentmihalyi_on_flow?language=en﻿)
+* [Ted Talk by Mihaly Csikszentmihalyi](http://www.ted.com/talks/mihaly_csikszentmihalyi_on_flow?language=enï»¿)
 * [Sharatchandra Chakravarti experience of Vivekananda](http://www.swamivivekanandaquotes.org/2014/05/swami-vivekanandas-reading-speed-and-memory-power.html)
 * [Attaining flow](https://images.google.com/?q=attaining+flow)
