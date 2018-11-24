@@ -54,8 +54,6 @@
 * List all your habits
 * Score +/-/=
 * Say loud before every habit and its consequences
-* 
-
 
 # To break a bad Habit
 * Cue: Make it invisible (clear)
@@ -66,7 +64,6 @@
 # Pointing and Calling
 * Use eyes, mouth, ear and hands
 * "I have got my keys, wallet, phone, train-pass and ear-phone"
-*   
 
 # Quotes
 * Until you make unconscious conscious, it will direct your life and you call it fate - Carl Jung
