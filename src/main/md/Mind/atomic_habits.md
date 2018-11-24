@@ -1,6 +1,5 @@
 # Atomic Habits
 * Aggregation of marginal gains
-* 
 
 # Why Habits?
 * Good Habits create freedom.
@@ -18,7 +17,6 @@
 * bored|need_to_do_be_entertained|watch_netflix|enjoy_entertainment
 * We associate problem phase with solution
 * Cue - Difficult office task, crave for relief, response - check twitter, reward - relieved (if office issue, check twitter) 
-
 
 # Cue
 * Unconscious cues?
@@ -51,7 +49,6 @@
 * Habit Stacking - Diderot Effect
   * One spending leads to another, one purchase leads to another, One habit can be stacked with another   
   * Right after brushing my teeth, I would weigh my wait, and do 10 push ups at the hall.
-  * 
   
 # To find a bad Habit
 * List all your habits
@@ -91,3 +88,4 @@
 # Reference
 * [BJ Fogg - Tiny habits - Stanford Behavior Design Lab](https://www.bjfogg.com/)
 * [BehaviourGrid]: img/bjfogg.png "BehaviourGrid"
+* [Habits - The Definitive Guide to Lasting Change](http://www.selfication.com/)
