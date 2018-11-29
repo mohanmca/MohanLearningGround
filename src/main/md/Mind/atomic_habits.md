@@ -41,7 +41,7 @@
 * Reward: Make it satisfying
 
 # Habit formation
-* Prepare babit table
+* Prepare Habit table
 * Point and call (don't just think)
   * After 3:00PM, I would book flight ticket (loud and clear)
 * Specify DTP, (date, time and place) to perform a habit
