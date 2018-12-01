@@ -2,8 +2,8 @@ name := "MohanLearningGround"
 
 version := "1.0"
 
-scalaVersion := "2.12.4"
-val akkaVersion = "2.5.10"
+scalaVersion := "2.12.6"
+val akkaVersion = "2.5.18"
 val akkaHttpVersion = "10.1.0"
 
 //enablePlugins(ScalaJSPlugin)
@@ -50,6 +50,13 @@ libraryDependencies ++= Seq(
    "org.scalaz" %% "scalaz-core" % "7.2.17"  withSources()
 )
 
+libraryDependencies ++= Seq(
+  "javax.xml.bind" % "jaxb-api" % "2.3.0",
+  "javax.annotation" % "javax.annotation-api" % "1.3.2",
+  "javax.el" % "javax.el-api" % "3.0.0",
+  "org.glassfish" % "javax.el" % "3.0.0"
+)
+
 libraryDependencies ++=  Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
@@ -69,10 +76,8 @@ libraryDependencies ++=  Seq(
 libraryDependencies ++= Seq(
     "io.reactivex" %% "rxscala" % "0.26.5" withSources(),
     "io.reactivex" % "rxswing" % "0.27.0" withSources(), // for Swing Scheduler in suggestions
-//    "org.json4s" %% "json4s-native" % "3.5.2" withSources(),
     "org.json4s" %% "json4s-jackson" % "3.5.2" withSources(),
     "org.scala-lang.modules" %% "scala-swing" % "2.0.0" withSources(),
-//    "net.databinder.dispatch" % "dispatch-core_2.10" % "0.11.3",
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.slf4j" % "slf4j-api" % "1.7.5" withSources(),
     "org.slf4j" % "slf4j-simple" % "1.7.5" withSources(),
