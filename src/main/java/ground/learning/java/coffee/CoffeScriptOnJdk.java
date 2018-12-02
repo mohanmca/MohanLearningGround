@@ -31,8 +31,8 @@ class CoffeScriptOnJdk {
 			InputStream jqueryStream = CoffeScriptOnJdk.class.getClass()
 					.getResourceAsStream("/js/jquery-2.1.3.js");
 
-			SequenceInputStream is = new SequenceInputStream(coffeeStream,
-					jqueryStream);
+//			SequenceInputStream is = new SequenceInputStream(coffeeStream,
+//					jqueryStream);
 			engine.eval(new InputStreamReader(coffeeStream));
 		} catch (ScriptException e) {
 			throw new RuntimeException(e);

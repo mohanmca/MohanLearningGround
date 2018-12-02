@@ -4,6 +4,7 @@ import Interleaver._
 import org.scalatest._
 import prop._
 import org.scalacheck.Prop.{ AnyOperators, forAll, all }
+import java.lang.Math
 
 class InterleaveSpec extends PropSpec with Checkers {
 

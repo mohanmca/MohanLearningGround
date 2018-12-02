@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.time.Duration;
 
 public class RestClient {
-	public static void main(String args[]) {
+	public static void main(String args[]) throws InterruptedException {
 		var userName = "mohanmca";
 		var user = "https://api.github.com/users/" + userName;
 
@@ -24,10 +24,10 @@ public class RestClient {
 				? BodySubscribers.ofFile(Paths.get("c:/tmp/" + userName + ".json"))
 				: BodySubscribers.replacing(Paths.get("c:/tmp/" + userName + ".json"));
 
-		// client.sendAsync(request, bodyHandler);
-		// client.sendAsync(request, System.out::println);
+		 //client.sendAsync(request, bodyHandler);
+		 //client.sendAsync(request, System.out::println);
 
 		client.sendAsync(request, bodyHandler).thenApply(HttpResponse::body).thenAccept(System.out::println);
-
+				
 	}
 }
