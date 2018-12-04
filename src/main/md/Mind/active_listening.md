@@ -1,4 +1,4 @@
-**Smark people tak while wise would listen**
+**Smark people talk while wise would listen**
 
 * Active Listen = To Understand + To Feel + To Perceive + To Sense *
 
