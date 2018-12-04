@@ -8,12 +8,12 @@
 
 **How to stop drifting our mind and reinforce message**
 1. Repeat in your mind the words the speaker says
-2. Choose to listen and avoid Judegement
+2. Choose to listen and avoid Judgement
 3. Always allow the speaker to finish
 
 **Pay attention**
-* Sit fron and center
-* Always keep your body language enrgetic (worst case fake it)
+* Sit front and center
+* Always keep your body language energetic (worst case fake it)
 * Listener's body language can control listener's mind
 * Avoid distracted by environmental factors
 * Nod occasionally
@@ -21,6 +21,6 @@
 * Paraphrase using what "I am hearing is.."
 
 
-**Repond**
+**Respond**
 * Be candid, honest and open
 * Put yourself speaker's shoe
