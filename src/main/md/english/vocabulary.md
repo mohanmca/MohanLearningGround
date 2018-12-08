@@ -1,3 +1,24 @@
+*Lugubrious* :- looking or sounding sad and dismal. 
+Jitendra maintained a lugubrious silence as our train covered the miles.
+
+*Beneficent*: the quality or state of doing or producing good : the quality or state of being beneficent
+"admired for her beneficence"
+
+exigency - /ˈɛksɪdʒ(ə)nsi,ˈɛɡzɪdʒ(ə)nsi,ɪɡˈzɪdʒ(ə)nsi,ɛɡˈzɪdʒ(ə)nsi
+plural noun: exigencies
+an urgent need or demand.
+"women worked long hours when the exigencies of the family economy demanded it"
+synonyms:	need, demand, requirement, want; More
+
+self-effacement noun. 
+The act of making oneself, one's actions, etc, inconspicuous, esp because of humility or timidity.
+
+sojourn - /ˈsɒdʒ(ə)n,ˈsɒdʒəː - noun
+a temporary stay. - "her sojourn in Rome"
+synonyms:	stay, visit, stop, stopover, residence; More
+stay somewhere temporarily. - "she had sojourned once in Egypt"
+synonyms:	stay, live; More
+
 Irrefragable  - /ɪˈrɛfrəɡəb(ə)l/
 adjective - not able to be refuted or disproved; indisputable
 With an antenna of irrefragable insight I sensed that my guru knew God
