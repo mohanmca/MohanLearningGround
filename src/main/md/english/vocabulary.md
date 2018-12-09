@@ -1,3 +1,7 @@
+*consternation* - /kɒnstəˈneɪʃ(ə)n/ - noun -a feeling of anxiety or dismay, typically at something unexpected. - the two … stared at each other in consternation, and neither knew what to do
+
+*Obeisance* :- Demonstration of an obedient attitude, especially by bowing deeply; a deep bow which demonstrates such an attitude.
+
 *Lugubrious* :- looking or sounding sad and dismal. 
 Jitendra maintained a lugubrious silence as our train covered the miles.
 

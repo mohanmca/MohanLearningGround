@@ -1,5 +1,10 @@
 ## Cod reading
 
+## Tools
+* [SchemaSpy](http://schemaspy.sourceforge.net/)
+* [Use java class visualizer](http://www.class-visualizer.net/)
+
+
 ## References
 * [how_do_i_start_understanding_a_humongous_codebase](https://www.reddit.com/r/learnprogramming/comments/3ebgy3/how_do_i_start_understanding_a_humongous_codebase/)
 * [software_engineeringdesign_how_do_you_approach](https://www.reddit.com/r/learnprogramming/comments/1ph1a7/software_engineeringdesign_how_do_you_approach/)
