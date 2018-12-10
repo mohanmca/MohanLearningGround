@@ -36,6 +36,14 @@
 * Geometry DeMYSTiFieD, 2nd Edition Stan Gibilisco
 * Trigonometry Demystified 2/E 
 
+## Cloud Books
+* Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations
+* Cloudonomics, + Website: The Business Value of Cloud Computing 1st Edition
+* Cloud Native Java: Designing Resilient Systems with Spring Boot, Spring Cloud, and Cloud Foundry
+* INSPIRED: How to Create Tech Products Customers Love
+* Product Roadmaps Relaunched: How to Set Direction while Embracing Uncertainty
+ 
+
 # Other books
 * Amazon "Best Sellers in Computer Science"
 * https://www.amazon.com/Best-Sellers-Books-Computer-Science/zgbs/books/3508/ref=zg_bs_nav_b_2_5
