@@ -1,5 +1,6 @@
 ## Keeping up to date with Java
 
+* https://github.com/trending/java
 * https://www.javaworld.com/article/3164262/java-language/java-9s-other-new-enhancements-part-1.html to part-6
 * Validation engine - https://github.com/lesfurets/dOOv/wiki/Getting-Started
 * Fluent API, Type safe
