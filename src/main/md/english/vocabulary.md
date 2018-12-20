@@ -1,4 +1,6 @@
-*consternation* - /kɒnstəˈneɪʃ(ə)n/ - noun -a feeling of anxiety or dismay, typically at something unexpected. - the two … stared at each other in consternation, and neither knew what to do
+*Indelibly* - adjective - making marks that cannot be erased, removed, or the like: The manifest need of it had been deeply and indelibly impressed. That impression became so indelibly fixed that even after my marriage I refused all positions.  
+
+*consternation* - /kɒnstəˈneɪʃ(ə)n/ - noun -a feeling of anxiety or dismay, typically at something unexpected. the two … stared at each other in consternation, and neither knew what to do. "I hid my consternation."
 
 *Obeisance* :- Demonstration of an obedient attitude, especially by bowing deeply; a deep bow which demonstrates such an attitude.
 
