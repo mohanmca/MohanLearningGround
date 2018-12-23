@@ -45,8 +45,15 @@
   * Used eraser bits, key rings that never used, rust hairpins, sticky ball point pen
   * broken appliances, unidentified cords
 * Tackle sentimental items last
-  *   
-
+  * Who you are now is more important than memories of past. Throw away useless stuff that reminds past
+  * Memory that are truly precious will stay with us.
+* Storage
+  * Store same category in the same place
+  * Don't stack things (stack we always use top), store them upright  
+  * Use shoe boxes for store most of the stuffs
+  * Empty your bag, wallet everyday
+  * Designate a "home" for everything
+  * 
 
 # References
 * [GIS](https://images.google.com)
