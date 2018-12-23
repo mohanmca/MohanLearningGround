@@ -91,7 +91,8 @@
 
 # Reference
 * [BJ Fogg - Tiny habits - Stanford Behavior Design Lab](https://www.bjfogg.com/)
-* [BehaviourGrid]: img/bjfogg.png "BehaviourGrid"
 * [Habits - The Definitive Guide to Lasting Change](http://www.selfication.com/)
 * [Habit Stacking: 97 Small Life Changes That Take Five Minutes or Less](https://www.amazon.com/gp/product/B00JQHB67O/ref=dbs_a_def_rwt_hsch_vapi_tkin_p2_i3)
 * [S J Scott](https://www.developgoodhabits.com/about-s-j-scott/)
+
+[BehaviourGrid]: img/bjfogg.png "BehaviourGrid"
