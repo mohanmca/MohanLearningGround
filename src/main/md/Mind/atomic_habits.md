@@ -1,4 +1,5 @@
 # Atomic Habits
+* Spending atleast 2 minutes for something that we like to improve
 * Aggregation of marginal gains
 
 # Why Habits?
@@ -81,6 +82,12 @@
 * After I walk in my office, I will do 10-15 reverse dumbbell flies.
 * After I walk in my apartment, I will do 10-15 lateral dumbbell raises.
 * After I watch video, I will leave a comment
+
+# If habits are not sticking
+* Do we really need it? Do we really love that skill/output?
+* Do we despararately need them?
+* Are there anything more important than what we try?
+
 
 # Reference
 * [BJ Fogg - Tiny habits - Stanford Behavior Design Lab](https://www.bjfogg.com/)
