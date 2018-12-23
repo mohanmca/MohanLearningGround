@@ -1,6 +1,7 @@
 **Smark people talk while wise would listen**
 
 * Active Listen = To Understand + To Feel + To Perceive + To Sense *
+* True listening requires setting aside oneself. (M Scott Peck)
 
 1. Hear what people are really saying
 2. Hear not only words, listen their body language
@@ -16,10 +17,9 @@
 * Always keep your body language energetic (worst case fake it)
 * Listener's body language can control listener's mind
 * Avoid distracted by environmental factors
-* Nod occasionally
+* Nod occasionally and smile
 * Encourage the speaker with expression like Yes, oh, wow
 * Paraphrase using what "I am hearing is.."
-
 
 **Respond**
 * Be candid, honest and open

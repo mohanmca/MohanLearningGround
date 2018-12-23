@@ -8,6 +8,15 @@
 * Fail fast, learn fast and improve fast
 * 
 
+# Grow up
+* “It is only because of problems that we grow mentally and spiritually. ” 
+
+
+# Differences
+* “Share our similarities, celebrate our differences.” 
+
+
+
 # Motivational videos
 * [Why it Pays to Be Hungry | Les Brown | Goalcast](https://youtu.be/xFr0FKnaLDk)
 
@@ -18,6 +27,7 @@
 * A life is about putting others' needs above your own fears. 
 * Do nothing that is of no use.
 * Continuous improvement of yourself should be one of the most important things in your life. There is always something new that you need to learn 
+* Everyone you will ever meet knows something you don't
 
 # Fight and War quotes
 * If you're not humble, life will visit humbleness upon you. - Mike Tyson
