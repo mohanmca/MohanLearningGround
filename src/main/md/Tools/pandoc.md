@@ -4,4 +4,3 @@
 
 # Commands
 * pandoc -f markdown  HabitGroup.md -o HabitGroup.pdf
-
