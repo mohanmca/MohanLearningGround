@@ -7,15 +7,19 @@
   * Similarly Dhoni is known as wonderful cricketer, but definitely not the best among top batters, but he achieved by keeping himself cool on many occasion
   * Similarly Zidaine would have won the game for France, but he lost his coolnees, due to famous headbut he failed the team. But skill-wise he is legend
   * How to keep ourself calm regardless of situation is the key
-    * We should practice
-    * Daily Meditation
-    * Keeping us fit
-    * Breathe
+    * We should practice being calm
+    * Daily Meditation, Keeping us fit and Breathe exercise
     * Let go of any grudges and judgments, don't take it personally, don't judge that moment
     * Look at the situation as it truly is. If it is nervous for us, it could be nervous for others who create such a situation. Think from others perspective. Find the unseen gifts in the situation.
     * Determine your desired outcome, but on work and task don't think about it often, rather focus on process. 
     * Remove yourself from the situation
     * Positive Self-Talk, self suggestion
+  * Additional observation from my friend
+    * If Pakistan would have started bowling, India might have lost, sometime opportunity luck matters
+    * Not trusting their regular style of bowling is crazy, when under pressure use your time tested technique
+    * Never forget to practice the basics (here basic bowling to hit stick was forgotten by experienced bowler)
+    * Little bit of careless attitude helps when under pressure
+    * Being in similar situation using simulation or past experience or anticipated practice would helps
 
 
 # [Sadhguru & Zakir Nair : Views on Religion](https://www.youtube.com/watch?v=mzJVnPJ3LyI)
@@ -28,5 +32,3 @@
 * It the very nature of  your intelligence is such that if you do something's too stupid today tonight your intelligence will bother you why did I do this
 * if you get God's stamp on your stupidity you don't have to turn back and see. You can do grossest things on the planet and feel very proud that your anyway going to go go to heaven
 * Two belief will always will have conflict, hence religion becomes problem
-
-## 
