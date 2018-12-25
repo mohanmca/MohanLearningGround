@@ -33,14 +33,30 @@ mysql -u root -p
 CREATE DATABASE thales CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-# You can create a configuration file my.ini and use to set configuration parameters to database:
 
+```ini
+# You can create a configuration file my.ini and use to set configuration parameters to database:
 # my.ini file content:
 [mysqld]
 # set basedir to your installation path
 basedir=<MYSQLDIR>
 # set datadir to the location of your data directory
 datadir=<MYSQLDIR>\data
+```
+
+# Most useful MySQL SQL
+```sql
+SELECT * 
+FROM   information_schema.tables 
+WHERE  table_type = 'BASE TABLE' 
+       AND table_schema = 'thales' 
+
+SELECT columns.* 
+FROM   information_schema.columns columns, 
+       information_schema.tables tables 
+WHERE  tables.table_schema = 'thales' 
+       AND columns.table_name = tables.table_name 
+```
 
 <MYSQLDIR>\bin\mysqld --init-file=<MYSQLDIR>\my.ini
   
