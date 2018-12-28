@@ -55,7 +55,12 @@ SELECT columns.*
 FROM   information_schema.columns columns, 
        information_schema.tables tables 
 WHERE  tables.table_schema = 'thales' 
-       AND columns.table_name = tables.table_name 
+       AND columns.table_name = tables.table_name
+
+ALTER TABLE perforredingtonvmwaretrivandrumheldon2registrationreport ALTER j SET DEFAULT 1000;
+
+ALTER TABLE thales.perforredingtonvmwaretrivandrumheldon2registrationreport
+ADD COLUMN TS DATETIME  DEFAULT 20190101020000 AFTER source;
 ```
 
 <MYSQLDIR>\bin\mysqld --init-file=<MYSQLDIR>\my.ini

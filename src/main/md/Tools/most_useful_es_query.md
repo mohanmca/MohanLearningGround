@@ -1,3 +1,7 @@
+# Most often used adming URL
+* http://localhost:9200/_stats
+* 
+
 # Most often used URL
 * *ElasticSearch Get can accept body* 
 * /_search
@@ -26,7 +30,7 @@
 ```{   "query" : {     "match_phrase" : {     "about" : "rock climbing"     }   },   "highlight": {     "fields" : {     "about" : {}     }   } }```
 * Sample aggregation query
 ```{   "aggs": {     "all_interests": {       "terms": { "field": "interests" }     }   } }```
-* let’s find the average age of employees who share a particular interest:
+* letï¿½s find the average age of employees who share a particular interest:
 ```{"aggs" : {        "all_interests" : {            "terms" : { "field" : "interests" },           "aggs" : {                "avg_age" : {                    "avg" : { "field" : "age" }                }            }        }    }}```
 * To update mappings
   * ```PUT /gb `{"mappings":{"tweet":{"properties":{"tweet":{"type":"string","analyzer":"english"},"date":{"type":"date"},"name":{"type":"string"},"user_id":{"type":"long"}}}}}```
