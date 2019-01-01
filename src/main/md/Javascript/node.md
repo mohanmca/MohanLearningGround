@@ -29,6 +29,15 @@
 
 * babel-node is buggy, always try to use node    
 
+## NVM
+```bash
+nvm ls-remote
+nvm list available
+nvm install 10.15.0
+nvm use 10.15.0
+```
+
+
 ## webpack
   * [Compiler plugin](https://github.com/webpack/docs/wiki/plugins)
   * webpack --watch src\shorten.js dist\app.js
