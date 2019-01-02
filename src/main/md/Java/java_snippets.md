@@ -34,6 +34,13 @@ catch (IOException e)
 }
 ```
 
+```jdk11
+<dependency>
+    <groupId>org.glassfish.jaxb</groupId>
+    <artifactId>jaxb-runtime</artifactId>
+    <version>2.4.0-b180608.0325</version>
+</dependency>
+```
 
 ## Flow References
 * [Reactive Streams example - Java 9](https://aboullaite.me/reactive-streams-example-java-9/)
