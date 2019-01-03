@@ -1,5 +1,8 @@
 # https://vscodecandothat.com/
 
+* select variable and press f2 - rename/refactor variable. 
+*  "files.eol": "\n" --setttings
+
 * [Alt + H + K](Keyboard shortcuts)
 * [Code runner](https://github.com/formulahendry/vscode-code-runner)
 * [VS Code emmet](https://code.visualstudio.com/docs/editor/emmet)

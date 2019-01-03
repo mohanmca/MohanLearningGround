@@ -8,7 +8,11 @@
        npm install -g yo
        npm install -g generator-simple-webpack
        yo simple-webpack
-    ```    
+    ```
+* NPM version
+  * ^ - As long as major version is same, it would update latest version - Example: ^4.minor.patch (don't care minor and patch version)
+  * ~ - More restrictive - As long as major version is same, it would update latest version  - Example: ~4.14.y (don't care patch version, but retains minor and major)
+
 * NPX is not available on windows when Node is installed using NVM
   * npm i -g npx
 
@@ -37,6 +41,29 @@ nvm install 10.15.0
 nvm use 10.15.0
 ```
 
+## node.js other tools
+```
+npm instal -g chalk
+npm instal -g morgan
+npm instal -g nodemon
+npm instal -g eslint && eslint --init
+node_modules\.bin\eslint app.js --fix
+```
+
+## node debug module
+```javascript
+npm install debug
+set DEBUG=* & node app.js
+set DEBUG=app & node app.js
+app.use(morgan('combined'));
+app.use(morgan('tiny'));
+```
+
+
+## express.js notes
+* without path module, how to serve html file. File path is problematic
+* Ensure following toolings are proper in express.js project
+  * nodemon, environment variable for port, npm start, ES6, ESLINT
 
 ## webpack
   * [Compiler plugin](https://github.com/webpack/docs/wiki/plugins)
@@ -55,4 +82,7 @@ nvm use 10.15.0
 
 ## PUPPETEER
 * await page.addScriptTag({ path: './node_modules/varname/build/varname.js' });
-* Try to avoid raising events, but manipulate dom if possible instead of events 
+* Try to avoid raising events, but manipulate dom if possible instead of events
+
+## Reference
+* [Node Green](http://node.green)
