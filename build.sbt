@@ -5,6 +5,7 @@ version := "1.0"
 scalaVersion := "2.12.6"
 val akkaVersion = "2.5.18"
 val akkaHttpVersion = "10.1.0"
+val tomcatVersion = "9.0.14"
 
 //enablePlugins(ScalaJSPlugin)
 
@@ -20,6 +21,14 @@ val akkaHttpVersion = "10.1.0"
 transitiveClassifiers := Seq("sources")
 
 sourceManaged in Compile := file("bin")
+
+
+libraryDependencies ++= Seq(
+    "org.apache.tomcat" % "tomcat-catalina" % "9.0.14",
+    "org.apache.tomcat" % "tomcat" % tomcatVersion,
+    "org.apache.tomcat" % "tomcat-coyote" % tomcatVersion,
+    "org.apache.tomcat" % "tomcat-jasper" % tomcatVersion
+)
 
 libraryDependencies ++= Seq(
   "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0" withSources(),
@@ -61,7 +70,7 @@ libraryDependencies ++=  Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
 	"org.scala-lang" % "scala-reflect" % scalaVersion.value,
-    "org.scala-lang.modules" % "scala-parser-combinators_2.12" % "1.0.6"
+    "org.scala-lang.modules" % "scala-parser-combinators_2.12" % "1.1.1"
   )
 
 libraryDependencies ++=  Seq(
@@ -71,7 +80,7 @@ libraryDependencies ++=  Seq(
          "com.fasterxml.jackson.core" % "jackson-core" % "2.9.3" withSources(),
          "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.3",
         "junit" % "junit" % "4.12"
-  )
+)
 
 libraryDependencies ++= Seq(
     "io.reactivex" %% "rxscala" % "0.26.5" withSources(),
@@ -84,6 +93,7 @@ libraryDependencies ++= Seq(
     "com.squareup.retrofit" % "retrofit" % "1.0.0" withSources(),
     "org.scala-lang.modules" %% "scala-async" % "0.9.6"
   )
+  
 
 
 

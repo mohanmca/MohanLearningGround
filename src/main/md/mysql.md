@@ -65,15 +65,32 @@ ADD COLUMN TS DATETIME  DEFAULT 20190101020000 AFTER source;
 
 <MYSQLDIR>\bin\mysqld --init-file=<MYSQLDIR>\my.ini
   
-  # MYSQL
-  ```sql
-  mysql> use mysql;
-  mysql> show tables;
-  mysql> show databases;
-  mysql> describe tableName;
-  mysql> CREATE DATABASE thales;
-  ```
-  
+# MYSQL
+```sql
+mysql> use mysql;
+mysql> show tables;
+mysql> show databases;
+mysql> describe tableName;
+mysql> CREATE DATABASE thales;
+mysql> CREATE USER 'project_user'@'localhost' IDENTIFIED BY 'PASSWORD';
+mysql> GRANT ALL ON `project_database`.* TO 'project_user'@'localhost';
+```
+
+## Mysql Reset Root password
+```bash
+net stop mysql 
+mysqld --defaults-file="..." --skip-grant-tables 
+mysql (Another parallel session)
+select user,host,authentication_string from mysql.user; 
+-- reset authentication_string (password before 5.5.7) for the admin user ...
+update mysql.user  
+set authentication_string=PASSWORD('new_pass'),password_expired='N', where user='root'; 
+flush privileges; 
+exit;  (Another parallel session - stops)
+mysqladmin shutdown 
+net stop mysql 
+```
+
 # Most often used SQLs
 ```sql
 SELECT table_name FROM information_schema.tables where table_schema='emp';
