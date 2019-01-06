@@ -13,6 +13,8 @@
 * https://www.trek10.com/blog/dynamodb-single-table-relational-modeling/
 * Spring Security
 * Virtual box - network
+* Liquibase
+* Spring Security
 
 ## Follow-up/recommended part of courses
 * https://github.com/substack/stream-handbook
