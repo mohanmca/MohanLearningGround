@@ -1,19 +1,35 @@
-# Initialize database
-<MYSQLDIR>\bin\mysqld --initialize
+```ini
+#D:\Apps\mysql-8.0.13-winx64\my.ini
+[mysqld]
+port=3306
+basedir=D:\\Apps\\mysql-8.0.13-winx64
+datadir=D:\\Apps\\mysql-8.0.13-winx64\\data
+max_allowed_packet=16M
 
-# Initialize database without password
-mysqld --initialize-insecure
-set password='yourPass'
+[client]
+port=3306
+```
 
-# Start the database
-<MYSQLDIR>\bin\mysqld --console --port 3306
+# Initialize database in insecure-more
+```bash
+D:\Apps\mysql-8.0.13-winx64\bin\mysqld --defaults-file=D:\Apps\mysql-8.0.13-winx64\my.ini --initialize-insecure --console
+
+mysqld
+mysql -u root -p
+CREATE USER 'euler'@'localhost' IDENTIFIED BY 'euler';
+GRANT ALL PRIVILEGES ON * . * TO 'euler'@'localhost';
+FLUSH PRIVILEGES;
+GRANT type_of_permission ON database_name.table_name TO ‘username’@'localhost’;
+REVOKE type_of_permission ON database_name.table_name FROM ‘username’@‘localhost’;
+SHOW GRANTS username;
+```
 
 # Change root password
 
 ## Create file mypassword.ini with the following content (change the passord):
 * shutdown mysqld process
 ```
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
 <MYSQLDIR>\bin\mysqld --init-file=<PATH>\mypassword.ini
 ```
 

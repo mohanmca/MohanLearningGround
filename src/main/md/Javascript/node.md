@@ -64,6 +64,14 @@ app.use(morgan('tiny'));
 * without path module, how to serve html file. File path is problematic
 * Ensure following toolings are proper in express.js project
   * nodemon, environment variable for port, npm start, ES6, ESLINT
+  * morgan is sample middleware
+  * Simplest middleware
+    ```js
+      app.use((req, res, next)={
+        console.log("Middleware!");
+        next();
+      })
+    ```
 
 ## webpack
   * [Compiler plugin](https://github.com/webpack/docs/wiki/plugins)
