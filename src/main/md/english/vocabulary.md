@@ -1,3 +1,7 @@
+*convalescence* -  
+  * He is convalescing from his leg injuries. 
+  * Youth soccer team members rescued more than two weeks after sudden flooding trapped them in a cave complex in Thailand are now convalescing at a hospital in the northern city of Chiang Rai.
+
 *Perspicacious* - having a ready insight into and understanding of things. His perspicacious grandfather had bought the land as an investment, guessing that there might be gold underground. 
 
 *Indelibly* - adjective - making marks that cannot be erased, removed, or the like: The manifest need of it had been deeply and indelibly impressed. That impression became so indelibly fixed that even after my marriage I refused all positions.  
