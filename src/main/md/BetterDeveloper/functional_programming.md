@@ -27,4 +27,10 @@ const makeFact = function(givenFact) {
 const fact = y(makeFact);
 console.log('Factorial ' + fact(5)); // Outputs 120
 ```
-[ycombinator]: ../img/ycombinator.svg "Ycombinator"  
+[ycombinator]: ../img/ycombinator.svg "Ycombinator"
+
+# References
+* [UCombinator] (http://matt.might.net/articles/js-church/)
+* [YCombinator] (https://blog.benestudio.co/fixed-point-combinators-in-javascript-c214c15ff2f6)
+* [YCombinator] (https://blog.benestudio.co/fixed-point-combinators-in-javascript-c214c15ff2f6)
+* [Recursion with Combinators in JavaScript](https://codeburst.io/recursion-with-combinators-injavascript-d797451d054d)
