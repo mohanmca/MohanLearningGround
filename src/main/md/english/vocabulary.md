@@ -1,3 +1,8 @@
+*Recant* - to announce in public that your past beliefs or statements were wrong and that you no longer agree with them: Example: After a year spent in solitary confinement, he publicly recanted (his views).
+
+*immediacy* - noun - The quality of bringing one into direct and instant involvement with something, giving rise to a sense of urgency or excitement.
+Example: Master was keeping track of student's attention with a devastating immediacy.
+
 *convalescence* -  
   * He is convalescing from his leg injuries. 
   * Youth soccer team members rescued more than two weeks after sudden flooding trapped them in a cave complex in Thailand are now convalescing at a hospital in the northern city of Chiang Rai.
