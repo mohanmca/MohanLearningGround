@@ -15,7 +15,7 @@ node {
                 bat '%MAVEN_HOME%\\bin\\mvn clean package'
             }
             stage 'archive'
-            archiveArtifacts "target/*.jar"
+            archiveArtifacts "target/*.[jw]ar"
        }
        
         notify('Build Completed!')

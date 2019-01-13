@@ -82,6 +82,7 @@ docker run --name myjenkins -p 8080:8080 -p 50000:50000 -v /your/home:/var/jenki
      ```
   * stage in pipeline is optional, but quite useful. pipeline configuration can work without stage defined in groovy script.
   * stage names could be anything, generally "checkout", "build", "package" and "archive"
+  * When test-reports are not displayed ensure, archival happens after all the steps, archival error might stop reporting test-reports.
   
 
 
@@ -95,7 +96,7 @@ docker run --restart unless-stopped --name mailhog -p 1025:1025 -p 8025:8025 -d 
 
 # Jenkins URLS
 * [Configure](http://localhost:8080/configure)
-
+* [Test History](http://localhost:8080/job/buildname/6/testReport/history/)
 ## List of templates
 * archiveArtifacts: Archive the artifacts
 * bat: Windows Batch Script
@@ -163,7 +164,9 @@ docker run --restart unless-stopped --name mailhog -p 1025:1025 -p 8025:8025 -d 
   * withDockerServer: Sets up Docker server endpoint"
 
 ## References
+* [Getting started with Jenkins 2](https://www.pluralsight.com/courses/jenkins-2-getting-started)
 * https://github.com/g0t4/jenkins2-course-spring-boot
 * https://gist.github.com/g0t4/747cd20e8563aefc3eac444166983142
+* https://github.com/g0t4/jenkins2-course-spring-petclinic
 * D:\project\jenkins\jenkins2-course-spring-boot
 * [Jenkins pipeline docs](https://jenkins.io/doc/book/pipeline/)
