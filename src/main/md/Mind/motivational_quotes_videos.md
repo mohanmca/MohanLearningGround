@@ -36,3 +36,4 @@
 ## From Autobiography of Yogi
 Look fear in the face and it will cease to trouble you. - Sri Yuketshwar
 Good and positive suggestions should instruct the sensitive ears of children. Their early ideas long remain sharply etched.”
+“He is a fool that cannot conceal his wisdom,”
