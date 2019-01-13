@@ -1,4 +1,8 @@
 * "Date" - Source - "Course/page" - Started/InProgress/Completed/Todo
+* "13-Jan-2019" - PluralSight - "Build pipeline - VirutalBox build-failure notitication" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
+* "12-Jan-2019" - PluralSight - "Build pipeline - MailHog" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
+* "11-Jan-2019" - PluralSight - "Build pipeline" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
+* "10-Jan-2019" - PluralSight - "Testing and Continuous Integration" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
 * "10-Jan-2019" - PluralSight - "Testing and Continuous Integration" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
 * "09-Jan-2019" - PluralSight - "Creating application builds" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
 * "08-Jan-2019" - PluralSight - "Getting Started with Jenkins 2" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
@@ -19,6 +23,7 @@
 * Virtual box - network
 * Liquibase
 * Spring Security
+* [Udemy Kubernetes course](https://www.udemy.com/learn-devops-the-complete-kubernetes-course/?couponCode=KUBERNETES_GITHUB)
 
 ## Follow-up/recommended part of courses
 * https://github.com/substack/stream-handbook

@@ -27,7 +27,11 @@
 * Search the repo that uses puppeteer and fs module
   * fs puppeteer extension:js language:js  
   * use sort by using "recenly indexed"
-  
+
+# Famous code searchs
+* [Javascript courses = course in:name language:javascript forks:>1000](https://github.com/search?q=course+in%3Aname+language%3Ajavascript+forks%3A%3E1000)
+* [java courses = course in:name language:java forks:>1000](https://github.com/search?q=course+in%3Aname+language%3Ajava+forks%3A%3E1000)
+
 ## References   
 * https://github.com/search
 * https://github.com/search/advanced
