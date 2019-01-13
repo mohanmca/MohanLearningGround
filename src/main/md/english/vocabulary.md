@@ -1,3 +1,5 @@
+*Cauterize* - Cauterization (or cauterisation, or cautery) is a medical practice or technique of burning a part of a body to remove or close off a part of it. Example: The undesirable habit-mechanisms in the brain can be often cauterized.
+*Promiscuous* - demonstrating or implying an unselective approach; indiscriminate or casual. Example: “God does not wish the secrets of His creation revealed promiscuously.
 *Recant* - to announce in public that your past beliefs or statements were wrong and that you no longer agree with them: Example: After a year spent in solitary confinement, he publicly recanted (his views).
 
 *immediacy* - noun - The quality of bringing one into direct and instant involvement with something, giving rise to a sense of urgency or excitement.
