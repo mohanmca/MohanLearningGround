@@ -16,6 +16,8 @@
   * api.github.com language:scala
 * Search the configuration, Extension here is file extension name 
   * ClusterActorRefProvider extension:conf
+* Search the respositories, where repo name contains a word course 
+  * course in:name 
 * Search documentation on github
   * https://github.com/search?q=hot+module+reload+express+js&type=Wikis
 * Search document without a word
