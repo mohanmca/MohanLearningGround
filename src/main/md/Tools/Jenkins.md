@@ -54,6 +54,7 @@ docker run --name myjenkins -p 8080:8080 -p 50000:50000 -v /your/home:/var/jenki
     * Build staibility: 1 out of last 5 builds failed. 80%
   * Reload configurations from the disk
   * Jenkins > System Log >  All Jenkins Log
+  * Jenkins > Configuration > Environment variables > "You can set $PATH"
   * Manage Jenkins > "Global Tool Configuration" > "Add JDK"
   * Manage Jenkins > "Global Tool Configuration" > "Add Maven"
   * Poll SCM interpretation and help syntax and english interpretation for cron
@@ -83,6 +84,9 @@ docker run --name myjenkins -p 8080:8080 -p 50000:50000 -v /your/home:/var/jenki
   * stage in pipeline is optional, but quite useful. pipeline configuration can work without stage defined in groovy script.
   * stage names could be anything, generally "checkout", "build", "package" and "archive"
   * When test-reports are not displayed ensure, archival happens after all the steps, archival error might stop reporting test-reports.
+  * Jenkins > build pipeline > #12 > Pipeline Steps > "Allocate node" > "Workspace"
+    * Only way to access workspace in pipleine build
+  * 
   
 
 
@@ -97,6 +101,9 @@ docker run --restart unless-stopped --name mailhog -p 1025:1025 -p 8025:8025 -d 
 # Jenkins URLS
 * [Configure](http://localhost:8080/configure)
 * [Test History](http://localhost:8080/job/buildname/6/testReport/history/)
+* [Pipeline Steps](http://localhost:8080/job/petclinic/23/flowGraphTable/)
+* [Code Coverage](http://localhost:8080/job/petclinic/23/Code_20Coverage/)
+
 ## List of templates
 * archiveArtifacts: Archive the artifacts
 * bat: Windows Batch Script
@@ -170,3 +177,5 @@ docker run --restart unless-stopped --name mailhog -p 1025:1025 -p 8025:8025 -d 
 * https://github.com/g0t4/jenkins2-course-spring-petclinic
 * D:\project\jenkins\jenkins2-course-spring-boot
 * [Jenkins pipeline docs](https://jenkins.io/doc/book/pipeline/)
+* [Jenkins Pipeline](https://github.com/jenkinsci/pipeline-plugin/blob/master/COMPATIBILITY.md)
+* [Jenkins update site](https://updates.jenkins-ci.org/experimental/update-center.json)
