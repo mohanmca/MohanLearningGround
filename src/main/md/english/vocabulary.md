@@ -1,3 +1,7 @@
+*Extol* - (v) to praise highly; laud; eulogize: Example: McConnell has extolled the virtues of Medicare Part D and even called President Obama “smart.”
+
+*ineffable* -  Ineffable - Unable to decribe via words. Exeorable - Unable to prevent. I am caught up in the ineffable, seemingly inexorable event that is out of my hands.  
+
 *Cauterize* - Cauterization (or cauterisation, or cautery) is a medical practice or technique of burning a part of a body to remove or close off a part of it. Example: The undesirable habit-mechanisms in the brain can be often cauterized.
 *Promiscuous* - demonstrating or implying an unselective approach; indiscriminate or casual. Example: “God does not wish the secrets of His creation revealed promiscuously.
 *Recant* - to announce in public that your past beliefs or statements were wrong and that you no longer agree with them: Example: After a year spent in solitary confinement, he publicly recanted (his views).
