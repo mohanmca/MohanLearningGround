@@ -36,4 +36,7 @@
 ## From Autobiography of Yogi
 Look fear in the face and it will cease to trouble you. - Sri Yuketshwar
 Good and positive suggestions should instruct the sensitive ears of children. Their early ideas long remain sharply etched.”
-“He is a fool that cannot conceal his wisdom,”
+He is a fool that cannot conceal his wisdom
+Disbelieve in the reality of sickness even when you are ill; an unrecognized visitor will flee! - Sri Yukteswar
+Good manners without sincerity are like a beautiful dead lady - Sri Yukteswar
+“Straightforwardness without civility is like a surgeon’s knife, effective but unpleasant. Candor with courtesy is helpful and admirable.”  - Sri Yukteswar

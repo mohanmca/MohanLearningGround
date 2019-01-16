@@ -1,4 +1,7 @@
 * "Date" - Source - "Course/page" - Started/InProgress/Completed/Todo
+* "16-Jan-2019" - PluralSight - "Build pipeline - Completed" - Completed - https://app.pluralsight.com/player?course=jenkins-2-getting-started
+  * Multiagen skipped, 15th was break in the project
+* "14-Jan-2019" - PluralSight - "Build pipeline - NodeJs project" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
 * "13-Jan-2019" - PluralSight - "Build pipeline - VirutalBox build-failure notitication" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
 * "12-Jan-2019" - PluralSight - "Build pipeline - MailHog" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
 * "11-Jan-2019" - PluralSight - "Build pipeline" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started

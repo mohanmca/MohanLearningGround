@@ -171,11 +171,12 @@ docker run --restart unless-stopped --name mailhog -p 1025:1025 -p 8025:8025 -d 
   * withDockerServer: Sets up Docker server endpoint"
 
 ## References
-* [Getting started with Jenkins 2](https://www.pluralsight.com/courses/jenkins-2-getting-started)
-* https://github.com/g0t4/jenkins2-course-spring-boot
-* https://gist.github.com/g0t4/747cd20e8563aefc3eac444166983142
-* https://github.com/g0t4/jenkins2-course-spring-petclinic
-* D:\project\jenkins\jenkins2-course-spring-boot
+* [Jenkins Handbook] (https://jenkins.io/doc/book/)
 * [Jenkins pipeline docs](https://jenkins.io/doc/book/pipeline/)
 * [Jenkins Pipeline](https://github.com/jenkinsci/pipeline-plugin/blob/master/COMPATIBILITY.md)
 * [Jenkins update site](https://updates.jenkins-ci.org/experimental/update-center.json)
+* [Getting started with Jenkins 2](https://www.pluralsight.com/courses/jenkins-2-getting-started)
+* [Pluralsight Jenkins course] (https://github.com/g0t4/jenkins2-course-spring-boot)
+* https://gist.github.com/g0t4/747cd20e8563aefc3eac444166983142
+* https://github.com/g0t4/jenkins2-course-spring-petclinic
+* D:\project\jenkins\jenkins2-course-spring-boot
