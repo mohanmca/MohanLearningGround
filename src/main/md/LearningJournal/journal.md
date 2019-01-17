@@ -1,4 +1,5 @@
 * "Date" - Source - "Course/page" - Started/InProgress/Completed/Todo
+* "17-Jan-2019" - PluralSight - "Centralized Logging with ElasticSearch Stack" - InProgress - https://app.pluralsight.com/library/courses/centralized-logging-elastic-stack/table-of-contents
 * "16-Jan-2019" - PluralSight - "Build pipeline - Completed" - Completed - https://app.pluralsight.com/player?course=jenkins-2-getting-started
   * Multiagen skipped, 15th was break in the project
 * "14-Jan-2019" - PluralSight - "Build pipeline - NodeJs project" - InProgress - https://app.pluralsight.com/player?course=jenkins-2-getting-started
