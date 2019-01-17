@@ -84,6 +84,7 @@ cd /usr/share/logstsh; ll;
 /usr/share/logstash/bin/logstash -e 'input { stdin { } } output { elasticsearch { hosts => ["192.168.0.1:9200"] } }'
 # type some sample message for above command and ensure it is in elasticsearch
 wget http://192.168.0.1:9200/logstash-*/search
+logstash -f /home/nikias/logstash/cars_csv_logstash.config 
 ```
 
 
@@ -93,3 +94,8 @@ wget http://192.168.0.1:9200/logstash-*/search
 * systemctl can register service to ubuntu
 * systemctl enable logstash
 * systemctl logstash start
+
+
+# References
+* [Lecture 16 logstash job Kibana visualization](https://www.youtube.com/watch?v=imrKm6dV3NQ&t=532s)
+* [Logstash] (https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/resources/conf/logstash/apache_logstash.conf)
