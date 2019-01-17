@@ -39,8 +39,8 @@ http://localhost:9200/_xpack?categories=build,features
 # Features
 * ElasticSearch would return result even if partially matches unlike RDBMS - Relevance
 * Two client Java API
-  * Node client - The node client joins a local cluster as a non data node. In other words, it doesn’t hold any data itself, but it knows what data lives on which node in the cluster, and can forward requests directly to the correct node.
-  * Transport client - The lighter-weight transport client can be used to send requests to a remote cluster. It doesn’t join the cluster itself, but simply forwards requests to a node in the cluster.
+  * Node client - The node client joins a local cluster as a non data node. In other words, it doesnï¿½t hold any data itself, but it knows what data lives on which node in the cluster, and can forward requests directly to the correct node.
+  * Transport client - The lighter-weight transport client can be used to send requests to a remote cluster. It doesnï¿½t join the cluster itself, but simply forwards requests to a node in the cluster.
 
 
 # Theory
@@ -66,12 +66,12 @@ http://localhost:9200/_xpack?categories=build,features
   * all the values of an array must be of the same datatype - Elasticsearch will use the datatype of the first value in the array to determine the type of the new field.
 * Empty values
   * "null_value":               null, "empty_array":              [] and "array_with_null_value":    [ null ]
-* Lucene doesn’t understand inner objects. A Lucene document consists of a flat list of key-value pairs. In order for Elasticsearch to index inner objects usefully, it converts our document into something like (flattened object)
+* Lucene doesnï¿½t understand inner objects. A Lucene document consists of a flat list of key-value pairs. In order for Elasticsearch to index inner objects usefully, it converts our document into something like (flattened object)
   * {"tweet":["elasticsearch","flexible","very"],"user.id":["@johnsmith"],"user.gender":["male"],"user.age":[26],"user.name.full":["john","smith"],"user.name.first":["john"],"user.name.last":["smith"]}
 *  To distinguish between two fields that have the same name, we can use the full path (for example, user.name.first) or even the type name plus the path (tweet.user.name.first).
 * ```{"followers":[{"age":35,"name":"Mary White"},{"age":26,"name":"Alex Jones"},{"age":19,"name":"Lisa Smith"}]}``` would be convereted to ```{"followers.age":[19,26,35],"followers.name":["alex","jones","lisa","smith","mary","white"]}```
-  * This is sufficient for us to ask, “Is there a follower who is 26 years old?”
-  * We can’t get an accurate answer to this: “Is there a follower who is 26 years old and who is called Alex Jones?”
+  * This is sufficient for us to ask, ï¿½Is there a follower who is 26 years old?ï¿½
+  * We canï¿½t get an accurate answer to this: ï¿½Is there a follower who is 26 years old and who is called Alex Jones?ï¿½
 
 # Type
 * Lucene has no concept of document types. The type name of each document is stored with the document in a metadata field called _type.
@@ -84,7 +84,7 @@ http://localhost:9200/_xpack?categories=build,features
 * You can find only terms that exist in your index, so both the indexed text and the query string must be normalized into the same form.
 * Process of tokenization and normalization is called analysis
   * First, tokenizing a block of text into individual terms suitable for use in an inverted index,
-  * Then normalizing these terms into a standard form to improve their “searchability,” or recall
+  * Then normalizing these terms into a standard form to improve their ï¿½searchability,ï¿½ or recall
 * Standard analyzer
   * Character filters, Tokenizer and Tokenizer filter (a, and the)
 * When we query an exact-value field, the query will not analyze the query string, but instead search for the exact value that you have specified.
@@ -97,7 +97,7 @@ http://localhost:9200/_xpack?categories=build,features
 # Type and mappings
 * _type, _id, _type, _version, _source
 * Every type has its own mapping or schema definition, which defines the data structure for documents of that type, much like the columns in a database table. Documents of all types can be stored in the same index, but the mapping for the type tells Elasticsearch how the data in each document should be indexed.
-* If your main database already has version numbers—or a value such as timestamp that can be used as a version number. version_type=external
+* If your main database already has version numbersï¿½or a value such as timestamp that can be used as a version number. version_type=external
 * timeout, sync (disable for performance)
 * _all - concatenated field
 * You can always update partial mappings without explicitly mention about existing fields
@@ -114,7 +114,7 @@ http://localhost:9200/_xpack?categories=build,features
 
 # Performance considerations
 * To make sorting efficient, Elasticsearch loads all the values for the field that you want to sort on into memory. This is referred to as fielddata.
-* Elasticsearch doesn’t just load the values for the documents that matched a particular query. It loads the values from every document in your index, regardless of the document type.
+* Elasticsearch doesnï¿½t just load the values for the documents that matched a particular query. It loads the values from every document in your index, regardless of the document type.
 * query-then-fetch process (Two phase process is being used by ES for searching), It internally uses priority-queue, And try not-to-use deep paging unless spider needs to be supported
 * 
 
@@ -133,7 +133,7 @@ http://localhost:9200/_xpack?categories=build,features
 * dynamic_date_formats
 * dynamic_templates
 * The _default_ mapping is a good place to specify index-wide dynamic templates.
-* 
+# elasticsearch/config/jvm.options file is on windows, where we can modify stack size of elasticsearch
 
 # REINDEXING
 * Reindex using latest mapping using sroll and scan
@@ -144,7 +144,7 @@ http://localhost:9200/_xpack?categories=build,features
 * Alias use cases
   * Switch transparently between one index and another on a running cluster
   * Group multiple indices (for example, last_three_months)
-  * Create “views” on a subset of the documents in an index
+  * Create ï¿½viewsï¿½ on a subset of the documents in an index
 * Prefer to use index name with version number and hide the version of the index using alias
 * 
 

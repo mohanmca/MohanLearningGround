@@ -1,4 +1,8 @@
-*imbibe* - To assimilate or to receive into the mind and retain. Examples: From transient teachers of my life I had imbibed a few erroneous lessons. She imbibed vast quantities of coffee.
+*Supercilious* - (Adj) Arrogant, A supercilious smile or a glance of amused tolerance occasionally betrayed that the newcomers anticipated nothing more than a few pious platitudes.
+
+*Flinty*  - (Adj) Severe and determined. Example: I thought that he had a flinty tone about him tonight. 
+
+*Imbibe* - To assimilate or to receive into the mind and retain. Examples: From transient teachers of my life I had imbibed a few erroneous lessons. She imbibed vast quantities of coffee.
 *Extol* - (v) to praise highly; laud; eulogize: Example: McConnell has extolled the virtues of Medicare Part D and even called President Obama “smart.”,  Sri Yukteshwar extolled the superiority of mental therapy, and often repeated: “Wisdom is the greatest cleanser.”
 
 *ineffable* -  Ineffable - Unable to decribe via words. Exeorable - Unable to prevent. I am caught up in the ineffable, seemingly inexorable event that is out of my hands.  
