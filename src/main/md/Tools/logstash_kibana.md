@@ -52,6 +52,8 @@ mkdir pkg; cd pkg
 wget http://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb
 sudo dpkg -i elasticsearch-5.0.0.deb
 /etc/elaticsearch/elasticsearch.yml
+sudo apt-get install elasticsearch
+sudo /etc/init.d/elasticsearch start
 ```
 
 ```bash
