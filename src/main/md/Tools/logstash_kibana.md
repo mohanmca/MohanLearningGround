@@ -36,7 +36,7 @@
 * Originally written in NodeJs
 * installation
   ```bash
-  wget -q0 - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+  wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
   sudo apt-get update && apt-get install kibana
   server.host: point_to_local_ip
   server.name: "globo-kibana01"
@@ -75,7 +75,7 @@ Invoke-WebRequest http://localhost:9200/
 ## logstash Installation
 ```bash
 sudo apt-get install openjdk-8-jre-headless
-wget -q0 - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main | tee -a /etc/apt/sources.list.d/elastic-5.x.list"
 apt-get update && apt-get install logstash
 cd /usr/share/logstsh; ll;
