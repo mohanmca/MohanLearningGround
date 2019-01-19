@@ -1,4 +1,6 @@
 * "Date" - Source - "Course/page" - Started/InProgress/Completed/Todo
+* "19-Jan-2019" - "Lecture 16 logstash job Kibana visualization" - Completed - "https://www.youtube.com/watch?v=imrKm6dV3NQ&t=1s"
+* "18-Jan-2019" - "Use Logstash to load CSV into Elasticsearch" - Completed - "https://www.youtube.com/watch?v=rKy4sFbIZ3U"
 * "17-Jan-2019" - PluralSight - "Centralized Logging with ElasticSearch Stack" - InProgress - https://app.pluralsight.com/library/courses/centralized-logging-elastic-stack/table-of-contents
 * "16-Jan-2019" - PluralSight - "Build pipeline - Completed" - Completed - https://app.pluralsight.com/player?course=jenkins-2-getting-started
   * Multiagen skipped, 15th was break in the project
