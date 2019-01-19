@@ -6,6 +6,8 @@
 * *ElasticSearch Get can accept body* 
 * /_search
 * /_cluster/health
+* /index/_count
+* /_cat/indices
 * /gb/_mapping/tweet  - mapping for type tweet that is under index -gb
 * GET /gb/tweet/_validate/query query
 * GET /gb/tweet/_validate/query?explain 

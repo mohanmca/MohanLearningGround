@@ -45,6 +45,11 @@
 * /etc/kibana/kibana.yml
 * http://192.168.1:5601/app/kibana
 
+## Kibana Scripted field
+```
+Integer.parseInt(doc['fileName'].value)
+```
+
 ## Elasticsearch Installation
 ```bash
 sudo apt-get install openjdk-8-jre-headless
