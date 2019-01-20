@@ -23,13 +23,17 @@
 
 
 ## In Queue
-* Jenkins course
+* [Udemy Kubernetes course](https://www.udemy.com/learn-devops-the-complete-kubernetes-course/?couponCode=KUBERNETES_GITHUB)
 * https://www.trek10.com/blog/dynamodb-single-table-relational-modeling/
 * Spring Security
-* Virtual box - network
 * Liquibase
-* Spring Security
-* [Udemy Kubernetes course](https://www.udemy.com/learn-devops-the-complete-kubernetes-course/?couponCode=KUBERNETES_GITHUB)
 
 ## Follow-up/recommended part of courses
 * https://github.com/substack/stream-handbook
+
+# Delayed
+* Virtual box - network - able to work with Nat
+
+# Completed
+* Jenkins course
+

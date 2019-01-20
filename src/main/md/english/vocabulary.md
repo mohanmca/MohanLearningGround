@@ -1,3 +1,11 @@
+*imperturbable* - Calm - My imperturbable guru listened politely, analyzing himself to see if any shred of truth lay within the denunciation. 
+
+*Inveterate* -  "Done as a habit and not likely to change" - Example: My guru ordinarily was gentle and affable to guests; his welcome was given with charming cordiality. Yet inveterate egotists sometimes suffered an invigorating shock. I never trust anything he says - the man's an inveterate liar.
+
+*Inveterate* -  "Done as a habit and not likely to change" - Example: My guru ordinarily was gentle and affable to guests; his welcome was given with charming cordiality. Yet inveterate egotists sometimes suffered an invigorating shock. I never trust anything he says - the man's an inveterate liar.
+
+*Affable* - Friendly - My guru ordinarily was gentle and affable to guests; 
+
 *Supercilious* - (Adj) Arrogant, A supercilious smile or a glance of amused tolerance occasionally betrayed that the newcomers anticipated nothing more than a few pious platitudes.
 
 *Flinty*  - (Adj) Severe and determined. Example: I thought that he had a flinty tone about him tonight. 
