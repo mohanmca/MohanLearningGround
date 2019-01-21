@@ -24,6 +24,16 @@
 
 
 # JHipster
+* Goals
+  * High performance, Robust Java service side Spring Boot application
+  * Mobile first front using React/Angular and BootStrap
+  * Microservice using Netflix-OSS, ELK and Docker
+  * Powerful workflow build using NPM, Webpack, Yeoman and Maven/Gradle
+* UAA - User authentication and authorization server // JHipster can generate  
+* Always generate Gatway server
+  * Everything related to UI sits on the gateway
+  * Uses zull and hystrix
+  * Handles/Proxies all backend microservices  
 * JHipster 5 = JHipster + React + Spring Boot 2 
 * KeyCloak - Open Source Identity and Access Management
 * JHispter mini-book is written using ASCIDoctor
@@ -36,6 +46,7 @@ npm start
 ./gradlew bootRun #alternative to mvn
 jhipster entity Foo User
 ```
+  * Architecture: ![Micoservices Architecture][Arch]
 
 ## Tutorial for eureka-server
 * Add 		<defaultGoal>spring-boot:run</defaultGoal> in pom.xml, as part of <build> for default goal
@@ -53,6 +64,7 @@ jhipster entity Foo User
 
 # Reference
 * [Microservices](https://martinfowler.com/articles/microservices.html)
+* (https://www.jhipster.tech/microservices-architecture/)
 * Play by Play: Developing Micorservices Matt Raible 
 * [Get Started with JHipster 4](http://www.eclipse.org/community/eclipse_newsletter/2017/january/article3.php)
 * [The JHipster Mini-Book 4.5](https://www.infoq.com/minibooks/jhipster-4x-mini-book)
@@ -62,3 +74,5 @@ jhipster entity Foo User
 * [Build a Microservices Architecture for Microbrews with Spring Boot](https://developer.okta.com/blog/2017/06/15/build-microservices-architecture-spring-boot)
 * spring.io/guides
 * https://asciidoctor.org/
+
+[Arch]: ../img/microservices_architecture_2.png "JHipster micoservices architecture"  
