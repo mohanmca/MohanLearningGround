@@ -42,6 +42,7 @@ Good manners without sincerity are like a beautiful dead lady - Sri Yukteswar
 “Straightforwardness without civility is like a surgeon’s knife, effective but unpleasant. Candor with courtesy is helpful and admirable.”  - Sri Yukteswar
 Inwardly humble and outwardly unbendable - Sri Yukteswar
 “Softer than the flower, where kindness is concerned; stronger than the thunder, where principles are at stake.” - Sri Yukteswar
+As soon as the devotee is willing to go even to the ends of the earth for spiritual enlightenment, his guru appears near-by.
 
 ## Advices
 * “Destroy wrong desires now; otherwise they will follow you after the astral body is torn from its physical casing. Even when the flesh is weak, the mind should be constantly resistant. If temptation assails you with cruel force, overcome it by impersonal analysis and indomitable will. Every natural passion can be mastered."

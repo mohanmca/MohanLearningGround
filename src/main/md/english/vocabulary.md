@@ -1,3 +1,7 @@
+*Umbrageous* -  Affording shade, spotted with shadows. - A garden with umbrageous trees Is here for you to take your ease.
+
+*Oracular* - Something that's oracular is giving off an oracle-like vibe: mysterious, enigmatic, prophetic and probably a little weird.  Example: “When you come to a crossroad, turn right and keep going,” he finally pronounced oracularly.
+
 *Genuflection* - Genuflection or genuflexion is the act of bending at least one knee to the ground. Example: I left the temple without genuflection and walked briskly toward the outlying village of Ranbajpur.
 
 *imperturbable* - Calm - My imperturbable guru listened politely, analyzing himself to see if any shred of truth lay within the denunciation. 
