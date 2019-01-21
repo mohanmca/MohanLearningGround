@@ -87,35 +87,7 @@ security.oauth2.resource.user-info-uri=https://dev-158606.oktapreview.com/oauth2
         return new UserFeignClientInterceptor();
     }
 ```
-* Add the interceptor code
-```java
-package com.example.edgeservice;
-
-import feign.RequestInterceptor;
-import feign.RequestTemplate;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
-import org.springframework.stereotype.Component;
-
-@Component
-public class UserFeignClientInterceptor implements RequestInterceptor {
-    private static final String AUTHORIZATION_HEADER = "Authorization";
-    private static final String BEARER_TOKEN_TYPE = "Bearer";
-
-    @Override
-    public void apply(RequestTemplate template) {
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        Authentication authentication = securityContext.getAuthentication();
-
-        if (authentication != null && authentication.getDetails() instanceof OAuth2AuthenticationDetails) {
-            OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
-            template.header(AUTHORIZATION_HEADER, String.format("%s %s", BEARER_TOKEN_TYPE, details.getTokenValue()));
-        }
-    }
-}
-```
+* ResourceServerConfig should match with security header that comes in request
 * Add SecurityConfig
 ```java
 package com.example.edgeservice;
@@ -158,6 +130,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
             .httpBasic();
+    }
+}
+```
+* All the service invocation should pass the token to the servers, let us add code to interceptor
+```java
+package com.example.edgeservice;
+
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+import org.springframework.stereotype.Component;
+
+@Component
+public class UserFeignClientInterceptor implements RequestInterceptor {
+    private static final String AUTHORIZATION_HEADER = "Authorization";
+    private static final String BEARER_TOKEN_TYPE = "Bearer";
+
+    @Override
+    public void apply(RequestTemplate template) {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+
+        if (authentication != null && authentication.getDetails() instanceof OAuth2AuthenticationDetails) {
+            OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
+            template.header(AUTHORIZATION_HEADER, String.format("%s %s", BEARER_TOKEN_TYPE, details.getTokenValue()));
+        }
     }
 }
 ```
