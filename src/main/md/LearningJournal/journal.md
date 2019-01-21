@@ -1,4 +1,7 @@
 * "Date" - Source - "Course/page" - Started/InProgress/Completed/Todo
+* "20-Jan-2019" - "Developing Microservices and Mobile Apps with JHipster" - Completed - "https://www.trek10.com/blog/dynamodb-single-table-relational-modeling/"
+* "20-Jan-2019" - "AdvancedDesignPatternforNoSQL" - Completed - "https://www.trek10.com/blog/dynamodb-single-table-relational-modeling/"
+* "20-Jan-2019" - "AdvancedDesignPatternforNoSQL" - Completed - "https://www.trek10.com/blog/dynamodb-single-table-relational-modeling/"
 * "19-Jan-2019" - "Lecture 16 logstash job Kibana visualization" - Completed - "https://www.youtube.com/watch?v=imrKm6dV3NQ&t=1s"
 * "18-Jan-2019" - "Use Logstash to load CSV into Elasticsearch" - Completed - "https://www.youtube.com/watch?v=rKy4sFbIZ3U"
 * "17-Jan-2019" - PluralSight - "Centralized Logging with ElasticSearch Stack" - InProgress - https://app.pluralsight.com/library/courses/centralized-logging-elastic-stack/table-of-contents
@@ -23,17 +26,25 @@
 
 
 ## In Queue
+* JHipster
 * [Udemy Kubernetes course](https://www.udemy.com/learn-devops-the-complete-kubernetes-course/?couponCode=KUBERNETES_GITHUB)
-* https://www.trek10.com/blog/dynamodb-single-table-relational-modeling/
 * Spring Security
 * Liquibase
+* Kafka
+* Python
+
+## In Queue (Financial)
+* Cassandra data modellling
+
 
 ## Follow-up/recommended part of courses
 * https://github.com/substack/stream-handbook
+* DynamoDB Best practices
 
 # Delayed
 * Virtual box - network - able to work with Nat
 
 # Completed
 * Jenkins course
+* [https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Aws/AdvancedDesignPatternforNoSQL.md](https://www.trek10.com/blog/dynamodb-single-table-relational-modeling/)
 
