@@ -1,3 +1,5 @@
+*Genuflection* - Genuflection or genuflexion is the act of bending at least one knee to the ground. Example: I left the temple without genuflection and walked briskly toward the outlying village of Ranbajpur.
+
 *imperturbable* - Calm - My imperturbable guru listened politely, analyzing himself to see if any shred of truth lay within the denunciation. 
 
 *Inveterate* -  "Done as a habit and not likely to change" - Example: My guru ordinarily was gentle and affable to guests; his welcome was given with charming cordiality. Yet inveterate egotists sometimes suffered an invigorating shock. I never trust anything he says - the man's an inveterate liar.

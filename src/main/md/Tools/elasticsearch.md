@@ -171,4 +171,5 @@ GET /megacorp/employee/_search?q=last_name:Smith
 ```
 
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-scripting.html
-# 
+# [Elasticsearch Blogs](https://www.elastic.co/blog)
+# [This Week in Elasticsearch and Apache Lucene](https://www.elastic.co/blog/this-week-in-elasticsearch-and-apache-lucene-2019-01-11)
