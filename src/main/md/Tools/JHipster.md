@@ -17,6 +17,23 @@
 * Zuul - Intelligent and programmable routing with spring-cloud-netflix Zuul
 * Hystrix - Circuit breaker with spring-cloud-netflix Hystrix
 
+## Security
+* OAuth 2.0 and OIDC
+* Having a secret in SPA is big anti-pattern
+* Find provider like Keycloak or Okta
+* Spring security 
+  * Handles security redirect
+  * Intercepts
+  * Sets security session
+* OAuth
+  * Delegated authentication system using 3rd party provider.
+  * Authenticate using 3rd party, but not authentication prototocol.
+  * Obtain ID Token and/or access token
+  * No way to get user information in OAuth
+* Open Id Connect : Facebook, LinkedIn, Google or Microsoft
+  * Built on top of OAuth
+  * JWT - is just a string token (pronounced as JAAT) Json web token
+  * User-end-point is returned, we can find more information about the user
 
 # JHipster documentations
 * [Jhipster Presentation] (https://www.jhipster.tech/presentation/#/)
@@ -36,6 +53,8 @@
   * Handles/Proxies all backend microservices  
 * JHipster 5 = JHipster + React + Spring Boot 2 
 * KeyCloak - Open Source Identity and Access Management
+* Subgenerator is a upgrade tool for JHipster
+* .yo-rc.json - Contains all the selection made, This file could be used to upgrade/generate using newer JHipster
 * JHispter mini-book is written using ASCIDoctor
 ```bash
 npm install -g yo generator-jhipster or yarn global add generator-jhipster
@@ -45,6 +64,7 @@ npm start
 ./mvnw spring-boot:run
 ./gradlew bootRun #alternative to mvn
 jhipster entity Foo User
+yarn e2e //Test end-2-end
 ```
   * Architecture: ![Micoservices Architecture][Arch]
 
@@ -73,6 +93,7 @@ jhipster entity Foo User
 * [Security with spring-boot-microservices-example  - Okta Oauth branch](oktaoath@https://github.com/oktadeveloper/spring-boot-microservices-example)
 * [Build a Microservices Architecture for Microbrews with Spring Boot](https://developer.okta.com/blog/2017/06/15/build-microservices-architecture-spring-boot)
 * spring.io/guides
+* https://github.com/mraible/jhipster5-demo
 * https://asciidoctor.org/
 
 [Arch]: ../img/microservices_architecture_2.png "JHipster micoservices architecture"  
