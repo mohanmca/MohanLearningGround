@@ -28,11 +28,12 @@
 
 ## In Queue
 * JHipster
-* [Udemy Kubernetes course](https://www.udemy.com/learn-devops-the-complete-kubernetes-course/?couponCode=KUBERNETES_GITHUB)
 * Spring Security
+* [Udemy Kubernetes course](https://www.udemy.com/learn-devops-the-complete-kubernetes-course/?couponCode=KUBERNETES_GITHUB)
 * Liquibase
 * Kafka
 * Python
+* Serverless
 
 ## In Queue (Financial)
 * Cassandra data modellling

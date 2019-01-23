@@ -64,9 +64,14 @@ npm start
 ./mvnw spring-boot:run
 ./gradlew bootRun #alternative to mvn
 jhipster entity Foo User
-yarn e2e //Test end-2-end
+yarn e2e #Test end-2-end
+yo jhipster:entity
+jhipster entity #(alternative to above syntax)
 ```
-  * Architecture: ![Micoservices Architecture][Arch]
+* Architecture: ![Micoservices Architecture][Arch]
+
+
+
 
 ## Tutorial for eureka-server
 * Add 		<defaultGoal>spring-boot:run</defaultGoal> in pom.xml, as part of <build> for default goal
@@ -81,6 +86,16 @@ yarn e2e //Test end-2-end
   * Devtools
   * Lombok - Java annotation library which helps to reduce boilerplate code and code faster 
 
+## Progressive Web App
+* Mobile first web development
+* Answer to slow internet connection, and web-app has to load in less than 3 seconds
+* Firefox supports using service worker, service worker can intercept network call, and could provide offfline content
+* Google trying to reduce number of mobile-apps
+* Use PRPL pattern
+  * Push critical resources for the initial URL route
+  * Render iniital route
+  * Pre-cache remaining route
+  * Lazl-load and create reamining routes on demand
 
 # Reference
 * [Microservices](https://martinfowler.com/articles/microservices.html)
@@ -95,5 +110,6 @@ yarn e2e //Test end-2-end
 * spring.io/guides
 * https://github.com/mraible/jhipster5-demo
 * https://asciidoctor.org/
+* https://scotch.io/tutorials/the-ultimate-guide-to-progressive-web-applications
 
 [Arch]: ../img/microservices_architecture_2.png "JHipster micoservices architecture"  
