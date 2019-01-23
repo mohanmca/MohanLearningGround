@@ -41,6 +41,12 @@
 * Material, Cobalt2, Fira Font and font.ligature
 * Mouse zoom
 
+## Plugins
+* Quokka.js
+* REST Client
+* Prettier
+* 30 seconds of code
+
 # References
 * Command Palette
-* 
+* [10 Essential Plugins](https://hackernoon.com/10-essential-vs-code-extensions-for-javascript-developers-in-2019-e8320e3f421e)

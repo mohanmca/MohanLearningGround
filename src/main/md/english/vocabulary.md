@@ -1,3 +1,5 @@
+*Empyrean* - Highest part of heaven, thought by the ancients to be the realm of pure fire. I cognized the center of the empyrean as a point of intuitive perception in my heart. The empyrean domain where human will and God's will became as one.
+
 *Umbrageous* -  Affording shade, spotted with shadows. - A garden with umbrageous trees Is here for you to take your ease.
 
 *Oracular* - Something that's oracular is giving off an oracle-like vibe: mysterious, enigmatic, prophetic and probably a little weird.  Example: “When you come to a crossroad, turn right and keep going,” he finally pronounced oracularly.
