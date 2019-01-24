@@ -69,8 +69,30 @@ yo jhipster:entity
 jhipster entity #(alternative to above syntax)
 ```
 * Architecture: ![Micoservices Architecture][Arch]
+* To convert existing JHipster application  into PWA (Progressive web app)
+  * Read reade.md and search for pwa/progressive in gateway application
+  * gateway-app/src/main/webapp/index.html - Uncomment service worker './sw.js'
+  * Uncomment in webpack-common.js and ensure sw.js is copied
+  * There should be service-worker in root directory ensure it is there (there was a bug in JHipster)
+  * 
 
 
+## JDL
+* JHipster domain language
+* [jdl-samples](https://github.com/jhipster/jdl-samples/blob/master/blog.jh)
+* [JDL studio](https://start.jhipster.tech/jdl-studio/)
+```
+* Follow the steps to create server and client side code
+* Create JDL
+* jhipster import-jdl store.jdl
+* jhipster entity product #command to add new entity to an existing jhipster project 
+* #use the widget to add entity to an existing project
+```
+
+## JHipster Registry
+* JHipster registry is an Eureka server
+* It is SPring Cloud Config Server
+* Dashboard for monitor and manage applications
 
 
 ## Tutorial for eureka-server
@@ -97,7 +119,40 @@ jhipster entity #(alternative to above syntax)
   * Pre-cache remaining route
   * Lazl-load and create reamining routes on demand
 
+## Jhipster Docker Container
+```bash
+jhipster docker-compose
+#It might ask other sub images to be build first
+#JHipster docker compose sub-generator
+./mvnw verify -Pprod dockerfile:build /app/blog/AppDocker
+./mvnw verify -Pprod dockerfile:build /app/blog/gatewayDocker
+./mvnw verify -Pprod dockerfile:build /app/blog/storeDocker
+```
+# To start the JHipster docker app
+```bash
+# we can use kinematic to view docker images during development time
+docker-compose up
+```
+## Jhipster cloud deployment
+```bash
+# To generate for Heroku for monoliths
+yo jhipster:heroku
+# To generate for CloudFoundry only for postgresql
+yo jhipster:cloudfoundry
+# On AWS - https://www.jhipster.tech/aws/
+jhipster aws-containers --skip-checks -d
+jhipster aws    
+# On GCP - Google Cloud@https://github.com/oktadeveloper/jhipster-microservices-example
+jhispter kubernetes
+# https://www.youtube.com/watch?v=dgVQOYEwleA&feature=youtu.be
+
+```
+
+
 # Reference
+* [Julien Dubois](https://www.julien-dubois.com/jhipster.html)
+  * https://twitter.com/juliendubois
+* https://start.jhipster.tech/  
 * [Microservices](https://martinfowler.com/articles/microservices.html)
 * (https://www.jhipster.tech/microservices-architecture/)
 * Play by Play: Developing Micorservices Matt Raible 
@@ -107,9 +162,12 @@ jhipster entity #(alternative to above syntax)
 * [spring-boot-microservices-example](https://github.com/oktadeveloper/spring-boot-microservices-example)
 * [Security with spring-boot-microservices-example  - Okta Oauth branch](oktaoath@https://github.com/oktadeveloper/spring-boot-microservices-example)
 * [Build a Microservices Architecture for Microbrews with Spring Boot](https://developer.okta.com/blog/2017/06/15/build-microservices-architecture-spring-boot)
+* (On GCP)[https://www.youtube.com/watch?v=dgVQOYEwleA&feature=youtu.be]
 * spring.io/guides
 * https://github.com/mraible/jhipster5-demo
 * https://asciidoctor.org/
 * https://scotch.io/tutorials/the-ultimate-guide-to-progressive-web-applications
 
 [Arch]: ../img/microservices_architecture_2.png "JHipster micoservices architecture"  
+
+
