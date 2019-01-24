@@ -1,4 +1,5 @@
 * "Date" - Source - "Course/page" - Started/InProgress/Completed/Todo
+* "24-Jan-2019" - "Developing Microservices and Mobile Apps with JHipster - Entity gneration, using Docker mongodb" - In Progress - "https://app.pluralsight.com/library/courses/play-by-play-developing-microservices-mobile-apps-jhipster/table-of-contents"
 * "22-Jan-2019" - "Developing Microservices and Mobile Apps with JHipster - Security" - In Progress - "https://app.pluralsight.com/library/courses/play-by-play-developing-microservices-mobile-apps-jhipster/table-of-contents"
 * "21-Jan-2019" - "Developing Microservices and Mobile Apps with JHipster - Security" - In Progress - "https://app.pluralsight.com/library/courses/play-by-play-developing-microservices-mobile-apps-jhipster/table-of-contents"
 * "20-Jan-2019" - "Developing Microservices and Mobile Apps with JHipster" - In Progress - "https://app.pluralsight.com/library/courses/play-by-play-developing-microservices-mobile-apps-jhipster/table-of-contents"

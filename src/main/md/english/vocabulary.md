@@ -1,3 +1,6 @@
+*Altiloquent* - (Adj) Pompous in speech - You remind me of an occasion some time past when reading a book of an altiloquent style.
+
+Pompous, or pretentious in speech
 *Empyrean* - Highest part of heaven, thought by the ancients to be the realm of pure fire. I cognized the center of the empyrean as a point of intuitive perception in my heart. The empyrean domain where human will and God's will became as one.
 
 *Umbrageous* -  Affording shade, spotted with shadows. - A garden with umbrageous trees Is here for you to take your ease.
