@@ -8,7 +8,8 @@ docker rm $(docker ps -a -q)
 # Delete all images
 docker rmi $(docker images -q)
 # Start a mongodb
-docker run --name mongo -d -p  0.0.0.0:27017:27017 mongo:3.4.18
+#docker run --name container -d mongo:version -p host:port:docker_port
+docker run --name mongo -d -p 0.0.0.0:27017:27017 mongo:3.4.18
 ```
 
 
