@@ -9,6 +9,8 @@ docker rm $(docker ps -a -q)
 docker rmi $(docker images -q)
 # Start a mongodb
 docker run --restart unless-stopped --name mongo -d -p 0.0.0.0:27017:27017 mongo:3.4.18
+# Start a mysql
+docker run --restart unless-stopped --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0.14
 ```
 
 
