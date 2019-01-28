@@ -81,6 +81,12 @@ mysql> CREATE USER 'project_user'@'localhost' IDENTIFIED BY 'PASSWORD';
 mysql> GRANT ALL ON `project_database`.* TO 'project_user'@'localhost';
 ```
 
+## Unexpected Error occurred attempting to open an SQL connection.
+class com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value 'Malay Peninsula Standard Time' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+```
+jdbc:mysql://localhost:3306/thales?serverTimezone=UTC
+```
+
 ## Mysql Reset Root password
 ```bash
 net stop mysql 
