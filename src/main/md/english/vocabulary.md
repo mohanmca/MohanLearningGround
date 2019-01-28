@@ -1,3 +1,5 @@
+*Beguile*  - Attract to deceive. God will beguile you with an infinite ingenuity.
+
 *Altiloquent* - (Adj) Pompous in speech - You remind me of an occasion some time past when reading a book of an altiloquent style.
 
 Pompous, or pretentious in speech
