@@ -24,13 +24,12 @@ REVOKE type_of_permission ON database_name.table_name FROM ‘username’@‘loc
 SHOW GRANTS username;
 ```
 
-# Change root password
-
-## Create file mypassword.ini with the following content (change the passord):
-* shutdown mysqld process
+# Change root password (MySQL 8.0.14 on Windows)
 ```
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
-<MYSQLDIR>\bin\mysqld --init-file=<PATH>\mypassword.ini
+mysql -u root
+use mysql;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+FLUSH PRIVILEGES;
 ```
 
 # Now the password was changed, start database normally:
@@ -42,26 +41,16 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
 ```SQL
 mysqld --initialize-insecure set password='root'
 mysqld --console --port 3306
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';  //this content should be inside the password.ini
-SET GLOBAL default_storage_engine = 'InnoDB';
-mysqld --init-file=password.ini
 mysql -u root -p
 CREATE DATABASE thales CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
 
-```ini
-# You can create a configuration file my.ini and use to set configuration parameters to database:
-# my.ini file content:
-[mysqld]
-# set basedir to your installation path
-basedir=<MYSQLDIR>
-# set datadir to the location of your data directory
-datadir=<MYSQLDIR>\data
-```
-
 # Most useful MySQL SQL
 ```sql
+
+SELECT table_name FROM information_schema.tables where table_schema='emp';
+
 SELECT * 
 FROM   information_schema.tables 
 WHERE  table_type = 'BASE TABLE' 
@@ -106,11 +95,6 @@ exit;  (Another parallel session - stops)
 mysqladmin shutdown 
 net stop mysql 
 ```
-
-# Most often used SQLs
-```sql
-SELECT table_name FROM information_schema.tables where table_schema='emp';
-```  
   
 # Refernces
 * [Mysql manual] (http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm)
