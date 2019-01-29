@@ -79,14 +79,20 @@
   * DigestAuthenticationFilter
   * UsernamePasswordAuthenticationFilter
 * Authentication filter intercepts requests and extracts authenticationToken
+  * Authentication filter generates AutenticationRequest
+  * Authentication filter delegates AutenticationMnager to authenticate AutenticationRequest
   * There are many flavours of tokens are there
   * UsernamePasswordAuthenticationToken
   * OpenIDAuthenticationToken
 * Filter delegates authentication to AuthenticationManager
-* AuthenticationManager delegates to AuthenticationProvider
+* AuthenticationManager delegates to one ore more AuthenticationProvider
   * OpenIDAuthenticationProvider
   * DaoAuthenticationProvider
   * LdapAuthenticationProvider
+  * Provider delegates to UserDetailsService
+  * Identity store is accessed by UserDetailService
+  * Every identity service requires its own Service and AuthenticationProvider
+  * DigestAuthenticationFilter is an exception, it doesn't delegates rather directly interacts with UserDetailsService
 * 
   ```java  
   public interface AuthenticationManager
@@ -94,16 +100,27 @@
     public Authentication authenticate(Authentication authentication)  throws AuthenticationException
   }
   ```
-* Authentication
-```java  
-  public interface Authentication
-  { 
-    public boolean isAuthenticated();
-    public boolean getPrincipal();
-    Object getCredentials(); //password or ssl
-    Collection<? extends GrantedAuthority> getAuthorities();
-  }
-```
+* 
+  ```java  
+    public interface Authentication
+    { 
+      public boolean isAuthenticated();
+      public boolean getPrincipal();
+      Object getCredentials(); //password or ssl
+      Collection<? extends GrantedAuthority> getAuthorities();
+    }
+  ```
+* 
+  ```java  
+    public interface AuthenticationProvider
+    { 
+      public Autentication authenticate(Aunthentication authentication) throws AutenticationException
+      public boolean supprts(class<?> authentication) 
+    }
+    public interface UserDetailsInterface{
+      UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+    }
+  ```
 
 ## Reference
 * Spring security authentication/authorizaion - building effective layers of defense - pluralsite course
