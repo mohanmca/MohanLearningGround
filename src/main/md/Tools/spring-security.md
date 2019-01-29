@@ -100,7 +100,7 @@
   { 
     public boolean isAuthenticated();
     public boolean getPrincipal();
-    Object getCredentials();
+    Object getCredentials(); //password or ssl
     Collection<? extends GrantedAuthority> getAuthorities();
   }
 ```
