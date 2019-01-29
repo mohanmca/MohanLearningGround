@@ -1,3 +1,5 @@
+*Surfeit* -  An overabundant supply. Having surfeited ourselves on raw oysters, we had to decline the rest of the restaurant's offerings
+
 *Beguile*  - Attract to deceive. God will beguile you with an infinite ingenuity.
 
 *Altiloquent* - (Adj) Pompous in speech - You remind me of an occasion some time past when reading a book of an altiloquent style.

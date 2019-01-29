@@ -64,12 +64,46 @@
   * AnonymousAuthenticationFilter
   * ExceptionTranslationFilter
   * FilterSecurityInterceptor
+    * Interceptor performs authroization
 * SecurityContextPersistenceFilter
   * Manages security context
   * Tries to find securityContext from SecurityContextRepository
   * In WebApplication SecurityContextRepository is Session using HttpSessionRepository
   * SecurityContextHolder is ThreadLocal
 
+
+## Authentication
+* Many flavours of authentication
+  * BasicAuthenticationFilter
+  * OpenIDAuthenticationFilter
+  * DigestAuthenticationFilter
+  * UsernamePasswordAuthenticationFilter
+* Authentication filter intercepts requests and extracts authenticationToken
+  * There are many flavours of tokens are there
+  * UsernamePasswordAuthenticationToken
+  * OpenIDAuthenticationToken
+* Filter delegates authentication to AuthenticationManager
+* AuthenticationManager delegates to AuthenticationProvider
+  * OpenIDAuthenticationProvider
+  * DaoAuthenticationProvider
+  * LdapAuthenticationProvider
+* 
+  ```java  
+  public interface AuthenticationManager
+  { 
+    public Authentication authenticate(Authentication authentication)  throws AuthenticationException
+  }
+  ```
+* Authentication
+```java  
+  public interface Authentication
+  { 
+    public boolean isAuthenticated();
+    public boolean getPrincipal();
+    Object getCredentials();
+    Collection<? extends GrantedAuthority> getAuthorities();
+  }
+```
 
 ## Reference
 * Spring security authentication/authorizaion - building effective layers of defense - pluralsite course
