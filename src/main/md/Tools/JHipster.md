@@ -62,6 +62,7 @@ yarn global add e2e
 yo jhipster
 npm start
 ./mvnw spring-boot:run
+./mvn spring-boot:run  -Dspring-boot.run.arguments=--logging.level.org.springframework=TRACE,--logging.level.com.bank.module=TRACE
 ./gradlew bootRun #alternative to mvn
 jhipster entity Foo User
 yarn e2e #Test end-2-end
@@ -141,7 +142,7 @@ yo jhipster:heroku
 yo jhipster:cloudfoundry
 # On AWS - https://www.jhipster.tech/aws/
 jhipster aws-containers --skip-checks -d
-jhipster aws    
+jhipster aws
 # On GCP - Google Cloud@https://github.com/oktadeveloper/jhipster-microservices-example
 jhispter kubernetes
 # https://www.youtube.com/watch?v=dgVQOYEwleA&feature=youtu.be
