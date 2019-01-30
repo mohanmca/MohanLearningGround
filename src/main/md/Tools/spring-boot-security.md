@@ -3,6 +3,8 @@
 * Add filter that would validate for security token or redirect for authentication
 * Add all service interceptor and populate with security token to probagate security to server
   * For example, this would probagate security token to servers - UserFeignClientInterceptor implements RequestInterceptor
+* spring-boot-autoconfigure-2.1.2.RELEASE.jar  contains all the default configuration inside the file spring.factories
+* 
 
 ##  OAuth Token based security
 * Add following configuration on Rest Server serivce

@@ -1,3 +1,6 @@
+*Compunction* -  Anxiety arising from awareness of guilt. Example: Despite guru was wrong, He was laughing heartily, without compunction for my disillusionment.
+*Indignant* - Feeling or showing anger or annoyance at what is perceived as unfair treatment. Example: On Friday, Meyer posted an indignant response on Twitter to recent media coverage. 
+
 *Surfeit* -  An overabundant supply. Having surfeited ourselves on raw oysters, we had to decline the rest of the restaurant's offerings
 
 *Beguile*  - Attract to deceive. God will beguile you with an infinite ingenuity.
