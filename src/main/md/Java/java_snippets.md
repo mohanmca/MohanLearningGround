@@ -42,6 +42,16 @@ catch (IOException e)
 </dependency>
 ```
 
+## Modern Java Issues
+### [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.7.0:compile (default-cli) on project auth-web-basic: Fatal error compiling: java.lang.ExceptionInInitializerError: com.sun.tools.javac.code.TypeTags -> [Help 1]
+```xml
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+		</dependency>
+```
+
 ## Flow References
 * [Reactive Streams example - Java 9](https://aboullaite.me/reactive-streams-example-java-9/)
 * [Java 9 Features with Examples](https://www.journaldev.com/13121/java-9-features-with-examples)

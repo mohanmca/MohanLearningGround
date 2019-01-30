@@ -2,6 +2,7 @@
 * mvn spring-boot:run --debug
 * -Dspring.profiles.active=dev
 * https://start.spring.io/ with "JPA, H2, Web, Lombok"
+* -Dspring-boot.run.arguments=--logging.level.org.springframework=TRACE,--logging.level.com.bank.module=TRACE
 
 
 ## Known erros
