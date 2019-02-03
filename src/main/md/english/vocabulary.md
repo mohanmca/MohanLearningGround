@@ -1,3 +1,15 @@
+*Intransigent* - The most thrillingly intransgent ever uttered: "Heaven and earth shall pass away, but words shall not pass away"
+
+*Nihilism* - Philisophy that argues that life is without objective meaning, purpose or intrinsic value. "If teenagers go through life in nihilistic frme of mind. Nothing would seem matter for them.
+
+*Scornfully* - Is defined as something done without respect. Raising eyebrows scornfully. Laughing scornfully.
+
+*Allegiance* - Loyalty or  Commitment to a superior -  Monks transfer allegiance from the creation to the Creator
+
+*Automaton* -  a moving mechanical device made in imitation of a human being. Example: That job is to make difficult and sometimes unpopular decisions, and not for members of Parliament to become Brexit-delivering automatons as some would have it.
+
+*Occidental* - Relating to the countries of the West. Example: Three scales—major, harmonic minor, melodic minor—are the only ones which Occidental music employs, but Indian music outlines 72 thatas or scales.
+
 *Compunction* -  Anxiety arising from awareness of guilt. Example: Despite guru was wrong, He was laughing heartily, without compunction for my disillusionment.
 *Indignant* - Feeling or showing anger or annoyance at what is perceived as unfair treatment. Example: On Friday, Meyer posted an indignant response on Twitter to recent media coverage. 
 

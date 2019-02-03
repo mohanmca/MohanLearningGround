@@ -34,6 +34,7 @@
 * You can only fight the way you practice.
 
 ## From Autobiography of Yogi
+* Sri Yuketshwar public speeches emphasized the value of Kriya Yoga, and a life of self-respect, calmness, determination, simple diet, and regular exercise.*
 Look fear in the face and it will cease to trouble you. - Sri Yuketshwar
 Good and positive suggestions should instruct the sensitive ears of children. Their early ideas long remain sharply etched.”
 He is a fool that cannot conceal his wisdom
@@ -43,6 +44,7 @@ Good manners without sincerity are like a beautiful dead lady - Sri Yukteswar
 Inwardly humble and outwardly unbendable - Sri Yukteswar
 “Softer than the flower, where kindness is concerned; stronger than the thunder, where principles are at stake.” - Sri Yukteswar
 As soon as the devotee is willing to go even to the ends of the earth for spiritual enlightenment, his guru appears near-by.
+By a number of means—by prayer, by will power, by yoga meditation, by consultation with saints, by use of astrological bangles—the adverse effects of past wrongs can be minimized or nullified.
 
 ## Advices
 * “Destroy wrong desires now; otherwise they will follow you after the astral body is torn from its physical casing. Even when the flesh is weak, the mind should be constantly resistant. If temptation assails you with cruel force, overcome it by impersonal analysis and indomitable will. Every natural passion can be mastered."
