@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8' standalone='no' ?>
+<opml version="1.1">
+  <head>
+    <title>BeyondPod Feeds</title>
+    <dateCreated>Sun, 03 Feb 2019 21:12:30 GMT+08:00</dateCreated>
+    <dateModified>Sun, 03 Feb 2019 21:12:30 GMT+08:00</dateModified>
+  </head>
+  <body>
+    <outline text="Uncategorized">
+      <outline text="WorkLife with Adam Grant" xmlUrl="https://feeds.feedburner.com/WorklifeWithAdamGrant" type="rss" />
+      <outline text="Software Engineering Radio - The Podcast for Professional Software Developers" xmlUrl="http://feeds.feedburner.com/se-radio" type="rss" />
+      <outline text="FT Alphachat" xmlUrl="http://rss.acast.com/ft-alphachat" type="rss" />
+      <outline text="Planet Money" xmlUrl="https://www.npr.org/rss/podcast.php?id=510289" type="rss" />
+      <outline text="Machine Learning – Software Engineering Daily" xmlUrl="https://softwareengineeringdaily.com/category/machine-learning/feed/" type="rss" />
+      <outline text="Software Engineering Daily" xmlUrl="http://softwareengineeringdaily.com/feed/podcast/" type="rss" />
+      <outline text="The Changelog" xmlUrl="http://feeds.feedburner.com/changelogshow" type="rss" />
+      <outline text="Learning Machines 101" xmlUrl="http://learningmachines101.libsyn.com/rss" type="rss" />
+      <outline text="This Week in Machine Learning &amp; Artificial Intelligence (AI) Podcast" xmlUrl="http://twimlai.libsyn.com/rss" type="rss" />
+      <outline text="Data Crunch | Artificial Intelligence | AI | Machine Learning | Big Data | Data Science" xmlUrl="https://vaultanalytics.com/feed/podcast/" type="rss" />
+      <outline text="Data Skeptic" xmlUrl="http://dataskeptic.libsyn.com/rss" type="rss" />
+      <outline text="Data Skeptic Bonus Feed" xmlUrl="https://s3.amazonaws.com/data-skeptic-bonus-feed/data-skeptic-bonus.xml" type="rss" />
+      <outline text="O'Reilly Data Show - O'Reilly Media Podcast" xmlUrl="http://feeds.podtrac.com/IOJSwQcdEBcg" type="rss" />
+      <outline text="Partially Derivative" xmlUrl="http://feeds.feedburner.com/PartiallyDerivative" type="rss" />
+      <outline text="The Tony Robbins Podcast" xmlUrl="http://tonyrobbins.libsyn.com/rss" type="rss" />
+      <outline text="Not Another Fake NewsCast" xmlUrl="http://pgmcast.libsyn.com/rss" type="rss" />
+      <outline text="Business Statistics - Undergraduate" xmlUrl="https://www.rjerz.com/c/bs/Podcasts/bsu.xml" type="rss" />
+      <outline text="High Probability Investing Show" xmlUrl="http://feeds.soundcloud.com/users/soundcloud:users:413567328/sounds.rss" type="rss" />
+      <outline text="A Brief History of Mathematics" xmlUrl="https://podcasts.files.bbci.co.uk/b00srz5b.rss" type="rss" />
+      <outline text="The Math Dude Quick and Dirty Tips to Make Math Easier" xmlUrl="https://www.quickanddirtytips.com/xml/mathdude.xml" type="rss" />
+      <outline text="Pivotal Podcasts" xmlUrl="https://pivotal.io/podcasts/feed" type="rss" />
+      <outline text="Freakonomics Radio" xmlUrl="https://rss.art19.com/freakonomics-radio" type="rss" />
+      <outline text="More or Less Behind the Stats" xmlUrl="http://www.bbc.co.uk/programmes/p02nrss1/episodes/downloads.rss" type="rss" />
+      <outline text="Inspired by Math!" xmlUrl="http://feeds.feedburner.com/InspiredByMath" type="rss" />
+      <outline text="DevOps Radio" xmlUrl="http://devopsradio.libsyn.com/rss" type="rss" />
+      <outline text="The InfoQ Podcast" xmlUrl="http://feeds.soundcloud.com/users/soundcloud:users:215740450/sounds.rss" type="rss" />
+      <outline text="Engineering Culture by InfoQ" xmlUrl="http://feeds.soundcloud.com/users/soundcloud:users:258266127/sounds.rss" type="rss" />
+      <outline text="Conversations with Tyler" xmlUrl="http://cowenconvos.libsyn.com/rss" type="rss" />
+      <outline text="Life Habits" xmlUrl="http://feeds.feedburner.com/lifehabits/feed" type="rss" />
+      <outline text="Zen Habits Radio | Leo Babauta - The Zen Habits Audio Blog and Podcast - Take Your Zen to Go" xmlUrl="http://www.zenhabitsradio.com/feed/podcast/" type="rss" />
+      <outline text="Habits 2 Goals: The Habit Factor® Podcast with Martin Grunburg | Goal Achievement, Productivity &amp; Success – Simplified" xmlUrl="http://habitfactor.libsyn.com/rss" type="rss" />
+      <outline text="Simple Life Habits" xmlUrl="http://feeds.feedburner.com/SLHpodcast" type="rss" />
+      <outline text="Real Talk JavaScript" xmlUrl="https://rss.simplecast.com/podcasts/7265/rss" type="rss" />
+      <outline text="Lately in JavaScript podcast" xmlUrl="http://www.jsclasses.org/blog/category/podcast/post/latest.rss" type="rss" />
+    </outline>
+  </body>
+</opml>
