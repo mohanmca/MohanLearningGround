@@ -1,0 +1,45 @@
+{
+  "_id": "5c570320ac9687ae75fab3d9",
+  "index": 0,
+  "guid": "c14dd01a-956e-470c-b747-71c46f73adf9",
+  "isActive": false,
+  "balance": "$2,098.77",
+  "picture": "http://placehold.it/32x32",
+  "age": 24,
+  "eyeColor": "brown",
+  "name": "Key Black",
+  "gender": "male",
+  "company": "HONOTRON",
+  "email": "keyblack@honotron.com",
+  "phone": "+1 (946) 404-2188",
+  "address": "905 Euclid Avenue, Lodoga, Illinois, 9336",
+  "about": "Eiusmod aliqua dolore pariatur minim amet. Nisi nostrud ut officia ad sit. Duis anim consequat laborum eu labore id.\r\n",
+  "registered": "2018-03-10T06:46:30 -08:00",
+  "latitude": 57.864271,
+  "longitude": -57.705847,
+  "tags": [
+    "Lorem",
+    "dolor",
+    "eiusmod",
+    "nulla",
+    "minim",
+    "ea",
+    "reprehenderit"
+  ],
+  "friends": [
+    {
+      "id": 0,
+      "name": "Avis Simpson"
+    },
+    {
+      "id": 1,
+      "name": "Fletcher Giles"
+    },
+    {
+      "id": 2,
+      "name": "Estella Gregory"
+    }
+  ],
+  "greeting": "Hello, Key Black! You have 8 unread messages.",
+  "favoriteFruit": "strawberry"
+}
