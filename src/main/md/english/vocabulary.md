@@ -1,4 +1,8 @@
-*Intransigent* - The most thrillingly intransgent ever uttered: "Heaven and earth shall pass away, but words shall not pass away"
+*Spasmodic* - Irregular bursts. My classroom attendance had been very spasmodic.
+
+*Allegory* - 'Story or poem that can be interpreted to reveal hidden meaning, typically a moral or political one' - Though this book looks like fiction, it is kind of allegory of History
+
+*Intransigent* - `Refusing to change one's views` - The most thrillingly intransigent ever uttered: "Heaven and earth shall pass away, but words shall not pass away"
 
 *Nihilism* - Philisophy that argues that life is without objective meaning, purpose or intrinsic value. "If teenagers go through life in nihilistic frme of mind. Nothing would seem matter for them.
 

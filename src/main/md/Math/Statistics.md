@@ -53,10 +53,11 @@
   * There are 3 averages for mathematician
     * Arithmatic mean, median and mode
   * Sometime easier to find median than mean (Ex: height of 100 men)
-  * Median is middle (once sorted)
-  * Mode - Modal family, most number of occrences
+  * Median is middle (once sorted) - (n + 1)/2 spot in the ordered list
+    * It is the number such that half of the observations fall above, and half fall below.
+  * Mode - Modal family, most number of occrences. The value that occurs with the highest frequency is the mode.
   * It is possible to have more than one mode
-  * Outliers (one of too high, too low) may skew Mean, but not mode
+  * Outliers (one of too high, too low) may skew Mean, but not mode. Mean is very sensitive to outliers.
   * Easy to pick one among, to mislead data
   * To know the truth, we should know variation around mean values
   * Example: Median mortality of eight months means, it is 50th percentail point in distribution, 50% of people live longer than eigth months
@@ -117,7 +118,12 @@
     * When sample size is smaller, normal distribution won't fit
     * First one used in quality control
     * t-test is replacement for z-test
-  * Analysis of variance  
+  * Analysis of variance
+* IQR - Another measure of spread is the inter-quartile range (IQR), which is the range covered by the middle 50% of the data.  
+* An observation is considered a suspected outlier if it is:
+  * Below Q1 - 1.5(IQR)
+  * Above Q3 + 1.5(IQR)
 * Inferential Statistics
   * Formal testing and estimation theory
   * Based on random variation
+  
