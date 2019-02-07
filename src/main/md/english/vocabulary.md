@@ -1,3 +1,11 @@
+*Apparition* -  Ghost like image of a person. “This is not an apparition, but my flesh and blood form."
+
+*Surmise* - Suppose that something is true without having evidence to confirm it.
+
+*Evanescent* - Unstable. Astrally-produced objects are structurally evanescent
+
+*Placate*  - to appease or pacify, especially by concessions or conciliatory gestures. After the fight, He now spoke placatingly.
+
 *Spasmodic* - Irregular bursts. My classroom attendance had been very spasmodic.
 
 *Allegory* - 'Story or poem that can be interpreted to reveal hidden meaning, typically a moral or political one' - Though this book looks like fiction, it is kind of allegory of History
