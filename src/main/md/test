@@ -1,1 +1,3 @@
 * [Deep	Dive	into Google	Cloud	Functions](https://d3v6gwebjc7bm7.cloudfront.net/event/16/51/49/9/rt/1/documents/resourceList1525355080096/2018livelessonsgcfrominirani1525355090590.pdf)
+
+* docker run -p 8888:8888 jupyter/scipy-notebook:17aba6048f44
