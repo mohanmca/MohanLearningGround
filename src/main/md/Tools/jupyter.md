@@ -1,3 +1,13 @@
+## Jupyter docker images
+* https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html
+  * jupyter/scipy-notebook
+  * jupyter/tensorflow-notebook
+  * jupyter/datascience-notebook
+  * jupyter/pyspark-notebook
+  * jupyter/all-spark-notebook
+  * docker run -p 8888:8888 jupyter/scipy-notebook:17aba6048f44
+
+
 ```bash
 sudo sh
 sudo apt-get install python3
