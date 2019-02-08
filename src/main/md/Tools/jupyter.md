@@ -11,5 +11,5 @@ cd ~/ml/
 virtualenv ml
 source ml/bin/activate
 pip install jupyter
-jupyter notebook --allow-root
+jupyter notebook --allow-root --ip=0.0.0.0 --port=80
 ```
