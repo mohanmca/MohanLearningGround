@@ -14,6 +14,25 @@
   * If SD is zero, data in the problem in unifrom, no deviation
   * The standard deviation measures the spread by reporting a typical (average) distance between the data points and their average.
   * Mean, SD should be used for symmetric data.
+
+* When creating a scatterplot, the explanatory variable should always be plotted on the horizontal X-axis
+* Scaterplot patterns
+  * +Positive   
+  * -Negatives
+  * V-Shape (Neither +ve, nor -Ve) or (Half +ve and Half -ve)
+    *  The average fuel usage of driving a fixed distance in a car, and the speed at which the car drives:
+  * Curve linear
+  * Cluster
+  * Strong or Weak relationship
+  * Can find "diminishing returns"
+
+* Linear relationship
+  * Strength of a linear relationship - Correlation coefficient and is denoted by r.
+  * R ranges from -1 to +1
+  * Negative relationship -1, Positive relationship +1, No relationship 0
+  * +Ve would produce Scaterplot patterns positive
+
+
 * Four kinds of co-relation
   * C-Q
   * C-C

@@ -8,4 +8,6 @@ str(as.list(.GlobalEnv))
 tbl = table(data$Cheat)
 100*tbl/sum(tbl)  # Percentage of table numbers
 pie(tbl)
+cor(a$longevity,a$gestation)
+summary(dataframe)
 ```
