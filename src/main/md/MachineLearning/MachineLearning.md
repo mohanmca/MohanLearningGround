@@ -73,11 +73,11 @@
 * Why we need them? Linear Function should be converted into probability
 * Logistic regression
   * Linear model + sigmoid function
-
 * Linear regression  
   * Linear regression = simplest linear model (additive model for all features)
   * Effect of features are linear on target use linear regression
   * Linear regression = logistic regression - sigmoid function
+  
 
 ## References
 * [What is standarscaler](http://benalexkeen.com/feature-scaling-with-scikit-learn/)
