@@ -141,6 +141,8 @@
 * When model should be avoided with complex co-efficient
 * It is to avoid over-fit the data
 * L1, L2 and alpha
+* Avoid noise
+* Lasso is L1 regularization
 
 
 ## References
