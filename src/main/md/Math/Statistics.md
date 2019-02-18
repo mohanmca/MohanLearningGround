@@ -126,7 +126,3 @@
 * Inferential Statistics
   * Formal testing and estimation theory
   * Based on random variation
-
-* Awesome 
-## Simpson's paradox  
-## Randomized response  
