@@ -108,3 +108,28 @@ par(mfrow=c(1,2));  #1 row, 2 columns
 group = sample(1:3,450,replace=TRUE) # choose 1/2/3 450 samples
 df = cbind(df, group)
 ```
+
+```R
+# Two way table for existing dataframe
+tbl = table(data.frame(data$Treat,data$Outcome))
+tbl/rowSums(tbl) * 100
+```
+
+data.Treat        0        1
+         0 37.83784 62.16216
+         1 71.05263 28.94737
+         2 32.35294 67.64706
+```
+> tapply(data$Time, factor(data$Treat), summary)
+$`0`
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.286   5.286  22.000  37.726  67.000 165.000 
+
+$`1`
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.571  23.000  70.714  63.064 101.500 206.000 
+
+$`2`
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   5.393  17.786  37.584  61.714 131.000 
+```

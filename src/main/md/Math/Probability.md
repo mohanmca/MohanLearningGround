@@ -1,3 +1,8 @@
+* Probability is not always intuitive
+* Probability is a mathematical description of randomness and uncertainty. It is a way to measure or quantify uncertainty.
+* Probability is the underlying foundation for the methods of statistical inference.  Probability can be used to quantify how much we expect random samples (collected as part of statistics) to vary.
+* Probability can answer the question like "How likely is it that our sample estimate is no more than 3% from the true percentage of all U.S. adults who are in favor of the death penalty?”
+
 * Volunteer sample - is biased
   * Determine the musical preferences of all students at your university, and assuming it is entire population
   * We cannot generalize to any larger group at all.
@@ -19,4 +24,4 @@
   * Stratified Sampling
     * Choose a random sample of 50 nurses from each of the 10 hospitals and interview these 50 * 10 = 500 regarding their job satisfaction. This is an example of stratified sampling, in which each hospital is a stratum.
 
-* Aleatory vs Epistemic
+* Aleatory vs Epistemic (errors)
