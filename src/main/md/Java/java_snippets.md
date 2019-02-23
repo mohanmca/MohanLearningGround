@@ -51,6 +51,29 @@ catch (IOException e)
 			<version>1.18.4</version>
 		</dependency>
 ```
+### [Error] XML parser not in JDK
+
+<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>2.2.11</version>
+</dependency>
+<dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-core</artifactId>
+    <version>2.2.11</version>
+</dependency>
+<dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-impl</artifactId>
+    <version>2.2.11</version>
+</dependency>
+<dependency>
+    <groupId>javax.activation</groupId>
+    <artifactId>activation</artifactId>
+    <version>1.1.1</version>
+</dependency>
+
 
 ## Flow References
 * [Reactive Streams example - Java 9](https://aboullaite.me/reactive-streams-example-java-9/)

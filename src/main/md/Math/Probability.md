@@ -24,4 +24,21 @@
   * Stratified Sampling
     * Choose a random sample of 50 nurses from each of the 10 hospitals and interview these 50 * 10 = 500 regarding their job satisfaction. This is an example of stratified sampling, in which each hospital is a stratum.
 
+* Law of large numbers - The relative frequency of an event does indeed approach the theoretical probability of that event as the number of repetitions increases. This is called the Law of Large Numbers.
+* The Law of Large Numbers states that as the number of trials increases, the relative frequency becomes the actual probability. So, using this law, as the number of trials increases, the empirical probability gets closer and closer to the theoretical probability.
+* "How many times do I need to repeat the random experiment in order for the relative frequency to be, say, within .001 of the actual probability of the event?" 
+* Relative Frequency - (definition) The probability of an event (A) is the relative frequency with which the event occurs in a long series of trials.
+
+* For a "fair" coin (one that is not unevenly weighted, and does not have identical images on both sides)
 * Aleatory vs Epistemic (errors)
+* Determine probability: Theoretical (Classical) and Empirical (Observational).
+
+
+## Discrete and Continious
+* For example, the variable “number of times a college student changes major” is a discrete random variable. The (exact) weight of a person is a continuous random variable.
+* Probability distribution = Probability model
+* The outcomes described by the model are random. This means that individual outcomes are uncertain, but there is a regular, predictable distribution of outcomes in a large number of repetitions.
+
+## Stadard deviation
+* Number that describes how much frequenceis could stay away from actual means.
+* Higher the frequency, data also available far from mean

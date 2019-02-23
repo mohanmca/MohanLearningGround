@@ -5,3 +5,5 @@
 * [GOTO 2017 - Code as Risk   Kevlin Henney](https://www.youtube.com/watch?v=YyhfK-aBo-Y)
 * [Beauty in Code 2018 - Kevlin Henney — 1968](https://www.youtube.com/watch?v=KjgvffBlWAg)
 * [Opher Vishnia: Wait, you can do that with JavaScript | JSConf Iceland 2018](https://www.youtube.com/watch?v=JCATu2WkOq8)
+* [Machine Learning with Python](https://www.youtube.com/watch?v=pnSBZ6TEVjY&index=45&list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v)
+* [Sentdex Q&A. To start, I answer how I learned Python initially, as well as how I continue to learn Python. Next, we get into what I do and why.](https://www.youtube.com/channel/UCfzlCWGWYyIQ0aLC5w48gBQ)
