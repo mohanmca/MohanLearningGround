@@ -7,6 +7,7 @@ mvn dependency:tree -Dverbose -Dincludes=commons-collections
 mvn assembly:single
 mvn -Dmaven.surefire.debug test –default remote debug port 5005
 mvn -Dmaven.surefire.debug=”-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000 -Xnoagent -Djava.compiler=NONE” test
+mvn exec:java -Dexec.mainClass="com.nikias.App"
 ```
 
 ## mvnDebug is handy.
