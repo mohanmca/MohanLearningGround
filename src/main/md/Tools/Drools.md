@@ -1,3 +1,11 @@
+# When to use rules engine
+* Business logic which you think is getting cluttered with multiple if conditions due to complexity
+* Business logic requires special treatment like version control, development, debugging, sme-managed, decision-table-driven
+* Domain business logic complexity would be growing exponentially
+* Business logic would be keep changing (seasonl, competitor driven, market-driven)
+* Deleate business rools using single line code 'ruleEngine.applyRules(product);'
+* Corporate decidedto put a rule admin console in the hands of non-technical people.
+
 # Drools
 * Latest version = 7.17.0 as on 20-Feb-2019
 * no-loop: avoid the re-activation of a rule caused by the RHS of that SAME rule.
@@ -99,6 +107,8 @@ end
 *  Decision tables are not ideal for every situation: one of the biggest limitations is that rules we can model using decision tables must have the same structure.  
 
 ## Reference
+* [When to use rules engine](https://stackoverflow.com/questions/2167358/pros-and-cons-of-java-rules-engines)
 * [drools-dsl](https://github.com/integrallis/drools-dsl/tree/master/src/main/resources/rules)
 * [DSLR](https://training-course-material.com/training/Filip_Drools_-_DSL)
 * [Decision Tables](https://docs.jboss.org/drools/release/6.5.0.Final/drools-docs/html/ch06.html#d0e5713)
+
