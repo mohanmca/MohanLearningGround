@@ -42,3 +42,34 @@
 ## Stadard deviation
 * Number that describes how much frequenceis could stay away from actual means.
 * Higher the frequency, data also available far from mean
+
+##Histogram
+* for Probability - The heights of all the rectangles in the histogram must sum to 1. This meant that the area was also 1.
+* As the number of intervals increases, the width of the bars becomes narrower and narrower, and the graph approaches a smooth curve and looks like normal curve.
+
+# Probability density curve.
+* Probability distribution of a continuous random variable is represented by a probability density curve.
+* Area under Probability density curve is 1
+* P(X<9)=P(X≤9) as P(X=x)=0 for continious
+* P(a < X < b) = Integration of (f(x)) limit a to b
+* Sample distribution
+  * such as pregnancy lengths, shoe sizes, foot lengths, and other human physical characteristics exhibit these properties: symmetry indicates that the variable is just as likely to take a value a certain distance below its mean as it is to take a value that same distance above its mean
+* Bell shaped - Closer to the mean is most likely
+* Normal curve ~ Common curve ~ Natural curve  
+* mean (μ)  and standard deviation (σ)
+* Standard Deviation Rule (or the 68-95-99.7 rule)
+* Normal random variable follow normal distribution (it is obviously continous variable)
+* Quartile P(X<Q1>) and  P(X<Q3>)
+  * Std-deviation of -0.68 and +0.68 (for 50%)
+  * Std-deviation of -0.10 and +0.10 (for 10% lower and highest) a = -1.29 b = 1.29
+
+# Standard normal variable
+* z-score = (x−μ)/σ or (value - mean)/standard deviation
+* z-scores allow us to compare values of different normal random variables
+* The normal table provides probabilities that a standardized normal random variable Z would take a value less than or equal to a particular value z*.
+
+
+# Some samples
+* Length (in days) of human pregnancies is a normal random variable (X) with mean 266, standard deviation 16.
+  * 266 - 16 = 250~282, 234~298, 218~314
+  * May-15~Feb-4-Result: 265 days 

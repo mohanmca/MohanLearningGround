@@ -228,3 +228,11 @@ function downloadURI(uri) {
  console.log(result.join("\n"))
 }
 ```
+
+## dowload MIT lecture notes
+* navivate to https://ocw.mit.edu/courses/mathematics/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/lecture-notes/
+* F12 for dev-console
+```
+let links = Array.from(document.getElementsByTagName("a"))
+let lectureNotes = links.filter(link => link.href.indexOf(".pdf")!=-1).map(link => link.href)
+```
