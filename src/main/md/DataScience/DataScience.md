@@ -2,3 +2,4 @@
 * [Essential Statistics for Data Analysis using Excel](https://www.edx.org/course/essential-statistics-data-analysis-excel-3)
 * [Analyzing and Visualizing Data with Excel] (https://www.edx.org/course/analyzing-and-visualizing-data-with-excel-0)
 * [https://mlcourse.ai/](https://mlcourse.ai/)
+* [Datascience CMU](https://oli.cmu.edu/product-category/data-science-indep/)

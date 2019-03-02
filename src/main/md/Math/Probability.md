@@ -61,12 +61,14 @@
 * Normal random variable follow normal distribution (it is obviously continous variable)
 * Quartile P(X<Q1>) and  P(X<Q3>)
   * Std-deviation of -0.68 and +0.68 (for 50%)
-  * Std-deviation of -0.10 and +0.10 (for 10% lower and highest) a = -1.29 b = 1.29
+* Std-deviation of -0.10 and +0.10 (for 10% lower and highest) a = -1.29 b = 1.29
 
 # Standard normal variable
 * z-score = (x−μ)/σ or (value - mean)/standard deviation
 * z-scores allow us to compare values of different normal random variables
 * The normal table provides probabilities that a standardized normal random variable Z would take a value less than or equal to a particular value z*.
+* Quartile P(X<Q1>) and  P(X<Q3>)
+  * Std-deviation of -0.68 and +0.68 (for 50%)
 
 
 # Some samples
