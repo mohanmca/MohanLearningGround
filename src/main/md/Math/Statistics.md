@@ -126,3 +126,7 @@
 * Inferential Statistics
   * Formal testing and estimation theory
   * Based on random variation
+
+## Sampling  
+* Sample results change from sample to sample, is called sampling variability.
+* The sample mean and sample standard deviation are slightly different from the population mean and standard deviation.
