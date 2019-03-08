@@ -24,6 +24,9 @@ REVOKE type_of_permission ON database_name.table_name FROM ‘username’@‘loc
 SHOW GRANTS username;
 ```
 
+CREATE DATABASE NIKIAS CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+GRANT ALL PRIVILEGES ON NIKIAS.* TO 'euler'@'localhost';
+
 # Change root password (MySQL 8.0.14 on Windows)
 ```
 mysql -u root
