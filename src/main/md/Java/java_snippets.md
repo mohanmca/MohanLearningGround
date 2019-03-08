@@ -53,6 +53,7 @@ catch (IOException e)
 ```
 ### [Error] XML parser not in JDK
 
+```xml
 <dependency>
     <groupId>javax.xml.bind</groupId>
     <artifactId>jaxb-api</artifactId>
@@ -73,18 +74,19 @@ catch (IOException e)
     <artifactId>activation</artifactId>
     <version>1.1.1</version>
 </dependency>
-
+```
 
 ## Flow References
 * [Reactive Streams example - Java 9](https://aboullaite.me/reactive-streams-example-java-9/)
-* [Java 9 Features with Examples](https://www.journaldev.com/13121/java-9-features-with-examples)
 * [Reactive Streams In Java 9](https://www.javagists.com/reactive-streams-java-9)
 * [Publish-Subscribe mit der Flow-API in Java 9](https://blog.oio.de/2018/05/04/publish-subscribe-mit-der-flow-api-in-java-9/)
-* [Java 9 series: Concurrency Updates](https://www.voxxed.com/2016/10/java-9-series-concurrency-updates/)
-* [Java Platform, Standard Edition What’s New in Oracle JDK 9](https://docs.oracle.com/javase/9/whatsnew/toc.htm)
 * [Reactive Programming with JDK 9 Flow API](https://community.oracle.com/docs/DOC-1006738)
 * [The Essential Java 9 Feature You Probably Never Heard Of](https://blog.takipi.com/the-essential-java-9-feature-you-probably-never-heard-of/)
-* [JEP 266: More Concurrency Updates](http://openjdk.java.net/jeps/266)
 * [Reactive Streams in Java 9](https://dzone.com/articles/reactive-streams-in-java-9)
 * [Java 9 Flow API – Reactive Streams](https://grokonez.com/java/java-9/java-9-flow-api-reactive-streams)
-* [](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.html)
+* [Flow API](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.html)
+
+* [Java 9 Features with Examples](https://www.journaldev.com/13121/java-9-features-with-examples)
+* [Java 9 series: Concurrency Updates](https://www.voxxed.com/2016/10/java-9-series-concurrency-updates/)
+* [JEP 266: More Concurrency Updates](http://openjdk.java.net/jeps/266)
+* [Java Platform, Standard Edition What’s New in Oracle JDK 9](https://docs.oracle.com/javase/9/whatsnew/toc.htm)
