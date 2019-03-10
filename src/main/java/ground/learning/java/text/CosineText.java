@@ -15,12 +15,12 @@ public class CosineText {
 
 	public static void main(String[] args) {
 		System.out.println("starting");
-		Map<CharSequence, Integer> r1 = Arrays.stream(record.split(" "))
-				.collect(groupingBy(Function.identity(), summingInt(x -> 1)));
-		Map<CharSequence, Integer> r2 = Arrays.stream(duplicate_record.split(" "))
-				.collect(groupingBy(Function.identity(), summingInt(x -> 1)));
+		Map<String, Integer> r1 = Arrays.stream(record.split(" ")).collect(groupingBy(Function.identity(), summingInt(x -> 1)));
+		Map<String, Integer> r2 = Arrays.stream(duplicate_record.split(" ")).collect(groupingBy(Function.identity(), summingInt(x -> 1)));
+		Map<CharSequence, Integer> t1 = (Map<CharSequence, Integer>)(Map<?, Integer>) r1;
+		Map<CharSequence, Integer> t2 = (Map<CharSequence, Integer>)(Map<?, Integer>) r2;
 		CosineSimilarity similarity = new CosineSimilarity();
-		Object t = similarity.cosineSimilarity(r1, r2);
+		Object t = similarity.cosineSimilarity(t1, t2);
 		System.out.println(t);  
 	} 
 
