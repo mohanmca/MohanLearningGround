@@ -60,6 +60,10 @@ libraryDependencies ++= Seq(
 )
 
 libraryDependencies ++= Seq(
+  "com.jcraft" % "jsch" % "0.1.55"
+)
+
+libraryDependencies ++= Seq(
   "javax.xml.bind" % "jaxb-api" % "2.3.0",
   "javax.annotation" % "javax.annotation-api" % "1.3.2",
   "javax.el" % "javax.el-api" % "3.0.0",
