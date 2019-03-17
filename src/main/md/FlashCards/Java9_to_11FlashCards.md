@@ -3,6 +3,7 @@
 var list = new ArrayList<String>();  // infers ArrayList<String>
 var stream = list.stream();          // infers Stream<String>
 ```
+----
 
 ## Additional local-variable syntax for lambda parameters
 ```java
@@ -10,7 +11,7 @@ list.stream()
       .map((@Notnull var s) -> s.toLowerCase())
       .collect(Collectors.toList());
 ```
-
+----
 ## What are the changes to HTTP Client
 ```java
 // Additional package java.net.http
@@ -19,12 +20,14 @@ java.net.http.HttpRequest
 java.net.http.HttpResponse
 java.net.http.WebSocket
 ```
+----
 
 ## How to negate predicate in Java-11
 ```
 lines.stream()
       .filter(Predicate.not(String::isBlank))
 ```
+
 ----
 
 ## What are sequence of https protocol?
