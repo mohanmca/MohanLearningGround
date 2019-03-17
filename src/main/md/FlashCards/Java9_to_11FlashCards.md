@@ -25,6 +25,7 @@ java.net.http.WebSocket
 lines.stream()
       .filter(Predicate.not(String::isBlank))
 ```
+----
 
 ## What are sequence of https protocol?
 * Browser requests a secure page with https url
@@ -38,7 +39,11 @@ lines.stream()
 * WebServer sends page encrypted with the Symmetric key (of the client)
 * Browser decrypts the page using symmetric key and displays the content
 
-## How to configure passwordless ssh on the server?
+----
+
+## How to configure passwordless ssh on the server? 
+
+
 1. Create keys on the client machine
    * ssh-keygen -t rsa
    * ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub
@@ -47,3 +52,5 @@ lines.stream()
   * Append the contents of id_rsa.pub to ServerHome/.ssh/authorized_keys
   * cat id_rsa_of_client.pub >> ServerHome/.ssh/authorized_keys
   * File permission should be 0600 ServerHome/.ssh/authorized_keys  
+
+----
