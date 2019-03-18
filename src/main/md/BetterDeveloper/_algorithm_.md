@@ -4,11 +4,11 @@
 *  Bittorrent protocol. The elements of the protocol are all fairly easy to understand, but it's gorgeous to see how elegantly it solved a social problem
   * http://www.bittorrent.org/beps/bep_0003.html
   * https://wiki.theory.org/index.php/BitTorrentSpecification
-* Diffie–Hellman
+* Diffieï¿½Hellman
   * https://www.youtube.com/watch?v=YEBfamv-_do
   * Learning via paint analogy is great
 * Tic-Tac-Toe - traversal  
-  *  By indexing the grid using values from a 3x3 magic square[1]. In a magic square, every row, column, and diagonal has the same sum. So checking for a winner was just checking if a player’s three moves added up to 15. Finding a space that would make the computer win, or block the human opponent from winning, was subtracting two moves from 15 and checking if that spot was available.
+  *  By indexing the grid using values from a 3x3 magic square[1]. In a magic square, every row, column, and diagonal has the same sum. So checking for a winner was just checking if a playerï¿½s three moves added up to 15. Finding a space that would make the computer win, or block the human opponent from winning, was subtracting two moves from 15 and checking if that spot was available.
 * Fourier transform
   * The FFT algorithm is perhaps the most elegant and useful work of the 20th century.
 * The Gilbert-Johnson-Keerthi convex shape intersection algorithm.   
@@ -29,6 +29,7 @@
 * RAFT -
 * Hyper Log Log
 * Hash Cash - https://bitcoinmagazine.com/articles/genesis-files-hashcash-or-how-adam-back-designed-bitcoins-motor-block/
+* [Fisherâ€“Yates - Random list shuffle algorithm](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
 
 # References
 * https://news.ycombinator.com/item?id=18236396
