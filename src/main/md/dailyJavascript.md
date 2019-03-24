@@ -79,6 +79,7 @@ addScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.1/lodash.js')
 _.filter([1,2,3], x => x%2 == 0)
 addScript('https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.4.2/Rx.js')
 Rx.Observable.range(1,3)
+Rx.Observable.range(0, 10).scan((x,y) => x+y).subscribe(x => console.log(x))
 ```
 
 ```Javascript
