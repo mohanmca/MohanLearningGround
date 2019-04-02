@@ -13,6 +13,34 @@ mvn exec:java -Dexec.mainClass="com.nikias.App"
 ## mvnDebug is handy.
 * set MAVEN_DEBUG_OPTS="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000"
 
+## Configuring resources directory
+```xml
+ <build>
+   <resources>
+     <resource>
+       <directory>[your folder here]</directory>
+     </resource>
+   </resources>
+     <resource>
+       <directory>resource3</directory>
+     </resource>
+</build>
+```
+
+## Configuring test-scrope and program
+```xml
+        <configuration>
+          <executable>java</executable>
+          <arguments>
+            <argument>-classpath</argument>
+            <argument>--module-path</argument>
+            <classpath/>
+            <argument>com.example.Main</argument>
+          </arguments>
+          <classpathScope>test</classpathScope>          
+        </configuration>
+```
+
 ## References
 * http://maven.apache.org/maven-1.x/plugins/test/properties.html
 * [Cocurrent JUnit test runner for Parameters](http://stackoverflow.com/questions/10141648/concurrent-junit-tests-with-parameters)
