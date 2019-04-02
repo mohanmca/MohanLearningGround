@@ -5,6 +5,9 @@
 * Code: The Hidden Language of Computer Hardware and Software
 * Understanding Computation - From Simple Machines to Impossible Programs
 
+# Communication
+* Marshall Rosenberg - https://www.amazon.co.uk/Nonviolent-Communication-Language-Marshall-Rosenberg/dp/1892005034
+
 # Math series
 * The Signal and the Noise: Why So Many Predictions Fail--but Some Don't (Statistics)
 * Everybody-Lies-Internet-About-Really
