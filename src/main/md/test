@@ -1,8 +1,0 @@
-/usr/lib/jvm/java-8-openjdk-amd64
-647a064977544a64a50513884f2487c5
-*  http://(8dc307eb31d1 or 127.0.0.1):8888/?token=42ff441f8560fafd606b5801aa2b76c4fc181602f16c080b
-
-
-* [Deep	Dive	into Google	Cloud	Functions](https://d3v6gwebjc7bm7.cloudfront.net/event/16/51/49/9/rt/1/documents/resourceList1525355080096/2018livelessonsgcfrominirani1525355090590.pdf)
-
-* docker run -p 8888:8888 jupyter/scipy-notebook:17aba6048f44
