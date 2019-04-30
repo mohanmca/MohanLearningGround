@@ -147,5 +147,6 @@
 
 
 ## References
+* [A visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
 * [What is standarscaler](http://benalexkeen.com/feature-scaling-with-scikit-learn/)
 * [Euclidean norm or Square Norm](https://en.wikipedia.org/wiki/Norm_(mathematics)#Euclidean_norm)
