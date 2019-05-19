@@ -1,0 +1,113 @@
+<html>
+  <head> </head>
+  <body>
+    <!-- <svg
+      version="1.1"
+      baseProfile="full"
+      width="300"
+      height="200"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="100%" height="100%" fill="orange" />
+      <circle cx="150" cy="100" r="90" fill="blue" />
+      <circle cx="150" cy="100" r="45" fill="green" />
+    </svg> -->
+
+    <div id="one"></div>
+    <div id="two"></div>
+    <div
+      id="circles"
+      style="border-style:solid; width: 300px; height: 300px;"
+    ></div>
+    <div
+      id="spaced_circles"
+      style="border-color: blueviolet; border-style:solid; width: 300px; height: 300px;"
+    ></div>
+    <div
+      id="ellipse"
+      style="border-color: chartreuse; border-style:solid; width: 300px; height: 300px;"
+    ></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.26.1/ramda.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.js"></script>
+    <script>
+      var theData = [1, 2, 3];
+      var p = d3
+        .select("#one")
+        .selectAll("p")
+        .data(theData)
+        .enter()
+        .append("p")
+        .text("hello ");
+
+      var p2 = d3
+        .select("#two")
+        .selectAll("p")
+        .data(theData)
+        .enter()
+        .append("p")
+        .text(d => d);
+
+      var circleRadii = [40, 20, 10];
+
+      var svgContainer = d3
+        .select("#circles")
+        .append("svg")
+        .attr("id", "svg2")
+        .attr("width", 300)
+        .attr("height", 300);
+
+      var circles = svgContainer
+        .selectAll("circle")
+        .data(circleRadii)
+        .enter()
+        .append("circle");
+
+      const chooseColor = d => {
+        if (d == 40) return "green";
+        else if (d == 20) return "orange";
+        else return "purple";
+      };
+
+      var circleAttributes = circles
+        .attr("cx", 100)
+        .attr("cy", 100)
+        .attr("r", d => d)
+        .style("fill", chooseColor);
+
+      var circleCenter = [20, 70, 120];
+      var svgContainer2 = d3
+        .select("#spaced_circles")
+        .append("svg")
+        .attr("id", "svg2")
+        .attr("width", 300)
+        .attr("height", 300);
+
+      var circles2 = svgContainer2
+        .selectAll("circle")
+        .data(circleCenter)
+        .enter()
+        .append("circle");
+
+      var circleAttributes2 = circles2
+        .attr("cx", d => d)
+        .attr("cy", d => d)
+        .attr("r", 20)
+        .style("fill", chooseColor);
+
+      d3.select("#ellipse")
+        .append("svg")
+        .attr("id", "svg3")
+        .attr("width", 300)
+        .attr("height", 300)
+        .data([30])
+        .enter()
+        .append("ellipse")
+        .attr("cx", 100)
+        .attr("cy", 100)
+        .attr("rx", 20)
+        .attr("ry", 10)
+        .style("fill", "yellow");
+
+    </script>
+  </body>
+</html>
