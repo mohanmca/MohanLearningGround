@@ -13,6 +13,14 @@ summary(dataframe)
 ```
 
 ```
+## Filter
+flicker[flicker$color == "brown",]
+
+## filter and project only one column
+flicker[flicker$color == "brown",]$cff
+```
+
+```
 a <- load("C:/Users/nikia/OneDrive/Math/Statistics/nightlight.RData")
 head(nightlight)
 tail(nightlight)
