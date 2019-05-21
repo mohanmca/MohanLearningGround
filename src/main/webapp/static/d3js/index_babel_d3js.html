@@ -96,18 +96,13 @@
 
       d3.select("#ellipse")
         .append("svg")
-        .attr("id", "svg3")
-        .attr("width", 300)
-        .attr("height", 300)
-        .data([30])
-        .enter()
         .append("ellipse")
+        .attr("id", "eli")
         .attr("cx", 100)
         .attr("cy", 100)
         .attr("rx", 20)
         .attr("ry", 10)
-        .style("fill", "yellow");
-
+        .style("fill", "red");
     </script>
   </body>
 </html>
