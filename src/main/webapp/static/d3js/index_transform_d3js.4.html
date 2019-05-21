@@ -1,0 +1,85 @@
+<html>
+  <head> </head>
+  <body>
+    <!-- <svg
+      version="1.1"
+      baseProfile="full"
+      width="300"
+      height="200"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="100%" height="100%" fill="orange" />
+      <circle cx="150" cy="100" r="90" fill="blue" />
+      <circle cx="150" cy="100" r="45" fill="green" />
+    </svg> -->
+
+    <div
+      id="line"
+      style="border-style:solid; width: 400px; height: 400px;"
+    ></div>
+    <!-- <div id="two"></div>
+    <div
+      id="circles"
+      style="border-style:solid; width: 300px; height: 300px;"
+    ></div>
+    <div
+      id="spaced_circles"
+      style="border-color: blueviolet; border-style:solid; width: 300px; height: 300px;"
+    ></div>
+    <div
+      id="ellipse"
+      style="border-color: chartreuse; border-style:solid; width: 300px; height: 300px;"
+    ></div> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.26.1/ramda.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.js"></script>
+    <script>
+      var circleData = [
+        { cx: 20, cy: 20, radius: 20, color: "green" },
+        { cx: 70, cy: 70, radius: 20, color: "purple" }
+      ];
+
+      var rectangleData = [
+        { rx: 110, ry: 110, height: 30, width: 30, color: "blue" },
+        { rx: 160, ry: 160, height: 30, width: 30, color: "red" }
+      ];
+
+      var svgContainer = d3
+        .select("#line")
+        .append("svg")
+        .attr("width", 200)
+        .attr("height", 200);
+
+      //We add the SVG Group Element Transform Here
+      var circleGroup = svgContainer
+        .append("g")
+        .attr("transform", "translate(80,0)");
+
+      //Circles added to the circleGroup
+      var circles = circleGroup
+        .selectAll("circle")
+        .data(circleData)
+        .enter()
+        .append("circle");
+
+      var circleAttributes = circles
+        .attr("cx", d => d.cx)
+        .attr("cy", d => d.cy)
+        .attr("r", d => d.radius)
+        .style("fill", d => d.color);
+
+      //Rectangles added to the svgContainer
+      var rectangles = svgContainer
+        .selectAll("rect")
+        .data(rectangleData)
+        .enter()
+        .append("rect");
+
+      var rectangleAttributes = rectangles
+        .attr("x", d => d.rx)
+        .attr("y", d => d.ry)
+        .attr("height", d => d.height)
+        .attr("width", d =>d.width)
+        .style("fill", d => d.color);
+    </script>
+  </body>
+</html>

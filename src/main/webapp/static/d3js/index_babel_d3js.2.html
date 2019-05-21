@@ -13,8 +13,11 @@
       <circle cx="150" cy="100" r="45" fill="green" />
     </svg> -->
 
-    <div id="one"></div>
-    <div id="two"></div>
+    <div
+      id="line"
+      style="border-style:solid; width: 400px; height: 400px;"
+    ></div>
+    <!-- <div id="two"></div>
     <div
       id="circles"
       style="border-style:solid; width: 300px; height: 300px;"
@@ -26,24 +29,34 @@
     <div
       id="ellipse"
       style="border-color: chartreuse; border-style:solid; width: 300px; height: 300px;"
-    ></div>
+    ></div> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.26.1/ramda.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.js"></script>
     <script>
-
+      var svgContainer = d3
+        .select("#line")
+        .append("svg")
+        .attr("id", "svg")
+        .attr("width", 400)
+        .attr("height", 400)
+        .append("line")
+        .attr("id", "line1")
+        .attr("x1", 100)
+        .attr("y1", 100)
+        .attr("x2", 150)
+        .attr("y2", 150)
+        .style("fill", "yellow")
+        .attr("stroke-wdith", 2)
+        .attr("stroke", "black");
 
       var svgContainer = d3
-        .select("#circles")
-        .append("svg")
-        .append("ellipse")
-        .attr("cx", 100)
-        .attr("cy", 100)
-        .attr("rx", 20)
-        .attr("ry", 10)
-        .style("fill", "yellow");
-
-   
-
+        .select("#svg")
+        .append("polyline")
+        .attr("id", "polyline1")
+        .attr("points", "05,30 15,30 25,45 35,45 45,55")
+        .style("fill", "yellow")
+        .attr("stroke-wdith", 2)
+        .attr("stroke", "black");
     </script>
   </body>
 </html>
