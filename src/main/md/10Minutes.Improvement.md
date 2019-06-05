@@ -1,9 +1,10 @@
 # Technology
-
+* Create 10 flash card
+* Recollect 10 flast card
+* Find source to create 10 flash card
 * Read 100 lines of code
 * Read https://github.com/trending
 * Find project that has worthy 100 lines of code for next code reading
-* Watch some youtube tech talk video and take notes
 * Recollect or memorize 10 shortcuts
   * Eclipse
   * VSCode
@@ -24,6 +25,8 @@
 * Browse useful slides from slideshare
  * https://www.slideshare.net/larsga/nosql-and-einsteins-theory-of-relativity
  * https://www.slideshare.net/larsga/deduplication
+* Watch 3Blue1Brown Math vidoes
+* Watch some youtube tech talk video and take notes
  
  # Architecture
  https://github.com/davideuler/architecture.of.internet-product
