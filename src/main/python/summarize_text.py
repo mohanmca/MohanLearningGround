@@ -10,7 +10,7 @@ import urllib.request
 
 
 #fetching the content from the URL
-fetched_data = urllib.request.urlopen('https://en.wikipedia.org/wiki/Stock_market')
+fetched_data = urllib.request.urlopen('https://en.wikipedia.org/wiki/World_War_II')
 
 article_read = fetched_data.read()
 
