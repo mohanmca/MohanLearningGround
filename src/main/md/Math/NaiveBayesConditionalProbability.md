@@ -75,3 +75,6 @@ of the most confusing topics in probability at any level of study.)
 # Youtube math tricks
 * https://www.youtube.com/watch?v=Rgw9Ik5ZGaY
 * Channel name - tecmath
+
+
+# [Logistic Regression from Bayes' Theorem and Linear regression](https://www.countbayesie.com/blog/2019/6/12/logistic-regression-from-bayes-theorem)
