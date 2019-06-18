@@ -30,3 +30,12 @@ docker rmi $(docker images -f dangling=true -q)
 docker-compose -f src/main/docker/mongodb.yml up
 docker run --name mongo -d mongo:3.4.18
 ```
+
+
+## docker image build
+```
+docker image build -t imagename:version .
+```
+
+## $Reference
+* [Docker samples](https://docs.docker.com/samples/)
