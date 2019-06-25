@@ -12,3 +12,6 @@ kubectl version --client
 kubectl config current-context
 kubectl get nodes
 ```
+
+* https://instruqt.com/public/tracks/deploying-an-app-on-kubernetes/
+* https://www.katacoda.com/courses/kubernetes
