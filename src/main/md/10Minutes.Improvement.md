@@ -28,6 +28,16 @@
 * Watch 3Blue1Brown Math vidoes
 * Watch some youtube tech talk video and take notes
  
+## Tomy's suggestion
+1. Consolidate & internalize your notes (e.g. vocab list)
+1. Write something in your gratitude journal or pray to give thanks if you're religious
+1. Organize your bookmarks 
+1. Plank or push up
+1. Read your Pocket articles
+1. Delete unnecessary photos in your phone (I find it theurapeutic)
+1. View nice properties in 99.co (it motivates me!)
+1. Watch your youtube/ pluralsight "Watch later" list
+
  # Architecture
  https://github.com/davideuler/architecture.of.internet-product
  
