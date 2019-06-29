@@ -1,3 +1,6 @@
+# About me
+* My enthusiasm far exceeds my talent!
+
 # Going fast
 * If you want to go fast, go alone; if you want to go far; go togther.
 * If everything seems under control you�re just not going fast enough. 
