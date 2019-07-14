@@ -35,9 +35,14 @@ Why Association works?
 * Exaggerate the number of items (in millions)
 * Picturing one item instead of other (bottle made of paper)
 ----
+## Peg method
+
+----
 ## Memory Quotes
 * True art of memory is attention
 ----
 # Reference
 * (Ask HN: How do you remember what you read?)
 * [How to develop super power memory](https://archive.org/details/HowToDevelopASUPERPOWERMEMORYHarryLorayne/page/n7)
+* [How To Develop A Super Power Memory](http://www.ownways.com/how_to_develop_a_super_power_memory/Contents.html)
+*[Super memory it can be yours](https://issuu.com/snehalwankhede/docs/super-memory-it-can-be-yours-)

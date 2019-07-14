@@ -68,3 +68,6 @@
 * Thinking in Bets - Annie Duke  
 * How will you measure your Life - Clayton M/Christensen
 * Stress Proof - Mithu Storoni
+
+## Ebooks
+* [The subtle art of not giving fuck](https://issuu.com/magiimaa/docs/_mark_hanson__the_subtle_art_of_not)
