@@ -38,10 +38,17 @@
 1. View nice properties in 99.co (it motivates me!)
 1. Watch your youtube/ pluralsight "Watch later" list
 
- # Architecture
- https://github.com/davideuler/architecture.of.internet-product
+## 10 minutes - Manage energy
+* What drains your energy?
+* What replenishes your energy?
+  * Being in nature? reading a good book?
+* Make an action plan for energy?  
+
  
- # Mind
- * Watch video about stoicism
- * Watch video about buddhism
+# Mind
+* Watch video about stoicism
+* Watch video about buddhism
  
+# Reference
+# [Architecture](https://github.com/davideuler/architecture.of.internet-product)
+# [10 minutes]((https://www.quora.com/What-can-I-do-for-10-minutes-every-day-that-will-change-my-life)
