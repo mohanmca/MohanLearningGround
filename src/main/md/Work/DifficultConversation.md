@@ -106,8 +106,19 @@
   * State the underlying need that stops you from saying ‘yes’.
 ## Effective communication consequences
 * Purpose is to protect our needs, not to punish the other person.
-* 
-
+----
+##Key points
+1. If you understand the subconversations that exist within a difficult conversation, you will be able to manage the issues more effectively.
+1. Never assume that you understand someone else’s motives.
+1. Instead of trying to assign blame, consider how harnessing the associated anger will help you prevent a bad outcome in future.
+1. Learn to see the “third story,” the impartial account, rather than fighting over whose story is true.
+1. Venting your feelings is not useful.
+1. Describing them carefully can be.
+1. Don’t try to control other people’s responses.
+1. You aren’t perfect and neither is anyone else.
+1. The best way to get someone to listen to you is to listen to them first.
+1. Reframing a difficult conversation is a great way to defuse it.
+1. Pick your difficult conversations carefully. You won’t live long enough to have them all.
 ----
 ## Reference
 [Difficult conversation guide](https://medium.dave-bailey.com/the-essential-guide-to-difficult-conversations-41f736e63ccf)

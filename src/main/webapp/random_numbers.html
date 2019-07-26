@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Random</title>
+  </head>
+  <body>
+    <div id="number">
+      <br />
+    </div>
+    <div id="number"></div>
+    <div id="number">
+      <br />
+    </div>
+    <input type="button" value="Generate" onclick="nextNumber();" />
+    <script>
+      function nextNumber() {
+        let element = document.getElementById("number");
+        let number = Math.floor(Math.random() * 101);
+        element.innerText = number;
+      }
+    </script>
+  </body>
+</html>
