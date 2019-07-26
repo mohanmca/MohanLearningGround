@@ -23,3 +23,9 @@
   * Observing friends who are scared about their future (few I considered as leaders)
   * Observing people who lost jobs, and judging why they might have lost it
 
+# What is the thing to abstain or reduce from?
+  * Reddit
+  * Whatsapp
+  * Twitter/instagram/fb/amzn/good-reads
+  * Youtube
+  * Browser (reduce)
