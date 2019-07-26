@@ -9,6 +9,7 @@
 # Are there any guiding principle?
 * On which you invest would grow!
 * Anything optional, say no!
+* Adopt the boredom, boredom is not part of life, it is life!
 * Chase the pain
   * Test if will-power theory is true, (Would abstaining coffee would drain my day?)
 
