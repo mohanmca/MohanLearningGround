@@ -3,6 +3,10 @@
 
 ```bash
 #!/bin/bash
+# to run docker container -p host_port:container_port.. http://localhost:host_port/
+docker container run -p 9999:8888 YOUR_DOCKER_ID/myhello
+# stop all containers
+docker stop $(docker ps -aq)
 # Delete all containers
 docker rm $(docker ps -a -q)
 # Delete all images
