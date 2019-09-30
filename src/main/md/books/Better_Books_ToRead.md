@@ -1,9 +1,16 @@
 # Priority
-* [Elasticsearch: The Definitive Guide] (https://www.safaribooksonline.com/library/view/elasticsearch-the-definitive/9781449358532/)
 * [Event-Driven Microservices - Chris Richardson] (https://www.safaribooksonline.com/videos/event-driven-microservices/9781491944165)
-* Databases DeMYSTiFieD, 2nd Edition by Andy Oppel
 * Code: The Hidden Language of Computer Hardware and Software
 * Understanding Computation - From Simple Machines to Impossible Programs
+* Building Microservices: Designing Fine-Grained Systems
+* SRE book
+* Cassandra: The Definitive Guide: Distributed Data at Web Scale 2nd Edition
+* Fluent Python
+
+
+
+## Done
+* [Elasticsearch: The Definitive Guide] (https://www.safaribooksonline.com/library/view/elasticsearch-the-definitive/9781449358532/)
 
 # Communication
 * Marshall Rosenberg - https://www.amazon.co.uk/Nonviolent-Communication-Language-Marshall-Rosenberg/dp/1892005034
