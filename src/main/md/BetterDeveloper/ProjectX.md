@@ -6,6 +6,11 @@
 * HackerRank - practice
 
 
+# Datastrcutre
+* https://www.hackerrank.com/domains/data-structures
+* https://www.hackerrank.com/domains/algorithms
+* https://www.hackerrank.com/interview/interview-preparation-kit
+
 ## Training
 * [System Desgin](https://www.educative.io/courses/grokking-the-system-design-interview)
 * [Code Interview](Cracking the Coding Interview)
