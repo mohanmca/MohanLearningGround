@@ -61,6 +61,19 @@ docker run --name some-cassandra -p 9042:9042 -p 7000:7000 --network host -d cas
 docker exec -it some-cassandra sh
 ```
 
+## Docker DSE Cassandra
+
+```bsh
+docker pull datastax/dse-server
+docker pull datastax/dse-opscenter
+docker pull datastax/dse-studio
+# Start opscenter first and later link it dse-server
+docker run -e DS_LICENSE=accept -9 8888:8888 -name my-opscenter -d datastax/dse-opscenter
+docker run -e DS_LICENSE=accept -9 8888:8888 --link my-opscenter:opscenter -name my-dse -d datastax/dse-server
+docker run -e DS_LICENSE=accept -9 9091:9091 --link my-dse -name my-studio -d datastax/dse-studio
+docker exec -it my-dse cqlsh ip_address
+```
+
 ## If docker command is not connecting to docker-machine
 
 * Pay attention to environment variables
