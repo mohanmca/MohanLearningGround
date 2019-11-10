@@ -15,6 +15,8 @@ docker rmi $(docker images -q)
 docker run --restart unless-stopped --name mongo -d -p 0.0.0.0:27017:27017 mongo:3.4.18
 # Start a mysql
 docker run --restart unless-stopped --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0.14
+# inspect image
+docker inspect $image_id_cc126d830f47
 ```
 
 
@@ -89,6 +91,30 @@ docker exec -it my-dse cqlsh ip_address
 ```bat
 docker-machine env default
 @FOR /f "tokens=*" %i IN ('docker-machine env default') DO @%i
+```
+
+## docker network
+
+```bash
+$docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+713e294d5638        bridge              bridge              local
+34d058f03720        host                host                local
+
+docker pull alpine
+docker run -itd -network 713e294d5638 --name=alpine1 alpine
+docker run -itd -network 713e294d5638 --name=alpine2 alpine
+docker network inspect 713e294d5638 --format '{{ .Containers }}'
+docker exec -it alpine1 ping 172.17.0.3
+#Above command worked
+$ docker exec -it alpine1 ping alpine2
+ping: bad address 'alpine2'
+
+## Creating custom network (to ping using container-name)
+docker network create --driver=bridge javahome
+docker run -itd --network javahome --name=alpine1 alpine
+docker run -itd --network javahome --name=alpine2 alpine
+docker exec -it alpine1 ping alpine2
 ```
 
 ## To connect to docker service from Windows
