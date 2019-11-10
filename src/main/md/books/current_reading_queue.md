@@ -9,3 +9,4 @@
 9. Refactoring: Improving the Design of Existing Code, Second Edition
 10. https://www.goodreads.com/en/book/show/6251150-what-intelligence-tests-miss
 11. https://www.goodreads.com/en/book/show/40647884-making-up-your-own-mind
+12. https://www.goodreads.com/book/show/17286670-scarcity

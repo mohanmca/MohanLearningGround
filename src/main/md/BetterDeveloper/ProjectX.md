@@ -6,6 +6,15 @@
 * HackerRank - practice
 
 
+# Alogirthm Courses
+
+* [Graph Theory and Graph Algorithms](https://nptel.ac.in/courses/128/106/128106008/)
+* [Advanced Graph Theory (Video)](https://nptel.ac.in/courses/106/104/106104170/)
+* [On Graph Theory and Graph Algorithms](https://nptel.ac.in/courses/128/106/128106001/)
+* [Programming, Data Structures and Algorithms using Python](https://nptel.ac.in/courses/106/106/106106145/)
+* [Programming and Data structures](https://nptel.ac.in/courses/106/106/106106130/)
+
+
 # Datastrcutre
 * https://www.hackerrank.com/domains/data-structures
 * https://www.hackerrank.com/domains/algorithms
@@ -19,3 +28,5 @@
 
 * [Technical Interview Preparation Checklist](https://itnext.io/technical-interview-preparation-checklist-b000125f1535)
 * [Tech interview @ Amazon](https://www.byte-by-byte.com/amazon-interview/)
+
+
