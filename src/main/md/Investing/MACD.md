@@ -56,4 +56,7 @@
 
 * Use this in combination with other banded indicator such as RSI/CCI/Stochaistic
 * That would help to find overbought or oversold indication
-* 
+
+
+## Reference
+* [Mark Ledermann - Technical Analysis Indicator MACD part three](https://www.youtube.com/watch?v=4ybk72R9_90)
