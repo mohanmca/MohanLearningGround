@@ -14,7 +14,7 @@ docker rmi $(docker images -q)
 # Start a mongodb
 docker run --restart unless-stopped --name mongo -d -p 0.0.0.0:27017:27017 mongo:3.4.18
 # Start a mysql
-docker run --restart unless-stopped --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0.14
+docker run --restart unless-stopped --name mysql -e MYSQL_ROOT_PASSWORD=root -p 0.0.0.0:31306:3306 -d mysql:8.0.14
 # inspect image
 docker inspect $image_id_cc126d830f47
 ```
