@@ -120,6 +120,7 @@ docker exec -it alpine1 ping alpine2
 ## To connect to docker service from Windows
 * Enable NAT and port-warding
 * Add port forwarding like 7042 without host-ip and guest-ip
+* docker-machine ip (use output of this ip to connect from the application)
 
 ## $Reference
 * [Docker samples](https://docs.docker.com/samples/)
