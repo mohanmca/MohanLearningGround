@@ -1,3 +1,7 @@
 * [How to call a service from Main application calls Spring Boot?](https://stackoverflow.com/questions/49698963/how-to-call-a-service-from-main-application-calls-spring-boot)
 * [How to Autowire conditionally in spring boot?](https://stackoverflow.com/questions/57656119/how-to-autowire-conditionally-in-spring-boot)
 * [How to Manage Multiple Spring Boot in the same project](https://stackoverflow.com/questions/39680990/how-to-manage-multiple-spring-boot-in-the-same-project)
+* [How to run spring-boot as a client application?](https://stackoverflow.com/questions/39205430/how-to-run-spring-boot-as-a-client-application/39206323#39206323)
+* [spring boot - launch twice with different ports](https://stackoverflow.com/questions/39494633/spring-boot-specify-port-at-the-mapping-level/39496586#39496586)
+* [https://stackoverflow.com/questions/26105061/spring-boot-without-the-web-server](https://stackoverflow.com/questions/26105061/spring-boot-without-the-web-server)
+* [Spring Boot File Upload / Download with JPA, Hibernate, and MySQL database](https://www.callicoder.com/spring-boot-file-upload-download-jpa-hibernate-mysql-database-example/)
