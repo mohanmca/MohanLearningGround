@@ -104,6 +104,26 @@ exit;  (Another parallel session - stops)
 mysqladmin shutdown 
 net stop mysql 
 ```
+
+# JDBC configuration to useSSL
+clientCertificateKeyStoreUrl=file:path_to_truststore_file 
+clientCertificateKeyStorePassword=mypassword
+-Djavax.net.ssl.trustStore=path_to_truststore_file 
+-Djavax.net.ssl.trustStorePassword=mypassword
+System.setProperty("javax.net.ssl.trustStore","path_to_truststore_file"); 
+System.setProperty("javax.net.ssl.trustStorePassword","mypassword");
+
+jdbc:mysql://example.com:3306/MYDB?verifyServerCertificate=true&useSSL=true&requireSSL=true&clientCertificateKeyStoreUrl=file:cert/keystore.jks&clientCertificateKeyStorePassword=123456&trustCertificateKeyStoreUrl=file:cert/truststore.jks&trustCertificateKeyStorePassword=123456
+
+verifyServerCertificate=true
+useSSL=true
+requireSSL=true
+clientCertificateKeyStoreUrl=file:cert/keystore.jks
+clientCertificateKeyStorePassword=123456
+trustCertificateKeyStoreUrl=file:cert/truststore.jks
+trustCertificateKeyStorePassword=123456
+
+#[JDBC UseSSL](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-using-ssl.html)
   
 # Refernces
 * [Mysql manual] (http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm)
