@@ -152,6 +152,9 @@ http://localhost:9200/_xpack?categories=build,features
 * BOUNCING RESULTS - If two scores are same, two shards can list in two different order, prefer to use same shards to avoid surprise
 * The timeout parameter tells the coordinating node how long it should wait before giving up and just returning the results that it already has.  
 
+## Default ports
+* Kibana - http://localhost:5601/app/kibana#/home?_g=()
+* ElasticSearch - http://127.0.0.1:9200/_search
 
 # Plugins
 bin/elasticsearch-plugin install http://some.domain/path/to/plugin.zip
