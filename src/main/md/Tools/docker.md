@@ -76,6 +76,11 @@ docker run -e DS_LICENSE=accept -9 9091:9091 --link my-dse -name my-studio -d da
 docker exec -it my-dse cqlsh ip_address
 ```
 
+### Docker PGSQL
+```
+docker run --name postgres -e POSTGRES_PASSWORD=pgSecretProd26 -d -p 5432:5432 postgres
+```
+
 ## If docker command is not connecting to docker-machine
 
 * Pay attention to environment variables
