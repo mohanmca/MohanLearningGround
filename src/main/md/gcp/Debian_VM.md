@@ -2,6 +2,7 @@
 sudo passwd //TO: Change root password
 sudo apt-get update
 sudo apt-get install default-jdk
+sudo apt-get install openjdk-11-jdk
 sudo apt-get install software-properties-common
 sudo add-apt-repository "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main"
 sudo apt-get update
@@ -15,6 +16,7 @@ ls -ltar /etc/alternatives/java
 
 ```bash
 sudo snap install docker
+docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:6.8.6
 ```
 
 ```bash
