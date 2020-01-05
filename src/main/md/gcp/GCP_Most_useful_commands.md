@@ -12,5 +12,8 @@ gcloud compute --project=qwiklabs-gcp-01-ecced1382d7b firewall-rules create defa
 gcloud compute --project=qwiklabs-gcp-01-ecced1382d7b firewall-rules create default-allow-https --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:443 --source-ranges=0.0.0.0/0 --target-tags=https-server
 
 gcloud compute ssh instance-1
+
+gcloud compute --project=gcp-nikias-data-search firewall-rules create tomcat --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:8080 --source-ranges=0.0.0.0/0 --target-tags=tomcat
+
 ```
 
