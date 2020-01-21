@@ -40,6 +40,11 @@ docker run --name mongo -d mongo:3.4.18
 ```bash
 docker run --name some-cassandra -p 9042:9042 -p 7000:7000 --network host -d cassandra:latest
 ```
+## docker image elasticsearch
+```bash
+docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:6.8.6
+docker run -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" amazon/opendistro-for-elasticsearch:1.3.0
+```
 
 ## docker image build
 ```bash
