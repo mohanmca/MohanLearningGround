@@ -17,6 +17,8 @@ docker run --restart unless-stopped --name mongo -d -p 0.0.0.0:27017:27017 mongo
 docker run --restart unless-stopped --name mysql -e MYSQL_ROOT_PASSWORD=root -p 0.0.0.0:31306:3306 -d mysql:8.0.14
 # inspect image
 docker inspect $image_id_cc126d830f47
+# Bash as deamon process
+docker run -it -d -p 8000:8000 -p 8002:8002 busybox bin/bash
 ```
 
 
@@ -25,6 +27,36 @@ docker inspect $image_id_cc126d830f47
 docker rm $(docker ps -q -f status=exited)
 docker images | grep "pattern" | awk '{print $1}' | xargs docker rm
 ```
+
+# Docker (container using daemon process) for mvn remote debugging
+
+```bash
+docker pull maven:3.6.3-jdk-8
+docker run -it -d -p 8000:8000 -p 8002:8002  maven:3.6.3-jdk-8 bin/bash
+```
+
+# Docker Scala JDK remote debug, Scala, sbt and ammonite
+
+```bash
+sh -c '(echo "#!/usr/bin/env sh" && curl -L https://github.com/lihaoyi/Ammonite/releases/download/2.0.4/2.13-2.0.4) > /usr/local/bin/amm && chmod +x /usr/local/bin/amm' && amm
+echo "deb https://dl.bintray.com/sbt/debian /" |  tee -a /etc/apt/sources.list.d/sbt.list
+curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | apt-key add
+apt-get update
+apt-get install sbt
+
+apt-get remove scala-library scala
+wget www.scala-lang.org/files/archive/scala-2.11.8.deb
+dpkg -i scala-2.11.8.deb
+
+curl -L -o sbt.deb http://dl.bintray.com/sbt/debian/sbt-0.13.15.deb
+dpkg -i sbt.deb
+apt-get update
+apt-get install sbt
+
+mvn -Dmaven.surefire.debug test
+mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000 -Xnoagent -Djava.compiler=NONE" test
+```
+
 
 # Delete All Dangling Images
 ```shell
