@@ -127,16 +127,32 @@ console.log(links.join("\n"))
 }
 ```
 
-
+ ### Format all the json files in a directory
 ```Javascript
 {
+let files = fs.readdirSync("c:/git")
+files.forEach(f => {
+let content = fs.readFileSync(fs);
+let object = JSON.parse(content);
+fs.writeFileSync(f, JSON.stringify(object, null, 2));
+})
+}
+```
+
+
+ ```Javascript
+ {
     let transcript = [...document.getElementsByClassName("ytd-transcript-renderer")].filter(element => element.id == "body")[0].innerText
  let result = transcript.split("\n").filter(text => text.indexOf(":") == -1).filter(text => text.toLocaleLowerCase().indexOf("music") == -1)
  console.log(result.join("\n"))
 }
-```
+ ```
+
 
  */
+
+
+
 
 let dailyJs = {
   hTableToJson,
