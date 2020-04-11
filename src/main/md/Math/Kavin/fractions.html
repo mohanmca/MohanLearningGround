@@ -86,7 +86,9 @@ function  draw_circle(fraction, n) {
   let x = 100+n*3*radius;
   let y = radius * 1.5
 	ctx.beginPath();
+  ctx.moveTo(x,y);
 	ctx.arc(x, y, radius, 0, 2 * degress * Math.PI);
+  ctx.lineTo(x,y);
 	ctx.strokeStyle = "red";
 	ctx.stroke();
 	ctx.fillStyle = "red";
