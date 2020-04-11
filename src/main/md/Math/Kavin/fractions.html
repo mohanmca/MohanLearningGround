@@ -8,20 +8,23 @@
   #tip{background-color:white; border:1px solid blue; position:absolute; left:-200px; top:100px;}
 </style>
 
+<form action="#">
 
-<input type=text id="fractions" 
-name="fractions" onchange="drawGraphs(this.value);"
-value="7/9,3/9,1/9,1/1"
->
+
+<input type=text id="fractions" name="fractions" onchange="drawGraphs(this.value);" value="7/9,3/9,1/9,1/1" />
 <br/><br/><br/>
-<input type=button 
-       id="draw" name="draw" 
-       onClick="drawGraphs(drawGraphs(document.getElementById('fractions').value));" 
-       value="Draw"/>
+<input type="radio" id="graphType" name="graphType" value="circle">
+<label for="male">Circle</label><br>
+<input type="radio" id="graphType" name="graphType" value="rectangle">
+<label for="female">Rectangle</label><br>
+<br/><br/><br/>
+<input type=button id="draw" name="draw" onClick="drawGraphs(document.getElementById('fractions').value);" value="Draw"/>
 
 <br/><br/><br/>
 
-<canvas id="myCanvas" width="600" height="1200" style="border:1px solid #d3d3d3;">
+</form>
+
+<canvas id="myCanvas" width="600" height="600" style="border:1px solid #d3d3d3;">
 Your browser does not support the HTML5 canvas tag.</canvas>
 
 <script>
@@ -32,15 +35,47 @@ function  drawGraphs(values) {
 	var ctx = c.getContext("2d");
   ctx.clearRect(0, 0, c.width, c.height);
   fractions.forEach((element,n) => {
-    draw_circle(element, n)  
+    var graphType = document.querySelector('input[name="graphType"]:checked').value;
+    if(graphType==='circle') {
+      draw_circle(element, n);
+    } else {
+      draw_rectangle(element,(n+1));
+    }    
   });
 	
 }
 
 function to_degress(text) {
+  if(typeof(text) === 'number') {
+    return text;
+  } else if(typeof(text) === 'string' && text.split("/").length == 1) {
+    return parseInt(text);
+  }
   let firstFraction = text;
   let degress = firstFraction.split("/")[0] / firstFraction.split("/")[1];
   return degress;
+}
+
+
+function  draw_rectangle(fraction, n) {
+  let degress = to_degress(fraction)
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+  let radius = 50;
+  let x = radius;
+  let y = n * radius * 1.1;
+  let width=10*radius*degress
+  let height=radius
+	ctx.fillStyle = "red";
+	ctx.fill();
+	ctx.beginPath();
+  ctx.lineWidth = "2";
+	ctx.fillRect(x, y, width, height);
+	//ctx.strokeRect(x, y, width, height);
+	ctx.strokeStyle = "red";
+	ctx.stroke();
+  ctx.fillStyle = "#00fff0";  //<======= here
+  ctx.fillText(fraction, x, y);
 }
 
 function  draw_circle(fraction, n) {
@@ -48,7 +83,7 @@ function  draw_circle(fraction, n) {
 	var c = document.getElementById("myCanvas");
 	var ctx = c.getContext("2d");
   let radius = 50;
-  let x = 100+ n*3*radius;
+  let x = 100+n*3*radius;
   let y = radius * 1.5
 	ctx.beginPath();
 	ctx.arc(x, y, radius, 0, 2 * degress * Math.PI);
@@ -57,7 +92,7 @@ function  draw_circle(fraction, n) {
 	ctx.fillStyle = "red";
 	ctx.fill();
   ctx.fillStyle = "#00fff0";  //<======= here
-  ctx.fillText(fraction, x, y);
+  ctx.fillText(fraction, x, y+50);
 }
 
 </script> 
