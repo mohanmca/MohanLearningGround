@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+  body{ background-color: ivory; margin-top:35px; }
+  #wrapper{position:relative; width:300px; height:150px;}
+  canvas{border:1px solid red;}
+  #tip{background-color:white; border:1px solid blue; position:absolute; left:-200px; top:100px;}
+</style>
+
+
+<input type=text id="fractions" 
+name="fractions" onchange="drawGraphs(this.value);"
+value="7/9,3/9,1/9,1/1"
+>
+<br/><br/><br/>
+<input type=button 
+       id="draw" name="draw" 
+       onClick="drawGraphs(drawGraphs(document.getElementById('fractions').value));" 
+       value="Draw"/>
+
+<br/><br/><br/>
+
+<canvas id="myCanvas" width="600" height="1200" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+function  drawGraphs(values) {
+	let fractions = values.split(",");
+	let numberOfCircles = fractions.length
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+  ctx.clearRect(0, 0, c.width, c.height);
+  fractions.forEach((element,n) => {
+    draw_circle(element, n)  
+  });
+	
+}
+
+function to_degress(text) {
+  let firstFraction = text;
+  let degress = firstFraction.split("/")[0] / firstFraction.split("/")[1];
+  return degress;
+}
+
+function  draw_circle(fraction, n) {
+  let degress = to_degress(fraction)
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+  let radius = 50;
+  let x = 100+ n*3*radius;
+  let y = radius * 1.5
+	ctx.beginPath();
+	ctx.arc(x, y, radius, 0, 2 * degress * Math.PI);
+	ctx.strokeStyle = "red";
+	ctx.stroke();
+	ctx.fillStyle = "red";
+	ctx.fill();
+  ctx.fillStyle = "#00fff0";  //<======= here
+  ctx.fillText(fraction, x, y);
+}
+
+</script> 
+
+</body>
+</html>
