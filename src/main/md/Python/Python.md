@@ -8,3 +8,16 @@
 * [Effective Python by Brett Slatkin](https://learning.oreilly.com/videos/effective-python/9780134175249)
 * [Modern Python LiveLessons: Big Ideas and Little Code in Python](https://learning.oreilly.com/videos/modern-python-livelessons/9780134743400)
 * [Fluent Python](https://learning.oreilly.com/oriole/fluent-python)
+
+##Python Influential People
+
+* David Beazley
+  * Python Cookbook
+  * [Keynote PyCon India 2019](https://www.youtube.com/watch?v=VUT386_GKI8)
+* Luciano Ramalho
+  * Fluent Python
+* Raymond Hettinger
+  * Transforming Code into Beautiful, Idiomatic Python
+* Alex Martelli
+* Steve Holden
+  * Steve Holden (Keynote): Python: Scalable from Microcontroller to Supercomputer
