@@ -11,10 +11,11 @@
 
 
 # Sample committment
-Right after brusing, I would do 2 pushups
-Right after using washroom, I would do plank for 2 minutes
-Right before hitting bed, I would read current affairs in French language
-Right before hitting bed, I would read some book and add one more word to my vocabulary
+
+* Right after brusing, I would do 2 pushups
+* Right after using washroom, I would do plank for 2 minutes
+* Right before hitting bed, I would read current affairs in French language
+* Right before hitting bed, I would read some book and add one more word to my vocabulary
 
 
 # Template to form habit..
