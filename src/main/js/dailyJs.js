@@ -127,6 +127,19 @@ console.log(links.join("\n"))
 }
 ```
 
+### How to extract youtube lecture text - https://www.youtube.com/watch?v=QOtA76ga_fY
+```Javascript
+{
+let transcript = [...document.getElementsByClassName("ytd-transcript-body-renderer")]
+let texts = transcript
+ .filter(t => t.tagName.toLowerCase() == "div")
+ .filter(t => t.className.indexOf("cue-group")!=-1)
+ .filter(t => t.className.indexOf("cue-group-start-offset")==-1)
+ .map(t => t.innerText)
+texts = texts.map(t => t.split("\n").splice(1).join('\n"))
+}
+```
+
  ### Format all the json files in a directory
 ```Javascript
 {
