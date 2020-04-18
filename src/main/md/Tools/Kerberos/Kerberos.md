@@ -26,6 +26,8 @@ some idea for your final project on Piazza
 by tomorrow just so that your classmates can
 know what you're thinking and help you form groups.
 All right, so let's talk about Kerberos, all right?
+
+
 So what is the setting that Kerberos
 is trying to support, here?
 So the model for Kerberos, what these guys
@@ -51,19 +53,27 @@ that users would use themselves which
 would run applications and potentially
 connect to these servers and store the user's files,
 get their mail et cetera.
+
+
 And the problem that they wanted to solve
 was how to authenticate the users that
-are using these workstations to all these different servers
+are using these workstations to all these different servers (backend file-server, mail-server)
 in the back end without having to trust the network
 to be correct, which seems like a sensible design
 requirement in many ways.
+
+
 And I should mention that I guess
 the alternative to Kerberos at the time
 was these R login commands that we're
 looking at in last lecture, which seems like a bad plan.
+
+
 They just use IP addresses to authenticate the users.
 And Kerberos was reasonably successful.
 It actually still is used at MIT.
+
+
 And actually, it's the basis of Microsoft's Active Directory
 server.
 So pretty much every Microsoft based sort of Windows Server
@@ -75,6 +85,8 @@ People now understand much more about security.
 So their version of Kerberos that's in use today
 is noticeably different in many ways
 from the version in the paper.
+
+
 And we'll look at exactly what assumptions aren't good enough
 anymore today and what did they get wrong.
 It's sort of inevitable for any protocol that
@@ -92,6 +104,8 @@ thinking about in last lecture.
 But who do we have to trust in this Kerberos setting?
 So of course, one thing is everyone-- all parties have
 to trust the Kerberos server.
+
+
 So that's an assumption these guys were
 willing to make at the time that this Kerberos server would
 be in charge of all network authentication
@@ -120,9 +134,8 @@ So this is actually a bit of a problem with Kerberos
 in the sense that if you don't trust the workstation, then
 you're in a bit of trouble.
 So if you have your own laptop, this
-seems like a sensible assumption to make.
-If you're using a public computer,
-this is a bit more questionable.
+seems like a sensible assumption to make. If you're using a public computer, this is a bit more questionable.
+
 And we'll see exactly what could go wrong.
 Yeah.
 STUDENT: You have to trust the people administrating aren't
@@ -145,6 +158,8 @@ some back end to go access your files just for convenience,
 then this could be abused, yeah.
 So you have to be careful about not introducing
 additional sort of levels of trust or trust relations here.
+
+
 All right, anything else that matters here?
 Do the servers have to trust the users
 in any way or the workstations?
@@ -224,6 +239,8 @@ for talking to the server S. And then you can finally
 start talking to the server over here
 by initially passing it this ticket for S.
 Does this all make sense?
+
+
 This is the sort of high level plan.
 So why do these guys have two interfaces?
 Well, I guess I wanted to actually ask
@@ -273,6 +290,8 @@ So if this gets disclosed, then someone with access to KC
 can keep accessing the user's files until the user maybe
 changes their password and potentially even longer.
 We'll see about that.
+
+
 So this KC is a really dangerous thing to leak.
 So the whole point of using this interface first and using
 this interface later for all subsequent requests
@@ -371,6 +390,8 @@ And the service itself is responsible for implementing
 the authorization part where they decide what access
 you should have based on your username here.
 Makes sense?
+
+
 All right, so that's where the user names appear.
 There's also other principal names
 the Kerberos supports for services, right?
@@ -404,6 +425,8 @@ this SSH client should abort and not
 let me connect because then I will be misled into talking
 to some other machine.
 That make sense?
+
+
 So here's one interesting question.
 When can we reuse names in Kerberos?
 It's like, all of you guys have Athena accounts.
@@ -430,6 +453,8 @@ in the Kerberos database.
 But she gets a principal that looks
 identical to the old Alice.
 It's the same string.
+
+
 So all of a sudden, the file server
 will give access to the new Alice to old Alice's data.
 So there's a bit of a complicated process
@@ -455,6 +480,8 @@ you have to be careful with reusing principal names
 in this kind of protocol.
 Makes sense?
 Any questions?
+
+
 All right, so let's look at how the protocol itself now works.
 So we'll look first and this step of the protocol
 where you initially get your ticket with your password.
@@ -547,6 +574,8 @@ your password offline without--
 PROFESSOR: Yeah, so this is actually not a great aspect
 of Kerberos, in fact, right?
 So does everyone see what the problem is?
+
+
 The problem is that the way the client could
 tell if they got the right password or not
 or the workstation tells if the client supplied
@@ -578,6 +607,8 @@ from authentication.
 So in the paper, there's this implicit assumption
 that-- hopefully, that's not us.
 All right, sorry.
+
+
 So in the paper, there's this implicit assumption
 that whenever you encrypt a piece of data
 and you send it to someone else, if that person can decrypt
@@ -635,6 +666,8 @@ Here's the key for it.
 But that would be kind of unfortunate.
 You'd have to have the Kerberos server call back to the service
 and so on.
+
+
 So instead, these guys have this nice trick where they just
 to give the client does blob that the client
 can't actually do anything with other
@@ -710,6 +743,8 @@ And we'll talk in a second about how you basically also
 can get any ticket you want from the second interface
 without needing the initial key KC.
 Right, make sense?
+
+
 All right, so I guess we already talked
 about two particular problems that the Kerberos protocol had
 sort of baked into it, which is a little unfortunate.
@@ -763,6 +798,8 @@ check if that's the right-- if that matches, and if so, return
 you back a ticket.
 You probably don't want to necessarily add more rounds
 but this could work.
+
+
 So just to precise about what I'm sort of suggesting.
 OK, well, maybe you take the current time stamp
 and maybe you hash the current time stamp and the KC together.
@@ -814,6 +851,8 @@ elaborate than roughly this plan, which seems good enough
 to prevent arbitrary people from trying
 to break anyone's or brute force anyone's password.
 Make sense?
+
+
 Yeah.
 STUDENT: So presume that you could
 do authenticated [INAUDIBLE] or something here
@@ -889,6 +928,8 @@ And this was a bit problematic because 25 years later,
 very cheap to brute force DES encryption
 because the keys are actually very small.
 They're 56 bits.
+
+
 So you could just search build some custom hardware that
 iterates over all the possible 2 to the 56 combinations
 and tries them all and figures out what someone's password is.
@@ -904,6 +945,8 @@ But now they don't.
 So that's good.
 Your principal is secure at least from this kind of attack.
 All right, so does that make sense?
+
+
 This is the initial way you'd get
 any ticket at all in Kerberos.
 And typically, you'd get this ticket from this TGS service.
@@ -958,6 +1001,8 @@ forgotten since then, now we're going
 to encrypt it with this shared key between the client
 and the TGS service.
 Makes sense?
+
+
 All right, so in this-- how does the server actually figure out
 what the client wants to do?
 Or, how does server authenticate the client?
@@ -1071,6 +1116,8 @@ you initially got the ticket.
 And a lifetime in the ticket represents
 how many hours, let's say, it's valid
 from that initial timestamp.
+
+
 So if you try to use it too early or too late,
 then every server should reject such a ticket
 in the Kerberos protocol.
@@ -1126,6 +1173,8 @@ is a couple of hours or 10 hours.
 Stealing this, there's no time bound on that until you change
 your password and maybe worse.
 Make sense?
+
+
 All right, so it seems like, yeah,
 all those fields are kind of important,
 IP address maybe less so.
@@ -1136,6 +1185,8 @@ And now we have a ticket for any server
 we want-- a file server, mail server, whatever
 it is that we finally care about connecting to.
 Make sense?
+
+
 All right, so let's look at how you might sort of finally
 use this in some application level protocol.
 So suppose that maybe I'm talking to a mail server
@@ -1164,6 +1215,8 @@ And I can encrypt this with KC mail.
 Does that make sense?
 OK, so what happens in this protocol on the mail server
 side?
+
+
 The mail server is going to use its secret key K mail
 to decrypt this ticket first.
 And then it looks inside there and finds
@@ -1176,6 +1229,8 @@ And then you can decrypt this message and say oh, well, yeah.
 User C is trying to delete message five.
 So I'll run this command.
 Make sense?
+
+
 You had a question?
 STUDENT: Yeah, so Kerberos initially
 sends the TGS ticket in KCTGS.
@@ -1192,6 +1247,8 @@ developers were intending it, the client,
 every time it sends a new request ,
 it would generate a new authenticator to say OK, well,
 this is a new request.
+
+
 I'm issuing it now.
 It's different from all the previous requests.
 Go do it.
@@ -1241,6 +1298,8 @@ You could do this, of course, but sort of took a while
 for people to realize that, well, here's
 how you should design a protocol correctly.
 Make sense?
+
+
 Yeah, other question.
 STUDENT: [INAUDIBLE]
 PROFESSOR: Ah, so the client gets case email
@@ -1349,6 +1408,8 @@ And the first key is going to be used for encrypting stuff
 from client to server and other from server back to the client.
 So that seems like a much better way to do it in practice.
 Make sense?
+
+
 All right, so I guess let's now talk a little bit
 about what happens with KDC.
 So the Kerberos server is pretty important to the system.
@@ -1502,6 +1563,8 @@ to the service decryptable and observable,
 but also you could impersonate anyone to that service.
 So this is actually all pretty important in Kerberos.
 Makes sense?
+
+
 Any questions?
 Yeah.
 STUDENT: So if the attacker has to [INAUDIBLE],
@@ -1545,6 +1608,8 @@ by, you know, you present your MIT ID and say, oh, well, OK.
 Well, whatever happened, we'll be
 able to change your key for you then.
 Make sense?
+
+
 So it's pretty important, of course,
 to do that right so if the person that
 is allowing password resets does the wrong thing when checking
@@ -1641,6 +1706,8 @@ is going to decrypt it with my fake password.
 It's going to look OK because this response was
 generated by me rather than the real Kerberos server.
 And you'll be able to log in This make sense?
+
+
 Why does this happen?
 Yeah.
 STUDENT: [INAUDIBLE] there's no authentication
@@ -1701,6 +1768,8 @@ that you are the right entity.
 So that's why they do this sort of 2-step process for logging
 into some shared time-sharing machine.
 Make sense?
+
+## how do we change keys.
 All right, so the last thing I want to talk about
 is how do we change keys.
 So we sort of talked about it briefly here with the idea
@@ -1765,6 +1834,8 @@ You supply that to-- well, you supply that in order
 to decrypt the response from the Kerberos
 server for the kpassword password principal.
 Makes sense?
+
+
 All right, so let's just actually spell out
 the interactions with the key password service
 because there'll be something a little bit interesting there.
@@ -1778,6 +1849,8 @@ including the ticket between the client
 and the kpassword service encrypted with a key of kpass
 and the shared key between KC and kpass.
 Makes sense?
+
+
 This is exactly this thing up here encrypted with KC.
 Makes sense?
 Everyone's runs on board?
@@ -1790,6 +1863,8 @@ and you encrypt this with the key kcpass
 with shared key for your interaction.
 I just separated these two things out here.
 Make sense?
+
+
 So this is the thing you send to the kpassword service
 with a new password encrypted with the session key.
 Yeah.
