@@ -8,6 +8,7 @@ from hundreds of MIT courses, visit MIT OpenCourseWare
 at ocw.mit.edu.
 
 
+
 PROFESSOR: So today, we're going to talk about Kerberos, which
 is a cryptographically secure, in some ways,
 protocol for authenticating computers
@@ -113,7 +114,9 @@ in some form or another.
 Do we have anyone else that has to trust anything
 in the setting?
 For example, yeah.
+
 STUDENT: Well users should trust their own machines.
+
 PROFESSOR: Yes, so that's a good point, right?
 There's the users that I didn't draw here.
 But these guys are using some workstation.
@@ -124,8 +127,10 @@ Or presumably, it can just sniff your password
 and do whatever you type-- you know, LS, it tries-- runs RMX.
 That seems kind of unfortunate.
 Yeah.
+
 STUDENT: But it's more than that though,
 because they could even, like, sniff your Kerberos ticket.
+
 PROFESSOR: Yeah, exactly.
 Or when you log in, you type in your password, which
 is even worse than the ticket.
@@ -138,9 +143,11 @@ seems like a sensible assumption to make. If you're using a public computer, thi
 
 And we'll see exactly what could go wrong.
 Yeah.
+
 STUDENT: You have to trust the people administrating aren't
 doing anything bad with [INAUDIBLE] servers
 and giving them privilege access to one another.
+
 STUDENT: So what do you mean?
 So of course, like, ISNT is going
 to run these machines down here.
@@ -148,9 +155,11 @@ But I think the machines themselves don't necessarily
 have to trust one another.
 So the mail server doesn't trust the print server or the file
 server necessarily.
+
 STUDENT: Not to trust, but he might
 be able to access a server you're not
 supposed to have access to by going through another server.
+
 PROFESSOR: Yeah, that's true, I guess.
 Yeah, so if you set up any trust relationship
 between these guys-- like, if you give the mail server
@@ -198,6 +207,7 @@ And this is how you guys are going to prove to each other,
 yeah, I'm the right guy.
 I know this password and no one else does.
 Makes sense?
+
 And the other thing the Kerberos server is going to have to do
 is, of course, keep track of who is
 it that owns this key, right?
@@ -209,6 +219,7 @@ well, not very large in terms of the number of bytes,
 necessarily, but one entry per entity
 at MIT that the Kerberos server knows about.
 Makes sense?
+
 All right, and then we're going to have sort of provide
 two interfaces, right?
 The paper is a little fuzzy above this
@@ -250,14 +261,18 @@ is probably going to be stored on disk.
 What's going on with this KC on the user side?
 Where does KC come from in Kerberos?
 Yeah.
+
 STUDENT: KDMS [INAUDIBLE] the database.
+
 PROFESSOR: Yeah, well, the key C sits here.
 And that's absolutely true.
 It's sits on this giant database.
 But it also has to be known to the user
 because the user has to prove that they are the user.
 Yeah.
+
 STUDENT: Is that a one way function and then the password?
+
 PROFESSOR: Yeah, so they actually
 have this sort of cute plan where the KC is actually
 going to be derived by hashing the user's password
@@ -274,9 +289,11 @@ for this particular principle name.
 And it'll send you back a ticket and you can decrypt it
 with your KC afterwards.
 Yeah.
+
 STUDENT: Can you [INAUDIBLE] or ask the user
 to reenter their password each time they
 want to [INAUDIBLE] service?
+
 PROFESSOR: Right, so the reason for the difference
 between these two interfaces is that on this interface,
 all the responses come back encrypted with your key KC.
@@ -354,8 +371,10 @@ of the Kerberos machine.
 So I guess we could ask, OK, where do user names appear?
 Any ideas?
 Yeah.
+
 STUDENT: You can ask the MIT server for usernames
 presumably.
+
 PROFESSOR: Right, yeah.
 So you could enumerate these things.
 Also, the users just type them in when
@@ -364,8 +383,10 @@ So that's where it initially comes from.
 Do usernames appear anywhere else?
 Should they appear anywhere else?
 Yeah.
+
 STUDENT: Possibly access the [INAUDIBLE]
 lists on the various services.
+
 PROFESSOR: Yes, that's actually an important point, right?
 The goal of Kerberos is just to map keys to names.
 But it doesn't tell you what that name should have access
@@ -390,6 +411,7 @@ And the service itself is responsible for implementing
 the authorization part where they decide what access
 you should have based on your username here.
 Makes sense?
+
 
 
 All right, so that's where the user names appear.
@@ -436,9 +458,11 @@ and allow someone else to register that same username?
 Would that be a good idea?
 Well, aside from the fact that you guys want accounts.
 Yeah.
+
 STUDENT: Updated services as well so that they would,
 like map that username to [INAUDIBLE] permission
 theoretically?
+
 PROFESSOR: Yeah, because these guys are actually
 just string entries somewhere in some ACL on a file
 server on a mail server.
@@ -479,6 +503,7 @@ Probably not as dramatic or as bad, but still,
 you have to be careful with reusing principal names
 in this kind of protocol.
 Makes sense?
+
 Any questions?
 
 
@@ -548,8 +573,10 @@ authenticate the client here?
 How does it know that this is the right user making
 this request?
 Yeah.
+
 STUDENT: It can make sure that the ticket
 that it sent because it has KC.
+
 PROFESSOR: Yes, I think that's what's going on
 is that the Kerberos server again on some level actually
 doesn't know whether this is the right client or not.
@@ -569,8 +596,10 @@ and trying to record them, it would never get your password.
 Or maybe if someone was impersonating the Kerberos
 server, they wouldn't get a copy of your password.
 All right, yeah.
+
 STUDENT: [INAUDIBLE] adversary wants to [INAUDIBLE]
 your password offline without--
+
 PROFESSOR: Yeah, so this is actually not a great aspect
 of Kerberos, in fact, right?
 So does everyone see what the problem is?
@@ -596,9 +625,11 @@ with the user's password.
 Then you can just try different passwords and just see what
 works or what doesn't.
 Yeah.
+
 STUDENT: But won't the content [INAUDIBLE]
 decrypted [INAUDIBLE] advantage?
 How can we be sure that you directly--
+
 PROFESSOR: Yes, this is actually another interesting aspect
 where the Kerberos 4 developers didn't quite
 realize that the time they were building this that they really
@@ -647,8 +678,10 @@ So it's included once here and another time actually sort
 of implicitly in this ticket T. Why
 do we have two copies of the same key KCS?
 Yeah.
+
 STUDENT: The client can't decrypt that ticket
 because it's encrypted with a service key.
+
 PROFESSOR: Yeah, so it's actually kind of cute, right?
 Like, there's this key that the client can get to.
 But then there's another copy of it in here.
@@ -679,7 +712,9 @@ And that's how these two guys, the client and the service,
 are going to establish a shared key for protecting
 their communication.
 Yeah.
+
 STUDENT: So what exactly is TGS?
+
 PROFESSOR: So TGS is-- OK, so there's
 sort of two sides to it.
 From the client's point of view, it's just another service
@@ -687,7 +722,9 @@ that you can get a ticket for.
 And the kinds of operations it supports
 is getting more tickets.
 It's a Ticket Granting Service.
+
 STUDENT: Sorry, I meant what is the ticket called TGS.
+
 PROFESSOR: Oh, yeah, sorry.
 This TGS is just shorthand for this whole blob
 except where S is actually the principal name of this TGS
@@ -709,10 +746,13 @@ to be provided by the same box.
 And then this guy will happily give you more tickets
 later without having to present your initial KC again.
 Makes sense?
+
 All right, other questions?
 Yeah.
+
 STUDENT: So [INAUDIBLE] the idea is once you get the TGS ticket,
 you can just get rid of your KC?
+
 PROFESSOR: Yes, so that's actually
 the cool thing about it is that once
 you get this ticket-- well, this ticket with the S being TGS,
@@ -736,7 +776,9 @@ So you send this message, you get this reply,
 you decrypt this, and then you forget the password.
 So you can't forget about the password
 before you use it for decryption of course.
+
 STUDENT: [INAUDIBLE]
+
 PROFESSOR: Ah, no, so this is just this interface, right?
 So this is the thing you do initially.
 And we'll talk in a second about how you basically also
@@ -761,8 +803,10 @@ How do you prevent guessing attacks
 in a protocol like this?
 What could we try?
 Yeah.
+
 STUDENT: Some sort of salting?
 I'm not sure.
+
 PROFESSOR: Well, so salting would just
 means that the client has to hash the password
 in different ways, maybe.
@@ -770,7 +814,9 @@ But it still doesn't prevent them
 from trying lots of things.
 So maybe it'll be more expensive to build a dictionary.
 Yeah.
+
 STUDENT: You could [INAUDIBLE] derivation function?
+
 PROFESSOR: Yeah, so another good idea
 is to make this hashing process super expensive.
 So that might be kind of nice, right?
@@ -811,8 +857,10 @@ it's probably the right user requesting it.
 And I can send back the ticket.
 If not, then it wasn't the right password at all.
 Question?
+
 STUDENT: [INAUDIBLE] you just do [INAUDIBLE] if the servers see
 too many requests [INAUDIBLE]
+
 PROFESSOR: That's right.
 So the problem is that we could write limit.
 But there's no reason for the hacker
@@ -830,7 +878,9 @@ and again to try to log in with different passwords.
 And then you could rate limit of the server
 and get a much better defense.
 Yeah.
+
 STUDENT: [INAUDIBLE] Kerberos?
+
 PROFESSOR: So I think you could certainly replay this message
 so if I sent this message now, you could probably
 look at that message and send it as well
@@ -854,11 +904,13 @@ Make sense?
 
 
 Yeah.
+
 STUDENT: So presume that you could
 do authenticated [INAUDIBLE] or something here
 to establish the shared key.
 And then you could encrypt this thing
 with KC and the shared key.
+
 PROFESSOR: That's right, yeah.
 So if you're really doing this right,
 there's all these nice particles out there
@@ -878,11 +930,13 @@ And they're much more elaborate in terms
 of crypto they rely on.
 So it's hard to explain on a board exactly why they work.
 Yeah.
+
 STUDENT: [INAUDIBLE] part of the reason
 they did it this way is because they
 wanted to maintain the ability of just sending the password.
 And protocols just allow you to send a single thing
 as your authentication [INAUDIBLE].
+
 PROFESSOR: Well, yeah, there's lots
 of sort of weird requirements that these guys had in mind.
 I think they-- well, certainly in practice,
@@ -901,8 +955,10 @@ into checking against Kerberos.
 I don't think this precludes it because certainly
 Kerberos 5 deploys although this hashes of timestamps,
 et cetera.
+
 STUDENT: Yeah but it's because they wouldn't
 want multiple [INAUDIBLE].
+
 PROFESSOR: Yeah, well, I think that probably
 doesn't matter quite as much.
 You could certainly have multiple rounds in the back end
@@ -1003,6 +1059,7 @@ and the TGS service.
 Makes sense?
 
 
+
 All right, so in this-- how does the server actually figure out
 what the client wants to do?
 Or, how does server authenticate the client?
@@ -1017,8 +1074,10 @@ So is it important to have the server name S in the ticket?
 What would go wrong if you didn't have S in there?
 Anything?
 Yeah.
+
 STUDENT: They could potentially get
 authorized to use any server.
+
 PROFESSOR: Yeah, so it's in general a good idea
 to be very explicit in network protocols
 and to say exactly what a message means.
@@ -1032,14 +1091,18 @@ that the server that receives this tickets
 decrypts and checks.
 Is that a ticket for me or for someone else?
 Yeah.
+
 STUDENT: What does the client get KTGS on?
+
 PROFESSOR: Ah, good question.
 The client has no idea what this is.
 Because this is like a super secret key.
 If you knew this, you'd probably be
 able to break all of Kerberos.
 So the client has no idea what KTGS is.
+
 STUDENT: [INAUDIBLE]
+
 PROFESSOR: Ah, yeah, yeah.
 And then the where you get it from
 is actually-- it's the Kerberos server itself
@@ -1061,8 +1124,10 @@ Why do these guys stick an address in the ticket?
 This is the client's IP address.
 Does it matter?
 Yeah.
+
 STUDENT: Can they use that address
 with the ticket to verify against the [INAUDIBLE]?
+
 PROFESSOR: Sort of.
 Well, so I think the general plan
 for why there's addresses appearing
@@ -1096,7 +1161,9 @@ in the ticket up there?
 One are those guys good for?
 Are they useful?
 Yeah.
+
 STUDENT: Preventing replay attacks.
+
 PROFESSOR: Well, so the syndicator
 is the thing that's going to help us prevent
 replay attacks in a second.
@@ -1105,8 +1172,10 @@ you do a new request.
 On the other hand, the ticket just stays the same.
 So it's certainly not preventing replay attacks there.
 Yeah.
+
 STUDENT: It prevents somebody from stealing your ticket then
 using it [INAUDIBLE]
+
 PROFESSOR: Oh, sorry, yes.
 This just bounds the time for which a ticket is valid,
 meaning that the damage from disclosing it
@@ -1128,28 +1197,36 @@ Like, your laptop clock is off and you can't log into Kerberos
 anymore.
 Question?
 Yeah.
+
 STUDENT: You said before that the client discards KC
 but they're still keeping KCS [INAUDIBLE]
 the TGS. [INAUDIBLE]
+
 PROFESSOR: That's right, yeah.
 So the client discards KC after logging in.
 But it still keeps KCS.
 You're exactly right.
+
 STUDENT: So if someone steals the KCS,
 then they have access to [INAUDIBLE].
+
 PROFESSOR: Yeah, OK.
 So how bad is that?
 Like, why is it better to disclose this KCS
 fof-- actually, well, this is TGS, right?
 Why is it better to disclose KCTGS than KC?
 Yeah.
+
 STUDENT: Someone [INAUDIBLE] somewhere [INAUDIBLE].
+
 PROFESSOR: It's the kind of thing
 that they're both keys, though.
 So neither of them are really hashed, yeah.
+
 STUDENT: You would take KCS and you'd just steal
 that session between those two.
 But if you steal KC, you can impersonate the client.
+
 PROFESSOR: That's right.
 Yeah.
 So I guess one way to answer this
@@ -1164,8 +1241,10 @@ The only reason these bits are interesting
 is because this ticket talks about this KCS being valid
 right now.
 And there's a bound on it.
+
 STUDENT: Yeah, so if they stole both of those
 [INAUDIBLE] be bounded.
+
 PROFESSOR: Yeah, if someone steals both of these blogs,
 than they can impersonate you or, like, log into your file
 server, mail server for the lifetime of that ticket, which
@@ -1232,9 +1311,11 @@ Make sense?
 
 
 You had a question?
+
 STUDENT: Yeah, so Kerberos initially
 sends the TGS ticket in KCTGS.
 Where's [INAUDIBLE]?
+
 PROFESSOR: So AC, those authenticators are actually
 generated by the client.
 Note that the client only needs KCS
@@ -1301,7 +1382,9 @@ Make sense?
 
 
 Yeah, other question.
+
 STUDENT: [INAUDIBLE]
+
 PROFESSOR: Ah, so the client gets case email
 from this response.
 So the client, when it wants to talk to the mail server,
@@ -1314,14 +1397,18 @@ So this is how the client learns of the shared key
 that it has between it and the files and the mail server here.
 And there's a copy of it inside the ticket.
 Question back there?
+
 STUDENT: How does the mail server get KC mail?
+
 PROFESSOR: Ah, yes.
 So how does the mail server get this shared key?
 Like, the mail server might have never heard
 of your connection before, never heard of you.
 Where does KC mail come from on the mail server side?
 Yeah.
+
 STUDENT: Isn't it part of the ticket?
+
 PROFESSOR: Yeah, yeah, so this is the cool thing.
 You send this ticket over to the mail server and the mail server
 knows its own secret key K mail.
@@ -1331,6 +1418,7 @@ it is that you're sharing this key with.
 That's how it finds out, oh, I'm talking to the guy
 and that's the shared key we should use.
 Makes sense?
+
 All right, so that's the sort of basic plan
 for how you use this protocol in some actual application.
 There's-- well, there's a bunch of problems with this.
@@ -1357,9 +1445,11 @@ Does anyone see a problem with this?
 Why is this is potentially a bad thing to do?
 Anyone else?
 Sure.
+
 STUDENT: So there's a chapter [INAUDIBLE]
 they can make [INAUDIBLE] look like some other things they
 want [INAUDIBLE]
+
 PROFESSOR: Yes, so those are actually
 worrisome because I could send you any email message I want.
 So suppose I really want to delete some message that
@@ -1390,7 +1480,9 @@ in cryptography and protocol literature
 as reflection attacks.
 So you have any suggestions for how we can avoid this problem?
 Yeah.
+
 STUDENT: Can't you just include a header saying its origins?
+
 PROFESSOR: Yeah, so typically, you
 want to have some very unambiguous way to state what's
 going on.
@@ -1418,7 +1510,9 @@ So how bad is it to our system.
 Like, in Athena, suppose if KDC crashes,
 does this affect your life?
 Well, if you use Athena.
+
 STUDENT: Is that why you can't log in?
+
 PROFESSOR: Yeah, so you can't log in.
 I guess the other thing is you also can't get tickets
 to new things as well.
@@ -1445,10 +1539,13 @@ even if the master crashed and hopefully
 make it possible to upgrade to master without breaking
 everything at the same time.
 Makes sense?
+
 Any questions?
 Yeah.
+
 STUDENT: How hard is it to compromise
 the KDC server and [INAUDIBLE]?
+
 PROFESSOR: Well, yes, this is a huge sort
 of target for any system that runs Kerberos.
 Because if you compromise this guy,
@@ -1493,7 +1590,9 @@ I guess that's kind of unfortunate.
 But what do you do so that the attacker doesn't keep accessing
 your mail in the future?
 Yeah.
+
 STUDENT: [INAUDIBLE]
+
 PROFESSOR: Yeah, so in Kerberos, there's
 no sort of revoke operation.
 But what you could do is you could
@@ -1506,7 +1605,9 @@ server now, right?
 On the other hand, suppose you didn't change the mail server's
 key, K mail.
 How that is that?
+
 STUDENT: [INAUDIBLE] fine.
+
 PROFESSOR: OK, so suppose you didn't change the mail.
 You, like, install the new mail server.
 You patch whatever bug that hacker exploited.
@@ -1515,16 +1616,22 @@ And maybe it's taken a day so all the tickets are expired.
 Can that hacker do anything interesting in the system
 anymore?
 Yeah.
+
 STUDENT: [INAUDIBLE]
+
 PROFESSOR: Yeah, OK, so you give the new mail server the old K
 mail.
 Is that bad?
 Yeah.
+
 STUDENT: This is--
+
 PROFESSOR: Sure.
+
 STUDENT: [INAUDIBLE] mail server.
 And [INAUDIBLE] mail server because you can
 encrypt that initial ticket.
+
 PROFESSOR: Right.
 So K mail is actually super important.
 And, OK, so you're saying you can decrypt all the things
@@ -1565,11 +1672,14 @@ So this is actually all pretty important in Kerberos.
 Makes sense?
 
 
+
 Any questions?
 Yeah.
+
 STUDENT: So if the attacker has to [INAUDIBLE],
 what's stopping him from changing the [INAUDIBLE] key
 [INAUDIBLE]?
+
 PROFESSOR: Yeah, so presumably, how you'd recover-- like,
 ISNT would, like, call up the guy that runs this KDC
 and say, oh man, our mail server got compromised.
@@ -1638,7 +1748,9 @@ It's on a Kerberos server.
 So which should the dial-up machine
 do when you log into it with a password?
 Yeah.
+
 STUDENT: You can access the [INAUDIBLE].
+
 PROFESSOR: Yeah, so the dial-up is then
 going to basically play the same protocol logging you in.
 So it's going to send a request.
@@ -1652,11 +1764,13 @@ and see if it decrypts correctly.
 And if it decrypts correctly, it's
 going to let you log in, right?
 Yeah.
+
 STUDENT: You don't even really have
 to send your key to the SSH server.
 Because it could relay this back--
 the dot encrypted thing with KC.
 It could relay that back to the user over the SSH connection.
+
 PROFESSOR: Potentially, yeah.
 Right, so this requires some fancy SSH client
 that you might not have.
@@ -1667,8 +1781,10 @@ and get a ticket yourself or maybe
 proxy it somehow through the SSH server
 but not allow the SSH server to have your key.
 That's probably a good plan.
+
 STUDENT: [INAUDIBLE] just, the server could get
 through this wall [INAUDIBLE]
+
 PROFESSOR: That's right.
 Then you might decrypt it and send back.
 OK, but in either case, right, all we're doing here
@@ -1710,8 +1826,10 @@ And you'll be able to log in This make sense?
 
 Why does this happen?
 Yeah.
+
 STUDENT: [INAUDIBLE] there's no authentication
 from the Kerberos server [INAUDIBLE]
+
 PROFESSOR: Right, yeah, so there's
 nothing really here that's tying this to the real Kerberos
 server.
@@ -1749,8 +1867,10 @@ that's shared with the KDC.
 Why is this OK for Athena workstations to let you
 log in in this one round trip and not for dial-ups?
 Yeah.
+
 STUDENT: If you don't have access to any services
 because the attacker couldn't forge the ticket.
+
 PROFESSOR: That's right, yeah.
 So there's nothing interesting on the dial-up machine itself--
 sorry, on the workstation itself.
@@ -1796,9 +1916,11 @@ key.
 And then if everything checks out, your key in the database
 is going to be updated to the new key.
 Question.
+
 STUDENT: [INAUDIBLE] if there was, like,
 no [INAUDIBLE] they wanted to have them use a [INAUDIBLE] had
 to go through this.
+
 PROFESSOR: That's right.
 OK, yeah, OK.
 So this is a good point.
@@ -1836,6 +1958,7 @@ server for the kpassword password principal.
 Makes sense?
 
 
+
 All right, so let's just actually spell out
 the interactions with the key password service
 because there'll be something a little bit interesting there.
@@ -1851,8 +1974,10 @@ and the shared key between KC and kpass.
 Makes sense?
 
 
+
 This is exactly this thing up here encrypted with KC.
 Makes sense?
+
 Everyone's runs on board?
 And then very much like you talk to a mail server, you take this
 and you send it to kpassword.
@@ -1868,7 +1993,9 @@ Make sense?
 So this is the thing you send to the kpassword service
 with a new password encrypted with the session key.
 Yeah.
+
 STUDENT: But in the [INAUDIBLE]
+
 PROFESSOR: So if the attacker knows your password,
 they can change your password-- absolutely.
 So it seems reasonable, right?
@@ -1897,11 +2024,16 @@ it's going to reject your request.
 It's only going to accept it if it was obtained directly
 from the Kerberos service using KC.
 Makes sense?
+
 Question.
+
 STUDENT: So if you [INAUDIBLE] password with the [INAUDIBLE]
 Athena, right?
+
 PROFESSOR: Yeah.
+
 STUDENT: So if I would steal your private key--
+
 PROFESSOR: Yeah, so actually, KC is
 basically equivalent to your password here.
 As far as the Kerberos protocol is concerned,
@@ -1911,15 +2043,19 @@ If someone knows KC, that's basically your password.
 So you can change your key from KC
 to something else so you don't lose this thing, yeah.
 Uh, yeah, question?
+
 STUDENT: [INAUDIBLE] initial message [INAUDIBLE]
 from changing the [INAUDIBLE]
+
 PROFESSOR: Oh, you can certainly get
 a ticket for some other service or an attacker
 could drop this message altogether or corrupt
 this exchange.
 And then you're not going to successfully change
 your password.
+
 STUDENT: [INAUDIBLE]
+
 PROFESSOR: Yeah, so the client actually
 knows exactly what service it wants to talk to.
 So if it-- it's going to make sure, well,
@@ -1928,15 +2064,19 @@ showing that allow the client to make sure
 they actually got the ticket for the right thing.
 But yeah, so the-- sorry.
 Question?
+
 STUDENT: [INAUDIBLE] very easy to denial of service attack
 when an attacker [INAUDIBLE] modifying the encrypted version
 of the new password.
+
 PROFESSOR: Yeah, so there's actually lot of things.
 Because, for example, Kerberos doesn't do authentication
 properly of messages-- it just does
 encryption-- you could totally corrupt this blob.
 And--
+
 STUDENT: [INAUDIBLE]
+
 PROFESSOR: Yeah, you could flip it around
 and it'll decrypt to something else.
 The service was like, oh yeah, that's the new password,
@@ -1947,9 +2087,11 @@ And this is yet another reason why
 you want separate encryption and authentication in the protocol.
 There's actually an even bigger problem here.
 But actually, yeah, question?
+
 STUDENT: What's the point of having a one way
 function to [INAUDIBLE] your password in KC if they're
 essentially [INAUDIBLE]?
+
 PROFESSOR: Basically because KC is a 56-bit ds key
 and your password might be of different lengths.
 And even if it's longer than 56 bits, which
@@ -1964,20 +2106,26 @@ A day goes by and I'm thinking, oh yeah, sure.
 I'll tell everyone what my stupid old password was.
 Is this a good idea in Kerberos?
 Yeah.
+
 STUDENT: [INAUDIBLE] immediately expire until the--
+
 PROFESSOR: Yeah, OK.
 But someone's got to wait for all my tickets to expire.
 I wait for, like, a week.
 And then no tickets are good anymore.
 Can I give out my old password now?
 Yeah.
+
 STUDENT: It might take a while to replicate.
+
 PROFESSOR: Yeah, suppose the replicas
 are all updated, yeah, all the stuff.
 Yeah.
+
 STUDENT: [INAUDIBLE] if someone saves the initial transaction
 [INAUDIBLE] to get, like, your old password
 now that they have your new password.
+
 PROFESSOR: Yeah, so this is actually
 super worrisome in Kerberos, which
 is that-- suppose some attacker was
@@ -2001,7 +2149,9 @@ could sort of unzip this whole chain of encrypted messages
 and get your newest password as well.
 This is actually very troublesome in the design.
 Yeah.
+
 STUDENT: Doesn't the later version of Kerberos [INAUDIBLE]
+
 PROFESSOR: Absolutely, yes.
 So there's actually a solution to this
 that's not sort of fundamental.
@@ -2042,7 +2192,9 @@ gets G to the X and G to the Y by examining your packets later
 from figuring out what was G to the XY.
 So this is something called the discrete log problem.
 Yeah, question?
+
 STUDENT: But they have to [INAUDIBLE] G at some point.
+
 PROFESSOR: Yeah, yeah.
 So G is some parameter you could sort of send
 at the beginning of a protocol or it could be just cooked
