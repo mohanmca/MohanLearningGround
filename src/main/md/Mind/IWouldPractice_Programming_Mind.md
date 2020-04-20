@@ -21,7 +21,14 @@
 * Mind wondering
   * Mind wondering is opposite of concentration - You are not in control.
   * Concentrated mind is - you are in control.
-     
+
+## [Four Langhanams for spiritual power](https://www.youtube.com/watch?v=2z5qxSr4EaI)
+
+1. Fasting - of food - quantity/quality
+1. Fasting - of breathing - slow/deep
+1. Fasting - of speech - speak less/right
+1. Fasting - of movement - still/slow down
+
 # References
 * [Program Your Mind While You Sleep](https://www.youtube.com/watch?v=X_MDb0HzFE0)
 * [Practicing Affirmation](https://www.youtube.com/watch?v=Gku2OodrnQ0)
