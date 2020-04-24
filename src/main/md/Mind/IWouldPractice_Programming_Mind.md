@@ -29,6 +29,8 @@
 1. Fasting - of speech - speak less/right
 1. Fasting - of movement - still/slow down
 
+ Alteryx and excepter
+
 # References
 * [Program Your Mind While You Sleep](https://www.youtube.com/watch?v=X_MDb0HzFE0)
 * [Practicing Affirmation](https://www.youtube.com/watch?v=Gku2OodrnQ0)
