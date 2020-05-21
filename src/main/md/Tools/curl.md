@@ -13,6 +13,7 @@
   * curl --form "fileupload=@filename.txt" http://hostname/resource
   * curl -X POST -d @jsonFile http://hostname:9200/_search
   * wget --no-parent -r http://WEBSITE.com/DIRECTORY (only stuff curl can't do, downloadin recusive)
+  * wget -e robots=off  --recursive --no-parent https://docs.spring.io/spring-boot/docs/2.2.5.RELEASE/reference/ (download spring-boot documentation recursively)
 
 # Reference
 * [Curl SO](https://stackoverflow.com/questions/356705/how-to-send-a-header-using-a-http-request-through-a-curl-call)
