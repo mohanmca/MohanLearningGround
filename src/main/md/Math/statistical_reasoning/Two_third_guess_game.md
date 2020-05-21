@@ -26,7 +26,7 @@
 
 
 
-# What does it prove?
+## What does it prove?
 
 * Simplicity can often be the biggest source of confusion
 * Anyone who guessed above 66 are not rational `this time` or just completed smoking marijuna
@@ -36,6 +36,7 @@
 * Being rational alone isn't enough
 * Either you are biased or un-biased either way it won't help in certain situation
 
+## Reference
 
-* [Guess the number 33] (https://www.pinnacle.com/en/betting-articles/Pinnacle-Puzzle/guess-the-number-puzzle/WLZ2XXJEKBB5JZBG)
-* [Thaler's Financial Times experiment] (Guess number)
+* [Guess the number 33](https://www.pinnacle.com/en/betting-articles/Pinnacle-Puzzle/guess-the-number-puzzle/WLZ2XXJEKBB5JZBG)
+* [Thaler's Financial Times experiment](https://www.ft.com/content/6149527a-25b8-11e5-bd83-71cb60e8f08c)
