@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>Random</title>
+  </head>
+  <body>
+    <div id="number">
+      <br />
+    </div>
+    <div id="number"></div>
+    <div id="number">
+      <br />
+    </div>
+    <form id="multiplicationForm">
+      <label for="firstNumGen">First Number</label>&nbsp;&nbsp;&nbsp;
+      <input type="text" id="firstNumGen" value="" /><br />
+      <label for="firstNumGen">Second Number</label>&nbsp;&nbsp;&nbsp;
+      <input type="text" id="secondNumGen" value="" /><br />
+      <label for="answer">Answer</label>&nbsp;&nbsp;&nbsp;
+      <input type="text" id="answer" value="" />
+      <br /><br /><br />
+      <label id="counter" >Counter</label>&nbsp;&nbsp;&nbsp;
+    </form>
+
+    <script>
+      let right = 0;
+      let wrong = 0;
+      function nextNumber() {
+        let element = document.getElementById("number");
+        let number = Math.floor(Math.random() * 101);
+        element.innerText = number;
+      }
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      function replenish() {
+        Array.from(document.querySelectorAll("input"))
+        .filter((element) => element.id.indexOf("Gen") != -1)
+        .forEach((input) => {
+          console.log(input);
+          input.value = getRandomInt(2, 20);
+        });        
+      }
+      replenish();
+
+      var answer = document.getElementById("answer");
+      if (answer.addEventListener) {
+        answer.addEventListener("keydown", this.tabHandler, false);
+      }
+
+      function tabHandler(e) {
+        var TABKEY = 9;
+        if (e.keyCode == TABKEY) {
+          //this.value += "    ";
+          let calculatedAnswer = multiplicationForm.firstNumGen.value *  multiplicationForm.secondNumGen.value;
+          let answer = parseInt(multiplicationForm.answer.value, 10);
+          if(calculatedAnswer === answer ) {
+            right++;
+            alert("You'r right ~~~> " + right);
+          } else {
+            wrong++;
+            alert("You'r wrong ~~~> " + wrong);
+          }
+          multiplicationForm.answer.value = "";
+          replenish();
+          document.getElementById('counter').innerHTML= "Your right :: ~~~> " +  right +": Wrong ::  :: ~~~>" + wrong;
+          if (e.preventDefault) {
+            e.preventDefault();
+          }
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
