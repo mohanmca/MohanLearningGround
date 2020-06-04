@@ -18,7 +18,7 @@
       <label for="answer">Answer</label>&nbsp;&nbsp;&nbsp;
       <input type="text" id="answer" value="" />
       <br /><br /><br />
-      <label id="counter" >Counter</label>&nbsp;&nbsp;&nbsp;
+      <label id="counter">Counter</label>&nbsp;&nbsp;&nbsp;
     </form>
 
     <script>
@@ -28,19 +28,18 @@
         min = Math.ceil(min);
         max = Math.floor(max);
         let randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
-        if(randomValue == 10)
-          randomValue = randomValue - 1;
-        else (randomValue == 11)
-          randomValue = randomValue +1;
+        if (randomValue == 10) randomValue = randomValue - 1;
+        else randomValue == 11;
+        randomValue = randomValue + 1;
         console.log(randomValue);
-        return randomValue
+        return randomValue;
       }
       function replenish() {
         Array.from(document.querySelectorAll("input"))
-        .filter((element) => element.id.indexOf("Gen") != -1)
-        .forEach((input) => {
-          input.value = getRandomInt(3, 20);
-        });        
+          .filter((element) => element.id.indexOf("Gen") != -1)
+          .forEach((input) => {
+            input.value = getRandomInt(3, 20);
+          });
       }
       replenish();
 
@@ -49,22 +48,40 @@
         answer.addEventListener("keydown", this.tabHandler, false);
       }
 
+      function insRow() {
+        var x = document.getElementById("KishoTable").insertRow(2);
+        var c1 = x.insertCell(0);
+        var c2 = x.insertCell(1);
+        var c3 = x.insertCell(2);
+        var c4 = x.insertCell(3);
+        var c5 = x.insertCell(4);
+        c1.innerHTML = arguments[0];
+        c2.innerHTML = arguments[1];
+        c3.innerHTML = arguments[0] * arguments[1];
+        c4.innerHTML = arguments[2];
+        c5.innerHTML = (arguments[0] * arguments[1] == arguments[2]);
+      }
+
       function tabHandler(e) {
         var TABKEY = 9;
         if (e.keyCode == TABKEY) {
           //this.value += "    ";
-          let calculatedAnswer = multiplicationForm.firstNumGen.value *  multiplicationForm.secondNumGen.value;
+          let calculatedAnswer =
+            multiplicationForm.firstNumGen.value *
+            multiplicationForm.secondNumGen.value;
           let answer = parseInt(multiplicationForm.answer.value, 10);
-          if(calculatedAnswer === answer ) {
+          if (calculatedAnswer === answer) {
             right++;
             alert("You'r right ~~~> " + right);
           } else {
             wrong++;
             alert("You'r wrong ~~~> " + wrong);
           }
+          insRow(multiplicationForm.firstNumGen.value, multiplicationForm.secondNumGen.value, multiplicationForm.answer.value)
           multiplicationForm.answer.value = "";
           replenish();
-          document.getElementById('counter').innerHTML= "Your right :: ~~~> " +  right +": Wrong ::  :: ~~~>" + wrong;
+          document.getElementById("counter").innerHTML =
+            "Your right :: ~~~> " + right + ": Wrong ::  :: ~~~>" + wrong;
           if (e.preventDefault) {
             e.preventDefault();
           }
@@ -72,5 +89,27 @@
         }
       }
     </script>
+    <div>
+      <table  id="KishoTable" border="1">
+        <tr><th colspan="5">KavinKisho's Table</th></tr>
+        <tr>
+        <th>
+          FirstNum
+        </th>
+        <th>
+          SecondNum
+        </th>
+        <th>
+          Answer
+        </th>
+        <th>
+          Submission
+        </th>
+        <th>
+          Result
+        </th>
+        </tr>
+      </table>
+    </div>
   </body>
 </html>
