@@ -11,9 +11,11 @@
       <br />
     </div>
     <form id="multiplicationForm">
+      <label for="SquareMode">Square mode</label>&nbsp;&nbsp;&nbsp;
+      <input type="checkbox" id="SquareMode" value="true" /><br />
       <label for="firstNumGen">First Number</label>&nbsp;&nbsp;&nbsp;
       <input type="text" id="firstNumGen" value="" /><br />
-      <label for="firstNumGen">Second Number</label>&nbsp;&nbsp;&nbsp;
+      <label for="secondNumGen">Second Number</label>&nbsp;&nbsp;&nbsp;
       <input type="text" id="secondNumGen" value="" /><br />
       <label for="answer">Answer</label>&nbsp;&nbsp;&nbsp;
       <input type="text" id="answer" value="" />
@@ -35,11 +37,18 @@
         return randomValue;
       }
       function replenish() {
-        Array.from(document.querySelectorAll("input"))
-          .filter((element) => element.id.indexOf("Gen") != -1)
-          .forEach((input) => {
-            input.value = getRandomInt(3, 20);
-          });
+        let randomNumber = getRandomInt(3, 20);
+        document.getElementById("firstNumGen").value = randomNumber;
+        let secondRandomNumber = getRandomInt(3, 20);
+        if (document.getElementById("SquareMode").checked) {
+          let random_boolean = Math.random() >= 0.5;
+          if (random_boolean) {
+            secondRandomNumber = randomNumber - 1;
+          } else {
+            secondRandomNumber = randomNumber + 1;
+          }
+        }
+        document.getElementById("secondNumGen").value = secondRandomNumber;
       }
       replenish();
 
@@ -49,17 +58,17 @@
       }
 
       function insRow() {
-        var x = document.getElementById("SanjithTable").insertRow(2);
-        var c1 = x.insertCell(0);
-        var c2 = x.insertCell(1);
-        var c3 = x.insertCell(2);
-        var c4 = x.insertCell(3);
-        var c5 = x.insertCell(4);
-        c1.innerHTML = arguments[0];
-        c2.innerHTML = arguments[1];
-        c3.innerHTML = arguments[0] * arguments[1];
-        c4.innerHTML = arguments[2];
-        c5.innerHTML = (arguments[0] * arguments[1] == arguments[2]);
+        var x = document.getElementById("KishoTable").insertRow(2);
+        var firstNum = x.insertCell(0);
+        var secondNum = x.insertCell(1);
+        var answer = x.insertCell(2);
+        var submission = x.insertCell(3);
+        var result = x.insertCell(4);
+        firstNum.innerHTML = arguments[0];
+        secondNum.innerHTML = arguments[1];
+        answer.innerHTML = arguments[0] * arguments[1];
+        submission.innerHTML = arguments[2];
+        result.innerHTML = arguments[0] * arguments[1] == arguments[2];
       }
 
       function tabHandler(e) {
@@ -77,7 +86,11 @@
             wrong++;
             alert("You'r wrong ~~~> " + wrong);
           }
-          insRow(multiplicationForm.firstNumGen.value, multiplicationForm.secondNumGen.value, multiplicationForm.answer.value)
+          insRow(
+            multiplicationForm.firstNumGen.value,
+            multiplicationForm.secondNumGen.value,
+            multiplicationForm.answer.value
+          );
           multiplicationForm.answer.value = "";
           replenish();
           document.getElementById("counter").innerHTML =
@@ -90,27 +103,32 @@
       }
     </script>
     <div>
-      <table  id="SanjithTable" border="1">
-        <tr><th colspan="5">Sanjiths's Table</th></tr>
+      <table id="KishoTable" border="1">
         <tr>
-        <th>
-          FirstNum
-        </th>
-        <th>
-          SecondNum
-        </th>
-        <th>
-          Answer
-        </th>
-        <th>
-          Submission
-        </th>
-        <th>
-          Result
-        </th>
+          <th colspan="5">Sanjiths's Table</th>
+        </tr>
+        <tr>
+          <th>
+            FirstNum
+          </th>
+          <th>
+            SecondNum
+          </th>
+          <th>
+            Answer
+          </th>
+          <th>
+            Submission
+          </th>
+          <th>
+            Result
+          </th>
         </tr>
       </table>
     </div>
-    <a href="https://htmlpreview.github.io/?https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/webapp/multiplication_sanjith.html">Link Back</a>
+    <a
+      href="https://htmlpreview.github.io/?https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/webapp/multiplication_sanjith.html"
+      >Link Back</a
+    >
   </body>
 </html>
