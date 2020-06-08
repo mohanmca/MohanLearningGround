@@ -1,3 +1,5 @@
+*Piqued* - I/O performance feels quite stoic despite it often being the bottleneck in high-end computing. Thus, Amazon FSx for Lustre announcement really piqued my interest
+
 *Apparition* -  Ghost like image of a person. “This is not an apparition, but my flesh and blood form."
 
 *Surmise* - Suppose that something is true without having evidence to confirm it.
