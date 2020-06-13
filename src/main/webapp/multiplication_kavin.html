@@ -19,6 +19,8 @@
       <input type="text" id="secondNumGen" value="" readonly="readonly" /><br />
       <label for="answer">Answer</label>&nbsp;&nbsp;&nbsp;
       <input type="text" id="answer" value="" />
+      <label for="submit_answer"><input type="button" id="submit_answer" onclick="scoreMark()" value="Submit Answer"/></label>&nbsp;&nbsp;&nbsp;
+
       <br /><br /><br />
       <a
         href="https://thumbs.dreamstime.com/z/x-multiplication-table-vector-illustration-students-multiplication-table-x-98833796.jpg"
@@ -108,6 +110,14 @@
       function tabHandler(e) {
         var TABKEY = 9;
         if (e.keyCode == TABKEY) {
+           scoreMark();
+          if (e.preventDefault) {
+            e.preventDefault();
+          }
+          return false;
+        }
+      }
+      function scoreMark() {
           //this.value += "    ";
           let calculatedAnswer =
             multiplicationForm.firstNumGen.value *
@@ -128,13 +138,10 @@
           multiplicationForm.answer.value = "";
           replenish();
           document.getElementById("counter").innerHTML =
-            "Your right :: ~~~> " + right + ": Wrong ::  :: ~~~>" + wrong;
-          if (e.preventDefault) {
-            e.preventDefault();
-          }
-          return false;
-        }
+            "Your right :: ~~~> " + right + ": Wrong ::  :: ~~~>" + wrong;        
+
       }
+
     </script>
     <div>
       <table id="KishoTable" border="1">
