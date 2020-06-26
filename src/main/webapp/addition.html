@@ -1,0 +1,193 @@
+<html>
+  <head>
+    <title>Random(Version: 2020-06-23-10:47PM)</title>
+  </head>
+  <body>
+    <div id="number">
+      <br />
+    </div>
+    <div id="number"></div>
+    <div id="number">
+      <br />
+    </div>
+    <form id="multiplicationForm">
+      <label for="SquareMode">Square mode</label>&nbsp;&nbsp;&nbsp;
+      <input type="checkbox" id="SquareMode" value="true" /><br />
+      <label for="firstNumGen">First Number</label>&nbsp;&nbsp;&nbsp;
+      <input type="text" id="firstNumGen" value="" readonly="readonly" /><br />
+      <label for="secondNumGen">Second Number</label>&nbsp;&nbsp;&nbsp;
+      <input type="text" id="secondNumGen" value="" readonly="readonly" /><br />
+      <label for="answer">Answer</label>&nbsp;&nbsp;&nbsp;
+      <input type="text" id="answer" value="" />
+      <label for="submit_answer"><input type="button" id="submit_answer" onclick="scoreMark()" value="Submit Answer"/></label>&nbsp;&nbsp;&nbsp;
+
+      <br /><br /><br />
+      <a
+        href="https://thumbs.dreamstime.com/z/x-multiplication-table-vector-illustration-students-multiplication-table-x-98833796.jpg"
+      >
+        Table Reference<br>
+      </a>
+      <label id="counter">Counter</label>&nbsp;&nbsp;&nbsp;
+    </form>
+
+
+    <div>
+      <table id="KishoTable" border="1">
+        <tr>
+          <th colspan="6">Result Table<br/>
+            <div id="date_time">
+
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            FirstNum
+          </th>
+          <th>
+            SecondNum
+          </th>
+          <th>
+            Answer
+          </th>
+          <th>
+            Submission
+          </th>
+          <th>
+            Explanation
+          </th>
+          <th>
+            Result
+          </th>
+        </tr>
+      </table>
+    </div>
+    <a
+      href="https://htmlpreview.github.io/?https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/webapp/multiplication_quiz2.html"
+      >Link Back</a
+    >
+  </body>
+  <script>
+    let right = 0;
+    let wrong = 0;
+    let start_time= new Date();
+    let minutes_per_question='';
+    document.getElementById("date_time").innerText =  start_time;
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      let randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+      if (randomValue == 10) randomValue = randomValue - 1;
+      else randomValue == 11;
+      randomValue = randomValue + 1;
+      console.log(`${randomValue} - Random value`);
+      return randomValue;
+    }
+    function replenish() {
+      let randomNumber = getRandomInt(3, 40);
+      document.getElementById("answer").value = "";
+      document.getElementById("firstNumGen").value = randomNumber;
+      let secondRandomNumber = getRandomInt(3, 20);
+      if (document.getElementById("SquareMode").checked) {
+        let random_boolean = Math.random() >= 0.5;
+        if (random_boolean) {
+          secondRandomNumber = randomNumber - 1;
+        } else {
+          secondRandomNumber = randomNumber + 1;
+        }
+      }
+      document.getElementById("secondNumGen").value = secondRandomNumber;
+    }
+    replenish();
+
+    var answer = document.getElementById("answer");
+    if (answer.addEventListener) {
+      answer.addEventListener("keydown", this.tabHandler, false);
+    }
+
+    function explanation(ns) {
+      let numbers = [...ns];
+      numbers.sort((a, b) => a - b);
+      if (numbers[1] > 10 && numbers[0] < 10) {
+        return explain(numbers);
+      } else if (numbers[1] > 10 && numbers[0] > 10) {
+        return explain([numbers[1], numbers[0]]);
+      }
+      return "";
+    }
+
+    function explain(numbers) {
+      let tens = Math.floor(numbers[1] / 10) * 10;
+      let ones = Math.floor(numbers[1] % 10);
+      let tens_multiplication = tens * numbers[0];
+      let ones_multiplication = ones * numbers[0];
+      let tens_string = `${tens} x ${numbers[0]} = ` + tens * numbers[0];
+      let ones_string = `${ones} x ${numbers[0]} = ` + ones * numbers[0];
+      let total =
+        `${tens_multiplication} + ${ones_multiplication} = ` +
+        (tens_multiplication + ones_multiplication);
+      // return ones != 0
+      //   ? ones_string + "<br>" + tens_string + "<br>" + total
+      //   : tens_string + "<br>" + total;
+        return "";
+    }
+
+    function insRow(numbers) {
+      let x = document.getElementById("KishoTable").insertRow(2);
+      let firstNum = x.insertCell(0);
+      let secondNum = x.insertCell(1);
+      let answer = x.insertCell(2);
+      let submission = x.insertCell(3);
+      let details = x.insertCell(4);
+      let result = x.insertCell(5);
+      firstNum.innerHTML = numbers[0];
+      secondNum.innerHTML = numbers[1];
+      answer.innerHTML = numbers[0] + numbers[1];
+      submission.innerHTML = numbers[2];
+      details.innerHTML = explanation(numbers);
+      result.innerHTML = numbers[0] + numbers[1] == numbers[2];
+    }
+
+    function tabHandler(e) {
+      var TABKEY = 9;
+      if (e.keyCode == TABKEY) {
+        updateTime();
+         scoreMark();
+        if (e.preventDefault) {
+          e.preventDefault();
+        }
+        return false;
+      }
+    }
+    function scoreMark() {
+        //this.value += "    ";
+        let calculatedAnswer = parseInt(multiplicationForm.firstNumGen.value,10) +        parseInt(multiplicationForm.secondNumGen.value,10);
+        let answer = parseInt(multiplicationForm.answer.value, 10);
+        if (calculatedAnswer === answer) {
+          right++;
+        } else {
+          wrong++;
+        }
+        insRow([
+          parseInt(multiplicationForm.firstNumGen.value, 10),
+          parseInt(multiplicationForm.secondNumGen.value, 10),
+          parseInt(multiplicationForm.answer.value, 10),
+        ]);
+        multiplicationForm.answer.value = "";
+        replenish();
+        let result = "Your right :: ~~~> " + right + ": Wrong ::  :: ~~~>" + wrong;
+        let speed = Math.floor(minutes_per_question/right);
+        let speed_result = "<br/>Your speed in number of seconds per question is  " + speed;
+
+        document.getElementById("counter").innerHTML =
+        result + "<br/>" + speed_result;        
+
+    }
+    function updateTime() {
+      let end_time = new Date();
+      var diff = Math.abs(end_time - start_time);
+      minutes_per_question = Math.floor((diff/1000));
+    }
+
+  </script>  
+</html>
