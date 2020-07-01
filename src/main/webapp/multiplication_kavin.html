@@ -32,7 +32,7 @@
 
 
     <div>
-      <table id="KishoTable" border="1">
+      <table id="MultiplicationTable" border="1">
         <tr>
           <th colspan="6">Result Table<br/>
             <div id="date_time">
@@ -132,7 +132,7 @@
     }
 
     function insRow(numbers) {
-      let x = document.getElementById("KishoTable").insertRow(2);
+      let x = document.getElementById("MultiplicationTable").insertRow(2);
       let firstNum = x.insertCell(0);
       let secondNum = x.insertCell(1);
       let answer = x.insertCell(2);
@@ -176,7 +176,11 @@
         ]);
         multiplicationForm.answer.value = "";
         replenish();
-        let result = "Your right :: ~~~> " + right + ": Wrong ::  :: ~~~>" + wrong;
+        let error_ratio = (wrong/(right+wrong))*100
+        let result = "Your right :: ~~~> " + right + ", Wrong :: ~~~>" + wrong;
+        if(error_ratio > 0.001) {
+          result = result + ", Error ratio :: " + error_ratio.toFixed(2) +"%";
+        }
         let speed = Math.floor(minutes_per_question/right);
         let speed_result = "<br/>Your speed in number of seconds per question is  " + speed;
 
