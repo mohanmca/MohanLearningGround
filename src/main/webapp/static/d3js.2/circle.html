@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      /* simple reset */
+      html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video {  
+        margin: 0;  
+        padding: 0;  
+        border: 0;  
+        font-size: 100%;  
+        font: inherit;  
+        vertical-align: baseline; 
+      }
+
+      #slider {
+        text-align: center;
+        margin: 20px;
+        font-family: sans-serif;
+        font-size: 10px;
+        line-height: 2;
+      }
+
+      #sales-range {
+        vertical-align: bottom;
+      }
+
+      #viz {
+        width: 100%;
+        text-align: center;
+      }
+
+    </style>
+  </head>
+  <script src="https://d3js.org/d3.v5.js"></script>
+  
+  <body>
+    <div id="slider">
+      <span>all</span>
+      <input type="range" id="sales-range" value="0" />
+      <span>best sellers</span>
+    </div>
+    <div id="viz"></div>
+  
+    <script>
+
+      let margin = {top: 30, left: 30, bottom: 150, right: 30};
+      let fullWidth = 960;
+      let fullHeight = 500;
+      let width = fullWidth - margin.left - margin.right;
+      let height = fullHeight - margin.top - margin.bottom;
+
+var svg = d3.select('body').append('svg')
+                            .attr('width', fullWidth )
+                            .attr('height', fullHeight)
+                            .append('g')
+                            .attr('transform', `translate(${margin.left}, ${margin.top})`);   
+
+let x = d3.scaleBand().range([0, width]).padding(0.1);
+let y = d3.scaleLinear().range([height, 0]);
+
+x.domain([0, width])
+y.domain([height, 0]).nice();
+
+
+svg.append('g').call(d3.axisLeft(y));
+svg.append('g').attr('transform',`translate(0, ${height})`).call(d3.axisBottom(x));
+
+
+var circles = function(svg) {
+  // Generate data
+  var data = makeData((Math.random() * 8) + 1)
+
+  // Assign data to circles
+  let circle = svg.selectAll('circle').data(data)
+
+  circle.join(
+    enter => {
+      enter.append('circle')
+      .attr('test', (d, i) => {
+        //enter called n times only
+        //console.log('Enter placing initial circle: ', i)
+      })
+
+    },
+    update => {
+      update.transition().duration(500)
+    .style('fill', 'rgba(0,0,0,.1)')
+    .attr('cx', d => (width/2) - d.x)
+    .attr('cy', d => (height/2) -  d.y)    
+    .attr('r', d => d.radius)
+    .attr('test', (d, i) => {
+      //enter called n times only
+      //console.log('Updating x position to: ', d.x)
+    })
+    },
+    exit => {
+      exit.attr('test', d => {      /* console.log('No data...')   */ }).remove();
+    }
+  )
+
+}
+
+setInterval(() =>   circles(svg), 1000)
+
+function makeData(n){
+  var arr = []
+  for (let i = 0; i < n; i++) {
+    arr.push({
+      x: Math.floor((Math.random() * 100 + 1)),
+      y: Math.floor((Math.random() * 100 + 1)),
+      radius: Math.floor((Math.random() * 100 + 1))
+    })
+  }
+  return arr
+}
+
+    </script>
+  </body>
+
+</html>

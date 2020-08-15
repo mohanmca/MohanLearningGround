@@ -60,8 +60,6 @@
         .padding(0.1);
 
       let y = d3.scaleLinear().range([height, 0]);
-      let rangeSlider = document.getElementById('sales-range');
-      rangeSlider.min =0;
 
 
       d3.csv('sales.csv', (d) => {
@@ -88,10 +86,14 @@
         .attr('transform', 'rotate(90)')
         .attr('text-anchor', 'start');
 
-        //createBars(results);
+        createBars(results);
+
+        let rangeSlider = document.getElementById('sales-range');
+        rangeSlider.min =0;
         rangeSlider.max = maxValue;
         rangeSlider.onchange = () => {
           let filterData = results.filter(d => d.sales >= rangeSlider.value);
+          debugger;
           console.log(filterData);
           createBars(filterData);
         }
@@ -128,7 +130,7 @@
                         bar.append('text')
                         .text(d => d.sales)
                         .attr('x', d => x(d.flavors) + (x.bandwidth()/2))
-                        .attr('y', d => y(d.sales) - 4)
+                        .attr('y', d => y(d.sales) - 5)
                         .attr('text-anchor', 'middle')
                         .style('font-family', 'sans-serif')
                         .style('font-size', 10)
@@ -140,7 +142,8 @@
               update.transition().duration(750).style('opacity',1);
             },
             exit => {
-              exit.transition().duration(750).style('opacity', 0.15);    
+              console.log(`Exit - ${exit}`);
+              exit.transition().duration(50).style('opacity', 0.05);    
             }
           )
 
