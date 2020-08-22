@@ -1,0 +1,77 @@
+{
+  "main": {
+    "id": "aaa773e6870bb4ae",
+    "type": "split",
+    "children": [
+      {
+        "id": "70aa9a17d1539046",
+        "type": "leaf",
+        "active": true,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Workout.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4a44c3e99b06b2ff",
+    "type": "split",
+    "children": [
+      {
+        "id": "ec806a03634dac63",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "51284f2d532fe3b1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "8d8a3c5cac438a8a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a0c72d28088fe644",
+    "type": "split",
+    "children": [
+      {
+        "id": "799803f4cecb9bde",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fbc5da6b78baefcc",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "lastOpenFiles": [
+    "Workout.md"
+  ]
+}
