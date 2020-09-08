@@ -23,5 +23,18 @@ your opinions in a pompous and dogmatic way.)(write blog for pontification)
   * 10. Be Brief
     * A good conversation is like a miniskirt; short enough to retain interest, but long enough to cover the subject
 
+
+## Microagression
+
+* Commenting a person "speaks excellent English"
+* Interrrupting a co-worker to say "What you are trying to say is..."
+* Calling a female co-worker "sweetheart"
+* Telling a transgener employee "No one can tell you are trans"
+* Congratulating a person with a disablity for overcoming adversity
+* Telling someone their name is hard pronounce
+* Joking that an older worker probably doesn't know what Snapchat is
+* Asking a black woman if that's her real hair
+* Telling a co-worker they are "too sensitive"
+
 ## References
 * 10 ways to have a better conversation
