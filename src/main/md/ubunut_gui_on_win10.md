@@ -27,6 +27,15 @@ AllowAgentForwarding no
 AllowTcpForwarding no
 X11Forwarding no
 
+## start windows
+``
+sudo apt-get install xrdp -y
+sudo sed -i 's/3389/3388/g' /etc/xrdp/xrdp.ini
+sudo /etc/init.d/xrdp start
+```
+
+Use remote windows connection localhost:3388
+
 
 ## Reference
 
