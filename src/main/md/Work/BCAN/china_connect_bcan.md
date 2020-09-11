@@ -1,0 +1,2 @@
+* (https://www.hkex.com.hk/-/media/HKEX-Market/Mutual-Market/Stock-Connect/Reference-Materials/Northbound-Investor-ID-Model/HKEX-BCAN-Interface-Specification-v1,-d-,3-(Clean).pdf?la=en)
+* (https://www.hkex.com.hk/-/media/HKEX-Market/Mutual-Market/Stock-Connect/Reference-Materials/Northbound-Investor-ID-Model/BCANCID-Mapping-File-Example-(Version-1,-d-,0).pdf?la=en)

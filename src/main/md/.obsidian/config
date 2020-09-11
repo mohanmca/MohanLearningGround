@@ -1,0 +1,42 @@
+{
+  "theme": "obsidian",
+  "pluginEnabledStatus": {
+    "File explorer": true,
+    "Search": true,
+    "Quick switcher": true,
+    "Graph view": true,
+    "Backlinks": true,
+    "Command palette": true,
+    "Markdown format importer": true,
+    "Word count": true
+  },
+  "isSidebarCollapsed": false,
+  "isRightSidedockCollapsed": true,
+  "lastOpenSidebarTab": "File explorer",
+  "workspaceLayout": {
+    "id": "9ef492959924cf07",
+    "type": "split",
+    "dimension": null,
+    "direction": "vertical",
+    "children": [
+      {
+        "id": "274aa68e1cd7677a",
+        "type": "leaf",
+        "dimension": null,
+        "active": true,
+        "master": "",
+        "state": {
+          "type": "graph",
+          "state": {}
+        }
+      }
+    ]
+  },
+  "lastOpenFiles": [
+    "Productivity/ParkinsonLaw.md",
+    "Productivity/GTD.md",
+    "People/Awesome People.md",
+    "Body/Workout.md",
+    "gcp/Debian_VM.md"
+  ]
+}

@@ -36,5 +36,11 @@ your opinions in a pompous and dogmatic way.)(write blog for pontification)
 * Asking a black woman if that's her real hair
 * Telling a co-worker they are "too sensitive"
 
+## Connecting
+
+* Take time with genuine intention of *interacting and connecting* with the people you work with on a daily basis.
+* If you're not sure, it is okay to ask "What are your pronouns?" and avoid the term "preferred pronouns"
+* Check the person close to them, and find the pronouns
+
 ## References
 * 10 ways to have a better conversation
