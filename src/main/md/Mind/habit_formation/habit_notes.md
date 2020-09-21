@@ -22,7 +22,6 @@
   * Why social media is very addictive?
     * Immediate reward 'likes' make it work
     * Because it gives us the immediate reward by the time we post something (‘likes’ notification) which we don’t easily get in a real social interaction.  
-* Immediate Reward
 * Progress monitoring
   * The brain has efficient coding of positive information about the future, but is worse at processing negative information. This means that you'll want to highlight the progress people make, not the decline. (E.g. Kid smoking: If you stop smoking, you'll be better at sports.)
 
