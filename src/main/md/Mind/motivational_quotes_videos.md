@@ -1,6 +1,9 @@
 # About me
 * My enthusiasm far exceeds my talent!
 
+* A wise man proportions his beliefs to the evidence - David Hume
+  * Bayes theorem was proposed by Thiest, but core of theorem expects evidence
+
 # Going fast
 * If you want to go fast, go alone; if you want to go far; go togther.
 * If everything seems under control you�re just not going fast enough. 
