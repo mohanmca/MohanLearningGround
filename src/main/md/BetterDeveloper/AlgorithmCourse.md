@@ -9,3 +9,4 @@
 
 * [Duke University - DESIGN AND ANALYSIS OF ALGORITHMS](https://www2.cs.duke.edu/courses/fall08/cps230/Book.pdf)
 * [Spring 2019 - COMPSCI 330 - Design and Analysis of Algorithms](https://www2.cs.duke.edu/courses/spring19/compsci330/)
+* [Lecture notes from different authors are consolidated](https://www2.cs.duke.edu/courses/fall10/cps130/lectures.html)
