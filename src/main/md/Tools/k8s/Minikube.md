@@ -13,5 +13,19 @@ kubectl config current-context
 kubectl get nodes
 ```
 
+## We might encounter this error,  --no-vtx-check could be used to make it work
+
+```txt
+! StartHost failed, but will try again: creating host: create: precreate: This computer doesn't have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory
+* Creating virtualbox VM (CPUs=2, Memory=4096MB, Disk=20000MB) ...
+* Failed to start virtualbox VM. Running "minikube delete" may fix it: creating host: create: precreate: This computer doesn't have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory
+X Exiting due to HOST_VIRT_UNAVAILABLE: Failed to start host: creating host: create: precreate: This computer doesn't have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory
+* Suggestion: Virtualization support is disabled on your computer. If you are running minikube within a VM, try '--driver=docker'. Otherwise, consult your systems BIOS manual for how to enable virtualization.
+```
+
+### Solution to ignore hyperv
+
+minikube start  --memory=4g --cpus=2 --vm-driver=virtualbox  --no-vtx-check --kubernetes-version="v1.15.1"
+
 * https://instruqt.com/public/tracks/deploying-an-app-on-kubernetes/
 * https://www.katacoda.com/courses/kubernetes
