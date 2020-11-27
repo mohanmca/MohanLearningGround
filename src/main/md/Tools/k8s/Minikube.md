@@ -7,6 +7,8 @@ minikube addons enable metrics-server
 minikube start
 minikube start --vm-driver=hyperv --kubernetes-version="v1.14"
 minikube delete
+# Remove the iso file and images of minikube
+minikube delete --all --purge
 minikube dashboard
 kubectl version --client
 kubectl config current-context
