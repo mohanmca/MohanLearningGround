@@ -7,6 +7,12 @@
 * They shield you from product owners and stakeholders by meeting with them and giving you only the information you need (unless it's necessary you meet with them).
 * 
 
+## Performance review notes
+
+* The more satisfied employees are with their managers, the more satisfied they will be with their jobs
+* Document every step in your management of a problem with an employee
+* 
+
 ## Manager (Transparency vs Hiding bull-shit)
 
 
