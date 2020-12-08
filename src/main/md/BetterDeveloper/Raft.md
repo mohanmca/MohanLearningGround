@@ -4,6 +4,7 @@
 * [Raft slides](https://ongardie.github.io/raft-talk/)
 * [Raft Paper](https://raft.github.io/raft.pdf)
 * [Guy who designed explains Raft](https://www.youtube.com/watch?v=vYp4LYbnnW8)
+  * Above talk was presented by Professor John Ousterhout on August 29, 2016 as part of the CS @ Illinois Distinguished Lecture Series
 * [Raft Home](https://raft.github.io/)
 
 ## Why Consensus algorithm?
@@ -21,6 +22,13 @@
 
 
 ## Why Raft over paxos?
+
+## Raft presentation by Diego Ongaro
+
+* [An Introduction to Raft (CoreOS Fest 2015)](https://www.youtube.com/watch?v=6bBggO6KN_k)
+* [Tech Talk - Raft, In Search of an Understandable Consensus Algorithm by Diego Ongaro-LinkedIn Engineering](https://www.youtube.com/watch?v=LAqyTyNUYSY)
+* [An overview of Raft & LogCabin with creator Diego Ongaro-in-Sourcegraph](https://www.youtube.com/watch?v=2dfSOFqOhOU)
+* [Raft lecture (Raft user study)-by-John Ousterhout](https://www.youtube.com/watch?v=YbZ3zDzDnrw)
 
 
 
