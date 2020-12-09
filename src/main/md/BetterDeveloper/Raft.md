@@ -4,7 +4,9 @@
 * [Raft slides](https://ongardie.github.io/raft-talk/)
 * [Raft Paper](https://raft.github.io/raft.pdf)
 * [Raft algorithm - Lecture](https://www.youtube.com/watch?v=YbZ3zDzDnrw)
+* [Raft algorithm - Lecture-Raft: A Consensus Algorithm-for Replicated Logs-Slides](https://raft.github.io/slides/raftuserstudy2013.pdf)
 * [John Ousterhout who designed explains Raft - on August 29, 2016 as part of the CS @ Illinois Distinguished Lecture Series](https://www.youtube.com/watch?v=vYp4LYbnnW8)
+* [CS @ Illinois Distinguished Lecture Series-Slides](https://raft.github.io/slides/uiuc2016.pdf)
 * [Raft Home](https://raft.github.io/)
 
 ## Why Consensus algorithm?
