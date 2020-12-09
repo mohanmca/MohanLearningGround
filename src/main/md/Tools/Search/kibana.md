@@ -1,5 +1,8 @@
 ## Kibana
 
+* Version - 5.6.5 and V-6.7.0
+* Learning material can be find in - kibana 5 site:https://www.elastic.co/videos/
+
 ## Two types of data set
 
 * Static data set
@@ -30,4 +33,17 @@
 geo.country : France and (occupation : "Software Engineer" or occupation : "Sales" )
 geo.country : France and (occupation : "Software Engineer" or occupation : "Sales" ) and geo.city : Lyon
 
+```
+
+
+## Useful Kibana Queries
+
+
+```sql
+statck_trace: null
+_exists_: stack_trace
+mod_date:[20020101 TO 20030101]
+level: ERROR
+@timestamp: ["2020-10-29T00:50:13" TO "2020-10-29T20:50:13"]
+module_name is one of ["a", "b"]
 ```

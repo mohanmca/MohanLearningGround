@@ -13,7 +13,6 @@
 * Strongly-consistent distributed systems.
 * Consensus involves multiple servers agreeing on values. Once they reach a decision on a value, that decision is final.
 
-
 ## What does Raft solves?
 
 * Consensus algorithms are the most important algorithms in distributed systems
@@ -23,14 +22,21 @@
 
 ## Why Raft over paxos?
 
+* Raft uses randomization over agreeing on single value in Paxos
+* Raft assumes leader log is always correct
+
+## Raft excercises?
+
+* [Distributed Systems-Go Programming Cookbook - Second Edition](https://learning.oreilly.com/library/view/go-programming-cookbook/9781789800982/f31ccddf-d039-47c0-9a9d-365c64b4b8c4.xhtml#uuid-6a541d4d-79bd-4568-abd0-abb030097790)
+* [CMU - course/14-736/applications/labs/lab2](http://www.andrew.cmu.edu/course/14-736/applications/labs/lab2/raft-java.pdf)
+* [CMU-Java - course/14-736/applications/labs/lab2](http://www.andrew.cmu.edu/course/14-736/applications/labs/lab2/raft-java.zip)
+
 ## Raft presentation by Diego Ongaro
 
 * [An Introduction to Raft (CoreOS Fest 2015)](https://www.youtube.com/watch?v=6bBggO6KN_k)
 * [Tech Talk - Raft, In Search of an Understandable Consensus Algorithm by Diego Ongaro-LinkedIn Engineering](https://www.youtube.com/watch?v=LAqyTyNUYSY)
 * [An overview of Raft & LogCabin with creator Diego Ongaro-in-Sourcegraph](https://www.youtube.com/watch?v=2dfSOFqOhOU)
 * [Raft lecture (Raft user study)-by-John Ousterhout](https://www.youtube.com/watch?v=YbZ3zDzDnrw)
-
-
 
 ## References
 
