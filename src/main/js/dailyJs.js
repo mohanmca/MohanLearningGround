@@ -136,7 +136,10 @@ let texts = transcript
  .filter(t => t.className.indexOf("cue-group")!=-1)
  .filter(t => t.className.indexOf("cue-group-start-offset")==-1)
  .map(t => t.innerText)
-texts = texts.map(t => t.split("\n").splice(1).join('\n"))
+// texts = texts.map(t => t.split("\n").splice(1).join('\n"))
+let texts2 = texts.map(t => t.split("\n"))
+let transcriptions = texts2.map( t => t[1]).join("\n")
+console.log(transcriptions)
 }
 ```
 
