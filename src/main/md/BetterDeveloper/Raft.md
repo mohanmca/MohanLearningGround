@@ -3,8 +3,8 @@
 * Raft was designed by Diego Ongaro and John Ousterhout
 * [Raft slides](https://ongardie.github.io/raft-talk/)
 * [Raft Paper](https://raft.github.io/raft.pdf)
-* [Guy who designed explains Raft](https://www.youtube.com/watch?v=vYp4LYbnnW8)
-  * Above talk was presented by Professor John Ousterhout on August 29, 2016 as part of the CS @ Illinois Distinguished Lecture Series
+* [Raft algorithm - Lecture](https://www.youtube.com/watch?v=YbZ3zDzDnrw)
+* [John Ousterhout who designed explains Raft - on August 29, 2016 as part of the CS @ Illinois Distinguished Lecture Series](https://www.youtube.com/watch?v=vYp4LYbnnW8)
 * [Raft Home](https://raft.github.io/)
 
 ## Why Consensus algorithm?

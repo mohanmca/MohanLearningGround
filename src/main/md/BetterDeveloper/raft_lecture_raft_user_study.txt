@@ -1,0 +1,1492 @@
+hello I'm John osterhaus and in this
+video I'm going to introduce the raft
+consensus algorithm the overall goal of
+raft is to replicate a log of entries
+identically across the collection of
+servers and this in turn is used to
+create what we call a replicated state
+machine suppose you had a program or an
+application that you wanted to make
+reliable one way to do that is to
+execute that program on a collection of
+machines and ensure that they all
+execute in exactly the same way that's
+the idea of a replicated state machine
+so when I say state machine I just mean
+a program or an application that takes
+inputs and produces outputs now a log
+can help in order to make sure that
+those state machines execute exactly the
+same commands here's how it works if a
+client of the system wishes to execute a
+command it passes that to one of those
+machines that command let's call it X
+then gets recorded in the log of the
+local machine and that in addition the
+command is passed to the other machines
+and recorded in their logs as well once
+the command has been safely replicated
+in the logs then it can be passed to the
+state machines for execution and when
+one of the state machines has finished
+executing the command the result can be
+returned back to the client program
+again and you can see that as long as
+the logs and the machines are all
+identical and the state machines on them
+on the different servers execute the
+same commands from the log in the same
+order we know they're all going to
+produce the same results so it's the job
+of the consensus module to manage those
+logs ensure that they're properly
+replicated and then determine when it's
+safe to pass the commands to the state
+machine for execution the reason we call
+this a consensus based approach is that
+we don't require all of the server's to
+be running and in a given time in fact
+the system has to make progress as long
+as any majority of the servers are up
+and can communicate with each other so
+for example you might have a cluster of
+three servers this could tolerate one
+server being down as long as two of the
+three are up or in a cluster of five
+servers you could tolerate two servers
+being down as long as three are up
+now let me talk briefly about the
+failures that we expect the system to
+handle
+we expect that servers can crash but we
+expect them to do that in a fail stop
+way that is they just stop operating or
+they may pause operating and then resume
+later but when they're running they're
+behaving correctly so we don't this
+protocol does not handle a situation
+where a server has so-called Byzantine
+behavior where it behaves maliciously we
+also assume that the network
+communications can be interrupted
+messages can be lost or delayed they may
+arrive out of order and it's possible
+that the network could be partitioned
+for a while and then the partition could
+go away later on there are two general
+approaches that have been used to
+implement consensus algorithms the first
+approach is called symmetric or
+leaderless in this approach all the
+server's have the same roles they all
+have equal power behave roughly the same
+at any given time they're all they're
+all very equal a client can contact any
+server to add a command of the log and
+get it replicated the second approach is
+called asymmetric or leader based the
+servers are not equal at any given time
+and then you have time one of them is
+the leader it's in charge typically
+manages all of the operation of the
+clusters and the other servers are
+subservient simply carrying out the
+wishes of the leader in this sort of a
+system the clients always communicate
+with the leader
+only the leader talks with the other
+servers now Raft uses that second leader
+based approach and this decomposes the
+problem of the consensus algorithm into
+two different things one is the normal
+operation when there's a leader that's
+properly running and then the second
+part is what do you do when the leader
+crashes we have to elect a new leader
+this approach has the advantage that it
+makes the normal operation very simple
+you don't have to worry about different
+leaders conflicting with each other or
+trying to do things at the same time
+there's one person in charge and they
+can do exactly what they want all of the
+complexity and raft as you'll see comes
+from leader changes that's particularly
+true because if a leader crashes it may
+leave the system in an inconsistent
+state that the next leader has to clean
+up in general the leader based
+approaches are more efficient than the
+leaderless approaches because you don't
+have to worry about these khans
+between servers at any given time you
+only have to deal with those during
+leader changes I'm going to explain raft
+in six parts first I will talk about
+leader election how do we choose out of
+all of the servers one of them that will
+be the leader and then when that machine
+crashes how do we detect that and pick a
+different leader to replace it
+second I'll talk about the normal
+operation of the system where a leader
+is receiving requests from clients and
+replicating them that's actually the
+simplest part of the raft system third
+I'll talk about leader changes this is
+probably the trickiest part and the most
+crucial in terms of guaranteeing the
+overall behavior of the system I'll
+first talk about what it means for Raph
+to be safe how we ensure that and second
+how leaders resolve login consistencies
+in order to restore the system back to a
+consistent state again fourth I'll talk
+about another issue related to leader
+changes which is how do we keep an old
+leader that isn't actually dead from
+coming back to haunt us
+fifth I'll give a little bit more
+information about how clients interact
+with the system and the key issue here
+is how do clients deal with server
+crashes and how do we make sure that we
+have what are called linearizable
+semantics where each client operation is
+executed once and exactly once and then
+finally I'll talk about how we deal with
+configuration changes that is how do we
+add or remove servers to the cluster
+that is managing the raft system before
+going into details of those six parts of
+raft
+let me first provide some overall
+information at any given time a server
+is in one of three states the first
+state I've already described that's the
+leader state we need to make sure
+there's only one of these at a time the
+second state is follower state we expect
+most of the servers to be in follower
+state most of the time these servers are
+completely passive they issue no remote
+procedure calls at all all they do is
+respond to remote procedure calls coming
+from other servers the third state is
+called candidate state this is a state
+intermediate between follower and leader
+and is used temporarily during elections
+to pick a new leader
+in normal operation of the system there
+will be exactly one leader and all of
+the other servers will be followers at
+the bottom of the slide I've shown a
+state diagram of these states and the
+transitions between them I'm not going
+to go over those now but you may find
+those useful to refer to as I go through
+the details of the algorithm in the
+later slides time is divided into terms
+each term has a number and these numbers
+increment and are never reused each term
+has two parts first a term starts with
+an election that is this is a process
+that picks a leader for the term and
+then if the election is successful then
+the chosen leader will serve out for the
+rest of the term as the leader as you'll
+see RAF guarantees that only one server
+can be elected leader in a term however
+there can be some terms where no leader
+is chosen this happens if the votes are
+split in a way that no leader can get a
+majority of the votes when this happens
+then the system immediately moves to a
+new term to try again to pick a leader
+each server in the raft system maintains
+a value called the current term which is
+its best guess about what the current
+term in the system is and by the way
+that information has to be stored
+reliably on that servers disk so that it
+can be recovered when the server crashes
+and restarts the role that terms serve
+is a really important one it allows raft
+to identify information that's out of
+date for example if a server that
+currently believes that the term number
+is two communicates with the server that
+currently believes the term number is
+three then we know the information
+coming from the first server is out of
+date we only want to use the information
+from the latest term so as we go through
+the talk you'll see several situations
+where terms are used to detect and
+eliminate information that's no longer
+up to date
+this slide contains a complete summary
+of the entire raft protocol I'm not
+going to go over it in detail now but I
+just want to point out a few general
+features you can come back to later on
+so first the sly describes what each of
+the three roles does followers
+candidates and leaders second it
+describes what information has to be
+stored persistently on the disks of the
+servers and then third it describes how
+the servers communicate all
+communication and raft is done via
+remote procedure calls and there are
+only two of them there's one RPC called
+request vote that's used during
+elections to pick a leader and one RPC
+that's used by the leader during normal
+operations to replicate log entries
+these are the only two pcs in the system
+and by the way I'll just mention briefly
+each of these is idempotent which has
+some nice properties in terms of
+handling replicated and lost messages
+and so on again I'm not going to go over
+the details here but you may want to
+refer back to these as I go through
+details later on in the talk okay
+now let's go through the six components
+of the raft protocol the first component
+of the protocol is Elections raft has to
+make sure that at any given time there's
+exactly one machine acting as leader in
+the cluster now when a server starts up
+it begins as a follower and in this
+state it doesn't attempt to communicate
+with anyone else followers are
+completely passive they simply respond
+to incoming remote procedure calls from
+other machines however in order for a
+follower to stay a follower it has to
+believe that there is an active leader
+in the cluster and the only way it can
+know that is if it receives
+communications from other machines that
+are either leaders or candidates so if
+the leader wants to maintain its
+authority it must communicate with all
+of the other machines in the cluster on
+a regular basis and if it has no other
+reason for communicating with them it
+must send heartbeat messages in raft
+these are simply append entries remote
+procedure calls that contain no data at
+all so those service heartbeat messages
+if a period of time goes by and a
+follower does not receive any remote
+procedure calls then it assumes that
+there is no viable leader in the cluster
+and so it starts an election to see if
+perhaps it
+become leader this period of time that a
+follower wait is called the election
+time out in typical clusters that'll be
+in the range of a hundred to five
+hundred milliseconds so when the cluster
+first starts up all of the servers will
+begin as followers there'll be no leader
+and so they'll all wait the selection
+timeout period and then they'll all
+start elections to elect a leader now
+let's talk about how an election works
+when a server begins an election the
+first thing it does is to increment its
+current term value this produces a new
+value for the term larger than anything
+it has seen before and remember the
+first thing that happens in every new
+term is we hold an election the server
+then converts itself from follower state
+to candidate state in this state its
+goal is to get itself elected as leader
+and in order to do that it needs to
+receive votes from a majority of the
+servers in the cluster the first thing
+the candidate does is that it votes for
+itself then it sends out remote
+procedure calls to all of the other
+servers asking them for their votes
+typically it will send these requests
+vote our pcs in parallel to all of the
+servers if it doesn't get a response
+from any particular server it will keep
+retrying with that server over and over
+again until it eventually gets a
+response sooner or later one of three
+things will happen first the thing we
+happen most of the top to happen most of
+the time is that the candidate will get
+votes from a majority of the servers in
+the cluster when this happens then it
+converts itself to leader state and
+immediately sends out heartbeat messages
+to all of the other servers which
+effectively marks its territory or
+establishes itself as leader the second
+thing that could happen during an
+election is that there could be some
+other candidate also operating at the
+same time and perhaps that candidate
+receives enough votes to become leader
+at which point it will send out our pcs
+and so if a candidate receives a remote
+procedure call from a valid leader then
+immediately gives up its attempt to
+become leader we call that stepping down
+which causes it to return to follower
+state becomes passive and simply
+responds to the request from the valid
+leader then the third state our third
+outcome that can happen is that it's
+possible no one will win the election if
+several servers convert to candidate
+about the same time they could split the
+votes in a way that nobody can get a
+majority of the clusters votes the way
+that a server detects this possibility
+is that a period of time goes by and
+neither of the other two options has
+occurred yet
+in fact it uses the same election
+timeout period if that elapses and this
+candidate has not become leader and is
+not heard from a valid leader then it
+assumes that there's a split vote in the
+election and so at this point it simply
+goes back to the beginning and starts a
+new election by incrementing the term
+and starting the whole process over
+again it's important for an election to
+have two properties safety and liveness
+the safety property says that there must
+be at most one candidate that wins the
+election in a given term the way Raft
+guarantees this is that each server only
+gives out its vote once to a single
+candidate once it's given its vote it
+will refuse requests from any other
+candidates for votes and by the way the
+server doesn't really care which server
+gives its vote to it'll give it to the
+first candidate that comes along in
+order to make this work the server needs
+to make sure that it saves information
+about its vote on some durable medium
+like disk so it can recover that after a
+crash otherwise we'd have a problem
+where a server might give out its vote
+and then crash and then restart and give
+its vote again to a different server for
+the same term given those servers only
+giving out one vote and given that each
+candidate has to get a majority of the
+votes then it's easy to see that you
+can't have two candidates that win an
+election so for example if three servers
+vote for a in a particular term then the
+most that any other server could get say
+B is 2 and obviously B can't get a
+majority now as we'll see later on it is
+possible of course to have different
+candidates win in different terms but
+within a given term at most one
+candidate
+can win an election now the second
+property is the liveness property we
+need to make sure that somebody wins so
+the system doesn't stay in a state with
+no leader forever and the problem is
+that we could in principle have repeated
+split votes where a bunch of candidates
+all start elections for the same term at
+the same time they split the votes they
+all timeout again start a new election
+in a new term split the votes again and
+so on and in principle this could go on
+indefinitely the way that Raph presents
+this is to spread out the election
+timeouts each server computes its next
+time out randomly an interval interval
+between a particular value T and twice
+that value where T is typically what we
+refer to as that's the election time out
+so the smaller the fastest that a
+machine could possibly timeout by
+spreading out these timeouts that makes
+it unlikely the two servers will wake up
+at the same time whoever wakes up first
+will have enough time to request a votes
+from everybody else and win the election
+before anybody else wakes up to compete
+with it and this works particularly well
+if that time over which we spread the
+the timeouts is much larger than the
+broadcast time where what I mean by
+broadcast time is the amount of time
+that it takes one server to talk to all
+the other servers that get their votes
+so as long as the timeouts are spread
+out over a much larger interval again
+it's pretty easy to see that whichever
+server wakes up first
+will be able to talk to everybody and
+get their votes before anybody else
+wakes up
+you
+now let's move on to the second part of
+the raft protocol which is the mechanism
+that leaders use during normal operation
+to replicate log entries first let's
+talk a little bit about the log each
+server stores its own individual copy of
+the log so the leader has a copy at each
+follower and has its own private copy of
+the log the log is divided up into
+entries and entries are identified by an
+index which gives their position in the
+log inside an entry there are two things
+first each entry contains a command for
+the state machine the format of this is
+really up to the clients of the state
+machines to agree on that the consensus
+module doesn't care but you can imagine
+it might be something like the name of a
+procedure and some arguments to pass to
+that procedure then in addition each
+entry in the log contains a term number
+this is the term number when the log
+when that entry was first created by the
+leader of that term and these term
+numbers increase monotonically as you go
+up the log each server has to guarantee
+that it's log will survive crashes so
+the log is typically stored on disk or
+some other form of stable storage and
+whatever a server makes a modification
+to its log it has to update the safe
+copy on disk before it returns any sort
+of response to anybody else in the
+system
+if a particularly ghin tree happens to
+be stored on a majority of the servers
+in the cluster such as say entry seven
+here then we say that that entry is
+committed this is a very important
+property of the raft system if an entry
+is committed then it's safe for that
+entry to be passed to state machines for
+execution Rath will guarantee that the
+entry is durable and sooner or later
+that entry will be executed by every
+state machine on every server in the
+cluster so in this picture entry seven
+is committed in fact all entries
+preceding entry seven are committed but
+entry eight is not yet committed since
+it's only stored on two of the five
+servers now I just want to warn you I'm
+going to modify this definition of
+commitment slightly when we get to the
+part of the talk on managing consistency
+of logs across server changes normal
+operation is pretty simple the client
+sends a command to the leader that it
+would like to have executed by all of
+the state machines the leader first adds
+that command to its own log and then it
+issues append entries remote procedure
+calls to the followers in the cluster
+typically it will execute these are pcs
+in parallel sending the same message to
+all of them at the same time and then it
+waits for the responses to come back
+once the leader has received enough
+responses to consider that entry
+committed that is it's gotten responses
+from at least half of the other servers
+in the cluster so with itself that makes
+a majority then it's okay to execute the
+command so the leader passes the command
+off to its state machine when that
+command finishes then it returns the
+result back to the client furthermore
+once the leader knows that a particular
+entry is committed it notifies the other
+servers about that in subsequent append
+entries our pcs so eventually each of
+the followers will also find out that
+that entry has been committed and then
+the followers when they find out they
+will execute that command on their state
+machines also now if a follower has
+crashed or is slow to respond to an
+append entries remote procedure call the
+leader will keep retrying that call over
+and over and over
+so the follower crashes it comes back up
+again the leader will retry it but the
+leader doesn't have to wait for every
+single follower to respond it only needs
+enough to respond to guarantee that the
+entry is stored on a majority of the
+servers in the cluster so this results
+in very good performance in the common
+case in the normal case all that's
+needed in order to finish a client
+command is to get a response back from a
+majority of the servers in fact the
+fastest of machines on this in the
+cluster at which point the leader can
+immediately execute the command and
+return the result to the client so for
+example one slow server doesn't
+necessarily slow down the clients
+because the leader doesn't have to wait
+for that server Raft tries to maintain a
+high level of consistency between the
+various logs in a cluster ideally they'd
+all be identical at all times and
+canticle we can't of course do that
+given there can be crashes but as much
+as possible Raph tries to keep the logs
+identical and this slide lists some
+properties that are always true at all
+times the first property is that the
+combination of an index and a term
+uniquely identifies a log entry that is
+if two log entries are in the same index
+log index position and they have the
+same term then it's guaranteed that they
+will also have the same command and
+furthermore it's also guaranteed that if
+two entries have this property then all
+preceding entries in those logs will
+also match each other so the combination
+of a term and an index uniquely
+identifies an entire log from its
+beginning up to that point furthermore
+it turns out that if a particular entry
+is committed then all preceding entries
+are also committed and that kind of
+follows from the previous rule and then
+you can see if a majority of the
+server's store this one entry here at
+index five then because of the the rule
+above they must also store all the same
+earlier entries and so we know all of
+those entries will also exist on a
+majority of the servers
+this property is enforced by a check
+that's made during the append entries
+remote procedure call when a leader
+issues and append entries RPC to a
+follower it includes two values in
+addition to the new log entries it
+includes the index and the term of the
+entry just before the new ones and the
+follower will only accept the RPC if it
+contains that exact matching entry in
+its log if it's log doesn't have that
+entry then it will reject the remote
+procedure call so let's go through an
+example suppose a leader has just
+received a new command jump from a
+client and it sends an append entries
+remote procedure call to that follower
+well the leader will include the index
+in term of the preceding entry so it'll
+include index for and term two in the
+RPC the follower checks to see that it
+has a matching entry there and since it
+does then it will accept that new entry
+into its log now consider the example on
+the bottom though suppose the followers
+law actually had a different entry
+preceding the new one in this case the
+entry in index 4 has a different term
+and so because of this the append
+entries remote procedure call will be
+rejected it will not accept that new
+entry this consistency check is really
+important and you can think of it kind
+of like an induction step in the proof
+of the properties on the preceding slide
+it guarantees that a new entry is only
+accepted if the logs match in their
+previous entry but of course the same
+check was applied when those entries
+were created so that guarantees the law
+it's also imagined preceding entries and
+so on so this means that if a follower
+accepts a new entry from the leader its
+log exactly matches the leaders log up
+through that entry guaranteed that
+finishes the discussion of normal
+operation now let's talk about leader
+changes when a new leader comes to power
+the logs may not be in a very clean
+state because the
+previous leader could have crashed
+before it finished completely
+replicating some of the log entries now
+the way raft handles this is that it
+doesn't take any special steps when a
+new leader comes online it doesn't try
+and do a cleanup phase it just starts
+normal operation and the cleanup has to
+happen during the normal operation now
+the reason for this is that when a new
+leader comes up some of the other
+machines may be down and so there's no
+way it can clean up their logs right
+away it has to be able to resume
+operation even if some machines are down
+and it could be a long time before those
+machines come back up again so we have
+to design the system so that the normal
+operation eventually converges all of
+the logs the raft approach to this is to
+assume that the leaders log is always
+correct
+it has everything important and so all
+the leader has to do is over time make
+all of the followers logs match its log
+but in the meantime that leader could
+crash before it finishes the job and the
+next leader and the next leader and so
+extraneous log entries could pile up
+over a long period of time to create a
+fairly chaotic looking situation like
+the example in the bottom of the slide
+here first I want to mention I'm gonna
+change my notation a little bit up until
+now I've shown the commands in log
+entries but I'm not going to do that
+anymore since we know that the
+combination of a log index and the term
+stored in an entry is a unique
+identifier for that entry so from now on
+I'm just going to show term numbers and
+the log entries without commands this
+particular scenario at the bottom could
+have happened if servers 4 & 5 were the
+leaders for terms 2 3 & 4 but somehow
+never replicated any entries outside
+themselves and then they crashed and the
+system partition for a while and the
+other servers 1 2 & 3 took turns being
+leaders for terms 5 6 & 7
+but we're not able to communicate with
+service 4 & 5 to clean them up so now
+we're at a situation where the logs are
+really quite a mess the only thing that
+really matters here is these entries
+that I'm drawing here entries 1 through
+3
+these are committed entries and so we
+have to make sure we preserve them but
+the other entries none of them have been
+committed and so it doesn't really
+matter whether we keep them or throw
+them away we haven't passed any of these
+to a state machine
+no client machine has seen the results
+of executing any of these commands so
+these are all expendable
+if for example server two is the leader
+for term seven and it's able to
+communicate with everyone then
+eventually it will make all the logs and
+the cluster look like it's log and any
+conflicting entries will get deleted now
+I'll come back later on to talk about
+how a leader makes the followers logs
+match its logs but first I want to talk
+about correctness and safety now how do
+we know that the system is behaving in
+the correct way
+and that we're not losing some
+information that's important because you
+can see clearly here we're going to have
+to throw away some log entries in order
+to bring everything back into
+consistency so how do we do that in a
+safe fashion there's a fundamental
+overall safety requirement that any
+system for implementing replicated logs
+must obey and it's as written in red
+here that once a particular state
+machine has received a log entry and
+applied it as a command we must make
+sure that no other state machine ever
+applies a different value for that log
+entry they must all apply the same
+values in the same order for this for
+the log entries now in order to achieve
+this overall safety requirement raft
+implements is somewhat narrower what I
+call safety property and it's what's
+written on the slide here that once a
+leader has decided that a particular
+entry is committed then Raft guarantees
+that that entry will be present in the
+logs of all future leaders in the system
+so whenever a leader comes to power in
+the future and for its entire lifetime
+it will always have all of the committed
+log entries present if we can make raft
+conform to this property then that will
+guarantee the safety requirement at the
+top of the slide and this the rough
+argument is that first a leader never
+overrides that entry in its log it only
+appends and so we know that those log
+entries will never change then if
+they're always present on the leader
+second in order to be committed an entry
+has to be in the leaders log so no other
+value can be committed and third we know
+that entries have to be committed before
+they're applied to the state machine so
+if you put all of those together
+we've guaranteed the property at the top
+of the slide now the raft algorithm as
+I've described it so far does not yet
+guarantee this property and I'm going to
+go through the problems and show you how
+we solve them but first I just want to
+go back to what we're trying to do again
+that if an entry is committed that
+implies it will be present in future
+leaders logs so in order to do this
+we're gonna change the raft algorithms
+in two ways first I'm going to modify
+the election process to exclude a
+machine from becoming leader if it
+doesn't have the right stuff in its logs
+and then second that's not going to be
+enough by itself and then second we're
+gonna change the definition of committed
+a little bit so that at some times we
+have to delay committing an entry until
+we know that it'll be safe that is that
+we can guarantee that it will be present
+in future leaders logs I'll talk about
+the election stuff first so how do we
+make sure we pick a leader that holds
+all of the committed log entries well
+first of all this is kind of tricky
+because we can't actually tell which
+entries are committed if we consider
+this cluster with three servers in it
+and suppose that we're having to pick a
+new leader but one of the servers is not
+available then just looking at the
+servers that are available during the
+transition we can't really tell whether
+entry five is committed or not it
+depends whether it's stored on this
+unavailable server in this case it is
+but in other cases it might not be know
+for sure which entries are committed so
+instead what we do is to try and pick a
+candidate to win an election such that
+it has the log that is most likely to
+have all the entries that have been
+committed and I'll first describe this
+intuitively and then come back and make
+it more precise to prove that in fact we
+can guarantee that we pick a candidate
+that has all the committed entries the
+way this works is by comparing logs so
+when a candidate requests a vote from
+another server it includes information
+about its log and all it needs to
+include is the index of the last log
+entry and the term from that entry and
+remember from my discussion previously
+this uniquely describes the entire log
+then the voting server that receives
+this request for a vote
+it compares its own log to that of the
+candidate and if the voters log is more
+complete think of this in an intuitive
+sense it will deny its vote now to make
+this specific we define this to mean
+that if the last term in the voting
+server's log is greater than the last
+term in the candidates log then the
+voters log is more complete deny the
+vote or if the terms match and the
+voting server's log is longer than the
+candidates log then again the voters log
+is more complete and so we deny the vote
+so the result of this is that whoever
+wins the election is guaranteed to have
+the most complete log among the servers
+that voted for it among some majority of
+the cluster and again by most complete I
+mean this particular definition in terms
+of the index and term of the last entry
+in the log let's see how this works in
+practice so the interesting time to
+consider is the moment just after a
+leader has decided the log entry is
+committed
+there are two interesting cases to
+consider the first case is when the
+entry being committed is in the current
+term and the second case of its is if
+it's in some prior term let me deal with
+those separately first consider the case
+where the leader has just decided an
+entry in its most recent current term is
+committed so we have an example here
+where we're in term 2 and the leader for
+that term has just replicated entry four
+over onto server three the append
+entries call just succeeded and this
+leader now sees this entries on a
+majority of servers I declare that entry
+committed and it can pass it to my safe
+machine to my state machine now you can
+see that at this point in time this
+entry is safe that is the leader for the
+next term must contain this entry and we
+can see that by just just by considering
+the rules s5 can't become leader for the
+next term because its term is older than
+the other servers there's no way to get
+a majority of servers with terms that
+old s4 can't become leader because it
+won't be able to get votes from anybody
+else because although the last terms are
+the same as far as log is too short so
+we know that only one of these first
+three servers can be elected leader in
+fact if s1 is in the mix s1 is
+guaranteed to win the election but s2 or
+s3 could win by getting votes from each
+other and then one of servers four or
+five but in any case you can see that
+the leader for the next term must
+contain that log entry now let's
+consider the second case where a leader
+is trying to commit an entry that was
+initially started in an earlier term in
+this situation the leader for term two
+replicated an entry on only two machines
+before its term ended and then the
+leader for term three for some reason
+was not aware of those entries created a
+bunch of entries of its own and then
+crashed and now we're back another
+machine has been elected leader in turn
+four
+and finally it's trying to make all of
+the other servers logs match its own and
+so it replicates this entry from that
+old entry from term two over on to
+server three and now at this point that
+entry is known by the leader to be
+stored on a majority of the servers
+but that entry is not safely committed
+and the reason you can see this is that
+if the leader were to crash now and a
+new leader were to be elected it's
+possible that Server 5 could be elected
+using any majority that doesn't include
+Server 1 it could get votes from server
+4 server 3 or server 2 since its last
+term is greater than any of those
+machines and if it's elected then it's
+going to try and propagate its log
+meaning it'll write those entries from
+term 3 across all of the other servers
+and all of these entries will go away so
+we cannot consider entry 3 to be
+committed at this point it's simply not
+safe in this situation the new rules for
+elections are not enough by themselves
+to guarantee safety we also have to
+modify the rules for a commitment
+remember up until now a leader could
+decide that an entry was committed as
+soon as it saw that the entry was stored
+on a majority of the servers but in
+order to guarantee safety we have to add
+another rule which is that in addition
+the leader must be able to see that at
+least one of the entries from its term
+from the current term is also stored on
+a majority of servers so going back to
+our example if the leader finishes
+replicating entry 3 to a majority it
+can't yet commit that entry and pass it
+to the state machines instead it has to
+also wait until the first entry from its
+term gets committed that is stored on a
+majority of the machines and now at this
+point both of those entries can be
+passed to state machines they're safe
+and the reason that for that is that we
+can see that now there's no way Server 5
+can get elected leader for the next term
+and the reason is that there's too many
+other servers out there with more recent
+terms in their logs
+the only vote Server 5 would be able to
+get is server 4 so at this point both
+entries 3 & 4 are safe
+so with the combination of the new
+election rules where we compare logs and
+this new commitment rule we can
+guarantee that the raft safety property
+always holds that is once the leaders
+decided and entries committed it will be
+present in the log of every leader in
+the future
+well okay actually I've only shown you
+that the log entry will be present in
+the leader for the very next term but
+it's also fairly straightforward to
+prove that every future leader will also
+have the log entry I'm not going to go
+through that proof and then once we know
+the draft safety property holds then as
+I mentioned on the previous slide we
+know that the overall replicated log
+will also be safe now that we've
+guaranteed safety and we know that the
+leaders log is correct how do we make
+all of the followers logs match the
+leaders log well first let me show you
+the different ways in which logs can be
+inconsistent this slide illustrates what
+can happen it's possible that followers
+can be missing entries that the leader
+has such as in this case for followers a
+and B here or also for follower e and
+followers and followers can also have
+extraneous entries not present on the
+leader such as these entries for term 7
+over here the entries for terms 2 & 3 at
+the bottom and extra entry for term 6
+and so on so what we have to do is get
+rid of all the extraneous entries from
+the follower logs and then fill in all
+of the missing entries from the leaders
+log
+to restore law consistency the leader
+maintains a state variable for each of
+the followers in the cluster which I
+will call next index and this is the
+index in the log of the next log entry
+that the server intends to send to that
+follower initially when the server
+becomes leader it sets these next index
+values to the entry just after the last
+one in its log so in this example where
+we have a new leader for term 7 and the
+last entry the log is in index 10 it
+will set it next index to 11 for all of
+the clients all of the followers in the
+cluster the leader will find out about
+consistency issues through the append
+entries RPC remember there's this
+consistency check performed by followers
+whenever they receive and append entries
+requests and that will find any problems
+so the next time this leader attempts to
+communicate with either of those
+followers it's going to include the
+index and the term 10 and 6 for the
+entry just before next index as part of
+that request by the way the next request
+is probably going to be a heartbeat that
+it sends out as soon as it becomes
+elected leader but heartbeats behave
+just like all of the repent entries
+except that they have no new values but
+they still include the consistency check
+so when this message arrives at follower
+a it's going to compare this term index
+with its own log and it has no matching
+entry there so it's going to reject the
+append entries request when the server
+sees this rejection so I when the leader
+sees this rejection its response is very
+simple it just reduces next index by one
+so we'll drop index back to ten and then
+we'll try again this time you can see
+the server will include information
+about index 9 and that check is going to
+fail and it will keep failing over and
+over and over and over again until
+eventually next index becomes 5 for
+follower Abe at this point now the
+leader will include information about
+log entry for in the request and that
+will now match and so once that matches
+then the follower can add the entry for
+4 and the
+leader will eventually fill in its log a
+similar thing will happen for follower B
+again when next index is 11
+the consistency check will fail in this
+case we'll back up again and again and
+again and again and again and again all
+the way back until eventually next index
+becomes 4 and the consistency
+information is for the preceding entry
+log index 3 with term 1 and that will
+match and then eventually this log will
+also fill in one other note about this
+process of making the logs consistent
+whenever a follower receives an entry
+for its log that is replacing another
+entry that's inconsistent then it
+truncates its log removing all of the
+entries after that so for example in
+this case if the leader sends the entry
+for slot 4 to this follower and it
+already had a conflicting entry 2 in
+there then not only will it overwrite
+the entry 4 to 4 that the old contents
+of that slot but it will remove all of
+the remaining ones after that we know
+any entry after an extraneous entry is
+also extraneous let me just summarize
+quickly what I've covered in this
+section of the presentation on leader
+changes there are two overall problems
+we have to deal with one is ensuring the
+safety of the system which has to do
+with how we choose leaders and when we
+decide log entries are committed and
+then second once a new leader comes to
+power all it has to do is make the
+followers logs match its own and the
+append entries consistency check
+provides all the information we need in
+order to do that the fourth step of the
+raft protocol is another issue related
+to leader changeovers which is that an
+old leader may not actually be dead for
+example suppose that there is a network
+partition that separates the leader from
+the rest of the cluster well the rest of
+the cluster could then elect a new
+leader they'll wait the election timeout
+and run an election elect a new leader
+now the problem is what if that old
+leader becomes reconnected again it does
+not know about the election does not
+know about the new leader and so it will
+attempt to be
+as a leader such as trying to replicate
+log entries and in fact there could be
+clients that are talking to that old
+leader sending it requests and the
+leader will receive them and record them
+in its own log and then attempt to
+replicate them on other machines in the
+cluster well we have to stop that from
+happening and the way we do that is with
+the use of terms what happens is that
+every RPC includes the sender's term and
+when the RPC is received the receiver
+compares that to its own term and if
+they don't match then whichever one is
+out-of-date will update so for example
+if the senders term is older than the
+receivers that means the sender's stale
+when this happens the receiver
+immediately rejects the remote procedure
+called is not executed and sends a
+response back to the sender that
+includes the receivers term the sender
+sees that realizes that its term is
+out-of-date and so then it steps down
+that is it becomes a follower again and
+at the same time it updates its term so
+now it's up to date it's consistent with
+the other server conversely if the
+receivers term is older then the
+receiver also steps down if it wasn't
+already a follower it updates its term
+to match but then the receiver we'll go
+ahead and still handle the RPC it
+doesn't reject the RPC there's no need
+for that it just becomes a follower and
+does what the RPC says now the
+interesting thing here is that the
+election process causes term updates
+that is when a candidate requests votes
+and it has to talk to a majority of the
+servers to do that it will include the
+term for its candidacy in those are PCs
+and so all of those recipients will
+update their terms to match that of the
+candidate and so as a result by the time
+a new leader is elected a majority of
+the servers in the cluster reflect that
+new term that means that once an
+election is complete there is no way
+that that deposed server can actually
+receive a new log entry and write it to
+a majority of the cluster because to do
+that it would have to contact at least
+one of those servers that has the new
+term and when it does that the term
+mismatch will be discovered and that old
+leader will then
+up down so this is the key idea there's
+a few other corner cases here that I'm
+not going to talk about but the term
+notion allows us to handle all of those
+that if there's something out-of-date
+the terms detect that now let's move on
+to the fifth part of the raft protocol
+this is how two clients interact with
+the system this is mostly pretty simple
+the client just sends their commands to
+the leader machine and they get
+responses back now if the client doesn't
+know who was the leader that's fine it
+can talk to any server in the cluster
+and if that server is not the leader
+then it will tell the client who the
+leader is on the client can retry it
+with the leader so that's easy as I have
+mentioned before the leader does not
+respond to the client until the command
+has been logged and most importantly
+committed so we know it's on a majority
+of the server's disks and then executed
+by the leaders state machine so at that
+point the leader returns the result back
+to the client the only tricky thing in
+here is what happens if the leader
+crashes or if the request otherwise
+times out and the answer is that when
+that happens the client simply reassures
+the command that they can just pick a
+random server when that happens assume
+the leaders crashed try some other
+server and eventually it will find its
+way to the clusters new leader and then
+it will retry that request and the new
+leader will execute it and the command
+will be carried out so this guarantees
+that a command will eventually be
+executed however this leaves open the
+risk that a command might get executed
+twice the problem is that the leader
+might crash after it's executed a
+command but before has responded to the
+client so the client won't know that the
+command has actually been logged and
+executed if this happens the client will
+then turn around and reassure that
+command to the next leader that it can
+find and we run the risk that the
+command could get executed twice if
+that's not acceptable we want each
+command execute once and exactly once
+the way wrath achieves that is that the
+client generates a unique identifier for
+every command and
+beds that in the command that it sends
+to the leader when the leader logs that
+command it includes this ID in the log
+entry but before the leader accepts a
+command it first checks to see if it
+already has that identifier in some
+other entry in its log and if so then it
+knows it's receiving a redundant command
+so if it finds the ID in the log then it
+ignores that new command that instead it
+waits for the old command to be executed
+by the state machine if it hasn't
+already been executed then it returns
+that old response so as a result we get
+exactly one semantics each command is
+executed exactly once and this is a key
+element of what's called linearise
+ability a particular form of strong
+semantics that we like for systems to
+have this brings us to the last of the
+six parts of the raft protocol we need
+to have some mechanism for changing the
+system configuration over time and when
+I say system configuration what I mean
+is information about the servers that
+are part of the cluster so that consists
+of the ID of each server and a network
+address that can be used to communicate
+with us with it this information is
+really crucial because it's what
+determines what we need to do in order
+to get a majority vote for things like
+electing a leader or committing a log
+entry now the reason we have to support
+changes in this is because for example
+machines will fail and so they'll need
+to be replaced with new machines or the
+people managing a cluster might want to
+change the degree of replication in the
+cluster and we'd like to be able to do
+this in an automatic and safe fashion
+without bringing the system down in
+order to change the configuration now
+it's important to realize that we can't
+just switch directly from an old
+configuration to a new configuration and
+to see that let's look at the example
+the bottom of the slide suppose the
+system is running in a configuration
+where there are three servers and then
+we want to add two more servers so that
+afterwards there will be five servers on
+the cluster
+if we just ask each server to change
+configuration from that old
+configuration to the new one the problem
+is that they couldn't do it at exactly
+the same time the changes would be
+spaced out at least slightly in time
+and the problem with this is this could
+result in conflicting majorities for
+example there's a point in time where
+servers 1 & 2 could get together to form
+a majority of the old cluster and they
+could make decisions based on that such
+as electing a leader and committing
+entries to a particular slot in the log
+but at the same point in time the other
+3 servers have switched to the new
+configuration and they form a majority
+of that configuration so it's possible
+they could get together with their
+majority and commit an entry for the
+same log entry that conflicts with the
+one committed by the first two servers
+what this says is that we have to use a
+two-phase protocol we can't do things in
+one phase and of course that's typical
+of any kind of distributed
+decision-making if anybody ever tells
+you that they think they can make a
+distributed decision in the single phase
+you should question them pretty
+seriously because either they're wrong
+or they've discovered something that
+everybody else in the world doesn't know
+yet the solution is to use two phases to
+change the configuration rafts switches
+first to an intermediate phase called
+joint consensus during this phase the
+cluster consists of all of the servers
+in both the new and the old
+configuration so the union of those
+configurations but decisions such as
+elections and commitment require a
+separate majority separate agreement
+from both the old configuration and the
+new configuration let me show you how
+this works so we start off in an
+existing configuration I'll call it C
+old on the slide and the way a
+configuration change is initiated is
+that a client makes a request of the
+leader just like it would for any other
+state machine operation when the server
+receives that request then the leader
+adds an entry to its log describing this
+joint configuration which I'll call C
+old plus new that's just a log entry
+like any other log entry the server puts
+it in its log and then the leader
+propagates it out to the other servers
+in the cluster using the append entries
+RPC just like any other log entry the
+only thing different about the
+configuration changes is that they take
+effect immediately so as soon as a sir
+places a new configuration into its log
+it begins living by that configuration
+entry it doesn't wait for the
+configuration entry for the log entry to
+become committed before applying it like
+it would for normal log entries so back
+to our timeline here the leader places
+the new configuration entry in its log
+and then as far as that leader is
+concerned that's the configuration in
+effect so that leader makes all of its
+decisions according to the old plus new
+configuration that means that for
+example for any log entry to be
+committed it must be logged on a
+majority of the machines in the old
+cluster and a majority of machines in
+the new configuration now for a while
+until that entry becomes replicated
+reaches the point of being committed
+it's possible that decisions might be
+made either with sealed or sealed plus
+new for example if the leader crashes
+shortly after logging the new
+configuration entry it's possible that
+some other machine that is still
+operating under the old configuration
+could be elected and take over the
+cluster but at some point this new
+configuration entry will become
+committed see old plus new once that
+happens now it's not possible for any
+machine to make a decision based purely
+on see old now the way to see this is to
+realize that in order for a leader to
+become elected it must hold in its log
+all of the entries that have been
+committed so far so once this see old
+plus new entry has been committed it's
+guaranteed that any leader that's
+elected will have that in its log and
+that means that leader will be living by
+it so for example the decision about
+whether it won the election will be made
+based on see old plus new and any log
+entries that it commits will also be
+committed based on see old plus new so
+at this point it's no longer possible
+for any server in the cluster to make
+decisions based purely on the old
+configuration so this at this point now
+the cluster is operating under the joint
+consensus as soon as the joint consensus
+has become committed the leader can now
+begin propagating a configuration change
+for seenu so again it puts that in its
+log and it begins replicating that out
+to the cluster and again for a period of
+time it's possible that the cluster may
+operate under either seenu or under that
+joint consensus because once again that
+server could crash and another server
+could take over that's using the joint
+consensus but again eventually that new
+configuration entry will become
+committed and then once that happens all
+future decisions in the cluster will be
+based on Seenu so the key idea here the
+key thing you can see is that there's no
+point in time when both si old and Seenu
+can make decisions without consulting
+the other there's a period of time where
+si old can make unilateral decisions and
+a period of time where Seenu can make
+decisions but those do not overlap
+guaranteed not to overlap and in between
+both configurations must be consulted
+so this guarantees that we can't ever
+have to separate consensus form in the
+cluster at one time by the way this
+two-phase nature is fundamental so any
+consensus algorithm will have to use two
+phases of some sort to change
+configuration in fact any sort of
+distributed agreement requires two
+phases if anybody comes to you with the
+distributed agreement algorithm and they
+claim it works in a single phase you
+should be very skeptical because either
+they're mistaken or they've discovered
+something really important and knew that
+none of the rest of us know there are a
+couple of other details of this protocol
+first while we're in transition it's
+possible that a server from either
+configuration can serve as the leader
+for the cluster now this one tricky
+thing which is what if the current
+leader is not in the new configuration
+then eventually it has to step down it
+can't continue serving as leader forever
+in a cluster where it's not the not part
+of the configuration and what we do in
+raft is that that old leader steps down
+right at this point once Seenu gets
+committed the old leader steps down if
+it's not in the new configuration
+so at that point the other followers
+will time out and they will elect a new
+leader and now at this point that new
+leader will have to be elected from the
+new configuration and we're off and
+running but even so this actually means
+that the old leader will continue to
+serve as leader for a little while after
+it is no longer part of the
+configuration it'll be operating under
+Seenu in which it's not actually a
+leader but it will continue to serve as
+leader until that entry gets fully gets
+replicated enough to be committed this
+brings us to the end of the raft
+presentation let me conclude by just
+reminding you of the six major pieces of
+the algorithm the first piece is leader
+election in which we make sure that at
+most one server can act as leader in any
+given term second I described the normal
+operation of the system where leaders
+accept requests from clients and
+replicate them across the cluster and
+remember the very important consistency
+check performed in append entries which
+guarantees the behavior of the logs and
+provides a hook that we can use to
+restore consistency later on then third
+I talked about leader change overs and
+there were two major issues the most
+important one is guaranteeing the safety
+of the system and I showed you how we
+can guarantee that once a log entry has
+been committed it will live forever
+and I also talked about how a server can
+make sure all of the followers logs
+eventually become identical to its own
+fourth step is making sure that old
+leaders can't come back to haunt us
+after we've replaced them then I talked
+briefly about how clients behave and in
+particular what they need to do in order
+to survive crashes of some of the
+servers and raft and then finally I
+showed you how the raft system can have
+a configuration changes in a way that is
+automatic and completely safe just one
+overall comment before I conclude which
+is that the key element of this
+algorithm is that the system has to work
+perfectly even if just a bare majority
+of the servers are up which means it
+can't ever depend on having complete
+information or knowledge of what's going
+on there could always be information out
+there in servers that are down that's
+unknown and so the algorithm has to be
+designed at every point to be able to
+handle that all right well this conclude
+the presentation on draft
