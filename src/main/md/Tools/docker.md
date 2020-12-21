@@ -1,3 +1,9 @@
+## Docker installation and trouble-shoot
+
+```cmd
+docker-machine --debug create --driver virtualbox newone
+```
+
 ## Docker theory
 * The difference between a Docker image (class) and a Docker container (object) is the same as that of the difference between a class and an object.
 
