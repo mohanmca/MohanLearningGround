@@ -3,17 +3,18 @@
 * Castle approach / Multiple layers of defense
 * Browser, Url, Classes and methods
 
-## Lombox
-# @Getter
-# @Setter
-# @AllArgsConstructor
-# @RequiredArgsConstructor
-# @EqualsAndHashCode
-# Delombok
-# @Delegate
-# @Cleanup
-# @Builder
+## Lombok
+* @Getter
+* @Setter
+* @AllArgsConstructor
+* @RequiredArgsConstructor
+* @EqualsAndHashCode
+* @Delegate
+* @Cleanup
+* @Builder
 
+### Delombok
+* Can be used to learn the effect of Lombok
 
 ## Spring Security
 * Heavy use of filter
