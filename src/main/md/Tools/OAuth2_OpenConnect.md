@@ -128,6 +128,22 @@ rsvpStatus=YES
 * We can validate the JWT details again user-info endpoint
   * Example: Example: http://www/googleapis.com/oauth2/v4/userinfo
 
+## What are all the HTTP Authorization schmes are there?
+
+* Authorization: <type> <credentials>
+* Type: Basic/Bearer/Digest/
+
+## How to set the token?
+
+```C#
+   Byte[] credential = System.Text.Encoding.UTF8.GetBytes($"{yourusername}:{yourpwd}");
+   String BasicHeader = Convert.ToBase64String(credential)
+   request.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", BasicHeader);
+```
+
+```C#
+   httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "Your Oauth token");
+```
 
 
 ## References

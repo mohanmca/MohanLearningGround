@@ -237,3 +237,18 @@ function downloadURI(uri) {
 let links = Array.from(document.getElementsByTagName("a"))
 let lectureNotes = links.filter(link => link.href.indexOf(".pdf")!=-1).map(link => link.href)
 ```
+
+## Create index page from github md files
+
+```javascript
+let links = Array.from(document.getElementsByTagName("a")).filter(a => a.href.indexOf(".md")!=-1 ).map(a => a.href)
+
+let mdIndex = links.map( l => {
+  let link = l;
+  let title = l.split("/").reverse()[0];
+  title = title.split(".md")[0]
+  return `* [${title}](${link})`
+});
+mdIndex.join("\n");
+
+```
