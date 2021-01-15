@@ -15,7 +15,6 @@
   * Each document is a vector
   * The values on each dimension are the word coun
   * Cosine similarity is straightforward from this representation
-  * 
 
 
 # References

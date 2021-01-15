@@ -6,10 +6,18 @@
 
 * When there is new task, Employee asked himself whether it would help his case for promotion. If the answer was no, he didn’t do it.
 
+## Promotion Process
+
+* What is the Criteria for promotion?
+* Processes (timeline/forms/discussons)
+* Next immediate steps (who can take next steps, candidate/manager)
+* 
+
+
+
 * [Reddit: Why I Quit google](https://www.reddit.com/r/programming/comments/80whkc/why_i_quit_google_to_work_for_myself/)
 * [HackerNews: Why I Quit google](https://news.ycombinator.com/item?id=16483241)
 
 * Contracting
   * Maybe that small companies in areas with no local devs will take on remote contractors because they have no other choice?
   * It's less about what you know (pass some baseline of competence/ability) and more about targeting the right market and knowing the right people
-  * 
