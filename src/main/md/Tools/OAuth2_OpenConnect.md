@@ -1,7 +1,3 @@
-## How to create anki from this boot mock question file
-
-mdanki OAuth2_OpenConnect.md OAuth2.apkg --deck "Work::Mohan::OAuth2"
-
 ## What does OAuth2.0 sovles
 
 * Delegated authorization
@@ -144,6 +140,11 @@ rsvpStatus=YES
 ```C#
    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "Your Oauth token");
 ```
+
+## How to create anki from this boot mock question file
+
+mdanki OAuth2_OpenConnect.md OAuth2.apkg --deck "Work::Mohan::OAuth2"
+
 
 
 ## References
