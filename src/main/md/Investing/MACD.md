@@ -13,14 +13,14 @@
 * When histogram is +ve, MACD is above 9 days moving average
 * When histogram is -ve, MACD is below 9 days moving average
 
-# 3 signals from MACD
+# 3 Signals from MACD
 
 * MACD/Signal cross over - lagging
 * MACD centerline cross over - reliable for long term (12 EMA cross 26)
 * Divergence with price - Most powerful and leading indicator
   * Occurs least often
 
-# general signals from MACD
+# General signals from MACD
 
 * MACD crossing zero-line (from below to above zero) is considered bullish
 * Crossing center-line is lagging, but very reliable
