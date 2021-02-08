@@ -1,0 +1,747 @@
+{
+  "globalObjects": {
+    "tweets": {
+      "1350513176878735363": {
+        "created_at": "Sat Jan 16 18:40:07 +0000 2021",
+        "id_str": "1350513176878735363",
+        "full_text": "Discomfort Razor: \n\n\u2022 The more uncomfortable the activity, the more likely it will lead to growth. \n\n\u2022 The more comfortable the activity, the more likely it will lead to stagnation. \n\n1000 uncomfortable hours &gt; 10,000 comfortable hours",
+        "display_text_range": [0, 238],
+        "entities": {},
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513173623922688",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 140,
+        "favorite_count": 1524,
+        "reply_count": 3,
+        "quote_count": 13,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      },
+      "1350513164828475394": {
+        "created_at": "Sat Jan 16 18:40:04 +0000 2021",
+        "id_str": "1350513164828475394",
+        "full_text": "Munger's Law: \n\n\u2022 Never allow yourself to have an opinion on a subject unless you can state the opposing argument better than the opposition can. \n\nSteelman Arguments &gt; Strawman Arguments",
+        "display_text_range": [0, 190],
+        "entities": {},
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513162727141378",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 275,
+        "favorite_count": 2484,
+        "reply_count": 5,
+        "quote_count": 28,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      },
+      "1350513168603357184": {
+        "created_at": "Sat Jan 16 18:40:05 +0000 2021",
+        "id_str": "1350513168603357184",
+        "full_text": "Newton's Flaming Laser Sword: \n\n\u2022 If something can be settled by experiment or observation, then it is not worthy of debate. \n\nUFC 1 &gt;&gt;&gt; Decade long debates on the best martial arts",
+        "display_text_range": [0, 190],
+        "entities": {},
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513166665576448",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 65,
+        "favorite_count": 984,
+        "reply_count": 5,
+        "quote_count": 6,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      },
+      "1350513162727141378": {
+        "created_at": "Sat Jan 16 18:40:03 +0000 2021",
+        "id_str": "1350513162727141378",
+        "full_text": "Naval's Razors: \n\n\u2022 If you have 2 choices to make and it's 50/50, take the path that\u2019s more painful in the short term.\n\n\u2022 If a task is worth less than your ambitious hourly rate - outsource it, automate it or delete it. \n\nH/T - @naval",
+        "display_text_range": [0, 234],
+        "entities": {
+          "user_mentions": [
+            {
+              "screen_name": "naval",
+              "name": "Naval",
+              "id_str": "745273",
+              "indices": [228, 234]
+            }
+          ]
+        },
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513160336375812",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 92,
+        "favorite_count": 1418,
+        "reply_count": 5,
+        "quote_count": 3,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      },
+      "1350513171170283520": {
+        "created_at": "Sat Jan 16 18:40:05 +0000 2021",
+        "id_str": "1350513171170283520",
+        "full_text": "Joe Rogan's Razors: \n\n\u2022 If unsure what action to take - ask what the hero in the movie would do. \n\n\u2022 If you're intensely passionate about something and nobody around you is interested in it - assume the scale of the internet might help you find them.",
+        "display_text_range": [0, 250],
+        "entities": {},
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513168603357184",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 46,
+        "favorite_count": 905,
+        "reply_count": 4,
+        "quote_count": 7,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      },
+      "1350513190187233281": {
+        "created_at": "Sat Jan 16 18:40:10 +0000 2021",
+        "id_str": "1350513190187233281",
+        "full_text": "Walt Disney's Rule: \n\n\u2022 If struggling to think clearly about a subject, draw it out. \n\nHere's Walt Disney's drawing he made in 1957 of the Media Empire he wanted to build. \n\nIt's iconic. https://t.co/L2k2h8IJN4",
+        "display_text_range": [0, 186],
+        "entities": {
+          "media": [
+            {
+              "id_str": "1350436702356176900",
+              "indices": [187, 210],
+              "media_url": "http://pbs.twimg.com/media/Er23Bp-XAAQSLB_.jpg",
+              "media_url_https": "https://pbs.twimg.com/media/Er23Bp-XAAQSLB_.jpg",
+              "url": "https://t.co/L2k2h8IJN4",
+              "display_url": "pic.twitter.com/L2k2h8IJN4",
+              "expanded_url": "https://twitter.com/george__mack/status/1350513190187233281/photo/1",
+              "type": "photo",
+              "original_info": {
+                "width": 1480,
+                "height": 1295,
+                "focus_rects": [
+                  { "x": 0, "y": 437, "h": 829, "w": 1480 },
+                  { "x": 185, "y": 0, "h": 1295, "w": 1295 },
+                  { "x": 344, "y": 0, "h": 1295, "w": 1136 },
+                  { "x": 832, "y": 0, "h": 1295, "w": 648 },
+                  { "x": 0, "y": 0, "h": 1295, "w": 1480 }
+                ]
+              },
+              "sizes": {
+                "thumb": { "w": 150, "h": 150, "resize": "crop" },
+                "large": { "w": 1480, "h": 1295, "resize": "fit" },
+                "medium": { "w": 1200, "h": 1050, "resize": "fit" },
+                "small": { "w": 680, "h": 595, "resize": "fit" }
+              },
+              "features": {
+                "orig": { "faces": [{ "x": 465, "y": 656, "h": 73, "w": 73 }] },
+                "large": {
+                  "faces": [{ "x": 465, "y": 656, "h": 73, "w": 73 }]
+                },
+                "medium": {
+                  "faces": [{ "x": 377, "y": 531, "h": 59, "w": 59 }]
+                },
+                "small": { "faces": [{ "x": 213, "y": 301, "h": 33, "w": 33 }] }
+              }
+            }
+          ]
+        },
+        "extended_entities": {
+          "media": [
+            {
+              "id_str": "1350436702356176900",
+              "indices": [187, 210],
+              "media_url": "http://pbs.twimg.com/media/Er23Bp-XAAQSLB_.jpg",
+              "media_url_https": "https://pbs.twimg.com/media/Er23Bp-XAAQSLB_.jpg",
+              "url": "https://t.co/L2k2h8IJN4",
+              "display_url": "pic.twitter.com/L2k2h8IJN4",
+              "expanded_url": "https://twitter.com/george__mack/status/1350513190187233281/photo/1",
+              "type": "photo",
+              "original_info": {
+                "width": 1480,
+                "height": 1295,
+                "focus_rects": [
+                  { "x": 0, "y": 437, "h": 829, "w": 1480 },
+                  { "x": 185, "y": 0, "h": 1295, "w": 1295 },
+                  { "x": 344, "y": 0, "h": 1295, "w": 1136 },
+                  { "x": 832, "y": 0, "h": 1295, "w": 648 },
+                  { "x": 0, "y": 0, "h": 1295, "w": 1480 }
+                ]
+              },
+              "sizes": {
+                "thumb": { "w": 150, "h": 150, "resize": "crop" },
+                "large": { "w": 1480, "h": 1295, "resize": "fit" },
+                "medium": { "w": 1200, "h": 1050, "resize": "fit" },
+                "small": { "w": 680, "h": 595, "resize": "fit" }
+              },
+              "features": {
+                "orig": { "faces": [{ "x": 465, "y": 656, "h": 73, "w": 73 }] },
+                "large": {
+                  "faces": [{ "x": 465, "y": 656, "h": 73, "w": 73 }]
+                },
+                "medium": {
+                  "faces": [{ "x": 377, "y": 531, "h": 59, "w": 59 }]
+                },
+                "small": { "faces": [{ "x": 213, "y": 301, "h": 33, "w": 33 }] }
+              },
+              "media_key": "3_1350436702356176900",
+              "ext_media_color": {
+                "palette": [
+                  {
+                    "rgb": { "red": 208, "green": 203, "blue": 188 },
+                    "percentage": 99.09
+                  },
+                  {
+                    "rgb": { "red": 103, "green": 107, "blue": 98 },
+                    "percentage": 0.91
+                  }
+                ]
+              },
+              "ext_alt_text": null,
+              "ext_media_availability": { "status": "available" },
+              "ext": { "mediaStats": { "r": "Missing", "ttl": -1 } }
+            }
+          ]
+        },
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513181949632515",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 178,
+        "favorite_count": 1847,
+        "reply_count": 10,
+        "quote_count": 23,
+        "conversation_id_str": "1350513143387189248",
+        "possibly_sensitive_editable": true,
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      },
+      "1350513173623922688": {
+        "created_at": "Sat Jan 16 18:40:06 +0000 2021",
+        "id_str": "1350513173623922688",
+        "full_text": "Taleb's Surgeon: \n\n\u2022 If presented with two seemingly equal candidates for a role, pick the one with the least amount of charisma. \n\nThe uncharismatic one has got there despite their lack of charisma. \n\nThe charismatic one has got there with the aid of their charisma.",
+        "display_text_range": [0, 267],
+        "entities": {},
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513171170283520",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 158,
+        "favorite_count": 2011,
+        "reply_count": 10,
+        "quote_count": 24,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      },
+      "1350513181949632515": {
+        "created_at": "Sat Jan 16 18:40:08 +0000 2021",
+        "id_str": "1350513181949632515",
+        "full_text": "Occam's Razor: \n\n\u2022 Simple assumptions are more likely to be correct than complex assumptions. \n\nAvoid Occam's Duct Tape: \n\n\u2022 Someone who approaches a problem with a ridiculously large number of assumptions.",
+        "display_text_range": [0, 206],
+        "entities": {},
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513180074795008",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 57,
+        "favorite_count": 746,
+        "reply_count": 4,
+        "quote_count": 3,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      },
+      "1350513160336375812": {
+        "created_at": "Sat Jan 16 18:40:03 +0000 2021",
+        "id_str": "1350513160336375812",
+        "full_text": "Elon's Law: \n\n\u2022 If you have a project, combat Hofstader's Law by setting a ridiculously ambitious deadline. \n\nEven if it takes 3x longer than the deadline, you're ahead of everyone else. \n\nElon Musk missing his super human deadlines is a feature rather than a bug.",
+        "display_text_range": [0, 264],
+        "entities": {},
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513157517811718",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 147,
+        "favorite_count": 1873,
+        "reply_count": 11,
+        "quote_count": 13,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      },
+      "1350513180074795008": {
+        "created_at": "Sat Jan 16 18:40:08 +0000 2021",
+        "id_str": "1350513180074795008",
+        "full_text": "Checkhov's Gun: \n\n\u2022 When telling a story, if it's non-essential - don't include it. \n\n\"If you say in the 1st chapter that there is a rifle hanging on the wall, in the 2nd or 3rd chapter it absolutely must go off. If it's not going to be fired, it shouldn't be hanging there.\"",
+        "display_text_range": [0, 275],
+        "entities": {},
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513176878735363",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 74,
+        "favorite_count": 1068,
+        "reply_count": 9,
+        "quote_count": 10,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      },
+      "1350530788870270977": {
+        "created_at": "Sat Jan 16 19:50:06 +0000 2021",
+        "id_str": "1350530788870270977",
+        "full_text": "@george__mack This!!!",
+        "display_text_range": [14, 21],
+        "entities": {
+          "user_mentions": [
+            {
+              "screen_name": "george__mack",
+              "name": "George Mack",
+              "id_str": "2166434343",
+              "indices": [0, 13]
+            }
+          ]
+        },
+        "source": "\u003ca href=\"http://twitter.com/download/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513190187233281",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "35219155",
+        "retweet_count": 0,
+        "favorite_count": 1,
+        "reply_count": 0,
+        "quote_count": 0,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en"
+      },
+      "1350513166665576448": {
+        "created_at": "Sat Jan 16 18:40:04 +0000 2021",
+        "id_str": "1350513166665576448",
+        "full_text": "Hitchen's Razor: \n\n\u2022 What can be asserted without evidence can be dismissed without evidence.",
+        "display_text_range": [0, 93],
+        "entities": {},
+        "source": "\u003ca href=\"https://mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c/a\u003e",
+        "in_reply_to_status_id_str": "1350513164828475394",
+        "in_reply_to_user_id_str": "2166434343",
+        "in_reply_to_screen_name": "george__mack",
+        "user_id_str": "2166434343",
+        "retweet_count": 180,
+        "favorite_count": 1746,
+        "reply_count": 6,
+        "quote_count": 14,
+        "conversation_id_str": "1350513143387189248",
+        "lang": "en",
+        "self_thread": { "id_str": "1350513143387189248" }
+      }
+    },
+    "users": {
+      "35219155": {
+        "id_str": "35219155",
+        "name": "T R U L I E Y U R Z",
+        "screen_name": "TrulieYurz",
+        "location": "",
+        "description": "\u2728The joy of the Lord is my strength\ud83d\ude4f\ud83c\udfff\u2728",
+        "entities": { "description": {} },
+        "followers_count": 468,
+        "fast_followers_count": 0,
+        "normal_followers_count": 468,
+        "friends_count": 146,
+        "listed_count": 233,
+        "created_at": "Sat Apr 25 14:13:51 +0000 2009",
+        "favourites_count": 17,
+        "statuses_count": 35632,
+        "media_count": 394,
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/1349496761853878273/7uUlAHRw_normal.jpg",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/35219155/1610579500",
+        "profile_image_extensions_alt_text": null,
+        "profile_image_extensions_media_availability": null,
+        "profile_image_extensions_media_color": {
+          "palette": [
+            {
+              "rgb": { "red": 202, "green": 203, "blue": 195 },
+              "percentage": 42.86
+            },
+            {
+              "rgb": { "red": 208, "green": 159, "blue": 115 },
+              "percentage": 31.27
+            },
+            {
+              "rgb": { "red": 102, "green": 93, "blue": 85 },
+              "percentage": 10.91
+            },
+            {
+              "rgb": { "red": 154, "green": 188, "blue": 185 },
+              "percentage": 4.68
+            },
+            {
+              "rgb": { "red": 123, "green": 88, "blue": 56 },
+              "percentage": 2.5
+            }
+          ]
+        },
+        "profile_image_extensions": {
+          "mediaStats": { "r": { "missing": null }, "ttl": -1 }
+        },
+        "profile_banner_extensions_media_color": {
+          "palette": [
+            {
+              "rgb": { "red": 249, "green": 220, "blue": 93 },
+              "percentage": 89.75
+            },
+            {
+              "rgb": { "red": 158, "green": 155, "blue": 96 },
+              "percentage": 5.07
+            },
+            {
+              "rgb": { "red": 103, "green": 111, "blue": 96 },
+              "percentage": 3.96
+            },
+            {
+              "rgb": { "red": 59, "green": 77, "blue": 95 },
+              "percentage": 1.14
+            }
+          ]
+        },
+        "profile_banner_extensions_alt_text": null,
+        "profile_banner_extensions_media_availability": null,
+        "profile_banner_extensions": {
+          "mediaStats": { "r": { "missing": null }, "ttl": -1 }
+        },
+        "profile_link_color": "1B95E0",
+        "pinned_tweet_ids": [645970860814155776],
+        "pinned_tweet_ids_str": ["645970860814155776"],
+        "has_custom_timelines": true,
+        "can_dm": true,
+        "advertiser_account_type": "promotable_user",
+        "advertiser_account_service_levels": ["analytics"],
+        "profile_interstitial_type": "",
+        "business_profile_state": "none",
+        "translator_type": "none",
+        "ext": { "highlightedLabel": { "r": { "ok": {} }, "ttl": -1 } }
+      },
+      "2166434343": {
+        "id_str": "2166434343",
+        "name": "George Mack",
+        "screen_name": "george__mack",
+        "location": "London",
+        "description": "I write about mental models, ecommerce and the future.    Newsletter\ud83d\udc49 https://t.co/IhHdgC4xMJ       Bots \ud83d\udc49 @navalbot @nntalebbot",
+        "url": "https://t.co/wROz06MwCa",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "https://t.co/wROz06MwCa",
+                "expanded_url": "https://www.youtube.com/watch?v=m_56L8EGLIk",
+                "display_url": "youtube.com/watch?v=m_56L8\u2026",
+                "indices": [0, 23]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              {
+                "url": "https://t.co/IhHdgC4xMJ",
+                "expanded_url": "http://bit.ly/MentalModelsBD",
+                "display_url": "bit.ly/MentalModelsBD",
+                "indices": [70, 93]
+              }
+            ]
+          }
+        },
+        "followers_count": 35726,
+        "fast_followers_count": 0,
+        "normal_followers_count": 35726,
+        "friends_count": 622,
+        "listed_count": 840,
+        "created_at": "Sun Nov 03 14:33:49 +0000 2013",
+        "favourites_count": 5981,
+        "geo_enabled": true,
+        "statuses_count": 2160,
+        "media_count": 178,
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/1304132718029139969/4ki_Rww2_normal.jpg",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/2166434343/1527152642",
+        "profile_image_extensions_alt_text": null,
+        "profile_image_extensions_media_availability": null,
+        "profile_image_extensions_media_color": {
+          "palette": [
+            {
+              "rgb": { "red": 109, "green": 207, "blue": 246 },
+              "percentage": 67.19
+            },
+            {
+              "rgb": { "red": 238, "green": 190, "blue": 160 },
+              "percentage": 17.77
+            },
+            {
+              "rgb": { "red": 66, "green": 56, "blue": 49 },
+              "percentage": 7.04
+            },
+            {
+              "rgb": { "red": 113, "green": 141, "blue": 175 },
+              "percentage": 5.6
+            },
+            {
+              "rgb": { "red": 60, "green": 82, "blue": 101 },
+              "percentage": 0.92
+            }
+          ]
+        },
+        "profile_image_extensions": {
+          "mediaStats": { "r": { "missing": null }, "ttl": -1 }
+        },
+        "profile_banner_extensions_media_color": {
+          "palette": [
+            {
+              "rgb": { "red": 29, "green": 25, "blue": 26 },
+              "percentage": 52.43
+            },
+            {
+              "rgb": { "red": 190, "green": 188, "blue": 189 },
+              "percentage": 32.99
+            }
+          ]
+        },
+        "profile_banner_extensions_alt_text": null,
+        "profile_banner_extensions_media_availability": null,
+        "profile_banner_extensions": {
+          "mediaStats": { "r": { "missing": null }, "ttl": -1 }
+        },
+        "profile_link_color": "1DA1F2",
+        "default_profile": true,
+        "pinned_tweet_ids": [1262509016992960512],
+        "pinned_tweet_ids_str": ["1262509016992960512"],
+        "has_custom_timelines": true,
+        "can_dm": true,
+        "can_media_tag": true,
+        "advertiser_account_type": "promotable_user",
+        "advertiser_account_service_levels": ["smb"],
+        "profile_interstitial_type": "",
+        "business_profile_state": "none",
+        "translator_type": "none",
+        "ext": { "highlightedLabel": { "r": { "ok": {} }, "ttl": -1 } }
+      }
+    },
+    "moments": {},
+    "cards": {},
+    "places": {},
+    "media": {},
+    "broadcasts": {},
+    "topics": {},
+    "lists": {}
+  },
+  "timeline": {
+    "id": "Conversation-1350513143387189248",
+    "instructions": [
+      {
+        "addEntries": {
+          "entries": [
+            {
+              "entryId": "tweet-1350513160336375812",
+              "sortIndex": "7872858876518399995",
+              "content": {
+                "item": {
+                  "content": {
+                    "tweet": {
+                      "id": "1350513160336375812",
+                      "displayType": "SelfThread"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "tweet-1350513162727141378",
+              "sortIndex": "7872858874127634429",
+              "content": {
+                "item": {
+                  "content": {
+                    "tweet": {
+                      "id": "1350513162727141378",
+                      "displayType": "SelfThread"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "tweet-1350513164828475394",
+              "sortIndex": "7872858872026300413",
+              "content": {
+                "item": {
+                  "content": {
+                    "tweet": {
+                      "id": "1350513164828475394",
+                      "displayType": "SelfThread"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "tweet-1350513166665576448",
+              "sortIndex": "7872858870189199359",
+              "content": {
+                "item": {
+                  "content": {
+                    "tweet": {
+                      "id": "1350513166665576448",
+                      "displayType": "SelfThread"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "tweet-1350513168603357184",
+              "sortIndex": "7872858868251418623",
+              "content": {
+                "item": {
+                  "content": {
+                    "tweet": {
+                      "id": "1350513168603357184",
+                      "displayType": "SelfThread"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "tweet-1350513171170283520",
+              "sortIndex": "7872858865684492287",
+              "content": {
+                "item": {
+                  "content": {
+                    "tweet": {
+                      "id": "1350513171170283520",
+                      "displayType": "SelfThread"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "tweet-1350513173623922688",
+              "sortIndex": "7872858863230853119",
+              "content": {
+                "item": {
+                  "content": {
+                    "tweet": {
+                      "id": "1350513173623922688",
+                      "displayType": "SelfThread"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "tweet-1350513176878735363",
+              "sortIndex": "7872858859976040444",
+              "content": {
+                "item": {
+                  "content": {
+                    "tweet": {
+                      "id": "1350513176878735363",
+                      "displayType": "SelfThread"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "tweet-1350513180074795008",
+              "sortIndex": "7872858856779980799",
+              "content": {
+                "item": {
+                  "content": {
+                    "tweet": {
+                      "id": "1350513180074795008",
+                      "displayType": "SelfThread"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "tweet-1350513181949632515",
+              "sortIndex": "7872858854905143292",
+              "content": {
+                "item": {
+                  "content": {
+                    "tweet": {
+                      "id": "1350513181949632515",
+                      "displayType": "SelfThread"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "conversationThread-1350530788870270977",
+              "sortIndex": "7872858846667542426",
+              "content": {
+                "timelineModule": {
+                  "items": [
+                    {
+                      "entryId": "tweet-1350530788870270977",
+                      "item": {
+                        "content": {
+                          "tweet": {
+                            "id": "1350530788870270977",
+                            "displayType": "Tweet"
+                          }
+                        },
+                        "clientEventInfo": {
+                          "details": {
+                            "timelinesDetails": {
+                              "controllerData": "DAACDAAEDAABCgABAAX2IAAQCAEAAAAA"
+                            },
+                            "conversationDetails": {
+                              "conversationSection": "HighQuality"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "displayType": "VerticalConversation",
+                  "clientEventInfo": {
+                    "details": {
+                      "conversationDetails": {
+                        "conversationSection": "HighQuality"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "entryId": "cursor-top-7872858876518399996",
+              "sortIndex": "7872858876518399996",
+              "content": {
+                "operation": {
+                  "cursor": {
+                    "value": "LCaIgLiljKT+vSUAAA==",
+                    "cursorType": "Top",
+                    "stopOnEmptyResponse": true
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "responseObjects": { "feedbackActions": {} }
+  }
+}
