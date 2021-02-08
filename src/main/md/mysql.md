@@ -82,6 +82,8 @@ mysql> describe tableName;
 mysql> CREATE DATABASE thales;
 mysql> CREATE USER 'project_user'@'localhost' IDENTIFIED BY 'PASSWORD';
 mysql> GRANT ALL ON `project_database`.* TO 'project_user'@'localhost';
+mysql> create table scores(id char(1), score integer); insert into scores('a', 12); insert into scores values('d', 14);
+mysql> select id, score, dense_rank() over w as 'dense rank' from scores window w as (order by score desc);
 ```
 
 ## Unexpected Error occurred attempting to open an SQL connection.
