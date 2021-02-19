@@ -8,6 +8,17 @@
 * [Spring Exam Notes](https://github.com/mohanmca/professional_certification/blob/master/spring/exam_checklist.md)
 
 
+## Git Commands
+
+D:\git\MohanLearningGround\src\main\md\
+* [Often used git commands](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/git/git_reference.md)
+
+## Running Scala File
+
+* sbt run ground.learning.parser.MiniParser
+* sbt would use .jvmopts file for memory configuration
+
+
 ## Elastic Search
 
 * [Elastic Search](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/elasticsearch.md)

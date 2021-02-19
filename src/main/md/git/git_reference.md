@@ -1,9 +1,17 @@
-# Find diff between local commit with origin
-git diff origin/master --
+## Find diff between local commit with origin
 
-# TO list the changes with remote branch before commiting
+* git diff origin/master --
+* git diff master remotes/origin/master..origin/master
+
+## TO list the changes with remote branch before commiting
 git diff origin/branch  --
 
+# Find all the branches
+git branch -a
+
+# find untracked files
+
+* git ls-files --others --exclude-standard
 
 # Create patch with origin
 git format-patch origin/master

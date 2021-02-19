@@ -7,6 +7,9 @@ import java.io.InputStream;
 public class ssh {
     public static void main(String[] args) throws Exception {
         JSch jsch=new JSch();
+        String user = "test";
+        String host = "password";
+        String command = "ls -ltar";
         Session session=jsch.getSession(user, host, 22);
         UserInfo ui=new UserInfo();
         session.setUserInfo(ui);

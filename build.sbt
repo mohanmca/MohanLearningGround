@@ -2,13 +2,12 @@ name := "MohanLearningGround"
 
 version := "1.0"
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.13"
 val akkaVersion = "2.5.18"
 val akkaHttpVersion = "10.1.0"
 val tomcatVersion = "9.0.14"
 
 //enablePlugins(ScalaJSPlugin)
-
 /*
     initialize := {
     val _ = initialize.value
@@ -56,7 +55,7 @@ scalacOptions += "-Ypartial-unification"
 libraryDependencies ++= Seq(
   "com.chuusai" %% "shapeless" % "2.3.2" withSources(),
   "org.typelevel" %% "cats-core" % "1.0.0-RC1" withSources(),
-   "org.scalaz" %% "scalaz-core" % "7.2.17"  withSources()
+  "org.scalaz" %% "scalaz-core" % "7.2.17"  withSources()
 )
 
 libraryDependencies ++= Seq(
@@ -73,17 +72,17 @@ libraryDependencies ++= Seq(
 libraryDependencies ++=  Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
-	"org.scala-lang" % "scala-reflect" % scalaVersion.value,
+	  "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.scala-lang.modules" % "scala-parser-combinators_2.12" % "1.1.1"
   )
 
 libraryDependencies ++=  Seq(
-        "org.apache.commons" % "commons-text" % "1.3" withSources(),
-        "org.apache.commons" % "commons-io" % "1.3.2" withSources(),
-        "commons-lang" % "commons-lang" % "2.6" withSources(),
-         "com.fasterxml.jackson.core" % "jackson-core" % "2.9.3" withSources(),
-         "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.3",
-        "junit" % "junit" % "4.12"
+    "org.apache.commons" % "commons-text" % "1.3" withSources(),
+    "org.apache.commons" % "commons-io" % "1.3.2" withSources(),
+    "commons-lang" % "commons-lang" % "2.6" withSources(),
+     "com.fasterxml.jackson.core" % "jackson-core" % "2.9.3" withSources(),
+     "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.3",
+    "junit" % "junit" % "4.12"
 )
 
 libraryDependencies ++= Seq(
@@ -96,10 +95,7 @@ libraryDependencies ++= Seq(
     "org.slf4j" % "slf4j-simple" % "1.7.5" withSources(),
     "com.squareup.retrofit" % "retrofit" % "1.0.0" withSources(),
     "org.scala-lang.modules" %% "scala-async" % "0.9.6"
-  )
-  
-
-
+)
 
 val depsAkka = Seq(
     "com.typesafe.akka" %% "akka-actor" % akkaVersion withSources(),
