@@ -2,9 +2,9 @@ name := "MohanLearningGround"
 
 version := "1.0"
 
-scalaVersion := "2.12.13"
-val akkaVersion = "2.5.18"
-val akkaHttpVersion = "10.1.0"
+scalaVersion := "2.12.12"
+val akkaVersion = "2.5.32"
+val akkaHttpVersion = "10.2.3"
 val tomcatVersion = "9.0.14"
 
 //enablePlugins(ScalaJSPlugin)
@@ -39,12 +39,12 @@ libraryDependencies ++= Seq(
   "org.scalactic" % "scalactic_2.12" % "3.0.2" withSources(),
   "org.scalatest" % "scalatest_2.12" % "3.0.2" withSources(),
   "org.scalacheck" %% "scalacheck" % "1.13.5" withSources(),
-  "org.scalaj" %% "scalaj-http" % "2.3.0"  withSources()  
+  "org.scalaj" %% "scalaj-http" % "2.4.2"
 )
 
 //java library dependencies
 libraryDependencies ++= Seq(
-	"com.vladsch.flexmark" % "flexmark-all" % "0.32.18"  withSources(),
+	"com.vladsch.flexmark" % "flexmark-all" % "0.62.2",
 	"org.jsoup" % "jsoup" % "1.11.2"  withSources()
 )
 
@@ -54,8 +54,8 @@ scalacOptions += "-Ypartial-unification"
 
 libraryDependencies ++= Seq(
   "com.chuusai" %% "shapeless" % "2.3.2" withSources(),
-  "org.typelevel" %% "cats-core" % "1.0.0-RC1" withSources(),
-  "org.scalaz" %% "scalaz-core" % "7.2.17"  withSources()
+  "org.typelevel" %% "cats-core" % "2.4.1" withSources(),
+  "org.scalaz" %% "scalaz-core" % "7.3.3"  withSources()
 )
 
 libraryDependencies ++= Seq(

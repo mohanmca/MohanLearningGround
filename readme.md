@@ -15,7 +15,8 @@ D:\git\MohanLearningGround\src\main\md\
 
 ## Running Scala File
 
-* sbt run ground.learning.parser.MiniParser
+* sbt "run-main ground.learning.parser.MiniParser"
+* sbt "run-main ground.learning.Combinatorial.NQueens"
 * sbt would use .jvmopts file for memory configuration
 
 
