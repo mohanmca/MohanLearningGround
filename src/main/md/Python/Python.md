@@ -1,3 +1,18 @@
+## Core
+
+* python -m pip install --upgrade pip
+* python install -r requirements.txt
+
+## Sample requirements.txt
+
+```txt
+cassandra-driver
+Cytyhon>=0.29
+urllib3
+requests
+Flask==1.0.2
+```
+
 * [Guido van Rossum](http://neopythonic.blogspot.com/)
 * [Transforming Code into Beautiful, Idiomatic Python](https://gist.github.com/0x4D31/f0b633548d8e0cfb66ee3bea6a0deff9)
 

@@ -41,8 +41,29 @@ Why Association works?
 ## Memory Quotes
 * True art of memory is attention
 ----
+
+## Systematic way of reading a book - (Matt DiMaio)
+
+1. Flip through each page of the book (without reading)
+    1. Sense of how long is the chapter, anything jump out at us
+1. Go to end of the each chapter
+    1. Read the Quiz
+    1. What author thinks you are going to learn from this book
+1. Go to the begining of the chapter
+   1. Read all the bold letter pring
+   1. Try to anaylyze/understand the hierarchy
+1. Read first and last sentence of the each paragraph
+   1. First paragraph gives what the rest of the paragraph is about
+   1. last sentence of paragraph sum it up
+1. Above method is like top-down approach
+1. Why above method works
+   1. Learning requires a lot of Repetition
+   1. Repetition is mother of learning
+   1. Reticular activating system creates awarness
+----
 # Reference
 * (Ask HN: How do you remember what you read?)
 * [How to develop super power memory](https://archive.org/details/HowToDevelopASUPERPOWERMEMORYHarryLorayne/page/n7)
 * [How To Develop A Super Power Memory](http://www.ownways.com/how_to_develop_a_super_power_memory/Contents.html)
-*[Super memory it can be yours](https://issuu.com/snehalwankhede/docs/super-memory-it-can-be-yours-)
+* [Super memory it can be yours](https://issuu.com/snehalwankhede/docs/super-memory-it-can-be-yours-)
+* [How to absorb textbooks like sponge - Matt DiMaio](https://www.youtube.com/watch?v=nqYmmZKY4sA)  
