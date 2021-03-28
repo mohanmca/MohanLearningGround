@@ -42,13 +42,15 @@ Why Association works?
 * True art of memory is attention
 ----
 ## How to learn faster with the Feynman Technique
-1. You are the easies person to fool with, avoid it
+1. You are the easies person to fool with, avoid it using following four steps of Feynman learning technique
    
 1. Take a piece of paper and write the concept's name at the top.
    1. Write pythogorean theorm
 1. Explain the concept using simple language.
 1. Identify the problem areas, then go back to the sources to review
 1. Pinpoint any complicated terms and challenge yourself to simplify them
+   
+
 1. You should be able to explain to others, hence try to teach to someone else
 
 ----
