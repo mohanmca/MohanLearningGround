@@ -35,12 +35,14 @@ done < git_links.txt
 ## Update multiple repos
 
 ```bash
+base=`pwd`
 for folder in `ls -d *`;
 do 
   cd $folder;
   echo "Git pull for ".$folder;
-  gi pull;
-  cd ..;
+  git pull;
+  cd $base
+#  cd ..;
 done
 ```
 

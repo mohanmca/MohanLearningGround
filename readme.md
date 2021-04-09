@@ -17,6 +17,7 @@ D:\git\MohanLearningGround\src\main\md\
 
 * sbt "run-main ground.learning.parser.MiniParser"
 * sbt "run-main ground.learning.Combinatorial.NQueens"
+* sbt "run-main ground.learning.Combinatorial.PrimeFactors"
 * sbt would use .jvmopts file for memory configuration
 
 

@@ -88,7 +88,7 @@ libraryDependencies ++=  Seq(
 libraryDependencies ++= Seq(
     "io.reactivex" %% "rxscala" % "0.26.5" withSources(),
     "io.reactivex" % "rxswing" % "0.27.0" withSources(), // for Swing Scheduler in suggestions
-    "org.json4s" %% "json4s-jackson" % "3.5.2" withSources(),
+    "org.json4s" %% "json4s-jackson" % "3.6.11" withSources(),
     "org.scala-lang.modules" %% "scala-swing" % "2.0.0" withSources(),
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.slf4j" % "slf4j-api" % "1.7.5" withSources(),

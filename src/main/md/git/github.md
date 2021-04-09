@@ -17,7 +17,6 @@
         os: [ubuntu-latest, windows-2016]
 ```
 
-
 ## Github Actions
 
 * [Interactive Lesson](https://github-actions-hero.now.sh/)
