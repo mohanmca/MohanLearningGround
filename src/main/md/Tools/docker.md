@@ -27,6 +27,10 @@ docker inspect $image_id_cc126d830f47
 docker run -it -d -p 8000:8000 -p 8002:8002 busybox bin/bash
 ```
 
+## Docker and Python
+
+* Docker compose is already using python-3, hence try to ensure py3 in on path
+* If there are named-pipe error or python stack-trace, ensure docker-compose commnd executed on the same window where docker-machine started
 
 # Delete All Exited Containers (Linux): Or remove with certain image
 ```shell
