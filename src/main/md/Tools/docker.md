@@ -4,6 +4,12 @@
 docker-machine --debug create --driver virtualbox newone
 ```
 
+## Docker on WSL (Windows)
+
+* wsl -d docker-desktop
+* wsl --list
+* 
+
 ## Docker theory
 * The difference between a Docker image (class) and a Docker container (object) is the same as that of the difference between a class and an object.
 
