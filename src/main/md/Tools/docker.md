@@ -42,6 +42,16 @@ docker inspect $image_id_cc126d830f47
 docker run -it -d -p 8000:8000 -p 8002:8002 busybox bin/bash
 ```
 
+## Why docker container exited
+
+```bash
+docker logs help
+docker logs -f cass1 ## Tail the log
+
+docker logs container-id
+
+```
+
 ## Docker and Python
 
 * Docker compose is already using python-3, hence try to ensure py3 in on path
