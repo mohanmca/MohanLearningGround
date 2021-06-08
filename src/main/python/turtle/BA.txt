@@ -1,0 +1,154 @@
+Roles & Responsibilities
+
+Position
+
+In a challenging and multicultural environment, we seek for a Business analyst/tester to join our Core Banking IT department in charge of the development and maintenance of the International Core Banking System of our client. This information system is deployed in 25 business units all around the world. The system has multiple modules to manage reference data, commercial back office functions (payments, remittances, loans, deposits, guarantees, letters of credit …), accounting, management control and credit risk monitoring. The system caters to local regulatory reporting needs and head office reporting, based on a data warehouse.
+
+The candidate will be in charge of understanding the requirements and to test the payment system of the bank which is Global Pay Plus – Sevice Platform (GPP-SP) from Finastra (previously D&H). The role will focus primarily on testing the various evolutions of the in-house solution together with the payment engine (GPP-SP).
+
+Main responsibilities
+
+As a Business Analyst:
+
+    Understanding the BRD and conducting requirement gathering by various means like brainstorming, workshops, Questionnaire and working with different stakeholders of the cash management team like Product Managers (Global as well as In Country), Client Services, Implementation, Operations and Finance.
+    Mapping the identified functional requirements and define a solution
+    Identifying the scope of the requirements, validating the requirements.
+    Working with Lead Business Analyst & Technology partner i.e., Solution Architects to agree on the solution.
+    Working as a liaison between Business users, operations and Developers.
+    Preparing various documents like BRD, FSD and reviewing SIT Test scenarios and Test Cases. Experience in Agile world is a plus.
+    Working with different stakeholders for product collateral and training needs.
+    Working with Integration partners and other vendors within bank
+    Identify & resolve issues and manage project risks, supporting different teams, chairing & documenting meetings.
+
+As a Functional Tester:
+
+    Handle the core banking system’s and payment system’s various test phases : regression tests, integration tests, functional tests, test automation
+    Good Knowledge and working experience of Software Development Life Cycle (SDLC), Software Testing Life Cycle (STLC) and Defect Life Cycle.
+    Define functional test scenarios for core banking and payment systems
+    Overall responsible for ensuring User acceptance testing for all the streams.
+    Maintain up to date test libraries (test scenarios, test cases)
+    Working with SIT & UAT Testing Team, reviewing, testing scenarios, test cases and helping developers and testers in clearing their doubts about the requirements etc.
+    Recording defects utilizing defect tracking tool with priority and severity and alert the management
+    Manage planning, communicate with stakeholders
+    Prepare regular reports on test results
+    Supporting the business users for User Acceptance Testing
+    Supporting Operations team / Business Users team to complete the testing
+    Managing testing at times when required and found the issues / testing not closing or moving as expected
+    Lead Defect Management related actives
+
+Qualifications and Profile
+
+The position requires a minimum of 5 years relevant business analyst/tester experience with Payment systems and Core Banking applications.
+
+Functional
+
+    Good knowledge in Payment area like interaction with Clearing, payment file format ISO20022, SEPA and SWIFT. Hands-on experience with such data mapping and testing.
+    Hands on experience on payment systems and exposure to Payments Hub, Clearing and Settlement, Automated clearing house programs and channels.
+    Extensive knowledge on various kinds of payment products such as TT, RTGS, LVP, Payroll, Cheque, DD, Cashier Order, Mass & Bulk payments.
+    Proficient in User Acceptance Testing (UAT), Functional & System Integration testing of banking and financial applications
+    Experience in following areas is a plus: Retail Banking, Wholesale & Corporate Banking, Corporate commercial Payments, International & Domestic Payments, Payment Hub/Factory, Correspondent Banking, ACH, Real Time Payments, Cash & Liquidity Management, Compliance/AML, FX, Messaging (Swift and ISO) & Trade Finance
+
+Technical
+
+    Hands on experience on testing methodologies
+    Working knowledge of ALM/QC/JIRA
+
+Other Professional Skills and Mindset
+
+    Work on complex systems and a challenging international work environment
+    Knowledge of all phases of IT system development and implementation life cycle
+    Highly analytic and detail oriented in approach with Excellent communication and presentation skills, with experience converting highly complex information into clear, concise documentation.
+    Strong analytic skills
+    Capable to effectively interact with multiple stakeholders
+    Strives to deliver the solution in the most effective and timely manner
+    Proactive with excellent verbal and written communication skills in English
+    Team spirit - Like explain and share knowledge
+    Hands on and versatile
+    As part of an integrated organization across 3 main sites (Paris, SQY, Singapore), be able to forge close relationships with program director, others team leads, architecture functions and quality assurance teams. It could be a limited travel aspect for this role.
+
+
+Roles & Responsibilities
+
+Please apply via: https://www.infineon.com/cms/en/careers/jobsearch/jobsearch/318612-Business-Analyst-Information-Technology/
+
+
+In your new role you will:
+
+    Proactively work with key internal customers associated with new and existing business initiatives to understand, shape, agree and deliver their Business Intelligence and Analytics requirements
+    Introduce innovative solution proposals and new analytical products that can support business objectives and unlock value from data assets
+    Requirement Gathering, Analysis, Design, Proof of concepts/ prototyping and its evaluation together with Biz users to enable fast customer feedback and alignment.
+    Design & review Functional & Technical Design specifications in sync with overall solution platforms and architecture.
+    Develop and Implement various BI content solutions as needed including database & ETL, reports, dashboards and scorecard as an integral part of the Infineon Business Intelligence architecture.
+    Best practice implementation & external benchmarking especially new biz. trends such as Industry 4.0, IoT, Smart Factory, Artificial Intelligence & Machine Learning etc.
+
+
+You are best equipped for this task if you have:
+
+    Proficient in Oracle Data warehouse design and concepts
+    Expert in Development using Oracle, PLSQL & ETL process (source/target mappings, transformations, and reconciliation/validation rules
+    Expertise in Data modeling and dimensional modeling of BI Solutions
+    Expertise in Reporting and Dashboarding solutions design and visualization, especially SAP Business Objects(BO) & Tableau
+    Masters / Bachelor degree in Computer Science or Engineering
+    Relevant work experience in IT for at least 4 years.
+    Other Skills / Attributes: Highly motivated, structured and methodical with high degree of self-initiative
+    Excellent interpersonal, communication and presentation skill
+    Team player with good cross-cultural skills
+
+
+Roles & Responsibilities
+
+PRINCIPAL RESPONSIBILITIES:
+
+We are seeking to hire experienced Business Analyst who is knowledgeable on investment management domain and has strong working knowledge with multiple investment management applications. You will be responsible for:
+
+    Liaising with clients and the management to gather requirements and consulting.
+    Liaising with the internal technical team wherever necessary to get things done.
+    Completing projects from requirements gathering to project delivery
+    Strong stakeholder management dealing with Front Office Investment professionals, compliance, and traders.
+    Working collaboratively with other teams and team members working for the same projects
+    Reviewing and identifying business operational areas that need improvements and propose appropriate action plans.
+    Creating a rapport with the clients and ensure project delivery is accurate as per requirements.
+    Staying up to date with all business procedures and activities
+    Participating in business planning meetings, prioritizing business needs and setting business goals
+    Assessing business challenges and risks and developing mitigation plans
+    Reviewing and identifying business gaps that need improvements and proposing appropriate action plans.
+    Any other assignments given by the management from time to time.
+
+KNOWLEDGE/SKILLS & EXPERIENCE REQUIREMENTS:
+
+    3 to 5 years of Investment Management domain experience working as an analyst in the Front or Middle Office in an Investment Management organization
+    A professional with a good work ethic who can work to tight deadlines, manage time appropriately and requires minimal supervision.
+    Strong analytical skills and leadership qualities
+    Strong written, verbal and presentation skills
+    Excellent interpersonal skills
+    A detailed understanding of Buy side investment concepts and theory.
+
+EDUCATIONAL REQUIREMENTS:
+
+    Master’s degree or equivalent in a technical, mathematical, or financial discipline is an advantage.
+    CFA or CA is an advantage
+    Candidates must be comfortable with significant travel when appropriate.
+
+
+Roles & Responsibilities
+
+Have an awareness of the overall cloud technology and carry out day-to-day work in a manner that achieves those overarching goals
+
+Understand the regulatory environment and its impact on the cloud delivery
+
+Provide stakeholder management, business analysis, documentation, etc.
+
+Provide coordination and business analysis skills to ensure successful delivery of projects
+
+Assist in the requirement gathering with a multitude of stakeholders from different disciplines within the bank and of different levels of seniority
+
+Skills:
+
+    Have five years working experience in Agile and scrum
+    Be experienced in data analysis and visualisation (ideally Tableau) for reporting and story telling
+    Extensive experience in process mapping methods including value stream mapping
+    Experience in process mapping tools for visualisation
+    Experience in working with Cloud technologies
+    Experience with integration technologies
+    Experience with Enterprise Architecture concepts and practises
+    Self-starter capable of identifying opportunities and delivering solutions on their own

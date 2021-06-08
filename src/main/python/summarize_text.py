@@ -10,7 +10,10 @@ import urllib.request
 
 
 #fetching the content from the URL
-fetched_data = urllib.request.urlopen('https://en.wikipedia.org/wiki/World_War_II')
+# fetched_data = urllib.request.urlopen('https://en.wikipedia.org/wiki/World_War_II')
+
+fetched_data = urllib.request.urlopen('https://www.datastax.com/blog/when-use-leveled-compaction')
+
 
 article_read = fetched_data.read()
 
