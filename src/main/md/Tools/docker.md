@@ -2,13 +2,22 @@
 
 ```cmd
 docker-machine --debug create --driver virtualbox newone
+## Dockerd commands
+dockerd --storage-opt lcow.kernel=kernel.efi
 ```
 
 ## Docker on WSL (Windows)
 
 * wsl -d docker-desktop
 * wsl --list
-* 
+* wsl --shutdown
+* notepad "$env:USERPROFILE/.wslconfig"
+```.wslconfig
+[wsl2]
+memory=3GB   # Limits VM memory in WSL 2 up to 3GB
+processors=4 # Makes the WSL 2 VM use two virtual processors
+```
+
 
 ## Docker theory
 * The difference between a Docker image (class) and a Docker container (object) is the same as that of the difference between a class and an object.
@@ -31,6 +40,16 @@ docker run --restart unless-stopped --name mysql -e MYSQL_ROOT_PASSWORD=root -p 
 docker inspect $image_id_cc126d830f47
 # Bash as deamon process
 docker run -it -d -p 8000:8000 -p 8002:8002 busybox bin/bash
+```
+
+## Why docker container exited
+
+```bash
+docker logs help
+docker logs -f cass1 ## Tail the log
+
+docker logs container-id
+
 ```
 
 ## Docker and Python
@@ -182,3 +201,4 @@ docker exec -it alpine1 ping alpine2
 
 ## $Reference
 * [Docker samples](https://docs.docker.com/samples/)
+* https://itnext.io/wsl2-tips-limit-cpu-memory-when-using-docker-c022535faf6f
