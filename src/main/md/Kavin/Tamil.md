@@ -13,13 +13,12 @@
 
 ## Emergency vocabulary
 
-
-1.  Ambulance: மருத்துவ ஊர்தி
-1.  Hospital: வைத்தியசாலை
-1.  Police: போலீஸ்
-1.  Stomach Ache: வயிற்று வலி
-1.  Pharmacy: மருந்தகம்
-1.  Doctor: மருத்துவர்
+1. Ambulance: மருத்துவ ஊர்தி
+1. Hospital: வைத்தியசாலை
+1. Police: போலீஸ்
+1. Stomach Ache: வயிற்று வலி
+1. Pharmacy: மருந்தகம்
+1. Doctor: மருத்துவர்
 
 ## Body parts 
 
