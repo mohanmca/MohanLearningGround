@@ -2,6 +2,10 @@
 * http://localhost:9200/_stats
 * 
 
+## How to find elasticsearch node from kibana
+
+* https://kibana_host/_nodes/stats
+* curl -XGET https://one_of_the_host/index_name/_search_
 # Most often used URL
 * *ElasticSearch Get can accept body* 
 * /_search
@@ -17,7 +21,6 @@
 * GET /old_index/_search?search_type=scan&scroll=1m
 * DELETE /index_one,index_two or DELETE /index_* or DELETE /_all
 * PUT /my_index_v1/_alias/my_index and/or GET /*/_alias/my_index
-* 
 * To count the number of documents in the cluster
  * ```{"query": { "match_all": {} }}```
 * To count the number of documents in the cluster
@@ -101,14 +104,18 @@
 ```   
 
 
-# Filter DSL
+## Filter DSL
+
 * Term Filter - The term filter is used to filter by exact values, be they numbers, dates, Booleans, or not_analyzed exact-value string fields:
 * Range filter
 * For exact-value searches, you probably want to use a filter instead of a query, as a filter will be cached.
-* You can use filter alone without query dsl (default query dsl for filter would be assuemed  ```{ "query":  { "match_all": {}} }```
-* 
+* You can use filter alone without query dsl (default query dsl for filter would be assuemed  
+```json
+{ "query":  { "match_all": {}} }
+```
+ 
 
-# Query DSL
+## Query DSL
 * must  - And
 * must_not - Not
 * should - or
