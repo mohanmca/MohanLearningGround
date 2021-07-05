@@ -1,1 +1,0 @@
-* https://www.quora.com/What-are-some-quick-hacks-to-understand-any-set-of-data-in-five-minutes-given-a-random-set-of-data-and-five-minutes-to-find-a-pattern-a-conclusion-the-structure-or-a-trend?share=4ce4eab2&srid=5Zp

@@ -7,4 +7,3 @@
    * Green - Make the code work
    * Refactor - Eliminate redundancy
 * BDD should consider specification of behaviour of system than writing tests
-*    

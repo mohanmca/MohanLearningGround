@@ -11,4 +11,4 @@ By late 2008, I already subscribed to few Scala forum, and was trying to learn "
 
 Till today, You guys know where I am, whereas Jonas went-on built Akka and even became CTO of ~~Typesafe~~ Lightbend.
 
-*Hence solving a bigger problem, and being perseverance on the same project seems help to grow.*
+*Hence solving a bigger problem, and perseverance on the same project seems help to grow.*

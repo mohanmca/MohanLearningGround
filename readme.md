@@ -1,4 +1,4 @@
-# Index of my notes
+## Index of my notes
 
 * [Cassandra notes](https://github.com/mohanmca/cassandra_playground/blob/master/README.md)
 * [Algorithm notes](https://github.com/mohanmca/professional_certification/blob/master/algorithms/README.md)
@@ -8,7 +8,7 @@
 * [Spring Core](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Spring5/SpringFramework.md)
 * [Spring Exam Notes](https://github.com/mohanmca/professional_certification/blob/master/spring/exam_checklist.md)
 
-# ElasticSearch Notes
+## ElasticSearch Notes
 
 * [Lucene](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/Lucene.md)
 * [ElasticSearch overview](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/elasticsearch.md)
@@ -35,10 +35,14 @@
 * [Useful ES Queries](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/most_useful_es_query.md)
 * [Lucene Queries](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/Lucene.md)
 
+## Make it stick pages
+
+* [Make it stick](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/Make_it_stick_applications.md)
 
 ## Kavin
 
 * [Tamil](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/Tamil.md)
+
 ## Math
 
 * [GameTheory.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Math/GameTheory.md)
@@ -56,3 +60,9 @@
 * [Statistics.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Math/Statistics.md)
 * [StatisticsHigerSecondaryFirst.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Math/StatisticsHigerSecondaryFirst.md)
 * [statistical_reasoning_cmu_oli.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Math/statistical_reasoning_cmu_oli.md)
+
+
+## Inspiring notes organization
+
+* [Everything I know](https://wiki.nikitavoloboev.xyz/)
+* 

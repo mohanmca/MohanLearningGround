@@ -2,7 +2,6 @@
 
 * 
 • The more uncomfortable the activity, the more likely it will lead to growth. 
-
 • The more comfortable the activity, the more likely it will lead to stagnation. 
 
 1000 uncomfortable hours &gt; 10,000 comfortable hours

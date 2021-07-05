@@ -1,10 +1,11 @@
-# W3C Selectors API
+## W3C Selectors API
+
 * Basic API used accepted to iterate and navigate and read dom nodes, All browswers, JSoup and D3S
 * Even if the method is invoked on a sepcific node element, selectors are still evaluated in the context of the entire document.
 * The querySelector() methods on the Document, DocumentFragment, and Element interfaces must return the first matching Element node within the subtrees of the context node. If there is no matching Element, the method must return null.
 * The querySelectorAll() methods on the Document, DocumentFragment, and Element interfaces must return a NodeList containing all of the matching Element nodes within the subtrees of the context node, in document order. If there are no matching nodes, the method must return an empty NodeList.
 
-
+```pre
 | Selector | Usage | Example |
 |:--------:|:--------:|:--------:|
 | #id | "#content" | Select using id of the tag, Generally container tag  |
@@ -14,9 +15,11 @@
 | form[action="feedback.php"] | "#content" | Select using id of the tag, Generally container tag }  |
 | #body img[src^="http" | within body |  selects 1st image with src beginning with "http" |
 | #body img[src^="http" | within body |  selects 1st image with src ending with "http" |
+```
 
 
 ## DOM API
+
 * Node and Element, NamedNodeMap, NodeList
 * Document, DocumentFragment
 * Document interface gives the factory methods needed to create elements, nodes
