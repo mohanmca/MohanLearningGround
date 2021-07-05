@@ -1,1 +1,0 @@
-[print(str(2) + "*"  + str(x)  + "= " + str(2*x)) for x in range(1,17) ]
