@@ -10,10 +10,6 @@
 
 ## ElasticSearch Notes
 
-* [Lucene](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/Lucene.md)
-* [ElasticSearch overview](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/elasticsearch.md)
-* [Kibana overview](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/kibana.md)
-* [ElasticSearch Most useful Query](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/most_useful_es_query.md)
 
 
 ## Git Commands
@@ -23,14 +19,6 @@
 ## Running Scala 
 
 * [Scala Readme.md](scala_running_readme.md)
-
-
-## Elastic Search
-
-* [Elastic Search](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/elasticsearch.md)
-* [Kibana](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/kibana.md)
-* [Useful ES Queries](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/most_useful_es_query.md)
-* [Lucene Queries](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/Lucene.md)
 
 ## Make it stick pages
 
@@ -62,4 +50,6 @@
 ## Inspiring notes organization
 
 * [Everything I know](https://wiki.nikitavoloboev.xyz/)
-* 
+* [https://github.com/vincentntang/vincentntang.com](https://www.vincentntang.com/)
+* [Chris's external brain](https://blog.kowalczyk.info/)
+* [Why gitbook](https://www.aizatto.com/why-gitbook)
