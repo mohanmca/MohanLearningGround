@@ -11,6 +11,14 @@
     1. "com.typesafe.akka" %% "akka-actor" % "2.3.3" withSources()
     1. transitiveClassifiers := Seq("sources")
 
+
+## Running Scala File
+
+* sbt "run-main ground.learning.parser.MiniParser"
+* sbt "run-main ground.learning.Combinatorial.NQueens"
+* sbt "run-main ground.learning.Combinatorial.PrimeFactors"
+* sbt would use .jvmopts file for memory configuration
+
 ## SBT Launcher details
 
 1. http://www.scala-sbt.org/0.12.4/docs/Detailed-Topics/Library-Management.html

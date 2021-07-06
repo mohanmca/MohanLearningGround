@@ -20,12 +20,9 @@
 
 * [Often used git commands](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/git/git_reference.md)
 
-## Running Scala File
+## Running Scala 
 
-* sbt "run-main ground.learning.parser.MiniParser"
-* sbt "run-main ground.learning.Combinatorial.NQueens"
-* sbt "run-main ground.learning.Combinatorial.PrimeFactors"
-* sbt would use .jvmopts file for memory configuration
+* [Scala Readme.md](scala_running_readme.md)
 
 
 ## Elastic Search
