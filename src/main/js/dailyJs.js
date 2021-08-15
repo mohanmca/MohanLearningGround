@@ -129,6 +129,12 @@ console.log(links.join("\n"))
 
 ### How to extract youtube lecture text - https://www.youtube.com/watch?v=QOtA76ga_fY
 ```Javascript
+// as on Aug-2021
+let transcriptions = Array.from(document.getElementsByClassName('cue style-scope ytd-transcript-body-renderer')).map(e => e.innerText).join("\n")
+console.log(transcriptions)
+```
+
+```Javascript
 {
 let transcript = [...document.getElementsByClassName("ytd-transcript-body-renderer")]
 let texts = transcript
