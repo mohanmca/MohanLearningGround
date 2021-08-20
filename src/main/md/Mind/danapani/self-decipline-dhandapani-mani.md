@@ -19,6 +19,16 @@
 1. Control where your energy flows to control what is manifesting in your life
 1. that's why you develop willpower
 
+## How to bring this into daily-practice?
+
+1. Find non-negotiable events in your life and practice three laws
+1. Question if you are doing only non-negotiable tasks
+1. Hourly beep
+    1. Am I doing non-negotiable task
+    1. Am I consciously doing right thing
+    1. Am I doing that is worth a year from now
+
+
 ## How can I complete what I start?
 
 * Define what is completion for this task.
@@ -32,18 +42,16 @@
 
 * Try using positive affirmation after you wake up and before going to sleep for 5 to 10 mins.
 * Imagine and visualize that you enjoy studying, you understand everything you study and you are able to remember it perfectly.
-* Use affirmations "I enjoy learning. I understand everything i learn. I have good concentration. I believe in my capabilities.  I love and accept myself the way i am as a person. etc.
-* Dont doubt your imagination while imagining.
+* Use affirmations "I enjoy learning. I understand everything i learn. I have good concentration. I believe in my capabilities.  I love and accept myself the way i am as a person. etc."
+* Don't doubt your imagination while imagining.
 
 ## Focus and High Growth
 
-* 6 months of hardcore focus and alignment, can you put you 5 years ahead in life
-* 
+* 6 months of hardcore focus and alignment, can put you 5 years ahead in life
 
 ## Energy
 
 * “Treat energy the same way you treat money. It is a finite commodity that needs to be wisely invested.”
-* 
 
 ## Ways to avoid distraction?
 
