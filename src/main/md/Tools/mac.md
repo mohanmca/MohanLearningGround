@@ -1,3 +1,23 @@
+ ## How to find java_home
+ 
+ 1. g
+ 1. /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/
+ 1. /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+
+## Openjdk@17
+
+1. /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+1  echo 'export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"' >> ~/.zshrc
+
+## Brew Commands
+
+1. brew services start redis
+1. brew services stop redis
+1. brew services help
+
+## Show hidden file in finder
+1. Command + Shift + . 
+
 ## Spotlight Search
 
 * Command + Space
