@@ -68,9 +68,7 @@ public class Order {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		if (orderId != other.orderId)
-			return false;
-		return true;
+		return orderId == other.orderId;
 	}
 
 	public void setType(OrderType type) {

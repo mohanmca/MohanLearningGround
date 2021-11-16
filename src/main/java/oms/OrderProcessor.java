@@ -14,12 +14,12 @@ import java.util.logging.Logger;
  */
 public class OrderProcessor {
 
-	private static Logger logger = Logger.getLogger("com.wombat.nose");
+	private static final Logger logger = Logger.getLogger("com.wombat.nose");
 
-	private ConcurrentSkipListSet<Order> bestSell = new ConcurrentSkipListSet<Order>(new BestOrder().reversed());
-	private ConcurrentSkipListSet<Order> bestBuy = new ConcurrentSkipListSet<Order>(new BestOrder());
-	private Map<Long, Order> orders = new ConcurrentHashMap<Long, Order>();
-	private static OrderProcessor _instance = new OrderProcessor();
+	private final ConcurrentSkipListSet<Order> bestSell = new ConcurrentSkipListSet<Order>(new BestOrder().reversed());
+	private final ConcurrentSkipListSet<Order> bestBuy = new ConcurrentSkipListSet<Order>(new BestOrder());
+	private final Map<Long, Order> orders = new ConcurrentHashMap<Long, Order>();
+	private static final OrderProcessor _instance = new OrderProcessor();
 
 	private OrderProcessor() {
 	}
@@ -37,7 +37,7 @@ public class OrderProcessor {
 	public void processOrder(Order order) {
 		Order oldOrder = orders.put(order.getOrderId(), order);
 		if (oldOrder == null || !oldOrder.equals(order)) {
-			logger.finer("New order inserted! - oldOrder " + oldOrder + ", new order" + order.toString());
+			logger.finer("New order inserted! - oldOrder " + oldOrder + ", new order" + order);
 		} else {
 			logger.finer("Existing order updated!" + order);
 		}
@@ -70,7 +70,7 @@ public class OrderProcessor {
 		return bestSell.last();
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 	}
 

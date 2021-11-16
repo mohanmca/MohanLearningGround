@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class NetPositionCalculator {
 
-	private Map<String, List<Trade>> trades = new HashMap<String, List<Trade>>();
+	private final Map<String, List<Trade>> trades = new HashMap<String, List<Trade>>();
 	// For every trader, there should be position for every symbol
-	private Map<String, Position> positions = new HashMap<String, Position>();
+	private final Map<String, Position> positions = new HashMap<String, Position>();
 
 	public Collection<Position> getOutstandingPosition() {
 		if (trades.isEmpty())

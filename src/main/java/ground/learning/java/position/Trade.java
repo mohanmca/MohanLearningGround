@@ -61,11 +61,8 @@ public class Trade {
 		} else if (!symbol.equals(other.symbol))
 			return false;
 		if (trader == null) {
-			if (other.trader != null)
-				return false;
-		} else if (!trader.equals(other.trader))
-			return false;
-		return true;
+			return other.trader == null;
+		} else return trader.equals(other.trader);
 	}
 
 }

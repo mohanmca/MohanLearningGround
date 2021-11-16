@@ -20,11 +20,11 @@ import java.util.stream.IntStream;
  */
 public class DocumentContainer {
 
-	private static Logger logger = Logger.getLogger(DocumentContainer.class
+	private static final Logger logger = Logger.getLogger(DocumentContainer.class
 			.getName());
 
-	private ConcurrentHashMap<String, Document> mapOfItems = new ConcurrentHashMap<>();
-	private ConcurrentHashMap<String, Lock> mapOfLock = new ConcurrentHashMap<>();
+	private final ConcurrentHashMap<String, Document> mapOfItems = new ConcurrentHashMap<>();
+	private final ConcurrentHashMap<String, Lock> mapOfLock = new ConcurrentHashMap<>();
 
 	public DocumentContainer() {
 		for (int i = 0; i < Document.DEFAULT_DOCUMENTS_COUNT; i++) {
@@ -83,7 +83,7 @@ public class DocumentContainer {
 	 * @throws IOException
 	 * @throws SecurityException
 	 */
-	public static void main(String args[]) throws SecurityException,
+	public static void main(String[] args) throws SecurityException,
 			IOException {
 
 		FileInputStream fis = new FileInputStream("logger.properties");
@@ -102,7 +102,7 @@ public class DocumentContainer {
 }
 
 class Document {
-	private static Logger logger = Logger.getLogger(Document.class.getName());
+	private static final Logger logger = Logger.getLogger(Document.class.getName());
 
 	private String[] content = null;
 	public static final int DEFAULT_DOCUMENTS_COUNT = 5;
@@ -112,7 +112,7 @@ class Document {
 		String[] element = new String[DEFAULT_LINE_COUNT];
 		for (int i = 0; i < element.length; i++) {
 			element[i] = UUID.randomUUID().toString()
-					+ UUID.randomUUID().toString();
+					+ UUID.randomUUID();
 		}
 		return new Document(element);
 	}

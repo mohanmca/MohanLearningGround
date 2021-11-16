@@ -1,6 +1,6 @@
 ## Jaeger
 
-* https://www.jaegertracing.io/docs/1.13/architecture/
+* [OpenTracing 1.28](https://www.jaegertracing.io/docs/1.28/architecture/)
 * Trace can be thought of as a directed acyclic graph of spans.
 * A span represents a logical unit of work in Jaeger 
   * Spans may be nested and ordered to model causal relationships.
@@ -8,8 +8,6 @@
      * The start time of the operation, 
      * The duration. 
 * Jaegar storage can be ElasticSearch, Cassandra, Kafka
-
-
 
 ## Cassandra Opentracing
 
@@ -22,18 +20,19 @@
     <version>VERSION</version>
 </dependency>
 ```
-* ```java
+
+```java
 // Instantiate CqlSession:
 CqlSession session = CqlSession.builder().build()
-
 // Decorate CqlSession with TracingCqlSession:
 CqlSession tracingSession = new TracingCqlSession(session, tracer);
-
 // execute query with TracingCqlSession:
 tracingSession.execute("...");
 ```
 
 ## Kafka tracing
+* [OpenTracing Tutorials](https://github.com/yurishkuro/opentracing-tutorial)
+* [https://www.shkuro.com/books/2019-mastering-distributed-tracing/](https://www.shkuro.com/books/2019-mastering-distributed-tracing/)
 * [Kafka OpenTrace](https://github.com/opentracing-contrib/java-kafka-client/tree/master/opentracing-kafka-spring)
 * [Spring Sleuth](https://github.com/mohanmca/spring_guides/blob/master/spring-cloud-sleuth/sleuth_log.json)
 * [OpenTracing Presentation](https://www.bit.ly/cncfopentracing)

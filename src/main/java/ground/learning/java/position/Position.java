@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Position {
 
 	public String trader;
-	private Map<String, SymbolPosition> outStanding = new HashMap<String, SymbolPosition>();
+	private final Map<String, SymbolPosition> outStanding = new HashMap<String, SymbolPosition>();
 
 	public Position(String _trader) {
 		this.trader = _trader;
@@ -59,15 +59,12 @@ public class Position {
 		} else if (!trader.equals(other.trader))
 			return false;
 		if (outStanding == null) {
-			if (other.outStanding != null)
-				return false;
-		} else if (!outStanding.equals(other.outStanding))
-			return false;
-		return true;
+			return other.outStanding == null;
+		} else return outStanding.equals(other.outStanding);
 	}
 
 	private static class SymbolPosition {
-		private String symbol;
+		private final String symbol;
 		private int quantity;
 
 		@Override
@@ -92,11 +89,8 @@ public class Position {
 			if (quantity != other.quantity)
 				return false;
 			if (symbol == null) {
-				if (other.symbol != null)
-					return false;
-			} else if (!symbol.equals(other.symbol))
-				return false;
-			return true;
+				return other.symbol == null;
+			} else return symbol.equals(other.symbol);
 		}
 
 		public SymbolPosition(String _symbol, int _quantity) {

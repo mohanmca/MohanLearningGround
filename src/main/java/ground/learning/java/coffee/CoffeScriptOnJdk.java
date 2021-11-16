@@ -9,7 +9,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 class CoffeScriptOnJdk {
-	public static void main(String args[]) throws ScriptException {
+	public static void main(String[] args) throws ScriptException {
 		InputStream testScript = CoffeScriptOnJdk.class.getClass()
 				.getResourceAsStream("/js/testCoffee.js");
 		getLoadedEngine().eval(new InputStreamReader(testScript));

@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.time.Duration;
 
 public class RestClient {
-	public static void main(String args[]) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException {
 		var userName = "mohanmca";
 		var user = "https://api.github.com/users/" + userName;
 
