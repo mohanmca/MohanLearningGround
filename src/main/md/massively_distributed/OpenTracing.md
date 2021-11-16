@@ -1,4 +1,24 @@
-## Jaeger
+## What is the purpose of Distributed Tracing
+
+* Allows engineers to see the how long an operation took in 
+    1. A web server
+    2. Database
+    3. Application code
+    4. Messaging queue
+    5. Entirely different systems
+
+## Logs, Metrics vs Tracing
+
+1. Applications start with logging and monitoring, then later they add tracing when the need arises.
+1. Metrics statistics, not specific for single request vs Trace per request
+
+## Steps to acheive Tracing
+
+1. Engineering teams must instrument code
+1. Add tracing infrastructure components such as load balancers, and deploy the tracing system itself. 
+1. The solution must factor in language and library support
+
+## Jaeger - Open Tracing
 
 * [OpenTracing Architecture](https://www.jaegertracing.io/docs/1.28/architecture/)
 * What would happen if we log the entire stack-trace to elastic-search and investigate?
@@ -81,13 +101,22 @@ CqlSession tracingSession = new TracingCqlSession(session, tracer);
 tracingSession.execute("...");
 ```
 
+## Zipkin
+
+* Zipkin is a tracing system originally created by Twitter and is currently run by the OpenZipkin volunteer organization.
+* Zipkin is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures. Features include both the collection and lookup of this data.
+* Zipkin also has an instrumentation library to instrument other libraries to support tracing
+
 ## Kafka tracing
 * [OpenTracing Tutorials](https://github.com/yurishkuro/opentracing-tutorial)
 * [https://www.shkuro.com/books/2019-mastering-distributed-tracing/](https://www.shkuro.com/books/2019-mastering-distributed-tracing/)
 * [Kafka OpenTrace](https://github.com/opentracing-contrib/java-kafka-client/tree/master/opentracing-kafka-spring)
 * [Spring Sleuth](https://github.com/mohanmca/spring_guides/blob/master/spring-cloud-sleuth/sleuth_log.json)
 * [OpenTracing Presentation](https://www.bit.ly/cncfopentracing)
+* [Kafka Tracing](https://github.com/opentracing-contrib/java-kafka-client)
 
 ## Reference
 * [Uber distributed tracing](https://eng.uber.com/distributed-tracing/)
 * [Jager tutorial](https://www.scalyr.com/blog/jaeger-tracing-tutorial/#:~:text=Span%20%E2%80%93%20The%20logical%20unit%20of,way%20Jaeger%20presents%20execution%20requests.)
+* [Zipkin vs Jaeger: Getting Started With Tracing](https://logz.io/blog/zipkin-vs-jaeger/)
+* [ZIPKIN TUTORIAL: GET STARTED EASILY WITH DISTRIBUTED TRACING](https://www.scalyr.com/blog/zipkin-tutorial-distributed-tracing/))

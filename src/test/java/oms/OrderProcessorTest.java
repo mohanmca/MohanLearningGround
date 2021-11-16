@@ -14,7 +14,7 @@ public class OrderProcessorTest {
 
 	@Test
 	public void singleOrder() {
-		Order order = Order.create(Optional.<Order>empty());
+		Order order = Order.create(Optional.empty());
 		OrderProcessor.getInstance().processOrder(order);
 		Assert.assertTrue(OrderProcessor.getInstance().bestOrder(OrderType.SELL).equals(order));
 	}
