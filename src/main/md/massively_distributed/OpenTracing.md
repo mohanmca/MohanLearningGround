@@ -1,13 +1,64 @@
 ## Jaeger
 
-* [OpenTracing 1.28](https://www.jaegertracing.io/docs/1.28/architecture/)
-* Trace can be thought of as a directed acyclic graph of spans.
+* [OpenTracing Architecture](https://www.jaegertracing.io/docs/1.28/architecture/)
+* What would happen if we log the entire stack-trace to elastic-search and investigate?
+  * What is the use of it?
+  * Can I trace DB/Queue/Infrastructure level issues?
+  * What happens if it crosses boundary (different servers)
 * A span represents a logical unit of work in Jaeger 
   * Spans may be nested and ordered to model causal relationships.
      * That has an operation name, 
      * The start time of the operation, 
      * The duration. 
 * Jaegar storage can be ElasticSearch, Cassandra, Kafka
+* Trace can be thought of as a directed acyclic graph of spans.
+
+## How to trace Java applications?
+
+1. @Traced annotations
+2. Uses ThreadLocalContext to store the span-contex
+   1. This would break for async code
+3. Async Calls must be activated via API
+4. HTTP Rest Calls can be traced
+   1. restTemplate.setInterceptors( new TracingRestTemplateInterceptor(tracer))
+   2. JDBC can use Trace Driver
+       ```java
+       Driver: Class.forName("io.opentracing.contrib.jdbc.TracingDriver");
+       Connection String: jdbc:tracing:mysql://localhost:3306/test
+       ```
+4. HTTP Rest Calls can be traced
+      
+## [How to trace Kafka (producer, consumer, streams)](https://github.com/opentracing-contrib/java-kafka-client)
+```java
+// Declare Tracer bean
+@Bean
+public Tracer tracer() {
+    return ...
+}
+// Decorate ConsumerFactory with TracingConsumerFactory
+@Bean
+public ConsumerFactory<Integer, String> consumerFactory() {
+    return new TracingConsumerFactory<>(new DefaultKafkaConsumerFactory<>(consumerProps()), tracer());
+}
+
+// Decorate ProducerFactory with TracingProducerFactory
+@Bean
+public ProducerFactory<Integer, String> producerFactory() {
+    return new TracingProducerFactory<>(new DefaultKafkaProducerFactory<>(producerProps()), tracer());
+}
+
+// Use decorated ProducerFactory in KafkaTemplate
+@Bean
+public KafkaTemplate<Integer, String> kafkaTemplate() {
+    return new KafkaTemplate<>(producerFactory());
+}
+
+// Use an aspect to decorate @KafkaListeners
+@Bean
+public TracingKafkaAspect tracingKafkaAspect() {
+    return new TracingKafkaAspect(tracer());
+}
+```
 
 ## Cassandra Opentracing
 
