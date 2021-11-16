@@ -35,7 +35,8 @@ tracingSession.execute("...");
 
 ## Kafka tracing
 * [Kafka OpenTrace](https://github.com/opentracing-contrib/java-kafka-client/tree/master/opentracing-kafka-spring)
-
+* [Spring Sleuth](https://github.com/mohanmca/spring_guides/blob/master/spring-cloud-sleuth/sleuth_log.json)
+* [OpenTracing Presentation](https://www.bit.ly/cncfopentracing)
 
 ## Reference
 * [Uber distributed tracing](https://eng.uber.com/distributed-tracing/)
