@@ -107,6 +107,10 @@ tracingSession.execute("...");
 * Zipkin is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures. Features include both the collection and lookup of this data.
 * Zipkin also has an instrumentation library to instrument other libraries to support tracing
 
+## Algorithms
+
+* [Leak bucket algorithms](https://en.wikipedia.org/wiki/Leaky_bucket)
+
 ## Kafka tracing
 * [OpenTracing Tutorials](https://github.com/yurishkuro/opentracing-tutorial)
 * [https://www.shkuro.com/books/2019-mastering-distributed-tracing/](https://www.shkuro.com/books/2019-mastering-distributed-tracing/)
@@ -116,7 +120,7 @@ tracingSession.execute("...");
 * [Kafka Tracing](https://github.com/opentracing-contrib/java-kafka-client)
 
 ## Reference
-* [Uber distributed tracing](https://eng.uber.com/distributed-tracing/)
+* [Evolving Distributed Tracing at Uber Engineering-Yuri Shkuro](https://eng.uber.com/distributed-tracing/)
 * [Jager tutorial](https://www.scalyr.com/blog/jaeger-tracing-tutorial/#:~:text=Span%20%E2%80%93%20The%20logical%20unit%20of,way%20Jaeger%20presents%20execution%20requests.)
 * [Zipkin vs Jaeger: Getting Started With Tracing](https://logz.io/blog/zipkin-vs-jaeger/)
 * [ZIPKIN TUTORIAL: GET STARTED EASILY WITH DISTRIBUTED TRACING](https://www.scalyr.com/blog/zipkin-tutorial-distributed-tracing/))

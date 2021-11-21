@@ -1,0 +1,5 @@
+{
+    "key": "jaeger.version",
+    "type": "string",
+    "value": "Go-2.29.1"
+  }

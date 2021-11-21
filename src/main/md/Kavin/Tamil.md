@@ -11,6 +11,28 @@
 * [Kids Noolagam](http://kids.noolagam.com/lessons/index3.asp)
 * [தமிழ் சிறுகதை-Blogspot](https://tamilsirukatai.blogspot.com/)
 
+
+## 4th standard
+
+1. உவமைத் தொடர்
+   1. [உவமைத் தொடர்](https://www.slideshare.net/PremaEma/uvamai-thodar)
+2. வாக்கியம் அமைத்தல்
+   1. [வாக்கியம் அமைத்தல்](https://bahasatamilupsr.wordpress.com/category/%E0%AE%B5%E0%AE%BE%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%BF%E0%AE%AF%E0%AE%AE%E0%AF%8D/page/2/)
+3. மரபுத்தொடர்கள் 
+   1. ஆறவமர - மெதுவாக / நிதானமாக Slow and Steady - அவசரப்படாமல் ஆறவமரச் செய்யப்பட்டதால் அழகனுடைய ஒப்படைப்பு ஆசிரியரால் பாராட்டப்பட்டது.
+   2. [மரபுத்தொடர்கள்](http://tamilcube.com/academy/O-Level/marabu.aspx)
+4. [ஆகு பெயர்](https://ta.wikipedia.org/s/932)
+   1. நெல் அறுத்தான் - உண்மையில் அறுக்கப்பட்டது கதிர். நெல் என்பது இங்கு ஆகுபெயர் ஆனது.
+   2. வெற்றிலை நட்டான் - நடப்பட்டது வெற்றிலைக் கொடி. இங்கு வெற்றிலைக் கொடிக்காக வெற்றிலை ஆகுபெயர் ஆனது.
+5. பொருள் எழுது
+   1. [பொருள் எழுது-Quiz](https://quizlet.com/216973012/%E0%AE%AA%E0%AE%B0%E0%AE%B3-%E0%AE%8E%E0%AE%B4%E0%AE%A4-flash-cards/)
+6. பிரித்தெழுதுக
+   1. https://tamil.examsdaily.in/tamil-ilakkanam-pirithu-eluthu
+   2. http://nellaipasanga.blogspot.com/p/blog-page_96.html
+   3. https://tamil.examsdaily.in/wp-content/uploads/2018/11/%E0%AE%AA%E0%AE%BF%E0%AE%B0%E0%AE%BF%E0%AE%A4%E0%AF%8D%E0%AE%A4%E0%AF%86%E0%AE%B4%E0%AF%81%E0%AE%A4%E0%AF%81%E0%AE%95-1.pdf
+
+
+
 ## Emergency vocabulary
 
 1. Ambulance: மருத்துவ ஊர்தி
