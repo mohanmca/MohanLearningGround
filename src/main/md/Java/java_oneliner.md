@@ -3,6 +3,22 @@
 java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.yourclass | grep “yourclass”
 ```
 
+## Find maximum in a array
+
+```java
+int maxValue = Arrays.stream(nums).reduce(nums[0], (x,y) -> x>y ? x : y );
+```
+
+## How to iterate List in reverser order
+
+```java
+        Iterator lit = obj.descendingIterator();
+        System.out.println("Backward Iterations");
+        while(lit.hasNext()){
+            System.out.println(lit.next());
+        }
+```
+
 ### Quick analysis for xception handling in java code
 ```java
 find . -name \*java | grep -v “test.*est” | xargs grep -A 4 “catch.*xception” > exceptionHandling.txt
