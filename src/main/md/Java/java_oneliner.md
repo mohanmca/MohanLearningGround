@@ -7,6 +7,11 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 
 ```java
 int maxValue = Arrays.stream(nums).reduce(nums[0], (x,y) -> x>y ? x : y );
+int min = Stream.of(14, 35, -7, 46, 98).reduce(Integer::min).get();
+min = Stream.of(14, 35, -7, 46, 98).min(Integer::compare).get();
+
+int max = Stream.of(14, 35, -7, 46, 98).reduce(Integer::max).get();
+max = Stream.of(14, 35, -7, 46, 98).max(Integer::compare).get();
 ```
 
 ## How to iterate List in reverser order
@@ -143,5 +148,8 @@ class HelloWorld {
                         LinkedHashMap::new
                 ));
 ```
+## Reference
+
+* [aruld/java-oneliners](https://github.com/aruld/java-oneliners/blob/master/src/main/java/com/github/aruld/oneliners/Item8.java)
 
 * mdanki /Users/alpha/git/MohanLearningGround/src/main/md/Java/java_oneliner.md java_api.apkg --deck "Mohan::CodeInterview::Java::API"
