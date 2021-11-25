@@ -42,9 +42,17 @@ String.format("%1$-10s-%2$10s-%3$-10s-%4$10d","1000",2500,"123",123);
 ```java
 listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
 ```
-### How to convert an List<Integer> containing Integers to primitive int array?
+### How to String-Stream as Array?
 ```java
 String[] stringArray = stringStream.toArray(String[]::new);
+```
+
+## How to check if String is already sorted?
+
+```java
+public boolean isSorted(String[] words) {
+    return IntStream.range(0, words.length-1).noneMatch( i -> words[i+1].compareTo(words[i]) < 0 );
+}
 ```
 
 ### How to reverse Java int[] Array?
@@ -58,6 +66,35 @@ Collections.reverse(Arrays.asList(yourArray));
 java.util.Arrays.binarySearch(sortedArr, index + 1, sortedArr.length, key);
 //If return value >=0, we found the key
 ```
+## Java primitive int[] sort reverse order
+
+```java
+    Arrays.sort(int[], Collections.reverseOrder()) // will not work for primitive
+    Arrays.stream(candidates).boxed().sorted (Collections.reverseOrder()).mapToInt(Integer::intValue).toArray();
+```
+
+## How to convert List<int[]> into int[][]?
+
+```java
+   List<int[]> common = new ArrayList<int[]>();
+   return (int[][])common.toArray(new int[common.size()][]);
+```
+## How to reverse elements between two indices of java array?
+
+```java
+private void reverse(int[] nums, int first, int last) {
+    while (first < last) {
+        swap(nums, first++, last--);
+    }
+}
+```
+
+## How to generate List<Integer>  with 11212312341234512345612345671234567812345678912345678910 in java?
+
+```java
+    IntStream.rangeClosed(1, 10).mapToObj(i -> IntStream.rangeClosed(1, i).boxed()
+    .collect(Collectors.toList())).flatMap(id -> id.stream()).collect(Collectors.toList());
+```
 
 ### How to sort an IntStream and collect as List<Integer> (sorted output)
 ```java
@@ -68,3 +105,43 @@ verticalOrder.get(key).stream().sorted().collect(Collectors.toList())
 ```java
 stack.stream().reduce(0, Integer::sum);
 ```
+
+## How to collect Stream<T> as Map<T, Long>
+
+```java
+class HelloWorld {
+
+    public static <Character> Map<Character, Long>  frequencyMap(Stream<Character> elements) {
+        return elements.collect(
+            Collectors.groupingBy(
+            Function.identity(),
+            HashMap::new, // can be skipped
+            Collectors.counting()
+            )
+        );
+    }
+
+    public static void main( String args[] ) {
+        String aString = "abc";
+        System.out.println(frequencyMap(aString.chars().mapToObj(c -> (char) c)));
+    }
+}
+```
+
+## How to sort the map by value?
+
+```java
+    LinkedHashMap<String, Long> countByWordSorted = collect.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (v1, v2) -> {
+                            throw new IllegalStateException();
+                        },
+                        LinkedHashMap::new
+                ));
+```
+
+* mdanki /Users/alpha/git/MohanLearningGround/src/main/md/Java/java_oneliner.md java_api.apkg --deck "Mohan::CodeInterview::Java::API"
