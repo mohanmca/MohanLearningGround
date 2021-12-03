@@ -60,6 +60,13 @@ public boolean isSorted(String[] words) {
 }
 ```
 
+## What are all important method in StringBuilder
+
+```java
+strBuilder.deleteCharAt(strBuilder.length() - 1)
+public StringBuilder replace(int start,int end, String str); //end-1 would be the last character affected
+```
+
 ### How to reverse Java int[] Array?
 ```java
 IntStream.rangeClosed(1, a.length).map(i -> a[a.length-i]).toArray();
