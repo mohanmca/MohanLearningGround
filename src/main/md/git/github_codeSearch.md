@@ -1,9 +1,19 @@
-* Quick search operators
+## Quick search operators
   * filename:pom.xml
   * extension:conf or extension:yaml
   * language:scala
   * stars:>10
+
+## How to find Dijkstra algorithm coded in javascript  
 * function language:javascript
+
+## How to exclude test code from result
+
+1. ```NOT language:html```
+1. ```foo NOT path:/_test\.go$/```
+1. ```bellman ford language:go NOT path:/_test\.go$/```
+
+## Other possible commands
 * Search repository containing a word "aws.Polly" but written using Javascript
   * aws.Polly language:javascript stars:>10
 * (search "AWS SWF" in file name or in path name)
@@ -28,7 +38,15 @@
   * fs puppeteer extension:js language:js  
   * use sort by using "recenly indexed"
 
-# Famous code searchs
+## How github codesearch works?
+
+1. [How github code search works](https://news.ycombinator.com/item?id=29489675)
+1. (https://github.com/RoaringBitmap/roaring-rs)
+1. (https://github.com/google/zoekt)
+1. (https://srcgr.ph/zoekt-memory-optimizations)
+1. [github codesearch developer](https://news.ycombinator.com/submitted?id=colin353)
+
+## Famous code searchs
 * [Javascript courses = course in:name language:javascript forks:>1000](https://github.com/search?q=course+in%3Aname+language%3Ajavascript+forks%3A%3E1000)
 * [java courses = course in:name language:java forks:>1000](https://github.com/search?q=course+in%3Aname+language%3Ajava+forks%3A%3E1000)
 
