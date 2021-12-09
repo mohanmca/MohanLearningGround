@@ -1,10 +1,10 @@
-# About me
+## About me
 * My enthusiasm far exceeds my talent!
 
 * A wise man proportions his beliefs to the evidence - David Hume
   * Bayes theorem was proposed by Thiest, but core of theorem expects evidence
 
-# Going fast
+## Going fast
 * If you want to go fast, go alone; if you want to go far; go togther.
 * If everything seems under control you�re just not going fast enough. 
 * "Move fast and break things. Unless you are breaking stuff, you are not moving fast enough."
@@ -14,28 +14,40 @@
 * Fail fast, learn fast and improve fast
 * 
 
-# Grow up
+## Grow up
 * “It is only because of problems that we grow mentally and spiritually. ” 
 
 
-# Differences
+## Differences
 * “Share our similarities, celebrate our differences.” 
 
+## Pain
+
+1. if chain suits, we forget neck
+1. If belt suits, we forget stomach 
+1. if shoe suits, we forget leg
+1. If we remember something, it doesn't suit in that point in time
+1. When we lookback, we always remember all the moment we struggled (not the moment it was happies moment)
+  1. You forget MBBS pass, but remember 10th fail moment
+1. Porunthiya nodigalai ninaipathum illai, porunthatha vinadigalai marapadhum illai
+1. Valigal than ninaivalaigalaga marugindradhu, Sugangal ninaivilo, unnarvillo nillaipadhillai, idhu iyarkayin pokku
 
 
-# Motivational videos
+
+## Motivational videos
 * [Why it Pays to Be Hungry | Les Brown | Goalcast](https://youtu.be/xFr0FKnaLDk)
+* [How to live Painless life? by Nithyananda (Tamil)](https://www.youtube.com/watch?v=OIaDIrIQbTI)
 
-# Motivational blogs
+## Motivational blogs
 * [Do nothing that is of no use.](https://rubikscode.net/2018/04/23/how-to-use-miyamoto-musashis-philosophy-to-become-better-software-crafter/)
 
-# Motivational quotes
+## Motivational quotes
 * A life is about putting others' needs above your own fears. 
 * Do nothing that is of no use.
 * Continuous improvement of yourself should be one of the most important things in your life. There is always something new that you need to learn 
 * Everyone you will ever meet knows something you don't
 
-# Fight and War quotes
+## Fight and War quotes
 * If you're not humble, life will visit humbleness upon you. - Mike Tyson
 * You can only fight the way you practice.
 
@@ -54,4 +66,3 @@ By a number of means—by prayer, by will power, by yoga meditation, by consulta
 
 ## Advices
 * “Destroy wrong desires now; otherwise they will follow you after the astral body is torn from its physical casing. Even when the flesh is weak, the mind should be constantly resistant. If temptation assails you with cruel force, overcome it by impersonal analysis and indomitable will. Every natural passion can be mastered."
-* 
