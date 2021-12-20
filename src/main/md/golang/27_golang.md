@@ -131,6 +131,58 @@ func main() {
     1. In go, defered execution can complete later to the enlosed function
 1. If there are multiple defer, they are stacked, one defered last will completed ahead!
 
+## Go pointers
+
+1. De-referencing or indirecting
+    ```go
+        var p *int // p is pointer to int - type
+        i := 42;
+        p = &i;
+        fmt.Println(*p); //read value of i, through pointer p;
+        *p = 21
+    ```
+1. Struct Literals
+    ```go
+        type Vertex struct {
+            X, Y int
+        }
+
+        var (
+            v1 = Vertex{1, 2}  // has type Vertex
+            v2 = Vertex{X: 1}  // Y:0 is implicit
+            v3 = Vertex{}      // X:0 and Y:0
+            p  = &Vertex{1, 2} // has type *Vertex
+        )    
+    ```
+1. Ananymous Structs
+    ```go
+       s:= []struct {
+            i int
+            b bool
+        } {{2, true},{1, false}}
+        fmt.Println(s)
+    ```
+
+## Arrays vs Slice (fixed vs dynamically-sized)
+
+1. ```var a [10]int``` - declares a variable a as an array of ten integers.
+1. The type ```[]T``` is a slice with elements of type T.
+1. a[low : high] - This selects a half-open range which includes the first element, but excludes the last one.
+    1. When slicing, you may omit the high or low bounds to use their defaults instead. The default is zero for the low bound and the length of the slice for the high bound.
+1. s = s[2:] -- // Drop its first two values.
+1. ```b := make([]int, 0, 5) // len(b)=0, cap(b)=5; a := make([]int, 5)  // len(a)=5```
+1. ```go
+        board := [][]string{
+            []string{"_", "_", "_"},
+            []string{"_", "_", "_"},
+            []string{"_", "_", "_"},
+        }
+    ```
+	
+## Zero value
+
+1. nil -- zero value ```var z []int;```
+
 
 ## Go programming langauge developers
 
@@ -139,10 +191,17 @@ func main() {
 1. Russ Cox, Josh Bleecher Snyder, 
 
 ## Go programming specification
-
+1. [Go language principles](https://talks.golang.org/2015/simplicity-is-complicated.slide#1)
 1. [Type paramter](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md)
 1. [Members of the go](https://github.com/orgs/golang/people)
 1. [Secure coding practices](https://github.com/OWASP/Go-SCP/blob/master/dist/go-webapp-scp.pdf)
+
+## Follow-up questions
+
+1. ```	v := Vertex{1, 2};p := &v;p.X = 1e9```
+    1. struct pointers can be accessed via (*p).X, 
+        1. why does go-lang allows p.X, does it mean go also support syntactic sugar? 
+        1. is this only one?
 
 
 ## Golang errors
