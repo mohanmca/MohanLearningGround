@@ -123,17 +123,17 @@ stack.stream().reduce(0, Integer::sum);
 ```java
 class HelloWorld {
 
-    public static <Character> Map<Character, Long>  frequencyMap(Stream<Character> elements) {
+    public static <Character> Map<Character, Long> frequencyMap(Stream<Character> elements) {
         return elements.collect(
-            Collectors.groupingBy(
-            Function.identity(),
-            HashMap::new, // can be skipped
-            Collectors.counting()
-            )
+                Collectors.groupingBy(
+                        Function.identity(),
+                        HashMap::new, // can be skipped
+                        Collectors.counting()
+                )
         );
     }
 
-    public static void main( String args[] ) {
+    public static void main(String[] args) {
         String aString = "abc";
         System.out.println(frequencyMap(aString.chars().mapToObj(c -> (char) c)));
     }
