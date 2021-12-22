@@ -560,6 +560,17 @@ func (c *SafeCounter) Value(key string) int {
 }
 ```
 
+## Go Quiz
+
+1. [Crack the top 50 Golang interview questions](https://www.educative.io/blog/50-golang-interview-questions)
+1. [Go Online Quiz](https://www.tutorialspoint.com/go/go_online_quiz.htm)
+1. [Code quizzes](https://www.codequizzes.com/golang/beginner/printing-variables)
+1. [So you think you know Go](https://medium.com/@gotzmann/so-you-think-you-know-go-c5164b0d0511)
+1. [Go quiz](https://habr.com/en/post/550786/)
+1. [Multiple Choice Quiz](https://www.golangdev.in/2021/09/golang-multiple-choice-questions-part-05.html)
+1. [2019 June Go quiz](https://golangbot.com/june-2019-quiz-results/)
+1, 
+
 ## Golang errors
 
 * 	c, python, java := true, false, "no!"; python := "false!"
