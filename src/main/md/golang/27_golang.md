@@ -70,8 +70,6 @@ export PATH="$GOROOT/bin/:$PATH"
         float32 float64
         complex64 complex128    
     ```
-* zero values
-    * 0, false, ""
 * The expression T(v) converts the value v to the type T. 
     1. ```go
             var i int = 42
@@ -147,6 +145,7 @@ export PATH="$GOROOT/bin/:$PATH"
     1. Main thread.can join other thread and wait for other threds to complete
     1. In go, defered execution can complete later to the enlosed function
 1. If there are multiple defer, they are stacked, one defered last will completed ahead!
+1. Whatever we do in finally block in java, can be done before hand using defer (close(file, connection))
 
 ## Go pointers
 
@@ -183,6 +182,9 @@ export PATH="$GOROOT/bin/:$PATH"
 ## Make
 1. make channels
     1. ch := make(chan int)
+    1. ch := make(chan int, 100)
+        1. Provide the buffer length as the second argument to make to initialize a buffered channel:
+        1. Sends to a buffered channel block only when the buffer is full.
 1. maps
     1.  m := make(map[string]int)
 1. slices
@@ -192,8 +194,10 @@ export PATH="$GOROOT/bin/:$PATH"
 
 1. ```var a [10]int``` - declares a variable a as an array of ten integers.
 1. The type ```[]T``` is a slice with elements of type T.
-1. a[low : high] - This selects a half-open range which includes the first element, but excludes the last one.
-    1. When slicing, you may omit the high or low bounds to use their defaults instead. The default is zero for the low bound and the length of the slice for the high bound.
+1. a[low : high] 
+    1. This selects a half-open range which includes the first element, but excludes the last one.
+    1. When slicing, you may omit the high or low bounds to use their defaults instead. 
+    1. The default is zero for the low bound and the length of the slice for the high bound.
 1. s = s[2:] -- // Drop its first two values.
 1. ```b := make([]int, 0, 5) // len(b)=0, cap(b)=5; a := make([]int, 5)  // len(a)=5```
 1. ```go
@@ -294,7 +298,7 @@ export PATH="$GOROOT/bin/:$PATH"
 1. nil -- zero value ```var z []int;```
 1. The zero value of a map is nil. 
     1. A nil map has no keys, nor can keys be added. 
-
+1. 0, false, ""
 
 ## Follow-up questions
 
@@ -367,7 +371,6 @@ func main() {
         1. Caller and Callee both are adjusted for methods //not for function
     1. When method receives reciver as a pointer argument, caller can use with &argument or ```argument```
     1. Go interprets the statement v.Scale(5) as (&v).Scale(5) since the Scale method has a pointer receiver.
-    1. Go interprets the statement v.Scale(5) as (&v).Scale(5) since the Scale method has a pointer receiver.   
     1. **All methods on a given type should have either value or pointer receivers, but not a ~~mixture of both~~.**
 1. For function, if argument is pointer, caller has to use with &argument
 
@@ -393,7 +396,7 @@ func main() {
 }
 ```
 
-## Simples interface
+## Samples interface
 
 1. An interface value that holds a nil concrete value is itself non-nil.
 1. in Go it is common to write methods that gracefully handle being called with a nil receiver
