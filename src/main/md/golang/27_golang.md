@@ -484,7 +484,7 @@ func main() {
 1. Channel supports buffer
     1. Sender can't send more than buffered count
     1. Receiver has to consume those buffered elements
-1. Challen can be closed
+1. Channel can be closed
     1. It is like file
     1. When receiver needs to be beformed EOF, we can close from sender
     1. Only sender should close the channel
