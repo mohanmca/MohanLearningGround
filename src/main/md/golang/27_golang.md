@@ -49,7 +49,6 @@ export PATH="$GOROOT/bin/:$PATH"
         var c, python, java = true, false, "no!"
         const Pi = 3.14
       ```
-      ```
     * package level := is not available
 * Assignment statement := (Alternative to var)
     * := short assignment statement can be used in place of a var
@@ -70,7 +69,7 @@ export PATH="$GOROOT/bin/:$PATH"
         rune // alias for int32 - represents a Unicode code point
         float32 float64
         complex64 complex128    
-    ``
+    ```
 * zero values
     * 0, false, ""
 * The expression T(v) converts the value v to the type T. 
