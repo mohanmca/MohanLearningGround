@@ -6,8 +6,8 @@ package main
 import ("fmt";"time")
 
 func main() {
-	fmt.Println("Hello, 世界")
-    fmt.Println("The time is", time.Now())
+  fmt.Println("Hello, 世界")
+  fmt.Println("The time is", time.Now())
 }
 ```
 
@@ -33,8 +33,14 @@ export PATH="$GOROOT/bin/:$PATH"
     * func add(x, y int) int
 * A function can return any number of results.
     * ```go return y, x```
-* Named return values 
-    * ```go func split(sum int) (x, y int) ```
+* Named return values (Only on short functions)
+    * ```go
+      func split(sum int) (x, y int) {
+        x = sum * 4 / 9
+        y = sum - x
+        return
+      }
+      ```
 * package level variables can be declared
     * ```go 
         var c, python, java bool; 
@@ -290,18 +296,6 @@ export PATH="$GOROOT/bin/:$PATH"
 1. The zero value of a map is nil. 
     1. A nil map has no keys, nor can keys be added. 
 
-
-## Go programming langauge developers
-
-1. Robert Griesemer, Rob Pike, and Ken Thompson.
-1. Andrew Gerrand, Ian Lance Taylor - Type Parameter proposed
-1. Russ Cox, Josh Bleecher Snyder, 
-
-## Go programming specification
-1. [Go language principles](https://talks.golang.org/2015/simplicity-is-complicated.slide#1)
-1. [Type paramter](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md)
-1. [Members of the go](https://github.com/orgs/golang/people)
-1. [Secure coding practices](https://github.com/OWASP/Go-SCP/blob/master/dist/go-webapp-scp.pdf)
 
 ## Follow-up questions
 
@@ -560,6 +554,30 @@ func (c *SafeCounter) Value(key string) int {
 }
 ```
 
+
+## Go programming langauge developers
+
+1. Robert Griesemer, Rob Pike, and Ken Thompson.
+1. Andrew Gerrand, Ian Lance Taylor - Type Parameter proposed
+1. Russ Cox, Josh Bleecher Snyder,
+
+## Go programming specification
+1. [Go language principles](https://talks.golang.org/2015/simplicity-is-complicated.slide#1)
+1. [Type paramter](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md)
+1. [Members of the go](https://github.com/orgs/golang/people)
+1. [Secure coding practices](https://github.com/OWASP/Go-SCP/blob/master/dist/go-webapp-scp.pdf)
+
+## How to learn golang
+
+* [Tour of Go](https://tour.golang.org/welcome/1)
+* [Go by Example](https://gobyexample.com)
+* [Effective Go](https://golang.org/doc/effective_go.html)
+* [Go naming tips](https://peter.bourgon.org/blog/2019/04/24/go-naming-tips.html)
+* [Clear is better than clever](https://dave.cheney.net/2019/07/09/clear-is-better-than-clever)
+
+## Channel
+* [Gophers](https://gophers.slack.com/?redir=%2Fmessages%2Fgeneral%2F)
+
 ## Go Quiz
 
 1. [Crack the top 50 Golang interview questions](https://www.educative.io/blog/50-golang-interview-questions)
@@ -569,7 +587,6 @@ func (c *SafeCounter) Value(key string) int {
 1. [Go quiz](https://habr.com/en/post/550786/)
 1. [Multiple Choice Quiz](https://www.golangdev.in/2021/09/golang-multiple-choice-questions-part-05.html)
 1. [2019 June Go quiz](https://golangbot.com/june-2019-quiz-results/)
-1, 
 
 ## Golang errors
 
