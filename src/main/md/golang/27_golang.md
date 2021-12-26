@@ -117,8 +117,8 @@ export PATH="$GOROOT/bin/:$PATH"
         for i := 0; i < 10; i++ {
             sum += i
         }            
-  ```
-* if statement can start with a short statement to execute before the condition. (variable-'v' scope also within the if/else block)
+    ```
+* If statement can start with a short statement to execute before the condition. (variable-'v' scope also within the if/else block)
   ```go
   func pow(x, n, lim float64) float64 {
 	if v := math.Pow(x, n); v < lim {
