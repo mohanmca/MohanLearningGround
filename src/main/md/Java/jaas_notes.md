@@ -1,16 +1,16 @@
 # JAAS Notes
  
- * An implementation for a particular authentication technology to be used is determined at runtime. That implementation is specified in a login configuration file.
- * java.security.Principal  - This interface represents the abstract notion of a principal, which can be used to represent any entity, such as an individual, a corporation, and a login id.
-*  Code for authenticating the user is very simple, consisting of just two steps:
-  1. Instantiating a LoginContext
-     1. javax.security.auth.login.LoginContext.LoginContext lc =new LoginContext("Sample",new MyCallbackHandler());
-     1. First argument is the name of the configuration in Jaas configuration file
-     1. LoginModule is housed in javax.security.auth.spi package
-     1. LoginModule uses javax.security.auth.callback.CallbackHandler to obtain username and password. They are decoupled due to different channel involved in obtaining credentials
-  2. Calling the LoginContext's login Method
+* An implementation for a particular authentication technology to be used is determined at runtime. That implementation is specified in a login configuration file.
+* java.security.Principal  - This interface represents the abstract notion of a principal, which can be used to represent any entity, such as an individual, a corporation, and a login id.
+* Code for authenticating the user is very simple, consisting of just two steps:
+* Instantiating a LoginContext
+  1. javax.security.auth.login.LoginContext.LoginContext lc =new LoginContext("Sample",new MyCallbackHandler());
+  1. First argument is the name of the configuration in Jaas configuration file
+  1. LoginModule is housed in javax.security.auth.spi package
+  1. LoginModule uses javax.security.auth.callback.CallbackHandler to obtain username and password. They are decoupled due to different channel involved in obtaining credentials
+* Calling the LoginContext's login Method
 * -Djava.security.auth.login.config==sample_jaas.config  - is used to configure Jaas security
-*  -Djava.security.policy==sampleacn.policy 
+* -Djava.security.policy==sampleacn.policy 
 
 ## Krb5LoginModule
 

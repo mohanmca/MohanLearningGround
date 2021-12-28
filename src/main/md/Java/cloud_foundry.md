@@ -23,6 +23,4 @@ cf delete -f -r first-push
 cf delete-service -f first-push-db
 
 
-
-
 * https://katacoda.com/cloudfoundry-tutorials/scenarios/trycf

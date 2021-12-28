@@ -1,8 +1,5 @@
 ## JDK-9 Reactive Streams - Publish subscribe framework - java.util.concurrent.Flow
-* 
-  
-
-
+*
  ```java
  var fruits = List.of("apple", "orange", "banana");
  var anotherSetOfFruits = Set.of("apple", "orange", "banana");

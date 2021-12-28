@@ -73,6 +73,12 @@ strBuilder.deleteCharAt(strBuilder.length() - 1)
 public StringBuilder replace(int start,int end, String str); //end-1 would be the last character affected
 ```
 
+## How to remove last character in StringBuilder
+
+```java
+StringBuilder.deleteCharAt(sb.length()-1);
+```
+
 ### How to reverse Java int[] Array?
 ```java
 IntStream.rangeClosed(1, a.length).map(i -> a[a.length-i]).toArray();
