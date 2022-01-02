@@ -3,7 +3,7 @@
 * Yoga
 * Meditation
 * Listening some ted talk
-* Listening some spritual talks
+* Listening some spiritual talks
 * Listening technical conference videos
 * Play/Learn music
 * Learning astrology/astronomy
