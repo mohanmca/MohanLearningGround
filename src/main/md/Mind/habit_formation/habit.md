@@ -19,6 +19,7 @@
   * But you also have to give up bad habits like resenting somebody else's success no matter how often that happens it'll hold you back.
   * Counter unhealthy mental habits with healthier habits
 
+* [Summary of Atomic Habits](https://www.chrisbehan.ca/posts/atomic-habits)
 * [The Power of Forming Habits | David Nevins | TEDxCushingAcademy](https://www.youtube.com/watch?v=iUKwFuV6FaA)
 * [The Secret of Becoming Mentally Strong](https://www.youtube.com/watch?v=TFbv757kup4)  
 
