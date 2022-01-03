@@ -479,13 +479,14 @@ func main() {
         1. The execution of f happens in the new goroutine.
     1. The sync package provides useful primitives for co-routine synchronization
 1. Channels are pipes thorugh which we can send/receive values
+    1. c := make(chan int, 10) //create channel
     1. ch <- v (send v into Ch)
     1. v := <-ch (recive from ch... and store into v)
 1. Channel supports buffer
     1. Sender can't send more than buffered count
     1. Receiver has to consume those buffered elements
 1. Channel can be closed
-    1. It is like file
+    1. It is like file-handle
     1. When receiver needs to be beformed EOF, we can close from sender
     1. Only sender should close the channel
 1. Channels and for-loops

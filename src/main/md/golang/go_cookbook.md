@@ -50,6 +50,20 @@ func call(url, method string) error {
 }
 ```
 
+## How to wait for two seconds
+
+```time.Sleep(2 * time.Second)```
+
+## How to wait for Channel
+
+```go
+    // Listen on our channel AND a timeout channel - which ever happens first.
+    select {
+        case res := <-c1: fmt.Println(res)
+        case <-time.After(3 * time.Second): fmt.Println("out of time :(")
+    }
+```
+
 ## How to create anki from this markdown file
 
 * mdanki /Users/alpha/git/MohanLearningGround/src/main/md/golang/go_cookbook.md go_lang_cookbook.apkg --deck "Everything::UnderSun::Work::GoCookBook"

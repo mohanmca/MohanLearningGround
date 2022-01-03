@@ -1,3 +1,78 @@
+## Basic Go routine without Channel
+
+```go
+package main
+import ("fmt";"time")
+
+func say(s string) {
+	for i := 0; i < 5; i++ {
+		time.Sleep(100 * time.Millisecond)
+		fmt.Print(s)
+	}
+}
+
+func main() {
+	go say("world - ")
+	say("hello - ")
+}
+```
+* Output was ```world - hello - hello - world - world - hello - hello - world - world - hello - ```
+
+## Usage of two channels to communicate exit of function
+
+```go
+package main
+
+import "fmt"
+
+func fibonacci(c, quit chan int) {
+	x, y := 0, 1
+	for {
+		select {		case c <- x:			x, y = y, x+y
+		                case <-quit:			fmt.Println("quit")
+			            return
+		}
+	}
+}
+
+func main() {
+	c := make(chan int, 2)
+	quit := make(chan int)
+	go func() {
+		for i := 0; i < 10; i++ {
+			fmt.Println(<-c)
+		}
+		quit <- 0
+	}()
+	fibonacci(c, quit)
+}
+```
+
+## Print ticket every 100 ms, .. in 50 s.. exit after 500
+
+```go
+package main
+import ("fmt";"time")
+
+func main() {
+	tick := time.Tick(100 * time.Millisecond)
+	boom := time.After(500 * time.Millisecond)
+	for {
+			select {
+				case <-tick:			fmt.Println("tick.");
+				case <-boom:			fmt.Println("BOOM!");			return
+				default:				fmt.Println("    .");			time.Sleep(50 * time.Millisecond)
+			}
+	}
+}
+```
+
+
+
+## How to create anki from this markdown file
+
+* mdanki /Users/alpha/git/MohanLearningGround/src/main/md/golang/go_concurrency_patterns.md go_routine.apkg --deck "Everything::UnderSun::Work::GoCoRoutine"
+
 
 ## References
 
