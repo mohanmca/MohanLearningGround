@@ -219,6 +219,7 @@ export PATH="$GOROOT/bin/:$PATH"
         s = append(s, 0)
         s = append(s, 1)
         s = append(s, 2, 3, 4)
+        s = append(s, []int{1,2,3,4})
         fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
     ```
 1. ```go
@@ -237,44 +238,25 @@ export PATH="$GOROOT/bin/:$PATH"
         }
         return pic
     }
-    ```    
-## Map and Map literals
-1. If the top-level type is just a type name, you can omit it from the elements of the literal. 
+    ```
+
+## CRUD in Map
 ```go
-	m = make(map[string]Vertex)
-	m["Bell Labs"] = Vertex{
-		40.68433, -74.39967,
-	}
-	fmt.Println(m["Bell Labs"])
+m := make(map[string]int)
 
-    type Vertex struct {
-        Lat, Long float64
-    }
+m["Answer"] = 42
+fmt.Println("The value:", m["Answer"])
 
-    var m = map[string]Vertex{
-        "Bell Labs": {
-            40.68433, -74.39967,
-        },
-        "Google": {
-            37.42202, -122.08408,
-        },
-    }
-	m := make(map[string]int)
+m["Answer"] = 48
+fmt.Println("The value:", m["Answer"])
 
-	m["Answer"] = 42
-	fmt.Println("The value:", m["Answer"])
+delete(m, "Answer")
+fmt.Println("The value:", m["Answer"])
 
-	m["Answer"] = 48
-	fmt.Println("The value:", m["Answer"])
-
-	delete(m, "Answer")
-	fmt.Println("The value:", m["Answer"])
-
-	v, ok := m["Answer"]
-	fmt.Println("The value:", v, "Present?", ok)    
+v, ok := m["Answer"]
+fmt.Println("The value:", v, "Present?", ok)    
 ```
-1. 
-    ```go
+1.  ```go
         package main
 
         import ("strings")
@@ -297,7 +279,27 @@ export PATH="$GOROOT/bin/:$PATH"
             wc.Test(WordCount)
         }
     ```
+## Map and Map literals
+1. If the top-level type is just a type name, you can omit it from the elements of the literal.
+```go
+m = make(map[string]Vertex)
+m["Bell Labs"] = Vertex{
+    40.68433, -74.39967,
+}
+fmt.Println(m["Bell Labs"])
 
+type Vertex struct {
+    Lat, Long float64
+}
+var m = map[string]Vertex{
+"Bell Labs": {
+    40.68433, -74.39967,
+},
+"Google": {
+    37.42202, -122.08408,
+},
+}
+```
 
 ## Zero value
 
@@ -305,14 +307,6 @@ export PATH="$GOROOT/bin/:$PATH"
 1. The zero value of a map is nil. 
     1. A nil map has no keys, nor can keys be added. 
 1. 0, false, ""
-
-## Follow-up questions
-
-1. ```v := Vertex{1, 2};p := &v;p.X = 1e9```
-    1. struct pointers can be accessed via (*p).X, 
-        1. why does go-lang allows p.X, does it mean go also support syntactic sugar? 
-        1. is this only one?
-1. ```go install github.com/x-motemen/gore/cmd/gore@latest```        
 
 ## Functions are values, we can pass as argument, and return as result
 
