@@ -67,6 +67,142 @@ func main() {
 }
 ```
 
+## Google I/O 2012 - Go Concurrency Patterns 
+
+1. CSP paper by Tony Hoare is base for concurrency, It is the core for Erlang and Go
+1. Channel is introduced in it, Channels are like file-descriptor
+1. GO is all about Channels
+1. Channels provide infra for routines to communicate between them
+1. ```go
+    func boring(say string) {
+        for i:=0;i<5;i++ {
+            fmt.Println(say, i)
+            time.Sleep(2 * time.Second)
+            //time.Sleep(time.Duration(rand.Intn(1e3)) * time.MilliSecond)
+        }    
+    }
+    ```
+
+1. Go program ends when main ends
+1. Go program is composition of Go routines
+1. Go routing has independent stack, can grow and shrink (unlike Java)
+1. Go routines are multiplexed dynamically onto threads
+1. Arrow indicates the direction of the data flow on a channel
+1. ```go
+    c := make(chan int) 
+    c <- 4
+    v = <- c
+    ```
+1. ```go
+    func boring(say string, c chan string) {
+        for i:=0;i<5;i++ {
+            c <- fmt.Sprintf("%s %d", say, i)
+            time.Sleep(time.Duration(rand.Intn(1e3)) * time.MilliSecond)
+        }    
+    }
+    func main() {
+        c := make(ch string)
+        go boring("say something", c)
+        for i:=0; i<10; i++ {
+            fmt.Printf("You say %q\n", <-c)
+        }
+        fmt.Println("you are boring!, Leaving")
+    }        
+    ```
+1. Go buffers are like mailboxes in Er-lang, and avoids synchronisation between receiver and sender
+1. Go concurrent pattern basic principle -  "Don't communicate by sharing memory, share memory by communicating."
+1. Pattern - Generator function that returns the channel
+1. ```go
+    func main() {
+        c := boring("something");
+        for i:=0;i<5; i++ {
+            fmt.Printf("You say: %q\n",<-c)
+        }
+        fmt.Println("boring leaving!")
+    }
+
+    func boring(msg string) <-chan string {
+        c := make(chan string)
+        go func() {
+            for i:=0; ; i++ {
+                c <- fmt.Sprintf("%s %d", say, i)
+                time.Sleep(time.Duration(rand.Intn(1e3)) * time.MilliSecond)
+            }
+        }()
+        return c;
+    }
+    ```
+1. FanIn - Multiplexing - choose whoever is ready
+1. ```go
+    func fanIn(input1, input2, <- chan string) {
+        c := make(chan string)
+        go func() { for {c <- <-input1 }} ()
+        go func() { for {c <- <-input2 }} ()
+        return c
+    }
+    func main() {
+        c := fanIn(boring('joe'), boring('ann'))
+        for i:=0;i<10; i++ {
+            fmt.Println(<-c)
+        }
+        fmt.Println("You are boring! leaving.")
+    }
+    ```   
+1. Pattern - Sequencing between the channel
+1. ```go
+    type Message struct {
+        text string
+        wait chan bool
+    }
+    func main() {
+        c := boring("something");
+        for i:=0;i<5; i++ {
+            msg1 := <-c
+            msg2 := <-c
+            fmt.Printf("You say: %q\n", msg1.text)
+            fmt.Printf("You say: %q\n", msg2.text)
+            msg1.wait <- true
+            msg2.wait <- true
+        }
+        fmt.Println("boring leaving!")
+    }
+
+    func boring(msg string) <-chan string {
+        waitForIt := make(chan string)
+        go func() {
+            for i:=0; ; i++ {
+                c <- Message{ fmt.Sprintf("%s %d", say, i), waitForIt }
+                time.Sleep(time.Duration(rand.Intn(1e3)) * time.MilliSecond)
+                <- waitForIt
+            }
+        }()
+        return c;
+    }
+    ```
+
+## FanIn (Multiplexing) pattern using Select
+
+```go
+    func fanIn(input1, input2, <- chan string) {
+        c := make(chan string)
+        go func() { 
+            for {
+                select {
+                    case s := <- input1: c <- s
+                    case s := <- input2: c <- s
+                }
+            }
+        }()        
+        return c
+    }
+```
+
+## Select statement = control statement or Control structure
+
+1. Select statement helps to handle multiple channels
+1. It is like switch but each case is communication
+1. All channels are evaluated, if multiple can proceed, randomly one is proceeded
+1. Default case, if no channel is ready
 
 
 ## How to create anki from this markdown file
@@ -79,6 +215,7 @@ func main() {
 * [Primitives](https://go.dev/tour/concurrency/1)
 * [CS-240 Concurrency In GO](https://sands.kaust.edu.sa/classes/CS240/F17/slides/02-concurrency-in-go.pptx)
 * [Google I/O 2012 - Go Concurrency Patterns-**](https://www.youtube.com/watch?v=f6kdp27TYZs)
+* [ACM-Program your next server in Go](https://talks.golang.org/2016/applicative.slide#47)
 * [Visualizing Concurrency in Go-**](https://divan.dev/posts/go_concurrency_visualize/)
 * [Elastic Beats Go Concurrency Patterns](https://www.elastic.co/blog/a-tour-of-go-concurrency-patterns-via-the-new-heartbeat-scheduler)
 * [Go Concurrency Patterns: Pipelines and cancellation](https://go.dev/blog/pipelines)
