@@ -368,7 +368,8 @@ select {
 
 ## How to avoid discarding results from slow servers (Google search 3.0)
 
-A. Replicate the servers, and send the query to multiple replicas and use result from fast server
+1. Replicate the servers, and send the query to multiple replicas 
+1. use result from fast server. Use the result from first response
 ```go
 func First(query string, replicas ...Search) {
     c := make(chan Result)
@@ -378,6 +379,33 @@ func First(query string, replicas ...Search) {
     }
     return <- c
 }
+
+func main() {
+    rand.Seed(time.Now().UnixNano())
+    start := time.Now()
+    result := First("golang", fakeSearch("replica1"), fakeSearch("replica2"))
+    elapsed := time.Since(start)
+    fmt.Println(result)
+    fmt.Println(elapsed)
+}
+```
+## Google search using replicated servers
+
+```go
+    func Google(query string) (results []Result) {
+        c := make(chan Result);
+        go func() { c <-  First(query, web1, web2)}()
+        go func() { c <-  First(query, Image1, Image2)}()
+        go func() { c <-  First(query, Video1, Video2)}()
+        timeout := time.After(80 * time.Millisecond)
+        for i := 0; i < 3; i++ {
+            select {
+                case result := <- c: results = append(results, result)
+                case <-timeout: fmt.Println("timeout ");return
+            }
+        }
+        return
+    }
 ```
 
 ## How to avoid over-doing go coroutines
