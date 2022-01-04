@@ -179,6 +179,14 @@ func main() {
         return c;
     }
     ```
+## Select statement = control statement or Control structure
+
+1. Select statement helps to handle multiple channels
+1. It is like switch but each case is communication
+1. All channels are evaluated, if multiple can proceed, randomly one is proceeded
+1. Default case, if no channel is ready
+1. Generally select statement would be inside a infinite loop
+
 
 ## FanIn (Multiplexing) pattern using Select
 
@@ -197,12 +205,186 @@ func main() {
     }
 ```
 
-## Select statement = control statement or Control structure
+## Timeout using select (1/2 patterns timeout - between messges)
 
-1. Select statement helps to handle multiple channels
-1. It is like switch but each case is communication
-1. All channels are evaluated, if multiple can proceed, randomly one is proceeded
-1. Default case, if no channel is ready
+```go
+for {
+    select {
+        case s: <-c: fmt.Println(s)
+        case <- time.After(1 * time.Second): 
+                fmt.Println("Your are too slow"!)
+                return
+
+    }
+}
+```
+
+## Timeout using select (2/2 Timeout overall) (overall timeout for all the channels)
+
+```go
+timeout := time.After(5 * time.Second)
+for {
+    select {
+        case s: <-c: fmt.Println(s)
+        case <-timeout: 
+                fmt.Println("You talk too much"!)
+                return
+
+    }
+}
+```
+
+## Simple Quit Channel
+
+```go
+    quit := make(chan bool)
+    c := boring("somethig")
+    for i := rand.Intn(10); i>=0; i-- {fmt.Pringln(<-c)}
+    quit <- true
+
+    select {
+        case c <- fmt.Sprintf("%s, %d" message, i) 
+        case <- quit: return
+    }
+```
+* If main sends message to quit channel and immediately termintes, how to ensure quit completed cleanup tasks. Main has to wait from Quit, if it requires acknowledgement
+
+## Daisy Chain Pattern
+
+```go
+func daisyChain(left, right chan int) {
+    left <- 1 + <- right
+}
+
+func main() {
+    const n = 10000
+    leftmost := make(chan int)
+    left := leftMost
+    right := leftMost
+    for i=0;i <n; i++ {        
+        right = make(chan int);
+        go daisyChain(left, right);
+        left = right
+    }
+    go func(c chan int) { c <- 1}(right)
+    fmt.Println("We got %d"., <- leftMost)
+}
+```
+
+
+## Quit Channel with Acknowledgement (how to know if co-routing quit)
+
+```go
+quit := make(chan bool)
+c := boring("somethig")
+for i := rand.Intn(10); i>=0; i-- {fmt.Pringln(<-c)}
+quit <- true
+fmt.Printf("Joe says bye - %s", <-quit)
+
+select {
+    case c <- fmt.Sprintf("%s, %d" message, i) 
+    case <- quit: 
+        cleanup()
+        quit <- "Cleanup done!, see you"
+        return
+}
+```
+
+
+## How google search works? (Google Search 1.0)
+
+1. WebSearch + ImageSearch + YoutubeSearch + MapSearch
+1.  ```go
+    var (
+        Web = fakeSearch("web")
+        Image = fakeSearch("image")
+        Video = fakeSearch("video")
+    )
+    type Search func(query string) Result
+    func fakeSearch(kind string) Search {
+        return func(query string) Result {
+            time.Sleep(time.Duration(rand.intn(100))* time.Millisecond)
+            return Result(fmt.Sprintf("%s result for query %q", kind, query))
+        }
+    }
+
+    func main() {
+        rand.Seed(time.Now().UnixNano())
+        start := time.Now()
+        results := Google("Search")
+        elapsed := time.Since(start)
+        fmt.Println(results)
+        fmt.Println(elapsed)
+    }
+
+    func Google(query string) (results []Result) {
+        results = append(results, Web(query))
+        results = append(results, Image(query))
+        results = append(results, Video(query))
+        return
+    }
+    ```
+
+## (Google Search 2.0) Using Fan-In pattern
+
+```go
+    func Google(query string) (results []Result) {
+        c := make(chan Result);
+        go func() { c <-  Web(query)}()
+        go func() { c <-  Image(query)}()
+        go func() { c <-  Video(query)}()
+
+        for i := 0; i < 3; i++ {
+            result := <- c
+            results = append(results, result)
+        }
+        return
+    }
+```
+
+
+## (Google Search 2.1) Timeout should be considered, use only result till timeout happens
+
+```go
+    func Google(query string) (results []Result) {
+        c := make(chan Result);
+        go func() { c <-  Web(query)}()
+        go func() { c <-  Image(query)}()
+        go func() { c <-  Video(query)}()
+        timeout := time.After(80 * time.Millisecond)
+
+        for i := 0; i < 3; i++ {
+            select {
+                case result := <- c
+                    results = append(results, result)
+                case <-timeout:
+                    fmt.Println("timedout")
+                    return
+            }
+        }
+        return
+    }
+```
+
+## How to avoid discarding results from slow servers (Google search 3.0)
+
+A. Replicate the servers, and send the query to multiple replicas and use result from fast server
+```go
+func First(query string, replicas ...Search) {
+    c := make(chan Result)
+    searchReplica := func(i int) {c <- replicas[i](query)}
+    for i := range replicas {
+        go searchReplica(i)
+    }
+    return <- c
+}
+```
+
+## How to avoid over-doing go coroutines
+
+1. Just use simple reference counter
+1. sync and sync/atomic package has primitive tools
+1. mutexes, condition-variables are quite important
 
 
 ## How to create anki from this markdown file
