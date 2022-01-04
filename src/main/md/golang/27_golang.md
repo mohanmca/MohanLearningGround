@@ -22,8 +22,11 @@ export PATH="$GOROOT/bin/:$PATH"
 
 ## Notes
 
-* Package name is the same as the last element of the import path. For instance, the "math/rand" package comprises files that begin with the statement package rand
-* Go recommends factored import statement
+* Package name is the same as the last element of the import path. 
+  * For instance, the "math/rand" package comprises files that begin with the statement package rand
+
+## Variables, Assignment and Scope
+
 * Unexported name vs Exported name
   * ```fmt.Println(math.pi) vs fmt.Println(math.Pi)```
 * [type comes after the variable name.](https://blog.golang.org/gos-declaration-syntax)
@@ -60,6 +63,8 @@ export PATH="$GOROOT/bin/:$PATH"
         zAxis complex128 = cmplx.Sqrt(-5 + 12i)
         g := 0.867 + 0.5i
       ```
+
+## Type systems      
 * basic types
     ```go
         bool
@@ -103,8 +108,8 @@ export PATH="$GOROOT/bin/:$PATH"
 ## For and IF statements in Golang 
 * [Go statements](https://go.dev/ref/spec#For_statements)
 * for init; condition; post { <<block>> }
-* the condition expression: evaluated before every iteration
-* The init and post statements are optional.
+  * the condition expression: evaluated before every iteration
+  * The init and post statements are optional.
 * for and if looks similar in syntax
   * ```go  
         for sum < 1000 {
@@ -120,10 +125,10 @@ export PATH="$GOROOT/bin/:$PATH"
 * If statement can start with a short statement to execute before the condition. (variable-'v' scope also within the if/else block)
   ```go
   func pow(x, n, lim float64) float64 {
-	if v := math.Pow(x, n); v < lim {
-		return v
-	}
-	return lim
+    if v := math.Pow(x, n); v < lim {
+        return v
+    }
+    return lim
   }
   ```
 * Switch case, default break, and execute only one case, any type is supported (not necessary to be constant!)
@@ -144,7 +149,7 @@ export PATH="$GOROOT/bin/:$PATH"
 
 1. It is opposite concept of java Thread.join()
     1. Main thread.can join other thread and wait for other threds to complete
-    1. In go, defered execution can complete later to the enlosed function
+    1. In go, deferred execution can complete later to the enlosed function
 1. If there are multiple defer, they are stacked, one defered last will completed ahead!
 1. Whatever we do in finally block in java, can be done before hand using defer (close(file, connection))
 
@@ -171,7 +176,7 @@ export PATH="$GOROOT/bin/:$PATH"
             p  = &Vertex{1, 2} // has type *Vertex
         )    
     ```
-1. Ananymous Structs
+1. Anonymous Structs
     ```go
        s:= []struct {
             i int
@@ -222,7 +227,7 @@ export PATH="$GOROOT/bin/:$PATH"
 		fmt.Printf("2**%d = %d\n", i, v)
 	}
     ```
-1. Two dimensional list
+1. Two-dimensional list
     ```go
     func Pic(dx, dy int) [][]uint8 {
         pic := make([][]uint8, dy)
@@ -312,14 +317,13 @@ export PATH="$GOROOT/bin/:$PATH"
 ## Functions are values, we can pass as argument, and return as result
 
 ```go
-
-hypot := func(x, y float64) float64 {
-    return math.Sqrt(x*x + y*y)
-}
-
-func compute(fn func(float64, float64) float64) float64 {
-	return fn(3, 4)
-}
+    hypot := func(x, y float64) float64 {
+        return math.Sqrt(x*x + y*y)
+    }
+    
+    func compute(fn func(float64, float64) float64) float64 {
+        return fn(3, 4)
+    }
 ```
 
 ## Functions are closures
