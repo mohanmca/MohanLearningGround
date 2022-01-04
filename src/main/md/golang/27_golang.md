@@ -24,15 +24,16 @@ export PATH="$GOROOT/bin/:$PATH"
 
 * Package name is the same as the last element of the import path. For instance, the "math/rand" package comprises files that begin with the statement package rand
 * Go recommends factored import statement
-* Unexported name vs Exported name - fmt.Println(math.pi) vs fmt.Println(math.Pi)
+* Unexported name vs Exported name
+  * ```fmt.Println(math.pi) vs fmt.Println(math.Pi)```
 * [type comes after the variable name.](https://blog.golang.org/gos-declaration-syntax)
-    * func add(x int, y int) int
+    * ```func add(x int, y int) int```
 * Closures in golang
-     * ```go sum := func(a, b int) int { return a+b } (3, 4) ```
+     * ```sum := func(a, b int) int { return a+b } (3, 4) ```
 * When two or more consecutive named function parameters share a type, you can omit the type from all but the last.
-    * func add(x, y int) int
+    * ```func add(x, y int) int```
 * A function can return any number of results.
-    * ```go return y, x```
+    * ```return y, x```
 * Named return values (Only on short functions)
     * ```go
       func split(sum int) (x, y int) {
@@ -86,7 +87,7 @@ export PATH="$GOROOT/bin/:$PATH"
             Small = Big >> 99
         )
     ```
-*  ```go
+* ```go
         func needInt(x int) int { return x*10 + 1 }
         func needFloat(x float64) float64 {
             return x * 0.1
