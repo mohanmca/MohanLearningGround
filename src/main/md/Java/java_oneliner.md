@@ -49,6 +49,18 @@ String.format("%1$-10s-%2$10s-%3$-10s-%4$10d","1000",2500,"123",123);
 //        "1000      -      2500-123       -       123"
 ```
 
+## How to iterate ArrayDeque where push as stack, and consume as queue
+
+```java
+Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
+for(String data: deque) { System.out.println(deque.remove());}
+```
+
+```java
+Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
+while(!deque.isEmpty()) { System.out.println(deque.removeLast());}
+```
+
 ### How to convert an List<Integer> containing Integers to primitive int array?
 ```java
 listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
