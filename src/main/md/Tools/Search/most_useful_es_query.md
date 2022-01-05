@@ -1,17 +1,17 @@
-# Most often used adming URL
+## Most often used admin URL
 * http://localhost:9200/_stats
-* 
+* /_cluster/health
+* /index/_count
+* /_cat/indices
 
 ## How to find elasticsearch node from kibana
 
 * https://kibana_host/_nodes/stats
 * curl -XGET https://one_of_the_host/index_name/_search_
-# Most often used URL
-* *ElasticSearch Get can accept body* 
+
+## Most often used URI Search
+* ```ElasticSearch Get can accept body```* 
 * /_search
-* /_cluster/health
-* /index/_count
-* /_cat/indices
 * /gb/_mapping/tweet  - mapping for type tweet that is under index -gb
 * GET /gb/tweet/_validate/query query
 * GET /gb/tweet/_validate/query?explain 
@@ -21,17 +21,23 @@
 * GET /old_index/_search?search_type=scan&scroll=1m
 * DELETE /index_one,index_two or DELETE /index_* or DELETE /_all
 * PUT /my_index_v1/_alias/my_index and/or GET /*/_alias/my_index
+
+## URI Search window of time
+
+* http://pi4.pushshift.io/rc/_search/?pretty&sort=created_utc:desc&size=250&q=created_utc:[now-1h%20TO%20now] 6
+
+## Most often used Query Search
 * To count the number of documents in the cluster
- * ```{"query": { "match_all": {} }}```
+* ```{"query": { "match_all": {} }}```
 * To count the number of documents in the cluster
- * ```{  "query" : {  "match" : {  "last_name" : "Smith"  }  }}```
+* ```{  "query" : {  "match" : {  "last_name" : "Smith"  }  }}```
 * To find all employees with a last name of Smith, but we want only employees who are older than 30
- * ```{  "query" : {  "filtered" : {  "filter" : {  "range" : {  "age" : { "gt" : 30 } 1  }  },  "query" : {  "match" : {  "last_name" : "smith" 2  }  }  }  }}```
+* ```{  "query" : {  "filtered" : {  "filter" : {  "range" : {  "age" : { "gt" : 30 } 1  }  },  "query" : {  "match" : {  "last_name" : "smith" 2  }  }  }  }}```
 * To Full-Text Search -  search for all employees who enjoy rock climbing - relevance
- * ```{    "query" : {  "match" : { "about" : "rock climbing" }}}``
+* ```{    "query" : {  "match" : { "about" : "rock climbing" }}}``
 * To Full-Text Search -  search for all employees who enjoy rock climbing - mandatory
- * ```{    "query" : {"match_phrase" : {"about" : "rock climbing"}}}```
-*  Highlight - produces html <em> around matched words
+* ```{    "query" : {"match_phrase" : {"about" : "rock climbing"}}}```
+* Highlight - produces html <em> around matched words
 ```{   "query" : {     "match_phrase" : {     "about" : "rock climbing"     }   },   "highlight": {     "fields" : {     "about" : {}     }   } }```
 * Sample aggregation query
 ```{   "aggs": {     "all_interests": {       "terms": { "field": "interests" }     }   } }```

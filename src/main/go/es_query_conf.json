@@ -1,0 +1,9 @@
+{
+    "query": "values",
+    "server_fqdn": [
+            "gobyexample.com",
+            "gobyexample.com",
+            "gobyexample.com"
+    ],
+    "request_timeout_in_seconds": 60
+}

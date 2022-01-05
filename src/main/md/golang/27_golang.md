@@ -582,6 +582,9 @@ func (c *SafeCounter) Value(key string) int {
 
 ## Golang errors
 
-* 	c, python, java := true, false, "no!"; python := "false!"
+* c, python, java := true, false, "no!"; python := "false!"
     1. ./prog.go:9:9: no new variables on left side of :=
     1. ./prog.go:9:9: cannot use "false!" (type untyped string) as type bool in assignment
+* gore> lstArray = lstArray[1:]
+  cannot use lstArray[1:] (type []int) as type [3]int in assignment
+* lstArray := []int{1, 2, 3} -- slices - would make above work
