@@ -30,18 +30,18 @@ t ==> int[5][] { int[2] { 0, 0 }, int[2] { 0, 0 }, int[ ...  0, 0 }, int[2] { 0,
         }
 ```
 
-### Quick analysis for xception handling in java code
+## Quick analysis for xception handling in java code
 ```java
 find . -name \*java | grep -v “test.*est” | xargs grep -A 4 “catch.*xception” > exceptionHandling.txt
 grep -A 4 catch.*xception `find . -type f -name \*java | grep -v test` > xception.log
 ```
 
-### Initialize two dimensional array
+## Initialize two dimensional array
 ```java
 new int[][]{{1, 2}, {3}, {3}, {}}
 ```
 
-### Java format arguments while printing (or String manipulation)
+## Java format arguments while printing (or String manipulation)
 ```java
 String.format("%1$10s-%2$-10s-%3$10s-%4$10d","1000",2500,"123",123);
 //        "      1000-2500      -       123-       123"
@@ -49,23 +49,25 @@ String.format("%1$-10s-%2$10s-%3$-10s-%4$10d","1000",2500,"123",123);
 //        "1000      -      2500-123       -       123"
 ```
 
-## How to iterate ArrayDeque where push as stack, and consume as queue
+## How to iterate ArrayDeque as stack
 
 ```java
 Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
 for(String data: deque) { System.out.println(deque.remove());}
 ```
 
+## How to use ArrayDeque as stack while populating, and consume as queue
+
 ```java
 Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
 while(!deque.isEmpty()) { System.out.println(deque.removeLast());}
 ```
 
-### How to convert an List<Integer> containing Integers to primitive int array?
+## How to convert an List<Integer> containing Integers to primitive int array?
 ```java
 listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
 ```
-### How to String-Stream as Array?
+## How to String-Stream as Array?
 ```java
 String[] stringArray = stringStream.toArray(String[]::new);
 ```
@@ -132,12 +134,12 @@ private void reverse(int[] nums, int first, int last) {
     .collect(Collectors.toList())).flatMap(id -> id.stream()).collect(Collectors.toList());
 ```
 
-### How to sort an IntStream and collect as List<Integer> (sorted output)
+## How to sort an IntStream and collect as List<Integer> (sorted output)
 ```java
 verticalOrder.get(key).stream().sorted().collect(Collectors.toList())
 ```
 
-### How to sum the  Stack<Integer> using lambda?
+## How to sum the  Stack<Integer> using lambda?
 ```java
 stack.stream().reduce(0, Integer::sum);
 ```
