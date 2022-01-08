@@ -18,7 +18,10 @@
 * [Go cook book](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/golang/go_cookbook.md)
 * [Go concurrency](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/golang/go_concurrency_patterns.md)
 
+## Most often used (GTD, MAC)
 
+* [Mac Shortcuts](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/mac.md)
+* [GTD](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Productivity/GTD.md)
 
 ## Git Commands
 
