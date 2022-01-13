@@ -2,6 +2,10 @@
 ```sh
 java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.yourclass | grep “yourclass”
 ```
+## Sort Integer Stream
+```java
+    Arrays.asList(3,1,4,1,5,9,6,2).stream().sorted(Integer::compare).toList()
+```
 
 ## Find maximum in a array
 
