@@ -1,6 +1,7 @@
 ## Raft origin
 
 * Raft was designed by Diego Ongaro and John Ousterhout
+* [Raft Interactive tutorial-The Secret Lives of Data, a visualization of the Raft protocol by Ben Johnson](http://thesecretlivesofdata.com/raft/)
 * [Raft slides](https://ongardie.github.io/raft-talk/)
 * [Raft Paper](https://raft.github.io/raft.pdf)
 * [Raft algorithm - Lecture](https://www.youtube.com/watch?v=YbZ3zDzDnrw)
