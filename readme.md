@@ -3,7 +3,7 @@
 * [Cassandra notes](https://github.com/mohanmca/cassandra_playground/blob/master/README.md)
 * [ElasticSearch notes](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/most_useful_es_query.md)
 * [Algorithm notes](https://github.com/mohanmca/professional_certification/blob/master/algorithms/README.md)
-* [System Design](https://github.com/mohanmca/professional_certification/blob/master/SystemDesign/System_Design_Anki.md)
+* [System Design](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/system_design/System_Design_Anki.md)
 * [Aws Notes](https://github.com/mohanmca/professional_certification/blob/master/aws/aws_exam_checklist.md)
 * [Designin Data Intensive Application](https://github.com/mohanmca/professional_certification/blob/master/SystemDesign/DesigningDataIntensiveApplication.md)
 * [Algorithm Notes](https://github.com/mohanmca/CodingChallenges)
