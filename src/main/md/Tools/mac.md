@@ -23,6 +23,13 @@
    1. to file - ```Command-Shift-3```
    1. to clipbord - ```Command-Control-Shift-3```
 
+## Update software tools
+```shell
+softwareupdate --all --install --force
+sudo rm -rf /Library/Developer/CommandLineTools
+sudo xcode-select --install
+```
+   
 ## Spotlight Search
 
 * Command + Space
