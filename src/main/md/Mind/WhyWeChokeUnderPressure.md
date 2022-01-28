@@ -26,6 +26,19 @@
     * Little of careless attitude helps when under pressure
     * Being in similar situation using simulation or experience or anticipated practice would helps
 
+## How to train?
+
+1. Don't think just do it
+2. Practice as much as you can
+3. Can't find anyone to listen do it in front of mirror or camera
+4. Write down your thoughts and worries in a paper just before the situation
+5. Make a comfortable environment
+6. Overcome your fear
+
+## Alternative mind-set
+1. "If your goal is to win, you're already at a disadvantage". You must convince your mind that the task at hand is as important as tying your shoelaces.
+2. If the only outcome that we expect is win, we do not have common sense
+3. 
 
 ## How to practice (inorder not to choke under pressure)
 
