@@ -12,6 +12,14 @@
 * [Spring Core](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Spring5/SpringFramework.md)
 * [Spring Exam Notes](https://github.com/mohanmca/professional_certification/blob/master/spring/exam_checklist.md)
 * [Java oneliner](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Java/java_oneliner.md)
+
+## Mind, Focus and Remembering
+
+1. [Improve Memory](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Mind/Memory_Remember.md)
+2. [Akin's Law](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Akin'sLaw.md)
+3. 
+
+
 ## Go language Notes
 
 * [Go core language](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/golang/27_golang.md)
@@ -24,7 +32,6 @@
 * [GTD](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Productivity/GTD.md)
 
 ## Git Commands
-
 * [Often used git commands](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/git/git_reference.md)
 
 ## Running Scala 
@@ -36,7 +43,6 @@
 * [Make it stick](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/Make_it_stick_applications.md)
 
 ## Kavin
-
 * [Tamil](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/Tamil.md)
 
 ## Math

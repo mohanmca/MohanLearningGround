@@ -5,10 +5,10 @@
 * Reading technical book for awareness and mastery are different things
 * Use Feynman technique to remember
 * Taking handwritten notes helps, notes acts like "Chronological memory jog"
-* search::study + hacks on hackernews
 * Summarize each chapter in your own words within a single page
 * Exercise MEMORY (SHORT-TERM): Repeat to remember. 
 * Exercise MEMORY (LONG-TERM): Remember to repeat.
+* True art of memory is attention
 
 ## Some techniques used to increase retention of technical material
 
@@ -18,7 +18,6 @@
 2. Imagine yourselves explaining the subject to an audience.
    1. Questions would appear automatically
    2. Doing these imaginary lectures often would helps to retain for many days
-   3. 
 
 ## Why Anki?
 
@@ -26,24 +25,17 @@
 * [Augmenting Long-term Memory](http://augmentingcognition.com/ltm.html)
 * SRS, Flashcards, Testable Notes
 
-## Feynman Technique
-
-1. Choose a concept you want to learn about. What topic are you curious about? ...
-2. Explain it to a 12-year-old. Now that you think you understand a topic reasonably well, explain it to a 12-year-old. ...
-3. Identify and fill knowledge gaps
-4. Return to the literature to understand better
-
-# Memory factors
+## Memory factors
 * Do you observe or see them?
 * How keen your observation matters most to memory?
 * Have you associated
-----
-Why Association works?
+
+## Why Association works?
 * Spelling can be remembered using assoication
   * Piece of a pie
   * Never believe a lie
-----
-# Link method
+
+## Link method
  * Helps to remember list of items
  * Association should be ridiculous or illogical
  * Should see the picture of the word in our mind, don't see the word
@@ -53,31 +45,24 @@ Why Association works?
   * Writing on giantic bottle instead of paper - use y like x
   * Bottle pouring paper instead of water - y producing x or x producing y
   * Bottle mad of paper instead of glass - x made of y or y made of x
-----
-## To make illogicals
+
+
+## To make illogical linking
 * Gigantic or too small - Out of proportion
-* With Action insted of idle
-  * Violent and Embarassing than plesant (Human rember violent and embarassing things longer)
+* With Action instead of idle
+  * Violent and Embarrassing than pleasant (Human remember violent and embarrassing things longer)
 * Exaggerate the number of items (in millions)
 * Picturing one item instead of other (bottle made of paper)
-----
-## Peg method
 
-----
-## Memory Quotes
-* True art of memory is attention
 ----
 ## How to learn faster with the Feynman Technique
-1. You are the easies person to fool with, avoid it using following four steps of Feynman learning technique
-   
-1. Take a piece of paper and write the concept's name at the top.
-   1. Write pythogorean theorm
-1. Explain the concept using simple language.
-1. Identify the problem areas, then go back to the sources to review
-1. Pinpoint any complicated terms and challenge yourself to simplify them
-   
-
-1. You should be able to explain to others, hence try to teach to someone else
+1. You are the easiest person to fool with, avoid it using following four steps of Feynman learning technique
+2. Take a piece of paper and write the concept's name at the top.
+   1. Write Pythagorean theorem
+3. Explain the concept using simple language. or  Explain it to a 12-year-old. Now that you think you understand a topic reasonably well, explain it to a 12-year-old. ...
+4. Identify the problem areas, then go back to the sources to review
+   1. Pinpoint any complicated terms and challenge yourself to simplify them
+5. You should be able to explain to others, hence try to teach to someone else
 
 ----
 ## Systematic way of reading a book - (Matt DiMaio)
@@ -106,3 +91,4 @@ Why Association works?
 * [Super memory it can be yours](https://issuu.com/snehalwankhede/docs/super-memory-it-can-be-yours-)
 * [How to absorb textbooks like sponge - Matt DiMaio](https://www.youtube.com/watch?v=nqYmmZKY4sA)
 * [Ask HN: How do you memorize things you read?](https://news.ycombinator.com/item?id=28839573)
+* [search::study + hacks on Hackernews](https://hn.algolia.com/?query=study%20hacks)
