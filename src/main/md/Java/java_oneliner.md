@@ -17,6 +17,7 @@ min = Stream.of(14, 35, -7, 46, 98).min(Integer::compare).get();
 int max = Stream.of(14, 35, -7, 46, 98).reduce(Integer::max).get();
 max = Stream.of(14, 35, -7, 46, 98).max(Integer::compare).get();
 ```
+
 ## How to create K rows with 2 columns each
 ```java
 int[][] closestPoints = new int[k][2];
@@ -57,17 +58,18 @@ String.format("%1$-10s-%2$10s-%3$-10s-%4$10d","1000",2500,"123",123);
 
 ```java
 Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
-for(String data: deque) { System.out.println(deque.remove());}
+for(String data: deque) { System.out.println(deque.remove());}  //2 and 1
+for(String data: deque) { System.out.println(data);}  //2 and 1
 ```
 
 ## How to use ArrayDeque as stack while populating, and consume as queue
 
 ```java
 Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
-while(!deque.isEmpty()) { System.out.println(deque.removeLast());}
+while(!deque.isEmpty()) { System.out.println(deque.removeLast());}  //1,2
 ```
 
-## How to convert an List<Integer> containing Integers to primitive int array?
+## How to convert List<Integer> containing Integers to primitive int array?
 ```java
 listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
 ```
@@ -97,6 +99,20 @@ public StringBuilder replace(int start,int end, String str); //end-1 would be th
 StringBuilder.deleteCharAt(sb.length()-1);
 ```
 
+## Java String methods, Initialize, Join and Strip
+
+```java
+String[] strings = {"abc", "dbca"};
+jshell> String.join(", ", new String[]{"abc", "dbca"})
+$16 ==> "abc, dbca"
+
+
+jshell> " abc ".strip() //stripLeading and stripTrailing - also available
+$18 ==> "abc"
+jshell> "abc".repeat(3)
+$19 ==> "abcabcabc"
+```
+
 ### How to reverse Java int[] Array?
 ```java
 IntStream.rangeClosed(1, a.length).map(i -> a[a.length-i]).toArray();
@@ -121,6 +137,12 @@ java.util.Arrays.binarySearch(sortedArr, index + 1, sortedArr.length, key);
    List<int[]> common = new ArrayList<int[]>();
    return (int[][])common.toArray(new int[common.size()][]);
 ```
+
+## How to sort only elements after 1'st element (leave the 0th element in its place)
+```java
+Collections.sort(mergedAccount.subList(1, mergedAccount.size())); 
+```
+
 ## How to reverse elements between two indices of java array?
 
 ```java
@@ -185,6 +207,19 @@ class HelloWorld {
                         LinkedHashMap::new
                 ));
 ```
+## Java regular expression - tricks
+
+```java
+jshell>"\\mohan\\root".split("\\\\")
+$11 ==> String[3] { "", "mohan", "root" }
+jshell> System.out.print("\nmohan\nroot")
+
+mohan
+root
+jshell> "/a/b".split("/")
+$15 ==> String[3] { "", "a", "b" }
+```
+
 ## Reference
 
 * [aruld/java-oneliners](https://github.com/aruld/java-oneliners/blob/master/src/main/java/com/github/aruld/oneliners/Item8.java)
