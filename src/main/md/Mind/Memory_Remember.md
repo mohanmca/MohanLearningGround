@@ -1,12 +1,38 @@
-## Rememberance
-* Tell me, I forget, teache me, I may remember, *involve* me and I learn
-* *SRS, Flashcards, Testable Notes*
+## Remembrance
+
+* Use it or lose it.
+* Tell me, I forget, teach me, I may remember, *involve* me, and I learn
 * Reading technical book for awareness and mastery are different things
-* Use Feynmen technique to remember
-* Taking hand written notes helps, notes acts like "Chronological memory jog"
+* Use Feynman technique to remember
+* Taking handwritten notes helps, notes acts like "Chronological memory jog"
 * search::study + hacks on hackernews
 * Summarize each chapter in your own words within a single page
-----
+* Exercise MEMORY (SHORT-TERM): Repeat to remember. 
+* Exercise MEMORY (LONG-TERM): Remember to repeat.
+
+## Some techniques used to increase retention of technical material
+
+1. Rewrite
+   1. Forcing yourself to think about the information differently: by writing, you are doing is explaining it to yourself.
+   2. The intention was never to use the note for reference, but the act of writing them enforces your memory.
+2. Imagine yourselves explaining the subject to an audience.
+   1. Questions would appear automatically
+   2. Doing these imaginary lectures often would helps to retain for many days
+   3. 
+
+## Why Anki?
+
+* [Spaced Repetition for Efficient Learning](https://www.gwern.net/Spaced-repetition)
+* [Augmenting Long-term Memory](http://augmentingcognition.com/ltm.html)
+* SRS, Flashcards, Testable Notes
+
+## Feynman Technique
+
+1. Choose a concept you want to learn about. What topic are you curious about? ...
+2. Explain it to a 12-year-old. Now that you think you understand a topic reasonably well, explain it to a 12-year-old. ...
+3. Identify and fill knowledge gaps
+4. Return to the literature to understand better
+
 # Memory factors
 * Do you observe or see them?
 * How keen your observation matters most to memory?
@@ -78,4 +104,5 @@ Why Association works?
 * [How to develop super power memory](https://archive.org/details/HowToDevelopASUPERPOWERMEMORYHarryLorayne/page/n7)
 * [How To Develop A Super Power Memory](http://www.ownways.com/how_to_develop_a_super_power_memory/Contents.html)
 * [Super memory it can be yours](https://issuu.com/snehalwankhede/docs/super-memory-it-can-be-yours-)
-* [How to absorb textbooks like sponge - Matt DiMaio](https://www.youtube.com/watch?v=nqYmmZKY4sA)  
+* [How to absorb textbooks like sponge - Matt DiMaio](https://www.youtube.com/watch?v=nqYmmZKY4sA)
+* [Ask HN: How do you memorize things you read?](https://news.ycombinator.com/item?id=28839573)
