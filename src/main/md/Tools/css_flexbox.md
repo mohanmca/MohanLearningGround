@@ -1,4 +1,7 @@
 * [Learn CSS with Game](https://flexboxfroggy.com/)
+* [CSS grid garden](https://cssgridgarden.com/)
+* [CSS Exercise](https://flukeout.github.io/)
+
 * [CSS Grid layout vs Flexbox](https://medium.com/youstart-labs/beginners-guide-to-choose-between-css-grid-and-flexbox-783005dd2412)
 
 ## CSS Online tools for Generator
@@ -20,3 +23,6 @@
 * [Flexbox - Visual Cheat Sheet](https://i.imgur.com/0drn44G.png)
 * [Flexbox visual dictionary](http://www.csstutorial.org/flex-both.html)
 
+
+## Reference
+1. [Discussion about CSS](https://news.ycombinator.com/item?id=30251054)
