@@ -7,6 +7,13 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
     Arrays.asList(3,1,4,1,5,9,6,2).stream().sorted(Integer::compare).toList()
 ```
 
+## Find sum/count in int stream
+
+```java
+Integer sum = integers.stream().reduce(0, Integer::sum);
+return (int)freq.values().stream().filter( v -> v>=2).count();
+```
+
 ## Find maximum in a array
 
 ```java
