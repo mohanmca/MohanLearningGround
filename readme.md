@@ -12,20 +12,19 @@
     * [Dynamic Programming](https://github.com/mohanmca/CodingChallenges/tree/master/src/md)
 * [Spring Core](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Spring5/SpringFramework.md)
 * [Spring Exam Notes](https://github.com/mohanmca/professional_certification/blob/master/spring/exam_checklist.md)
-* [Java oneliner](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Java/java_oneliner.md)
+* [Java oneliner](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Java/java_oneliner.md)
 
 ## Mind, Focus and Remembering
 
 1. [Improve Memory](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Mind/Memory_Remember.md)
 2. [Akin's Law](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Akin'sLaw.md)
-3. 
 
 
 ## Go language Notes
 
-* [Go core language](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/golang/27_golang.md)
-* [Go cook book](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/golang/go_cookbook.md)
-* [Go concurrency](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/golang/go_concurrency_patterns.md)
+* [Go core language](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/golang/27_golang.md)
+* [Go cook book](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/golang/go_cookbook.md)
+* [Go concurrency](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/golang/go_concurrency_patterns.md)
 
 ## Most often used (GTD, MAC)
 
@@ -33,7 +32,7 @@
 * [GTD](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Productivity/GTD.md)
 
 ## Git Commands
-* [Often used git commands](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/git/git_reference.md)
+* [Often used git commands](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/git/git_reference.md)
 
 ## Running Scala 
 
