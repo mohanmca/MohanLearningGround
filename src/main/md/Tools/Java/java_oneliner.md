@@ -2,6 +2,12 @@
 ```sh
 java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.yourclass | grep “yourclass”
 ```
+## Find Maximum Frequency in HashMap
+
+```java
+Collections.max(count.entrySet(), Map.Entry.comparingByValue()).getKey();
+```
+
 ## Sort Integer Stream
 ```java
     Arrays.asList(3,1,4,1,5,9,6,2).stream().sorted(Integer::compare).toList()
