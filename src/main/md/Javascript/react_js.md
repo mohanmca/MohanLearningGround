@@ -29,7 +29,7 @@ npm start
 5. [Lodash](https://lodash.com/)
    1. Functional library and most reusable functions
    2. Acts like Std library for Javascript
-6. Ag-Grid
+6. [Ag-Grid](https://www.ag-grid.com/react-data-grid/)
    1. Grid/Table component highest used in react world
    2. Familiarize the documentation
 7. [Golden Layout](https://golden-layout.com/)
