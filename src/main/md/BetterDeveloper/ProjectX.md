@@ -1,12 +1,13 @@
-# Project X - Caliber or Google/Amazon developer
+## To become good developer
 
-* Pickup Algorithm and Datastrcuture book
-* Cracking the code interview book
-* System design book
-* HackerRank - practice
+1. Form regular/daily practice, review certain materials periodically
 
 
-# Alogirthm Courses
+## Periodic materials
+1. [How to write un-testable code](https://testing.googleblog.com/2008/07/how-to-write-3v1l-untestable-code.html)
+
+
+# Algorithm Courses
 
 * [Graph Theory and Graph Algorithms](https://nptel.ac.in/courses/128/106/128106008/)
 * [Advanced Graph Theory (Video)](https://nptel.ac.in/courses/106/104/106104170/)
@@ -15,13 +16,13 @@
 * [Programming and Data structures](https://nptel.ac.in/courses/106/106/106106130/)
 
 
-# Datastrcutre
+# Data-structure
 * https://www.hackerrank.com/domains/data-structures
 * https://www.hackerrank.com/domains/algorithms
 * https://www.hackerrank.com/interview/interview-preparation-kit
 
 ## Training
-* [System Desgin](https://www.educative.io/courses/grokking-the-system-design-interview)
+* [System Design](https://www.educative.io/courses/grokking-the-system-design-interview)
 * [Code Interview](Cracking the Coding Interview)
 * [System Design Primer](https://github.com/donnemartin/system-design-primer)
 

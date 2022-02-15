@@ -38,7 +38,7 @@
 * Some types of work are inherently bogus, or at best mere busywork
 * Some works are deliberately vague, because it has to cover a lot of different types.
 
-## Quantiy of the work
+## Quantity of the work
 
 * Once you know the shape of real work, you have to learn how many hours a day to spend on it. 
 * That limit varies depending on the type of work and the person. 
