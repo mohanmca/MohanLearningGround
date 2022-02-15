@@ -13,21 +13,19 @@
 * [Spring Core](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Spring5/SpringFramework.md)
 * [Spring Exam Notes](https://github.com/mohanmca/professional_certification/blob/master/spring/exam_checklist.md)
 * [Java oneliner](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Java/java_oneliner.md)
+* [ReactJS](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Javascript/react_js.md)
 
 ## Mind, Focus and Remembering
-
 1. [Improve Memory](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Mind/Memory_Remember.md)
 2. [Akin's Law](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Akin'sLaw.md)
 
 
 ## Go language Notes
-
 * [Go core language](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/golang/27_golang.md)
 * [Go cook book](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/golang/go_cookbook.md)
 * [Go concurrency](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/golang/go_concurrency_patterns.md)
 
 ## Most often used (GTD, MAC)
-
 * [Mac Shortcuts](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/mac.md)
 * [GTD](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Productivity/GTD.md)
 
