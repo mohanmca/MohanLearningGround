@@ -5,7 +5,7 @@
 
 ## Periodic materials
 1. [How to write un-testable code](https://testing.googleblog.com/2008/07/how-to-write-3v1l-untestable-code.html)
-
+       
 
 # Algorithm Courses
 
