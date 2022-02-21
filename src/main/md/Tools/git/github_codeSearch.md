@@ -7,6 +7,10 @@
 ## How to find Dijkstra algorithm coded in javascript  
 * function language:javascript
 
+## Github CodeSearch
+
+1. [Javascript interview](https://cs.github.com/?scopeName=All+repos&scope=&q=javascript+%22%3Cdetails%3E%3Csummary%3E%22+++language%3Amarkdown)
+
 ## How to exclude test code from result
 
 1. ```NOT language:html```
