@@ -4,6 +4,16 @@
 2. [300-JS](https://github.com/bgoonz/DEV-RESOURCES/tree/master/STAGING/INTERVIEW-PREP-COMPLETE-master/INTERVIEW-PREP-COMPLETE-master/interview-prep/300-react-q-and-as)
 3. [FrontEnd-Summary-JS](https://github.com/bgoonz/DEV-RESOURCES/blob/master/STAGING/INTERVIEW-PREP-COMPLETE-master/INTERVIEW-PREP-COMPLETE-master/SUMMARY.md)
 
+## ES2018 - Reference
+
+* [The Modern JavaScript Tutorial](https://javascript.info/intro)
+* [A re-introduction to JavaScript (JS tutorial)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
+* [Object rest and spread properties](https://developers.google.com/web/updates/2017/06/object-rest-spread)
+* [Promise.prototype.finally](https://developers.google.com/web/updates/2017/10/promise-finally)
+* [Async iterators and generators](https://jakearchibald.com/2017/async-iterators-and-generators/)
+* [Here are examples of everything new in ECMAScript 2016, 2017, and 2018](https://medium.freecodecamp.org/here-are-examples-of-everything-new-in-ecmascript-2016-2017-and-2018-d52fa3b5a70e)
+    * [Hacker news comments](https://news.ycombinator.com/item?id=16743765)
+
 ## IIFE
 
 ```JavaScript
@@ -80,4 +90,43 @@ Person.prototype.fullName = function() {
 Person.prototype.fullNameReversed = function() {
   return this.last + ', ' + this.first;
 };
+```
+
+## Give an example to use call method
+
+```java
+function lastNameCaps() {
+  return this.last.toUpperCase();
+}
+var s = new Person('Simon', 'Willison');
+lastNameCaps.call(s);
+// Is the same as:
+s.lastNameCaps = lastNameCaps;
+s.lastNameCaps(); // WILLISON
+```
+
+## How to list all the parameters of global scope
+
+1. you can't pass const arguments in javascript as parameter
+```javascript
+const visited = new Set()
+const queue = [];
+
+function listValues() {
+    const [O, i, ...rest] = arguments;
+    console.log(arguments[1])
+    if (visited.has(O)) return;
+    visited.add(O);
+    for (let p in O) {
+        if (typeof(O[p]) === 'object' && O[p] !== O) {
+            listValues(O[p], i + 1);
+        } else if (O[p] === O) {
+            console.log("cyclic reference   " + typeof(O[p]) + " **~~~> " + p + " : " + " --> " + O);
+        } else if (O[p] === 'function') {
+            console.log(i + "   " + typeof(O[p]) + " **~~~> " + p + " : " + " --> " + O[p]);
+        } else {
+            console.log(i + "   " + typeof(O[p]) + " --> " + p + " : " + " --> " + O[p]);
+        }
+    }
+}
 ```
