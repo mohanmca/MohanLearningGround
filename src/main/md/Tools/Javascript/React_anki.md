@@ -6,8 +6,6 @@
    1. componentDidUpdate (state-update after mounting) and componentDidMount 
    2. useEffect - alternative way using functional style
 
-
-
 ## Examples of side-effect without cleanup
 
 Running some additional code after React has updated the DOM. Network requests, manual DOM mutations, and logging are common examples of effects that don’t require a cleanup.
