@@ -1,0 +1,27 @@
+<html>
+<script language="JavaScript">
+
+const visited = new Set()
+const queue = [];
+
+function listValues() {
+    const [O, i, ...rest] = arguments;
+    console.log(arguments[1])
+    if (visited.has(O)) return;
+    visited.add(O);
+    for (let p in O) {
+        if (typeof(O[p]) === 'object' && O[p] !== O) {
+            listValues(O[p], i + 1);
+        } else if (O[p] === O) {
+            console.log("cyclic reference   " + typeof(O[p]) + " **~~~> " + p + " : " + " --> " + O);
+        } else if (O[p] === 'function') {
+            console.log(i + "   " + typeof(O[p]) + " **~~~> " + p + " : " + " --> " + O[p]);
+        } else {
+            console.log(i + "   " + typeof(O[p]) + " --> " + p + " : " + " --> " + O[p]);
+        }
+    }
+}
+
+listValues(this,0);
+</script>
+</html>
