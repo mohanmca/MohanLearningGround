@@ -20,3 +20,5 @@ function listValues() {
         }
     }
 }
+
+listValues(this, 0);

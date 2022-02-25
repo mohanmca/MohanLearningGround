@@ -11,9 +11,19 @@ Collections.max(count.entrySet(), Map.Entry.comparingByValue()).getKey();
 ## Sort List in reverse order
 ```Collections.sort(list, Collections.reverseOrder());```
 
-## Sort Integer Stream
+## How to convert List<Integer> containing Integers to primitive int array?
+```java
+listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
+```
+
+## Integer Stream sort, collect as Set
 ```java
     Arrays.asList(3,1,4,1,5,9,6,2).stream().sorted(Integer::compare).toList()
+    Set<Integer> set = Arrays.stream(nums).boxed().collect(Collectors.toSet())
+    new HashSet<Integer>(Arrays.asList(1,2,3)) -- This would work..
+    ~~~~~new HashSet<>(Arrays.asList(new int[]{1,2,3})) //This will not work, for primitive integer arrays
+    |  no suitable constructor found for HashSet(java.util.List<int[]>)
+    |      constructor java.util.HashSet.HashSet(java.util.Collection<? extends java.lang.Integer>) is not applicable
 ```
 
 ## Find sum/count in int stream
@@ -85,10 +95,6 @@ Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
 while(!deque.isEmpty()) { System.out.println(deque.removeLast());}  //1,2
 ```
 
-## How to convert List<Integer> containing Integers to primitive int array?
-```java
-listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
-```
 ## How to String-Stream as Array?
 ```java
 String[] stringArray = stringStream.toArray(String[]::new);
