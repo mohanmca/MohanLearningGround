@@ -1,6 +1,6 @@
 ## [Swami Sarvapriyananda-"Secret of Concentration" at IIT Kanpur](https://www.youtube.com/watch?v=BGswR0tMqCM)
 
-## Conentration
+## Concentration
 * Whatever you need to achieve, you require concentration, concentration gives **richer experience**.
 * The degree between ordinary and extra-ordinary person lies in degree of concentration
 * Quality of life
