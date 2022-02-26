@@ -107,6 +107,15 @@
 * Visayi = [(Kama + Artha) + Moral] ~~> Leads life within bounds, and laws
 * Gandhi, Anna Hasare, Social Workers = [(Moksha + Dharma) - Karma - Artha ] ~~> Gives up personal gain, works for wellfare of thers.
 
+
+## Improve attention and work?
+
+1. [Optimizing Workspace for Productivity, Focus, & Creativity | Huberman Lab Podcast #57](https://www.youtube.com/watch?v=Ze2pc6NwsHQ)
+2. [for Productivity, Focus, & Creativity](https://hubermanlab.com/optimizing-workspace-for-productivity-focus-and-creativity/)
+3. [ADHD & How Anyone Can Improve Their Focus | Huberman Lab Podcast #37](https://www.youtube.com/watch?v=hFL6qRIJZ_Y)
+4. [How to Focus to Change Your Brain | Huberman Lab Podcast #6](https://www.youtube.com/watch?v=LG53Vxum0as)
+5. [Optimal Work-Dr. Kevin Majeres](https://www.youtube.com/watch?v=691Bd1OelHw)
+
 ## Reference
 * "Yoga is one of the oldest and most systematic methods of producing the flow experience"
 * [Ted Talk by Martin Seligman](http://www.ted.com/talks/martin_seligman_on_the_state_of_psychology?language=en#t-9177)
