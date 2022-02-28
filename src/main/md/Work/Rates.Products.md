@@ -11,10 +11,12 @@
 4. Differential Discounting
 5. Rates Swap Pricing
 6. Flies
-7. [RFM](https://www.investopedia.com/terms/r/rfm-recency-frequency-monetary-value.asp)
 8. USD Inflation Swaps
 9. USD Basis Swaps
 
+## [RFM](https://www.investopedia.com/terms/r/rfm-recency-frequency-monetary-value.asp)
+1. RFM Outright
+2. RFM Multi-leg
 
 ## [IMM](https://www.cmegroup.com/education/courses/introduction-to-eurodollars/understanding-imm-price-and-date.html/)
 1. Interest Rate products that have original maturity of less than 366 days
