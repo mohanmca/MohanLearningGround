@@ -120,7 +120,8 @@
 
 ## Philosophy of software design | John Ousterhout | Talks at Google
 
-1. Partha Ranganathan - technical infrastructure cloud (introduced) John Ousterhout
-1. cs-190 Stanford Course for 10x developers
+1. [Partha Ranganathan - technical infrastructure cloud (introduced) John Ousterhout](https://research.google/people/ParthasarathyRanganathan/)
+1. [CS 190: Software Design Studio](http://web.stanford.edu/~ouster/cs190-winter22/)
+1. [Software-design-book](https://groups.google.com/g/software-design-book)
 1. [Information Hiding David Parnas](https://www.cs.cornell.edu/courses/JavaAndDS/files/infoHiding.pdf)
 1. [Can Great Programmers Be Taught?](https://cs.stanford.edu/~hq6/files/Great%20Programmers%20Long%20(Aug).pdf)
