@@ -88,9 +88,10 @@
     1. Simplify future development
     1. Minimize complexity
     1. Must sweat the small stuff
-1. Investment mindset
+2. Investment mindset
     1. Take extra time today
-    1. Pays back in the long run
+    2. Pays back in the long run
+3. "Strategy without tactics is the slowest route to victory. Tactics without strategy is the noise before defeat." --Sun Tzu, "The Art of War"
 
 ## How much to invest?
 
@@ -115,8 +116,17 @@
 ## Layers of abstraction
 
 1. Too many layers is very bad
-1. Too few layer with high performance is possible
-1. It is possible to have many layers with high performance
+2. Too few layer with high performance is possible
+3. It is possible to have many layers with high performance
+
+
+## Few more quotes from mailing list
+
+1. If something is important, then the system must reflect that; trying to hide it will just cause problems. 
+   1. However, if you can reduce the number of things that are important (e.g., by handling several things in the same way, so that the distinction between them is no longer important), you can end up with a simpler design.
+2. 
+
+
 
 ## Philosophy of software design | John Ousterhout | Talks at Google
 
