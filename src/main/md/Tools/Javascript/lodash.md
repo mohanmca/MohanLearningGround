@@ -1,3 +1,59 @@
+## Most often used functions
+
+1. Dictionary
+1. captialize
+1. clone
+1. cloneDeep
+1. compact
+1. curryRight
+1. debounce
+1. defaults
+1. differenceWith
+1. every
+1. filter
+1. flatten
+1. get
+1. groupBy
+1. has
+1. includes
+1. invert
+1. isEmpty
+1. isEqual
+1. isFunction
+1. isNumber
+1. keyBy
+1. keys
+1. last
+1. map
+1. mapValues
+1. memoize
+1. merge
+1. mergeWith
+1. noop
+1. omit
+1. omitBy
+1. orderBy
+1. pick
+1. pull
+1. pullAll
+1. reduce
+1. remove
+1. round
+1. set
+1. size
+1. some
+1. sortBy
+1. sortedIndex
+1. sortedIndexBy
+1. throttle
+1. uniq
+1. uniqBy
+1. values
+
+
+## All the functions
+
+
 _.chunk
 _.compact
 _.concat
