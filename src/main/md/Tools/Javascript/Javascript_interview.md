@@ -14,6 +14,16 @@
 * [Here are examples of everything new in ECMAScript 2016, 2017, and 2018](https://medium.freecodecamp.org/here-are-examples-of-everything-new-in-ecmascript-2016-2017-and-2018-d52fa3b5a70e)
     * [Hacker news comments](https://news.ycombinator.com/item?id=16743765)
 
+
+## How to reverse String
+
+``[...'Mohan'].reverse().join('')'``
+
+## Others - html
+1. [] + {} --- zero, empty string, object - based on the order and combination, it would change
+2. document.body.contentEditable = true   --- To make webpage editatble
+3. 
+
 ## IIFE
 
 ```JavaScript
@@ -128,5 +138,22 @@ function listValues() {
             console.log(i + "   " + typeof(O[p]) + " --> " + p + " : " + " --> " + O[p]);
         }
     }
+}
+```
+
+## ReferenceError vs Undefined
+
+```java
+function example() {
+  let declaredButNotAssigned;
+  console.log(declaredButNotAssigned); // => undefined
+  declaredButNotAssigned = true;
+}
+
+// using const and let
+function example() {
+  console.log(declaredButNotAssigned); // => throws a ReferenceError
+  console.log(typeof declaredButNotAssigned); // => throws a ReferenceError
+  const declaredButNotAssigned = true;
 }
 ```

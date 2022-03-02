@@ -75,9 +75,10 @@ function addScript(scriptUrl) {
 ```
 
 ```Javascript
-addScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.1/lodash.js')
+addScript('https://cdn.jsdelivr.net/combine/gh/lodash/lodash@4.17.21/dist/lodash.js,gh/lodash/lodash@4.17.21/dist/lodash.fp.js')
 _.filter([1,2,3], x => x%2 == 0)
 addScript('https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.4.2/Rx.js')
+addScript('https://unpkg.com/rxjs@7.5.4/dist/bundles/rxjs.umd.js')
 Rx.Observable.range(1,3)
 Rx.Observable.range(0, 10).scan((x,y) => x+y).subscribe(x => console.log(x))
 ```
@@ -252,3 +253,8 @@ let mdIndex = links.map( l => {
 mdIndex.join("\n");
 
 ```
+
+## Often used libraries
+
+1. [Lodash FP](https://cdn.jsdelivr.net/combine/gh/lodash/lodash@4.17.21/dist/lodash.js,gh/lodash/lodash@4.17.21/dist/lodash.fp.js)
+2. 
