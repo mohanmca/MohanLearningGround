@@ -3,8 +3,7 @@
 1. We are likely unaware of many complexities, dependencies, and edge cases that the code must account for. I suggest working with the code a bit longer before you make such bold proclamations as to its quality.
 2. You have a low chance of success (first, convincing your manager, and second, successfully refactoring the code), but a high chance of loss (alienating your teammates).
 3. How do you think colleagues felt when you told them it needs a whole refactoring that was built by them?
-4. Chesterton's fence - is the principle that reforms should not be made until the reasoning behind the existing state of affairs is understood.
-
+4. [Chesterton's fence - is the principle that reforms should not be made until the reasoning behind the existing state of affairs is understood.](https://wiki.lesswrong.com/wiki/Chesterton%27s_Fence)
 
 ## How to start?
 
@@ -24,9 +23,9 @@
 
 ## What needs to be agreed?
 
-1. Adopt coding standards
-2. code reviews
-3. unit testing
+1. Adopt Coding Standards
+2. Code reviews
+3. Unit testing
 4. Software design principles
 
 
@@ -44,3 +43,4 @@
 9. [Refactoring: Improving the Design of Existing Code (Addison-Wesley Signature Series (Fowler))](https://www.amazon.com/gp/product/B07LCM8RG2/ref=dbs_a_def_rwt_bibl_vppi_i0)
 10. [Flamegraph](https://github.com/davidmarkclements/0x)
     1. [Flamegraph Introduction](https://www.youtube.com/watch?v=D53T1Ejig1Q)
+11. [Complexity of Value](https://www.lesswrong.com/tag/complexity-of-value)

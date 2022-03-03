@@ -36,6 +36,24 @@ npm start
    1. Golden Layout is a Javascript layout manager which enables you to layout components in a web page and re-arrange them with drag and drop.
    2. Familiarize the Documentation
 
+## Often used library
+
+1. @ag-grid-community/core
+1. @ag-grid-community/react
+1. @material-ui/core
+1. lodash
+1. react/rect-dom/react-redux
+1. react-router-dom
+1. react-scripts
+1. redux-actions
+1. redux-logger
+1. redux-saga
+1. redux
+1. reselect
+1. styled-components
+1. uuid
+
+
 ## Not required
 6. [Using React Hooks](https://app.pluralsight.com/library/courses/using-react-hooks/table-of-contents)
 
