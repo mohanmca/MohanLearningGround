@@ -54,6 +54,15 @@ npm start
 1. uuid
 
 
+## Few other libraries
+1. font-awesome
+1. moment
+1. path
+1. rxjs
+1. shelljs
+1. rxjs
+1. karma
+
 ## Not required
 6. [Using React Hooks](https://app.pluralsight.com/library/courses/using-react-hooks/table-of-contents)
 
