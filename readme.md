@@ -14,6 +14,7 @@
 * [Spring Exam Notes](https://github.com/mohanmca/professional_certification/blob/master/spring/exam_checklist.md)
 * [Java oneliner](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Java/java_oneliner.md)
 * [ReactJS](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Javascript/react_js.md)
+* [Daily Developer Practice](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/dailypractice.md)
 
 ## Mind, Focus and Remembering
 1. [Improve Memory](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Mind/Memory_Remember.md)
