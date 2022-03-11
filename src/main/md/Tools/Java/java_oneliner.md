@@ -26,6 +26,14 @@ listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
     |      constructor java.util.HashSet.HashSet(java.util.Collection<? extends java.lang.Integer>) is not applicable
 ```
 
+## JShell
+
+```bat
+jshell https://kishida.github.io/misc/jframe.jshell
+jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f46e/raw/a6f272479026f8bb5d79f01f9cbab631e04cb78c/jshell.jshell
+```
+
+
 ## Find sum/count in int stream
 
 ```java

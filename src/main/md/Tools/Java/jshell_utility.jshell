@@ -1,0 +1,59 @@
+/**
+    We can do a lot with jshell
+    This file can be executed from shell using following command
+        jshell /Users/alpha/git/MohanLearningGround/src/main/md/Tools/Java/jshell_utility.jshell
+    This file can be executed from jshell using '/open jshell_utility.jshell'
+    jshell can execute directly from github url
+    jshell https://kishida.github.io/misc/jframe.jshell
+    jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f46e/raw/a6f272479026f8bb5d79f01f9cbab631e04cb78c/jshell.jshell
+**/
+
+/open PRINTING
+/** Integer to Binary **/
+public String  ib(int n){
+    return Integer.toBinaryString(n);
+}
+/** print integer to binary **/
+public void  pib(int n){
+    println(ib(n));
+}
+pib(1<<2);
+pib(~(1<<2));
+var x = 5;
+pib( x );
+pib( x ^ (x-1) );
+print((x & 1) == 0)
+
+
+/* --- others */
+/help /exit
+/help /vars
+/vars
+//you can also type import java.util.<tab>
+import java.util.regex.*
+//show imports
+/i
+var a= 30
+var b= 35
+b*a
+/vars
+/vars $1
+"foo".repeat(3)
+"foo".isEmpty()
+"foo".isBlank()
+
+
+//usage of http requests
+
+import java.net.http.HttpClient.*
+import java.net.http.*;
+
+var client = HttpClient.newBuilder().version(Version.HTTP_2).followRedirects(Redirect.NORMAL).build()
+var request = HttpRequest.newBuilder(URI.create("https://developer.mozilla.org/bm/docs/Web/JavaScript/Reference/Functions/Arrow_functions")).build()
+var response = client.send(request,HttpResponse.BodyHandlers.ofString())
+var content = response.body().toString()
+System.out.println(content)
+response.statusCode()
+response.headers()
+var asyncResponse = client.sendAsync(request,HttpResponse.BodyHandlers.ofString())
+asyncResponse.thenApply(HttpResponse::body).get()

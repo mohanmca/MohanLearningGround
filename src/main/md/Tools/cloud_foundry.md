@@ -1,11 +1,9 @@
 cf install-plugin cfdev
 cf dev start -f <filepath/VERSION.tgz>
 cf dev start -f D:\Apps\cf\pcfdev-v1.2.0-windows.tgz
-
 cf target
 cat manifest.yaml
 cf push
-
 cf marketplace -- would display service and plan
 cf create-service mysql free-plan first-db
 
