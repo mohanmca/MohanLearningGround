@@ -31,8 +31,6 @@
 1. A user can type his/her password when authenticating.A service cannot . Hence the need to persist the password in a file.
 1. Keytab can be considered as password for a service or host,used to authenticate the service itself to another service on the network.
 
-
-
 ```sample_jass.config
 Sample {
   sample.module.SampleLoginModule required debug=true;
