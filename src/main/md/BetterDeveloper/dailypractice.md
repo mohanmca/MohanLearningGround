@@ -31,5 +31,6 @@
 
 ## HTTP Fundamentals
 
-1. [HTTP Fundamentals Workshop](https://devopsdays.org/events/2019-tel-aviv/program/michael-arenzon/)
-   1. [HTTP Slide](https://docs.google.com/presentation/d/1XkskAy-Z7n8DilrrBys8ZzmgmHq5RGzglbnafUpFyss/edit?usp=sharing)
+1. [HTTP Workshop](https://github.com/HTTPWorkshop/workshop2019/tree/main/talks)
+   1. [HTTP Fundamentals Workshop](https://devopsdays.org/events/2019-tel-aviv/program/michael-arenzon/)
+   2. [HTTP Slide](https://docs.google.com/presentation/d/1XkskAy-Z7n8DilrrBys8ZzmgmHq5RGzglbnafUpFyss/edit?usp=sharing)
