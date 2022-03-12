@@ -13,6 +13,7 @@
 
 - [ ] [Read Java API](https://docs.oracle.com/en/java/javase/17/)
   - [Proxy](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/reflect/Proxy.html)
+  - [Pattern matching](https://docs.oracle.com/en/java/javase/17/language/pattern-matching.html)
   - [Generics](https://docs.oracle.com/javase/tutorial/extra/generics/index.html)
   - [JDK Tools](https://docs.oracle.com/en/java/javase/17/docs/specs/man/index.html)
 - [ ] [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
