@@ -1,21 +1,21 @@
-# Git
+## Git
   * Read 50 git SO questions and familiarize
   * Memorize 50 git commands
   * Write a note about code search using git cli
   
-# Webpack
+## Webpack
   * Read documentation of webpack
   
-# Weekly review
+## Weekly review
   * Effective Java
   * Effective Javascript
   * Typeclass signatures
   * Airbnb code signatures
 
-# Improving Coding Skills  
-  * Reading 2K lines of code each day continiously for a month    
+## Improving Coding Skills  
+  * Reading 2K lines of code each day continuously for a month    
 
-# Javascript
+## Javascript
 
 * Core Javascript development using functional style
 * Chrome Dev Tools

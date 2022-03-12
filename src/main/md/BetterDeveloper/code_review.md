@@ -1,4 +1,5 @@
-# General philosophy
+## General philosophy
+
 * Code review should assume that code works, but is it maintainable?
 * Software should be maintainable, and readable, clear, conformant code is necessary for future maintinability.
 * Explain why piece code is not good? Never share personal preference like "I don't like this pieice of code"
@@ -33,14 +34,9 @@
   1. If software is not tuneable, how to improve performance?
 1. Performance Refactoring - Even if you know exactly what is going on in your system, measure performance, don’t speculate. You’ll learn something, and nine times out of ten, it won’t be that you were right!
 
-
-
-
 ## Automated Test and Unit Test
 
 1. Adding test sounds simple, but laborious, procedure, it’s often much more tricky in practice. Unless it was designed with testing in mind
-1. 
-
 
 ## Reactoring considerations
 
@@ -52,9 +48,6 @@
 * You should always write your code as if comments didn't exist.
 * Never take mondaic type as input (integer, instead of optional<Integer>)
 * Don't flatten the monad
-
-
-
 
 # Reference
 * [Better ways to convey code review comments](https://developers.redhat.com/blog/2019/07/08/10-tips-for-reviewing-code-you-dont-like/)

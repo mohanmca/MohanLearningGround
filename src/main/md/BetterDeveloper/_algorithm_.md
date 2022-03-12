@@ -4,7 +4,7 @@
 *  Bittorrent protocol. The elements of the protocol are all fairly easy to understand, but it's gorgeous to see how elegantly it solved a social problem
   * http://www.bittorrent.org/beps/bep_0003.html
   * https://wiki.theory.org/index.php/BitTorrentSpecification
-* Diffie�Hellman
+* Diffie-Hellman
   * https://www.youtube.com/watch?v=YEBfamv-_do
   * Learning via paint analogy is great
 * Tic-Tac-Toe - traversal  
@@ -32,4 +32,4 @@
 * [Fisher–Yates - Random list shuffle algorithm](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
 
 # References
-* https://news.ycombinator.com/item?id=18236396
+* [Algorithm](https://news.ycombinator.com/item?id=18236396)
