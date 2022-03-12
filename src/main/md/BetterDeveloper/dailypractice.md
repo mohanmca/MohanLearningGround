@@ -22,3 +22,10 @@
 - [ ] [JDK 17 - new features](https://www.oracle.com/java/technologies/javase/17all-relnotes.html)
 - [ ] [Java language changes](https://docs.oracle.com/en/java/javase/17/language/java-language-changes.html)
 
+## Good API Design
+
+1. [API design guide](https://cloud.google.com/apis/design)
+2. [Zalando RESTful API and Event Guidelines](https://opensource.zalando.com/restful-api-guidelines/)
+3. [How to design better APIs](https://r.bluethl.net/how-to-design-better-apis)
+   1. [HN comments](https://news.ycombinator.com/item?id=30647784)
+
