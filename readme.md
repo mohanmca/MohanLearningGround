@@ -20,6 +20,30 @@
 1. [Improve Memory](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Mind/Memory_Remember.md)
 2. [Akin's Law](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Akin'sLaw.md)
 
+## Becoming Better Developer
+
+* [Make_it_stick_applications.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/Make_it_stick_applications.md)
+* [Philosophy_of_Software_Design.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/Philosophy_of_Software_Design.md)
+* [Programmer_Following.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/Programmer_Following.md)
+* [ProjectX.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/ProjectX.md)
+* [Raft.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/Raft.md)
+* [SelfImrpovementAreas.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/SelfImrpovementAreas.md)
+* [WorkHard.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/WorkHard.md)
+* [WorkingWithLegacy.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/WorkingWithLegacy.md)
+* [_algorithm_.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/_algorithm_.md)
+* [code_review.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/code_review.md)
+* [dailypractice.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/dailypractice.md)
+* [developer_vs_architect.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/developer_vs_architect.md)
+* [functional_programming.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/functional_programming.md)
+* [improve_programming.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/improve_programming.md)
+* [modern_development_tools_stack.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/modern_development_tools_stack.md)
+* [new_job_new_joiner_team_etiqutte.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/new_job_new_joiner_team_etiqutte.md)
+* [pair_programming.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/pair_programming.md)
+* [programmer@70.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/programmer@70.md)
+* [programming_videos_to_watch.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/programming_videos_to_watch.md)
+* [software_system_design.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/software_system_design.md)
+* [when_to_quit_and_stay.md](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/when_to_quit_and_stay.md)
+
 
 ## Go language Notes
 * [Go core language](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/golang/27_golang.md)
