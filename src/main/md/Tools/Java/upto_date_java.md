@@ -1,3 +1,16 @@
+## Junit Reference
+* [News from JUnit 5.x: From Revolution to Continuous Evolution (Marc Philipp, Germany)](https://www.youtube.com/watch?v=uyqQrS2Dbds)
+* [JUnit 5 — The New Testing Framework for Java and Platform for the JVM by Marc Philipp, Sam Brannen](https://www.youtube.com/watch?v=oGaatK5ShUs)
+* [JUnit 5: the Next Step in Automated Testing](https://www.youtube.com/watch?v=K7g2HUhWbNE)
+* [Tanzu Tuesdays 83: Testing with Spring and JUnit 5 with Sam Brannen](https://www.youtube.com/watch?v=krA-A2HqWFQ)
+* [JUnit 5: what's new and what's coming by Sam Brannen @ Spring I/O 2019](https://www.youtube.com/watch?v=AGcdT1W3eXA)
+
+## Collections and Optional
+1. [Optional by Stuart Marks](https://www.youtube.com/watch?v=fBYhtvY19xA)
+2. [Collections Refueled by Stuart Marks](https://www.youtube.com/watch?v=q6zF3vf114M)
+3. [Why We Hate Java Serialization And What We're Doing About It by Brian Goetz & Stuart Marks](https://www.youtube.com/watch?v=dOgfWXw9VrI)
+
+
 ## Keeping up to date with Java
 
 * [Google Guava](https://github.com/google/guava/wiki)
@@ -20,6 +33,6 @@
 * Guice can't inject non-static-inner class
 
 
-# Code read
+## Code read
 * com\google\inject\internal\util
   * Classes - find if concrete, abstract, find member types

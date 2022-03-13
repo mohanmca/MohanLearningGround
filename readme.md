@@ -13,6 +13,7 @@
 * [Spring Core](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Spring5/SpringFramework.md)
 * [Spring Exam Notes](https://github.com/mohanmca/professional_certification/blob/master/spring/exam_checklist.md)
 * [Java oneliner](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Java/java_oneliner.md)
+  * [Upto date Java](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Java/upto_date_java.md)
 * [ReactJS](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Javascript/react_js.md)
 * [Daily Developer Practice](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/dailypractice.md)
 
