@@ -1,5 +1,6 @@
 ## Junit Reference
 * [News from JUnit 5.x: From Revolution to Continuous Evolution (Marc Philipp, Germany)](https://www.youtube.com/watch?v=uyqQrS2Dbds)
+* [JUnit 5 by Marc Philipp](https://www.youtube.com/watch?v=0qI6_NKFQsY&t=609s)
 * [JUnit 5 — The New Testing Framework for Java and Platform for the JVM by Marc Philipp, Sam Brannen](https://www.youtube.com/watch?v=oGaatK5ShUs)
 * [JUnit 5: the Next Step in Automated Testing](https://www.youtube.com/watch?v=K7g2HUhWbNE)
 * [Tanzu Tuesdays 83: Testing with Spring and JUnit 5 with Sam Brannen](https://www.youtube.com/watch?v=krA-A2HqWFQ)
