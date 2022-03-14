@@ -25,12 +25,31 @@
    4. Swaptions
    5. Calibrate with market data and stochastic models
 
-## Interest Rates Basics
+## Interest Rates Basics - Week1
 1. Discount bonds
 2. Forward and Future rates
 3. Coupon Bonds and IRS
 4. Duration and Convexity
 5. Market Conventions
+
+## Estimating the Term Structure - Week 3
+1. BootStrapping
+2. Exact Methods
+3. Smoothing Methods
+4. Principal Component Analysis
+
+## Stochastic Models - Week4
+1. Stochastic Calculus
+2. Short Rate Models
+3. Heath-Jarrow-Morton Framework
+4. Forward Measures
+
+## Interest Rates Basics - Week5
+1. Interest Rate Derivatives
+2. Interest Rate Futures and Convexity Adjustment
+3. Caps and Floors
+4. Swaptions
+5. Calibration Example
 
 
 ## IRS
