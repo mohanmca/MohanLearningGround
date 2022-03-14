@@ -11,6 +11,29 @@
 2. [Collections Refueled by Stuart Marks](https://www.youtube.com/watch?v=q6zF3vf114M)
 3. [Why We Hate Java Serialization And What We're Doing About It by Brian Goetz & Stuart Marks](https://www.youtube.com/watch?v=dOgfWXw9VrI)
 
+## Most Used Library
+
+1. Google Guava
+2. slf4j-api
+3. spring-context
+4. protobuf-java
+5. junit-jupiter
+6. assertj-core
+7. mockito-core
+8. gson
+9. commons-lang-3
+10. sprint-core
+11. cucumber-spring
+12. cucumber-java
+13. joda-time
+14. snake-yaml
+15. jackson-databind
+16. awaitility
+17. sprint-test
+18. hamcrest-library
+19. commons-collections
+20. spring-tx
+21. httpclient (apache)
 
 ## Keeping up to date with Java
 
