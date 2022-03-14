@@ -52,6 +52,12 @@
 5. Calibration Example
 
 
+## Excel sheets for learning
+
+1. [FV, PMT, Annuity](http://pages.stern.nyu.edu/~igiddy/spreadsheets/tvm.xls)
+2. [Bond valuation example](https://exceljet.net/formula/bond-valuation-example)
+
+
 ## IRS
 1. Changing two different stream of revenues
 
