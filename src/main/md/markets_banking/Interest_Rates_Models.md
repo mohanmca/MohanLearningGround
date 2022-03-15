@@ -8,10 +8,18 @@
 
 ## CME Instrucments
 
-1. [KRW IRS & INR OIS](https://www.cmegroup.com/education/files/korean-won-and-indian-rupee-swap-clearing.pdf)
-2. [Eris USD Swap Futures](https://www.cmegroup.com/education/files/eris-methodology-overview.pdf)
-3. [Interest Rate Swaps inurl:https://www.cmegroup.com/education/files/](https://google.com/?q=IRS)
-4. [CME Education](https://www.cmegroup.com/education/courses/cme-institute-live/chapter-1-introduction-to-cme-group-and-fundamentals-of-financial-futures-and-options/introduction-to-short-term-interest-rates.html#cmeloginteaser1)
+1. [Interest Rate Futures and Options Quick Reference Guide](https://www.cmegroup.com/trading/interest-rates/interest-rates-quick-reference-guide.html)
+2. [KRW IRS & INR OIS](https://www.cmegroup.com/education/files/korean-won-and-indian-rupee-swap-clearing.pdf)
+3. [Eris USD Swap Futures](https://www.cmegroup.com/education/files/eris-methodology-overview.pdf)
+4. [Interest Rate Swaps inurl:https://www.cmegroup.com/education/files/](https://google.com/?q=IRS)
+5. [CME Education](https://www.cmegroup.com/education/courses/cme-institute-live/chapter-1-introduction-to-cme-group-and-fundamentals-of-financial-futures-and-options/introduction-to-short-term-interest-rates.html#cmeloginteaser1)
+
+## [US Treasury features](https://www.cmegroup.com/education/courses/cme-institute-live/chapter-1-introduction-to-cme-group-and-fundamentals-of-financial-futures-and-options/introduction-to-interest-rate-futures.html)
+1. Deivery Mechanism
+2. Pricing Mechanics
+3. Basis
+   1. Cost of carry (CTD - Cheapest to deliver)
+4. Risk Management using futures
 
 ## 4 components
 1. Interest rates and related contracts
