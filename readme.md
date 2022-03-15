@@ -15,6 +15,7 @@
 * [Java oneliner](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Java/java_oneliner.md)
   * [Upto date Java](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Java/upto_date_java.md)
 * [ReactJS](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Javascript/react_js.md)
+* [Interest Rates Models](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/markets_banking/Interest_Rates_Models.md)
 * [Daily Developer Practice](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/dailypractice.md)
 
 ## Mind, Focus and Remembering
