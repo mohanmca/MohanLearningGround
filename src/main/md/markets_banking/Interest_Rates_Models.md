@@ -6,6 +6,13 @@
 4. Important factor in Financial Risk Management
 5. 100s of trillions of dollar and 100s of products are used to manage
 
+## CME Instrucments
+
+1. [KRW IRS & INR OIS](https://www.cmegroup.com/education/files/korean-won-and-indian-rupee-swap-clearing.pdf)
+2. [Eris USD Swap Futures](https://www.cmegroup.com/education/files/eris-methodology-overview.pdf)
+3. [Interest Rate Swaps inurl:https://www.cmegroup.com/education/files/](https://google.com/?q=IRS)
+4. [CME Education](https://www.cmegroup.com/education/courses/cme-institute-live/chapter-1-introduction-to-cme-group-and-fundamentals-of-financial-futures-and-options/introduction-to-short-term-interest-rates.html#cmeloginteaser1)
+
 ## 4 components
 1. Interest rates and related contracts
 2. Estimating the term structure
