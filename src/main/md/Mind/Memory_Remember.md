@@ -84,8 +84,18 @@
    1. Repetition is mother of learning
    1. Reticular activating system creates awarness
 ----
+## An ancient Indian memorization technique!
+
+1. Write target material in your own hand
+   1. What you write in your own hand is easier to master
+2. Read 10 times the target material right before you go to sleep (wash with cold water just before reading)
+   1. Reading should be the last thing before your sleep
+3. Place the material by your side - right next to your bed
+4. Read 10 times the target material right after wake-up (after washing your face with cold-water)
+---
 # Reference
 * (Ask HN: How do you remember what you read?)
+* [An ancient Indian memorization secret!](https://www.youtube.com/watch?v=3sxhlHrUMog)
 * [How to develop super power memory](https://archive.org/details/HowToDevelopASUPERPOWERMEMORYHarryLorayne/page/n7)
 * [How To Develop A Super Power Memory](http://www.ownways.com/how_to_develop_a_super_power_memory/Contents.html)
 * [Super memory it can be yours](https://issuu.com/snehalwankhede/docs/super-memory-it-can-be-yours-)
