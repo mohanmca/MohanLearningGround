@@ -32,12 +32,20 @@
    3. https://tamil.examsdaily.in/wp-content/uploads/2018/11/%E0%AE%AA%E0%AE%BF%E0%AE%B0%E0%AE%BF%E0%AE%A4%E0%AF%8D%E0%AE%A4%E0%AF%86%E0%AE%B4%E0%AF%81%E0%AE%A4%E0%AF%81%E0%AE%95-1.pdf
 
 
+## Daily practice programming
+
+1. [What is computer program](https://www.dkfindout.com/us/computer-coding/what-is-coding/what-is-computer-program/)
+1. [What is coding](https://www.dkfindout.com/us/computer-coding/what-is-coding/)
+1. [What is scratch](https://www.dkfindout.com/us/computer-coding/what-is-scratch/)
+1. [What is scratch-windows](https://www.dkfindout.com/us/computer-coding/scratch-window/)
+1. [What is scratch-sprites](https://www.dkfindout.com/us/computer-coding/scratch-sprites/)
+1. [scratch quiz](https://www.dkfindout.com/us/quiz/computer-coding/quiz-yourself-on-scratch/)
 
 ## Emergency vocabulary
 
 1. Ambulance: மருத்துவ ஊர்தி
 1. Hospital: வைத்தியசாலை
-1. Police: போலீஸ்
+1. Police: போலீஸ்/காவலர்
 1. Stomach Ache: வயிற்று வலி
 1. Pharmacy: மருந்தகம்
 1. Doctor: மருத்துவர்
