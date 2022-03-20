@@ -139,14 +139,15 @@ aj[`time; select time,price from trade where date-last date.sym=`AAPL,time withi
 
 ## Reference
 1. [Q for mortals - book](https://code.kx.com/q4m3/)
-2. [Time Series Database Lectures #4 - Fintan Quill (Kdb+)](https://www.youtube.com/watch?v=AiGdfmxEP68)
+2. [KC Academy](https://kx.com/academy/)
+3. [Time Series Database Lectures #4 - Fintan Quill (Kdb+)](https://www.youtube.com/watch?v=AiGdfmxEP68)
    1. [Same as above](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=dbb8a888-2448-4edf-bf7f-f8ca0f3dd490)
    2. [Notes from above talks](https://kakhuseyinoglu.wordpress.com/2017/10/27/talk-time-series-analytics-for-streaming-big-fast-data-by-fintan-quill/)
-3. [Time Series Database Lectures - Fall 2017](https://db.cs.cmu.edu/seminar2017/)
-4. [Notation as a tool of thought](https://dl.acm.org/doi/pdf/10.1145/1283920.1283935)
-5. [Kdb from student perspective](https://cs.ulb.ac.be/public/_media/teaching/infoh415/student_projects/2019/kdb.pdf)
-6. [Computer science talks](http://halley.exp.sis.pitt.edu/comet/presentColloquium.do?col_id=12511)
-7. [Code KX](https://code.kx.com/q/)
-8. [KDB Personal Google Groups](https://groups.google.com/g/personal-kdbplus)
-9. [Q Tips book](https://www.amazon.com/Tips-Fast-Scalable-Maintainable-Kdb/dp/9881389909)
-10. [Fintan Quill Engineer, Kx Systems]
+4. [Time Series Database Lectures - Fall 2017](https://db.cs.cmu.edu/seminar2017/)
+5. [Notation as a tool of thought](https://dl.acm.org/doi/pdf/10.1145/1283920.1283935)
+6. [Kdb from student perspective](https://cs.ulb.ac.be/public/_media/teaching/infoh415/student_projects/2019/kdb.pdf)
+7. [Computer science talks](http://halley.exp.sis.pitt.edu/comet/presentColloquium.do?col_id=12511)
+8. [Code KX](https://code.kx.com/q/)
+9. [KDB Personal Google Groups](https://groups.google.com/g/personal-kdbplus)
+10. [Q Tips book](https://www.amazon.com/Tips-Fast-Scalable-Maintainable-Kdb/dp/9881389909)
+11. [Fintan Quill Engineer, Kx Systems]
