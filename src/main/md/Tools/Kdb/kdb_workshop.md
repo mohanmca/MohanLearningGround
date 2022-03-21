@@ -84,6 +84,27 @@ select max fare from jan09 lj resBy where duration < avgDuration
 select max fare from jan09 where duration < (avg;duration) fby vendor
 ```
 
+```
+show resBy: select avgDuration:avg duration by vendor from jan09
+noFBy: select from (jan09 lj resBy) where duration < avgDuration
+withFBy: select max fare from jan09 where duration < (avg;duration) fby vendor
+noFBy=withFBy // we are using match operator to check, it won't match since additional column in two steps approach
+0b --failed output -- no match output for above
+(delete avgDuration from noFBy)=withFBy
+1b --output matches
+```
+
+
+## Type casting to typestamp
+`timespan$resultcolumn
+
+```sql
+select duration
+   vendor, avg_duration:`timestamp$(avg;duration) fby vendor,
+   cond:duration < (avg;duration) fby vendor
+ from jan09 
+```
+
 ## Which payment type produces the highest average tip when only trips with a fare larger than the average for each vendor is considered?
 ```sql
 req:select avg tip by payment_type from jan09 where fare > (avg;fare) fby vendor;
