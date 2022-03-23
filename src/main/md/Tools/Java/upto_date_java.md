@@ -29,6 +29,8 @@
 14. snake-yaml
 15. jackson-databind
 16. awaitility
+    1. [Introduction to Awaitility](https://www.baeldung.com/awaitility-testing)
+    2. [Awaitility User Guide](https://github.com/awaitility/awaitility/wiki/Usage)
 17. sprint-test
 18. hamcrest-library
 19. commons-collections
