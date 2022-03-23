@@ -11,7 +11,7 @@ class Person {
 }
 
 let p = new Person('Mohan', 14);
-console.log(p.toString());
+console.log( JSON.stringify(p) )
 
 function Person2(name, age) {
     this.name = name;
@@ -24,3 +24,5 @@ Person2.prototype.toString = function() {
 
 p = new Person2('Mohan', 15);
 console.log(p.toString());
+
+console.log( JSON.stringify(p) )
