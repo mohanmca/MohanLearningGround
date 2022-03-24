@@ -38,7 +38,8 @@
 21. httpclient (apache)
 
 ## Keeping up to date with Java
-
+* [Github topics java](https://github.com/topics/java)
+  * [Java trending](https://github.com/trending?since=weekly)
 * [Google Guava](https://github.com/google/guava/wiki)
 * [Junit 5 user guide](https://junit.org/junit5/docs/current/user-guide/)
 * [mocking framework for unit tests in Java](https://site.mockito.org/)
