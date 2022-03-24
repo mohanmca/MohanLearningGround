@@ -11,6 +11,7 @@
 2. Fixed income asset classes
    1. Dealers within large financial institutions
    2. Dealer-to-Dealer (wholesale market)
+      1. Exchange (D2D)
    3. Dealer-to-Customer 
       1. Asset managers
       2. Pension funds
