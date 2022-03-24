@@ -50,6 +50,10 @@
 * [doov](https://github.com/doov-org/doov)
 * [DSL Doov](https://static.rainfocus.com/oracle/oraclecode18/sess/1525874149985001Q3XY/PF/DSL.using%28java%29.toGoBeyond%28BeanValidation%29.at%28OracleCode%29%3B_1530359519477001SbsB.pdf)
 
+## Ever green Java projects
+* [Apache Netty](https://github.com/netty/netty/blob/4.1/pom.xml)
+* [JCTools](https://github.com/JCTools/JCTools)
+
 ## Google Guice
   * Fluent API, Type safe
   * Failure validation is human readable
