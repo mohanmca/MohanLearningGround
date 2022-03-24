@@ -81,3 +81,4 @@
 ## Reference
 1. [Damir Filipovic](https://www.epfl.ch/labs/csf/)
 2. [IRS discussions](https://www.coursera.org/learn/interest-rate-models/discussions)
+3. [Lecture notes](http://people.stern.nyu.edu/jcarpen0/courses/b403333/18capfloor.pdf)
