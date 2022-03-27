@@ -1,3 +1,8 @@
+## Product data schema
+
+1. [DSB PROD Product Definitions – Annex 1 Rates](https://www.anna-dsb.com/download/dsb-prod-product-definitions-annex-1-rates/)
+2. 
+
 ## Interest rate swap
 
 * [ANZ-Interest Rate Swaps](https://www.anz.com/Documents/FXOnline/interestratesswaps.pdf)
