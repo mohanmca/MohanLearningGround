@@ -26,6 +26,17 @@ listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
     |      constructor java.util.HashSet.HashSet(java.util.Collection<? extends java.lang.Integer>) is not applicable
 ```
 
+## Predicate till condition matches (only when they are sorted)
+
+```java
+List<Dish> slicedMenuDishes = specialMenu.stream()
+     .takeWhile(dish -> dish.getCalories() < 320)
+     .collect(toList());
+List<Dish> slicedMenuDishes = specialMenu.stream()
+    .dropWhile(dish -> dish.getCalories() < 320)
+    .collect(toList());
+*```
+
 ## JShell
 
 ```bat

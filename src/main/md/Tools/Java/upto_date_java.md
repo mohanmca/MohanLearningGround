@@ -50,6 +50,19 @@
 * [doov](https://github.com/doov-org/doov)
 * [DSL Doov](https://static.rainfocus.com/oracle/oraclecode18/sess/1525874149985001Q3XY/PF/DSL.using%28java%29.toGoBeyond%28BeanValidation%29.at%28OracleCode%29%3B_1530359519477001SbsB.pdf)
 
+## JDK Documentation
+
+1. [JDK-18 language updates](https://docs.oracle.com/en/java/javase/18/language/java-language-changes.html)
+2. [JDK-18 language updates](https://docs.oracle.com/en/java/javase/17/language/java-language-changes.html)
+3. [Significant changes in JDK's](https://www.oracle.com/java/technologies/javase/17-relnote-issues.html#NewFeature)
+4. [What is new in JDK-18](https://www.oracle.com/java/technologies/javase/18-relnote-issues.html#NewFeature)
+5. [Java language Documentation]
+   1. [Generics](https://docs.oracle.com/javase/tutorial/extra/generics/index.html)
+   2. [Concurrency](https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html)
+   3. [Java Regex](https://docs.oracle.com/javase/tutorial/essential/regex/index.html)
+   4. [Lambda Expression](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)
+   5. [Aggregation](https://docs.oracle.com/javase/tutorial/collections/streams/QandE/answers.html)
+
 ## Ever green Java projects
 * [Apache Netty](https://github.com/netty/netty/blob/4.1/pom.xml)
 * [JCTools](https://github.com/JCTools/JCTools)
