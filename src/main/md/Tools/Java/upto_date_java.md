@@ -11,6 +11,10 @@
 2. [Collections Refueled by Stuart Marks](https://www.youtube.com/watch?v=q6zF3vf114M)
 3. [Why We Hate Java Serialization And What We're Doing About It by Brian Goetz & Stuart Marks](https://www.youtube.com/watch?v=dOgfWXw9VrI)
 
+## Design Patterns
+
+1. [Java-design-patterns](https://github.com/iluwatar/java-design-patterns)
+
 ## Most Used Library
 
 1. Google Guava
