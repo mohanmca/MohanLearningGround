@@ -15,27 +15,28 @@
 
 1. Google Guava
 2. slf4j-api
-3. spring-context
-4. protobuf-java
-5. junit-jupiter
-6. assertj-core
-7. mockito-core
-8. gson
-9. commons-lang-3
-10. sprint-core
-11. cucumber-spring
-12. cucumber-java
-13. joda-time
-14. snake-yaml
-15. jackson-databind
-16. awaitility
+3. [resilience4j](https://github.com/resilience4j/resilience4j)
+4. spring-context
+5. protobuf-java
+6. junit-jupiter
+7. assertj-core
+8. mockito-core
+9. gson
+10. commons-lang-3
+11. sprint-core
+12. cucumber-spring
+13. cucumber-java
+14. joda-time
+15. snake-yaml
+16. jackson-databind
+17. awaitility
     1. [Introduction to Awaitility](https://www.baeldung.com/awaitility-testing)
     2. [Awaitility User Guide](https://github.com/awaitility/awaitility/wiki/Usage)
-17. sprint-test
-18. hamcrest-library
-19. commons-collections
-20. spring-tx
-21. httpclient (apache)
+18. sprint-test
+19. hamcrest-library
+20. commons-collections
+21. spring-tx
+22. httpclient (apache)
 
 ## Keeping up to date with Java
 * [Github topics java](https://github.com/topics/java)
