@@ -41,6 +41,7 @@
 ## Keeping up to date with Java
 * [Github topics java](https://github.com/topics/java)
   * [Java trending](https://github.com/trending?since=weekly)
+  * [stars:>5000 forks:>700 comments:>50 language:Java](https://github.com/search?q=stars%3A%3E5000+forks%3A%3E700+comments%3A%3E50+language%3AJava&type=Repositories)
 * [Google Guava](https://github.com/google/guava/wiki)
 * [Junit 5 user guide](https://junit.org/junit5/docs/current/user-guide/)
 * [mocking framework for unit tests in Java](https://site.mockito.org/)
