@@ -41,6 +41,11 @@
 3. Noncleared OTC swaps attract regulatory capital requirements that could be reduced by compressing the trades.
 4. Selling protection in a CDS effectively means taking on the credit risk associated with the reference obligation – this is closest to being long a credit risky bond.
 
+## OIS - reference indices
+1. SOFR in US dollars
+2. €STR in euro,
+3. and SONIA in sterling
+
 ## What to learn?
 1. Discount curve
 2. Swap's index curve
@@ -51,3 +56,5 @@
 
 ##  Reference
 * [Intution - Swaps – An Introduction]
+* [Forward Rate Curve](https://www.nuclearphynance.com/User%20Files/389/SalomonBrothersFixedIncome1.pdf)
+  * [Antti Ilmanen](https://books.google.com.sg/books/about/Overview_of_Forward_Rate_Analysis.html?id=TvMcHQAACAAJ&redir_esc=y)
