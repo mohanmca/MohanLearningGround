@@ -21,7 +21,6 @@
    2. Counterparty A agrees to pay Counterparty B a series of fixed interest payments, set at 2% per annum, paid semiannually. 
    3. In exchange, Counterparty B agrees to make a series of payments to Counterparty A based on a benchmark interest rate plus a spread of 50 basis points.
 
-
 ## Famous floating rate and conventions
 1. SOFR - floating, or variable rate.
 2. By IRS convention, in a fixed-for-floating IRS, the receiver is receiving fixed and by implication paying floating.
@@ -46,6 +45,9 @@
 1. Discount curve
 2. Swap's index curve
 3. Why there has been a convergence between swap and futures markets?
+4. CDS - Impact of buying and selling it
+   1. Selling protection in a CDS effectively means taking on the credit risk associated with the reference obligation.
+   2. This is closest to being long a credit risky bond.
 
 ##  Reference
 * [Intution - Swaps – An Introduction]
