@@ -1,12 +1,14 @@
+## What is Collateral Management
+
 * Collateral is one of the way to mitigate the credit risk
 * Collateral - Something a borrower is expected to put up to indemnify the lender against price movements or counterparty risks. (Example: Cash, Equities or Bonds)
 * Credit risk exists when counterparty has an obligation to make payments or deliveries in future
 * First leg - Initiation of Collateral Agreement
-	* Borrower offers securities as collateral
-	* Lender - lends cash
+    * Borrower offers securities as collateral
+    * Lender - lends cash
 * Second leg - Termination of Collateral Agreement
-	* Borrower - returns cash + interest
-	* Lender - hands over collateralized securities
+    * Borrower - returns cash + interest
+    * Lender - hands over collateralized securities
 * Collateral Management
   * Agreement setup
   * Collateral allocation
@@ -100,13 +102,34 @@
 
 
 
-# Stock borrowing and lending
+## Stock borrowing and lending
 * Fee or Rebate
   * The cost to borrow/lend a financial instrument
 * Borrow gets a quote for borrowing using broker
 * Broker mediates and gets a quote from multiple lender
 * Stock borrowing quote: ![Stock borrowing quote][sblq]
 
+## Hypothecation
+* Hypothecation occurs when an asset is pledged as collateral to secure loan
+  * Title and ownership still lies with borrower
+  * Ownership would be transferred if terms of agreement were not met by borrower
+  * When security buyers buy on margin or sell-short, they agree securities can be sold if necessary if there is a margin call
+
+## Rehypothecation
+* Banks would make use of client's asset that was posted as Collateral
+* Clients should permit to make use of their collateral to be used as Rehypothecatable
+* Examples:
+  * Hedge fund posted its asset as Collateral to prime-broker, that asset being used by PM for its own transaction
+
+
+## Margin account
+* It is a brokerage account, where broker *lends* money for customer to buy securities
+  * The loan in the account is collateralized by securities purchased and cash.
+  * It has interest rate for the loan that was exercized.
+  * Margin accounts are used as source of fund using existing securities
+
+## Rehypothecation risks
+* What happens if Banks that rehypothecated client's asset (or broker) default, and client would end-up in ITM?
 
      
 [ev]: img/EnterpriseCM.PNG "Enterprise View"  
@@ -115,7 +138,8 @@
 [cmit]: img/CMIT.PNG "Collateral IT Architecture"  
 [sblq]: img/SBL_Quote.PNG "Stock borrowing"  
 
-# References
+## References
+* [Rehypothecation](https://www.investopedia.com/terms/r/rehypothecation.asp)
 * [Why firms should embrace collateral management](https://assets.ey.com/content/dam/ey-sites/ey-com/en_gl/topics/banking-and-capital-markets/ey-collateral-mngt-broch.pdf?download)
 * [Collateral Management Part 1 Basics] (https://www.youtube.com/watch?v=zt4WQqu1qqQ)
 * [Collateral Management Part 3](https://www.youtube.com/watch?v=MmSVQjQQFgA)
