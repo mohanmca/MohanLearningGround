@@ -16,4 +16,5 @@
 * ```grep -o -w '\(48\|55\)=[^[:cntrl:]]\+' FILE | perl -pe 's/(\d+=[^\n]+)\n/\1~/' | perl -pe 's/([^~]+~[^~]+)~/\1\n/g'```
 * ```grep -o -w '\(48\|55\)=[^[:cntrl:]]\+' FILE | tr '\n' '~' | perl -pe 's/([^~]+~[^~]+)~/\1\n/g'```
 * ```grep -o -w '\(48\|55\)=[^[:cntrl:]]\+' FILE | sed 'N;s/\n/ /'```
+
 ## Reference

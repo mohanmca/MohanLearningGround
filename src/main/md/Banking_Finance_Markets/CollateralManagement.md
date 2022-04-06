@@ -116,6 +116,7 @@
 [sblq]: img/SBL_Quote.PNG "Stock borrowing"  
 
 # References
+* [Why firms should embrace collateral management](https://assets.ey.com/content/dam/ey-sites/ey-com/en_gl/topics/banking-and-capital-markets/ey-collateral-mngt-broch.pdf?download)
 * [Collateral Management Part 1 Basics] (https://www.youtube.com/watch?v=zt4WQqu1qqQ)
 * [Collateral Management Part 3](https://www.youtube.com/watch?v=MmSVQjQQFgA)
 * [SBL 101](https://www.youtube.com/watch?v=OAPOqh3v1Ak)
