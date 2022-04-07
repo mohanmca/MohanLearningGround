@@ -1,1 +1,0 @@
-* [Why firms should embrace collateral management](https://assets.ey.com/content/dam/ey-sites/ey-com/en_gl/topics/banking-and-capital-markets/ey-collateral-mngt-broch.pdf?download)
