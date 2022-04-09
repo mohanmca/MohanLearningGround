@@ -68,5 +68,7 @@
 
 ##  Reference
 * [Intution - Swaps – An Introduction]
+* [FRM Bionic Turtle notes](https://docs.google.com/document/d/1vVt-3-6I1XLU5yWA2_vNE2y2ou-bR3z68c023u12s8k/edit?usp=sharing)
+* [Bionic Turtle Videos](https://www.youtube.com/c/bionicturtle/videos)
 * [Forward Rate Curve](https://www.nuclearphynance.com/User%20Files/389/SalomonBrothersFixedIncome1.pdf)
   * [Antti Ilmanen](https://books.google.com.sg/books/about/Overview_of_Forward_Rate_Analysis.html?id=TvMcHQAACAAJ&redir_esc=y)
