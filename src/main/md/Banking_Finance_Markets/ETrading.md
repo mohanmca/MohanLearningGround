@@ -36,9 +36,8 @@
 2. CTT - "click-to-trade"
 
 ## ETP markets
-
-1. [MTS is Europe’s premier electronic fixed income trading market.](https://twitter.com/MTSMarkets)
-2. 
+1. [Electronic trading in fixed income markets](https://www.bis.org/publ/mktc07.pdf)
+2. [MTS is Europe’s premier electronic fixed income trading market.](https://twitter.com/MTSMarkets)
 
 ## Reference
 1. [Hanging up the phone - electronic trading in fixed income markets and its implications](https://www.bis.org/publ/qtrpdf/r_qt1603h.htm)
