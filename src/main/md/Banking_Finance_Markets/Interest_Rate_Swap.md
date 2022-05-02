@@ -57,6 +57,9 @@
 2. TN - Tomorrow next
 3. SW - Spot week
 
+## Other topics in google docs
+1. Periodic Rate of Return
+2. 
 
 ## What to learn?
 1. Discount curve
