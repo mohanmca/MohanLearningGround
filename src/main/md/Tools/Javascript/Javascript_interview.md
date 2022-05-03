@@ -1,8 +1,9 @@
 ## Most often asked interview questions
 
 1. [Javascript Questions](https://github.com/ganqqwerty/123-Essential-JavaScript-Interview-Questions)
-2. [300-JS](https://github.com/bgoonz/DEV-RESOURCES/tree/master/STAGING/INTERVIEW-PREP-COMPLETE-master/INTERVIEW-PREP-COMPLETE-master/interview-prep/300-react-q-and-as)
-3. [FrontEnd-Summary-JS](https://github.com/bgoonz/DEV-RESOURCES/blob/master/STAGING/INTERVIEW-PREP-COMPLETE-master/INTERVIEW-PREP-COMPLETE-master/SUMMARY.md)
+2. [Javascript Quiz](https://pitayan.com/posts/8-javascript-quiz-that-may-confuse-you)
+3. [300-JS](https://github.com/bgoonz/DEV-RESOURCES/tree/master/STAGING/INTERVIEW-PREP-COMPLETE-master/INTERVIEW-PREP-COMPLETE-master/interview-prep/300-react-q-and-as)
+4. [FrontEnd-Summary-JS](https://github.com/bgoonz/DEV-RESOURCES/blob/master/STAGING/INTERVIEW-PREP-COMPLETE-master/INTERVIEW-PREP-COMPLETE-master/SUMMARY.md)
 
 ## ES2018 - Reference
 
