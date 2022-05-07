@@ -30,4 +30,7 @@
 * 10x+y - ((x+y)%9) = 9(x+1)
   * 79 - ((7+9)%9) = 9*8
   * 79 - 7 = 9*8
+  
+
+## [Think of a Number. How Do Math Magicians Know What It Is?](https://www.quantamagazine.org/how-do-math-magicians-know-your-number-20220504/)
 
