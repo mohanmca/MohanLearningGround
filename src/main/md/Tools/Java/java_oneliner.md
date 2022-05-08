@@ -197,8 +197,7 @@ private void reverse(int[] nums, int first, int last) {
 ## How to generate List<Integer>  with 11212312341234512345612345671234567812345678912345678910 in java?
 
 ```java
-    IntStream.rangeClosed(1, 10).mapToObj(i -> IntStream.rangeClosed(1, i).boxed()
-    .collect(Collectors.toList())).flatMap(id -> id.stream()).collect(Collectors.toList());
+    IntStream.rangeClosed(1, 10).flatMap(i -> IntStream.rangeClosed(1, i)).boxed().collect(Collectors.toList());
 ```
 
 ## How to sort an IntStream and collect as List<Integer> (sorted output)
