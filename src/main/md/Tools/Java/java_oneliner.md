@@ -10,12 +10,10 @@ find . -name \*java | grep -v “test.*est” | xargs grep -A 4 “catch.*xcepti
 grep -A 4 catch.*xception `find . -type f -name \*java | grep -v test` > xception.log
 ```
 
-
 ## Initialize two dimensional array
 ```java
 new int[][]{{1, 2}, {3}, {3}, {}}
 ```
-
 
 ## How to create K rows with 2 columns each
 ```java
@@ -198,6 +196,7 @@ Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
 for(String data: deque) { System.out.println(deque.remove());}  //2 and 1
 for(String data: deque) { System.out.println(data);}  //2 and 1
 ```
+* [Deque-API](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html)
 
 ## How to use ArrayDeque as stack while populating, and consume as queue
 
