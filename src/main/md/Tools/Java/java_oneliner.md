@@ -197,7 +197,7 @@ for(String data: deque) { System.out.println(deque.remove());}  //2 and 1
 for(String data: deque) { System.out.println(data);}  //2 and 1
 ```
 * [Deque-API](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html)
-* Deque: ![DequeImage][DequeImage]
+* Deque: ![Alt Text][DequeImage]
 
 ## How to use ArrayDeque as stack while populating, and consume as queue
 
@@ -269,4 +269,6 @@ jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f
 ## Reference
 * [aruld/java-oneliners](https://github.com/aruld/java-oneliners/blob/master/src/main/java/com/github/aruld/oneliners/Item8.java)
 * mdanki /Users/alpha/git/MohanLearningGround/src/main/md/Java/java_oneliner.md java_api.apkg --deck "Mohan::CodeInterview::Java::API"
+
+
 [DequeImage]: img/ArrayDeque.png "ArrayDeque"
