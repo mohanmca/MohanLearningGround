@@ -51,8 +51,13 @@
    4. [Faber blog](https://szczepiq.wordpress.com/2008/04/26/asking-and-telling/)
 3. [Brice Dutheil](https://blog.arkey.fr)
    1. [Brice Mocito Answers](https://stackoverflow.com/users/48136/brice?tab=answers)
+   2. [Java TDD Kata Demonstration - From Scratch](https://vimeo.com/145703264)
+   3. [Removing Duplication Via TDD using Mockito](https://vimeo.com/10647496)
+   4. 
 
+## Mockito Resources
 
-## Mockito Tutorial
-
-4. [Mockito Full Course in 7 Hours (Beginner to Pro)](https://github.com/dinesh-varyani/mockito)
+1. [Mockito Full Course in 7 Hours (Beginner to Pro)](https://github.com/dinesh-varyani/mockito)
+2. [Google Mockito Groups](https://groups.google.com/g/mockito)
+3. [04b-SWSV-development-testing](https://inf.mit.bme.hu/sites/default/files/materials/category/kateg%C3%B3ria/education/software-and-systems-verification/16/04b-SWSV-development-testing.pdf)
+4. [Mocking, Stubbing and Test Spying using the Mockito Framework and PowerMock](https://www.hascode.com/2011/03/mocking-stubbing-and-test-spying-using-the-mockito-framework/)
