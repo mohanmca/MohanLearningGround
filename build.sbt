@@ -19,7 +19,7 @@ val tomcatVersion = "9.0.14"
 
 transitiveClassifiers := Seq("sources")
 
-sourceManaged in Compile := file("bin")
+Compile/sourceManaged := file("bin")
 
 
 libraryDependencies ++= Seq(
@@ -82,6 +82,7 @@ libraryDependencies ++=  Seq(
     "commons-lang" % "commons-lang" % "2.6" withSources(),
      "com.fasterxml.jackson.core" % "jackson-core" % "2.9.3" withSources(),
      "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.3",
+     "org.mockito" % "mockito-core" % "4.6.0"  withSources(),
     "junit" % "junit" % "4.12"
 )
 
@@ -107,7 +108,7 @@ val depsAkka = Seq(
 
 libraryDependencies ++= depsAkka
 
-unmanagedSourceDirectories in Compile ++=   Seq(
+Compile/unmanagedSourceDirectories ++=   Seq(
     baseDirectory.value / "src/main/scala",
     baseDirectory.value / "src/main/java",
     baseDirectory.value / "src/main/resources",
