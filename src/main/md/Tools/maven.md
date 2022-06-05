@@ -72,3 +72,4 @@ mvn com.github.ferstl:depgraph-maven-plugin:3.3.0:for-artifact -DgroupId=org.jbo
 * [JUnit parallel](http://java.dzone.com/articles/running-junit-tests-parallel)
 * [Using Maven in IntelliJ IDEA](https://www.youtube.com/watch?v=D1sRK8JLCQ4)
 * [Understanding Apache Maven – The Series](https://cguntur.me/2020/05/20/understanding-apache-maven-the-series/)
+* [Trace back url](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/maven.md)
