@@ -29,7 +29,7 @@ sout - system.out
 ## Show recent file, Toggle project bar
 
 * Ctrl + E (you can filter by typing further)
-* Alt+1
+* Alt+1 (show-hide project view)
 
 ## Hide all window, Navigate Class and Navigate Files, Navigate Symbols
 
@@ -64,7 +64,9 @@ Shift + Ctrl + F10
 1. TYpe value and Ctrl + Alt + V (store it as varaible)
 2. 
 
+## To increase productivity
 
+1. Set shortcut for "Tool window", "Structure View", "Project view" 
 
 ## Reference
 
