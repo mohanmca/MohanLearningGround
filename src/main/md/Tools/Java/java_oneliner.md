@@ -4,7 +4,7 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 ```
 [//]: # "Order of document - Array-Initialization, IntStream, List, String, Map"
 
-## [Java Deque API] (https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayDeque.html)
+## [Java Deque API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayDeque.html)
 
 1. [1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/discuss/609771/JavaC%2B%2BPython-Deques-O(N))
 2. [1425. Constrained Subsequence Sum](https://leetcode.com/problems/constrained-subsequence-sum/)
