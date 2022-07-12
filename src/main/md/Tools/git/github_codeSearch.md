@@ -54,9 +54,9 @@
 * [Javascript courses = course in:name language:javascript forks:>1000](https://github.com/search?q=course+in%3Aname+language%3Ajavascript+forks%3A%3E1000)
 * [java courses = course in:name language:java forks:>1000](https://github.com/search?q=course+in%3Aname+language%3Ajava+forks%3A%3E1000)
 
-## References   
-* https://github.com/search
-* https://github.com/search/advanced
-* https://help.github.com/articles/searching-code/
-* https://gist.github.com/search
+## References
+* [Github advanced search](https://github.com/search/advanced)
+* [Searching code](https://help.github.com/articles/searching-code/)
+* [Gist search](https://gist.github.com/search)
+* [Bitbucket search](https://support.atlassian.com/bitbucket-cloud/docs/search-in-bitbucket-cloud/)
   

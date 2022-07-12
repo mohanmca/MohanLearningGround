@@ -3,6 +3,7 @@
 ```bash
 mdanki intellij_idea.md intellij_idea.md  --deck "IntelliJ"
 ```
+* [Shortcut Keys](https://www.shortcutfoo.com/app/dojos/intellij-idea-win/cheatsheet)
 
 ## Intellij Idea - Find Action, Format Code
 
