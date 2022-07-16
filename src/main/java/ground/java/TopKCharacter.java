@@ -10,7 +10,7 @@ public class TopKCharacter {
         String[] words = generateStrings(20, 8);
 
         Map<Character, Long> result = Arrays.stream(words)
-                .flatMap(word -> word.chars().mapToObj(c -> new Character((char) c)))
+                .flatMap(word -> word.chars().mapToObj(c -> Character.valueOf((char) c)))
                 .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
         List<Map.Entry<Character, Long>> values = new ArrayList<>(result.entrySet());
         Comparator<Map.Entry<Character, Long>> comp = (e1, e2) -> {
