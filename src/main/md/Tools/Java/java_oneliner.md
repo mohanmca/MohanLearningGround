@@ -11,6 +11,19 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 3. [862. Shortest Subarray with Sum at Least K](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/discuss/143726/C%2B%2BJavaPython-O(N)-Using-Deque/386606/)
 4. [1499. Max Value of Equation](https://leetcode.com/problems/max-value-of-equation/discuss/709231/JavaPython-Priority-Queue-and-Deque-Solution-O(N))
 
+## Java Comparators
+
+1. Comparator.comparing(Function.identity())
+2. Comparator<String> c = String::compareTo
+3. Comparator that compares Person objects by their last name,
+   1. Comparator<Person> byLastName = Comparator.comparing(Person::getLastName);
+4. Java creating composite comparator
+   1. Comparator<Point> cmp = Comparator.comparingInt(p -> p.x).thenComparingInt(p -> p.y);
+5. Comparator.reverseOrder
+   1. Comparator.comparingInt(String::length).reversed()
+      1. // stream is now [test, foo, a], sorted by descending length
+6. 
+
 ## Quick analysis for xception handling in java code
 ```java
 find . -name \*java | grep -v “test.*est” | xargs grep -A 4 “catch.*xception” > exceptionHandling.txt
