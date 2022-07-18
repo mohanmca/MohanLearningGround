@@ -288,6 +288,9 @@ jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f
 
 ## Reference
 * [aruld/java-oneliners](https://github.com/aruld/java-oneliners/blob/master/src/main/java/com/github/aruld/oneliners/Item8.java)
+* [java-8-stream-cheat-sheet](https://www.jrebel.com/system/files/java-8-streams-cheat-sheet.pdf)
+* [Java collections cheat sheet](https://www.jrebel.com/system/files/java-collections-cheat-sheet.pdf)
+* [Java Generics Cheat sheet](https://www.jrebel.com/system/files/java-generics-cheat-sheet.pdf)
 * [Java cheatsheet](https://github.com/jsjtzyy/LeetCode/blob/master/Java%20cheat%20sheet%20for%20interview)
 * mdanki /Users/alpha/git/MohanLearningGround/src/main/md/Java/java_oneliner.md java_api.apkg --deck "Mohan::CodeInterview::Java::API"
 
