@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AMPSConfig>
+    <Name>AMPS-Sample</Name>
+
+    <Admin>
+        <InetAddr>localhost:8085</InetAddr>
+    </Admin>
+
+    <Transports>
+        <Transport>
+            <Name>any-tcp</Name>
+            <Type>tcp</Type>
+            <InetAddr>9007</InetAddr>
+            <Protocol>amps</Protocol>
+        </Transport>
+        <Transport>
+            <Name>any-ws</Name>
+            <Type>tcp</Type>
+            <InetAddr>9008</InetAddr>
+            <Protocol>websocket</Protocol>
+        </Transport>
+    </Transports>
+
+    <Logging>
+        <Target>
+            <Protocol>stdout</Protocol>
+            <Level>error</Level>
+            <IncludeErrors>00-0015</IncludeErrors>
+        </Target>
+    </Logging>
+
+</AMPSConfig>

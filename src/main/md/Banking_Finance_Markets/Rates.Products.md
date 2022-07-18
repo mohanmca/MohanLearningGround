@@ -1,8 +1,44 @@
+## Derivatives Instruments
+
+## CME Derivatives Instruments
+1. [Instrument products](https://www.cmegroup.com/markets/interest-rates/swap-futures/10-year-usd-mac-swap.contractSpecs.html)
+2. [Mac Standard](https://www.cmegroup.com/trading/interest-rates/swap-futures/mac-standard.html)
+   1. [March-2022 contracts](https://www.cmegroup.com/trading/interest-rates/files/mac-coupons-cusips-2023-03.csv)
+3. [CME Process for Publishing MAC Rates](https://www.cmegroup.com/trading/interest-rates/files/mac-rate-publication-and-review-process.pdf)
+4. [Mac Instruments](https://www.cmegroup.com/trading/interest-rates/files/mac-overview.pdf)
+
 ## Rates products
 1. [ESTR - Euro short-term rate (€STR)](https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_short-term_rate/html/index.en.html)
 2. [SARON - Swizz avg rate over night](https://en.wikipedia.org/wiki/SARON)
 3. [SOFR - Secured Overnight Financing Rate](https://www.investopedia.com/secured-overnight-financing-rate-sofr-4683954)
 
+## Instrument Fields
+
+1. Sec-id (ineternal-id)
+2. Cusip
+3. Description/Name - "USD-SOFR 2.75 03/15/2023 15 YR LCH"
+4. Start-Date
+5. Effective-Date
+6. Currency - JPY
+7. Tenor - 5Y
+8. Coupon - 3.75
+9. DatePaymentConvention - ModFollowing
+10. DatePaymentConventionFloating - ModFollowing
+11. DayCountConvention - ACT/360
+12. DayCountConventionFloating - ACT/365
+13. NegotiationTick - 0.00001
+13. NegotiationPrcision - 5
+14. PriceTick - 0.00005
+15. Category - IRS/Sec
+16. InstrumentType - IMM/MAC/
+17. RollConventionFixed - IMM
+18. RollConventionFloat - IMM
+19. ValuePerTick - 0.00001
+20. ValuePerTick - 0.00001
+21. Precision
+22. CouponFreq - 2
+23. CouponFreqFloating - 2
+24. Floating Index - SOFR-Compound
 
 ## Other terminologies
 1. Outright
