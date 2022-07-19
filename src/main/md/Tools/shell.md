@@ -30,7 +30,18 @@ echo "grep \"${PREV_10_MIN}\" ${SERVER_LOGDIR}/${SERVER_LOG}|grep -v \"time stri
 awk '/FromText/,/ToText/' logfile.log
 ```
 </p>
-</details>  
+</details>
+
+### Grep first and last occurence and in-between lines
+<details><summary>show</summary>
+<p>
+
+```bash
+$ read first last <<< $(grep -n stackoverflow your_file | awk -F: 'NR==1 {printf "%d ", $1}; END{print $1}')
+$ awk -v f=$first -v l=$last 'NR>=f && NR<=l' your_file
+```
+</p>
+</details> 
 
 ### Find block of code in set of files that contains some word
 <details><summary>show</summary>
