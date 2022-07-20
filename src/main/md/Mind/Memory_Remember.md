@@ -96,6 +96,7 @@
 # Reference
 * (Ask HN: How do you remember what you read?)
 * [Lisa Genova: How your memory works -- and why forgetting is totally OK | TED](https://www.youtube.com/watch?v=Irx0tC92fdE)
+* [Memory course](https://courses.ted.com/product/how-to-boost-your-brain-memory)
 * [Memory practice tools](https://imps.cdu.edu.au/tools/memory/)
 * [An ancient Indian memorization secret!](https://www.youtube.com/watch?v=3sxhlHrUMog)
 * [How to develop super power memory](https://archive.org/details/HowToDevelopASUPERPOWERMEMORYHarryLorayne/page/n7)
