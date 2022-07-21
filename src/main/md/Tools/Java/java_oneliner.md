@@ -17,12 +17,29 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 2. Comparator<String> c = String::compareTo
 3. Comparator that compares Person objects by their last name,
    1. Comparator<Person> byLastName = Comparator.comparing(Person::getLastName);
+   2. Java doesn't support field reference similar to method reference, hence above style comparator may not work for List.val or Node.val
 4. Java creating composite comparator
    1. Comparator<Point> cmp = Comparator.comparingInt(p -> p.x).thenComparingInt(p -> p.y);
 5. Comparator.reverseOrder
    1. Comparator.comparingInt(String::length).reversed()
       1. // stream is now [test, foo, a], sorted by descending length
-6. 
+
+## Stream Most often used FAQ
+1. How to add only non-null using stream
+   1. ```Arrays.stream(lists).filter(Objects::nonNull).forEach(pq::offer);```
+2. How to check if there are any null
+   1. ```stream.anyMatch(Objects::isNull)```
+   2. ```stream.anyMatch(x -> x == null)```
+3. How to convert List<Integer> containing Integers to primitive int array i.e, int[]?
+   1. ```listOfIntegers.stream().mapToInt(Integer::intValue).toArray()```
+4. How to String-Stream as Array?
+   1. ```String[] stringArray = stringStream.toArray(String[]::new);```
+5. How to sum the  Stack<Integer> using lambda?
+   1. ```stack.stream().reduce(0, Integer::sum);```
+6. In frequencyCountMap, find the key that has maximum frequency
+   1. ```Collections.max(count.entrySet(), Map.Entry.comparingByValue()).getKey();```
+7. How to sort an IntStream and collect as List<Integer> (sorted output)
+   1. ```verticalOrder.get(key).stream().sorted().collect(Collectors.toList())```
 
 ## Quick analysis for xception handling in java code
 ```java
@@ -44,11 +61,6 @@ t ==> int[5][] { int[2] { 0, 0 }, int[2] { 0, 0 }, int[ ...  0, 0 }, int[2] { 0,
 
 ## Sort List in reverse order
 ```Collections.sort(list, Collections.reverseOrder());```
-
-## How to convert List<Integer> containing Integers to primitive int array i.e, int[]?
-```java
-listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
-```
 
 ## Integer Stream sort, collect as Set
 ```java
@@ -82,10 +94,7 @@ max = Stream.of(14, 35, -7, 46, 98).max(Integer::compare).get();
 ```
 
 
-## How to String-Stream as Array?
-```java
-String[] stringArray = stringStream.toArray(String[]::new);
-```
+
 
 ## How to check if String is already sorted?
 
@@ -198,15 +207,6 @@ return (int)freq.values().stream().filter( v -> v>=2).count();
     IntStream.rangeClosed(1, 10).flatMap(i -> IntStream.rangeClosed(1, i)).boxed().collect(Collectors.toList());
 ```
 
-## How to sort an IntStream and collect as List<Integer> (sorted output)
-```java
-verticalOrder.get(key).stream().sorted().collect(Collectors.toList())
-```
-
-## How to sum the  Stack<Integer> using lambda?
-```java
-stack.stream().reduce(0, Integer::sum);
-```
 
 
 ## How to iterate ArrayDeque as stack
@@ -226,10 +226,7 @@ Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
 while(!deque.isEmpty()) { System.out.println(deque.removeLast());}  //1,2
 ```
 
-## Find Maximum Frequency in HashMap
-```java
-Collections.max(count.entrySet(), Map.Entry.comparingByValue()).getKey();
-```
+
 
 ## How to collect Stream<T> as Map<T, Long>
 
