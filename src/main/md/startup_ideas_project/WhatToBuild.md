@@ -42,4 +42,5 @@
 * [halfbakery](http://www.halfbakery.com/category/Food)
 * [The Problem With Problems](https://medium.com/black-n-white/the-problem-with-problems-47ee63bb3511)
 * [Ask HN: What problem in your industry is a potential startup?](https://news.ycombinator.com/item?id=9799007)
+* [What should I do with my life](https://guzey.com/personal/what-should-you-do-with-your-life/)
 * https://www.helloreads.com/
