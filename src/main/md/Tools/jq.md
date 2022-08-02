@@ -7,6 +7,11 @@
 5. cat fb_questions.json  | jq '.[]'
 6. cat fb_questions.json | jq '.data.companyTag.questions[] | select (.difficulty == "Hard")'
 
+## Reference
+1. [JQ Cheatsheet](https://lzone.de/cheat-sheet/jq)
+2. [Zendesk Cheatsheet](https://developer.zendesk.com/documentation/integration-services/developer-guide/jq-cheat-sheet/)
+
+
 ## Find all the question that has array tag, but find relevant tag most used along with Array 
 
 6. cat fb_questions.json | jq '.data.companyTag.questions[] | select (.topicTags[].name == "Array")'
