@@ -13,3 +13,4 @@
 1. [Ask HN: What skills have given you a 10x return?](https://news.ycombinator.com/item?id=32339219)
 2. [Ask HN: Who do you talk to about system architecture and design?](https://news.ycombinator.com/item?id=32331825)
 3. [hckr news](https://hckrnews.com/)
+4. [Ask HN: YouTube Channels for the Intellectually Curious](https://news.ycombinator.com/item?id=32220192)
