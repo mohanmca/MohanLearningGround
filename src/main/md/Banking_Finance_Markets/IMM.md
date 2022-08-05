@@ -24,6 +24,7 @@
    2. use as their scheduled maturity date or termination date
 2. The dates are the third Wednesday of March, June, September and December
 3. Between the 15th and 21st, whichever such day is a Wednesday
+   1.  as holidays are very unlikely to make the closest business day in another week or other month.
 
 ## What is IMM Date - History
 
