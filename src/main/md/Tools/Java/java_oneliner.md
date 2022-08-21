@@ -6,10 +6,27 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 
 ## [Java Deque API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayDeque.html)
 
+```
+1. Deque behaves differently based on its interface
+2. Stack (Interface)
+   1. push - addFirst
+   2. pop - removeFirst
+   3. peek - getFirst
+3. Queue (Interface)
+   1. add(e) - addLast(e)
+   2. offer - offerLast
+   3. remove() - removeFirst()
+   4. poll - pollFirst()
+   5. element - getFirst()
+   6. peek - peekFirst
+```
+
+## [Java Deque API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayDeque.html)
 1. [1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/discuss/609771/JavaC%2B%2BPython-Deques-O(N))
 2. [1425. Constrained Subsequence Sum](https://leetcode.com/problems/constrained-subsequence-sum/)
 3. [862. Shortest Subarray with Sum at Least K](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/discuss/143726/C%2B%2BJavaPython-O(N)-Using-Deque/386606/)
 4. [1499. Max Value of Equation](https://leetcode.com/problems/max-value-of-equation/discuss/709231/JavaPython-Priority-Queue-and-Deque-Solution-O(N))
+
 
 ## Java Comparators
 
@@ -93,9 +110,6 @@ max = Stream.of(14, 35, -7, 46, 98).max(Integer::compare).get();
         }
 ```
 
-
-
-
 ## How to check if String is already sorted?
 
 ```java
@@ -103,6 +117,108 @@ public boolean isSorted(String[] words) {
     return IntStream.range(0, words.length-1).noneMatch( i -> words[i+1].compareTo(words[i]) < 0 );
 }
 ```
+
+
+## Comparator - Sorting Strings - sortedByNaturalOrder()
+
+```java
+List<String> bonds = Arrays.asList("Connery","Lazenby","Moore", "Dalton", "Brosnan","Craig");
+List<String> sortedByNaturalOrder = bonds.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+```
+* output: sortedByNaturalOrder ==> [Brosnan, Connery, Craig, Dalton, Lazenby, Moore]
+
+## Comparator.reverseOrder() - Static method
+
+```java
+List<String> sortedByReverseOrder = bonds.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+```
+* output: sortedByReverseOrder ==> [Moore, Lazenby, Dalton, Craig, Connery, Brosnan]
+
+## How to compare strings using lowercase
+
+```java
+List<String> sortedByLowerCase = bonds.stream().sorted(Comparator.comparing(String::toLowerCase)).collect(Collectors.toList());
+```
+* output: sortedByLowerCase ==> [Brosnan, Connery, Craig, Dalton, Lazenby, Moore]
+* **Note**
+   * The data is not changed to lowercase
+   * Only while comparing, the Comparator uses toLowerCase of the all the input values
+
+## How to compare strings using string length
+
+```java
+List<String> sortedByLength = bonds.stream().sorted(Comparator.comparingInt(String::length)).collect(Collectors.toList());
+```
+* output: sortedByLength ==> [Moore, Craig, Dalton, Lazenby, Connery, Brosnan]
+* **Note**
+   * The data is not changed to lowercase
+   * Only while comparing, the Comparator uses length of the input string values
+
+## Composite comparator - string.length and naturalOrder
+
+```java
+List<String> sortedByLengthThenByNaturalOrder = bonds.stream().sorted(Comparator.comparingInt(String::length).thenComparing(Comparator.naturalOrder())).
+    collect(Collectors.toList());
+```
+* output: sortedByLengthThenByNaturalOrder ==> [Craig, Moore, Dalton, Brosnan, Connery, Lazenby]
+
+## Where to find Comparator API
+* [java.util.Comparator](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Comparator.html)
+
+## Static methods in java.util.Comparator
+
+1. ```comparing(Function<? super T,? extends U> keyExtractor)```
+2. ```comparing(Function<? super T,? extends U> keyExtractor, Comparator<? super U> keyComparator)```
+3. ```comparingDouble(ToDoubleFunction<? super T> keyExtractor)```
+4. ```comparingInt(ToIntFunction<? super T> keyExtractor)```
+5. ```comparingLong(ToLongFunction<? super T> keyExtractor)```
+6. ```naturalOrder()```
+7. ```nullsFirst(Comparator<? super T> comparator)```
+8. ```nullsLast(Comparator<? super T> comparator)```
+9. ```reverseOrder()```
+
+## Instance Methods in java.util.Comparator
+
+1. ```thenComparing(Comparator<? super T> other)```
+2. ```thenComparing(Function<? super T,? extends U> keyExtractor)```
+3. ```thenComparing(Function<? super T,? extends U> keyExtractor, Comparator<? super U> keyComparator)```
+4. ```thenComparingDouble(ToDoubleFunction<? super T> keyExtractor)```
+5. ```thenComparingInt(ToIntFunction<? super T> keyExtractor)```
+6. ```thenComparingLong(ToLongFunction<? super T> keyExtractor)```
+
+## Examples from JDK - CASE_INSENSITIVE_ORDER
+
+* To sort a collection of String based on the length and then case-insensitive natural ordering, the comparator can be composed using following code,
+```java
+Comparator<String> cmp = Comparator.comparingInt(String::length).thenComparing(String.CASE_INSENSITIVE_ORDER);
+```
+
+## To obtain a Comparator that compares Person objects by their last name ignoring case differences,
+
+```java
+static <T,U> Comparator<T> comparing(Function<? super T,? extends U> keyExtractor, Comparator<? super U> keyComparator)
+```
+* Type Parameters:
+* T - the type of element to be compared
+* U - the type of the sort key
+* Parameters:
+* keyExtractor - the function used to extract the sort key
+* keyComparator - the Comparator used to compare the sort key
+* Returns:
+* a comparator that compares by an extracted key using the specified Comparator
+
+```java
+Comparator<Person> cmp = Comparator.comparing(
+    Person::getLastName,
+    String.CASE_INSENSITIVE_ORDER);
+```
+
+## to obtain a Comparator that compares Person objects by their last name,
+
+```java
+Comparator<Person> byLastName = Comparator.comparing(Person::getLastName);
+```
+
 
 ## Java format arguments while printing (or String manipulation)
 ```java
@@ -226,8 +342,6 @@ Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
 while(!deque.isEmpty()) { System.out.println(deque.removeLast());}  //1,2
 ```
 
-
-
 ## How to collect Stream<T> as Map<T, Long>
 
 ```java
@@ -283,6 +397,7 @@ jshell https://kishida.github.io/misc/jframe.jshell
 jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f46e/raw/a6f272479026f8bb5d79f01f9cbab631e04cb78c/jshell.jshell
 ```
 
+
 ## Reference
 * [aruld/java-oneliners](https://github.com/aruld/java-oneliners/blob/master/src/main/java/com/github/aruld/oneliners/Item8.java)
 * [java-8-stream-cheat-sheet](https://www.jrebel.com/system/files/java-8-streams-cheat-sheet.pdf)
@@ -290,6 +405,7 @@ jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f
 * [Java Generics Cheat sheet](https://www.jrebel.com/system/files/java-generics-cheat-sheet.pdf)
 * [Java cheatsheet](https://github.com/jsjtzyy/LeetCode/blob/master/Java%20cheat%20sheet%20for%20interview)
 * mdanki /Users/alpha/git/MohanLearningGround/src/main/md/Java/java_oneliner.md java_api.apkg --deck "Mohan::CodeInterview::Java::API"
-
-
 [DequeImage]: img/ArrayDeque.png "ArrayDeque"
+* 
+## How to create anki from this markdown file
+* mdanki java_oneliner.md java_oneliner.apkg --deck "Mohan::Work::Java::java_oneliner"
