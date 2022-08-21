@@ -53,3 +53,7 @@
 
 ## Reference
 1. [IMM Index & Date](https://www.youtube.com/watch?v=rzNpQ2sMl5c)
+
+## How to make anki
+
+* mdanki IMM.md IMM.apkg --deck "Bank::IMM"
