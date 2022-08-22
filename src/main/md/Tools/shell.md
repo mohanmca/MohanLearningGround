@@ -7,7 +7,11 @@
 gfind -name "*.scala" -exec wc -l {} \; | awk '{print $1}' | awk '{s+=$1} END {print s}'
 ```
 </p>
-</details>  
+</details> 
+
+## Find the Canonical path from actual path
+
+readlink -f -- /root/data/app/data.txt --> /local/1/apps/rates_etrading/
 
 ###  Grep log file that within 10 minutes of interval
 <details><summary>show</summary>
