@@ -1,4 +1,5 @@
-* https://github.com/larsga/Duke/wiki/GettingStarted
+## Duke Engine
+* [Duke Engine](https://github.com/larsga/Duke/wiki/GettingStarted)
 * java no.priv.garshol.duke.Duke --verbose --progress --testdebug --showmatches  C:\Users\mohan\git\Duke\duke-core\src\main\resources\duplicate.conf.xml
 * If there is no group in configuration, it would be considered as running for deduplication
 * Algorithm for comparing two records
@@ -17,7 +18,8 @@
   * Cosine similarity is straightforward from this representation
 
 
-# References
+## References
+* [How to build news aggregation engine](https://codingwiththomas.blogspot.com/2013/01/building-news-aggregation-engine.html)
 * [Bayesian identity resolution](http://www.garshol.priv.no/blog/217.html)
 * [Record_linkage#Identity_resolution](https://en.wikipedia.org/wiki/Record_linkage#Identity_resolution)
 * [Mike Mull: The Art and Science of Data Matching](https://www.youtube.com/watch?v=Y-nYEOgq3YE)
@@ -31,7 +33,7 @@
 * https://github.com/eklem/stopword-trainer
 * https://github.com/eklem/stopword
 
-# Configurations
+## Configurations
   --progress            show progress report while running
   --showmatches         show matches while running
   --linkfile=<file>     output matches to link file

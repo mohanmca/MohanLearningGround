@@ -1,0 +1,18 @@
+{
+  "name": "certificate",
+  "version": "1.0.0",
+  "description": "download certificates",
+  "scripts": {
+    "start": "node download_certificate.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "8.0.1"
+  },
+  "type": "module",
+  "dependencies": {
+    "puppeteer": "16.2.0"
+  }
+}
