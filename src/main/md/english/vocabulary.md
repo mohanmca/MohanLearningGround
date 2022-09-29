@@ -1,5 +1,7 @@
 *floccinaucinihilipilification* - Nothing
 
+*Shibbolath* - [a custom, principle, or belief distinguishing a particular class or group of people](https://www.youtube.com/watch?v=fqkaBEWPH18)
+
 *Piqued* - I/O performance feels quite stoic despite it often being the bottleneck in high-end computing. Thus, Amazon FSx for Lustre announcement really piqued my interest
 
 *Apparition* -  Ghost like image of a person. “This is not an apparition, but my flesh and blood form."
