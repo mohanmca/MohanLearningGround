@@ -11,6 +11,13 @@
 * [Kids Noolagam](http://kids.noolagam.com/lessons/index3.asp)
 * [தமிழ் சிறுகதை-Blogspot](https://tamilsirukatai.blogspot.com/)
 
+## Chandamama Books
+
+1. [Ambulimama_Tamil_2009_12](https://chandamama.in/resources/tamil/2009/Ambulimama_Tamil_2009_12.pdf)
+2. [Ambulimama_Tamil_2009_09](https://chandamama.in/resources/tamil/2009/Ambulimama_Tamil_2009_09.pdf)
+3. [Ambulimama_Tamil_2009_01](https://chandamama.in/resources/tamil/2009/Ambulimama_Tamil_2009_01.pdf)
+4. [Chandamama Tamil_2005](https://chandamama.in/tamil/tamil2005.php)
+5. [Chandamama Tamil](https://chandamama.in/tamil/tamil.php)
 
 ## 4th standard
 
