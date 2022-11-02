@@ -10,7 +10,7 @@ import { writeFile, existsSync, openSync, rmSync, statSync } from "fs";
  */
 
 let gender = false;
-let isShuffle = false;
+let isShuffle = true;
 const download = async function (year, month, date) {
   const browser = await launch({ headless: true, slowMo: 100 });
   // const browser = await launch({headless: true});
@@ -115,7 +115,7 @@ function getDates(startDate, stopDate) {
   return dateArray;
 }
 
-let fd = new Date("1977-01-01");
+let fd = new Date("1967-01-01");
 let td = new Date("1977-12-31");
 
 let dates = getDates(fd, td).reverse();
