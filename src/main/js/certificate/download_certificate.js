@@ -1,6 +1,6 @@
 import { launch } from "puppeteer";
 import { writeFile, existsSync, openSync, rmSync, statSync } from "fs";
-
+import { getDates } from './dateUtils.js'
 /**
  * 1. if file already exists skip the request
  * 2. create folder using year > month > date.txt
@@ -78,13 +78,14 @@ const download = async function (year, month, date) {
   await page.click("#sel_day");
 
   await page.waitForSelector("#form-btn1");
-  await page.click("#form-btn1");
 
-  await navigationPromise;
+  await Promise.all([
+        page.click("#form-btn1"),
+        page.waitForNavigation({waitUntil: 'networkidle2'})
+  ]);
 
   let [file, error_file] = getFileName(year, month, date);
   try {
-    await page.waitForSelector(".card-body > .tableBorder > tbody");
 
     writeFile(file, await page.content(), function (err) {
       if (err) return console.log(err);
@@ -99,24 +100,8 @@ const download = async function (year, month, date) {
   await browser.close();
 };
 
-Date.prototype.addDays = function (days) {
-  var date = new Date(this.valueOf());
-  date.setDate(date.getDate() + days);
-  return date;
-};
-
-function getDates(startDate, stopDate) {
-  var dateArray = new Array();
-  var currentDate = startDate;
-  while (currentDate <= stopDate) {
-    dateArray.push(new Date(currentDate));
-    currentDate = currentDate.addDays(1);
-  }
-  return dateArray;
-}
-
-let fd = new Date("1967-01-01");
-let td = new Date("1977-12-31");
+let fd = new Date("1977-11-13");
+let td = new Date("1977-11-14");
 
 let dates = getDates(fd, td).reverse();
 if (isShuffle) {
