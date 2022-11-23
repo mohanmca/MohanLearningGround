@@ -91,6 +91,39 @@
 17. zrange users 0 -1 withscores
 18. zremrangebyrank users 0 2
 
+## Hyperloglog
+
+1. Probablistic DataStructure to count unique values
+   1. Unique IP Adderesses
+   2. Email address
+2. pfadd hll a
+   1. value of a = 1
+3. pfadd hll b c d e f g
+   1. all its values are 1
+4. pfcount hll
+   1. 7
+5. pfcount hll hll2
+   1. pfmerge mergedhll hll hll2
+   2. pfcount mergedhll
+
+## Hashes in Redis
+1. hset myhash name value key value
+2. hset myhash email email@gomain.com
+3. hkeys kyhash
+4. hexist myhash name
+   1. 1 - if value available
+   2. 0 - if not available
+5. hlen myhash
+6. hlen myhash
+7. hmset myhash country India Phone 9999
+   1. hmget myhash name email
+8. hincrby myhash age 2
+9. hdecrbyfloat myhash salary 1.5
+10. hexists myhash age
+11. hstrlen myhash name
+12. hsetnx myhash name value
+    1. Add name if and only if not exist already
+
 
 ## Reference
 1. [Redis Course - In-Memory Database Tutorial](https://www.youtube.com/watch?v=XCsS_NVAa1g)
