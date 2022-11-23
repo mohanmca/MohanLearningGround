@@ -124,6 +124,38 @@
 12. hsetnx myhash name value
     1. Add name if and only if not exist already
 
+## Redis Transaction
+1. multi -- begins transactions
+2. set name a
+3. get name
+4. set a 1
+5. set b 2
+6. exec --commit all the transactions
+7. multi
+8. get a
+9. discard --discard all the transactions
+10. flushall
+11. watch a
+    1. if transaction needs to be aborted by other process/threads
+    2. watch would monitor for changes to any variable that is being monitored
+    
+## PubSub
+1. ... session1
+   1. subscribe news_channel
+2. ... session2
+   1. subscribe news_channel
+3. ... session3
+   1. publish news_channel "Breaking News"
+   2. publish broad_cast_channel "Broadcasting"
+   3. publish broad_cast_channel "New game"
+4. psubscribe news* h?llo
+   1. pattern based subscriber
+5. pubsub channels
+   1. --list of the channels
+6. pubsub numsub news
+   1. Number of subscriber to the channels (without pattern)
+7. pubsub numpat
+   1. number of pattern based subscribers
 
 ## Reference
 1. [Redis Course - In-Memory Database Tutorial](https://www.youtube.com/watch?v=XCsS_NVAa1g)
