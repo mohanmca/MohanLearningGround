@@ -6,6 +6,7 @@
 * [System Design](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/system_design/System_Design_Anki.md)
   * [Rate Limit](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/system_design/System_Design_RateLimit_Anki.md)
   * [Consistent Hashing](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/system_design/System_Design_ConsistentHashing_Anki.md)
+  * [Redis](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/redis_anki.md)
 * [Aws Notes](https://github.com/mohanmca/professional_certification/blob/master/aws/aws_exam_checklist.md)
 * [Designin Data Intensive Application](https://github.com/mohanmca/professional_certification/blob/master/SystemDesign/DesigningDataIntensiveApplication.md)
 * [Algorithm Notes](https://github.com/mohanmca/CodingChallenges)
@@ -23,8 +24,7 @@
 * [Golang Tutorial]
   * [Golang Tour](src/main/md/Tools/golang/27_golang.md)
   * [Go Cookbook](src/main/md/Tools/golang/go_cookbook.md)
-  * [Go Concurrency Patterns](src/main/md/Tools/golang/go_concurrency_patterns.md)
-  
+  * [Go Concurrency Patterns](src/main/md/Tools/golang/go_concurrency_patterns.md) 
 * [ReactJS](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Javascript/react_js.md)
 * [To old parents](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/OldParents/Checklist.md)
 * [Interest Rates Models](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Banking_Finance_Markets/Interest_Rates_Models.md)
