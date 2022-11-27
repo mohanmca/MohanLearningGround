@@ -151,11 +151,87 @@
 4. psubscribe news* h?llo
    1. pattern based subscriber
 5. pubsub channels
-   1. --list of the channels
+   1. list of the channels
 6. pubsub numsub news
-   1. Number of subscriber to the channels (without pattern)
+   1. Number of subscriber to the channels (without pattern based subscribers)
 7. pubsub numpat
    1. number of pattern based subscribers
+
+
+## Redis scripts
+1. eval "redis.call('set', KEYS[1], ARGV[1])" 1 name Shabbit
+2. get name
+3. eval "redis.call('mset', KEYS[1], ARGV[1], KEYS[2], ARGV[2])" 2 name last_name Shabbir Dawoodi
+4. zadd country 1 Italy 2 India 3 USA
+5. zrange country 0 -1
+6. eval "local order = redis.call('zrange', KEYS[1], 0, -1); return redis.call('hmget', KEYS[2], unpack(order));"
+7. script load "local order = redis.call('zrange', KEYS[1], 0, -1); return redis.call('hmget', KEYS[2], unpack(order));"
+   1. "0303493920923403dfsdf3903ndc09309230"
+8. evalsha 0303493920923403dfsdf3903ndc09309230 2 country country_cap
+9. script exists 0303493920923403dfsdf3903ndc09309230
+   1. If script exists with hash
+10. script flush
+11. script exists 0303493920923403dfsdf3903ndc09309230
+    1. (integer) 0
+
+## Redis Connection & Security
+1. ping
+2. echo message
+3. select index
+   1. list of database
+4. select 0
+5. select 2
+6. All the database is stored in "rdb" or "aof" file (only one file)
+7. Single node has 0 index, all index stored in one file
+8. select 0
+9. set name Shabbir
+10. get name --value would be available
+11. select 1
+12. get name -- value is missing (since it is different db)
+13. client list
+    1. ---list all the client available
+14. client kill id 17
+15. config set requirepass
+    1. Every client requires password
+16. get name
+    1. NOAUTH authentication required
+17. auth shabbir123
+    1. get name
+    2. answer displayed due to authentication
+
+## Redis Geospatial (Spherical longitude and latidue) - based on Geohash value
+1. GEOADD maps longitude latitude member
+2. GEOADD maps 72.585 23.033863 Ahmedabad
+3. GEOADD maps 72.8775 93.033863 Mumbai 77.8775 13.033863 Bangalore 
+4. Geospatial Data stored in sorted sets
+5. zrange maps 0 -1
+6. GEOHashValues
+7. GEOHASH maps Ahmedabad
+8. Geohash.org
+9. GEOPOS maps Ahmedabad -- redis command
+   1. "ts5e5od9xs" -- Geohash value is encoded form of long + latitude
+   2. Redis converts into 52 bit integer and stores, There might be 0.5% of error
+10. GEOADD maps 73.33 23.3434 Pune
+11. GEODIST maps Mumbai Pune
+    1. Value in Meter
+12. GEODIST maps Mumbai Pune km
+    1. Value in Kilo-Meter
+13. GEODIST maps Mumbai Ahmedabad km
+14. Find all the restuarent near a restaurant
+15. GEORADIUS maps 72.234 51.343 500 m
+    1. --find other info within 500 m
+16. GEORADIUS maps 72.234 51.343 500 m withcord withdist withhash
+17. GEORAIDUSBYMEMBER maps Ahmedabad 500 km
+18. GEORAIDUSBYMEMBER maps Ahmedabad 1500 km desc (farthest to closest)
+
+## Redis Benchmark
+1. redis-cli -h hostname -p 23455
+2. redis-benchmark (U can specificy port and host)
+   1. Default with 50 clients with all the commands, 3-bytes clients data
+   2. redis-benchmark -n 1000
+      1. run benchmark with 1000 commands
+   3. redis-benchmark -n 1000 -d 1000000
+   4. 1000 clients, with 100Gig of data
 
 ## Reference
 1. [Redis Course - In-Memory Database Tutorial](https://www.youtube.com/watch?v=XCsS_NVAa1g)

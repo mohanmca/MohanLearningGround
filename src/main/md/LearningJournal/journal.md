@@ -1,3 +1,4 @@
+## In Queue
 * "Date" - Source - "Course/page" - Started/InProgress/Completed/Todo
 * "27-Jan-2019" - "Spring Security" - In Progress
 * "24-Jan-2019" - "Developing Microservices and Mobile Apps with JHipster - Entity gneration, using Docker mongodb" - In Progress - "https://app.pluralsight.com/library/courses/play-by-play-developing-microservices-mobile-apps-jhipster/table-of-contents"
@@ -27,7 +28,6 @@
 * "01-Jan-2019" - PluralSight - "Node.js: Introduction to Node.js, Events, and Streams" - Completed
 
 
-
 ## In Queue
 * JHipster
 * Spring Security
@@ -38,17 +38,17 @@
 * Serverless
 
 ## In Queue (Financial)
-* Cassandra data modellling
+* Cassandra data modelling
 
 
 ## Follow-up/recommended part of courses
-* https://github.com/substack/stream-handbook
+* [Stream Handbook](https://github.com/substack/stream-handbook)
 * DynamoDB Best practices
 
-# Delayed
+## Delayed
 * Virtual box - network - able to work with Nat
 
-# Completed
+## Completed
 * Jenkins course
 * [https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Aws/AdvancedDesignPatternforNoSQL.md](https://www.trek10.com/blog/dynamodb-single-table-relational-modeling/)
 
