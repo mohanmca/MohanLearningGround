@@ -1,0 +1,1 @@
+##[Intentionally Making Close Friends (neelnanda.io)](https://news.ycombinator.com/item?id=33774353)
