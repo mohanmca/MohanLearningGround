@@ -323,7 +323,12 @@ return (int)freq.values().stream().filter( v -> v>=2).count();
     IntStream.rangeClosed(1, 10).flatMap(i -> IntStream.rangeClosed(1, i)).boxed().collect(Collectors.toList());
 ```
 
+## How to ensure two arrays/lists are equal?
 
+```
+word1FrequencyList.equals(word2FrequencyList);
+Arrays.equals(array1, array2);
+ ```
 
 ## How to iterate ArrayDeque as stack
 
