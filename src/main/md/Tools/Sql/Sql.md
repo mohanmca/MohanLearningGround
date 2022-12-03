@@ -1,9 +1,9 @@
 Oracle..
 * In Oracle, RowID - physical location id for row. rowid for a row never changes. Rownum changes for every sql resultset.
 
-|ROWID					|ROWNUM	|
-|:----------------------|------:|
-|AAAAECAABAAAAgiAAA		|1	    |
+| ROWID					      |ROWNUM	|
+|:------------------------|------:|
+| AAAAECAABAAAAgiAAA		    |1 |
 
 
 * Select into table
