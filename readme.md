@@ -31,6 +31,11 @@
   * [Interest Rates Swap](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Banking_Finance_Markets/Interest_Rate_Swap.md)
 * [Daily Developer Practice](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/dailypractice.md)
 
+## Finance
+
+1. [EFP - Exchange for Physical](https://www.nzx.com/markets/nzx-dairy-derivatives/dairy-hedging-academy/features-of-derivatives-markets)
+   1. [EFP - Usecase](https://www.nzx.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbElRIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--adb90e3de59c7c46e12fa28079426e1ec843b1d1/Exchange%20for%20Physical%20&%20Exchange%20for%20Swap%20(EFP%20&%20EFS%20facility).pdf)
+
 ## Mind, Focus and Remembering
 1. [Improve Memory](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Mind/Memory_Remember.md)
 2. [Akin's Law](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Akin'sLaw.md)
