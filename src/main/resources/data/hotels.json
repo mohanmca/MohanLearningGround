@@ -1,0 +1,44 @@
+[
+  {
+    "coreType": "Room",
+    "ownerKey": "fshdrxfwezp@abc.com",
+    "noOfBeds": 2,
+    "AC": "Yes",
+    "Image": "random"
+  },
+  {
+    "coreType": "Room",
+    "ownerKey": "eshdrxfwezp@abc.com",
+    "noOfBeds": 3,
+    "AC": "Yes",
+    "Image": "random"
+  },
+  {
+    "coreType": "Room",
+    "ownerKey": "dshdrxfwezp@abc.com",
+    "noOfBeds": 4,
+    "AC": "Yes",
+    "Image": "random"
+  },
+  {
+    "coreType": "Room",
+    "ownerKey": "cshdrxfwezp@abc.com",
+    "noOfBeds": 1,
+    "AC": "Yes",
+    "Image": "random"
+  },
+  {
+    "coreType": "Room",
+    "ownerKey": "bshdrxfwezp@abc.com",
+    "noOfBeds": 1,
+    "AC": "Yes",
+    "Image": "random"
+  },
+  {
+    "coreType": "Room",
+    "ownerKey": "ashdrxfwezp@abc.com",
+    "noOfBeds": 4,
+    "AC": "Yes",
+    "Image": "random"
+  }
+]

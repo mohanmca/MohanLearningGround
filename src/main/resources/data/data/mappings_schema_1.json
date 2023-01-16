@@ -1,0 +1,27 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "coreType": {
+          "type": "text"
+        },
+        "ownerKey": {
+          "type": "keyword"
+        },
+        "noOfBeds": {
+          "type": "integer"
+        },
+        "AC": {
+          "type": "boolean"
+        },
+        "Image": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}
