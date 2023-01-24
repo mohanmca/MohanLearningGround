@@ -219,6 +219,16 @@ Comparator<Person> cmp = Comparator.comparing(
 Comparator<Person> byLastName = Comparator.comparing(Person::getLastName);
 ```
 
+## How to Map<Integer, List<>> in one line
+
+```java
+    Map<Integer, List<Integer>> adj = new HashMap<>();
+    for (int[] edge : edges) {
+        int a = edge[0], b = edge[1];
+        adj.computeIfAbsent(a, value -> new ArrayList<Integer>()).add(b);
+        adj.computeIfAbsent(b, value -> new ArrayList<Integer>()).add(a);
+    }
+```
 
 ## Java format arguments while printing (or String manipulation)
 ```java
