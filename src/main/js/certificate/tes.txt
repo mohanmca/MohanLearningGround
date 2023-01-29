@@ -1,0 +1,99 @@
+https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=COC/1977/HQ/067/000695/0- R.C.PITHAVADIAL - 11-OCT-1977 -  S. VINCENT
+https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=COC/1977/HQ/068/011690/0 - SAKUNTHALA - 25-OCT-1977
+https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=COC/1977/HQ/064/004547/0 - POWLIN - - 12-Nov - 24,APPASWAMY MUDALI STREET,CHETPET,MADRAS - GOVT.K.M.C. HOSPITAL MADRAS . -600010
+https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=COC/1977/HQ/068/013013/0 - CELIN MARY - 20-Nov - 9A, OTHAVADAI ST, NAMMALWARPET, MADRAS-12  - WOMEN AND CHILDREN HOSPITAL MADRAS -
+https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=COC/1977/HQ/072/000894/0 - PRAMILA -29-Nov - S. VINCENT - 10, VELAYUDA CHETTY STREET,PUDUPET, MADRAS-2 - SAROJA NURSING HOME
+https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=COC/1977/HQ/064/005119/0 - Vithuya Mary - 14-Dec - K.M.C. HOSPITAL MADRAS . -600010- 7/66, APPA SWAMI MUDALI STREET, HARING ROAD, MADRAS-31
+https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=COC/1977/HQ/064/005231/0 - Mary - 20-Dec - K.M.C. HOSPITAL MADRAS . -600010 - 17/1, P.T. KOIL STREET, AYANAVARAM
+
+'IGNORECASE = 1;/^create/;'
+awk 'IGNORECASE = 1;/john/ && /vincent/ { print; }'
+git grep --no-index -e pattern1 --and -e pattern2
+
+----
+VINCENT JOSEPH
+https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=COC/1982/HQ/100/000499/0
+19-APR-1982
+KALYANI HOSPITAL MADRAS - 4 .
+11, CHANDA SAHIB STREET
+VINCENT JOSEPH
+SARAMMA
+----
+
+
+git grep --no-index  -i -e 'powlin' --and -e vincent 19*.txt
+git grep --no-index  -i -e 'CELIN' --and -e vincent 19*.txt
+git grep --no-index  -i -e 'powlin'  --and -e vincent 19*.txt
+git grep --no-index  -i -e 'PRAMILA' --and  -e vincent 19*.txt
+git grep --no-index  -i -e 'Vithuya' --and -e vincent 19*.txt
+git grep --no-index  -i -e 'JOHN' --and -e vincent 1982*.txt
+grep -C 5 -i vincent 1977* | grep onclick | gawk -F' "{print $2}" --onbash
+
+awk '/pattern1/ && /pattern2/'
+for each j in '1982_01_17.txt 1982_01_30.txt 1982_02_07.txt 1982_02_12.txt 1982_02_24.txt 1982_03_11.txt 1982_03_13.txt 1982_03_20.txt 1982_03_24.txt 1982_04_03.txt 1982_04_04.txt 1982_04_15.txt 1982_04_17.txt 1982_04_19.txt 1982_04_21.txt 1982_04_29.txt 1982_05_02.txt 1982_05_24.txt 1982_05_27.txt 1982_06_12.txt 1982_06_17.txt 1982_07_04.txt 1982_07_08.txt 1982_07_12.txt 1982_08_08.txt 1982_08_10.txt 1982_08_18'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+grep -i VINCENT
+mohan-dreamcore:/mnt/host/d/git/MohanLearningGround/src/main/js/certificate/result/female# grep -C 4  "VINCENT"  1978*.txt 1979*.txt 1980*.txt 1981*.txt | grep -o onclick.* | awk -F\' '{print $2}' > file
+mohan-dreamcore:/mnt/host/d/git/MohanLearningGround/src/main/js/certificate/result/female#
+
+#!/bin/bash
+export i=0;
+while IFS= read -r line; do
+    i=$((i+1))
+    echo "curl -L -o $i.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=$line"
+done < "$1"
+
+1977_01_05, COC/1977/HQ/068/000255/0
+1977_06_05, COC/1977/HQ/009/004714/0
+1977_06_12, COC/1977/HQ/091/001208/0
+1977_06_18, COC/1977/HQ/068/006302/0
+1977_06_26, COC/1977/HQ/003/001309/0
+1977_07_31, COC/1977/HQ/022/000658/0
+1977_07_31, COC/1977/HQ/022/000663/0
+1977_08_03, COC/1977/HQ/100/000671/0
+1977_08_16, COC/1977/HQ/114/001429/0
+1977_09_06, COC/1977/HQ/086/008543/0
+1977_09_09, COC/1977/HQ/091/001910/0
+1977_10_06, COC/1977/HQ/009/008568/0
+1977_10_11, COC/1977/HQ/067/000695/0
+1977_10_25, COC/1977/HQ/068/011690/0
+1977_11_12, COC/1977/HQ/064/004547/0
+1977_11_20, COC/1977/HQ/068/013013/0
+1977_11_29, COC/1977/HQ/072/000894/0
+1977_12_14, COC/1977/HQ/064/005119/0
+1977_12_20, COC/1977/HQ/064/005231/0
+curl -L -o 1977_01_05.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/068/000255/0"
+curl -L -o 1977_06_05.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/009/004714/0"
+curl -L -o 1977_06_12.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/091/001208/0"
+curl -L -o 1977_06_18.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/068/006302/0"
+curl -L -o 1977_06_26.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/003/001309/0"
+curl -L -o 1977_07_31.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/022/000658/0"
+curl -L -o 1977_07_31.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/022/000663/0"
+curl -L -o 1977_08_03.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/100/000671/0"
+curl -L -o 1977_08_16.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/114/001429/0"
+curl -L -o 1977_09_06.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/086/008543/0"
+curl -L -o 1977_09_09.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/091/001910/0"
+curl -L -o 1977_10_06.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/009/008568/0"
+curl -L -o 1977_10_11.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/067/000695/0"
+curl -L -o 1977_10_25.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/068/011690/0"
+curl -L -o 1977_11_12.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/064/004547/0"
+curl -L -o 1977_11_20.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/068/013013/0"
+curl -L -o 1977_11_29.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/072/000894/0"
+curl -L -o 1977_12_14.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/064/005119/0"
+curl -L -o 1977_12_20.pdf  "https://chennaicorporation.gov.in/online-civic-services/birthCertificate.do?do=BirthCertificate&registrationNumber=/1977/HQ/064/005231/0"

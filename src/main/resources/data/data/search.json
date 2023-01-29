@@ -1,0 +1,1 @@
+{"aggs":{"facet_bucket_all":{"aggs":{"type":{"terms":{"field":"type","size":5}}},"filter":{"bool":{"must":[]}}}},"size":10,"_source":{"includes":["ownerKey"]},"from":0,"sort":[{"_score":"desc"}]}
