@@ -57,6 +57,9 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
    1. ```Collections.max(count.entrySet(), Map.Entry.comparingByValue()).getKey();```
 7. How to sort an IntStream and collect as List<Integer> (sorted output)
    1. ```verticalOrder.get(key).stream().sorted().collect(Collectors.toList())```
+8. How to convert String into Stream<Character>?
+   1. ```"String".chars().mapToObj(c -> (char)c)```
+
 
 ## Quick analysis for xception handling in java code
 ```java
