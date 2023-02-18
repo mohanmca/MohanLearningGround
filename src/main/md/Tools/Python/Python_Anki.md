@@ -13,6 +13,11 @@ print("Mohan", "Kavin", sep="-------- ", end="!")
 * [4] and 4
 * One is list and another is int
 
+
+## What is the output of this splice? "KavinKishto"[2:9:2]
+%
+* 'vnih'
+
 ## How to print only middle 3 characters of the String whose length is more than 7?
 %
 ```python
@@ -47,9 +52,32 @@ def ReverseString():
         print(str1[i], end="")
 ```
 
-## What is the output of this splice? "KavinKishto"[2:9:2]
+## How to print 1-to-010?
 %
-* 'vnih'
+```python
+for i in range(1,11):
+    print(i)
+```
+
+## How to print table-2 from 1-to-010?
+%
+```python
+>>> for i in range(1,11):
+...     print(i*2)
+... 
+```
+
+## How to print 1-* and 2-* till 10-* in same line?
+%
+```python
+>>> for i in range(1,11):
+...     print(" ")
+...     for count in range(1,i+1):
+...             print("*", end=" ")
+... 
+```
+
+
 
 ## How to create anki from this markdown file
 * mdanki Python_Anki.md Python_Anki.md.apkg --deck "Mohan::Kavin::Pattern::Python_Anki.md"
