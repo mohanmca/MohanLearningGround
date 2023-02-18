@@ -80,4 +80,4 @@ for i in range(1,11):
 
 
 ## How to create anki from this markdown file
-* mdanki Python_Anki.md Python_Anki.md.apkg --deck "Mohan::Kavin::Pattern::Python_Anki.md"
+* mdanki Python_Anki.md Python_Anki.md.apkg --deck "Kavin::Pattern::Python_Anki"
