@@ -130,5 +130,15 @@ print(emps)
 conn.close()
 ```
 
+## What are all the other Python questions
+1.  __init__ vs __new__
+1. Difference between list and set
+1. Abstract classes use
+1. Generators vs iterators
+1. How yield works
+1. Is python call by ref/val or both. How to implement each
+1. How python list allocates space, how it is implemented
+1. what is cpython, pypy
+
 ## Generate ANKI
 * mdanki FluentPython_Anki.md FluentPython_Anki.md.apkg --deck "Mohan::Python::FluentPython_Anki"
