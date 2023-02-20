@@ -73,6 +73,152 @@ Traceback (most recent call last):
 TypeError: f() takes 1 positional argument but 2 were given
 ```
 
+## What is decorator?
+
+```python
+>>> def deco(func):
+...     def inner():
+...         print('running inner()')
+...     return inner  1
+...
+>>> @deco
+... def target():  2
+...     print('running target()')
+...
+>>> target()  3
+running inner()
+>>> target  4
+<function deco.<locals>.inner at 0x10063b598>
+```
+
+## How decorator works?
+1. It is based on closure
+2. @decorate === decorate(function)
+3. Stacked Decorators (when multiple decorators are there)
+4. There are decorator factory that returns decorator
+
+## How python variable lookup logic works? - Variable Lookup Logic
+
+1. If there is a global x declaration, x comes from and is assigned to the x global variable module.4
+1. If there is a nonlocal x declaration, x comes from and is assigned to the x local variable of the nearest surrounding function where x is defined.
+1. If x is a parameter or is assigned a value in the function body, then x is the local variable.
+1. If x is referenced but is not assigned and is not a parameter:
+    1. x will be looked up in the local scopes of the surrounding function bodies (nonlocal scopes).
+    1. If not found in surrounding scopes, it will be read from the module global scope.
+    1. If not found in the global scope, it will be read from __builtins__.__dict__.
+
+
+## Sample clock decorator ?
+
+```python
+import time
+import functools
+
+
+def clock(func):
+    @functools.wraps(func)
+    def clocked(*args, **kwargs):
+        t0 = time.perf_counter()
+        result = func(*args, **kwargs)
+        elapsed = time.perf_counter() - t0
+        name = func.__name__
+        arg_lst = [repr(arg) for arg in args]
+        arg_lst.extend(f'{k}={v!r}' for k, v in kwargs.items())
+        arg_str = ', '.join(arg_lst)
+        print(f'[{elapsed:0.8f}s] {name}({arg_str}) -> {result!r}')
+        return result
+    return clocked
+```
+
+
+## What are all the use-cases of decorator
+
+1. logging
+2. performance timing
+3. registering function to a registry
+4. @lrucache / caching
+5. btw, decorators are stacked
+
+## What is SingleDispatch
+
+```python
+r"""
+htmlize(): generic function example
+
+# tag::HTMLIZE_DEMO[]
+
+>>> htmlize({1, 2, 3})  # <1>
+'<pre>{1, 2, 3}</pre>'
+>>> htmlize(abs)
+'<pre>&lt;built-in function abs&gt;</pre>'
+>>> htmlize('Heimlich & Co.\n- a game')  # <2>
+'<p>Heimlich &amp; Co.<br/>\n- a game</p>'
+>>> htmlize(42)  # <3>
+'<pre>42 (0x2a)</pre>'
+>>> print(htmlize(['alpha', 66, {3, 2, 1}]))  # <4>
+<ul>
+<li><p>alpha</p></li>
+<li><pre>66 (0x42)</pre></li>
+<li><pre>{1, 2, 3}</pre></li>
+</ul>
+>>> htmlize(True)  # <5>
+'<pre>True</pre>'
+>>> htmlize(fractions.Fraction(2, 3))  # <6>
+'<pre>2/3</pre>'
+>>> htmlize(2/3)   # <7>
+'<pre>0.6666666666666666 (2/3)</pre>'
+>>> htmlize(decimal.Decimal('0.02380952'))
+'<pre>0.02380952 (1/42)</pre>'
+
+# end::HTMLIZE_DEMO[]
+"""
+
+# tag::HTMLIZE[]
+
+from functools import singledispatch
+from collections import abc
+import fractions
+import decimal
+import html
+import numbers
+
+@singledispatch  # <1>
+def htmlize(obj: object) -> str:
+    content = html.escape(repr(obj))
+    return f'<pre>{content}</pre>'
+
+@htmlize.register  # <2>
+def _(text: str) -> str:  # <3>
+    content = html.escape(text).replace('\n', '<br/>\n')
+    return f'<p>{content}</p>'
+
+@htmlize.register  # <4>
+def _(seq: abc.Sequence) -> str:
+    inner = '</li>\n<li>'.join(htmlize(item) for item in seq)
+    return '<ul>\n<li>' + inner + '</li>\n</ul>'
+
+@htmlize.register  # <5>
+def _(n: numbers.Integral) -> str:
+    return f'<pre>{n} (0x{n:x})</pre>'
+
+@htmlize.register  # <6>
+def _(n: bool) -> str:
+    return f'<pre>{n}</pre>'
+
+@htmlize.register(fractions.Fraction)  # <7>
+def _(x) -> str:
+    frac = fractions.Fraction(x)
+    return f'<pre>{frac.numerator}/{frac.denominator}</pre>'
+
+@htmlize.register(decimal.Decimal)  # <8>
+@htmlize.register(float)
+def _(x) -> str:
+    frac = fractions.Fraction(x).limit_denominator()
+    return f'<pre>{x} ({frac.numerator}/{frac.denominator})</pre>'
+
+# end::HTMLIZE[]
+```
+
 ## Using Sql-Lite insert-emp, update_pay, get_emps_by-name?
 
 ```python
