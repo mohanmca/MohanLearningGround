@@ -110,4 +110,9 @@ WITH SET1 AS (SELECT SYSDATE FROM DUAL), -- SET1 initialised
 SELECT * FROM SET2;                      -- SET2 projected
 ```
 
-## [Correlated_subquery](https://en.wikipedia.org/wiki/Correlated_subquery)
+
+## How to create anki from this boot mock question file
+
+```
+mdanki Sql.md Sql.apkg --deck "Mohan::pack::sql"
+```
