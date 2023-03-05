@@ -28,6 +28,7 @@
   * [Interest Rates Swap](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Banking_Finance_Markets/Interest_Rate_Swap.md)
 * [Daily Developer Practice](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/dailypractice.md)
 * [Pack]
+  * [Java Concurrency in Practice](https://jjlu521016.github.io/raw/Understanding_the_Core_Concurrency_Concepts.pdf)
   * [Scala Property Based Test](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/scala/scala_check.md)
   * [Cassandra notes](https://github.com/mohanmca/cassandra_playground/blob/master/README.md)
   * [Spring Core](https://github.com/mohanmca/professional_certification/blob/master/spring/docs/spring-core-notes.md)
