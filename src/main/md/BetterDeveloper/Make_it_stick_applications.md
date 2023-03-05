@@ -11,4 +11,4 @@
 * [Multiple Spark Quiz](https://data-flair.training/blogs/apache-spark-online-quiz-part-1/)
 * [Spark-1.1 Quiz](https://www.codercrunch.com/quiz/take/536065151/introduction-to-apache-spark)
 * [Algorithm]
-    * (https://www.codercrunch.com/quiz/take/1576649910/algorithm-analysis)
+    * [Algorithm analysis](https://www.codercrunch.com/quiz/take/1576649910/algorithm-analysis)
