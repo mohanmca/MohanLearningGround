@@ -26,10 +26,10 @@
   * Increased - Test coverage due to randomized input
   * Specification completeness - due to abstract test
   * Maintenance - less code to maintain and refactor
-  * Test case simplification  - Finding smallest set for which test case fails
+  * Test case simplification  - Finding the smallest set for which test case fails
 * When property based test case fails.
-  * Handle it in the implementation code, and repurcusion may impact test case, hence handle it in testcase
-  * Handle the exception in the propery-based test case
+  * Handle it in the implementation code, and repercussion may impact test case, hence handle it in testcase
+  * Handle the exception in the property-based test case
   * Ignore the particular case, by filtering out possibility in the test-case
 * ScalaCheck  == Properties ++ Generators
 * Properties
@@ -86,7 +86,7 @@
     * In such cases, you need to specify the complete precondition in your property even though you are using custom generators for the method input
 * Round-Trip Properties
   * Encoder-Decoder  :: decode(encode(x)) == x
-  * Serializer-Deserializer  :: deseiralize(serialize(x)) == x
+  * Serializer-Deserializer  :: deserialize(serialize(x)) == x
   * xs: List[Int] => xs.reverse.reverse == xs
   * parse(prettyPrint(ast)) == ast
 * Constructing Optimal output
@@ -103,49 +103,48 @@
   * Prop.forAll, Prop.throws, Prop.exists, Prop.all and Prop.atLeastOne. Alternatively && and || could also be used instead of forAll and atLeastOne.
   * Know about usage of  org.scalacheck.Prop.{    undecided, proved, passed, exception, falsified  }
   * Sample
-      ```scala
-      import org.scalacheck.Prop.{AnyOperators, forAll, classify}  
-
-      forAll(choose(0,100) :| "pos", choose(-10,0) :| "neg")(_ * _ < 0)
-      forAll('prime |: oneOf(2,3,5,7)) { prime =>    prime % 2 != 0  }
-
-        val propInterleave =
-        forAll { (xs: List[Int], ys: List[Int]) =>
-          val res = interleave(xs,ys)
-          val is = (0 to math.min(xs.length, ys.length)-1).toList
-          all(
-            "length" |:
-              xs.length+ys.length =? res.length,
-            "zip xs" |:
-              xs =? is.map(i => res(2*i)) ++ res.drop(2*ys.length),
-            "zip ys" |:
-              ys =? is.map(i => res(2*i+1)) ++ res.drop(2*xs.length)
-          )
-        }
-
-      val p = forAll { n:Int =>
-        classify(n % 2 == 0, "even", "odd") {
-          classify(n < 0, "neg", "pos") {
-            classify(math.abs(n) > 50, "large") {
-              n+n == 2*n
+  ```scala
+        import org.scalacheck.Prop.{AnyOperators, forAll, classify}  
+  
+        forAll(choose(0,100) :| "pos", choose(-10,0) :| "neg")(_ * _ < 0)
+        forAll('prime |: oneOf(2,3,5,7)) { prime =>    prime % 2 != 0  }
+  
+          val propInterleave =
+          forAll { (xs: List[Int], ys: List[Int]) =>
+            val res = interleave(xs,ys)
+            val is = (0 to math.min(xs.length, ys.length)-1).toList
+            all(
+              "length" |:
+                xs.length+ys.length =? res.length,
+              "zip xs" |:
+                xs =? is.map(i => res(2*i)) ++ res.drop(2*ys.length),
+              "zip ys" |:
+                ys =? is.map(i => res(2*i+1)) ++ res.drop(2*xs.length)
+            )
+          }
+  
+        val p = forAll { n:Int =>
+          classify(n % 2 == 0, "even", "odd") {
+            classify(n < 0, "neg", "pos") {
+              classify(math.abs(n) > 50, "large") {
+                n+n == 2*n
+              }
             }
           }
         }
-      }
-
-        val propSorted = forAll { xs: List[Int] =>
-        val r = xs.sorted
-      
-        val isSorted = r.indices.tail.forall(i => r(i) >= r(i-1))
-        val containsAll = xs.forall(r.contains)
-        val correctSize = xs.size == r.size
-      
-        isSorted    :| "sorted" &&
-        containsAll :| "all elements" &&
-        correctSize :| "size"
-      }
-
-      ```
+  
+          val propSorted = forAll { xs: List[Int] =>
+          val r = xs.sorted
+        
+          val isSorted = r.indices.tail.forall(i => r(i) >= r(i-1))
+          val containsAll = xs.forall(r.contains)
+          val correctSize = xs.size == r.size
+        
+          isSorted    :| "sorted" &&
+          containsAll :| "all elements" &&
+          correctSize :| "size"
+        }
+  ```
 # Generators in Details
 * Give up and discarded
   * One way of creating a new generator is to attach a filter to an existing one, by using the Gen.suchThat method
@@ -205,7 +204,7 @@
 # Shrink framework
 * Shrink allows to find a case that fails for 100s parameters into a case `as simple as` possible.
 * Shrink framework would try to narrow down failed cases.
-* Shrink framework use Stream type to evaluates all elements lazily, which makes the process of simplifying test cases more performant.
+* Shrink framework use Stream type to evaluate all elements lazily, which makes the process of simplifying test cases more performant.
 * Sometime shrink framework would try to minimize and would end-up other problem.
 * The shrink method takes a value and returns a stream of simpler variants of that value.
   * You are free to implement the shrink method in a way that makes sense for your particular type. 
@@ -232,13 +231,13 @@
    * Test.check(oneWorker, p).time - Can find time take to test a property
    * org.scalacheck.Test.TestCallback. This object will receive callbacks during the test execution.
    * The main difference compared with Checkers is that you need not use ScalaCheck labels with PropertyChecks.
-   * When using with SBT
-      ```Scala   
-        testOptions in Test +=
-          Tests.Argument(
-            TestFrameworks.ScalaCheck,
-            "-maxDiscardRatio", "10",
-            "-minSuccessfulTests", "1000"
-        )
-      ```
-  * scala -cp scalacheck.jar:. ListSpec --help
+* When using with SBT
+```Scala
+     testOptions in Test +=
+       Tests.Argument(
+         TestFrameworks.ScalaCheck,
+         "-maxDiscardRatio", "10",
+         "-minSuccessfulTests", "1000"
+     )
+```
+* scala -cp scalacheck.jar:. ListSpec --help
