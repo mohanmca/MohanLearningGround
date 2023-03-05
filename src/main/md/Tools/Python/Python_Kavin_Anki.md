@@ -14,7 +14,7 @@ print("Mohan", "Kavin", sep="-------- ", end="!")
 * One is list and another is int
 
 
-## What is the output of this splice? "KavinKishto"[2:9:2]
+## What is the output of this splice? "KavinKisho"[2:9:2]
 %
 * 'vnih'
 
@@ -77,7 +77,58 @@ for i in range(1,11):
 ... 
 ```
 
+## How to Pyramid of numbers like below
+"""
+1
+1 2
+1 2 3 
+1 2 3 4 
+1 2 3 4 5
+"""
+%
+```python
+def NumPyramid2(rowNum):
+    for j in range(2, rowNum + 2, 1):
+        for i in range(1, j, 1):
+            print(i, end=" ")
+
+        print("\r")
+```
+
+## How to print different symbols based on value of the score?
+%
+```python
+if score > 12:
+    print("^_^")
+elif score > 15:
+    print("*_*")
+elif score > 5:
+    print("%_%")
+else:
+    print("#_#")
+```
+
+## How to write a program like below?
+```
+wow
+wow
+going to get 5
+going to get 5
+I got 5
+```
+```python
+cookie_count = 0
+while True:
+    cookie_count = cookie_count + 1
+    if cookie_count > 4:
+        print("I got 5")
+        break
+    elif cookie_count < 3:
+        print("wow")
+    else:
+        print("going to get 5")
+```
 
 
 ## How to create anki from this markdown file
-* mdanki Python_Anki.md Python_Anki.md.apkg --deck "Kavin::Pattern::Python_Anki"
+* mdanki Python_Kavin_Anki.md Python_Kavin.apkg --deck "Kavin::Pattern::Python"

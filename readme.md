@@ -1,7 +1,7 @@
 ## Index of my notes
 
 * [Python](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Python/Python.md)
-* [Cassandra notes](https://github.com/mohanmca/cassandra_playground/blob/master/README.md)
+
 * [ElasticSearch notes](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/most_useful_es_query.md)
 * [Algorithm notes](https://github.com/mohanmca/professional_certification/blob/master/algorithms/README.md)
 * [System Design](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/system_design/System_Design_Anki.md)
@@ -9,7 +9,7 @@
   * [Consistent Hashing](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/system_design/System_Design_ConsistentHashing_Anki.md)
   * [Redis](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/redis_anki.md)
 * [Aws Notes](https://github.com/mohanmca/professional_certification/blob/master/aws/aws_exam_checklist.md)
-* [Designin Data Intensive Application](https://github.com/mohanmca/professional_certification/blob/master/SystemDesign/DesigningDataIntensiveApplication.md)
+* [Designing Data Intensive Application](https://github.com/mohanmca/professional_certification/blob/master/SystemDesign/DesigningDataIntensiveApplication.md)
 * [Algorithm Notes](https://github.com/mohanmca/CodingChallenges)
     * [Coding Patterns](https://github.com/mohanmca/CodingChallenges/tree/master/src/md/coding_patterns)
     * [Lee215-Coding-Patterns](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/coding_patterns/99_lee215.md)
@@ -22,16 +22,23 @@
   * [Maven Tiles](https://github.com/mohanmca/MavenPlayground/blob/main/readme.md)
   * [Intellij_Idea](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Java/intellij_idea.md)
   * [Java JRebel Cheatsheets](https://chenweixiang.github.io/docs/All_Cheat_Sheets_v2.pdf)
-* [Golang Tutorial]
-  * [Golang Tour](src/main/md/Tools/golang/27_golang.md)
-  * [Go Cookbook](src/main/md/Tools/golang/go_cookbook.md)
-  * [Go Concurrency Patterns](src/main/md/Tools/golang/go_concurrency_patterns.md) 
 * [ReactJS](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Javascript/react_js.md)
 * [To old parents](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/OldParents/Checklist.md)
 * [Interest Rates Models](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Banking_Finance_Markets/Interest_Rates_Models.md)
   * [Interest Rates Swap](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Banking_Finance_Markets/Interest_Rate_Swap.md)
 * [Daily Developer Practice](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterDeveloper/dailypractice.md)
-
+* [Pack]
+  * [Scala Property Based Test](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/scala/scala_check.md)
+  * [Cassandra notes](https://github.com/mohanmca/cassandra_playground/blob/master/README.md)
+  * [Spring Core](https://github.com/mohanmca/professional_certification/blob/master/spring/docs/spring-core-notes.md)
+  * [Spring Boot](https://github.com/mohanmca/professional_certification/blob/master/spring/docs/spring-boot-notes.md)
+  * [Python](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Python/FluentPython_Anki.md)
+  * [Javascript](https://github.com/ganqqwerty/123-Essential-JavaScript-Interview-Questions)
+    * [Javascript-2](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Javascript/Javascript_interview.md)
+  * [Golang Tutorial]
+    * [Golang Tour](src/main/md/Tools/golang/27_golang.md)
+    * [Go Cookbook](src/main/md/Tools/golang/go_cookbook.md)
+    * [Go Concurrency Patterns](src/main/md/Tools/golang/go_concurrency_patterns.md)
 ## Finance
 
 1. [EFP - Exchange for Physical](https://www.nzx.com/markets/nzx-dairy-derivatives/dairy-hedging-academy/features-of-derivatives-markets)
