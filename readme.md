@@ -34,8 +34,9 @@
   * [Spring Core](https://github.com/mohanmca/professional_certification/blob/master/spring/docs/spring-core-notes.md)
   * [Spring Boot](https://github.com/mohanmca/professional_certification/blob/master/spring/docs/spring-boot-notes.md)
   * [Python](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Python/FluentPython_Anki.md)
+  * [SQL](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Python/FluentPython_Anki.md)
   * [Javascript](https://github.com/ganqqwerty/123-Essential-JavaScript-Interview-Questions)
-    * [Javascript-2](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Javascript/Javascript_interview.md)
+    * [Javascript-2](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Sql/Sql.md)
   * [Golang Tutorial]
     * [Golang Tour](src/main/md/Tools/golang/27_golang.md)
     * [Go Cookbook](src/main/md/Tools/golang/go_cookbook.md)
