@@ -48,6 +48,11 @@ delete duplicate_values_field_name dv from table_name ta where rowid <(select mi
 DELETE FROM Employee  WHERE EmpID NOT IN (SELECT MAX(EmpID) FROM MyTable GROUP BY EmpName)
 ```
 
+## Delete duplicate email (person)
+```SQL
+delete p from Person p, Person r where p.email=r.email and p.id > r.id;
+```
+
 ## Join types are
 * self join
 * outer join (LEFT, RIGHT), 
@@ -69,6 +74,11 @@ DELETE FROM Employee  WHERE EmpID NOT IN (SELECT MAX(EmpID) FROM MyTable GROUP B
 /*#show all Users that do not have addresses */
 select * from User u  left outer join Address a on u.UserID = a.UserID  where a.UserID is null 
   ```
+
+## Show all customers that do not have Orders
+```
+    select  c.name as Customers from Customers c left outer join Orders o on c.id=o.customerId where  o.id is null
+```
 
 ## Show all Users that do not have addresses (user and address table)
 ```SQL
@@ -108,6 +118,14 @@ select * from User u  left outer join Address a on u.UserID = a.UserID  where a.
 WITH SET1 AS (SELECT SYSDATE FROM DUAL), -- SET1 initialised
      SET2 AS (SELECT * FROM SET1)        -- SET1 accessed
 SELECT * FROM SET2;                      -- SET2 projected
+```
+
+## If player activity is stored in Activity table, find the first device that he used to login
+
+```sql
+select player_id, device_id 
+from activity 
+where (player_id, event_date) in (select player_id, min(event_date) from activity group by player_id ) 
 ```
 
 
