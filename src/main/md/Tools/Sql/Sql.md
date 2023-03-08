@@ -126,11 +126,24 @@ SELECT * FROM SET2;                      -- SET2 projected
 select player_id, device_id 
 from activity 
 where (player_id, event_date) in (select player_id, min(event_date) from activity group by player_id ) 
+
+select distinct player_id
+, first_value(device_id) over (partition by player_id order by event_date) device_id
+from activity
 ```
 
+## [SQL Ordered data with Offset and pagination](https://sqlbolt.com/lesson/filtering_sorting_query_results)
+
+```sql
+SELECT column, another_column, …
+FROM mytable
+WHERE condition(s)
+ORDER BY column ASC/DESC
+LIMIT num_limit OFFSET num_offset;
+```
 
 ## How to create anki from this boot mock question file
-
+1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
 ```
 mdanki Sql.md Sql.apkg --deck "Mohan::pack::sql"
 ```
