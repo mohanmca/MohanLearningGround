@@ -7,9 +7,17 @@ In Oracle, RowID - physical location id for row. rowid for a row never changes. 
 | AAAAECAABAAAAgiAAA		    |1 |
 
 
-## How to take care for update statement
+## How to take care for update (or delete) statement
 1. Many would miss condition statement and update the entire table and wreck the data
 2. Always test the update statement with SQL statement with condition and check before using update statement
+
+## What are all the constraints are there
+
+1. Unique
+2. Non-Null
+3. AutoIncrement
+4. Check-Constraint (check complex expression)
+5. Foreign-key (every value inserted should be in master table)
 
 ## Select into table
 
