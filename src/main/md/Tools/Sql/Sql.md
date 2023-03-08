@@ -19,6 +19,39 @@ In Oracle, RowID - physical location id for row. rowid for a row never changes. 
 4. Check-Constraint (check complex expression)
 5. Foreign-key (every value inserted should be in master table)
 
+## Union vs Union All
+1. What is the criteria for Union query
+   1. Number of columns has to match
+   2. Data-type of columns has to match
+   3. Order of the columns has to match
+2. The UNION and UNION ALL operator allows you to append the results of one query to another 
+   1. Assuming that they have the same column count, order and data type.
+3. If you use the UNION without the ALL, duplicate rows between the tables will be removed from the result.
+
+## Intersect vs Except
+1. INTERSECT operator will ensure that only rows that are identical in both result sets are returned
+2. The EXCEPT operator will ensure that only rows in the first result set that aren't in the second are returned.
+
+## SubQuery
+
+1. ```SELECT * FROM sales_associates WHERE salary > (SELECT AVG(revenue_generated) FROM sales_associates);```
+2. ```DELETE FROM Student2 WHERE ROLL_NO IN ( SELECT ROLL_NO FROM Student1 WHERE LOCATION = ’chennai’);```
+3. ```UPDATE Student2 SET NAME=’geeks’ WHERE LOCATION IN ( SELECT LOCATION FROM Student1 WHERE NAME IN (‘Raju’,’Ravi’));```
+4. Subquery can nest at any level, inner most is executed
+
+
+## Co-related subquery
+
+1. Inner query in Co-related query is executed for every result of external query result
+2. ``` SELECT * FROM employees WHERE salary > (SELECT AVG(revenue_generated) FROM employees AS dept_employees WHERE dept_employees.department = employees.department);```
+
+
+## Alter table
+1. ```Alter table Movies add column Aspect_Ratio float default 0.0```
+2. ```ALTER TABLE mytable DROP column_to_be_deleted;```
+3. ```ALTER TABLE mytable RENAME TO new_table_name;```
+4. ```alter table movies add column Language Text default 'English'```
+
 ## Select into table
 
 ```SQL
