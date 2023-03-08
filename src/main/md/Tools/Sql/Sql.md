@@ -222,7 +222,48 @@ select distinct player_id
 from activity
 ```
 
+## Find the customer-number who placed maximum number of orders
 
+```
+select customer_number from (select customer_number, count(customer_number) as cnt from Orders group by customer_number order by cnt desc limit 1) top
+```
+```
+with count_order as (select customer_number, count(customer_number) as cnt from Orders group by customer_number )
+select customer_number from count_order where cnt in (
+    select MAX(cnt) from count_order 
+)
+```
+
+
+## SQL query to report all the consecutive available seats in the cinema.
+```sql
+select distinct c1.seat_id from Cinema c1, Cinema c2 where c1.free=1 and Abs(c1.seat_id - c2.seat_id) = 1 and c2.free=1 order by c1.seat_id;
+--self-join
+SELECT seat_id FROM cinema
+WHERE free = 1 AND (
+    seat_id - 1 IN (SELECT seat_id FROM cinema WHERE free = 1)
+    OR
+    seat_id + 1 IN (SELECT seat_id FROM cinema WHERE free = 1)
+);
+--self-join
+select distinct(a.seat_id) from Cinema a join Cinema b 
+where abs(a.seat_id-b.seat_id) =1  and a.free=1 and b.free=1
+order by a.seat_id
+```
+
+##. Non-Aggregate window functions
+
+1. CUME_DIST()
+1. DENSE_RANK()
+1. FIRST_VALUE()
+1. LAG()
+1. LAST_VALUE()
+1. LEAD()
+1. NTH_VALUE()
+1. NTILE()
+1. PERCENT_RANK()
+1. RANK()
+1. ROW_NUMBER()
 
 ## How to create anki from this boot mock question file
 1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
