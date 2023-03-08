@@ -52,8 +52,24 @@ DELETE FROM Employee  WHERE EmpID NOT IN (SELECT MAX(EmpID) FROM MyTable GROUP B
 ```SQL
 delete p from Person p, Person r where p.email=r.email and p.id > r.id;
 ```
+## [SQL Ordered data with Offset and pagination](https://sqlbolt.com/lesson/filtering_sorting_query_results)
+
+```sql
+SELECT column, another_column, …
+FROM mytable
+WHERE condition(s)
+ORDER BY column ASC/DESC
+LIMIT num_limit OFFSET num_offset;
+```
+
+## Latitude north to south
+
+```sql
+SELECT City FROM north_american_cities where Country like 'United States' Order by latitude desc;
+```
 
 ## Join types are
+* Inner Join -- when data is symmetrical (won't work for assymetrical data)
 * self join
 * outer join (LEFT, RIGHT), 
 * cross-join ( SELECT * FROM table1, table2 - product n*m rows returned)
@@ -132,21 +148,7 @@ select distinct player_id
 from activity
 ```
 
-## [SQL Ordered data with Offset and pagination](https://sqlbolt.com/lesson/filtering_sorting_query_results)
 
-```sql
-SELECT column, another_column, …
-FROM mytable
-WHERE condition(s)
-ORDER BY column ASC/DESC
-LIMIT num_limit OFFSET num_offset;
-```
-
-## Latitude north to south
-
-```sql
-SELECT City FROM north_american_cities where Country like 'United States' Order by latitude desc;
-```
 
 ## How to create anki from this boot mock question file
 1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
