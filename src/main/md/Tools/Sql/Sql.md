@@ -142,6 +142,12 @@ ORDER BY column ASC/DESC
 LIMIT num_limit OFFSET num_offset;
 ```
 
+## Latitude north to south
+
+```sql
+SELECT City FROM north_american_cities where Country like 'United States' Order by latitude desc;
+```
+
 ## How to create anki from this boot mock question file
 1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
 ```
