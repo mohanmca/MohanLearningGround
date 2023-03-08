@@ -7,6 +7,10 @@ In Oracle, RowID - physical location id for row. rowid for a row never changes. 
 | AAAAECAABAAAAgiAAA		    |1 |
 
 
+## How to take care for update statement
+1. Many would miss condition statement and update the entire table and wreck the data
+2. Always test the update statement with SQL statement with condition and check before using update statement
+
 ## Select into table
 
 ```SQL
@@ -68,6 +72,32 @@ LIMIT num_limit OFFSET num_offset;
 SELECT City FROM north_american_cities where Country like 'United States' Order by latitude desc;
 ```
 
+## Find the total domestic and international sales that can be attributed to each director (join + group by)
+
+```sql
+SELECT director, sum(b.domestic_sales) + sum(b.international_sales) FROM movies m, boxoffice b
+where m.id = b.movie_id group by m.director;
+```
+
+## How to insert multiple records in one-Sql
+
+```sql
+INSERT INTO mytable
+VALUES (value_or_expr, another_value_or_expr, …),
+       (value_or_expr_2, another_value_or_expr_2, …),
+       …;
+```
+
+## How to update the data
+
+```sql
+UPDATE mytable
+SET column = value_or_expr, 
+    other_column = another_value_or_expr, 
+    …
+WHERE condition;
+```
+
 ## Join types are
 * Inner Join -- when data is symmetrical (won't work for assymetrical data)
 * self join
@@ -95,6 +125,9 @@ select * from User u  left outer join Address a on u.UserID = a.UserID  where a.
 ```
     select  c.name as Customers from Customers c left outer join Orders o on c.id=o.customerId where  o.id is null
 ```
+
+## SQL - Group by vs where
+1. GROUP BY clause is executed after the WHERE clause is executed
 
 ## Show all Users that do not have addresses (user and address table)
 ```SQL
