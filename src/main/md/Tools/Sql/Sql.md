@@ -85,25 +85,29 @@ SELECT MIN(Wages) FROM
 select max(a.mark) from student a where a.mark not in (select max(b.mark) from student b)
 ```
 
-## Delete duplicate records
+## Delete duplicate records using sub-query
 
 ```SQL
 delete from table_name where rowid not in (select max(rowid) from table group by duplicate_values_field_name);
-delete duplicate_values_field_name dv from table_name ta where rowid <(select min(rowid)  from table_name tb where ta.dv=tb.dv); 
-DELETE FROM Employee  WHERE EmpID NOT IN (SELECT MAX(EmpID) FROM MyTable GROUP BY EmpName)
+DELETE FROM Employee  WHERE EmpID NOT IN (SELECT MAX(EmpID) FROM MyTable GROUP BY EmpName) 
 ```
 
-## Delete duplicate email (person)
+## Delete duplicate records using co-related subquery
+
+```sql
+delete duplicate_values_field_name dv from table_name ta where rowid <(select min(rowid)  from table_name tb where ta.dv=tb.dv);
+```
+
+## Delete duplicate person based on duplicate email using self-join 
 ```SQL
 delete p from Person p, Person r where p.email=r.email and p.id > r.id;
 ```
+
 ## [SQL Ordered data with Offset and pagination](https://sqlbolt.com/lesson/filtering_sorting_query_results)
 
 ```sql
-SELECT column, another_column, …
-FROM mytable
-WHERE condition(s)
-ORDER BY column ASC/DESC
+SELECT column, another_column, … FROM mytable
+WHERE condition(s) ORDER BY column ASC/DESC
 LIMIT num_limit OFFSET num_offset;
 ```
 
@@ -116,8 +120,7 @@ SELECT City FROM north_american_cities where Country like 'United States' Order 
 ## Find the total domestic and international sales that can be attributed to each director (join + group by)
 
 ```sql
-SELECT director, sum(b.domestic_sales) + sum(b.international_sales) FROM movies m, boxoffice b
-where m.id = b.movie_id group by m.director;
+SELECT director, sum(b.domestic_sales) + sum(b.international_sales) FROM movies m, boxoffice b where m.id = b.movie_id group by m.director;
 ```
 
 ## How to insert multiple records in one-Sql
@@ -160,7 +163,7 @@ WHERE condition;
  ```SQL
 /*#show all Users that do not have addresses */
 select * from User u  left outer join Address a on u.UserID = a.UserID  where a.UserID is null 
-  ```
+```
 
 ## Show all customers that do not have Orders
 ```
@@ -180,16 +183,13 @@ select * from User u  left outer join Address a on u.UserID = a.UserID  where a.
   group by City
   Having City = 'London'
   
-  select City, CNT=Count(1)
-  From Address
+  select City, CNT=Count(1)  From Address
   Where State = 'MA'
-  Group By City
-  Having Count(1)>5
+  Group By City Having Count(1)>5
   
   SELECT edc_country, COUNT(*)
   FROM Ed_Centers
-  GROUP BY edc_country
-  HAVING COUNT(*) > 1
+  GROUP BY edc_country HAVING COUNT(*) > 1
   ORDER BY edc_country;
 ```
 
@@ -202,7 +202,7 @@ select * from User u  left outer join Address a on u.UserID = a.UserID  where a.
   SELECT * FROM employee WHERE Sex = 'M'
 ```
 
-## Example for CTE, SET1 SET2 example
+## Example for CTE, Step by Step construction query
 ```SQL
 /* multiple with clause query */
 WITH SET1 AS (SELECT SYSDATE FROM DUAL), -- SET1 initialised
@@ -216,9 +216,12 @@ SELECT * FROM SET2;                      -- SET2 projected
 select player_id, device_id 
 from activity 
 where (player_id, event_date) in (select player_id, min(event_date) from activity group by player_id ) 
+```
 
-select distinct player_id
-, first_value(device_id) over (partition by player_id order by event_date) device_id
+## If player activity is stored in Activity table, find the first device that he used to login - using window function
+
+```sql
+select distinct player_id, first_value(device_id) over (partition by player_id order by event_date) device_id
 from activity
 ```
 
@@ -239,16 +242,20 @@ select customer_number from count_order where cnt in (
 ```sql
 select distinct c1.seat_id from Cinema c1, Cinema c2 where c1.free=1 and Abs(c1.seat_id - c2.seat_id) = 1 and c2.free=1 order by c1.seat_id;
 --self-join
+select distinct(a.seat_id) from Cinema a join Cinema b 
+where abs(a.seat_id-b.seat_id) =1  and a.free=1 and b.free=1
+order by a.seat_id
+```
+
+## SQL query to report all the consecutive available seats in the cinema using IN SubQuery
+
+```sql
 SELECT seat_id FROM cinema
 WHERE free = 1 AND (
     seat_id - 1 IN (SELECT seat_id FROM cinema WHERE free = 1)
     OR
     seat_id + 1 IN (SELECT seat_id FROM cinema WHERE free = 1)
 );
---self-join
-select distinct(a.seat_id) from Cinema a join Cinema b 
-where abs(a.seat_id-b.seat_id) =1  and a.free=1 and b.free=1
-order by a.seat_id
 ```
 
 ##. Non-Aggregate window functions
@@ -267,6 +274,7 @@ order by a.seat_id
 
 ## How to create anki from this boot mock question file
 1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
+2. [Crack SQL Interview Question: Subquery vs. CTE](https://towardsdatascience.com/sql-for-data-analysis-subquery-vs-cte-699ef629d9eb)
 ```
 mdanki Sql.md Sql.apkg --deck "Mohan::pack::sql"
 ```
