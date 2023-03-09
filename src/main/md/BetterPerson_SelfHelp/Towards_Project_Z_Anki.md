@@ -1,16 +1,15 @@
 ## What is project-z?
 
-1. Creating simple, stress-free, disciplined life
-2. Focusing on daily actions in life 
-3. Positive actions 
-4. Creating daily routines
-5. Focusing on current minutes at hand
-6. Helping me by helping others
+1. Creating simple, peaceful, disciplined life
+2. Creating daily routines
+3. Focusing on daily Positive actions in life
+4. Focusing on current minutes at hand 
+5. Helping me by helping others
 
 ## How to improve daily?
 1. Daily read this deck
 2. Watch one ted talk and update the notes
-3. Focus on positive actions
+3. Focus on improving positive actions
 
 ## How not to motivate ourselves to change behaviour?
 
@@ -19,7 +18,13 @@
 2. Science shows that warning has little influence on behavior; it's effective but limited.
     1. Don't use the fear as the motivation
     2. Fear doesn't help
-3. Fear induces in-actoin, while the thril of a gain induces action" well said!
+3. Fear induces in-action, while the thrill of a gain induces action" well said!
+
+
+## How to replace negative thoughts
+1. Helping others
+2. Stuffing with loads of good thoughts
+
 
 ## How to motivate ourselves to change behaviour?
 
@@ -31,6 +36,15 @@
 3. Progress monitoring
    1. We are motivated by seeing progress.
    2. Have a sense of control
+
+## What are all the pain that we can't avoid?
+1. We must all suffer from one of two pains:
+   1. The pain of discipline or the pain of regret
+   2. The difference is discipline weighs ounces while regret weighs tons
+
+## Emotional Literacy
+
+1. Resist the desire to act or speak when it will not help the situation
 
 ## What is the most important skill?
 
@@ -45,7 +59,7 @@
       1. Practice the skill and gain the confidence
       2. JK Rowling failed to publish first 12 novels
 3. Get out there, do what you want to do. And do not accept "no".
-4. Self-Talk - Avoid negative self talk
+4. Avoid negative self talk
    1. There are enough people say that we are not good enough, why should we do that?
    2. It doesn't help
 5. Positive affirmation -  Reinforcing positive behaviour through positive feedback
