@@ -109,3 +109,4 @@ public class OneValueCache {
 1. [JCIP](http://jcip.net.s3-website-us-east-1.amazonaws.com/listings.html)
 2. [JCIP with downloader](https://github.com/yjfox/-Java-Concurrency-in-Practice-Source-Code/tree/master)
 3. [JCIP Book](https://learning.oreilly.com/library/view/java-concurrency-in/0321349601/ch04.xhtml#ch04lev1sec1)
+4. [TDP Notes](https://github.com/teamdailypractice/effective-java-jcip/blob/main/jcip-notes/jcip-05-02-01.md)
