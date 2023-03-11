@@ -81,7 +81,7 @@ public class OneValueCache {
 2. The Object constructor first writes the default values to all fields before subclass constructors run.
 3. It is therefore possible to see the default value for a field as a stale value.
 
-## WHich object needs to be safely published?
+## Which object needs to be safely published?
 
 1. Immutable objects can be used safely by any thread without additional synchronization, even when synchronization is not used to publish them.
 2. Objects that are not immutable must be safely published
@@ -108,3 +108,4 @@ public class OneValueCache {
 ## References
 1. [JCIP](http://jcip.net.s3-website-us-east-1.amazonaws.com/listings.html)
 2. [JCIP with downloader](https://github.com/yjfox/-Java-Concurrency-in-Practice-Source-Code/tree/master)
+3. [JCIP Book](https://learning.oreilly.com/library/view/java-concurrency-in/0321349601/ch04.xhtml#ch04lev1sec1)
