@@ -72,7 +72,7 @@ select  LENGTH from FILEMETA group by LENGTH
 SELECT Employee.Name, Department.DeptName  FROM Employee, Department WHERE Employee.Dept_ID = Department.Dept_ID;
 ```
 
-## Order/Ranking
+## Order/Ranking - Find the 3rd highest wage from Wages table
 ```SQL
 SELECT MIN(Wages) FROM 
 ( 
@@ -173,7 +173,7 @@ select * from User u  left outer join Address a on u.UserID = a.UserID  where a.
 ## SQL - Group by vs where
 1. GROUP BY clause is executed after the WHERE clause is executed
 
-## Show all Users that do not have addresses (user and address table)
+## Some Group by SQL examples
 ```SQL
   /*Having vs Where*/
   /* HAVING specifies a search condition for a group or an aggregate function used in SELECT statement. */
@@ -258,7 +258,7 @@ WHERE free = 1 AND (
 );
 ```
 
-##. Non-Aggregate window functions
+## Non-Aggregate window functions
 
 1. CUME_DIST()
 1. DENSE_RANK()
@@ -272,9 +272,37 @@ WHERE free = 1 AND (
 1. RANK()
 1. ROW_NUMBER()
 
+## How to find Leaf/Inner/Root from Tree Table
+
+```sql
+select id,
+case when p_id is null then 'Root'
+     when id in (select p_id from tree) then 'Inner'
+     else 'Leaf' end as Type
+from tree
+```
+
+## How to find - the names of all the salespersons who did not have any orders related to the company with the name "RED". (order, company, salesperson) with join and right-join
+```sql
+select salesperson.name
+from orders o join company c on (o.com_id = c.com_id and c.name = 'RED')
+right join salesperson on salesperson.sales_id = o.sales_id
+where o.sales_id is null
+``
+
+## How to find - the names of all the salespersons who did not have any orders related to the company with the name "RED". (order, company, salesperson) - WITH CTE
+
+```sql
+with red_order as (select o.sales_id from Company c, Orders o where c.com_id = o.com_id and c.name = 'RED')
+select name from SalesPerson where sales_id not in (select sales_id from red_order)
+
+with red_order as (select o.sales_id from Company c, Orders o where c.com_id = o.com_id and c.name = 'RED')
+select name from SalesPerson s left join red_order r on r.sales_id = s.sales_id where r.sales_id is null
+```
+
 ## How to create anki from this boot mock question file
 1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
 2. [Crack SQL Interview Question: Subquery vs. CTE](https://towardsdatascience.com/sql-for-data-analysis-subquery-vs-cte-699ef629d9eb)
 ```
-mdanki Sql.md Sql.apkg --deck "Mohan::pack::sql"
+mdanki Sql.md Sql.apkg --deck "Mohan::Pack::Sql"
 ```
