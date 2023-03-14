@@ -199,6 +199,29 @@ select * from User u  left outer join Address a on u.UserID = a.UserID  where a.
   ORDER BY edc_country;
 ```
 
+## SQL - The winner in each group is the player who scored the maximum total points within the group. In the case of a tie, the lowest player_id wins. (Matches and PlayersTable)
+
+```sql
+select group_id as GROUP_ID, min(player_id) as PLAYER_ID
+from Players,
+    (select player, sum(score) as score from
+        (select first_player as player, first_score as score from Matches
+        union all
+        select second_player, second_score from Matches) s
+    group by player) PlayerScores
+where Players.player_id = PlayerScores.player and (group_id, score) in
+	(select group_id, max(score)
+	from Players,
+		(select player, sum(score) as score from
+			(select first_player as player, first_score as score from Matches
+			union all
+			select second_player, second_score from Matches) s
+		group by player) PlayerScores
+	where Players.player_id = PlayerScores.player
+	group by group_id)
+group by group_id
+```
+
 ## Example for CTE, Common table expression
 ```SQL
   /* With clause query */
