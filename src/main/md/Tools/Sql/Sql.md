@@ -282,6 +282,18 @@ where (player_id, event_date) in (select player_id, min(event_date) from activit
 select distinct B.player_id, B.device_id from Activity B where b.event_date in (select min(event_date) from Activity A where A.player_id = B.player_id)
 ```
 
+## [Find all the seller who has maximum total_price](https://leetcode.com/problems/sales-analysis-i/description/)
+```sql
+with total_price as (select seller_id, sum(price) as sumprice from Sales group by seller_id order by sumprice desc)
+    select seller_id from total_price where total_price.sumprice = (select sumprice from total_price limit 1)
+```
+
+## [Find all the seller who has maximum total_price](https://leetcode.com/problems/sales-analysis-i/description/)
+```sql
+SELECT seller_id FROM Sales GROUP BY seller_id
+HAVING SUM(PRICE) >= all ( SELECT SUM(PRICE) FROM Sales GROUP BY seller_id)
+```
+
 ## If player activity is stored in Activity table, find the first device that he used to login - using window function
 
 ```sql
