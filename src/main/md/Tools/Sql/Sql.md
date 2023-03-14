@@ -39,6 +39,12 @@ In Oracle, RowID - physical location id for row. rowid for a row never changes. 
 3. ```UPDATE Student2 SET NAME=’geeks’ WHERE LOCATION IN ( SELECT LOCATION FROM Student1 WHERE NAME IN (‘Raju’,’Ravi’));```
 4. Subquery can nest at any level, inner most is executed
 
+## Update Statement switch M to F (and vice versa)
+
+```sql
+update Salary set sex=(case when sex = 'f' then 'm' else 'f' end)
+```
+
 
 ## Co-related subquery
 
@@ -213,9 +219,10 @@ SELECT * FROM SET2;                      -- SET2 projected
 ## If player activity is stored in Activity table, find the first device that he used to login
 
 ```sql
-select player_id, device_id 
-from activity 
+select player_id, device_id from activity 
 where (player_id, event_date) in (select player_id, min(event_date) from activity group by player_id ) 
+
+select distinct B.player_id, B.device_id from Activity B where b.event_date in (select min(event_date) from Activity A where A.player_id = B.player_id)
 ```
 
 ## If player activity is stored in Activity table, find the first device that he used to login - using window function
@@ -224,6 +231,35 @@ where (player_id, event_date) in (select player_id, min(event_date) from activit
 select distinct player_id, first_value(device_id) over (partition by player_id order by event_date) device_id
 from activity
 ```
+
+## Select project_id that has maximum number of employees
+
+```sql
+with a as (select project_id, count(employee_id) as ct from Project as p group by project_id) 
+   select project_id from a where a.ct = (select max(ct) from a)
+
+with cnt as (select p.project_id, count(*) as emp_count from Project p group by p.project_id order by emp_count desc),
+    maxi as (select emp_count from cnt limit 1)
+    select project_id from cnt where emp_count in (select emp_count from maxi)
+```
+
+## Select project_id that has maximum number of employees - use Having Count filter
+
+```sql
+# Write your MySQL query statement below
+SELECT project_id
+FROM project
+GROUP BY project_id
+HAVING COUNT(employee_id) =
+(
+    SELECT count(employee_id)
+    FROM project
+    GROUP BY project_id
+    ORDER BY count(employee_id) desc
+    LIMIT 1
+)
+```
+
 
 ## Find the customer-number who placed maximum number of orders
 
@@ -288,7 +324,7 @@ select salesperson.name
 from orders o join company c on (o.com_id = c.com_id and c.name = 'RED')
 right join salesperson on salesperson.sales_id = o.sales_id
 where o.sales_id is null
-``
+```
 
 ## How to find - the names of all the salespersons who did not have any orders related to the company with the name "RED". (order, company, salesperson) - WITH CTE
 
@@ -299,6 +335,25 @@ select name from SalesPerson where sales_id not in (select sales_id from red_ord
 with red_order as (select o.sales_id from Company c, Orders o where c.com_id = o.com_id and c.name = 'RED')
 select name from SalesPerson s left join red_order r on r.sales_id = s.sales_id where r.sales_id is null
 ```
+
+## Check if 3 given side can form triangle
+
+```sql
+SELECT *, IF(x+y>z and x+z>y and y+z>x, 'Yes', 'No') as triangle FROM triangle
+```
+
+## Select all emp.name, bonus.bonus where bonus is less than 1000
+
+```sql
+select e.name, b.bonus from employee e left join bonus b on  e.empId=b.empId where COALESCE(b.bonus,0) < 1000 ;
+```
+
+## Date_Add 
+
+```sql
+select e.name, b.bonus from employee e left join bonus b on  e.empId=b.empId where COALESCE(b.bonus,0) < 1000 ;
+```
+
 
 ## How to create anki from this boot mock question file
 1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
