@@ -222,6 +222,40 @@ where Players.player_id = PlayerScores.player and (group_id, score) in
 group by group_id
 ```
 
+## SQL - The winner in each group is the player who scored the maximum total points within the group. In the case of a tie, the lowest player_id wins. (With CTE and Partition)
+```SQL
+-- Line up all players and scores
+-- (each match will result in 2 rows, one for first_player, the other for second_player)
+WITH all_points AS
+(
+    SELECT first_player as player_id, first_score as score
+    FROM Matches
+    UNION ALL
+    SELECT second_player as player_id, second_score as score
+    FROM Matches
+)
+-- Sum up all the points scored by each player
+, player_score AS
+(
+    SELECT
+        player_id,
+        SUM(score) as final_score
+    FROM all_points
+    GROUP BY player_id
+),
+-- Use RANK to rank players in each group
+ranking AS
+(
+    SELECT group_id, ps.player_id, RANK() OVER(PARTITION BY group_id ORDER BY final_score DESC, ps.player_id ASC) as ranked
+    FROM player_score as ps
+    INNER JOIN Players as p
+        ON ps.player_id = p.player_id
+)
+-- Select 1st ranked players from each group
+SELECT group_id, player_id
+FROM ranking
+WHERE ranked = 1```
+
 ## Example for CTE, Common table expression
 ```SQL
   /* With clause query */
