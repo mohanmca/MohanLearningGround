@@ -176,10 +176,13 @@ select * from User u  left outer join Address a on u.UserID = a.UserID  where a.
     select  c.name as Customers from Customers c left outer join Orders o on c.id=o.customerId where  o.id is null
 ```
 
-## SQL - Group by vs where
+## SQL - Group by vs where and Having
 1. GROUP BY clause is executed after the WHERE clause is executed
+2. Having is filter for group-by clause
+   1. we can also use function such as HAVING MIN(Sales.sale_date)
 
-## Some Group by SQL examples
+
+## Find male employees whose City is London
 ```SQL
   /*Having vs Where*/
   /* HAVING specifies a search condition for a group or an aggregate function used in SELECT statement. */
@@ -188,15 +191,6 @@ select * from User u  left outer join Address a on u.UserID = a.UserID  where a.
   Where Gender = 'Male'
   group by City
   Having City = 'London'
-  
-  select City, CNT=Count(1)  From Address
-  Where State = 'MA'
-  Group By City Having Count(1)>5
-  
-  SELECT edc_country, COUNT(*)
-  FROM Ed_Centers
-  GROUP BY edc_country HAVING COUNT(*) > 1
-  ORDER BY edc_country;
 ```
 
 ## SQL - The winner in each group is the player who scored the maximum total points within the group. In the case of a tie, the lowest player_id wins. (Matches and PlayersTable)
@@ -281,6 +275,27 @@ select uniq_sales.product_id, p.product_name from
 (select distinct product_id from sales s where s.sale_date between '2019-01-01' and  '2019-03-31'
 and product_id not in (select distinct product_id from sales s where s.sale_date < '2019-01-01' or s.sale_date >  '2019-03-31')) as uniq_sales, Product p
 where p.product_id = uniq_sales.product_id
+
+SELECT Product.product_id, Product.product_name FROM Product 
+JOIN Sales ON Product.product_id = Sales.product_id 
+GROUP BY Sales.product_id 
+HAVING MIN(Sales.sale_date) >= "2019-01-01" AND MAX(Sales.sale_date) <= "2019-03-31";
+```
+
+## [Find all the seller who has maximum total_price](https://leetcode.com/problems/sales-analysis-i/description/)
+```sql
+SELECT seller_id FROM Sales GROUP BY seller_id
+HAVING SUM(PRICE) >= all ( SELECT SUM(PRICE) FROM Sales GROUP BY seller_id)
+```
+
+## [that reports the buyers who have bought S8 but not iPhone - Using HavingFilter](https://leetcode.com/problems/sales-analysis-ii/solutions)
+
+```sql
+select s.buyer_id from Sales s inner join Product p on p.product_id = s.product_id
+group by s.buyer_id
+having 
+SUM( case when p.product_name ='S8' then 1 else 0 end) > 0 AND
+SUM( case when p.product_name ='iPhone' then 1 else 0 end) = 0 
 ```
 
 ## If player activity is stored in Activity table, find the first device that he used to login
@@ -300,24 +315,6 @@ with total_price as (select seller_id, sum(price) as sumprice from Sales group b
 ```sql
 with total_price as (select seller_id, sum(price) as sumprice from Sales group by seller_id order by sumprice desc)
     select seller_id from total_price where total_price.sumprice = (select max(sumprice) from total_price)
-```
-
-
-## [Find all the seller who has maximum total_price](https://leetcode.com/problems/sales-analysis-i/description/)
-```sql
-SELECT seller_id FROM Sales GROUP BY seller_id
-HAVING SUM(PRICE) >= all ( SELECT SUM(PRICE) FROM Sales GROUP BY seller_id)
-```
-
-## [that reports the buyers who have bought S8 but not iPhone - Using HavingFilter](https://leetcode.com/problems/sales-analysis-ii/solutions)
-
-```sql
-select s.buyer_id from Sales s inner join Product p on p.product_id = s.product_id
-group by s.buyer_id
-having 
-SUM( case when p.product_name ='S8' then 1 else 0 end) > 0 AND
-SUM( case when p.product_name ='iPhone' then 1 else 0 end) = 0 
-
 ```
 
 ## [Find all the S8 buyer](https://leetcode.com/problems/sales-analysis-ii/)
@@ -366,6 +363,31 @@ HAVING COUNT(employee_id) =
 )
 ```
 
+## [1113. Reported Posts](https://leetcode.com/problems/reported-posts/submissions/915539685/)
+
+```sql
+select extra as report_reason, count(distinct post_id) as report_count from Actions 
+where extra is not null AND action='report' AND action_date = '2019-07-04' 
+group by extra
+```
+
+## [Find Capital Gain](https://leetcode.com/problems/capital-gainloss/solutions/?orderBy=most_votes)
+
+```sql
+SELECT stock_name, SUM(
+    CASE
+        WHEN operation = 'Buy' THEN -price
+        ELSE price
+    END
+) AS capital_gain_loss
+FROM Stocks
+GROUP BY stock_name
+
+
+with pp as (select stock_name, sum(price) as buy from Stocks where operation='Buy' group by stock_name),
+     sp as (select stock_name, sum(price) as sell from Stocks where operation='Sell' group by stock_name)
+     select pp.stock_name, (sp.sell - pp.buy) as capital_gain_loss from pp, sp where pp.stock_name = sp.stock_name
+```
 
 ## Find the customer-number who placed maximum number of orders
 
