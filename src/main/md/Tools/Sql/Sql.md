@@ -273,6 +273,16 @@ WITH SET1 AS (SELECT SYSDATE FROM DUAL), -- SET1 initialised
 SELECT * FROM SET2;                      -- SET2 projected
 ```
 
+
+## (Unique product that sold only in certain quarter)[https://leetcode.com/problems/sales-analysis-iii/submissions/915377197/]
+
+```sql
+select uniq_sales.product_id, p.product_name from
+(select distinct product_id from sales s where s.sale_date between '2019-01-01' and  '2019-03-31'
+and product_id not in (select distinct product_id from sales s where s.sale_date < '2019-01-01' or s.sale_date >  '2019-03-31')) as uniq_sales, Product p
+where p.product_id = uniq_sales.product_id
+```
+
 ## If player activity is stored in Activity table, find the first device that he used to login
 
 ```sql
@@ -287,11 +297,38 @@ select distinct B.player_id, B.device_id from Activity B where b.event_date in (
 with total_price as (select seller_id, sum(price) as sumprice from Sales group by seller_id order by sumprice desc)
     select seller_id from total_price where total_price.sumprice = (select sumprice from total_price limit 1)
 ```
+```sql
+with total_price as (select seller_id, sum(price) as sumprice from Sales group by seller_id order by sumprice desc)
+    select seller_id from total_price where total_price.sumprice = (select max(sumprice) from total_price)
+```
+
 
 ## [Find all the seller who has maximum total_price](https://leetcode.com/problems/sales-analysis-i/description/)
 ```sql
 SELECT seller_id FROM Sales GROUP BY seller_id
 HAVING SUM(PRICE) >= all ( SELECT SUM(PRICE) FROM Sales GROUP BY seller_id)
+```
+
+## [that reports the buyers who have bought S8 but not iPhone - Using HavingFilter](https://leetcode.com/problems/sales-analysis-ii/solutions)
+
+```sql
+select s.buyer_id from Sales s inner join Product p on p.product_id = s.product_id
+group by s.buyer_id
+having 
+SUM( case when p.product_name ='S8' then 1 else 0 end) > 0 AND
+SUM( case when p.product_name ='iPhone' then 1 else 0 end) = 0 
+
+```
+
+## [Find all the S8 buyer](https://leetcode.com/problems/sales-analysis-ii/)
+```
+with iphone_buyer as (select s.buyer_id from Sales s inner join Product p on s.product_id = p.product_id and p.product_name='iPhone'),
+    s8_buyer as (select s.buyer_id from Sales s inner join Product p on s.product_id = p.product_id and p.product_name='S8')
+    select distinct s.buyer_id from s8_buyer s left join iphone_buyer i on s.buyer_id = i.buyer_id where i.buyer_id is null
+
+with iphone_buyer as (select s.buyer_id from Sales s inner join Product p on s.product_id = p.product_id and p.product_name='iPhone'),
+    s8_buyer as (select s.buyer_id from Sales s inner join Product p on s.product_id = p.product_id and p.product_name='S8')
+    select distinct s8.buyer_id from s8_buyer s8 where s8.buyer_id not in (select buyer_id from iphone_buyer)    
 ```
 
 ## If player activity is stored in Activity table, find the first device that he used to login - using window function
