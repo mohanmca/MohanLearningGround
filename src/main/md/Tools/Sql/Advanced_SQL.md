@@ -28,6 +28,7 @@ SELECT  t.AccountID, t.Amount,
 FROM Transactions AS t
 ORDER BY t.TransactionID
 ```
+![Running Total](../../img/running_total.png)
 
 ## How to create anki from this boot mock question file
 1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
