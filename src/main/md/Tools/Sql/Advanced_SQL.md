@@ -25,6 +25,46 @@
 3. Image RANGE can accept only UNBOUNDED PRECEDING, CURRENT ROW, or UNBOUNDED FOLLOWING as valid options.
 4. Image You can choose between RANGE for logical grouping of rows and ROWS for physical offset of the rows. If the ORDER BY predicate does not return duplicate values, the results are equivalent
 
+## When to use SubQuery
+
+1. Use a subquery anywhere you can use a table name
+2. A scalar subquery - Use a subquery that returns a single column wherever you can use a list of values—for example, in an IN clause.
+3. A subquery that returns one column and zero or only one value can be used anywhere you can use a column name or a single literal.
+
+## Where to use SubQuery
+1. Subquery in several places in another SELECT, UPDATE, INSERT, or DELETE statement.
+
+## Example of Multiple Inner Join
+
+```sql
+  SELECT Recipes.RecipeID, Recipes.RecipeTitle FROM 
+  Recipes INNER JOIN Recipe_Ingredients  ON Recipes.RecipeID = Recipe_Ingredients.RecipeID
+          INNER JOIN Ingredients   ON Ingredients.IngredientID =  Recipe_Ingredients.IngredientID  
+  WHERE Ingredients.IngredientName = 'Beef'
+```
+
+## Find all Receips that has Beef and Garlic
+
+```sql
+SELECT BeefRecipes.RecipeTitle
+FROM 
+  (SELECT Recipes.RecipeID, Recipes.RecipeTitle
+   FROM (Recipes INNER JOIN Recipe_Ingredients
+    ON Recipes.RecipeID = Recipe_Ingredients.RecipeID) 
+      INNER JOIN Ingredients 
+    ON Ingredients.IngredientID = 
+      Recipe_Ingredients.IngredientID
+   WHERE Ingredients.IngredientName = 'Beef') 
+      AS BeefRecipes
+  INNER JOIN
+  (SELECT Recipe_Ingredients.RecipeID
+   FROM Recipe_Ingredients INNER JOIN Ingredients
+    ON Ingredients.IngredientID = 
+      Recipe_Ingredients.IngredientID
+   WHERE Ingredients.IngredientName = 'Garlic') 
+      AS GarlicRecipes 
+    ON BeefRecipes.RecipeID = GarlicRecipes.RecipeID;
+```
 
 ## What is the Lag() function, give an example?
 1. LAG() function provides access to a row that comes before the current row at a specified physical offset. In other words, from the current row the LAG() function can access data of the previous row, or the row before the previous row, and so on.
