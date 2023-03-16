@@ -6,6 +6,10 @@
    1. Query may have different predicates for each OVER clause
 4. If there is no partition-clause or oder-by given... aggregate function work like group-by
    1. select account_id, amount, SUM(amount) OVER() AS total_sum from account;
+   
+## Can we Partition by multiple colummns?
+1. Yes!
+2. PARTITION BY s.CustomerID, s.PurchaseMonth   ORDER BY s.PurchaseYear -- is valid statement
 
 ## When to use Window functions
 1. Window functions are “aware” of the surrounding rows, which makes it easier to create running or moving aggregations than with the traditional aggregation functions and statement-level grouping.
@@ -19,7 +23,24 @@
 1. Whenever you need to change the window frame’s bounding to a non-default setting, you must specify an ORDER BY predicate even when it is optional.
 2. Image If you need to define an arbitrary size for a window frame, you must use ROWS, which allows you to input how many rows preceding or following are to be included in the window frame.
 3. Image RANGE can accept only UNBOUNDED PRECEDING, CURRENT ROW, or UNBOUNDED FOLLOWING as valid options.
-4. Image You can choose between RANGE for logical grouping of rows and ROWS for physical offset of the rows. If the ORDER BY predicate does not return duplicate values, the results are equivalen
+4. Image You can choose between RANGE for logical grouping of rows and ROWS for physical offset of the rows. If the ORDER BY predicate does not return duplicate values, the results are equivalent
+
+
+## What is the Lag() function, give an example?
+1. LAG() function provides access to a row that comes before the current row at a specified physical offset. In other words, from the current row the LAG() function can access data of the previous row, or the row before the previous row, and so on.
+```java
+WITH cte AS (
+	SELECT year, SUM(amount) amount
+	FROM sales	GROUP BY year	ORDER BY year
+) 
+SELECT
+	year, 
+	amount,
+	LAG(amount,1) OVER (ORDER BY year) previous_year_sales
+FROM
+	cte;
+```
+
 
 ## Find TotalByCustomer - running sum for each customer, TotalOverall - and entire order Expected: "CustomerID, OrderNumber, OrderTotal, TotalByCustomer and TotalOverall"
 
@@ -56,6 +77,7 @@ SELECT
 FROM Orders AS o
 ORDER BY o.OrderDate;
 ```
+
 ## [Demonstration of moving average window functions](5.34 -Effective SQL)
 ```sql
 SELECT  s.CustomerID, s.PurchaseYear, s.PurchaseMonth,
@@ -85,6 +107,8 @@ SELECT
 FROM PurchaseStatistics AS s
 ORDER BY s.CustomerID, s.PurchaseYear, s.PurchaseMonth;
 ```
+
+
 
 ## How to create anki from this boot mock question file
 1. [Effective-SQL/PostgreSQL/Chapter 05/Listing 5.031.sql](https://github.com/TexanInParis/Effective-SQL/blob/8047973838c2780da1795742793016faff36315c/PostgreSQL/Chapter%2005/Listing%205.031.sql#L10)
