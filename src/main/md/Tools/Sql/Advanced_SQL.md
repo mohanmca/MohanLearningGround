@@ -33,8 +33,23 @@ ORDER BY t.TransactionID
 ```
 ![Running Total](../../img/running_total.png)
 
+## Find OrderSequence, CustomerOrderSequence, OrderRanking, CustomerOrderRanking
+
+```sql
+SET search_path = SalesOrdersSample;
+
+SELECT 
+  ROW_NUMBER() OVER ( ORDER BY o.OrderDate) AS OrderSequence,
+  ROW_NUMBER() OVER ( PARTITION BY o.CustomerID   ORDER BY o.OrderDate ) AS CustomerOrderSequence,
+  o.OrderNumber, o.CustomerID, o.OrderDate, o.OrderTotal,
+  RANK() OVER (    ORDER BY o.OrderTotal DESC  ) AS OrderRanking,
+  RANK() OVER (    PARTITION BY o.CustomerID    ORDER BY o.OrderTotal DESC    ) AS CustomerOrderRanking
+FROM Orders AS o
+ORDER BY o.OrderDate;
+```
+
 ## How to create anki from this boot mock question file
-1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
+1. [Effective-SQL/PostgreSQL/Chapter 05/Listing 5.031.sql](https://github.com/TexanInParis/Effective-SQL/blob/8047973838c2780da1795742793016faff36315c/PostgreSQL/Chapter%2005/Listing%205.031.sql#L10)
 2. [Crack SQL Interview Question: Subquery vs. CTE](https://towardsdatascience.com/sql-for-data-analysis-subquery-vs-cte-699ef629d9eb)
 ```
 mdanki Advanced_Sql.md Sql.apkg --deck "Mohan::Pack::Advanced_Sql"
