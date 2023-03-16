@@ -1,29 +1,42 @@
 ## [What is Window function?](Effective-SQL:Item 37: Know How to Use Window Functions)
 1. “Window” refers to a set of rows that surround a considered row, either preceding or following that row.
-2. PARTITION BY predicate specifies how the window should be divided.
+
+## [What is impact of Partition by in Window function?](Effective-SQL:Item 37: Know How to Use Window Functions)
+1. PARTITION BY predicate specifies how the window should be divided.
    1. If partition by is omitted, your database system applies the function over the entire result set
 3. Partition BY results are sensitive to the order in which the rows are returned.
    1. Query may have different predicates for each OVER clause
-4. If there is no partition-clause or oder-by given... aggregate function work like group-by
+
+## [What is impact of if Partition by is missing in Window function?](Effective-SQL:Item 37: Know How to Use Window Functions)   
+1. If there is no partition-clause or oder-by given... aggregate function work like group-by
    1. select account_id, amount, SUM(amount) OVER() AS total_sum from account;
+
+## When to use Window functions
+1. Window functions are “aware” of the surrounding rows.
+2. Which makes it easier to create running or moving aggregations than with the traditional aggregation functions
+3. It also helps at statement-level grouping.
    
 ## Can we Partition by multiple columns?
 1. Yes!
 2. PARTITION BY s.CustomerID, s.PurchaseMonth   ORDER BY s.PurchaseYear -- is valid statement
 
-## When to use Window functions
-1. Window functions are “aware” of the surrounding rows, which makes it easier to create running or moving aggregations than with the traditional aggregation functions and statement-level grouping.
 
 ## What are few function that could be used for window function?
 1. Many of the aggregate functions SUM(), COUNT(), AVG(), and others, can be used as window functions.
 2. ROW_NUMBER() and RANK()
 
-## Window Functions Range vs Rows
-
+## When is Order by mandatory in window functions
 1. Whenever you need to change the window frame’s bounding to a non-default setting, you must specify an ORDER BY predicate even when it is optional.
-2. Image If you need to define an arbitrary size for a window frame, you must use ROWS, which allows you to input how many rows preceding or following are to be included in the window frame.
-3. Image RANGE can accept only UNBOUNDED PRECEDING, CURRENT ROW, or UNBOUNDED FOLLOWING as valid options.
-4. Image You can choose between RANGE for logical grouping of rows and ROWS for physical offset of the rows. If the ORDER BY predicate does not return duplicate values, the results are equivalent
+
+## When to use Window function Rows
+
+1. If you need to define an arbitrary size for a window frame, you must use ROWS, which allows you to input how many rows preceding or following are to be included in the window frame.
+
+## When to use Window function Range
+1. RANGE can accept only UNBOUNDED PRECEDING, CURRENT ROW, or UNBOUNDED FOLLOWING as valid options.
+
+## When to use Window function Range vs Rows
+You can choose between RANGE for logical grouping of rows and ROWS for physical offset of the rows. If the ORDER BY predicate does not return duplicate values, the results are equivalent
 
 ## When to use SubQuery
 
@@ -43,7 +56,7 @@
   WHERE Ingredients.IngredientName = 'Beef'
 ```
 
-## Find all Receips that has Beef and Garlic
+## Find all Receipes that has Beef and Garlic
 
 ```sql
 SELECT BeefRecipes.RecipeTitle
@@ -64,6 +77,15 @@ FROM
    WHERE Ingredients.IngredientName = 'Garlic') 
       AS GarlicRecipes 
     ON BeefRecipes.RecipeID = GarlicRecipes.RecipeID;
+```
+
+## [1303. Find the Team Size Employee: emp_id, team_id](https://leetcode.com/problems/find-the-team-size/description/)
+```
+select employee_id, count(team_id) over (partition by team_id) as team_size from employee
+order by employee_id
+
+with team_size as (select count(1) as team_size, team_id from Employee group by team_id)
+select employee_id, team_size.team_size from Employee e inner join team_size on team_size.team_id = e.team_id
 ```
 
 ## Find all Order that has both Skateboard and Helmet
@@ -153,6 +175,16 @@ SUM(t.Amount) OVER (PARTITION BY t.AccountID ORDER BY t.TransactionID DESC) - t.
 RANK() OVER (    PARTITION BY o.CustomerID    ORDER BY o.OrderTotal DESC    ) AS CustomerOrderRanking
 ```
 
+## [SQL Trick when two types and count involved-1445. Apples & Oranges](https://leetcode.com/problems/apples-oranges/description/)
+
+```sql
+select sale_date, sum(case when fruit='apples' then sold_num else -sold_num end) as diff
+from sales group by sale_date
+
+select a.sale_date, a.sold_num - b.sold_num as diff from Sales a inner join Sales b on a.sale_date = b.sale_date
+and a.fruit='apples' and b.fruit = 'oranges'
+order by a.sale_date
+```
 
 ## Find TotalByCustomer - running sum for each customer, TotalOverall - and entire order Expected: "CustomerID, OrderNumber, OrderTotal, TotalByCustomer and TotalOverall"
 
@@ -226,5 +258,5 @@ ORDER BY s.CustomerID, s.PurchaseYear, s.PurchaseMonth;
 1. [Effective-SQL/PostgreSQL/Chapter 05/Listing 5.031.sql](https://github.com/TexanInParis/Effective-SQL/blob/8047973838c2780da1795742793016faff36315c/PostgreSQL/Chapter%2005/Listing%205.031.sql#L10)
 2. [Crack SQL Interview Question: Subquery vs. CTE](https://towardsdatascience.com/sql-for-data-analysis-subquery-vs-cte-699ef629d9eb)
 ```
-mdanki Advanced_Sql.md Sql.apkg --deck "Mohan::Pack::Advanced_Sql"
+mdanki Advanced_Sql.md Advanced_Sql.apkg --deck "Mohan::Pack::Advanced_Sql"
 ```
