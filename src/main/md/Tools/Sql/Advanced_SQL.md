@@ -99,31 +99,6 @@ AND EXISTS
         ON Products.ProductNumber = Order_Details.ProductNumber 
    WHERE Products.ProductName = 'Helmet'
       AND O3.OrderNumber = Orders.OrderNumber);
-
--- Second example using LIKE to fetch real data
-SELECT Customers.CustomerID, Customers.CustFirstName, 
-  Customers.CustLastName, Orders.OrderNumber, Orders.OrderDate
-FROM Customers
-  INNER JOIN Orders
-    ON Customers.CustomerID = Orders.CustomerID
-WHERE EXISTS 
-  (SELECT NULL
-   FROM (Orders AS O2
-      INNER JOIN Order_Details
-        ON O2.OrderNumber = Order_Details.OrderNumber)
-      INNER JOIN Products
-        ON Products.ProductNumber = Order_Details.ProductNumber 
-   WHERE Products.ProductName LIKE '%Skateboard%' 
-    AND O2.OrderNumber = Orders.OrderNumber)
-AND EXISTS 
-  (SELECT NULL
-   FROM (Orders AS O3 
-      INNER JOIN Order_Details
-        ON O3.OrderNumber = Order_Details.OrderNumber)
-      INNER JOIN Products
-        ON Products.ProductNumber = Order_Details.ProductNumber 
-   WHERE Products.ProductName LIKE '%Helmet%'
-      AND O3.OrderNumber = Orders.OrderNumber);
 ```
 
 ## What is the Lag() function, give an example?
@@ -139,6 +114,31 @@ SELECT
 	LAG(amount,1) OVER (ORDER BY year) previous_year_sales
 FROM
 	cte;
+```
+
+## Finding products not ordered in December 2015 using a single-column table subquery
+
+```sql
+SELECT Products.ProductName FROM Products
+WHERE Products.ProductNumber NOT IN 
+  (SELECT Order_Details.ProductNumber 
+   FROM Orders 
+      INNER JOIN Order_Details
+        ON Orders.OrderNumber = Order_Details.OrderNumber
+   WHERE Orders.OrderDate 
+    BETWEEN '2015-12-01' AND '2015-12-31');
+```
+
+## Scalar SubQuery
+
+```sql
+SELECT Products.ProductNumber, Products.ProductName, (
+    SELECT MAX(Orders.OrderDate)
+    FROM Orders
+      INNER JOIN Order_Details
+      ON Orders.OrderNumber = Order_Details.OrderNumber    WHERE Order_Details.ProductNumber = Products.ProductNumber
+    ) AS LastOrder
+FROM Products;
 ```
 
 ## Example of Sum(Amount) using Window Function
