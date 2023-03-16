@@ -41,6 +41,18 @@ FROM
 	cte;
 ```
 
+## Example of Sum(Amount) using Window Function
+
+```sql
+SUM(t.Amount) OVER (PARTITION BY t.AccountID ORDER BY t.TransactionID DESC) - t.Amount AS TotalUnspent,
+```
+
+## Example of RANK() using Window Function
+
+```sql
+RANK() OVER (    PARTITION BY o.CustomerID    ORDER BY o.OrderTotal DESC    ) AS CustomerOrderRanking
+```
+
 
 ## Find TotalByCustomer - running sum for each customer, TotalOverall - and entire order Expected: "CustomerID, OrderNumber, OrderTotal, TotalByCustomer and TotalOverall"
 
