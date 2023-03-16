@@ -7,7 +7,7 @@
 4. If there is no partition-clause or oder-by given... aggregate function work like group-by
    1. select account_id, amount, SUM(amount) OVER() AS total_sum from account;
    
-## Can we Partition by multiple colummns?
+## Can we Partition by multiple columns?
 1. Yes!
 2. PARTITION BY s.CustomerID, s.PurchaseMonth   ORDER BY s.PurchaseYear -- is valid statement
 
@@ -78,12 +78,12 @@ FROM Orders AS o
 ORDER BY o.OrderDate;
 ```
 
-## [Demonstration of moving average window functions](5.34 -Effective SQL)
+##[Demonstration of moving average window functions](5.34 -Effective SQL)
 ```sql
 SELECT  s.CustomerID, s.PurchaseYear, s.PurchaseMonth,
-  LAG(s.PurchaseTotal, 1) OVER (PARTITION BY s.CustomerID, s.PurchaseMonth    ORDER BY s.PurchaseYear ) AS PreviousMonthTotal,
+  LAG(s.PurchaseTotal, 1) OVER (PARTITION BY s.CustomerID, s.PurchaseMonth  ORDER BY s.PurchaseYear ) AS PreviousMonthTotal,
   s.PurchaseTotal AS CurrentMonthTotal,
-  LEAD(s.PurchaseTotal, 1) OVER (PARTITION BY s.CustomerID, s.PurchaseMonth  ORDER BY s.PurchaseYear ) AS NextMonthTotal,
+  LEAD(s.PurchaseTotal, 1) OVER (PARTITION BY s.CustomerID, s.PurchaseMonth ORDER BY s.PurchaseYear ) AS NextMonthTotal,
   AVG(s.PurchaseTotal) OVER ( PARTITION BY s.CustomerID, s.PurchaseMonth    ORDER BY s.PurchaseYear    ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING  ) AS MonthOfYearAverage
 FROM PurchaseStatistics AS s
 ORDER BY s.CustomerID, s.PurchaseYear, s.PurchaseMonth;
