@@ -5,6 +5,9 @@
 3. Partition BY results are sensitive to the order in which the rows are returned.
    1. Query may have different predicates for each OVER clause
 
+## When to use Window functions
+1. Window functions are “aware” of the surrounding rows, which makes it easier to create running or moving aggregations than with the traditional aggregation functions and statement-level grouping.
+
 ## What are few function that could be used for window function?
 1. Many of the aggregate functions SUM(), COUNT(), AVG(), and others, can be used as window functions.
 2. ROW_NUMBER() and RANK()
@@ -19,7 +22,7 @@ FROM Orders AS o
 ORDER BY o.OrderNumber, o.CustomerID;
 ```
 
-## Find total-unspent using different predicate for each over clause
+## Find total-unspent using different predicate for each over clause, Transaction: Amount, AccountId, TransactionId
 
 ```sql
 SELECT  t.AccountID, t.Amount, 
