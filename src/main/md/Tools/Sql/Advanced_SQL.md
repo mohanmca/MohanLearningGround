@@ -47,6 +47,14 @@ You can choose between RANGE for logical grouping of rows and ROWS for physical 
 ## Where to use SubQuery
 1. Subquery in several places in another SELECT, UPDATE, INSERT, or DELETE statement.
 
+## In Delivery : customer_pref_delivery_date = order_date, find the percentage of record 
+
+```sql
+select  round(100 * sum(order_date = customer_pref_delivery_date)/count(*),2)  as immediate_percentage
+from 
+Delivery;
+```
+
 ## Example of Multiple Inner Join
 
 ```sql

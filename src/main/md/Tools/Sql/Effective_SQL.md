@@ -1,3 +1,23 @@
+## What are different normailization forms?
+
+1. 1NF: Eliminate Repeating Groups 
+   1. Make a separate table for each set of related attributes, and give each table a primary key. Each field contains at most one value from its attribute domain.
+2. 2NF: Eliminate Redundant Data 
+   1. If an attribute depends on only part of a multi-valued key, remove it to a separate table.
+3. 3NF: Eliminate Columns Not Dependent On Key 
+   1. If attributes do not contribute to a description of the key, remove them to a separate table. All attributes must be directly dependent on the primary key
+4. BCNF: Boyce-Codd Normal Form 
+   1. If there are non-trivial dependencies between candidate key attributes, separate them out into distinct tables.
+5. 4NF: Isolate Independent Multiple Relationships 
+   1. No table may contain two or more 1:n or n:m relationships that are not directly related.
+6. 5NF: Isolate Semantically Related Multiple Relationships 
+   1. There may be practical constrains on information that justify separating logically related many-to-many relationships.
+7. ONF: Optimal Normal Form 
+   1. A model limited to only simple (elemental) facts, as expressed in Object Role Model notation.
+8. DKNF: Domain-Key Normal Form 
+   1. A model free from all modification anomalies.
+These normalization guidelines are cumulative. For a database to be in 3NF, it must first fulfill all the criteria of a 2NF and 1NF database.
+
 ## Item-1: Every table should have Primary Key
 * All tables should have a column (or set of columns) designated as a primary key.
   * Prefer single primary key instead of composite-key
@@ -44,7 +64,30 @@
 * on some db, defining a referential integrity constraint automatically creates an index on the foreign key column(s), so there may be an added performance benefit when performing a join
 * it is good practice creating an index to optimize constraint checking. (on db that doesn't automatically create index)
 
+## Item 7: Be Sure Your Table Relationships Make Sense
 
+1. Carefully examine whether it really makes sense to combine tables that appear to contain similar columns in order to simplify relationships.
+   1. Customer, Vendor, Employee - all might looks same, but can be better separated despite there could be few employee himself a vendor
+2. You can create a join between columns in two tables as long as the data types match (or can be implicitly casted), but a relationship is valid only if the columns are in the same domain. However, it is optimal to have the same data types on both sides of the join.
+3. Check whether you are in fact dealing with structured data before including it in your data model. If the data is semistructured, make the necessary provisions.
+4. It is usually helpful to clearly identify the goals of a data model to help you assess whether a given design justifies the added complexity or anomalies due to simplifications and the design of the applications using the data model.
+5. If Product has multiple attributes, they can be separate table in named ProductAttributes instead of designing them as a column in Product Table
+
+## When 3NF Is Not Enough, Normalize More
+
+1. Higher normal forms are likely to be already achieved in most data models. Therefore, you need to watch for cases where higher normal forms are explicitly violated. It is more likely for tables that have composite keys or participate in several many-to-many relationships.
+2. Fourth normal form can be violated by the special case where all possible combinations of two unrelated attributes on an entity must be enumerated for that entity.
+3. Fifth normal form deals with ensuring that all join dependencies are implied by candidate keys, meaning that you should be able to constrain what are valid values for a candidate key based on the individual elements. This can happen only if the key is composite.
+4. Sixth normal form deals with reducing the relations to only one non-key attribute generally, thus resulting in an explosion of tables, but enabling us to never need to define a nullable column.
+5. Testing for lossless decomposition can be an effective tool for detecting if your table violates higher normal forms.
+
+## Item 9: Use Denormalization for Information Warehouses
+
+1. A concern with fully normalized tables is that normalized data means joins between tables. The more joins there are, the more difficult it is for the optimizer to find the best possible execution plan, which can hurt the performance of reads.
+2. Denormalized databases work well under heavy read loads, because the data is present in fewer tables and the need for joins lessens or entirely disappears, thus resulting in faster selects.
+3. It is impossible to print exact copies of invoices at a later date unless you maintain history about the customer’s address. However, if you keep a copy of the customer’s address information at the time of invoicing on the Invoices table, it becomes straightforward.
+4. Storing calculated values are allowed for DW
+5. Yet another possibility relates to the use of repeating groups. If a common requirement is to compare month-to-month performance, storing all 12 months in a single row reduces the number of rows that need to be retrieved.
 
 ## String concatenation
 1. Concat(Concat(param1, Param2), "Param3")
