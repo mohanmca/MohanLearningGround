@@ -1,7 +1,3 @@
-
-
-## Sharing Objects
-
 ## What is analogy type for ThreadLocal<T>
 
 1. ThreadLocal<T> = Map<Thread,T>
@@ -28,6 +24,77 @@ public class ConnectionDispenser {
     }
 }
 ```
+
+## What is race condition?
+
+1. A race condition is a software bug that occurs when the correctness of a program depends on the timing or interleaving of two or more concurrent threads or processes.
+2. There is no deterministic way to deduce the output of the following program, it is based on interleaving thread!
+```java
+package jdk.thread;
+
+class Counter {
+    private int count;
+
+    public void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+
+class CounterThread extends Thread {
+    private Counter counter;
+
+    public CounterThread(Counter counter) {
+        this.counter = counter;
+    }
+
+    public void run() {
+        for (int i = 0; i < 100000; i++) {
+            counter.increment();
+        }
+    }
+}
+
+public class RaceConditionExample {
+    public static void main(String[] args) throws InterruptedException {
+        Counter counter = new Counter();
+        CounterThread thread1 = new CounterThread(counter);
+        CounterThread thread2 = new CounterThread(counter);
+        thread1.start();
+        thread2.start();
+        thread1.join();
+        thread2.join();
+        System.out.println("Count: " + counter.getCount());
+    }
+}
+```
+
+## What is invariant?
+1. In a concurrent program, an invariant might be that a shared data structure remains consistent and free of race conditions at all times.
+2. an invariant is a property or condition that remains true throughout the execution of a program or a specific portion of a program
+3. The invariant is that the balance of the savings account must always be non-negative. This is important because allowing a negative balance could result in overdrafts, which the bank would have to cover at a cost.
+
+## Example for invariant in stack.
+
+```java
+// Invariant: the top index is always within the bounds of the array
+public boolean checkInvariant() {
+   return top >= -1 && top < data.length;
+}
+```
+
+## Postcondition
+1. A postcondition is a condition or assertion that is guaranteed to be true after a program, method, or function has executed
+2. "The sum returned by the function is non-negative and equal to the sum of all positive integers in the input array."
+3. "After the function executes, the input array is sorted in non-descending order."
+
+## What is thread-safety
+1. Program that holds invariant and postcondition
+2. Ensures correctness of the program
+   1. Correctness = Invariant + Postcondition
 
 ## ThreadLocal object for buffer usage
 
