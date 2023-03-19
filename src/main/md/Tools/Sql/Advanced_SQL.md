@@ -1,3 +1,8 @@
+## Other Sql References.
+1. [Effective SQL](Effective_SQL.md)
+2. [Advanced SQL](Advanced_SQL.md)
+3. [SQL](Sql.md)
+
 ## [What is Window function?](Effective-SQL:Item 37: Know How to Use Window Functions)
 1. “Window” refers to a set of rows that surround a considered row, either preceding or following that row.
 
@@ -50,9 +55,14 @@ You can choose between RANGE for logical grouping of rows and ROWS for physical 
 ## In Delivery : customer_pref_delivery_date = order_date, find the percentage of record 
 
 ```sql
-select  round(100 * sum(order_date = customer_pref_delivery_date)/count(*),2)  as immediate_percentage
-from 
-Delivery;
+select
+    round(100 * sum(customer_pref_delivery_date = order_date) / sum(1), 2)
+    as immediate_percentage
+from Delivery;
+
+SELECT 
+   ROUND(100*AVG(order_date = customer_pref_delivery_date), 2) AS immediate_percentage
+FROM Delivery;
 ```
 
 ## Example of Multiple Inner Join

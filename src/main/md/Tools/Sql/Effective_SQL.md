@@ -1,3 +1,8 @@
+## Other Sql References.
+1. [Effective SQL](Effective_SQL.md)
+2. [Advanced SQL](Advanced_SQL.md)
+3. [SQL](Sql.md)
+
 ## What are different normailization forms?
 
 1. 1NF: Eliminate Repeating Groups 

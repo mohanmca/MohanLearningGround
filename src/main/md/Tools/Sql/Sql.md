@@ -1,3 +1,8 @@
+## Other Sql References.
+1. [Effective SQL](Effective_SQL.md)
+2. [Advanced SQL](Advanced_SQL.md)
+3. [SQL](Sql.md)
+
 ## What is the difference between RowId and RowNum
 
 In Oracle, RowID - physical location id for row. rowid for a row never changes. Rownum changes for every sql resultset.
