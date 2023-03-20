@@ -52,6 +52,37 @@ You can choose between RANGE for logical grouping of rows and ROWS for physical 
 ## Where to use SubQuery
 1. Subquery in several places in another SELECT, UPDATE, INSERT, or DELETE statement.
 
+## How many times inner-query in co-related subquery executed
+
+1. if outer query processess million records, inner co-related subquery also executed million times
+
+## For inner join, what are all the expression allowed?
+
+1. Any logic that you can use in a WHERE clause can be used in your JOIN clauses 
+2. More complicated joins can read very much like a WHERE clause.
+3. Examples
+   1. JOIN t2 ON t2.column = t1.column
+   2. JOIN t2 ON t2.column LIKE t1.column**
+
+## Example of Scalar Subquery, find all employee whose salary is greater than avg-salary
+
+```sql
+select * from employee
+where salary > (select avg(salary) from Employee)
+```
+
+```sql
+select e.* from employee e 
+   inner join (select avg(salary) salary from Employee) avg_salary
+   on e.salary > avg_salary.salary
+```
+
+## Example of Multi-Row Subquery, find all employee whose salary is highest in their department
+
+```sql
+select * from employee e where (salary, department_id) in (select max(salary), department_id from salary group by department_id
+```
+
 ## In Delivery : customer_pref_delivery_date = order_date, find the percentage of record 
 
 ```sql
@@ -63,6 +94,92 @@ from Delivery;
 SELECT 
    ROUND(100*AVG(order_date = customer_pref_delivery_date), 2) AS immediate_percentage
 FROM Delivery;
+```
+
+## How to find list of department that has no employee working
+```
+select * from department d where not exists (
+   select 1 from employee e where e.depart_name = d.depart_name
+)
+```
+
+## Find stores whose sales where better than the average sales across all stores
+
+```sql
+select * from (
+      select store_name, sum(price) as total_sales from sales group by store_name
+   )  sales
+join
+   (select avg(total_sales) as sales from (
+       select store_name, sum(price) as total_sales from sales group by store_name) x
+      ) avg_sales 
+   on sales.total_sales > avg_sales.sales;
+---
+with sales as (   select store_name, sum(price) as total_sales from sales group by store_name )
+   select * from sales
+   join (select avg(total_sales) as sales from sales x) avg_sales
+   on sales.total_sales > avg_sales.sales   
+---
+select store_name from sales group by stores having sum(sales) > (select avg(price) from sales) 
+```
+
+## Where can we use SubQuery
+
+1. Select
+2. From
+3. Where
+4. Having
+
+
+## Fetch all employee details and add remarks to those employees who earn more than the avg salary
+
+```sql
+select *,
+   (case when salary > (select avg(salary) from employee) then 'Higher than average'
+   else null end) as remarks
+from
+employee   
+
+--
+select *,
+   (case when salary > avg_salary.sal) then 'Higher than average'
+   else null end) as remarks
+from
+employee   
+cross join (select avg(salary) sal from employee) avg_salary;
+```
+
+
+## Find the stores who have sold more units than avg units sold by all stores
+
+```sql
+select store_name, sum(quantity) from sales group by store_name having sum(quantity) > (select avg(quantiy) from sales);
+```
+
+## How to insert data into employee history table. Make sure not insert duplicate records
+```sql
+insert into employee_history
+select e.emp_id, e.emp_name, d.dept_name, e.salary, d.location from employee e
+join department d on d.dept_name = e.dept_name
+where not exists (select 1 from employee_history eh where eh.emp_id = e.emp_id)
+```
+
+## How to Give 10% increment to all employees in Bangalore location based on the maximum salary earned by an emp in each dept. Only consider employees in employee_history table
+```sql
+update employee e
+   set salary = (select max(salary) * 1.1 from employee_history eh where eh.dept_name = e.dept_name)
+where e.dept_name in (select dept_name from department where location='Bangalore')
+   and e.emp_id in (select emp_id from employee_history)   
+```
+
+## Delete all departments who do not have any employees
+```sql
+delete from department d
+   where d.deparement id not in (select 1 from employee e where e.dept_name = d.dept_name)
+--    
+delete from department d  where depatment_name in (
+   select dept_name from department d where not exists  (select 1 from employee e where e.dept_name = d.dept_name)
+) 
 ```
 
 ## Example of Multiple Inner Join
