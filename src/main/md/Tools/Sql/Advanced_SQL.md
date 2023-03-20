@@ -172,6 +172,15 @@ where e.dept_name in (select dept_name from department where location='Bangalore
    and e.emp_id in (select emp_id from employee_history)   
 ```
 
+## How to produce NC2 combination of IPL matches 
+
+```sql
+with matches as (select row_number() over (order by team_name) as id, team_code, team_name from teams t)
+select
+   team.name as team, opponent.name as oppnent
+   from matches team join matches opponent on team.id < opponent.id
+```
+
 ## Delete all departments who do not have any employees
 ```sql
 delete from department d
