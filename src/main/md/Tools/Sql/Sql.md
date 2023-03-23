@@ -179,7 +179,7 @@ SELECT MIN(Wages) FROM
 ) As tmp; 
 ```
 
-## Second best mark IInd best mark
+## Second-best mark IInd best mark
 ```SQL
 select max(a.mark) from student a where a.mark not in (select max(b.mark) from student b)
 ```
@@ -188,13 +188,8 @@ select max(a.mark) from student a where a.mark not in (select max(b.mark) from s
 
 ```SQL
 delete from table_name where rowid not in (select max(rowid) from table group by duplicate_values_field_name);
-DELETE FROM Employee  WHERE EmpID NOT IN (SELECT MAX(EmpID) FROM MyTable GROUP BY EmpName) 
-```
-
-## Delete duplicate records using co-related subquery
-
-```sql
 delete duplicate_values_field_name dv from table_name ta where rowid <(select min(ro wid)  from table_name tb where ta.dv=tb.dv);
+DELETE FROM Employee  WHERE EmpID NOT IN (SELECT MAX(EmpID) FROM MyTable GROUP BY EmpName) 
 ```
 
 ## Delete duplicate person based on duplicate email using self-join 
