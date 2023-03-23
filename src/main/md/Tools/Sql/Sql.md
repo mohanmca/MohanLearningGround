@@ -74,6 +74,12 @@ In Oracle, RowID - physical location id for row. rowid for a row never changes. 
 1. Subquery in several places in another SELECT, UPDATE, INSERT, or DELETE statement.
 2. Subquery can nest at any level, innermost is executed
 
+## Example SubQueries
+
+1. ```SELECT * FROM sales_associates WHERE salary > (SELECT AVG(revenue_generated) FROM sales_associates);```
+2. ```DELETE FROM Student2 WHERE ROLL_NO IN ( SELECT ROLL_NO FROM Student1 WHERE LOCATION = ’chennai’);```
+3. ```UPDATE Student2 SET NAME=’geeks’ WHERE LOCATION IN ( SELECT LOCATION FROM Student1 WHERE NAME IN (‘Raju’,’Ravi’));```
+
 ## How many times inner-query in co-related subquery executed
 
 1. if outer query processes a million records, inner co-related subquery also executed million times
@@ -104,8 +110,9 @@ select e.* from employee e
 select * from employee e where (salary, department_id) in (select max(salary), department_id from salary group by department_id
 ```
 
-## Finding products not ordered in December 2015 using a single-column table subquery
-
+## Finding products.productName not ordered in December 2015 using a single-column table subquery
+Tables : Products(ProductNumber, ProductName)  -> OrderDetails(OrderNumber, ProductNumber) -> Orders(OrderNumber, OrderDate)
+%
 ```sql
 SELECT Products.ProductName FROM Products
 WHERE Products.ProductNumber NOT IN 
@@ -117,8 +124,10 @@ WHERE Products.ProductNumber NOT IN
     BETWEEN '2015-12-01' AND '2015-12-31');
 ```
 
-## Scalar SubQuery
 
+## Scalar SubQuery - Finding latest order details
+Tables : Products(ProductNumber, ProductName)  -> OrderDetails(OrderNumber, ProductNumber) -> Orders(OrderNumber, OrderDate)
+%
 ```sql
 SELECT Products.ProductNumber, Products.ProductName, (
     SELECT MAX(Orders.OrderDate)
@@ -128,12 +137,6 @@ SELECT Products.ProductNumber, Products.ProductName, (
     ) AS LastOrder
 FROM Products;
 ```
-
-## SubQuery
-
-1. ```SELECT * FROM sales_associates WHERE salary > (SELECT AVG(revenue_generated) FROM sales_associates);```
-2. ```DELETE FROM Student2 WHERE ROLL_NO IN ( SELECT ROLL_NO FROM Student1 WHERE LOCATION = ’chennai’);```
-3. ```UPDATE Student2 SET NAME=’geeks’ WHERE LOCATION IN ( SELECT LOCATION FROM Student1 WHERE NAME IN (‘Raju’,’Ravi’));```
 
 ## Update Statement switch M to F (and vice versa)
 
@@ -158,7 +161,7 @@ update Salary set sex=(case when sex = 'f' then 'm' else 'f' end)
 insert into ENTL_ENTITY Select 700, 1,'A123456',DESCR,TYPE,STATUS,DATE_CREATED,DATE_MODIFIED,MODIFIED_BY,CREATED_BY,UNIVERSE_ID From  ENTL_ENTITY  Where ID = 667
 ```
 
-## How to group by and sort by the "group-by" column itself
+## How to group by and sort by the "group-by-aggregated" column itself
 ```SQL
     select count(account_number) as cnt, CHH_ID from chh_acct_map where approved_on is not null group by chh_id order by cnt desc
 ```
@@ -166,10 +169,6 @@ insert into ENTL_ENTITY Select 700, 1,'A123456',DESCR,TYPE,STATUS,DATE_CREATED,D
 ## Select distinct column without using distinct
 ```SQL
 select  LENGTH from FILEMETA group by LENGTH
-```
-
-```SQL
-SELECT Employee.Name, Department.DeptName  FROM Employee, Department WHERE Employee.Dept_ID = Department.Dept_ID;
 ```
 
 ## Order/Ranking - Find the 3rd highest wage from Wages table
@@ -195,7 +194,7 @@ DELETE FROM Employee  WHERE EmpID NOT IN (SELECT MAX(EmpID) FROM MyTable GROUP B
 ## Delete duplicate records using co-related subquery
 
 ```sql
-delete duplicate_values_field_name dv from table_name ta where rowid <(select min(rowid)  from table_name tb where ta.dv=tb.dv);
+delete duplicate_values_field_name dv from table_name ta where rowid <(select min(ro wid)  from table_name tb where ta.dv=tb.dv);
 ```
 
 ## Delete duplicate person based on duplicate email using self-join 
