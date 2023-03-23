@@ -11,7 +11,6 @@ In Oracle, RowID - physical location id for row. rowid for a row never changes. 
 |:------------------------|------:|
 | AAAAECAABAAAAgiAAA		    |1 |
 
-
 ## How to take care for update (or delete) statement
 1. Many would miss condition statement and update the entire table and wreck the data
 2. Always test the update statement with SQL statement with condition and check before using update statement
@@ -33,6 +32,25 @@ In Oracle, RowID - physical location id for row. rowid for a row never changes. 
    1. Assuming that they have the same column count, order and data type.
 3. If you use the UNION without the ALL, duplicate rows between the tables will be removed from the result.
 
+## Join types are
+* Inner Join -- when data is symmetrical (won't work for assymetrical data)
+* self join
+* outer join (LEFT, RIGHT),
+* cross-join ( SELECT * FROM table1, table2 - product n*m rows returned)
+* SQL should be better practiced in notebook for joins, group by, group by with joins and self Join
+* SQL should be supported with knowledge about Index - Clustered and non Clustered"
+
+## Summarizes the result of the join operations:
+
+* The result of T1 **INNER JOIN** T2 consists of their paired rows where the join-condition is true.
+* The result of T1 **LEFT OUTER JOIN** T2 consists of their paired rows where the join-condition is true and, for each unpaired row of T1, the   concatenation of that row with the null row of T2. All columns derived from T2 allow null values.**
+* The result of T1 **RIGHT OUTER JOIN** T2 consists of their paired rows where the join-condition is true and, for each unpaired row of T2, the concatenation of that row with the null row of T1. All columns derived from T1 allow null values.**
+* The result of T1 **FULL OUTER JOIN** T2 consists of their paired rows and, for each unpaired row of T2, the concatenation of that row with the null row of T1 and, for each unpaired row of T1, the concatenation of that row with the null row of T2. All columns derived from T1 and T2 allow null values.**
+
+## SQL - Group by vs where and Having
+1. GROUP BY clause is executed after the WHERE clause is executed
+2. Having is filter for group-by clause
+   1. we can also use function such as HAVING MIN(Sales.sale_date)
 
 ## For inner join, what are all the expression allowed?
 
@@ -54,10 +72,11 @@ In Oracle, RowID - physical location id for row. rowid for a row never changes. 
 
 ## Where to use SubQuery
 1. Subquery in several places in another SELECT, UPDATE, INSERT, or DELETE statement.
+2. Subquery can nest at any level, innermost is executed
 
 ## How many times inner-query in co-related subquery executed
 
-1. if outer query processess million records, inner co-related subquery also executed million times
+1. if outer query processes a million records, inner co-related subquery also executed million times
 
 ## Where can we use SubQuery
 
@@ -115,7 +134,6 @@ FROM Products;
 1. ```SELECT * FROM sales_associates WHERE salary > (SELECT AVG(revenue_generated) FROM sales_associates);```
 2. ```DELETE FROM Student2 WHERE ROLL_NO IN ( SELECT ROLL_NO FROM Student1 WHERE LOCATION = ’chennai’);```
 3. ```UPDATE Student2 SET NAME=’geeks’ WHERE LOCATION IN ( SELECT LOCATION FROM Student1 WHERE NAME IN (‘Raju’,’Ravi’));```
-4. Subquery can nest at any level, innermost is executed
 
 ## Update Statement switch M to F (and vice versa)
 
@@ -224,22 +242,6 @@ SET column = value_or_expr,
 WHERE condition;
 ```
 
-## Join types are
-* Inner Join -- when data is symmetrical (won't work for assymetrical data)
-* self join
-* outer join (LEFT, RIGHT), 
-* cross-join ( SELECT * FROM table1, table2 - product n*m rows returned)
-* SQL should be better practiced in notebook for joins, group by, group by with joins and self Join
-* SQL should be supported with knowledge about Index - Clustered and non Clustered"
-
-## Summarizes the result of the join operations:
-
-* The result of T1 **INNER JOIN** T2 consists of their paired rows where the join-condition is true.
-* The result of T1 **LEFT OUTER JOIN** T2 consists of their paired rows where the join-condition is true and, for each unpaired row of T1, the   concatenation of that row with the null row of T2. All columns derived from T2 allow null values.** 
-* The result of T1 **RIGHT OUTER JOIN** T2 consists of their paired rows where the join-condition is true and, for each unpaired row of T2, the concatenation of that row with the null row of T1. All columns derived from T1 allow null values.** 
-* The result of T1 **FULL OUTER JOIN** T2 consists of their paired rows and, for each unpaired row of T2, the concatenation of that row with the null row of T1 and, for each unpaired row of T1, the concatenation of that row with the null row of T2. All columns derived from T1 and T2 allow null values.**
-
-
 ## Show all Users that do not have addresses (user and address table)
 
  ```SQL
@@ -251,12 +253,6 @@ select * from User u  left outer join Address a on u.UserID = a.UserID  where a.
 ```
     select  c.name as Customers from Customers c left outer join Orders o on c.id=o.customerId where  o.id is null
 ```
-
-## SQL - Group by vs where and Having
-1. GROUP BY clause is executed after the WHERE clause is executed
-2. Having is filter for group-by clause
-   1. we can also use function such as HAVING MIN(Sales.sale_date)
-
 
 ## Find male employees whose City is London
 ```SQL
@@ -342,7 +338,6 @@ WITH SET1 AS (SELECT SYSDATE FROM DUAL), -- SET1 initialised
      SET2 AS (SELECT * FROM SET1)        -- SET1 accessed
 SELECT * FROM SET2;                      -- SET2 projected
 ```
-
 
 ## (Unique product that sold only in certain quarter)[https://leetcode.com/problems/sales-analysis-iii/submissions/915377197/]
 
@@ -459,7 +454,6 @@ SELECT stock_name, SUM(
 FROM Stocks
 GROUP BY stock_name
 
-
 with pp as (select stock_name, sum(price) as buy from Stocks where operation='Buy' group by stock_name),
      sp as (select stock_name, sum(price) as sell from Stocks where operation='Sell' group by stock_name)
      select pp.stock_name, (sp.sell - pp.buy) as capital_gain_loss from pp, sp where pp.stock_name = sp.stock_name
@@ -476,7 +470,6 @@ select customer_number from count_order where cnt in (
     select MAX(cnt) from count_order 
 )
 ```
-
 
 ## SQL query to report all the consecutive available seats in the cinema.
 ```sql
@@ -557,7 +550,6 @@ select e.name, b.bonus from employee e left join bonus b on  e.empId=b.empId whe
 ```sql
 select e.name, b.bonus from employee e left join bonus b on  e.empId=b.empId where COALESCE(b.bonus,0) < 1000 ;
 ```
-
 
 ## How to create anki from this boot mock question file
 1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
