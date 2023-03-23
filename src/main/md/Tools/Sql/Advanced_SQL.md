@@ -43,46 +43,6 @@
 ## When to use Window function Range vs Rows
 You can choose between RANGE for logical grouping of rows and ROWS for physical offset of the rows. If the ORDER BY predicate does not return duplicate values, the results are equivalent
 
-## When to use SubQuery
-
-1. Use a subquery anywhere you can use a table name
-2. A scalar subquery - Use a subquery that returns a single column wherever you can use a list of values—for example, in an IN clause.
-3. A subquery that returns one column and zero or only one value can be used anywhere you can use a column name or a single literal.
-
-## Where to use SubQuery
-1. Subquery in several places in another SELECT, UPDATE, INSERT, or DELETE statement.
-
-## How many times inner-query in co-related subquery executed
-
-1. if outer query processess million records, inner co-related subquery also executed million times
-
-## For inner join, what are all the expression allowed?
-
-1. Any logic that you can use in a WHERE clause can be used in your JOIN clauses 
-2. More complicated joins can read very much like a WHERE clause.
-3. Examples
-   1. JOIN t2 ON t2.column = t1.column
-   2. JOIN t2 ON t2.column LIKE t1.column**
-
-## Example of Scalar Subquery, find all employee whose salary is greater than avg-salary
-
-```sql
-select * from employee
-where salary > (select avg(salary) from Employee)
-```
-
-```sql
-select e.* from employee e 
-   inner join (select avg(salary) salary from Employee) avg_salary
-   on e.salary > avg_salary.salary
-```
-
-## Example of Multi-Row Subquery, find all employee whose salary is highest in their department
-
-```sql
-select * from employee e where (salary, department_id) in (select max(salary), department_id from salary group by department_id
-```
-
 ## In Delivery : customer_pref_delivery_date = order_date, find the percentage of record 
 
 ```sql
@@ -123,12 +83,7 @@ with sales as (   select store_name, sum(price) as total_sales from sales group 
 select store_name from sales group by stores having sum(sales) > (select avg(price) from sales) 
 ```
 
-## Where can we use SubQuery
 
-1. Select
-2. From
-3. Where
-4. Having
 
 
 ## Fetch all employee details and add remarks to those employees who earn more than the avg salary
@@ -280,31 +235,6 @@ SELECT
 	LAG(amount,1) OVER (ORDER BY year) previous_year_sales
 FROM
 	cte;
-```
-
-## Finding products not ordered in December 2015 using a single-column table subquery
-
-```sql
-SELECT Products.ProductName FROM Products
-WHERE Products.ProductNumber NOT IN 
-  (SELECT Order_Details.ProductNumber 
-   FROM Orders 
-      INNER JOIN Order_Details
-        ON Orders.OrderNumber = Order_Details.OrderNumber
-   WHERE Orders.OrderDate 
-    BETWEEN '2015-12-01' AND '2015-12-31');
-```
-
-## Scalar SubQuery
-
-```sql
-SELECT Products.ProductNumber, Products.ProductName, (
-    SELECT MAX(Orders.OrderDate)
-    FROM Orders
-      INNER JOIN Order_Details
-      ON Orders.OrderNumber = Order_Details.OrderNumber    WHERE Order_Details.ProductNumber = Products.ProductNumber
-    ) AS LastOrder
-FROM Products;
 ```
 
 ## Example of Sum(Amount) using Window Function

@@ -33,16 +33,89 @@ In Oracle, RowID - physical location id for row. rowid for a row never changes. 
    1. Assuming that they have the same column count, order and data type.
 3. If you use the UNION without the ALL, duplicate rows between the tables will be removed from the result.
 
+
+## For inner join, what are all the expression allowed?
+
+1. Any logic that you can use in a WHERE clause can be used in your JOIN clauses
+2. More complicated joins can read very much like a WHERE clause.
+3. Examples
+   1. JOIN t2 ON t2.column = t1.column
+   2. JOIN t2 ON t2.column LIKE t1.column**
+
 ## Intersect vs Except
 1. INTERSECT operator will ensure that only rows that are identical in both result sets are returned
 2. The EXCEPT operator will ensure that only rows in the first result set that aren't in the second are returned.
+
+## When to use SubQuery
+
+1. Use a subquery anywhere you can use a table name
+2. A scalar subquery - Use a subquery that returns a single column wherever you can use a list of values—for example, in an IN clause.
+3. A subquery that returns one column and zero or only one value can be used anywhere you can use a column name or a single literal.
+
+## Where to use SubQuery
+1. Subquery in several places in another SELECT, UPDATE, INSERT, or DELETE statement.
+
+## How many times inner-query in co-related subquery executed
+
+1. if outer query processess million records, inner co-related subquery also executed million times
+
+## Where can we use SubQuery
+
+1. Select
+2. From
+3. Where
+4. Having
+
+## Example of Scalar Subquery, find all employee whose salary is greater than avg-salary
+
+```sql
+select * from employee
+where salary > (select avg(salary) from Employee)
+```
+
+```sql
+select e.* from employee e 
+   inner join (select avg(salary) salary from Employee) avg_salary
+   on e.salary > avg_salary.salary
+```
+
+## Example of Multi-Row Subquery, find all employee whose salary is highest in their department
+
+```sql
+select * from employee e where (salary, department_id) in (select max(salary), department_id from salary group by department_id
+```
+
+## Finding products not ordered in December 2015 using a single-column table subquery
+
+```sql
+SELECT Products.ProductName FROM Products
+WHERE Products.ProductNumber NOT IN 
+  (SELECT Order_Details.ProductNumber 
+   FROM Orders 
+      INNER JOIN Order_Details
+        ON Orders.OrderNumber = Order_Details.OrderNumber
+   WHERE Orders.OrderDate 
+    BETWEEN '2015-12-01' AND '2015-12-31');
+```
+
+## Scalar SubQuery
+
+```sql
+SELECT Products.ProductNumber, Products.ProductName, (
+    SELECT MAX(Orders.OrderDate)
+    FROM Orders
+      INNER JOIN Order_Details
+      ON Orders.OrderNumber = Order_Details.OrderNumber    WHERE Order_Details.ProductNumber = Products.ProductNumber
+    ) AS LastOrder
+FROM Products;
+```
 
 ## SubQuery
 
 1. ```SELECT * FROM sales_associates WHERE salary > (SELECT AVG(revenue_generated) FROM sales_associates);```
 2. ```DELETE FROM Student2 WHERE ROLL_NO IN ( SELECT ROLL_NO FROM Student1 WHERE LOCATION = ’chennai’);```
 3. ```UPDATE Student2 SET NAME=’geeks’ WHERE LOCATION IN ( SELECT LOCATION FROM Student1 WHERE NAME IN (‘Raju’,’Ravi’));```
-4. Subquery can nest at any level, inner most is executed
+4. Subquery can nest at any level, innermost is executed
 
 ## Update Statement switch M to F (and vice versa)
 
@@ -50,12 +123,10 @@ In Oracle, RowID - physical location id for row. rowid for a row never changes. 
 update Salary set sex=(case when sex = 'f' then 'm' else 'f' end)
 ```
 
-
 ## Co-related subquery
 
 1. Inner query in Co-related query is executed for every result of external query result
 2. ``` SELECT * FROM employees WHERE salary > (SELECT AVG(revenue_generated) FROM employees AS dept_employees WHERE dept_employees.department = employees.department);```
-
 
 ## Alter table
 1. ```Alter table Movies add column Aspect_Ratio float default 0.0```
@@ -67,7 +138,7 @@ update Salary set sex=(case when sex = 'f' then 'm' else 'f' end)
 
 ```SQL
 insert into ENTL_ENTITY Select 700, 1,'A123456',DESCR,TYPE,STATUS,DATE_CREATED,DATE_MODIFIED,MODIFIED_BY,CREATED_BY,UNIVERSE_ID From  ENTL_ENTITY  Where ID = 667
-  ```
+```
 
 ## How to group by and sort by the "group-by" column itself
 ```SQL
