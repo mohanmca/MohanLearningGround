@@ -83,6 +83,47 @@ with sales as (   select store_name, sum(price) as total_sales from sales group 
 select store_name from sales group by stores having sum(sales) > (select avg(price) from sales) 
 ```
 
+## [1285. Find the Start and End Number of Continuous Ranges](https://leetcode.com/problems/find-the-start-and-end-number-of-continuous-ranges/description/)
+log_id - 1,2,3,,6,8
+%
+```sql
+with r as (
+  select log_id, ROW_NUMBER() over (order by log_id) as rown from logs
+)
+select min(log_id) as start_id, max(log_id) as end_id from r group by (log_id - rown )
+```
+
+## [1285. Find the Start and End Number of Continuous Ranges - Inner Join with LTE](https://leetcode.com/problems/find-the-start-and-end-number-of-continuous-ranges/description/)
+```
+select L1.log_id as START_ID, L2.log_id as END_ID
+from 
+	(select log_id from Logs 
+	where log_id-1 not in (select log_id from Logs)) L1,
+	(select log_id from Logs 
+	where log_id+1 not in (select log_id from Logs)) L2
+where L1.log_id <= L2.log_id
+Order by start_id
+```
+
+| START_ID | END_ID |
+| -------- | ------ |
+| 1        | 3      |
+| 1        | 8      |
+| 1        | 10     |
+| 7        | 8      |
+| 7        | 10     |
+| 10       | 10     |
+
+```
+select L1.log_id as START_ID, min(L2.log_id) as END_ID
+from 
+	(select log_id from Logs 
+	where log_id-1 not in (select log_id from Logs)) L1,
+	(select log_id from Logs 
+	where log_id+1 not in (select log_id from Logs)) L2
+where L1.log_id <= L2.log_id
+group by L1.log_id
+```
 
 
 
@@ -111,7 +152,7 @@ cross join (select avg(salary) sal from employee) avg_salary;
 select store_name, sum(quantity) from sales group by store_name having sum(quantity) > (select avg(quantiy) from sales);
 ```
 
-## How to insert data into employee history table. Make sure not insert duplicate records
+## How to insert data into employee history table. Make      sure not insert duplicate records
 ```sql
 insert into employee_history
 select e.emp_id, e.emp_name, d.dept_name, e.salary, d.location from employee e

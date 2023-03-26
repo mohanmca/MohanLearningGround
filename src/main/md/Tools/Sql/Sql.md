@@ -545,9 +545,19 @@ select e.name, b.bonus from employee e left join bonus b on  e.empId=b.empId whe
 select e.name, b.bonus from employee e left join bonus b on  e.empId=b.empId where COALESCE(b.bonus,0) < 1000 ;
 ```
 
+## Where to practice SQL
+1. [SQL Course](https://www.sqlcourse.com/advanced-course/order-by-clause/)
+2. [SQL Practice](https://www.sql-practice.com/)
+3. [GalaXQL](https://solhsa.com/g3/)
+4. [w3schools School](https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_all)
+5. [stratascratch](https://platform.stratascratch.com/coding/10351-activity-rank?code_type=1)
+6. [SQL mystery](https://mystery.knightlab.com/)
+
 ## How to create anki from this boot mock question file
 1. [Sql bolt](https://sqlbolt.com/lesson/filtering_sorting_query_results)
 2. [Crack SQL Interview Question: Subquery vs. CTE](https://towardsdatascience.com/sql-for-data-analysis-subquery-vs-cte-699ef629d9eb)
+
+
 ```
 mdanki Sql.md Sql.apkg --deck "Mohan::Pack::Sql"
 ```
