@@ -5,6 +5,7 @@
 
 ## [What is Window function?](Effective-SQL:Item 37: Know How to Use Window Functions)
 1. “Window” refers to a set of rows that surround a considered row, either preceding or following that row.
+2. [Window function basics](https://www.sql-practice.com/learn/function/window_function_basics/)
 
 ## [What is impact of Partition by in Window function?](Effective-SQL:Item 37: Know How to Use Window Functions)
 1. PARTITION BY predicate specifies how the window should be divided.
@@ -82,6 +83,29 @@ with sales as (   select store_name, sum(price) as total_sales from sales group 
 ---
 select store_name from sales group by stores having sum(sales) > (select avg(price) from sales) 
 ```
+
+## [1204. Last Person to Fit in the Bus- How to find cumulative weight](https://leetcode.com/problems/last-person-to-fit-in-the-bus/description/)
+
+```sql
+
+SELECT 
+   q1.person_name
+FROM
+   Queue q1 JOIN Queue q2 ON q1.turn >= q2.turn
+GROUP BY q1.turn
+HAVING SUM(q2.weight) <= 1000
+ORDER 
+   BY SUM(q2.weight) DESC
+LIMIT 1
+
+
+with running_sum as (
+    select person_id, person_name, turn, sum(weight) over (order by turn) as s_weight from Queue
+)
+select  person_name from  running_sum 
+where turn = (select max(turn)  from running_sum where s_weight <= 1000 )
+```
+
 
 ## [1285. Find the Start and End Number of Continuous Ranges](https://leetcode.com/problems/find-the-start-and-end-number-of-continuous-ranges/description/)
 log_id - 1,2,3,,6,8
