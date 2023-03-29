@@ -1,3 +1,4 @@
+## MYSql ini file
 ```ini
 #D:\Apps\mysql-8.0.13-winx64\my.ini
 [mysqld]
@@ -10,7 +11,7 @@ max_allowed_packet=16M
 port=3306
 ```
 
-# Initialize database in insecure-more
+## Initialize database in insecure-more
 ```bash
 D:\Apps\mysql-8.0.13-winx64\bin\mysqld --defaults-file=D:\Apps\mysql-8.0.13-winx64\my.ini --initialize-insecure --console
 
@@ -27,7 +28,7 @@ SHOW GRANTS username;
 CREATE DATABASE NIKIAS CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 GRANT ALL PRIVILEGES ON NIKIAS.* TO 'euler'@'localhost';
 
-# Change root password (MySQL 8.0.14 on Windows)
+## Change root password (MySQL 8.0.14 on Windows)
 ```
 mysql -u root
 use mysql;
@@ -35,10 +36,11 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
 FLUSH PRIVILEGES;
 ```
 
-# Now the password was changed, start database normally:
+## Now the password was changed, start database normally:
 
 <MYSQLDIR>\bin\mysqld
-# ACCESS database shell
+
+## ACCESS database shell
 <MYSQLDIR>\bin\mysql -u root -p
 
 ```SQL
@@ -49,7 +51,7 @@ CREATE DATABASE thales CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
 
-# Most useful MySQL SQL
+## Most useful MySQL SQL
 ```sql
 
 SELECT table_name FROM information_schema.tables where table_schema='emp';
@@ -73,7 +75,7 @@ ADD COLUMN TS DATETIME  DEFAULT 20190101020000 AFTER source;
 
 <MYSQLDIR>\bin\mysqld --init-file=<MYSQLDIR>\my.ini
   
-# MYSQL
+## MYSQL - list tables, describe
 ```sql
 mysql> use mysql;
 mysql> show tables;
@@ -107,7 +109,7 @@ mysqladmin shutdown
 net stop mysql 
 ```
 
-# JDBC configuration to useSSL
+## JDBC configuration to useSSL
 clientCertificateKeyStoreUrl=file:path_to_truststore_file 
 clientCertificateKeyStorePassword=mypassword
 -Djavax.net.ssl.trustStore=path_to_truststore_file 
@@ -133,7 +135,7 @@ trustCertificateKeyStorePassword=123456
     * But It is unable to The MySQL server is running with the --skip-grant-tables option so it cannot execute this statement	0.000 sec
 * How to disable --skip-grant-tables
 
-#[JDBC UseSSL](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-using-ssl.html)
+## [JDBC UseSSL](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-using-ssl.html)
   
-# Refernces
+## References
 * [Mysql manual] (http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm)

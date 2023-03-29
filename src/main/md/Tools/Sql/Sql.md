@@ -363,13 +363,11 @@ SUM( case when p.product_name ='S8' then 1 else 0 end) > 0 AND
 SUM( case when p.product_name ='iPhone' then 1 else 0 end) = 0 
 ```
 
-## If player activity is stored in Activity table, find the first device that he used to login
+## [512. Game Play Analysis II-If player activity is stored in Activity table, find the first device that he used to login](https://leetcode.com/problems/game-play-analysis-ii/description/)
 
 ```sql
 select player_id, device_id from activity 
 where (player_id, event_date) in (select player_id, min(event_date) from activity group by player_id ) 
-
-select distinct B.player_id, B.device_id from Activity B where b.event_date in (select min(event_date) from Activity A where A.player_id = B.player_id)
 ```
 
 ## [Find all the seller who has maximum total_price](https://leetcode.com/problems/sales-analysis-i/description/)
@@ -393,11 +391,32 @@ with iphone_buyer as (select s.buyer_id from Sales s inner join Product p on s.p
     select distinct s8.buyer_id from s8_buyer s8 where s8.buyer_id not in (select buyer_id from iphone_buyer)    
 ```
 
-## If player activity is stored in Activity table, find the first device that he used to login - using window function
+## [512. Game Play Analysis II - If player activity is stored in Activity table, find the first device that he used to login - using window function](https://leetcode.com/problems/game-play-analysis-ii/editorial/)
 
 ```sql
 select distinct player_id, first_value(device_id) over (partition by player_id order by event_date) device_id
 from activity
+
+  ranked_logins AS (
+    SELECT
+      A.player_id,
+      A.device_id,
+      RANK() OVER (
+        PARTITION BY
+          A.player_id
+        ORDER BY
+          A.event_date
+      ) AS rnk
+    FROM
+      Activity A
+  )
+SELECT
+  RL.player_id,
+  RL.device_id
+FROM
+  ranked_logins RL
+WHERE
+  RL.rnk = 1;
 ```
 
 ## Select project_id that has maximum number of employees
