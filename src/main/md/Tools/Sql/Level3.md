@@ -45,6 +45,24 @@ having sum(o.quantity * p.price) >= 100
 where rown=2
 ```
 
+## [1479. Sales by Day of the Week](https://leetcode.com/problems/sales-by-day-of-the-week/)
+
+```sql
+select 
+    i.item_category as CATEGORY, 
+        sum( if(WEEKDAY(o.order_date)=0, o.quantity, 0  ) ) as 'MONDAY',      
+        sum( if(WEEKDAY(o.order_date)=1, o.quantity, 0  ) ) as 'TUESDAY',
+        sum( if(WEEKDAY(o.order_date)=2, o.quantity, 0  ) ) as 'WEDNESDAY',
+        sum( if(WEEKDAY(o.order_date)=3, o.quantity, 0  ) ) as 'THURSDAY',
+        sum( if(WEEKDAY(o.order_date)=4, o.quantity, 0  ) ) as 'FRIDAY',
+        sum( if(WEEKDAY(o.order_date)=5, o.quantity, 0  ) ) as 'SATURDAY',
+        sum( if(WEEKDAY(o.order_date)=6, o.quantity, 0  ) ) as 'SUNDAY'
+from 
+    Items i left join orders o on o.item_id = i.item_id
+group by item_category
+order by item_category
+```
+
 ## How to make ANKI
 ```
 mdanki Level3.md Advanced_Level3_Sql.apkg --deck "Mohan::Pack::Advanced_Level3_Sql"
