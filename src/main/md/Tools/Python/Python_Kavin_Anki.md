@@ -56,7 +56,7 @@ middleIndex = int((len(testString) - 1) / 2)
 print(middleIndex)
 ```
 %
-* 3
+* 2
 
 ## How to print 0 to 9 using python
 
