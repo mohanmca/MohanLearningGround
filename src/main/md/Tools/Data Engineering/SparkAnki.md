@@ -28,11 +28,9 @@
 ## What is a Spark Stage in the Spark architecture?
 * A Spark Stage is a collection of tasks that can be executed together in a single batch, such as a set of map operations followed by a reduce operation.
 
-  Front:
-  What is the purpose of the following Python code?
+##  What is the purpose of the following Python code?
 
-python
-
+```python
 from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("example").getOrCreate()
@@ -40,45 +38,34 @@ data = [("Alice", 25), ("Bob", 30), ("Charlie", 35)]
 columns = ["Name", "Age"]
 df = spark.createDataFrame(data, columns)
 df.show()
+```
 
-#--end-of-python-code
 
 Back:
 The purpose of the code is to create a Spark DataFrame from a list of tuples, where each tuple represents a row of data, and then display the contents of the DataFrame using the show() method.
 
-    Front:
-    What is the purpose of the following Python code?
-
-python
-
+##  What is the purpose of the following Python code?
+```python
 from pyspark.sql.functions import col
 
 df.filter(col("age") > 25).show()
-
-#--end-of-python-code
-
-Back:
+```
 The purpose of the code is to filter a Spark DataFrame to only include rows where the age column is greater than 25, and then display the filtered DataFrame using the show() method.
 
-    Front:
-    What is the purpose of the following Python code?
+##  What is the purpose of the following Python code?
 
-python
-
+```python
 from pyspark.sql.functions import sum
 
 df.groupBy("department").agg(sum("salary")).show()
-
-#--end-of-python-code
+```
 
 Back:
 The purpose of the code is to group a Spark DataFrame by the department column, calculate the sum of the salary column for each group, and then display the results using the show() method.
 
-    Front:
-    What is the purpose of the following Python code?
+##  What is the purpose of the following Python code?
 
-python
-
+```python
 from pyspark.sql.functions import udf
 
 def square(x):
@@ -86,119 +73,86 @@ return x * x
 
 square_udf = udf(square)
 df.withColumn("squared_age", square_udf(col("age"))).show()
-
-#--end-of-python-code
-
-Back:
+```
 The purpose of the code is to define a user-defined function (UDF) that squares a number, apply the UDF to the age column of a Spark DataFrame using the withColumn() method, and then display the modified DataFrame using the show() method.
 
-    Front:
-    What is the purpose of the following Python code?
+##  What is the purpose of the following Python code?
 
-python
-
+```python
 from pyspark.sql.functions import lit
 
 df.withColumn("new_column", lit(0)).show()
-
-#--end-of-python-code
+```
 
 Back:
 The purpose of the code is to add a new column called new_column to a Spark DataFrame, where all the values in the column are set to 0, and then display the modified DataFrame using the show() method.
 
-    Front:
-    What is the purpose of the following Python code?
+##  What is the purpose of the following Python code?
 
-python
-
+```python
 df.write.mode("overwrite").parquet("path/to/parquet")
-
-#--end-of-python-code
-
-Back:
+```
 The purpose of the code is to write the contents of a Spark DataFrame to a Parquet file format, where the file will be overwritten if it already exists.
 
-    Front:
-    What is the purpose of the following Python code?
+##  What is the purpose of the following Python code?
 
-python
-
+```python
 from pyspark.sql.functions import col
 
 df.select(col("name").alias("employee_name"), col("salary") * 2).show()
-
-#--end-of-python-code
+```
 
 Back:
 The purpose of the code is to select two columns from a Spark DataFrame, where the first column is renamed to employee_name, and the second column is multiplied by 2, and then display the results using the show() method
 
 
-    Front:
-    What is the purpose of the following Python code?
+##  at is the purpose of the following Python code?
 
-python
-
+```python
 from pyspark.sql.functions import when
 
 df.withColumn("discounted_salary", when(col("age") < 30, col("salary") * 0.9).otherwise(col("salary"))).show()
 
-#--end-of-python-code
+```
 
 Back:
 The purpose of the code is to add a new column called discounted_salary to a Spark DataFrame, where the salary values are reduced by 10% for employees under the age of 30, and the original salary values are retained for all other employees. The results are then displayed using the show() method.
 
-    Front:
-    What is the purpose of the following Python code?
+##  What is the purpose of the following Python code?
 
-python
-
+```python
 from pyspark.sql.functions import desc
 
 df.orderBy(desc("salary")).show()
-
-#--end-of-python-code
-
-Back:
+```
 The purpose of the code is to sort the rows of a Spark DataFrame in descending order based on the salary column, and then display the sorted DataFrame using the show() method.
 
-    Front:
-    What is the purpose of the following Python code?
+##  What is the purpose of the following Python code?
 
-python
-
+```python
 from pyspark.sql.functions import explode
 
 df.select(explode(split(col("names"), ",")).alias("name")).show()
-
-#--end-of-python-code
-
-Back:
+```
 The purpose of the code is to split a string column called names into multiple rows based on the comma separator, and then display the resulting rows using the show() method.
 
-    Front:
-    What is the purpose of the following Python code?
+## What is the purpose of the following Python code?
 
-python
-
+```python
 from pyspark.sql.functions import window
-
 df.groupBy(window(col("timestamp"), "1 hour")).agg(sum("sales")).show()
+```
 
-#--end-of-python-code
-
-Back:
 The purpose of the code is to group a Spark DataFrame by hourly windows based on a timestamp column, calculate the sum of the sales column for each window, and then display the results using the show() method.
 
-    Front:
-    What is the purpose of the following Python code?
-
-python
-
+## What is the purpose of the following Python code?
+```python
 from pyspark.sql.functions import approx_count_distinct
 
 df.select(approx_count_distinct("name")).show()
+```
 
-#--end-of-python-code
+
 
 ## How pyspark is executed by Spark JVM engine?
 
@@ -223,3 +177,6 @@ When a PySpark application is submitted to a Spark cluster, the following happen
     The Python process collects the results and sends them back to the PySpark driver program in the JVM via the Py4J gateway server.
 
 Overall, PySpark is executed by the Spark JVM engine using the Py4J library to translate PySpark function calls between the Python process and the JVM process. This allows users to write Spark applications using Python code, which is executed on the Spark engine by the JVM process. The PySpark driver program coordinates the execution of the PySpark application and manages the Py4J gateway server to communicate between the Python process and the JVM process.
+
+## Generate ANKI
+* mdanki SparkAnki.md SparkAnki.apkg --deck "Mohan::Spark::DataFrame"
