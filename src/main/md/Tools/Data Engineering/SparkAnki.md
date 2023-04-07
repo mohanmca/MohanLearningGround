@@ -152,8 +152,6 @@ from pyspark.sql.functions import approx_count_distinct
 df.select(approx_count_distinct("name")).show()
 ```
 
-
-
 ## How pyspark is executed by Spark JVM engine?
 
 The purpose of the code is to estimate the number of distinct values in a column called name of a Spark DataFrame, and then display the estimated count using the show() method. The approx_count_distinct() function is used for performance reasons, as it provides an approximate count that can be much faster to compute than an exact count.

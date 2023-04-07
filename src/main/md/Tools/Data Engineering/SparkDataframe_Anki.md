@@ -14,6 +14,18 @@
 1. Expressiablity
 2. Composability
 
+## Spark Architecture
+
+1. Cluster, Driver and Worker
+2. Nodes, executor, core
+3. Application, job, stage, task
+4. Narrow and wide transformation
+5. Shuffle
+6. Repartition vs Coalesce
+7. Partition
+8. Bucketing
+9. Garbage Collection
+
 ## Example of Expressability using RDD (name, age)
 
 ```python
@@ -64,8 +76,6 @@ avg_df.show()
 3. All are subtypes of the class DataTypes, except for DecimalType.
 
 
-
-
 ## What are all the Spark Data-Types for Python
 
 ```python
@@ -80,7 +90,6 @@ StringType 	str 	          DataTypes.StringType
 BooleanType 	bool 	         DataTypes.BooleanType
 DecimalType 	decimal.Decimal 	DecimalType
 ```
-
 
 ## What are all the Spark Structured and Complex Data Types
 
@@ -276,6 +285,17 @@ fire_df.write.format("parquet").saveAsTable(parquet_table)
 2. It is the default format; 
 3. it uses snappy compression to compress the data. 
 4. If the DataFrame is written as Parquet, the schema is preserved as part of the Parquet metadata.
+
+
+## Parquet file format
+
+1. Parquet files are stored in a directory structure that contains 
+   1. the data files, metadata
+   2. a number of compressed files
+   3. some status files. 
+   4. Metadata in the footer contains the version of the file format
+      1. the schema
+      2. column data such as the path, etc.
 
 ## How to create Parquet file using Pandas
 
@@ -474,6 +494,7 @@ spark.read.table("cass100.ks.tab").writeTo("cass200.ks.tab").append
 
 ## References
 1. [Deep Dive into Spark SQL's Catalyst Optimizer](https://www.databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html)
-2. [SparkSession Unified Entry Point](https://www.databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html)
-3. [Mnm DataSet](https://github.com/databricks/LearningSparkV2/blob/master/chapter2/py/src/data/mnm_dataset.csv)
-4. [Fire Data](https://data.sfgov.org/Public-Safety/Fire-Incidents/wr8u-xric/data)
+2. [SQL Optimizer](https://blog.devgenius.io/spark-sql-query-plan-e236f1327405)
+3. [SparkSession Unified Entry Point](https://www.databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html)
+4. [Mnm DataSet](https://github.com/databricks/LearningSparkV2/blob/master/chapter2/py/src/data/mnm_dataset.csv)
+5. [Fire Data](https://data.sfgov.org/Public-Safety/Fire-Incidents/wr8u-xric/data)

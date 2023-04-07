@@ -28,4 +28,9 @@
 1. Using Sql-Server and SSIS
 2. Azure DataFactory was used to automatically load the data into Delta-Lake
 3. Few prefer to use separate delta-table for each pipeline
-4. 
+
+## What is Data Munging
+1.  Refers to the process of taking raw data and transforming it into something more consumable ready to use for analytics.
+
+## What is the primary phases of a Reducer
+1. Shuffle, Sort and Reduce
