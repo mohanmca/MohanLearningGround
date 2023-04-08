@@ -10,6 +10,11 @@ The Databricks File System (DBFS) is a distributed file system mounted into a Da
 
 1. DESCRIBE EXTENDED DCDataRaw;
 
+## Partition
+
+1. Each partition would be in separate directory
+2. It helps to scan only portion of the entire data
+
 ## How to view Parquet file using Spark.sql without creating Table/View
 
 ```SELECT * FROM parquet.`/mnt/training/ecommerce/events/events.parquet```
@@ -200,7 +205,7 @@ DeviceData3) PIVOT (
 ```
 
 ## GroupBy and Rollup 
-
+* CUBE is also an operator used with the GROUP BY clause. Similar to ROLLUP, you can use CUBE to generate summary values for sub-elements grouped by column value. CUBE is different than ROLLUP in that it will also generate subtotals for all combinations of grouping columns specified in the GROUP BY clause.
 ```sql
 SELECT 
   COALESCE(dc_id, "All data centers") AS dc_id,
@@ -219,8 +224,46 @@ GROUP BY CUBE (dc_id, device_type)
 ORDER BY dc_id, device_type;
 ```
 
+## Partition SQL
+
+```sql
+CREATE TABLE IF NOT EXISTS AvgTemps
+PARTITIONED BY (device_type)
+AS
+  SELECT
+    dc_id,
+    date,
+    temps,
+    REDUCE(temps, 0, (t, acc) -> t + acc, acc ->(acc div size(temps))) as avg_daily_temp_c,
+    device_type
+  FROM DeviceData;
+```
+
+## Show partitions of a table
+
+1. SHOW PARTITIONS AvgTemps
+
+## DataBricks Widget
+
+1. 
+
+## How to connect to Databricks Spark
+
+1. jdbc:spark://community.cloud.databricks.com:443/default;transportMode=http;ssl=1;httpPath=sql/protocolv1/o/1025635937589762/0408-004348-gsh3b7rb;AuthMech=3;UID=token;PWD=<personal-access-token>
+
+
+## Data Lakes vs Data Warehouses
+
+1. DL - All types of data, structured, un-structured, semi-structured
+2. DW - Only structured data
+
+## Data Lakehouse
+1. Lakehouses are enabled by a new system design: implementing similar data structures and data management features to those in a data warehouse directly on top of low cost cloud storage in open formats.
+
 ## Reference
 
 1. [apache-spark-sql-for-data-analysts](https://www.coursera.org/learn/apache-spark-sql-for-data-analysts/lecture/JYiZW/what-is-nested-data)
 2. [Community Cluster](https://community.cloud.databricks.com/login.html)
 3. [Array Notebook](https://docs.databricks.com/_extras/notebooks/source/apache-spark-functions.html)
+4. [Data Lakehouse](https://www.databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html)
+5. [FAQ DL](https://www.databricks.com/blog/2021/08/30/frequently-asked-questions-about-the-data-lakehouse.html)
