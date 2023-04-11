@@ -492,6 +492,57 @@ task1 >> tas2
    1. IBM event streams
    2. Confluent
    3. Amazon MSK
+6. Order is maintained within partition
+7. Same object goes through same partition
+
+## Building event stream processing using Kafka
+
+1. Topics are partitioned and replicated
+   1. Topics can be considered like tables for events
+2. There would be multiple broker processes
+   1. Even if they are down kafka can work
+3. log_partition_0 and log_partition_1 can be accommodated on different brokers
+4. Supports key-value events
+
+```bash
+kafka-topics
+kafka-console-producer
+kafka-console-consumer
+```
+
+```bash
+kafka-topics --bootstrap-server localhost:9092 --topic log_topic --create --partitions 2 --replication-factor 2
+kafka-topics --bootstrap-server localhost:9092 --list
+kafka-topics --bootstrap-server localhost:9092 --topic log_topic --delete
+kafka-topics --bootstrap-server localhost:9092 --describe log_topic
+ 
+kafka-console-producer --broker-list localhost:9092 --topic log_topic < inputs_from_files
+kafka-console-producer --broker-list localhost:9092 --topic log_topic --property parse.key=true -property key.separator=,
+> user1, login website
+> user1, click buttoon on the left menu for purchase
+
+kafka-console-consumer --bootstrap-server localhost:9092 --topic log_topic
+kafka-console-consumer --bootstrap-server localhost:9092 --topic log_topic --from-beginning 
+```
+
+## Kafka Stream Process (and topology)
+1. Kafka Streams API
+   1. Simple client library facilitate data processing in event streaming pipelines
+   2. Processes and analyses data stored in kafka topics
+   3. Record only processed once
+   4. Processes one record at a time
+2. Kafka Stream Topology (Computational Graph)
+   1. ![Stream processor Topology](./img/Stream.png "Stream processor")
+   2. Each node is Stream processor
+   3. Each node receives streams from upstream
+   4. Each node also acts as upstream for other consumer
+   5. Each node does, map, filter and reduce
+   6. Source and Sync processor are special one
+4. Application
+   1. Any application that processes streams maps and filters are called stream processor
+   
+
+
 
 ## [etl-and-data-pipelines-shell-airflow-kafka](https://www.coursera.org/learn/etl-and-data-pipelines-shell-airflow-kafka/lecture/J9fAf/course-intro-video)
 1. [ETL DW](https://github.com/mboccenti/ETL-and-Data-Pipelines-with-Shell-Airflow-and-Kafka)
