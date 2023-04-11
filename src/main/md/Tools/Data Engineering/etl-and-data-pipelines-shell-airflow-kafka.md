@@ -538,11 +538,47 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic log_topic --fro
    4. Each node also acts as upstream for other consumer
    5. Each node does, map, filter and reduce
    6. Source and Sync processor are special one
-4. Application
+3. Application
    1. Any application that processes streams maps and filters are called stream processor
+4. Partition and Offset
+   1. The offset of an empty Partition 0 of bankbranch is 0, and if you publish the first message to the partition, its offset will be 1.
    
+## Kafka installation
 
+```bash
+wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.12-2.8.0.tgz
+tar -xzf kafka_2.12-2.8.0.tgz
+cd kafka_2.12-2.8.0
+bin/zookeeper-server-start.sh config/zookeeper.properties
+cd kafka_2.12-2.8.0
+bin/kafka-server-start.sh config/server.properties
+cd kafka_2.12-2.8.0
+bin/kafka-topics.sh --create --topic news --bootstrap-server localhost:9092
+bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
+bin/kafka-console-producer.sh --topic news --bootstrap-server localhost:9092
+bin/kafka-console-consumer.sh --topic weather --bootstrap-server localhost:9092 --from-beginning
+/tmp/kakfa-logs
+bin/kafka-topics.sh --create --topic bankbranch --bootstrap-server localhost:9092 --partitions 2
+bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic bankbranch
+bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic bankbranch
+{"atmid": 1, "transid": 100}
+{"atmid": 1, "transid": 101}
+{"atmid": 2, "transid": 200} 
+{"atmid": 2, "transid": 200}
+{"atmid": 2, "transid": 200} 
 
+bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic bankbranch --property parse.key=true --property key.separator=:
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bankbranch --group atm-app
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group atm-app
+--to go back two messages for the entire consumer-groups
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092  --topic bankbranch --group atm-app --reset-offsets --shift-by -2 --execute
+--we get number of consumer times 2 message, since above line offset was moved by 2
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bankbranch --group atm-app
+```
+
+## Consumer Group
+1. We normally group related consumers together as a consumer group.
+   1. For example, we may want to create a consumer for each ATM in the bank and manage all ATM related consumers together in a group
 
 ## [etl-and-data-pipelines-shell-airflow-kafka](https://www.coursera.org/learn/etl-and-data-pipelines-shell-airflow-kafka/lecture/J9fAf/course-intro-video)
 1. [ETL DW](https://github.com/mboccenti/ETL-and-Data-Pipelines-with-Shell-Airflow-and-Kafka)
