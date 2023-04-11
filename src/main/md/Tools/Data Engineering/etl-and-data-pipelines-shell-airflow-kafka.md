@@ -304,18 +304,195 @@ echo "\c template1;SELECT * from access_log;" | psql --username=postgres --host=
 1. Open source
 2. Bigdata, dw and profiling
 3. DANDD GUI
-4. Automatically gnerates java code
+4. Automatically generates java code
 5. Connects with many data warehouses
    1. Google sheets
    2. RDBMS
-   3. IBM d2 & Oracle
+   3. IBM DB2 & Oracle
 
 ## AWS Glue
-1. ETL service that simplifies data prep for analytics
-2. Suggests schemas for storing your data
-3. Create ETL jobs from AWS console
+1. Fully managed
+2. Can crawl datasource to discover data formats
+   1. Suggests schema to create
+3. ETL service that simplifies data prep for analytics
+4. Suggests schemas for storing your data
+5. Create ETL jobs from AWS console
 
 ## Panoply
+1. Focus on ELT
+2. No-Code data integration
+
+## Alteryx
+1. Self service data analytics platform
+2. No Sql or coding experience required
+
+
+## IBM InfoSphere DataStage
+1. ETL Studio
+2. DANDDUI
+3. Supports prallel procesing
+
+## IBM Streams
+1. Build real-time analytical applications
+
+## Other stream data pipeline tools
+1. Apache Storm
+2. SQLstream
+3. Apache Samaza
+4. Apache Spark
+5. Apache Flink
+6. Azure stream analytics
+7. Apache Kafka
+
+## Airflow
+1. Python library + UI + Scheduler + Metadata + Executor + Worker + WebServer (for UI)
+2. Apache Airflow is scalable, dynamic, extensible, and lean
+   1. Scalable: Airflow has a modular architecture and uses a message queue to orchestrate an arbitrary number of workers.
+      1. It is ready to scale to infinity.
+   2. Dynamic: Airflow pipelines are defined in Python, and allow dynamic pipeline generation. Thus, your pipelines can contain multiple simultaneous tasks.
+   3. Extensible: You can easily define your own operators and extend libraries to suit your environment.
+   4. Lean: Airflow pipelines are lean and explicit. Parameterization is built into its core using the powerful Jinja templating engine
+3. ‘schedule_interval’ parameter specifies how often to re-run your DAG
+
+## Airflow Environment
+```bash
+airflow dags list - list out all the existing DAGs.
+airflow tasks list example_bash_operator -  list out all the tasks in the DAG named example_bash_operator
+airflow dags unpause tutorial
+airflow dags pause tutorial
+```
+
+## Airflow Dag Definition script
+
+1. Library Imports
+2. DAG arguments
+3. DAG definition
+4. Task definition
+5. Task pipeline
+
+
+## Example Airflow python script
+
+```python
+#simple_example_DAG.py
+from airflow import DAG
+from aiflow.operators.bash_operator import BashOperator
+import datetime as dt
+
+default_args = {
+   'owner': 'me',
+   'start_date': dt.datetime(2021, 7, 28),
+   'retries' : 1,
+   'retry_delay'" dt.timedelta(minutes=5),
+}
+
+dag = DAG('simple_example', description='A simple example DAG', 
+         default_args = default_args, schedule_interval=dt.timedelta(seconds=5), 
+      )
+
+task1 = BashOperator (
+   task_id = 'print_hello',
+   bash_command='echo \'Greetings. the date and time are \'',
+   dag=dag
+) 
+
+task2 = BashOperator (
+   task_id = 'print_date',
+   bash_command = 'date',
+   dag=dag,
+)
+
+task1 >> tas2
+```
+
+## How to deploy the DAG to airflow
+
+1. cp my_first_dag.py $AIRFLOW_HOME/dags
+2. airflow dags list | grep my-first
+   1. task_id will be displayed from the argument value that we pass to Operators
+   2. Variable name won't be displayed as output
+
+## How to monitor Airflow DAG
+1. Logging
+2. Logs can be identified using dag_id and task_id
+   1. logs/dag_id/task_id/execution_ate/try_number.log
+   2. logs/dummy_dag/task1/2021-07-29T00:17:00+00:00/1.log
+3. Monitoring metrics for Airflow
+   1. Counters - Always increase
+      1. Number of successes and failures
+   2. Gauges - fluctuate
+      1. Number of running tasks
+      2. DAG bag size, or number of DAGs in production
+   3. Timers - time duration
+      1. Milliseconds to finish a task
+4. Airflow recommends that production deployment metrics be sent to and analyzed by Prometheus via StatsD
+5. Recommends sending the logs to ElasticSearch
+
+## Typical tasks working with Airflow
+
+1. Search for a DAG.
+2. Pause/Unpause a DAG.
+3. Get the Details of a DAG.
+4. Explore grid view of a DAG.
+5. Explore graph view of a DAG.
+6. Explore Calendar view of a DAG.
+7. Explore Task Duration view of a DAG.
+8. Explore Details view of a DAG.
+9. View the source code of a DAG.
+10. Delete a DAG.
+
+## Distributed Event Streaming Platform Components
+1. Event - describes an entity's observable state updates over time
+2. Event streaming - from one event source to one destination
+
+## Main components of ESP
+
+* ESP acts as middle layer for various sources and destinations to serve stream processing
+  * All source can send only to ESP
+  * All consumers can retrieve from ESP
+* Common components of ESP
+  * Event broker, which is designed to receive and consume  events.
+  * Event Storage, which is used for storing events being received from event sources.
+* Event broker components
+  * Ingester, processor, and consumption.
+    * The Ingester is designed to efficiently receive events from various event sources.
+    * The processor performs operations on data such as serializing and deserializing; compressing and decompressing; encryption and decryption; and so on.
+    * The consumption component retrieves events from event storage and efficiently distributes them to subscribed event destinations.
+
+## Apache Kafka ESP
+
+1. Common use cases
+   1. User activities
+   2. Metrics streaming
+   3. Logs streaming
+   4. Financial Transactions
+2. Destinations of Kafka
+   1. Databases
+   2. Analytics
+   3. Notifications
+   4. Governance and audit
+
+## Apache Kafka Architecture
+
+1. Distributed Client Server architecture
+   2. Many associated servers are called Brokers
+      1. Brokers are managed by Zookeeper (leader selection)
+2. Handle bytes
+3. Client
+   1. CLI
+   2. High level api
+   3. Rest API
+4. Why famous
+   1. Highly scalable
+   2. Highly reliable
+   3. Distributed system (not singlepoint failure)
+   4. Permanent persistent
+   5. Open source
+5. Providers
+   1. IBM event streams
+   2. Confluent
+   3. Amazon MSK
 
 ## [etl-and-data-pipelines-shell-airflow-kafka](https://www.coursera.org/learn/etl-and-data-pipelines-shell-airflow-kafka/lecture/J9fAf/course-intro-video)
 1. [ETL DW](https://github.com/mboccenti/ETL-and-Data-Pipelines-with-Shell-Airflow-and-Kafka)
+2. [Airflow](https://stackoverflow.com/questions/tagged/airflow-2.x)

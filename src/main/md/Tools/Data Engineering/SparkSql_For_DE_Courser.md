@@ -260,6 +260,162 @@ AS
 ## Data Lakehouse
 1. Lakehouses are enabled by a new system design: implementing similar data structures and data management features to those in a data warehouse directly on top of low cost cloud storage in open formats.
 
+## Delta Lake
+1. Delta Lake helps to build Data Lakehouse
+2. Supports ACID/Streaming/Governance/De-couple-compute-and-data
+3. Delta Lake follows medallion architecture
+   1. Bronze - Raw table - not easily queryable
+   2. Silver
+      1. Cleaned table
+      2. Acts as source for multiple business aggregate Gold level tables
+   3. Gold
+4. Powered by Delta Engine
+
+## What is Delta table
+1. Delta files (in object storage)
+2. Delta Transaction log
+3. Delta table registered in the Metastore
+
+## How to create Delta Table
+
+```sql
+CREATE OR REPLACE TABLE health_tracker_silver
+USING DELTA
+PARTITIONED BY (p_device_id)
+LOCATION "/health_tracker/silver" AS (
+    SELECT
+        value.name,
+        value.heartrate,
+        CAST(FROM_UNIXTIME(value.time) AS timestamp) AS time,
+        CAST(FROM_UNIXTIME(value.time) AS DATE) AS dte,
+        value.device_id p_device_id
+    FROM
+        health_tracker_data_2020_01
+)
+```
+
+## How to describe table with timestamp (when was created)
+1. DESCRIBE DETAIL health_tracker_silver
+
+## How to append data to existing table
+
+```sql
+INSERT INTO
+  health_tracker_silver
+SELECT
+  value.name,
+  value.heartrate,
+  CAST(FROM_UNIXTIME(value.time) AS timestamp) AS time,
+  CAST(FROM_UNIXTIME(value.time) AS DATE) AS dte,
+  value.device_id p_device_id
+FROM
+  health_tracker_data_2020_02
+```
+
+## Create Table for late arriving data
+
+```
+CREATE OR REPLACE TABLE health_tracker_late
+USING JSON
+OPTIONS (path "dbfs:/mnt/training/healthcare/tracker/raw-late.json")
+```
+
+## How to find all the version of the delta table
+* describe history health_tracker_silver
+
+## How to time travel delta table
+
+1. SELECT COUNT(*) FROM health_tracker_silver VERSION AS OF 0
+2. SELECT COUNT(*) FROM health_tracker_silver VERSION AS OF 1
+
+## What is Late-arriving data
+1. The absence of records from the last few days of the month shows a phenomenon that may often occur in a production data pipeline: late-arriving data.
+
+## How setup graph
+
+To set up your graph:
+
+    Click Plot Options
+    Drag dte into the Keys dialog
+    Drag p_device_idinto the Series Groupings dialog
+    Drag heartrate into the values dialog
+    Choose COUNT as your Aggregation type (the dropdown in the lower left corner)
+    Select "Bar Chart" as your display type.
+
+## How to use prev + succ data as missing data
+
+```sql
+CREATE OR REPLACE TEMPORARY VIEW updates 
+AS (
+  SELECT name, (prev_amt+next_amt)/2 AS heartrate, time, dte, p_device_id
+  FROM (
+    SELECT *, 
+    LAG(heartrate) OVER (PARTITION BY p_device_id, dte ORDER BY p_device_id, dte) AS prev_amt, 
+    LEAD(heartrate) OVER (PARTITION BY p_device_id, dte ORDER BY p_device_id, dte) AS next_amt 
+    FROM health_tracker_silver
+  ) 
+  WHERE heartrate < 0
+)
+```
+
+## Create Upsers View
+
+
+## What is upsert
+1. The word "upsert" is a portmanteau of the words "update" and "insert,"
+2. This is what it does. 
+   1. An upsert will update records where some criteria are met 
+   2. Otherwise will insert the record.
+   3.
+```sql
+CREATE OR REPLACE TEMPORARY VIEW upserts
+AS (
+    SELECT * FROM updates 
+    UNION ALL 
+    SELECT * FROM inserts
+    )
+```
+4. 
+```sql
+MERGE INTO health_tracker_silver                            -- the MERGE instruction is used to perform the upsert
+USING upserts
+   ON health_tracker_silver.time = upserts.time AND        
+   health_tracker_silver.p_device_id = upserts.p_device_id  -- ON is used to describe the MERGE condition
+
+WHEN MATCHED THEN                                           -- WHEN MATCHED describes the update behavior
+   UPDATE SET
+   health_tracker_silver.heartrate = upserts.heartrate   
+WHEN NOT MATCHED THEN                                       -- WHEN NOT MATCHED describes the insert behavior
+   INSERT (name, heartrate, time, dte, p_device_id)              
+   VALUES (name, heartrate, time, dte, p_device_id)
+```
+
+## What is ZOrder optimization
+
+1. If your organization continuously writes data to a Delta table, it will over time accumulate a large number of files, especially if you add data in small batches. 
+2. For analysts, a common complaint in querying data lakes is read efficiency; and having a large collection of small files to sift through everytime data is queried can create performance problems. 
+3. Ideally, a large number of small files should be rewritten into a smaller number of larger files on a regular basis, which will improve the speed of read queries from a table. This is known as compaction. 
+4. You can compact a table using the OPTIMIZE command shown below.
+5. Z-ordering co-locates column information (recall that Delta is columnar storage). 
+6. Co-locality is used by Delta Lake data-skipping algorithms to dramatically reduce the amount of data that needs to be read. You can specify multiple columns for ZORDER BY as a comma-separated list. 
+7. However, the effectiveness of the locality drops with each additional column. Read more about optimizing Delta tables here.
+8. OPTIMIZE flights ZORDER BY (DayofWeek);
+
+
+## How to optimize
+
+1. OPTIMIZE table ZORDER BY (Col1, column2, column3);
+2. OPTIMIZE flights ZORDER BY (DayofWeek);
+
+
+## Delta Cache
+
+1. Using the Delta cache is an excellent way to optimize performance. 
+2. Note: The Delta cache is not the same as caching in Apache Spark. 
+3. One notable difference is that the Delta cache is stored entirely on the local disk, so that memory is not taken away from other operations within Spark. 
+4. When enabled, the Delta cache automatically creates a copy of a remote file in local storage so that successive reads are significantly sped up. 
+5. Unfortunately, to enable it, you must choose a cluster type that is not available in Databricks Community Edition.
+
 ## Reference
 
 1. [apache-spark-sql-for-data-analysts](https://www.coursera.org/learn/apache-spark-sql-for-data-analysts/lecture/JYiZW/what-is-nested-data)
@@ -267,3 +423,4 @@ AS
 3. [Array Notebook](https://docs.databricks.com/_extras/notebooks/source/apache-spark-functions.html)
 4. [Data Lakehouse](https://www.databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html)
 5. [FAQ DL](https://www.databricks.com/blog/2021/08/30/frequently-asked-questions-about-the-data-lakehouse.html)
+6. [Kafka and Delta workshop](https://github.com/jaceklaskowski)
