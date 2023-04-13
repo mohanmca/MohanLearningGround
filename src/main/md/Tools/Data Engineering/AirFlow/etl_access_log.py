@@ -10,7 +10,7 @@ default_args = {
 }
 
 dag = DAG('etl_server_access_log', description='A server log accessor',
-         default_args = default_args, schedule_interval=dt.timedelta(seconds=5),
+         default_args = default_args, schedule_interval=dt.timedelta(days=1),
     )
 
 download = BashOperator(

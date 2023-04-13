@@ -3,6 +3,22 @@
 1. metadata in rdbms
    1. Metastore
 
+## Hadoop1 vs Hadoop2
+
+1. NameNode - (Common for 1 & 2)
+2. SecondaryNameNode - (2)
+3. DataNode - (Common for 1 & 2)
+4. Resource Manager - (in Yarn)
+   1. Job Tracker - (in V1)
+5. Node Manager - (in Yarn)
+   1. Task Tracker - in (V1)
+
+## When does HDFS data is not available
+1. All the 3 replicated nodes are missing
+2. Client failed while uploading the initial file
+   1. Once name places entry, client will upload the data to one of the data node
+   2. Data node would use replication pipeline to replicate the data.
+
 ## Hive commands
 
 1. show databases
