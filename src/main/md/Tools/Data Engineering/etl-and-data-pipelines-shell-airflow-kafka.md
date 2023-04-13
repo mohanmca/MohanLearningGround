@@ -54,22 +54,26 @@
 
 ## ELT
 
-1. ELT transformation is more dynamic
-2. Transforming data on demand
-3. Demanding scalability requirements of Big Data
-4. Streaming Analytics
-5. Integration of highly distributed data sources
-6. Multiple data products from the same sources
-7. Why
-   1. Cloud Computing
-      1. Do the transform on demand
+1. Generally stored on Data Lake
+   1. Stored as-ist 
+2. ELT transformation is more dynamic
+   1. Transforming data on demand
+3. Use cases
+   1. Demanding scalability requirements of Big Data
+   2. Streaming analytics
+   3. Integration of highly distributed data sources
+   4. Multiple data products from the same sources 
+6. Why?
+   1. Demands BigData and Cloud Computing
    2. ELT separates the data pipeline from the processing
-   3. No information loss
+   3. More flexibility
+   4. No information loss
 
 ## ETL vs ELT
 1. ELT can be used for adhoc, and self-service-data analytics
 2. ELT is evolution of ETL
 3. ELT solves scalability and structured, un-structured data
+   1. ETL is only for relational data, and scalability is difficult
 4. ETL - would take time to specify transformation
 5. ELT - emerged due to demand for access to raw data
 
@@ -112,29 +116,38 @@
 
 ## Data loading techniques
 
-1. Batch loading vs stream loading
+1. Full
+   1. Initial history into a database 
+2. Incremental
+   1. Once full load is done, further data is loaded using Incremental load
+   2. Based on the volume & velocity of the data, incremental loading can be done either using batch or stream loaded
+   3. Data is appended to, not overwritten
+3. Scheduled
+   1. Load data on periodic basis
+   2. Cron, Windows Scheduler
+4. On-demand
+   1. Initiated/Triggered on-demand
+   2. Measures such as data size
+   3. Event detection, like motion, sound or temp change
+5. Batch loading vs stream loading
    1. Periodic updates using windows of data
-   2. Continuous updates as data arrives (Flink - near realtime)
-   3. Micro-batch loading (Spark technique)
+   2. Loading data in chunks defined by some time windows of data accumulated by the data source
+   3. Stream loading
+      1. Continuous updates as data arrives (Flink - near realtime)
+   4. Micro-batch loading (Spark technique)
       1. Short time windows used to access older data
-2. Push vs Pull
+6. Push vs Pull
    1. Pull - requests for data originate from the client
       1. Example: RSS, Emails
    2. Data can be pushed to clients
       1. Client subscribes to the service provided by server
       2. Example: Push notification, instant messaging
-3. Parallel loading vs Serial loading
-   1. Multiple data steams
+7. Parallel loading vs Serial loading
+   1. To boost data loading
+      1. Multiple data steams
    2. For long distance data replication
    3. Splitting single file into smaller chunks and load to destination
    4. Parallel loading can boost loading efficiency
-4. Full
-   1. New data warehouse
-5. Incremental
-   1. Data is appended to, not overwritten
-6. Scheduled vs On-demand
-   1. Periodic loading, like daily transactions to database
-   2. Windows Task Scheduler, cron
 
 ## Data Load
 

@@ -15,9 +15,14 @@
 
 ## When does HDFS data is not available
 1. All the 3 replicated nodes are missing
-2. Client failed while uploading the initial file
+2. Client failed while writing the initial file
    1. Once name places entry, client will upload the data to one of the data node
    2. Data node would use replication pipeline to replicate the data.
+
+## HDFS - Client Read
+1. Name node would give all the replication details to client
+   1. If one of the copy is not available, client will automatically try to get data from replication
+   2. Since NameNode already sent replication block details to client
 
 ## Hive commands
 
