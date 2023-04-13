@@ -360,6 +360,7 @@ airflow dags list - list out all the existing DAGs.
 airflow tasks list example_bash_operator -  list out all the tasks in the DAG named example_bash_operator
 airflow dags unpause tutorial
 airflow dags pause tutorial
+airflow dags list-import-errors
 ```
 
 ## Airflow Dag Definition script
