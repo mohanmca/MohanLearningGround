@@ -34,20 +34,6 @@
   2. Preparing the data for integration  - Transform
   3. Loading into a destination platform such as a data warehouse or analytics environment. - Load
 
-
-## What is data transformation (aka Data Wrangling)
-
-1. Processing data (to suit business need and to suit target system)
-2. Cleaning
-   1. Fixing errors
-   2. Placing missing values
-3. Filtering
-4. Joining
-5. Feature Engineering 
-   1. To suit business kpi and machine learnings
-6. Formatting and data typing
-7. Transformations for ETL happen in the data pipeline.
-
 ## Well known transformations
 1. Cleaning: fixing any errors or missing values  
 2. Filtering: selecting only what is needed  
@@ -55,9 +41,10 @@
 4. Normalizing: converting data to common units  
 5. Data Structuring: converting one data format to another, such as JSON, XML, or CSV to database tables 
 6. Feature Engineering: creating KPIs for dashboards or machine learning   
-7. Anonymizing and Encrypting: ensuring privacy and security 
-8. Sorting: ordering the data to improve search performance 
-9. Aggregating: summarizing granular data 
+7. Anonymizing and Encrypting: ensuring privacy and security
+8. Formatting and data typing
+9. Sorting: ordering the data to improve search performance
+10. Aggregating: summarizing granular data 
 
 ## What is dataloading
 1. Moving data into a new environment
@@ -87,9 +74,9 @@
 5. ELT - emerged due to demand for access to raw data
 
 ## ETL - Staging area
-1. Sounds like ELT
-2. It is private ETL landing zones
-3. But it is not globally accessible like moder day ELT
+1. ETL - Staging area already means like ELT
+2. It represents private landing zone inside ETL
+3. But it is not globally accessible like modern day ELT
 
 ## Data Extraction Techniques
 
@@ -103,18 +90,6 @@
 5. Database Querying
 6. Edge computing
 7. Biomedical devices
-
-## Data transformation techniques
-
-1. Formatting data to suit the application
-2. Data typing
-3. Data structuring (json to xml, csv to xml)
-4. Anonymize for privacy, and encrypting
-5. Cleaning: duplicated records, missing values
-6. Normalizing: Converting data to common units
-7. Filtering, sorting, aggregating, binning
-8. Joining data sources
-
 
 ## Schema-on-write vs schema-on-read
 1. Schema on write (ETL)
@@ -334,6 +309,8 @@ echo "\c template1;SELECT * from access_log;" | psql --username=postgres --host=
 
 ## IBM Streams
 1. Build real-time analytical applications
+2. Based on Kafka
+3. Reached EOL as on 2022, supported till 2024/September
 
 ## Other stream data pipeline tools
 1. Apache Storm
