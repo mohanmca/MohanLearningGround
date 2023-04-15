@@ -36,6 +36,41 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
 FLUSH PRIVILEGES;
 ```
 
+## psql connect to db
+```bash
+psql --username=postgres --host=localhost (for psql prompt)
+\c db1
+create table users(username varchar(50), userid int, homedirectory varchar(100))
+\l
+\q
+```
+
+## CSV to DB PGSql
+
+```bash
+# This script
+# Extracts data from /etc/passwd file into a CSV file.
+
+# The csv data file contains the user name, user id and 
+# home directory of each user account defined in /etc/passwd
+
+# Transforms the text delimiter from ":" to ",".
+# Loads the data from the CSV file into a table in PostgreSQL database.
+
+# Extract phrase
+cut -d":" -f1,3,6 /etc/passwd > extracted-data.txt
+
+# Transform phase
+tr ":" "," < extracted-data.txt > transformed-data.csv
+ls -1 transformed-data.csv
+cat transformed-data.csv
+ 
+#load phase
+echo "loading data"
+
+echo "\c template1;\COPY users from '/home/project/transformed-data.csv' DELIMITERS ',' CSV;" | psql --username=postgres --host=localhost
+```
+
 ## Now the password was changed, start database normally:
 
 <MYSQLDIR>\bin\mysqld

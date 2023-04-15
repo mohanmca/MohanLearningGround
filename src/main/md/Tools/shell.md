@@ -1,4 +1,4 @@
-### Sum all the numbers in 1st collumn
+### Sum all the numbers in 1st column
 
 <details><summary>show</summary>
 <p>
@@ -77,7 +77,7 @@ chmod 777  ren.sh
 </p>
 </details>  
 
-### Concatenate multiple files into one file
+## Concatenate multiple files into one file
 <details><summary>show</summary>
 <p>
 
@@ -352,3 +352,18 @@ mkdir lib project target
 ```
 </p>
 </details>  
+
+
+## Cut the password file and filter 3 to 6 fields
+
+1. cut -d":" -f3-6  /etc/passwd
+2. cut -d":" -f1,3,6 /etc/passwd
+
+
+## Transform lowercase to uppercase
+1. echo "Shell Scripting" | tr "[a-z]" "[A-Z]" 
+2. echo "Shell Scripting" | tr "[a-z]" "[A-Z]" 
+
+## Squeezing repeating occurrences of characters
+1. ps | tr -s " "
+2. echo "Delete my pin from the prompt 5634" | tr -d "[:digit:]"

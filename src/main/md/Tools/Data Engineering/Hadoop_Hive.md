@@ -19,6 +19,26 @@
    1. Once name places entry, client will upload the data to one of the data node
    2. Data node would use replication pipeline to replicate the data.
 
+## Types of node
+1. Master node
+2. Secondary-node (Checkpoint node)
+
+## Hadoop-1 vs rest
+1. in hadoop-1 we bring process into data-node
+   1. Now it is not the case anymore
+2. Spark-submit
+   1. It is compiler, it implements A
+
+## Hdfs High Availability
+
+1. There are multiple name-node, one of them is active node, others are passive node
+2. Secondary node is not what it means
+3. All the data node send heart beat to all the name-nodes
+4. When Active name node dies, zk would elect next active-name-node
+5. All the node would always write data to "Journal Node"
+   1. Journal node can have multiple replicated copy
+   2. High availability is maintained by multiple Journal node copy
+
 ## HDFS - Client Read
 1. Name node would give all the replication details to client
    1. If one of the copy is not available, client will automatically try to get data from replication
