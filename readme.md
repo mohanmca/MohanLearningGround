@@ -35,6 +35,7 @@
   * [Spring Boot](https://github.com/mohanmca/professional_certification/blob/master/spring/docs/spring-boot-notes.md)
   * [Python](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Python/FluentPython_Anki.md)
   * [SQL](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Sql/Sql.md)
+  * [AWS](https://github.com/mohanmca/professional_certification/blob/master/aws/aws_iam_anki.md)
   * [Javascript](https://github.com/ganqqwerty/123-Essential-JavaScript-Interview-Questions)
     * [Javascript-2](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Sql/Sql.md)
   * [Spark](https://github.com/mohanmca/professional_certification/blob/master/spark/Week1_SparkBasics/Cluster_Topology_matters_spark-1-7.pdf)
