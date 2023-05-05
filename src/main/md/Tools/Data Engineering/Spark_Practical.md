@@ -1,3 +1,6 @@
+## How to manage hadoop cluster during development?
+1. [Win utils were used to build local development](https://github.com/steveloughran/winutils)
+
 ## How to run unit test in Pipeline
 
 1. pip install -r test_requirements.txt --trusted-host https://known_trusted.registry/ -i  https://known_trusted.registry/api/pypi/pypi/simple
