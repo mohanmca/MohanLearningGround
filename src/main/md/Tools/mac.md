@@ -1,8 +1,15 @@
  ## How to find java_home
- 
+ 1. /usr/libexec/java_home -V
  1. /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/
  1. /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 
+## How to uninstall all the JDK
+sudo rm -fr /Users/alpha/Library/Java/JavaVirtualMachines/
+sudo rm -rf /opt/homebrew/Cellar/openjdk
+brew cask install adoptopenjdk8
+brew reinstall --cask adoptopenjdk8
+ 
+/opt/homebrew/opt/openjdk/
 ## Openjdk@17
 
 1. /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
