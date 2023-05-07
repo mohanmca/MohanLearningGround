@@ -11,7 +11,7 @@
    2. Can't do data-compression
 
 ## What is the use of Structured API
-1. Expressiablity
+1. Expressablity
 2. Composability
 
 ## Spark Architecture

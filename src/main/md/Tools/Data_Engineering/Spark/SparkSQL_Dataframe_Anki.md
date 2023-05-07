@@ -13,7 +13,6 @@
 
 ## Managed vs UnManaged Tables
 
-
 1. For a managed table, Spark manages both the metadata and the data in the file store. 
    1. This could be a local filesystem
    2. HDFS
@@ -54,8 +53,7 @@ df = (spark.read.format("csv")
   .load(csv_file))
 df.createOrReplaceTempView("us_delay_flights_tbl")
 
-spark.sql("""SELECT distance, origin, destination FROM us_delay_flights_tbl WHERE distance > 1000 
-        ORDER BY distance DESC""").show(10)
+spark.sql("""SELECT distance, origin, destination FROM us_delay_flights_tbl WHERE distance > 1000 ORDER BY distance DESC""").show(10)
 ```
 
 ## Two ways to order the data
@@ -94,7 +92,7 @@ spark.sql("""SELECT delay, origin, destination,
 ```python
 // In Scala/Python
 spark.sql("CREATE TABLE managed_us_delay_flights_tbl (date STRING, delay INT,  
-  distance INT, origin STRING, destination STRING)")
+   distance INT, origin STRING, destination STRING)")
 ```
 
 ```java
