@@ -1,6 +1,5 @@
  ## How to find java_home
- 1. /usr/libexec/java_home -V
- 1. /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/
+ 1. `/usr/libexec/java_home -V`
  1. /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 
 ## How to uninstall all the JDK
