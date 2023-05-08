@@ -1,8 +1,10 @@
+## Minikube Commands
 ```cmd
 install choclatey - @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 install virtualbox
 @ echo off choco install minikube kubernetes-cli
 kubectl version
+minikube ip
 minikube addons enable metrics-server
 minikube start
 minikube start --vm-driver=hyperv --kubernetes-version="v1.14"
@@ -15,6 +17,7 @@ kubectl config current-context
 kubectl get nodes
 ```
 
+
 ## We might encounter this error,  --no-vtx-check could be used to make it work
 
 ```txt
@@ -24,6 +27,10 @@ kubectl get nodes
 X Exiting due to HOST_VIRT_UNAVAILABLE: Failed to start host: creating host: create: precreate: This computer doesn't have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory
 * Suggestion: Virtualization support is disabled on your computer. If you are running minikube within a VM, try '--driver=docker'. Otherwise, consult your systems BIOS manual for how to enable virtualization.
 ```
+
+## How to access web-port running inside pod (which itself inside minikube in MAC-M1)
+
+1. 
 
 ### Solution to ignore hyperv
 
