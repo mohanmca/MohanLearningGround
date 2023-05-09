@@ -382,6 +382,44 @@ class HelloWorld {
 }
 ```
 
+## What are 3 different groupBy collectors?
+
+```java
+static <T,K> Collector<T,?,Map<K,List<T>>>   groupingBy(Function<? super T,? extends K> classifier)
+```
+```java
+static <T,K,A,D> Collector<T,?,Map<K,D>>  groupingBy(Function<? super T,? extends K> classifier, Collector<? super T,A,D> downstream)
+```
+```java
+static <T,K,D,A,M extends Map<K,D>> Collector<T,?,M>  groupingBy(Function<? super T,? extends K> classifier,  Supplier<M> mapFactory, Collector<? super T,A,D> downstream)
+```
+
+## What are 3 different groupBy collectors?
+
+```java
+Map<BlogPostType, List<BlogPost>> postsPerType = posts.stream().collect(groupingBy(BlogPost::getType));
+Map<Pair<BlogPostType, String>, List<BlogPost>> postsPerTypeAndAuthor = posts.stream().collect(groupingBy(post -> new ImmutablePair<>(post.getType(), post.getAuthor())));
+Map<Tuple, List<BlogPost>> postsPerTypeAndAuthor = posts.stream().collect(groupingBy(post -> new Tuple(post.getType(), post.getAuthor())));
+
+public class BlogPost {
+    private String title;
+    private String author;
+    private BlogPostType type;
+    private int likes;
+    record AuthPostTypesLikes(String author, BlogPostType type, int likes) {};
+
+    // constructor, getters/setters
+}
+static <T,K> Collector<T,?,Map<K,List<T>>>   groupingBy(Function<? super T,? extends K> classifier)
+Map<BlogPostType, Set<BlogPost>> postsPerType = posts.stream().collect(groupingBy(BlogPost::getType, toSet()));
+Map<String, Map<BlogPostType, List>> map = posts.stream().collect(groupingBy(BlogPost::getAuthor, groupingBy(BlogPost::getType)));
+```
+
+## How many ways to group?
+
+1. [12 ways to group](https://www.baeldung.com/java-groupingby-collector)
+
+
 ## How to sort the map by value?
 * toMap(Function<? super T,? extends K> keyMapper, Function<? super T,? extends U> valueMapper, BinaryOperator<U> mergeFunction, Supplier<M> mapSupplier)
 ```java
