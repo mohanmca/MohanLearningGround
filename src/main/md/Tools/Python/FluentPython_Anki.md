@@ -45,10 +45,11 @@ False
 
 1. To define a function requiring positional-only parameters, use / in the parameter list.
 2. All arguments to the left of the / are positional-only. After the /, you may specify other arguments, which work as usual.
-3. ```python
-def divmod(a, b, /):
-    return (a // b, a % b)
-```
+3. 
+   ```python
+   def divmod(a, b, /):
+       return (a // b, a % b)
+   ```
 
 ## What is itemgetter
 
@@ -275,6 +276,16 @@ print(emps)
 
 conn.close()
 ```
+
+## Why tuple is faster than list
+
+* [Why tuple is faster than list](https://stackoverflow.com/questions/3340539/why-is-tuple-faster-than-list-in-python)
+* Tuple is constant, hence holds data into stack
+* List has memory in stack and heap
+
+## What does tuple(tuple) would return?
+
+* Since tuple is a immutable, tuple function would return without cloning tuple argument
 
 ## What are all the other Python questions
 1.  __init__ vs __new__
