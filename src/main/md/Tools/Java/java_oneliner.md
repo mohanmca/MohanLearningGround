@@ -419,6 +419,9 @@ Map<String, Map<BlogPostType, List>> map = posts.stream().collect(groupingBy(Blo
 
 1. [12 ways to group](https://www.baeldung.com/java-groupingby-collector)
 
+## What are new String methods added to JDK
+
+* [isBlank, strip, chars, codePoint](https://javaconceptoftheday.com/java-new-string-methods-with-examples/)
 
 ## How to sort the map by value?
 * toMap(Function<? super T,? extends K> keyMapper, Function<? super T,? extends U> valueMapper, BinaryOperator<U> mergeFunction, Supplier<M> mapSupplier)
