@@ -72,12 +72,13 @@
 ## Ever green Java projects
 * [Apache Netty](https://github.com/netty/netty/blob/4.1/pom.xml)
 * [JCTools](https://github.com/JCTools/JCTools)
+* [Project Loom](https://blog.rockthejvm.com/ultimate-guide-to-java-virtual-threads/)
 
 ## Google Guice
   * Fluent API, Type safe
-  * Failure validation is human readable
+  * Failure validation is human-readable
 * # [Guice](https://github.com/google/guice)
-* Guice : Module => Inector
+* Guice : Module => Injector
 * Injector::injectMembers = (Object instance) => void
 * Injector::getInstance:: = (Class<T> type) => T
 * Guice can't inject non-static-inner class

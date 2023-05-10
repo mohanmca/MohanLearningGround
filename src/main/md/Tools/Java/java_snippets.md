@@ -17,19 +17,6 @@
  StackWalker.getInstance(java.lang.StackWalker.Option.RETAIN_CLASS_REFERENCE).forEach(System.out::println)
  ```
 ## You can have private static method as helper method inside interface
-## Multi-release JAR files
-```
-final FileInputStream fis = new FileInputStream("movie.mp4");
-
-try (fis) 
-{
-//dodo
-} 
-catch (IOException e) 
-{
-  // ...
-}
-```
 
 ```jdk11
 <dependency>
@@ -39,8 +26,7 @@ catch (IOException e)
 </dependency>
 ```
 
-## Modern Java Issues
-### [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.7.0:compile (default-cli) on project auth-web-basic: Fatal error compiling: java.lang.ExceptionInInitializerError: com.sun.tools.javac.code.TypeTags -> [Help 1]
+## [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.7.0:compile (default-cli) on project auth-web-basic: Fatal error compiling: java.lang.ExceptionInInitializerError: com.sun.tools.javac.code.TypeTags -> [Help 1]
 ```xml
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -82,6 +68,7 @@ catch (IOException e)
 * [Reactive Streams in Java 9](https://dzone.com/articles/reactive-streams-in-java-9)
 * [Java 9 Flow API – Reactive Streams](https://grokonez.com/java/java-9/java-9-flow-api-reactive-streams)
 * [Flow API](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.html)
+
 ## Java 9 References
 * [Java 9 Features with Examples](https://www.journaldev.com/13121/java-9-features-with-examples)
 * [Java 9 series: Concurrency Updates](https://www.voxxed.com/2016/10/java-9-series-concurrency-updates/)
