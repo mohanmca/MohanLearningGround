@@ -4,15 +4,21 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 ```
 [//]: # "Order of document - Array-Initialization, IntStream, List, String, Map"
 
+## What classes are implementing Stack interface?
+
+* There is no stack interface in Java
+* push + pop + peek - are the methods generally used by classes that supports stack functionality (Stack and ArrayDeque)
+
+
 ## [Java Deque API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayDeque.html)
 
-```
+```java
 1. Deque behaves differently based on its interface
 2. Stack (Interface)
    1. push - addFirst
    2. pop - removeFirst
    3. peek - getFirst
-3. Queue (Interface)
+3. Queue (Interface) - Equivalent Deque Method
    1. add(e) - addLast(e)
    2. offer - offerLast
    3. remove() - removeFirst()
@@ -20,13 +26,6 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
    5. element - getFirst()
    6. peek - peekFirst
 ```
-
-## [Java Deque API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayDeque.html)
-1. [1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/discuss/609771/JavaC%2B%2BPython-Deques-O(N))
-2. [1425. Constrained Subsequence Sum](https://leetcode.com/problems/constrained-subsequence-sum/)
-3. [862. Shortest Subarray with Sum at Least K](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/discuss/143726/C%2B%2BJavaPython-O(N)-Using-Deque/386606/)
-4. [1499. Max Value of Equation](https://leetcode.com/problems/max-value-of-equation/discuss/709231/JavaPython-Priority-Queue-and-Deque-Solution-O(N))
-
 
 ## Java Comparators
 
@@ -41,16 +40,46 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
    1. Comparator.comparingInt(String::length).reversed()
       1. // stream is now [test, foo, a], sorted by descending length
 
+## How String::compareTo method is type-casted as Comparator<String>
+
+1. If type A has method, that accepts type B as parameter, java can convert that method into interface that can accepts type A and B.
+   1. "The type to which the method belongs precedes the delimiter, and the invocation's receiver is the first parameter of the functional interface method"
+   2. [State of lambda](https://cr.openjdk.org/%7Ebriangoetz/lambda/lambda-state-final.html)
+
+## What is PECS?
+
+* "PECS" is from the collection's point of view.
+* If you are only pulling items from a generic collection, it is a producer and you should use extends;
+* if you are only stuffing items in, it is a consumer and you should use super.
+* If you do both with the same collection, you shouldn't use either extends or super. You should use simple class/interface (no wildcards)
+* What is a producer?
+    * A producer is allowed to produce something more specific, hence extends, a consumer is allowed to accept something more general, hence super.
+    * Producer refers to the return type of a method.
+* What is a consumer?
+    * Consumer refers to the parameter type of a method.
+* A nice mnemonic you can use is to imagine returns for extends and accepts for super.
+    * Tree<? extends T> reads Tree<? returns T>
+
+
 ## Stream Most often used FAQ
-1. How to add only non-null using stream
-   1. ```Arrays.stream(lists).filter(Objects::nonNull).forEach(pq::offer);```
+1. How to add only non-null using stream</summary>
+    ```java
+        Arrays.stream(new Integer[]{1,2,3,null}).filter(Objects::nonNull).forEach(System.out::println)
+        Arrays.stream(lists).filter(Objects::nonNull).forEach(pq::offer);
+    ```
 2. How to check if there are any null
-   1. ```stream.anyMatch(Objects::isNull)```
-   2. ```stream.anyMatch(x -> x == null)```
+    ```java
+        stream.anyMatch(Objects::isNull)
+        stream.anyMatch(x -> x == null)
+    ```
 3. How to convert List<Integer> containing Integers to primitive int array i.e, int[]?
-   1. ```listOfIntegers.stream().mapToInt(Integer::intValue).toArray()```
+    ```java
+        listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
+    ```
 4. How to String-Stream as Array?
-   1. ```String[] stringArray = stringStream.toArray(String[]::new);```
+     ```java
+        String[] stringArray = stringStream.toArray(String[]::new);
+    ```
 5. How to sum the  Stack<Integer> using lambda?
    1. ```stack.stream().reduce(0, Integer::sum);```
 6. In frequencyCountMap, find the key that has maximum frequency
@@ -92,8 +121,8 @@ t ==> int[5][] { int[2] { 0, 0 }, int[2] { 0, 0 }, int[ ...  0, 0 }, int[2] { 0,
     |      constructor java.util.HashSet.HashSet(java.util.Collection<? extends java.lang.Integer>) is not applicable
 ```
 
-## Find maximum in a array
-
+## How many ways are there to find min/max?
+1. 3 Ways (reduce-lambda, min, reduce+method-reference)
 ```java
 int maxValue = Arrays.stream(nums).reduce(nums[0], (x,y) -> x>y ? x : y );
 int min = Stream.of(14, 35, -7, 46, 98).reduce(Integer::min).get();
@@ -170,15 +199,15 @@ List<String> sortedByLengthThenByNaturalOrder = bonds.stream().sorted(Comparator
 
 ## Static methods in java.util.Comparator
 
-1. ```comparing(Function<? super T,? extends U> keyExtractor)```
-2. ```comparing(Function<? super T,? extends U> keyExtractor, Comparator<? super U> keyComparator)```
-3. ```comparingDouble(ToDoubleFunction<? super T> keyExtractor)```
-4. ```comparingInt(ToIntFunction<? super T> keyExtractor)```
-5. ```comparingLong(ToLongFunction<? super T> keyExtractor)```
-6. ```naturalOrder()```
-7. ```nullsFirst(Comparator<? super T> comparator)```
-8. ```nullsLast(Comparator<? super T> comparator)```
-9. ```reverseOrder()```
+1. ```naturalOrder()```
+2. ```reverseOrder()```
+3. ```comparing(Function<? super T,? extends U> keyExtractor)```
+4. ```comparing(Function<? super T,? extends U> keyExtractor, Comparator<? super U> keyComparator)```
+5. ```comparingDouble(ToDoubleFunction<? super T> keyExtractor)```
+6. ```comparingInt(ToIntFunction<? super T> keyExtractor)```
+7. ```comparingLong(ToLongFunction<? super T> keyExtractor)```
+8. ```nullsFirst(Comparator<? super T> comparator)```
+9. ```nullsLast(Comparator<? super T> comparator)```
 
 ## Instance Methods in java.util.Comparator
 
@@ -463,8 +492,8 @@ jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f
 * [Java collections cheat sheet](https://www.jrebel.com/system/files/java-collections-cheat-sheet.pdf)
 * [Java Generics Cheat sheet](https://www.jrebel.com/system/files/java-generics-cheat-sheet.pdf)
 * [Java cheatsheet](https://github.com/jsjtzyy/LeetCode/blob/master/Java%20cheat%20sheet%20for%20interview)
-* mdanki /Users/alpha/git/MohanLearningGround/src/main/md/Java/java_oneliner.md java_api.apkg --deck "Mohan::CodeInterview::Java::API"
 [DequeImage]: img/ArrayDeque.png "ArrayDeque"
-* 
+
+ 
 ## How to create anki from this markdown file
-* mdanki java_oneliner.md java_oneliner.apkg --deck "Mohan::Work::Java::java_oneliner"
+*  mdanki java_oneliner.md Java_OneLiner.apkg --deck "Mohan::Core::Java::OneLiner"
