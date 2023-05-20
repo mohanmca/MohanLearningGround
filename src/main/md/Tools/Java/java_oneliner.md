@@ -9,6 +9,34 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 * There is no stack interface in Java
 * push + pop + peek - are the methods generally used by classes that supports stack functionality (Stack and ArrayDeque)
 
+## What are the methods that can return special value or timeout in BlockingQueue
+1. offer(e) and offer(e, time, unit) (boolean)
+1. poll() and poll(time, unit) (returns E or null when timeout)
+
+## What are the methods that Blocks in BlockingQueue
+1. put(E e)
+1. take()
+
+## What was the HashMap change in JDK8
+
+1. TREEIFY_THRESHOLD - In Java 8, HashMap replaces the linked list with another useful data structure i.e. binary tree on breaching a certain threshold
+2. Which is known as TREEIFY_THRESHOLD. Once this threshold is reached the linked list of Entries is converted to the TreeNodes
+3. which reduces the time complexity from O(n) to O(log(n)).
+
+## How many methods are there COlelctors?
+* [java.util.stream.Collectors.java](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Collectors.html)
+
+
+## How Hashmap works in Java
+* [HashMap.java](https://github.com/AdoptOpenJDK/openjdk-jdk/blob/master/src/java.base/share/classes/java/util/HashMap.java)
+
+## How LinkedBlockingQueue works?
+* [LinkedBlockingQueue](https://github.com/AdoptOpenJDK/openjdk-jdk/blob/master/src/java.base/share/classes/java/util/concurrent/LinkedBlockingQueue.java)
+
+
+## How locking works inside concurrent hashmap
+* Lock-strip segment (before 8)
+* First element in each bucket is locked
 
 ## [Java Deque API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Deque.html)
 
@@ -214,6 +242,7 @@ List<String> sortedByLengthThenByNaturalOrder = bonds.stream().sorted(Comparator
     collect(Collectors.toList());
 ```
 * output: sortedByLengthThenByNaturalOrder ==> [Craig, Moore, Dalton, Brosnan, Connery, Lazenby]
+
 
 ## Where to find Comparator API
 * [java.util.Comparator](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Comparator.html)
