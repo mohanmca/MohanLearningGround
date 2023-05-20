@@ -10,7 +10,7 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 * push + pop + peek - are the methods generally used by classes that supports stack functionality (Stack and ArrayDeque)
 
 
-## [Java Deque API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayDeque.html)
+## [Java Deque API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Deque.html)
 
 ```java
 1. Deque behaves differently based on its interface
@@ -46,17 +46,38 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
    1. "The type to which the method belongs precedes the delimiter, and the invocation's receiver is the first parameter of the functional interface method"
    2. [State of lambda](https://cr.openjdk.org/%7Ebriangoetz/lambda/lambda-state-final.html)
 
+
+## What is the type of String Comparator
+
+* Comparator<? super E>
+* Comparator<? super String>
+* why?
+    * Comparator accepts String
+
+## Java generics - Type covariance
+
+* The container types have the same relationship to each other as the payload types do. This is expressed using the extends keyword.
+* If Cat extends Pet, then List<Cat> is a subtype of List<? extends Pet>
+* It is read-only
+
+## Java generics - Type contravariance
+
+* The container types have the inverse relationship to each other as the payload types do. This is expressed using the super keyword.
+* Container type that is acting purely as a consumer of instances of a type
+* It can be used to write types into collection
+
+
 ## What is PECS?
 
 * "PECS" is from the collection's point of view.
-* If you are only pulling items from a generic collection, it is a producer and you should use extends;
+* If you are only pulling items from a generic collection, it is a producer, and you should use extends;
 * if you are only stuffing items in, it is a consumer and you should use super.
-* If you do both with the same collection, you shouldn't use either extends or super. You should use simple class/interface (no wildcards)
+* If you do both with the same collection, you shouldn't use neither extends nor super. You should use simple class/interface (without wildcards)
 * What is a producer?
     * A producer is allowed to produce something more specific, hence extends, a consumer is allowed to accept something more general, hence super.
-    * Producer refers to the return type of a method.
+    * Producer refers to the return type of method.
 * What is a consumer?
-    * Consumer refers to the parameter type of a method.
+    * Consumer refers to the parameter type of method.
 * A nice mnemonic you can use is to imagine returns for extends and accepts for super.
     * Tree<? extends T> reads Tree<? returns T>
 
@@ -429,17 +450,20 @@ static <T,K,D,A,M extends Map<K,D>> Collector<T,?,M>  groupingBy(Function<? supe
 Map<BlogPostType, List<BlogPost>> postsPerType = posts.stream().collect(groupingBy(BlogPost::getType));
 Map<Pair<BlogPostType, String>, List<BlogPost>> postsPerTypeAndAuthor = posts.stream().collect(groupingBy(post -> new ImmutablePair<>(post.getType(), post.getAuthor())));
 Map<Tuple, List<BlogPost>> postsPerTypeAndAuthor = posts.stream().collect(groupingBy(post -> new Tuple(post.getType(), post.getAuthor())));
+```
 
+## BlogPost : groupBy blogType, groupBy Author, Type?
+
+```java
 public class BlogPost {
     private String title;
     private String author;
     private BlogPostType type;
     private int likes;
     record AuthPostTypesLikes(String author, BlogPostType type, int likes) {};
-
     // constructor, getters/setters
 }
-static <T,K> Collector<T,?,Map<K,List<T>>>   groupingBy(Function<? super T,? extends K> classifier)
+static <T,K> Collector<T,?,Map<K,List<T>>> groupingBy(Function<? super T,? extends K> classifier)
 Map<BlogPostType, Set<BlogPost>> postsPerType = posts.stream().collect(groupingBy(BlogPost::getType, toSet()));
 Map<String, Map<BlogPostType, List>> map = posts.stream().collect(groupingBy(BlogPost::getAuthor, groupingBy(BlogPost::getType)));
 ```
@@ -452,8 +476,19 @@ Map<String, Map<BlogPostType, List>> map = posts.stream().collect(groupingBy(Blo
 
 * [isBlank, strip, chars, codePoint](https://javaconceptoftheday.com/java-new-string-methods-with-examples/)
 
+## What does toMap API return type?
+* Collector<T,?,Map<K,U>>
+
+## What are all toMap API?
+
+```java
+toMap(Function<? super T,? extends K> keyMapper,  Function<? super T, ? extends U> valueMapper)
+toMap(Function<? super T,? extends K> keyMapper, Function<? super T,? extends U> valueMapper, BinaryOperator<U> mergeFunction)
+toMap(Function<? super T,? extends K> keyMapper, Function<? super T,? extends U> valueMapper, BinaryOperator<U> mergeFunction, Supplier<M> mapSupplier)
+```
+
+
 ## How to sort the map by value?
-* toMap(Function<? super T,? extends K> keyMapper, Function<? super T,? extends U> valueMapper, BinaryOperator<U> mergeFunction, Supplier<M> mapSupplier)
 ```java
     LinkedHashMap<String, Long> countByWordSorted = collect.entrySet()
                 .stream()
@@ -484,7 +519,6 @@ List<Dish> slicedMenuDishes = specialMenu.stream()
 jshell https://kishida.github.io/misc/jframe.jshell
 jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f46e/raw/a6f272479026f8bb5d79f01f9cbab631e04cb78c/jshell.jshell
 ```
-
 
 ## Reference
 * [aruld/java-oneliners](https://github.com/aruld/java-oneliners/blob/master/src/main/java/com/github/aruld/oneliners/Item8.java)
