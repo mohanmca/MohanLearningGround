@@ -33,6 +33,17 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 ## How LinkedBlockingQueue works?
 * [LinkedBlockingQueue](https://github.com/AdoptOpenJDK/openjdk-jdk/blob/master/src/java.base/share/classes/java/util/concurrent/LinkedBlockingQueue.java)
 
+## What is Queue API? What are exception throwing API? What are boolean return API?
+
+* [Queue](https://github.com/AdoptOpenJDK/openjdk-jdk/blob/master/src/java.base/share/classes/java/util/Queue.java)
+* Exception throwing API
+  * add(e)
+  * remove()
+  * element()
+* Special value returning API
+  * offer(e)
+  * poll()
+  * peek()
 
 ## How locking works inside concurrent hashmap
 * Lock-strip segment (before 8)
