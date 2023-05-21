@@ -450,7 +450,7 @@ Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
 while(!deque.isEmpty()) { System.out.println(deque.removeLast());}  //1,2
 ```
 
-## How to collect Stream<T> as Map<T, Long>
+## How to collect String as Map<Character, Long>
 
 ```java
 class HelloWorld {
@@ -466,7 +466,8 @@ class HelloWorld {
     }
 
     public static void main(String[] args) {
-        String aString = "abc";
+        String aString = "abracadbra";
+        Map<Character, Long> frequency = frequencyMap(aString.chars().mapToObj(c -> (char)c));
         System.out.println(frequencyMap(aString.chars().mapToObj(c -> (char) c)));
     }
 }
