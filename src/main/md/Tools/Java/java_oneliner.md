@@ -145,7 +145,6 @@ Collections.max(count.entrySet(), Map.Entry.comparingByValue()).getKey();
 "String".chars().mapToObj(c -> (char)c)"
 ```
 
-
 ## How to add only non-null using stream</summary>
 ```java
 Arrays.stream(new Integer[]{1,2,3,null}).filter(Objects::nonNull).forEach(System.out::println)
@@ -178,6 +177,35 @@ grep -A 4 catch.*xception `find . -type f -name \*java | grep -v test` > xceptio
 ```java
 new int[][]{{1, 2}, {3}, {3}, {}}
 ```
+
+## What is the interface of java.util.stream.Collector
+
+```java
+public interface java.util.stream.Collector<T,A,R> {
+  public abstract java.util.function.Supplier<A> supplier();
+  public abstract java.util.function.BiConsumer<A,T> accumulator();
+  public abstract java.util.function.BinaryOperator<A> combiner();
+  public abstract java.util.function.Function<A,R> finisher();
+  public abstract java.util.Set<java.util.stream.Collector$Characteristics> characteristics();
+  public static <T,R> java.util.stream.Collector<T,R,R> of(java.util.function.Supplier<R>, java.util.function.BiConsumer<R, T>, java.util.function.BinaryOperator<R>, java.util.stream.Collector$Characteristics...);
+  public static <T,A,R> java.util.stream.Collector<T,A,R> of(java.util.function.Supplier<A>, java.util.function.BiConsumer<A, T>, java.util.function.BinaryOperator<A>, java.util.function.Function<A, R>, java.util.stream.Collector$Characteristics...);
+}
+```
+
+## Collector Widget
+
+```java
+Collector<Widget, ?, TreeSet<Widget>> intoSet = Collector.of(TreeSet::new, TreeSet::add, (left, right) -> { left.addAll(right); return left; });
+Collector<Employee, ?, Integer> summingSalaries  = Collectors.summingInt(Employee::getSalary))
+```
+
+## Tabulate the sum of salaries by department
+
+*  Collectors.groupingBy(Function, Collector):
+```java
+Collector<Employee, ?, Map<Department, Integer>> summingSalariesByDept  = Collectors.groupingBy(Employee::getDepartment, summingSalaries);
+```
+
 
 ## How to create K rows with 2 columns each
 ```java
