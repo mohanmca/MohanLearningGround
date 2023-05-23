@@ -624,4 +624,5 @@ jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f
 
  
 ## How to create anki from this markdown file
-*  mdanki java_oneliner.md Java_OneLiner.apkg --deck "Mohan::Core::Java::OneLiner"
+* mdanki java_oneliner.md Java_OneLiner.apkg --deck "Mohan::Core::Java::OneLiner"
+* node /Users/alpha/.nvm/versions/node/v16.5.0/lib/node_modules/mdanki/src/index.js java_oneliner.md Java_OneLiner.apkg --deck "Mohan::Core::Java::OneLiner" -s TOTAL_MEMORY=26777216
