@@ -121,34 +121,52 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
     * Tree<? extends T> reads Tree<? returns T>
 
 
-## Stream Most often used FAQ
-1. How to add only non-null using stream</summary>
-    ```java
-        Arrays.stream(new Integer[]{1,2,3,null}).filter(Objects::nonNull).forEach(System.out::println)
-        Arrays.stream(lists).filter(Objects::nonNull).forEach(pq::offer);
-    ```
-2. How to check if there are any null
-    ```java
-        stream.anyMatch(Objects::isNull)
-        stream.anyMatch(x -> x == null)
-    ```
-3. How to convert List<Integer> containing Integers to primitive int array i.e, int[]?
-    ```java
-        listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
-    ```
-4. How to String-Stream as Array?
-     ```java
-        String[] stringArray = stringStream.toArray(String[]::new);
-    ```
-5. How to sum the  Stack<Integer> using lambda?
-   1. ```stack.stream().reduce(0, Integer::sum);```
-6. In frequencyCountMap, find the key that has maximum frequency
-   1. ```Collections.max(count.entrySet(), Map.Entry.comparingByValue()).getKey();```
-7. How to sort an IntStream and collect as List<Integer> (sorted output)
-   1. ```verticalOrder.get(key).stream().sorted().collect(Collectors.toList())```
-8. How to convert String into Stream<Character>?
-   1. ```"String".chars().mapToObj(c -> (char)c)```
+## What are Integer related Comparators
 
+```java
+Integer.compare(int x, int y)   //static method
+Integer.max(int x, int y)   //static method
+Integer.min(int x, int y)   //static method
+Integer.sum(int x, int y)   //static method
+compareTo(Integer anotherInteger) //instance method
+```
+
+## How to sum the  Stack<Integer> using lambda?
+```java
+Optional<Integer> result = stack.stream().reduce(Integer::sum);
+```
+
+## In frequencyCountMap, find the key that has maximum frequency
+```java
+Collections.max(count.entrySet(), Map.Entry.comparingByValue()).getKey();
+```
+## How to convert String into Stream<Character>?
+```java
+"String".chars().mapToObj(c -> (char)c)"
+```
+
+
+## How to add only non-null using stream</summary>
+```java
+Arrays.stream(new Integer[]{1,2,3,null}).filter(Objects::nonNull).forEach(System.out::println)
+Arrays.stream(lists).filter(Objects::nonNull).forEach(pq::offer);
+```
+
+## How to check if there are any null
+```java
+stream.anyMatch(Objects::isNull)
+stream.anyMatch(x -> x == null)
+```
+
+## How to convert List<Integer> containing Integers to primitive int array i.e, int[]?
+```java
+listOfIntegers.stream().mapToInt(Integer::intValue).toArray()
+```
+
+## How to String-Stream as Array?
+```java
+String[] stringArray = stringStream.toArray(String[]::new);
+```
 
 ## Quick analysis for xception handling in java code
 ```java
@@ -292,7 +310,7 @@ Comparator<String> cmp = Comparator.comparingInt(String::length).thenComparing(S
 static <T,U> Comparator<T> comparing(Function<? super T,? extends U> keyExtractor, Comparator<? super U> keyComparator)
 ```
 * Type Parameters:
-* T - the type of element to be compared
+* T - input type of element to be compared
 * U - the type of the sort key
 * Parameters:
 * keyExtractor - the function used to extract the sort key
@@ -431,7 +449,7 @@ return (int)freq.values().stream().filter( v -> v>=2).count();
 ```
 word1FrequencyList.equals(word2FrequencyList);
 Arrays.equals(array1, array2);
- ```
+```
 
 ## How to iterate ArrayDeque as stack
 
@@ -528,8 +546,14 @@ toMap(Function<? super T,? extends K> keyMapper, Function<? super T,? extends U>
 toMap(Function<? super T,? extends K> keyMapper, Function<? super T,? extends U> valueMapper, BinaryOperator<U> mergeFunction, Supplier<M> mapSupplier)
 ```
 
+## What are the Map related comparators
 
-## How to sort the map by value?
+1. Map.Entry.comparingByValue()
+2. Map.Entry.comparingByValue(Comparator.reverseOrder())
+3. Map.Entry.comparingByKey()
+4. Map.Entry.comparingByKey(Comparator.reverseOrder())
+
+## How to sort the map by value in descending order and produce LinkedHashMap?
 ```java
     LinkedHashMap<String, Long> countByWordSorted = collect.entrySet()
                 .stream()
@@ -544,8 +568,9 @@ toMap(Function<? super T,? extends K> keyMapper, Function<? super T,? extends U>
                 ));
 ```
 
-## Predicate till condition matches (only when they are sorted)
+## Predicate till condition matches 
 
+* Can be used only when containers  are sorted
 ```java
 List<Dish> slicedMenuDishes = specialMenu.stream()
      .takeWhile(dish -> dish.getCalories() < 320)
@@ -555,7 +580,7 @@ List<Dish> slicedMenuDishes = specialMenu.stream()
     .collect(toList());
 ```
 
-## JShell
+## How to invoke script from url into JShell
 ```bat
 jshell https://kishida.github.io/misc/jframe.jshell
 jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f46e/raw/a6f272479026f8bb5d79f01f9cbab631e04cb78c/jshell.jshell
