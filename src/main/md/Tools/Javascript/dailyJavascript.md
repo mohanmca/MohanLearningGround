@@ -215,10 +215,9 @@ function downloadURI(uri) {
 
 ```Javascript
 {
-    let transcriptLines = [...document.getElementById("transcript-scrollbox").childNodes]
-    let text = transcriptLines.map(text => text.childNodes[1].innerHTML) 
-    let result = text.filter(text => text.indexOf("MUSIC") == -1) 
-    console.log(result)
+    let textz = Array.from(document.getElementsByClassName("segment-text")) 
+    presentation = textz.map( t => t.childNodes.item(0))
+    presentation.map( t => t.nodeValue).join("\n")
 }
 ```
 
