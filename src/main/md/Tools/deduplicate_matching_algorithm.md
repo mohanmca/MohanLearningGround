@@ -1,1 +1,0 @@
-https://mailinator.blogspot.com/2012/02/how-mailinator-compresses-email-by-90.html
