@@ -9,6 +9,7 @@
   * [Consistent Hashing](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/system_design/System_Design_ConsistentHashing_Anki.md)
   * [Redis](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/redis_anki.md)
 * [Aws Notes](https://github.com/mohanmca/professional_certification/blob/master/aws/aws_exam_checklist.md)
+*  [AWS Notes](https://github.com/mohanmca/professional_certification/blob/master/aws-dva-c02/aws_exam_notes_consolidated.md)
 * [Designing Data Intensive Application](https://github.com/mohanmca/professional_certification/blob/master/SystemDesign/DesigningDataIntensiveApplication.md)
 * [Algorithm Notes](https://github.com/mohanmca/CodingChallenges)
     * [Coding Patterns](https://github.com/mohanmca/CodingChallenges/tree/master/src/md/coding_patterns)
