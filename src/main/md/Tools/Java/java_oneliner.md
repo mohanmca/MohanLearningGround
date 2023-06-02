@@ -23,10 +23,6 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 2. Which is known as TREEIFY_THRESHOLD. Once this threshold is reached the linked list of Entries is converted to the TreeNodes
 3. which reduces the time complexity from O(n) to O(log(n)).
 
-## How many methods are there COlelctors?
-* [java.util.stream.Collectors.java](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Collectors.html)
-
-
 ## How Hashmap works in Java
 * [HashMap.java](https://github.com/AdoptOpenJDK/openjdk-jdk/blob/master/src/java.base/share/classes/java/util/HashMap.java)
 
@@ -178,35 +174,6 @@ grep -A 4 catch.*xception `find . -type f -name \*java | grep -v test` > xceptio
 new int[][]{{1, 2}, {3}, {3}, {}}
 ```
 
-## What is the interface of java.util.stream.Collector
-
-```java
-public interface java.util.stream.Collector<T,A,R> {
-  public abstract java.util.function.Supplier<A> supplier();
-  public abstract java.util.function.BiConsumer<A,T> accumulator();
-  public abstract java.util.function.BinaryOperator<A> combiner();
-  public abstract java.util.function.Function<A,R> finisher();
-  public abstract java.util.Set<java.util.stream.Collector$Characteristics> characteristics();
-  public static <T,R> java.util.stream.Collector<T,R,R> of(java.util.function.Supplier<R>, java.util.function.BiConsumer<R, T>, java.util.function.BinaryOperator<R>, java.util.stream.Collector$Characteristics...);
-  public static <T,A,R> java.util.stream.Collector<T,A,R> of(java.util.function.Supplier<A>, java.util.function.BiConsumer<A, T>, java.util.function.BinaryOperator<A>, java.util.function.Function<A, R>, java.util.stream.Collector$Characteristics...);
-}
-```
-
-## Collector Widget
-
-```java
-Collector<Widget, ?, TreeSet<Widget>> intoSet = Collector.of(TreeSet::new, TreeSet::add, (left, right) -> { left.addAll(right); return left; });
-Collector<Employee, ?, Integer> summingSalaries  = Collectors.summingInt(Employee::getSalary))
-```
-
-## Tabulate the sum of salaries by department
-
-*  Collectors.groupingBy(Function, Collector):
-```java
-Collector<Employee, ?, Map<Department, Integer>> summingSalariesByDept  = Collectors.groupingBy(Employee::getDepartment, summingSalaries);
-```
-
-
 ## How to create K rows with 2 columns each
 ```java
 int[][] closestPoints = new int[k][2];
@@ -216,16 +183,6 @@ t ==> int[5][] { int[2] { 0, 0 }, int[2] { 0, 0 }, int[ ...  0, 0 }, int[2] { 0,
 
 ## Sort List in reverse order
 ```Collections.sort(list, Collections.reverseOrder());```
-
-## Integer Stream sort, collect as Set
-```java
-    Arrays.asList(3,1,4,1,5,9,6,2).stream().sorted(Integer::compare).toList()
-    Set<Integer> set = Arrays.stream(nums).boxed().collect(Collectors.toSet())
-    new HashSet<Integer>(Arrays.asList(1,2,3)) -- This would work..
-    ~~~~~new HashSet<>(Arrays.asList(new int[]{1,2,3})) //This will not work, for primitive integer arrays
-    |  no suitable constructor found for HashSet(java.util.List<int[]>)
-    |      constructor java.util.HashSet.HashSet(java.util.Collection<? extends java.lang.Integer>) is not applicable
-```
 
 ## How many ways are there to find min/max?
 1. 3 Ways (reduce-lambda, min, reduce+method-reference)
@@ -417,8 +374,6 @@ jshell> "/a/b".split("/")
 $15 ==> String[3] { "", "a", "b" }
 ```
 
-
-
 ### How to find a digit inside array using binary search after index
 ```java
 java.util.Arrays.binarySearch(sortedArr, index + 1, sortedArr.length, key);
@@ -495,70 +450,6 @@ for(String data: deque) { System.out.println(data);}  //2 and 1
 Deque<String> deque = new ArrayDeque<String>();deque.push("1");deque.push("2");
 while(!deque.isEmpty()) { System.out.println(deque.removeLast());}  //1,2
 ```
-
-## How to collect String as Map<Character, Long>
-
-```java
-class HelloWorld {
-
-    public static <Character> Map<Character, Long> frequencyMap(Stream<Character> elements) {
-        return elements.collect(
-                Collectors.groupingBy(
-                        Function.identity(),
-                        HashMap::new, // can be skipped
-                        Collectors.counting()
-                )
-        );
-    }
-
-    public static void main(String[] args) {
-        String aString = "abracadbra";
-        Map<Character, Long> frequency = frequencyMap(aString.chars().mapToObj(c -> (char)c));
-        System.out.println(frequencyMap(aString.chars().mapToObj(c -> (char) c)));
-    }
-}
-```
-
-## What are 3 different groupBy collectors?
-
-```java
-static <T,K> Collector<T,?,Map<K,List<T>>>   groupingBy(Function<? super T,? extends K> classifier)
-```
-```java
-static <T,K,A,D> Collector<T,?,Map<K,D>>  groupingBy(Function<? super T,? extends K> classifier, Collector<? super T,A,D> downstream)
-```
-```java
-static <T,K,D,A,M extends Map<K,D>> Collector<T,?,M>  groupingBy(Function<? super T,? extends K> classifier,  Supplier<M> mapFactory, Collector<? super T,A,D> downstream)
-```
-
-## What are 3 different groupBy collectors?
-
-```java
-Map<BlogPostType, List<BlogPost>> postsPerType = posts.stream().collect(groupingBy(BlogPost::getType));
-Map<Pair<BlogPostType, String>, List<BlogPost>> postsPerTypeAndAuthor = posts.stream().collect(groupingBy(post -> new ImmutablePair<>(post.getType(), post.getAuthor())));
-Map<Tuple, List<BlogPost>> postsPerTypeAndAuthor = posts.stream().collect(groupingBy(post -> new Tuple(post.getType(), post.getAuthor())));
-```
-
-## BlogPost : groupBy blogType, groupBy Author, Type?
-
-```java
-public class BlogPost {
-    private String title;
-    private String author;
-    private BlogPostType type;
-    private int likes;
-    record AuthPostTypesLikes(String author, BlogPostType type, int likes) {};
-    // constructor, getters/setters
-}
-static <T,K> Collector<T,?,Map<K,List<T>>> groupingBy(Function<? super T,? extends K> classifier)
-Map<BlogPostType, Set<BlogPost>> postsPerType = posts.stream().collect(groupingBy(BlogPost::getType, toSet()));
-Map<String, Map<BlogPostType, List>> map = posts.stream().collect(groupingBy(BlogPost::getAuthor, groupingBy(BlogPost::getType)));
-```
-
-## How many ways to group?
-
-1. [12 ways to group](https://www.baeldung.com/java-groupingby-collector)
-
 ## What are new String methods added to JDK
 
 * [isBlank, strip, chars, codePoint](https://javaconceptoftheday.com/java-new-string-methods-with-examples/)
@@ -580,21 +471,6 @@ toMap(Function<? super T,? extends K> keyMapper, Function<? super T,? extends U>
 2. Map.Entry.comparingByValue(Comparator.reverseOrder())
 3. Map.Entry.comparingByKey()
 4. Map.Entry.comparingByKey(Comparator.reverseOrder())
-
-## How to sort the map by value in descending order and produce LinkedHashMap?
-```java
-    LinkedHashMap<String, Long> countByWordSorted = collect.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (v1, v2) -> {
-                            throw new IllegalStateException();
-                        },
-                        LinkedHashMap::new
-                ));
-```
 
 ## Predicate till condition matches 
 
