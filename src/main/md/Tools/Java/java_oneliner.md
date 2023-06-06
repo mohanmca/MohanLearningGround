@@ -490,6 +490,29 @@ jshell https://kishida.github.io/misc/jframe.jshell
 jshell https://gist.githubusercontent.com/mohanmca/88de9d6115587f9b8c6e8ac73b80f46e/raw/a6f272479026f8bb5d79f01f9cbab631e04cb78c/jshell.jshell
 ```
 
+## Sample equals and hashcode for order
+
+```java
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Order order = (Order) o;
+            return quantity == order.quantity 
+                    && Float.compare(order.price, price) == 0 
+                    && orderedTime == order.orderedTime 
+                    && arrivedTime == order.arrivedTime 
+                    && Objects.equals(orderId, order.orderId) 
+                    && Objects.equals(parentOrderId, order.parentOrderId) 
+                    && side == order.side && Objects.equals(instrument, order.instrument);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(orderId, parentOrderId, side, instrument, quantity, price, orderedTime, arrivedTime);
+        }
+```
+
 ## Reference
 * [aruld/java-oneliners](https://github.com/aruld/java-oneliners/blob/master/src/main/java/com/github/aruld/oneliners/Item8.java)
 * [java-8-stream-cheat-sheet](https://www.jrebel.com/system/files/java-8-streams-cheat-sheet.pdf)
