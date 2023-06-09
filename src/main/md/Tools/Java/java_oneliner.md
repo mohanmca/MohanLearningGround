@@ -187,12 +187,9 @@ t ==> int[5][] { int[2] { 0, 0 }, int[2] { 0, 0 }, int[ ...  0, 0 }, int[2] { 0,
 ## How many ways are there to find min/max?
 1. 3 Ways (reduce-lambda, min, reduce+method-reference)
 ```java
-int maxValue = Arrays.stream(nums).reduce(nums[0], (x,y) -> x>y ? x : y );
 int min = Stream.of(14, 35, -7, 46, 98).reduce(Integer::min).get();
 min = Stream.of(14, 35, -7, 46, 98).min(Integer::compare).get();
-
-int max = Stream.of(14, 35, -7, 46, 98).reduce(Integer::max).get();
-max = Stream.of(14, 35, -7, 46, 98).max(Integer::compare).get();
+min = Arrays.stream(nums).reduce(nums[0], (x,y) -> x<y ? x : y );
 ```
 
 ## How to iterate List in reverser order
