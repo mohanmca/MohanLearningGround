@@ -31,10 +31,7 @@ libraryDependencies ++= Seq(
 
 libraryDependencies ++= Seq(
   "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0" withSources(),
-  "org.scalatra" %% "scalatra" % "2.5.+" withSources(),
-  "org.scalatra" %% "scalatra-scalate" % "2.5.+" withSources(),
-  "org.scalatra" %% "scalatra-specs2" % "2.5.+" % "test" withSources(),
-  "ch.qos.logback" % "logback-classic" % "1.0.0" % "runtime" withSources(),
+  "ch.qos.logback" % "logback-classic" % "1.4.5" % "runtime" withSources(),
   "javax.servlet" % "javax.servlet-api" % "4.0.0" % "provided" withSources(),
   "org.scalactic" % "scalactic_2.12" % "3.0.2" withSources(),
   "org.scalatest" % "scalatest_2.12" % "3.0.2" withSources(),
