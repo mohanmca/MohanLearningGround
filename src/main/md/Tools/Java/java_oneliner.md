@@ -74,6 +74,11 @@ java -verbose:class -classpath $(echo *.jar | sed ‘s/ /:/g’)  com.anything.y
 5. Comparator.reverseOrder
    1. Comparator.comparingInt(String::length).reversed()
       1. // stream is now [test, foo, a], sorted by descending length
+6. Sort the indices of two dimensional array named intevals: int[][]
+   ```java
+        Integer[] indices = IntStream.range(0, intervals.length).boxed().toArray(Integer[]::new);
+        Arrays.sort(indices, Comparator.comparingInt( (Integer i) -> intervals[indices[i]][0] ).thenComparingInt((Integer i) -> intervals[indices[i]][1]));
+   ```
 
 ## How String::compareTo method is type-casted as Comparator<String>
 
