@@ -20,6 +20,10 @@ build --disk_cache=~/.cache/bazel-disk
 3. Path based
 4. Distributed and remote build is possible in bazel
 5. starlak language
-6. Rules are stored under
-7.   [Java rules - https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/java.bzl](https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/java.bzl)
-8.   [http_archive - https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/http.bzl](https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/http.bzl)
+6. Built-in rules are stored under
+  1. [Java rules - https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/java.bzl](https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/java.bzl)
+  1. [http_archive - https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/http.bzl](https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/http.bzl)
+7. load("rules_from_remote", "import_name")
+  1. load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+  2. https://github.com/bazelbuild/bazel-gazelle
+  3. gazelle is build file generator
