@@ -1,3 +1,8 @@
+## How to query list of ports and containers
+```bash
+docker ps -a --format "table {{.Names}}\t{{.Ports}}"
+```
+
 ## Docker installation and trouble-shoot
 
 ```cmd
