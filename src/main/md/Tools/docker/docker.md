@@ -3,6 +3,11 @@
 docker ps -a --format "table {{.Names}}\t{{.Ports}}"
 ```
 
+## How to run as a root user
+```bash
+docker exec -it -u 0 containerid bash
+```
+
 ## Docker installation and trouble-shoot
 
 ```cmd
