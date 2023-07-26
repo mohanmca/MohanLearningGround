@@ -1,5 +1,5 @@
 ## How to save time and space in bazel
-* Crate .bazelrc
+* Create .bazelrc
 ```bazel
 # An even simpler example would not configure any extra caching; but
 # to speed up the CI used for these examples, it’s worth this extra bit
@@ -15,26 +15,32 @@ build --disk_cache=~/.cache/bazel-disk
 ```
 
 ## Bazel notes
-1. Pythonic syntax
-2. Make semanics
-3. Path based
-4. Distributed and remote build is possible in bazel
-5. starlak language
-6. Built-in rules are stored under
+1. Pythonic syntax and Make semanics
+1. Path based
+1. Distributed and remote build is possible in bazel
+1. starlark language
+1. Built-in rules are stored under
   1. [Java rules - https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/java.bzl](https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/java.bzl)
   1. [http_archive - https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/http.bzl](https://github.com/bazelbuild/bazel/blob/master/tools/build_defs/repo/http.bzl)
-7. load("rules_from_remote", "import_name")
+1. load("rules_from_remote", "import_name")
   1. load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-  2. https://github.com/bazelbuild/bazel-gazelle
-  3. gazelle is build file generator
-4. Bazel doesn't deal with version dependency resolution
-   5. It delegated to Maven, Ivy, Gradle, etc.
-
+  1. https://github.com/bazelbuild/bazel-gazelle
+  1. gazelle is build file generator
+1. Bazel doesn't deal with version dependency resolution
+   1. It is delegated to Maven, Ivy, Gradle, etc.
 
 ## Bazel commands
 1. bazel version
 2. bazel info
 3. bazel help build
+
+## Basic bazel concepts
+1. WORKSPACE and BUILD
+2. WORKSPACE - unique name and only one workspace for one monorepo (google has only one WORKSPACE)
+3. Package - Each directory with build file is called package
+4. Packages has multiple targets
+5. Targets are the smallest units that can be built
+6. bazel build //path/to/mypackage:mytarget
 
 ## Reference
 1. "@workspace" is a special label that refers to the root of the workspace.
@@ -50,3 +56,7 @@ build --disk_cache=~/.cache/bazel-disk
 ## Bazel rules
 1. cc_binary
 2. java_binary, java_library, java_test, java_toolchain
+
+## Reference
+1. [Bazel BootCamp](https://www.youtube.com/watch?v=jY0BGMB21hw)
+   
