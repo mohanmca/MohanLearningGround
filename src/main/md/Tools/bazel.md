@@ -33,6 +33,38 @@ build --disk_cache=~/.cache/bazel-disk
 1. bazel version
 2. bazel info
 3. bazel help build
+4. bazel query ...
+
+## Bazel query
+1. How to query all the packages
+  1. bazel query //...
+    1. It prints the entire tree   
+  1. bazel query "deps(//web-module/test/web:tests)"
+2. Find reverse dependency
+3. bazel query "rdeps(//web-module/test/web:tests)"
+4. bazel query "rdeps(..., //apps/node_web:index.js)" --output package
+
+## which packages depend on qtdb lib?
+```
+bazel query 'rdeps(..., //vistar/geo/qtdb:go_default_library)' --output package 
+```
+
+## which packages does qtdb depend on?
+```
+bazel query 'deps(//vistar/geo/qtdb:go_default_library)' --output package
+```
+
+## which rules are defined in package root?
+```
+bazel query 'kind(rule, //:*)' --output label_kind
+```
+
+## get BUILD file output from a build artifact
+```
+bazel query --noimplicit_deps 'deps(trafficking/ui/selectors.jsar)' --output=build
+bazel query --noimplicit_deps 'deps(@docker//:client)' --output=build
+```
+
 
 ## Basic bazel concepts
 1. WORKSPACE and BUILD
@@ -42,7 +74,7 @@ build --disk_cache=~/.cache/bazel-disk
 5. Targets are the smallest units that can be built
 6. bazel build //path/to/mypackage:mytarget
 
-## Reference
+## Command Reference
 1. "@workspace" is a special label that refers to the root of the workspace.
 2. @label, @label can be searched within the code space
    1. @label//path/to/package:target_name
