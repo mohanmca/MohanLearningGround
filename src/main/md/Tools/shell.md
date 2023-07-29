@@ -1,3 +1,13 @@
+### Find Java Environemnt Variable from Shell
+<details><summary>show</summary>
+<p>
+
+```bash
+ps e -ww -p 11404 | tr ' ' '\n'  | sort
+```
+</p>
+</details> 
+
 ### Sum all the numbers in 1st column
 
 <details><summary>show</summary>
