@@ -8,6 +8,10 @@ ps e -ww -p 11404 | tr ' ' '\n'  | sort
 </p>
 </details> 
 
+### Find and grep files in MAC
+
+find . -type f -print0 | xargs -0 grep -l "wire\[BackendEmails"
+
 ### Sum all the numbers in 1st column
 
 <details><summary>show</summary>
