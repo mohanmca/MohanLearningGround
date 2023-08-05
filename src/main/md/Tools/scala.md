@@ -104,8 +104,9 @@ val lionContainer = new PetContainer[Lion](new Lion)
 
 ## What is lower type bound?
 1.  An lower type bound B >: A declares that type variable B refers to a supertype of type A.
-2.  B itself could be abstract-type
-3.  In most cases, A will be the type parameter of the class and B will be the type parameter of a method.
+2.  new type parameter B has A as a lower type bound.
+3.  B itself could be abstract-type
+4.  In most cases, A will be the type parameter of the class and B will be the type parameter of a method.
 
 
 ## Give an example of "functions are contravariant in their parameter types and covariant in their result types."
@@ -151,3 +152,5 @@ val buf = newIntSeqBuf(7, 8)
 println("length = " + buf.length)
 println("content = " + buf.element)
 ```
+## Reference
+1. [Lower bounds](https://docs.scala-lang.org/tour/lower-type-bounds.html)
