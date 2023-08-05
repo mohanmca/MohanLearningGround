@@ -1,10 +1,12 @@
 package ground.worksheet.scalacheck
 
 import Interleaver._
-import org.scalatest._
-import prop._
+import org.scalacheck.Prop
 import org.scalacheck.Prop.{ AnyOperators, forAll, all }
 import java.lang.Math
+import org.scalatest.PropSpec
+import prop._
+import matchers._
 
 class InterleaveSpec extends PropSpec with Checkers {
 

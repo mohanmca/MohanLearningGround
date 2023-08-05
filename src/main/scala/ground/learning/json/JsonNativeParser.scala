@@ -1,10 +1,7 @@
 package ground.learning.json
 
-import scala.util.parsing.json.JSON
-
+import play.api.libs.json._
 object JsonNativeParser extends App {
   val json = """{"name" : "value"}"""
-  val jsonObject = JSON.parseRaw(json)
-  println(JSON.getClass)
-  println(JSON.parseRaw(json))
+  val jsonObject = Json.parse(json)
 }

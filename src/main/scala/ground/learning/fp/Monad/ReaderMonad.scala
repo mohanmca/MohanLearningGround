@@ -50,8 +50,8 @@ class ReaderMonad {
   lazy val sqliteConnProvider = mkConnectionProider("mysqlliteurl", "user", "password")
 
   def runProgram(userId : String) : ConnectionProvider => Boolean = cp => {
-    val oldPassword = readLine()
-    val newPassword = readLine()
+    val oldPassword = scala.io.StdIn.readLine()
+    val newPassword = scala.io.StdIn.readLine()
     cp(changePassword(userId, newPassword))
   }
 

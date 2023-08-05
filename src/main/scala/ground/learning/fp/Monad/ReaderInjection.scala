@@ -110,9 +110,9 @@ class ReaderInjection {
   def myProgram(userid : String) : ConnProvider => Unit =
     r => {
       println("Enter old password")
-      val oldPwd = readLine
+      val oldPwd = scala.io.StdIn.readLine
       println("Enter new password")
-      val newPwd = readLine
+      val newPwd = scala.io.StdIn.readLine
       r(changePwd(userid, oldPwd, newPwd))
     }
 

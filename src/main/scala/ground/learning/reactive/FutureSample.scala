@@ -1,7 +1,7 @@
 package ground.learning.reactive;
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.util.Random
+import scala.util.{Random, Try}
 
 object FutureSample {
   val s = "Hello"
@@ -15,10 +15,11 @@ object FutureSample {
         case _ => throw new NullPointerException("null");
       }
     }
-    f onSuccess {
-      case msg => println(msg)
-    }
-    f onFailure { case _ => println("Failure") }
+    f onComplete({
+        case scala.util.Success(s) => println(s)
+        case _=> println("Failure ")
+    })
+
   }
 }
 

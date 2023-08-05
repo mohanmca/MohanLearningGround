@@ -1,11 +1,9 @@
 package ground.learning.reactive;
 import scala.concurrent.Future
-import scala.concurrent.Promise._
 import scala.concurrent.Promise
-import scala.concurrent.{ future, promise }
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.Random
-import scala.concurrent.ExecutionContext.Implicits.global
+
 
 object PromiseSample {
   val s = "Hello"
@@ -43,9 +41,10 @@ object PromiseSample {
 
   def consumer() = Future {
     startDoingSomething()
-    f onSuccess {
-      case r => doSomethingWithResult()
-    }
+    f onComplete  ({
+      case value if value!=null  => doSomethingWithResult()
+      case _ => println("Failure")
+    })
   }
 }
 

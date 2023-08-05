@@ -2,8 +2,8 @@ name := "MohanLearningGround"
 
 version := "1.0"
 
-scalaVersion := "2.12.12"
-val akkaVersion = "2.5.32"
+scalaVersion := "2.13.10"
+val akkaVersion = "2.8.3"
 val akkaHttpVersion = "10.2.3"
 val tomcatVersion = "9.0.14"
 
@@ -17,6 +17,8 @@ val tomcatVersion = "9.0.14"
     }
 */
 
+resolvers += "Artima Maven Repository" at "https://repo.artima.com/releases"
+
 transitiveClassifiers := Seq("sources")
 
 Compile/sourceManaged := file("bin")
@@ -25,18 +27,21 @@ Compile/sourceManaged := file("bin")
 libraryDependencies ++= Seq(
     "org.apache.tomcat" % "tomcat-catalina" % "9.0.14",
     "org.apache.tomcat" % "tomcat" % tomcatVersion,
+
     "org.apache.tomcat" % "tomcat-coyote" % tomcatVersion,
     "org.apache.tomcat" % "tomcat-jasper" % tomcatVersion
 )
 
 libraryDependencies ++= Seq(
-  "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0" withSources(),
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5" withSources(),
   "ch.qos.logback" % "logback-classic" % "1.4.5" % "runtime" withSources(),
   "javax.servlet" % "javax.servlet-api" % "4.0.0" % "provided" withSources(),
-  "org.scalactic" % "scalactic_2.12" % "3.0.2" withSources(),
-  "org.scalatest" % "scalatest_2.12" % "3.0.2" withSources(),
-  "org.scalacheck" %% "scalacheck" % "1.13.5" withSources(),
-  "org.scalaj" %% "scalaj-http" % "2.4.2"
+  "org.scalactic" %% "scalactic" % "3.2.16" withSources(),
+  "org.scalatest" %% "scalatest-propspec" % "3.2.16" % "test" withSources(),
+  "org.scalatest" %% "scalatest" % "3.2.16" withSources(),
+  "org.scalacheck" %% "scalacheck" % "1.15.4" withSources(),
+  "com.artima.supersafe" %% "supersafe" % "1.1.12"  withSources(),
+   "org.scalaj" %% "scalaj-http" % "2.4.2"
 )
 
 //java library dependencies
@@ -47,10 +52,8 @@ libraryDependencies ++= Seq(
 
 logLevel := Level.Warn
 
-scalacOptions += "-Ypartial-unification"
-
 libraryDependencies ++= Seq(
-  "com.chuusai" %% "shapeless" % "2.3.2" withSources(),
+  "com.chuusai" %% "shapeless" % "2.3.10" withSources(),
   "org.typelevel" %% "cats-core" % "2.4.1" withSources(),
   "org.scalaz" %% "scalaz-core" % "7.3.3"  withSources()
 )
@@ -70,7 +73,7 @@ libraryDependencies ++=  Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
 	  "org.scala-lang" % "scala-reflect" % scalaVersion.value,
-    "org.scala-lang.modules" % "scala-parser-combinators_2.12" % "1.1.1"
+    "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0"
   )
 
 libraryDependencies ++=  Seq(
@@ -84,15 +87,16 @@ libraryDependencies ++=  Seq(
 )
 
 libraryDependencies ++= Seq(
-    "io.reactivex" %% "rxscala" % "0.26.5" withSources(),
+    "io.reactivex" %% "rxscala" % "0.27.0" withSources(),
     "io.reactivex" % "rxswing" % "0.27.0" withSources(), // for Swing Scheduler in suggestions
     "org.json4s" %% "json4s-jackson" % "3.6.11" withSources(),
-    "org.scala-lang.modules" %% "scala-swing" % "2.0.0" withSources(),
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.slf4j" % "slf4j-api" % "1.7.5" withSources(),
     "org.slf4j" % "slf4j-simple" % "1.7.5" withSources(),
     "com.squareup.retrofit" % "retrofit" % "1.0.0" withSources(),
-    "org.scala-lang.modules" %% "scala-async" % "0.9.6"
+    "org.scala-lang.modules" %% "scala-async" % "1.0.1",
+     "com.typesafe.play" %% "play-json" % "2.9.4" withSources(),
+
 )
 
 val depsAkka = Seq(

@@ -49,7 +49,7 @@ class ReaderInjection2 {
   lazy val hsqlProvider = mkConnectionProvider("mysqldriver", "mysqluser", "mysqlpassword")
 
   def runProgram(userId : String) = (r : ConnectionProvider) => {
-    val newPwd = readLine()
+    val newPwd = scala.io.StdIn.readLine()
     r(changePwd(userId, newPwd))
   }
   def runInTest[A](f : ConnectionProvider => A) = f(mySqlProvider)

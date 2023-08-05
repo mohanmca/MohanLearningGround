@@ -1,11 +1,8 @@
 package ground.learning.reactive;
 import scala.concurrent.Future
-import scala.concurrent.Promise._
 import scala.concurrent.Promise
-import scala.concurrent.{ future, promise }
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.Random
-import scala.concurrent.ExecutionContext.Implicits.global
 
 /*
  * Credit :: http://www.srirangan.net/2013-01-controlling-flow-with-scala-futures
@@ -19,8 +16,9 @@ object WhoWonRacePromiseApp extends App {
 
   val whoWonTheRace = Promise[String]
 
-  whoWonTheRace.future onSuccess {
-    case name => Console.println(name + " wins")
+  whoWonTheRace.future.value match {
+    case Some(name) => Console.println(name + " wins")
+    case _         => Console.println("No one wins")
   }
 
   Future {
