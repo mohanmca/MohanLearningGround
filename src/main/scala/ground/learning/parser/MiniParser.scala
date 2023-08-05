@@ -106,7 +106,7 @@ class ExprVisitor{
       ast match{
         case Lines(exprs) =>{
             val local = new Environment(Some(env))
-            exprs.foldLeft(Unit:Any){(result, x) => eval(local, x)}
+            exprs.foldLeft(()){(result, x) => eval(local, x)}
         }
         case IfExpr(cond, pos, neg) =>{
             visit(cond) match{

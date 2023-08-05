@@ -16,8 +16,8 @@ val tomcatVersion = "9.0.14"
     assert(required == specVersion, "Java 1.10.1 or above required")
     }
 */
-
-resolvers += "Artima Maven Repository" at "https://repo.artima.com/releases"
+//
+//resolvers += "Artima Maven Repository" at "https://repo.artima.com/releases"
 
 transitiveClassifiers := Seq("sources")
 
@@ -38,10 +38,9 @@ libraryDependencies ++= Seq(
   "javax.servlet" % "javax.servlet-api" % "4.0.0" % "provided" withSources(),
   "org.scalactic" %% "scalactic" % "3.2.16" withSources(),
   "org.scalatest" %% "scalatest-propspec" % "3.2.16" % "test" withSources(),
-  "org.scalatest" %% "scalatest" % "3.2.16" withSources(),
-  "org.scalacheck" %% "scalacheck" % "1.15.4" withSources(),
-  "com.artima.supersafe" %% "supersafe" % "1.1.12"  withSources(),
-   "org.scalaj" %% "scalaj-http" % "2.4.2"
+  "org.scalatest" %% "scalatest" % "3.2.16" % "test" withSources(),
+  "org.scalacheck" %% "scalacheck" % "1.15.4" % "test" withSources(),
+  "org.scalaj" %% "scalaj-http" % "2.4.2"
 )
 
 //java library dependencies
