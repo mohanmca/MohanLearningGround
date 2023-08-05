@@ -34,6 +34,7 @@ build --disk_cache=~/.cache/bazel-disk
 2. bazel info
 3. bazel help build
 4. bazel query ...
+5. bazel run :frontend //alias based target
 
 ## Bazel query
 1. How to query all the packages
@@ -79,7 +80,7 @@ bazel query --noimplicit_deps 'deps(@docker//:client)' --output=build
 2. @label, @label can be searched within the code space
    1. @label//path/to/package:target_name
 3. // -- root of the workspace
-4. : -- root of the package
+4. : -- root of the package, (check inside the build file)
 5. / -- root of the directory
 6. bazel query "deps(//path/to/package:target_name)"
 7. "@maven//:jar" is a special label that refers to the maven_jar rule in the maven repository.
@@ -88,6 +89,9 @@ bazel query --noimplicit_deps 'deps(@docker//:client)' --output=build
 ## Bazel rules
 1. cc_binary
 2. java_binary, java_library, java_test, java_toolchain
+3. Alias rule - https://docs.bazel.build/versions/master/be/general.html#alias
+    4. We can use alias rule to create a short name for a long target
+
 
 ## Reference
 1. [Bazel BootCamp](https://www.youtube.com/watch?v=jY0BGMB21hw)
