@@ -1,3 +1,7 @@
+## Todo
+1. [Typehelper](https://stackoverflow.com/questions/13671734/iteration-over-a-sealed-trait-in-scala/24705126#24705126)
+2. [private[this] - privateField specific to instance, field is not accessible outside the instance](https://stackoverflow.com/questions/9698677/privatethis-vs-private)
+
 ## What is Covariant relationship?
 1. Given some ```class Cov[+T]``, then if A is a subtype of B, ```Cov[A] is a subtype of Cov[B]```.
 2. This allows us to make very useful and intuitive subtyping relationships using generics.
