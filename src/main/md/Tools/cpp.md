@@ -1,11 +1,13 @@
 ## What is hello world program in CPP?
 
+```c++
 #include <iostream>
 
 using namespace std;
 int main(void) {
   cout << "It's working\n" << endl;
 }
+```
 
 
 ## Data types
@@ -81,12 +83,12 @@ int main()
     cout << setbase(16) << num << endl; //sets base to 16
 }
 ```
-```
-The sign << is called the insertion operator.
-The sign >> is called the extraction operator.
-cout keyword is used to print.
-cin keyword is used to take input at run time.
-```
+
+* The sign << is called the insertion operator.
+* The sign >> is called the extraction operator.
+* cout keyword is used to print.
+* cin keyword is used to take input at run time.
+
 
 ## Find SQRT of a float
 
