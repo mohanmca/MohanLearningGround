@@ -15,6 +15,17 @@
 4. hex is one manipulator, changes the output streams properties called *basefield*
 5. hex, dec, oct are the other manipulators
 6. Manipulators
+7. endl is a manipulator
+
+## Manipulator Examples
+```C++
+int main() {
+    int byte = 255;
+    cout << hex << byte << endl;
+    cout << byte << endl << dec << byte<<endl;
+}
+```
+
 ```c++
 #include <iostream>
 #include <iomanip>
@@ -36,4 +47,27 @@ The sign >> is called the extraction operator.
 cout keyword is used to print.
 cin keyword is used to take input at run time.
 ```
+
+## Find SQRT of a float
+
+```C++
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main(void) {
+        float value, squareroot;
+
+        cout << "Give me a number and I will find its square root:" << endl;
+        cin >> value;
+        
+	        squareroot = sqrtf(value);
+	        cout << "You have given: " << value << endl;
+	        cout << "The square root is: " << squareroot << endl;
+        
+        return 0;
+}
+```
+
  
