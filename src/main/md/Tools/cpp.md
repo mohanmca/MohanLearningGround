@@ -112,6 +112,30 @@ int main(void) {
 }
 ```
 
+## datatype modifers to reduce memory or increase width of the number
+1. modifiers such as long/short/unsigned would either decrease the memory usage of primitivie-data-type such as int, or increase to suit larger number
+2. long int == long, short int = shot, unsigned int = unsigned
+3. char == [-128 to 127], unsigned char == 0 255
+4. long can be declred in 3 days
+	5. literal value goes beyond the acceptable range of type int; 98l or 987L (suffix L)
+ 6. short modifer never works with float, but `long float` would work, 'long float == double'
+ 7. double can store larger number and with better accuracy
+ 8. float would store 8 digits after decimal point for accuracy, double would store 15-17 accuracy
+ 9. numerical anomaly - is unavoidable
+
+## boolean
+1. bool developer_is_hubgry =  true
+2. boolean is like int, but it uses only 8-bit (1 - byte)
+3. zero == false, non-zero == true
+
+## empty for-loop
+1. when data missing, c++ assumes 1 is there, hence below is infinite;
+```c++
+for( ; ; ) {
+  /* the body goes here */ 
+}
+```
+
 ## Reference
 1. [cpp.sh](https://cpp.sh)
 2. [https://ideone](https://ideone.com/HmZVro](https://ideone.com/HmZVro)
