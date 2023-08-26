@@ -4,7 +4,7 @@
 //
 //object ParserCombinator {
 //
-//  val syntax = """
+//  val syntax  """
 //    (3 + 4)
 //    (3 * 4)
 //    assignment := variable = addExpr || multExpr 
