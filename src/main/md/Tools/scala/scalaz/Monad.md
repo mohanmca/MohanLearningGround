@@ -1,7 +1,7 @@
 # Monad pragmatic rules (not algebric)
 
 * Method signature should not lie
-* Method signature should be acurate
+* Method signature should be accurate
 * Method signature should reflect non-determinism
 * Monad helps to achieve referential transparency.
   * By returning computation, side-effect or non-determinism are passed to dependent
