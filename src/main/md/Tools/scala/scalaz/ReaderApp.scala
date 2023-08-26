@@ -1,4 +1,4 @@
-package scala.scalaz
+package Tools.scala.scalaz
 
 object ReaderApp extends App {
   //import scalaz.Reader

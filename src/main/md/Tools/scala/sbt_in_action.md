@@ -16,13 +16,13 @@
   * build.gradle is Groovy based, follows maven convention
   * Gradle build files are more concise
   * Lacks - Interactive console features (as of 2014)
-    * Continious build is available - https://docs.gradle.org/current/userguide/command_line_interface.html#sec:continuous_build
-  * Gradle’s task dependency mechanism isn’t explicit
- * Maven, Gradle, and Ant aren’t really interactive environments.
+    * Continuous build is available - https://docs.gradle.org/current/userguide/command_line_interface.html#sec:continuous_build
+  * Gradle's task dependency mechanism isn't explicit
+ * Maven, Gradle, and Ant aren't really interactive environments.
 
 # Why SBT?
 *  With sbt, each task has an output and explicit dependencies
-*  build typessafety, flexibility and the ability to insert custom tasks easily
+*  build type-safety, flexibility and the ability to insert custom tasks easily
 *  tasks can be executed in parallel by default. 
 *  Sbt uses the dependency tree to ensure that tasks are executed in the right order.
 *  SBT has no phases, goals or executions (it has only tasks)
@@ -71,7 +71,7 @@
   * Uber jar assembler - addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.11.2")
     * import AssemblyKeys._; assemblySettings
     * mainClass in assembly := Some("Global")
-    * declare merge stategy (in build.sbt) for handling duplicate (concatenate, use new, use old)
+    * declare merge strategy (in build.sbt) for handling duplicate (concatenate, use new, use old)
     * mainClass in assembly := Some("Global") -- should be mentioned for executable jar
     * You might even have - libraryDependencies ++= Seq( "org.apache.velocity" % "velocity" % "1.7") in order for Build.scala to use plugins
     * $HOME/.sbt/0.13/credentials.sbt:

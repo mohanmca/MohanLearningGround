@@ -1,0 +1,8 @@
+1. [Play framework](https://www.playframework.com/documentation/2.8.x/Home)
+2. [Play Twirl](https://github.com/playframework/twirl)
+3. [Dropwizard metrics graphite](https://metrics.dropwizard.io/4.2.0/manual/graphite.html)
+4. [scalactic](https://www.scalactic.org/scaladoc/3.2.16/org/scalactic/Or.html)
+5. [sbe tool](https://github.com/real-logic/simple-binary-encoding/wiki/Sbe-Tool-Guide)
+6. [Software mill macwire](https://github.com/softwaremill/macwire)
+7. [scala test](https://www.scalatest.org/scaladoc/3.2.16/org/scalatest/index.html)
+8. [https://scalamock.org/quick-start/](https://scalamock.org/quick-start/)
