@@ -8,6 +8,18 @@ ps e -ww -p 11404 | tr ' ' '\n'  | sort
 </p>
 </details> 
 
+### What are all SSH commands
+<details><summary>show</summary>
+<p>
+
+```bash
+killall ssh-agent 
+ssh-agent  - is a helper program that keeps track of users' identity keys and their passphrases.
+ssh-add - command prompts the user for a private key password and adds it to the list maintained by ssh-agent.
+```
+</p>
+</details> 
+
 ### Find and grep files in MAC
 
 find . -type f -print0 | xargs -0 grep -l "wire\[BackendEmails"
