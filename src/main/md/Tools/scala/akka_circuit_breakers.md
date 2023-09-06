@@ -34,6 +34,29 @@
 3. callTimeout - how long to wait for api to be considered successful
 4. resetTimeout
 
+## Akka Stacktrace to familiarize
+
+```scala
+ akka.http.scaladsl.model.IllegalRequestException: Request timed out after 10 seconds while waiting for entity data: Consider increasing the timeout for toStrict
+[info]  at akka.http.scaladsl.model.IllegalRequestException$.apply(ErrorInfo.scala:99)
+[info]  at akka.http.scaladsl.server.directives.BasicDirectives$$anonfun$$nestedInanonfun$toStrictEntity$3$1.applyOrElse(BasicDirectives.scala:404)
+[info]  at akka.http.scaladsl.server.directives.BasicDirectives$$anonfun$$nestedInanonfun$toStrictEntity$3$1.applyOrElse(BasicDirectives.scala:400)
+[info]  at scala.util.Failure.recover(Try.scala:233)
+[info]  at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:487)
+[info]  at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
+[info]  at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
+[info]  at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+[info]  at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+[info]  at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
+[info]  at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
+[info]  at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
+[info]  at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+[info]  at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+[info]  at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+[info]  at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+[info]  at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+```
+
 ## Reference
 1. [Akka Circuit Breaker](https://www.youtube.com/watch?v=FLw95uX3mkU)
 2. [Akka Markdown](https://github.com/akka/akka/blob/main/akka-docs/src/main/paradox/common/circuitbreaker.md)
