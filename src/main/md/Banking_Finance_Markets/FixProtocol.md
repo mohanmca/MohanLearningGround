@@ -1,5 +1,6 @@
 ## MessageType tag (35)
 * 0 - Heart Beat
+* D - Order Single
 * 8 - Execution Report
 * A - Logon
 * R - QuoteRequest
