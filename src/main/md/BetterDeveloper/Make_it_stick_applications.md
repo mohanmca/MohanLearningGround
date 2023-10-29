@@ -1,5 +1,8 @@
-## Javascript
+## Programming Quizes
+1. [Multiple programming treasure](https://developerquiz.org/)
+2. [LinkedIn Quizzes](https://linkedin-faq.github.io/skill-assessments-quizzes)
 
+## Javascript
 * [https://jsisweird.com/](jsisweird.com)
 * [https://www.w3schools.com/](https://www.w3schools.com/)
     * [Javascript](https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS)
