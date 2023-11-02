@@ -1,3 +1,8 @@
+### If you have access to SSH, can you connect to remote machine to another port from localhost?
+1. Yes, Use SSL tunnelling
+2. ssh -L localhost:23473:remotehost:23473 mohan.narayanaswamy@remotehost -N -v -f
+3. Finally connect to localhost:23473 
+
 ### Find Java Environemnt Variable from Shell
 <details><summary>show</summary>
 <p>
