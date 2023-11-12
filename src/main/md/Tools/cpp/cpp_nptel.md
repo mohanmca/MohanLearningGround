@@ -150,4 +150,20 @@ p->im = 3.6 // Access by redirection p-> == "(*p)."
   1. is not supported in C in general
   2. arrays are passed by reference
   3. formal and actual parameters are pointing same in-case of Array
-5.   
+
+
+## Function pointers: Delegation of function calls
+1. Functions can be pointed by a pointer
+``` typedef void(*DrawFunc) (strcut GeoObject);
+void drawCir(struct GeoObject go) {
+  printf("Rect: (%lf, %lf, %lf, %lf)\n", go.r.x, go.r.y, go.r.w, go.r.h);}
+}
+void drawRect(struct GeoObject go) {
+  printf("Rect: (%lf, %lf, %lf, %lf)\n", go.r.x, go.r.y, go.r.w, go.r.h);}
+}
+void drawTrg(struct GeoObject go) {
+  printf("Rect: (%lf, %lf, %lf, %lf)\n", go.r.x, go.r.y, go.r.w, go.r.h);}
+}
+DrawFunc DrawArr[] = { drawCir, drawRec, drawTrg };
+DrawArr[1](go);
+```
