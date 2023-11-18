@@ -13,4 +13,5 @@
 
 ## Reference
 1. [Concurrent Caching at Google](https://www.infoq.com/presentations/Concurrent-Caching-at-Google/)
-2. [ConcurrentHashMapSlides](https://ress.infoq.com/downloads/pdfdownloads/presentations/StrangeLoop2011-CharlesFry-ConcurrentCachingatGoogle.pdf)
+2. [Java Caching with Guava](https://www.youtube.com/watch?v=keqKDhGIJZ8)
+3. [ConcurrentHashMapSlides](https://ress.infoq.com/downloads/pdfdownloads/presentations/StrangeLoop2011-CharlesFry-ConcurrentCachingatGoogle.pdf)
