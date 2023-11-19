@@ -9,9 +9,15 @@
    1. ComputingMap (auto loads)
    2. Self-populating reference map
    3. Calling get on the map resulted in the creation of a new cached entry
-4. 
+
+
+## Cache design?
+1. How to reload delta?
+2. How to set time based expiry for this cache?
+3. 
 
 ## Reference
 1. [Concurrent Caching at Google](https://www.infoq.com/presentations/Concurrent-Caching-at-Google/)
 2. [Java Caching with Guava](https://www.youtube.com/watch?v=keqKDhGIJZ8)
 3. [ConcurrentHashMapSlides](https://ress.infoq.com/downloads/pdfdownloads/presentations/StrangeLoop2011-CharlesFry-ConcurrentCachingatGoogle.pdf)
+4. [Java Caffeine](https://www.baeldung.com/java-caching-caffeine)
