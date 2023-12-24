@@ -3,6 +3,9 @@
 * python -m pip install --upgrade pip
 * python install -r requirements.txt
 
+ ## Java vs Python
+ * [Stackoverflow python java](https://stackoverflow.com/questions/tagged/python%2bjava?tab=Votes)
+
 ## Python Style Guide
 1. [Style guide](https://google.github.io/styleguide/pyguide.html)
    1. [Style guide comments](https://news.ycombinator.com/item?id=34750397)
