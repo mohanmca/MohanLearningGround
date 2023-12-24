@@ -4,8 +4,8 @@
 2. del removes reference (doesn't delete object)
 3. if reference was the last one, it might leads to invoke __del__ in python
 4. in python x and (x) are same
-   5. del(x) == del x
-   6. Hence it is nothing special
+   1. del(x) == del x
+   1. Hence it is nothing special
 
 ## What is __del__ method?
 
