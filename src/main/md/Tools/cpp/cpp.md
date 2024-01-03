@@ -136,6 +136,24 @@ for( ; ; ) {
 }
 ```
 
+## Logical opertion on it
+```
+C++ also uses - two's complement numbers
+i: 00000000000000000000000000001111
+j: 00000000000000000000000000010110
+int log = i && j;
+log:00000000000000000000000000000001
+int bit = i & j;
+bit:00000000000000000000000000000110
+```
+
+## Unsigned CPP (double the range)
+```
+unsigned int myUnsignedVariable = 0;
+myUnsignedVariable--;  // Decrementing from 0
+It will wrap around, and the result will be the maximum value representable by an unsigned int. For a 32-bit unsigned int, the maximum value is 4294967295.
+```
+
 ## Reference
 1. [cpp.sh](https://cpp.sh)
 2. [https://ideone](https://ideone.com/HmZVro](https://ideone.com/HmZVro)
