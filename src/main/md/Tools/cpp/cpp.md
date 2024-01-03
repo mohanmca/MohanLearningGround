@@ -9,7 +9,6 @@ int main(void) {
 }
 ```
 
-
 ## Data types
 1. 3E8 == 300,000,000 = 3 x 10^8
 2. Plancks constant - 6.62607E-34
@@ -114,9 +113,9 @@ int main(void) {
 
 ## datatype modifers to reduce memory or increase width of the number
 1. modifiers such as long/short/unsigned would either decrease the memory usage of primitivie-data-type such as int, or increase to suit larger number
-2. long int == long, short int = shot, unsigned int = unsigned
+2. long int == long, short int = short, unsigned int = unsigned
 3. char == [-128 to 127], unsigned char == 0 255
-4. long can be declred in 3 days
+4. long can be declared in 3 days
 	5. literal value goes beyond the acceptable range of type int; 98l or 987L (suffix L)
  6. short modifer never works with float, but `long float` would work, 'long float == double'
  7. double can store larger number and with better accuracy
@@ -154,7 +153,30 @@ myUnsignedVariable--;  // Decrementing from 0
 It will wrap around, and the result will be the maximum value representable by an unsigned int. For a 32-bit unsigned int, the maximum value is 4294967295.
 ```
 
+## Switch case
+1. Missing break is big mistake
+2. Value after the case must not be an expression containing variables or any other entities whose values aren't known at compilation time;
+```
+switch(i) {
+    case 1: cout << "Only one?" << endl; break;
+    case 2: cout << "I want more" << endl; break;
+    case 3: 
+    case 4: cout << "OK and work for 3 Or 4" << endl; break;
+    default: cout << "Don't care"  << endl;
+}
+```
+
+## Many more
+1. int vector[5] = {0,1,2,3,4}; //array with initializaion
+2. If you provide fewer values than the size of an array, like this, nothing bad will happen.
+  3. he compiler determines that those elements you didn‘t specify any value to should be set to 0.
+  4. int vector[5] = {0,1,2};
+  5. int vector[] = {0,1,2,3,4,5,6}; //this is legal
+  6. int chessboard[8][8];
+4. fill first 100 slots with -1 for an array - ```std::fill_n(array, 100, -1);```
+5. 
+
 ## Reference
 1. [cpp.sh](https://cpp.sh)
 2. [https://ideone](https://ideone.com/HmZVro](https://ideone.com/HmZVro)
-3. 
+3. [Operator Precedence](https://en.cppreference.com/w/cpp/language/operator_precedence)
