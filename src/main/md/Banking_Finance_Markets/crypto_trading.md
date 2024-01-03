@@ -8,3 +8,11 @@
 * The funding rate is a mechanism used to align the contract's price with the underlying spot market.
 * If the contract is trading at a premium to the mark price, long positions pay a funding fee to short positions, and vice versa.
 * This mechanism helps prevent significant divergences between the contract price and the spot price.
+
+
+## Why Perpetual Contract?
+1. Leverage - 2x, 100x
+2. Liquidity - avoid from ownership transfer
+3. Speculation and Hedging
+4. 24/7 Trading
+5. Accessibility
