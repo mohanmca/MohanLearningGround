@@ -123,6 +123,9 @@ int main(void) {
  8. float would store 8 digits after decimal point for accuracy, double would store 15-17 accuracy
  9. numerical anomaly - is unavoidable
 
+## 
+'uint64_t' {aka 'long unsigned int'}
+
 ## boolean
 1. bool developer_is_hubgry =  true
 2. boolean is like int, but it uses only 8-bit (1 - byte)
