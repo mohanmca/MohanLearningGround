@@ -48,6 +48,7 @@ int main(int argc, char** argv) {
 5. '\47' = Octal chracter, 39 decimal == '\'', '\x27'
 6. you can mix and match int with char and perform arithmatic operation
 7.   'a' - ' ', a - 32, 'A' + 32, 'A' + ' '
+8. 'uint64_t' {aka 'long unsigned int'}
 
 ## Stream has two responsible
 1. Converting any types into human readable
