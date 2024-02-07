@@ -17,17 +17,13 @@
 4. 24/7 Trading
 5. Accessibility
 
-
-## What is reserved margin
-1. Margin required to support current open orders (spot or derivative)
-1. Included in Initial Margin
-
 ## What is Initial Margin
 1. Reserved Margin + Initial margin positions
 1. The amount of margin required to open a position
 
-## Margin Maintenance limit
-1. Minimum amount of margin assets value required to prevent liquidation
+## What is reserved margin
+1. Margin required to support current open orders (spot or derivative)
+1. Included in Initial Margin
 
 ## Margin Assets Value
 1. The total USD equivalent value of all eligible assets available for margin
@@ -36,6 +32,10 @@
 
 ## What is available margin
 1. AvailableMargin = MAV - IM
+
+## Margin Maintenance limit
+1. Minimum amount of margin assets value required to prevent liquidation
+2. The maintenance margin limit is typically expressed as a percentage of the initial margin or the position size
 
 ## What is Leverage
 1. Ratio of Notional Value to Margin Assets Value
@@ -51,6 +51,12 @@
 1. Price of perpetual swap is more than spot price
 2. Long position holders will pay the short position holders
 
+## When does liquidation happens?
+1. Make MAV < MM
+
+## Steps to force liquidation
+1. Balance + Realized Profit - MML -1$
+2. You can debit the account using admin debit
 
 ## Generate ANKI
 * mdanki crypto_trading.md CrptoTrading_Anki.apkg --deck "Mohan::Trading::Crypto"
