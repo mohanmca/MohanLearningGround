@@ -16,3 +16,41 @@
 3. Speculation and Hedging
 4. 24/7 Trading
 5. Accessibility
+
+
+## What is reserved margin
+1. Margin required to support current open orders (spot or derivative)
+1. Included in Initial Margin
+
+## What is Initial Margin
+1. Reserved Margin + Initial margin positions
+1. The amount of margin required to open a position
+
+## Margin Maintenance limit
+1. Minimum amount of margin assets value required to prevent liquidation
+
+## Margin Assets Value
+1. The total USD equivalent value of all eligible assets available for margin
+2. Adjusted for any haircut + unrealized p&l - capital in hold for open spot orders
+3. MAV = Sum(hair-cut adjusted assets) + sum (p&l) - sum (capital to support open orders)
+
+## What is available margin
+1. AvailableMargin = MAV - IM
+
+## What is Leverage
+1. Ratio of Notional Value to Margin Assets Value
+
+## What is notional value
+1. Notional position size * Mark Price
+
+## Funding Rate -Ve
+1. Price of perpetual swap is less than spot price
+2. Short position holders will pay the long position holders
+
+## Funding Rate +Ve
+1. Price of perpetual swap is more than spot price
+2. Long position holders will pay the short position holders
+
+
+## Generate ANKI
+* mdanki crypto_trading.md CrptoTrading_Anki.apkg --deck "Mohan::Trading::Crypto"
