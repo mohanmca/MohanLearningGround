@@ -880,5 +880,5 @@ class MyTable(tag: Tag) extends Table[(Int, MyEnum.MyEnum)](tag, "my_table") {
 These questions cover various aspects of using PostgreSQL user-defined Enum types in Scala Slick, including creation, querying, joining, and handling them in the context of raw SQL queries, data modeling, filtering, updating, inserting, and maintaining type safety.
 
 ## How to generate mdanki
-mdanki hindi.md hindi.apkg --deck "Vinoth::Hindi::scala_slick.md"
+mdanki hindi.md hindi.apkg --deck "Mohan::Scala::scala_slick.md"
 
