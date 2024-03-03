@@ -87,3 +87,7 @@ Answer-9: Woh kahan kaam kar rahe hain (They)
 
 ## Question-10 - அவன் (Avaṉ) ஏன் அவன் அவன் உழைக்கிறான் (Why is he working for himself)?
 Answer-10: Woh khud ke liye kyun kaam kar raha hai (He)
+
+
+## How to generated this in ANki
+mdanki hindi.md hindi.apkg --deck "Vinoth::Hindi"
