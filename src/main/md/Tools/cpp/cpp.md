@@ -175,6 +175,34 @@ switch(i) {
 }
 ```
 
+## What is CRTP?
+
+```cpp
+template<class Z> class Y {};
+class X : public Y<X> {};
+```
+
+## What is shared smart pointer and how to create?
+```
+In this example, std::make_shared<MyClass>(10) creates a new instance of MyClass with 10 as the argument to its constructor, 
+and returns a std::shared_ptr that owns the newly created object. 
+The std::shared_ptr will automatically delete the object when there are no more std::shared_ptr objects pointing to it.
+```
+```cpp
+#include <memory>
+
+class MyClass {
+public:
+    MyClass(int val) : value(val) {}
+    int value;
+};
+
+int main() {
+    std::shared_ptr<MyClass> ptr = std::make_shared<MyClass>(10);
+    return 0;
+}
+```
+
 ## Many more
 1. int vector[5] = {0,1,2,3,4}; //array with initializaion
 2. If you provide fewer values than the size of an array, like this, nothing bad will happen.
