@@ -206,6 +206,16 @@ int main() {
 }
 ```
 
+## How to get the address of the underlying object of the smart pointer?
+
+```bash
+int main() {
+    std::shared_ptr<MyClass> ptr = std::make_shared<MyClass>(10);
+    MyClass* raw_ptr = ptr.get();
+    return 0;
+}
+```
+
 ## Many more
 1. int vector[5] = {0,1,2,3,4}; //array with initializaion
 2. If you provide fewer values than the size of an array, like this, nothing bad will happen.
