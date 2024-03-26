@@ -15,6 +15,19 @@ for x in 2 3; do ssh aws-worker-00$x.aws-sandbox.host 'grep  -i xception /var/lo
 for x in 2 3; do ssh aws-worker-00$x.aws-sandbox.host 'cat /proc/cmdline'; done
 ```
 
+## List of commands
+1. List of files that are more than G - ```du -sh * | grep "G\s"``
+2. How to stop nomand jobs - ```nomad job stop -purge job_name;nomad job status job_name```
+3. How to find list of changes made in AWS host -- 'search in cloudtrail - ResouceType == AWS::RDS::DBCluster'
+4. How to find ipaddress for a hostname ```dig +short hostname```
+5. Find list of cronjob for user root ```sudo crontab -l -u root```
+6. How to troubleshoot ssl connection ```openssl s_client --connect hostname:8200 --showcerts -verify 1```
+
+
+## When multiple files are released, and disk space is not relesed, what to do?
+1. Restart the rsyslog
+2. ```sudo lsof | grep containers;sudo systemctl restart rsyslog```
+
 ### Find Java Environemnt Variable from Shell
 <details><summary>show</summary>
 <p>
