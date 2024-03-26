@@ -9,6 +9,12 @@
 2. Without actually establishing a connection to any listening service on that port.
 3. It will simply report whether the port is open or not.
 
+## How to grep for log in multiple machine
+```bash
+for x in 2 3; do ssh aws-worker-00$x.aws-sandbox.host 'grep  -i xception /var/log/'; done
+for x in 2 3; do ssh aws-worker-00$x.aws-sandbox.host 'cat /proc/cmdline'; done
+```
+
 ### Find Java Environemnt Variable from Shell
 <details><summary>show</summary>
 <p>
