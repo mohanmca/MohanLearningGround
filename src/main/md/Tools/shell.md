@@ -3,6 +3,12 @@
 2. ssh -L localhost:23473:remotehost:23473 mohan.narayanaswamy@remotehost -N -v -f
 3. Finally connect to localhost:23473 
 
+## How to confirm if port is open without connecting to it?
+1. ```nc -v -z localhost 9038``` Or ```lsof -i :9038```
+1. NC is telling netcat to perform a verbose port scan on port 9038 of the localhost (the local machine).
+2. Without actually establishing a connection to any listening service on that port.
+3. It will simply report whether the port is open or not.
+
 ### Find Java Environemnt Variable from Shell
 <details><summary>show</summary>
 <p>
