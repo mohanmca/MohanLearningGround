@@ -7,6 +7,9 @@
 1. ```Hiding.A hash function H is hiding if: when a secret value r is chosen from a probability distribution
 that has high min‐entropy, then given H(r ‖ x) it is infeasible to find x.```
 
+## Crypto Princeton professor
+1. [Edward.w. Felten](https://www.cs.princeton.edu/~felten/index.html)
+
 ## What is the application of Hiding property?
 1. Commitment API
 
