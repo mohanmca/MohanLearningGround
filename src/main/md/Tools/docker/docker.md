@@ -36,6 +36,8 @@ processors=4 # Makes the WSL 2 VM use two virtual processors
 #!/bin/bash
 # to run docker container -p host_port:container_port.. http://localhost:host_port/
 docker container run -p 9999:8888 YOUR_DOCKER_ID/myhello
+## Try to remove non-running images
+docker rmi $(docker images -q --filter "dangling=false")
 # stop all containers
 docker stop $(docker ps -aq)
 # Delete all containers
