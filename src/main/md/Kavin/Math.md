@@ -1,6 +1,6 @@
-## [Singapore Math - Ratio - Using models to solve word problems - Primary 5, Primary 6](https://www.youtube.com/watch?v=izqgBzgaEW8)
-## [Singapore Math - Using Models to solve Ratio problems - Before and After - Simultaneous equations](https://www.youtube.com/watch?v=byBQy5GhPwE
-## Math
+## Bar model problem
+1. [Singapore Math - Ratio - Using models to solve word problems - Primary 5, Primary 6](https://www.youtube.com/watch?v=izqgBzgaEW8)
+2. [Singapore Math - Using Models to solve Ratio problems - Before and After - Simultaneous equations](https://www.youtube.com/watch?v=byBQy5GhPwE)
 
 ```
 Sisters Debra and Rachel brought $337 to shop for new clothes. Rachel brought her friend along, Crystal.
