@@ -9,6 +9,7 @@ that has high min‐entropy, then given H(r ‖ x) it is infeasible to find x.``
 
 ## Crypto Princeton professor
 1. [Edward.w. Felten](https://www.cs.princeton.edu/~felten/index.html)
+2. [Search for Hash](https://github.com/edfelten/cos432-lecture-notes/releases)
 
 ## What is the application of Hiding property?
 1. Commitment API
