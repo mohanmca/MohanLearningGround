@@ -29,7 +29,10 @@ that has high min‐entropy, then given H(r ‖ x) it is infeasible to find x.``
 1. LinkedList (BlockChain)
 2. BinaryTree - Merkle-Tree
    1. Non-Membership and Membership can be proved in O(log.n) times
-2.  
+
+## What is Bitcoin uses?
+1. ECDSA (Elliptical curve digital signature Algorithm...)
+
 
 ## Reference
 1. [Princeton Bitcoin](https://d28rh4a8wq0iu5.cloudfront.net/bitcointech/readings/princeton_bitcoin_book.pdf)
