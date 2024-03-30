@@ -16,8 +16,8 @@ int main(void) {
 1. g++ -S main.cpp -o main.s (Produces human readable assembly code)
 2. g++ -c main.cpp -o main.o (Produces object file)
 3. g++ main.cpp -o main (Produces executable using compiles, assembles and links)
-   4. Linking the library is done by the linker, which is called by the compiler.
-   5. During linking the linker will resolve the symbols in the object files and libraries.
+ 4. Linking the library is done by the linker, which is called by the compiler.
+ 5. During linking the linker will resolve the symbols in the object files and libraries.
 6. g++ --std=c++11 main.cpp -o main (Use C++11 standard)
 
 ## Data types
