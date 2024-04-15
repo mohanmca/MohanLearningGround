@@ -9,6 +9,7 @@
 2. Without actually establishing a connection to any listening service on that port.
 3. It will simply report whether the port is open or not.
 
+
 ## How to grep for log in multiple machine
 ```bash
 for x in 2 3; do ssh aws-worker-00$x.aws-sandbox.host 'grep  -i xception /var/log/'; done
@@ -48,10 +49,27 @@ ssh-agent  - is a helper program that keeps track of users' identity keys and th
 ssh-add - command prompts the user for a private key password and adds it to the list maintained by ssh-agent.
 ```
 </p>
-</details> 
+</details>
 
-### Find and grep files in MAC
 
+## To list the agents
+1. ssh-add -l
+2. ssh-add -L > /Users/mohan.narayanaswamy/.ssh/id_piv.pub
+3. Ensure SSH keys are added to AD to connect to AWS
+
+## Forward your keys to AWS box
+1. ssh -A devbox-aws.host.com
+2. ForwardAgent yes will just save you from adding -A each time (in the ssh config file)
+
+# What are the Environment variable for CLIENT CERT PATH
+export CLIENT_PKCS12_PATH=${KAFKA_CERTPATH}/kafka-ssl.p12
+export CLIENT_PKCS12_PASSWORD=${KAFKA_SSL_PASSWORD}
+
+## Where is JDK installed in Ubuntu
+/bin/java -> /etc/alternatives/java
+/etc/alternatives/java -> /usr/lib/jvm/adoptopenjdk-11-hotspot-jre-amd64/bin/java
+
+## Find and grep files in MAC
 find . -type f -print0 | xargs -0 grep -l "wire\[BackendEmails"
 
 ### Sum all the numbers in 1st column
