@@ -441,3 +441,6 @@ mkdir lib project target
 ## Squeezing repeating occurrences of characters
 1. ps | tr -s " "
 2. echo "Delete my pin from the prompt 5634" | tr -d "[:digit:]"
+
+## Generate mdanki
+mdanki shell.md shell.apkg --deck "Mohan::DeepWork::shell"
