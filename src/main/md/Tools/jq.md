@@ -7,6 +7,10 @@
 5. cat fb_questions.json  | jq '.[]'
 6. cat fb_questions.json | jq '.data.companyTag.questions[] | select (.difficulty == "Hard")'
 
+## Handle Array or Array Or Objects
+1. jq '.[]| .[1] ' output.json ---> find first object in nested array ```[[{1},{2}],[{1},{2}]]``` -- list only 1s
+2.  jq '.[] | select(.[1].partitionId == 2)  ' output.json  --> in array of array, select the arrays whose first objects attribute partitionId==2
+
 ## Reference
 1. [JQ Cheatsheet](https://lzone.de/cheat-sheet/jq)
 2. [Zendesk Cheatsheet](https://developer.zendesk.com/documentation/integration-services/developer-guide/jq-cheat-sheet/)
