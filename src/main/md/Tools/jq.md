@@ -7,6 +7,10 @@
 5. cat fb_questions.json  | jq '.[]'
 6. cat fb_questions.json | jq '.data.companyTag.questions[] | select (.difficulty == "Hard")'
 
+
+## "Expected another key-value pair at " (For trailing comma)
+1. sed -i 's/,[[:space:]]*}/}/g' ff.json
+
 ## Handle Array or Array Or Objects
 1. jq '.[]| .[1] ' output.json ---> find first object in nested array ```[[{1},{2}],[{1},{2}]]``` -- list only 1s
 2.  jq '.[] | select(.[1].partitionId == 2)  ' output.json  --> in array of array, select the arrays whose first objects attribute partitionId==2
