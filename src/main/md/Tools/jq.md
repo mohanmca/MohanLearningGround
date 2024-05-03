@@ -1,3 +1,57 @@
+## How to generate json using null-input
+1. JQ can be used as calculator
+1. This is useful when you want to generate JSON data from scratch or work with predefined JSON structures directly
+```json
+jq -n '.name = "mohan"'
+
+{
+  "name": "mohan"
+}
+jq  -n '1+2'       
+3
+```
+
+## What is the use of -r or --raw-input
+
+```
+echo "apple\nbanana\norange" | jq --raw-input .
+echo "Hello, World!" | jq --raw-input 'ascii_downcase'
+```
+
+## What is the use of -s or --slurp
+1. Read the entire input stream into a single JSON array 
+2. It assumes [ and ] (before line and after EOF) and , in-between the new-line
+3. echo "{"name": "Alice", "age": 30}\n{"name": "Bob", "age": 25}" -s jq
+4. 
+```bash
+echo '{"name": "Alice", "age": 30}\n{"name": "Bob", "age": 25}' |  jq -s -c
+```
+```json
+[{"name":"Alice","age":30},{"name":"Bob","age":25}]
+```
+
+## How to filter the array, where one of the objects attribute matches the value
+
+```bash
+export val='[[{"name": "Alice", "age": 30},{"name": "Bob", "age": 25},{"name": "Charlie", "gauge": 20}],[{"name": "David", "gauge": 25},{"name": "Eve", "age": 35}]]'
+echo $val | jq '.[] | select(any(.[]; .gauge == 25))'
+```
+
+## How to compact json file using jq
+
+```
+jq -c '.' data.json > temp.json && mv temp.json data.json
+jq -c '.' -i data.json
+```
+
+## How to merge two two-dimensional array into one two dimensional array
+
+```
+[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]
+jq '.[][]' data.json
+```
+1. [][]: This jq filter accesses each element of the top-level array ([]) and then each element of the nested arrays ([] again), effectively flattening and merging the inner arrays into a single two-dimensional array.
+
 ## Frequently used jq
 
 1. jq '.status.addresses[0].address'
@@ -7,6 +61,13 @@
 5. cat fb_questions.json  | jq '.[]'
 6. cat fb_questions.json | jq '.data.companyTag.questions[] | select (.difficulty == "Hard")'
 
+## How to feed data into multiple filters
+
+1. Use COMMA - , to feed to multiple inputs
+2. It is similar to tee command in linux
+```
+cat stackexchange_sites | jq '.items[1:5] | .[].name,.[].site_url'
+```
 
 ## "Expected another key-value pair at " (For trailing comma)
 1. sed -i 's/,[[:space:]]*}/}/g' ff.json
@@ -22,11 +83,13 @@
 
 ## Find all the question that has array tag, but find relevant tag most used along with Array 
 
-6. cat fb_questions.json | jq '.data.companyTag.questions[] | select (.topicTags[].name == "Array")'
-   11       "slug": "union-find",
-   ➜  patterns git:(master) cat fb_questions.json | jq '.data.companyTag.questions[] | select (.topicTags[].name == "Array")' | grep slug | grep -v "array"  | sort | uniq -c | sort -nr
-   67       "slug": "matrix",
-   67       "slug": "hash-table",
+```
+cat fb_questions.json | jq '.data.companyTag.questions[] | select (.topicTags[].name == "Array")'
+11       "slug": "union-find",
+➜  patterns git:(master) cat fb_questions.json | jq '.data.companyTag.questions[] | select (.topicTags[].name == "Array")' | grep slug | grep -v "array"  | sort | uniq -c | sort -nr
+67       "slug": "matrix",
+67       "slug": "hash-table",
+```
 
 ## Generate mdanki
 mdanki jq.md jq.apkg --deck "Mohan::DeepWork::jq"
