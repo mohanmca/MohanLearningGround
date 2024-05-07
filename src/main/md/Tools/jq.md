@@ -1,3 +1,8 @@
+## How to combine multi-line independent json inside a file
+```bash
+jq . -s input_file.json
+```
+
 ## How to generate json using null-input
 1. JQ can be used as calculator
 1. This is useful when you want to generate JSON data from scratch or work with predefined JSON structures directly
