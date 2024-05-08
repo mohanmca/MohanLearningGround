@@ -100,6 +100,9 @@ int main()
 * cout keyword is used to print.
 * cin keyword is used to take input at run time.
 
+## Why to use curly-brace-delimiter-initializer-list
+1. It saves from coversions that lose information
+2. int i2 {7.8} -- would compilation failure, whereas int i2=7.8; would work
 
 ## Find SQRT of a float
 
@@ -216,6 +219,11 @@ int main() {
 }
 ```
 
+## Source of bugs
+1. implicit narrowing conversion
+2. Union
+3. Array Decay
+
 ## Many more
 1. int vector[5] = {0,1,2,3,4}; //array with initializaion
 2. If you provide fewer values than the size of an array, like this, nothing bad will happen.
@@ -227,6 +235,16 @@ int main() {
 
 ## usual_arithmetic_conversions
 [Usual arithmetic coversion](https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions)
+
+## Pure function and const, consteval and constexpr
+1. const at runtime, wheras constexpr is during compiletime, const-expr places value in read-only memory
+2. Function can also be declared with constexpr (it has to evaluate during compile time, otherwise it would error)
+  1. ```“constexpr double square(double x) { return x*x; }”```
+  1. ```“consteval double square(double x) { return x*x; }”``` //function that needs to eval'ed only during compilation time
+3.  *Pure Function*
+  3.1. Function declared with constexpr and consteval are C++ version of "pure function", they cannot have side effects
+  3.2. Pure function can only operate within the arguments given, they can't modify non-local variable   
+      
 
 ## Reference
 1. [cpp.sh](https://cpp.sh)
