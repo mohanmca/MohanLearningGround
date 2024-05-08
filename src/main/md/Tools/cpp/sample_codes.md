@@ -92,3 +92,31 @@ int main() {
     return 0;
 }
 ```
+
+## How to initialise struct
+
+```cpp
+struct MyStruct {
+    int a;
+    double b;
+    char c;
+};
+
+// Initializing a struct using aggregate initialization
+MyStruct s = {10, 3.14, 'X'};
+
+// Initializing a struct using direct initialization
+MyStruct s(10, 3.14, 'X');
+```
+
+## How to initialize member varaible in class using Direct Initialization Technique
+
+```cpp
+class MyClass {
+public:
+    MyClass(int a, int b) : member1(a), member2(b) {}
+private:
+    int member1;
+    int member2;
+};
+```
