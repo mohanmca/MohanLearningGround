@@ -1,6 +1,6 @@
 ## Handle Signal
 
-```
+```cpp
 #include <iostream>
 #include <csignal>
 #include <atomic>
@@ -55,6 +55,39 @@ int main() {
 
     // Wait for the worker thread to finish (which it won't)
     worker.join();
+
+    return 0;
+}
+```
+
+## When to use Anonymous namespace
+
+```cpp
+
+#include <iostream>
+
+namespace {
+    // This variable is accessible only within this translation unit.
+    int internalValue = 42;
+
+    // This function is accessible only within this translation unit.
+    void internalFunction() {
+        std::cout << "Internal function called\n";
+    }
+}
+
+// Public function
+void publicFunction() {
+    // Access the internal variable
+    std::cout << "Internal value: " << internalValue << std::endl;
+
+    // Call the internal function
+    internalFunction();
+}
+
+int main() {
+    // Call the public function
+    publicFunction();
 
     return 0;
 }
