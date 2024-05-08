@@ -12,6 +12,26 @@ int main(void) {
 }
 ```
 
+## What is the difference between reference and pointer
+1. Reference is similar to pointer, but we don't need prefix * (such as *p)
+2. Reference can't be made to refer to a different object after its initialization
+3. References are useful to specify function arguments
+4. “Functions taking const references are very common.” (good practice)
+5. We can't have uninitialized reference
+
+## Assignment
+1. = assignment operation is simple copy operation in C++ (not in java)
+2. “After x=y, we have x==y for every built-in type and well-designed user-defined type (Chapter 2) that offers = (assignment) and == (equality comparison).”
+
+## Initialization
+1. For almost all the type, effect of reading from or writing to an uninitialized variable in undefined
+2. int& r; //Error: Uninitialized reference
+3. “The basic semantics of argument passing and function value return are that of initialization”
+
+## What is nullptr?
+1. It is singleton
+2. When pointer needs to dereference from the object that is pointing to
+
 ## Coverting C++ into a program
 1. g++ -S main.cpp -o main.s (Produces human readable assembly code)
 2. g++ -c main.cpp -o main.o (Produces object file)
@@ -257,6 +277,18 @@ for(const auto x: {1,2,3,4,5})
 int main() {
 for(const auto& x: {1,2,3,4,5})
   cout << x << "\n";
+}
+```
+
+## If statement introduced varaible, and check/test
+1. Variable is available in both the block (if and else)
+2. We can use shortcut when things are not zero
+```cpp
+if (auto n = v.size(); n!=0) {
+	// ... we get here if n!=0 ...
+}
+if (auto n = v.size()) {
+	// ... we get here if n!=0 ...
 }
 ```
       
