@@ -224,7 +224,9 @@ int main() {
   5. int vector[] = {0,1,2,3,4,5,6}; //this is legal
   6. int chessboard[8][8];
 4. fill first 100 slots with -1 for an array - ```std::fill_n(array, 100, -1);```
-5. 
+
+## usual_arithmetic_conversions
+[Usual arithmetic coversion](https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions)
 
 ## Reference
 1. [cpp.sh](https://cpp.sh)
