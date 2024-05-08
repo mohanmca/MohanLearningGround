@@ -243,7 +243,22 @@ int main() {
   1. ```“consteval double square(double x) { return x*x; }”``` //function that needs to eval'ed only during compilation time
 3.  *Pure Function*
   3.1. Function declared with constexpr and consteval are C++ version of "pure function", they cannot have side effects
-  3.2. Pure function can only operate within the arguments given, they can't modify non-local variable   
+  3.2. Pure function can only operate within the arguments given, they can't modify non-local variable
+4. size of the array must be constant expression
+
+## Auto for-loop
+
+```cpp
+int main() {
+for(const auto x: {1,2,3,4,5})
+  cout << x << "\n";
+}
+
+int main() {
+for(const auto& x: {1,2,3,4,5})
+  cout << x << "\n";
+}
+```
       
 
 ## Reference
