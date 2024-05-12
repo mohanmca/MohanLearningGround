@@ -301,6 +301,10 @@ There are four disadvantages
 3. Inconsistencies: Defining an entity, such as a type or a function, in one file and then defining it slightly differently in another file, can lead to crashes or subtle errors. This can happen if we – accidentally or deliberately – declare an entity separately in two source files, rather than putting it in a header, or through order dependencies between different header files.
 4. Transitivity: All code that is needed to express a declaration in a header file must be present in that header file. This leads to massive code bloat as header files #include other headers and this results in the user of a header file – accidentially or deliberately – becoming dependent on such implementation details.”
 
+## What are the advantages of Modules
+1. A module is compiled once only (rather than in each translation unit in which it is used).
+2. Two modules can be imported in either order without changing their meaning.
+3. If you import or #include something into a module, users of your module do not implicitly gain access to (and are not bothered by) that: import is not transitive.
       
 
 ## Reference
