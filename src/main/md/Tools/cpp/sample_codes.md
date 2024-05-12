@@ -120,3 +120,38 @@ private:
     int member2;
 };
 ```
+
+## Structured binding example
+1. The auto [n,v] declares two local variables n and v with their types deduced from read_entry()’s return type. This mechanism for giving local names to members of a class object is called structured binding.
+```cpp
+struct Entry {
+        string name;
+        int value;
+};
+
+Entry read_entry(istream& is)            // naive read function (for a better version, see §11.5)
+{
+        string s;
+        int i;
+        is >> s >> i;
+        return {s,i};
+}
+
+auto e = read_entry(cin);
+
+cout << "{ " << e.name << " , " << e.value << " }\n";
+“auto [n,v] = read_entry(is);
+cout << "{ " << n << " , " << v << " }\n";”
+
+
+map<string,int> m;
+// ... fill m ...
+for (const auto [key,value] : m)
+        cout << "{" << key << "," << value << "}\n";
+
+void incr(map<string,int>& m)        // increment the value of each element of m
+{
+    for (auto& [key,value] : m)
+            ++value;
+}
+```
