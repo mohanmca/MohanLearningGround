@@ -291,6 +291,16 @@ if (auto n = v.size()) {
 	// ... we get here if n!=0 ...
 }
 ```
+
+## What are disadvantages of header.h include file mechanics?
+
+There are four disadvantages
+
+1. Compilation time: If you #include header.h in 101 translation units, the text of header.h will be processed by the compiler 101 times.
+2. Order dependencies: If we #include header1.h before header2.h the declarations and macros (§19.3.2.1) in header1.h might affect the meaning of the code in header2.h. If instead you #include header2.h before header1.h, it is header2.h that might affect the code in header1.h.
+3. Inconsistencies: Defining an entity, such as a type or a function, in one file and then defining it slightly differently in another file, can lead to crashes or subtle errors. This can happen if we – accidentally or deliberately – declare an entity separately in two source files, rather than putting it in a header, or through order dependencies between different header files.
+4. Transitivity: All code that is needed to express a declaration in a header file must be present in that header file. This leads to massive code bloat as header files #include other headers and this results in the user of a header file – accidentially or deliberately – becoming dependent on such implementation details.”
+
       
 
 ## Reference
