@@ -305,9 +305,37 @@ There are four disadvantages
 1. A module is compiled once only (rather than in each translation unit in which it is used).
 2. Two modules can be imported in either order without changing their meaning.
 3. If you import or #include something into a module, users of your module do not implicitly gain access to (and are not bothered by) that: import is not transitive.
-      
+
+## Role of using directive
+
+
+1. A using-declaration makes a name from a namespace usable as if it were declared in the scope in which it appears. After using std::swap, it is exactly as if swap had been declared in current scope.
+2. A using-directive makes unqualified names from the named namespace accessible from the scope in which we placed the directive. 
+3. So after the using-directive for std, we can simply write cout rather than std::cout.
+4. 
+```cpp
+export module vector_printer;
+import std;
+using namespace std;
+
+export
+template<typename T>
+void print(vector<T>& v) // this is the (only) function seen by users
+{
+        cout << "{\n";
+        for (const T& val : v)
+                cout << " " << val << '\n';
+        cout << '}';
+}
+```
+
 
 ## Reference
 1. [cpp.sh](https://cpp.sh)
 2. [https://ideone](https://ideone.com/HmZVro](https://ideone.com/HmZVro)
 3. [Operator Precedence](https://en.cppreference.com/w/cpp/language/operator_precedence)
+
+## Generate MdAnki
+```bash
+mdanki cpp.md cpp.apkg --deck "Mohan::DeepWork::cpp"
+```
