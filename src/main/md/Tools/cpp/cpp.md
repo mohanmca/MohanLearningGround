@@ -329,6 +329,44 @@ void print(vector<T>& v) // this is the (only) function seen by users
 }
 ```
 
+## How many ways we can pass argument?
+
+```cpp
+void test(vector<int> v, vector<int>& rv)          // v is passed by value; rv is passed by reference
+{
+        v[1] = 99;          // modify v (a local variable)
+        rv[2] = 66;         // modify whatever rv refers to
+}
+
+int main()
+{
+        vector fib = {1, 2, 3, 5, 8, 13, 21};
+        test(fib,fib);
+        cout << fib[1] <<'' << fib[2] << '\n';           // prints 2 66
+}
+```
+
+## When to pass by value or by reference?
+
+1. When we care about performance, we usually pass small values by-value and larger ones by-reference.
+2. Here “small” means “something that’s really cheap to copy.” Exactly what “small” means depends on machine architecture
+3. but “the size of two or three pointers or less” is a good rule of thumb. ”
+
+## Is CPP supports default function argument?
+* yes!
+``` “void print(int value, int base =10);   // print value in base "base”```
+
+## When not to return pointer or reference to a variable?
+
+* a local variable disappears when the function returns, so we should not return a pointer or reference to it:
+* Compiler would generally catch below error
+```cpp
+	int& bad(){
+		int x;
+		// ...
+		return x;  // bad: return a reference to the local variable x
+	}
+```
 
 ## Reference
 1. [cpp.sh](https://cpp.sh)
