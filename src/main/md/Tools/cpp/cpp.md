@@ -368,6 +368,21 @@ int main()
 	}
 ```
 
+## Auto function return type deduction pros and cons
+1. This can be convenient
+2. Especially for generic functions (§7.3.1) and lambdas (§7.3.3),
+3. but should be used carefully because a deduced type does not offer a stable interface:
+4. A change to the implementation of the function (or lambda) can change its type.
+5. auto mean “the return type will be mentioned later or be deduced.”
+6. auto mul(int i, double d) -> double { return i*d; }         // the return type is "double”
+
+## Structured Binding
+1. “A function can return only a single value, but that value can be a class object with many members. This allows us to elegantly return many values.”
+
+
+## Copy ellision
+## Move constructor
+
 ## Reference
 1. [cpp.sh](https://cpp.sh)
 2. [https://ideone](https://ideone.com/HmZVro](https://ideone.com/HmZVro)
