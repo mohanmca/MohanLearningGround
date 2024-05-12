@@ -155,3 +155,8 @@ void incr(map<string,int>& m)        // increment the value of each element of m
             ++value;
 }
 ```
+
+## Generate MdAnki
+```bash
+mdanki sample_codes.md sample_codes.apkg --deck "Mohan::DeepWork::sample_code_cpp"
+```
