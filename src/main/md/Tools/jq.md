@@ -3,6 +3,12 @@
 jq . -s input_file.json
 ```
 
+## how to filter all the objects inside an array where objects attribute match some label
+
+```
+jq '.components | .[] | select(.status!="Up")'  healthcheck.json
+```
+
 ## How to generate json using null-input
 1. JQ can be used as calculator
 1. This is useful when you want to generate JSON data from scratch or work with predefined JSON structures directly
