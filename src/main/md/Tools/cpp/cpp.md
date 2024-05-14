@@ -46,7 +46,14 @@ int main(void) {
 3. Divide by zero might cause - compilation error, runtime error or some message at runtime.
    4. Division by 0 invokes undefined behaviour
 4. Operators of larger (higher) priority perform their operations before the operators with lower priority.
-5. Binding, C++ mostly left binding. 
+5. Binding, C++ mostly left binding.
+
+## Why sometime we declare variable with uint32_t instead of int?
+1. Guaranteed size of 32 bits
+2. Range clarification
+3. Portability
+4. Explicit intent (avoid signedness and overflow)
+5. Adherence to moder practice (MISRA & CERT-C)
 
 ## What is simplest C++ program that processes command line String
 
