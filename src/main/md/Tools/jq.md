@@ -3,6 +3,11 @@
 jq . -s input_file.json
 ```
 
+## How to list unique keys of arry of objects
+```
+jq 'map(keys) | add | unique' 29517092.json
+```
+
 ## how to filter all the objects inside an array where objects attribute match some label
 
 ```
