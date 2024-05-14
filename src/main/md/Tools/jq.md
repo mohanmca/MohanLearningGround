@@ -8,6 +8,12 @@ jq . -s input_file.json
 jq 'map(keys) | add | unique' 29517092.json
 ```
 
+## In array object select all object that doesn't have attribute position
+
+```bash
+jq '.' q 29517092.json | jq 'map(select(has("position") | not))'
+```
+
 ## how to filter all the objects inside an array where objects attribute match some label
 
 ```
