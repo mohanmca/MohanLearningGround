@@ -12,6 +12,33 @@ int main(void) {
 }
 ```
 
+## What is lvalue and rvalue
+* lvalue a lot of time, it is on left side of equal sign (or) value passed to function
+  * 10 = i; compiler error, expression must be a modifiable lvalue (here i is lvalue, if int i = 10;
+  * int a = i; both a and i are lvalue; considering above line is int i =10;
+  * You can't take lvalue reference from rvalue
+  * SetValue(int value) //function takes lvalue
+  * SetValue(int& value) //function takes lvalue reference
+* rvalue a lot of time, it is on right side of equal sign (or) value returned by function
+  * rvalue could be literal, int i = 10; 10
+  * rvalue could be result of a function (value returned by function)
+  * You can't take lvalue reference from rvalue
+  * SetValue(int&& value) //function takes rvalue reference
+```cpp
+int i=10;
+```
+
+```cpp
+int& GetLValue() {
+  static int value = 10;
+  return value;
+}
+
+int main() {
+ GetLValue() = 5; //this would work, due to Lvalue Reference
+}
+```
+
 ## What is the difference between reference and pointer
 1. Reference is similar to pointer, but we don't need prefix * (such as *p)
 2. Reference can't be made to refer to a different object after its initialization
