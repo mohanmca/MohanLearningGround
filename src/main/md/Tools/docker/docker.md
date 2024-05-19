@@ -3,6 +3,12 @@
 docker ps -a --format "table {{.Names}}\t{{.Ports}}"
 ```
 
+## [How to print file inside image](https://stackoverflow.com/questions/43063587/how-to-cat-a-file-inside-a-docker-image)
+```bash
+alias dcat='docker run -it --rm -a stdout --entrypoint cat'
+dcat <image> <filename>
+```
+
 ## How to run as a root user
 ```bash
 docker exec -it -u 0 containerid bash
