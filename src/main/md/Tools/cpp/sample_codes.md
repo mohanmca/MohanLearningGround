@@ -1,3 +1,13 @@
+## How to get the address of the underlying object of the smart pointer?
+
+```bash
+int main() {
+    std::shared_ptr<MyClass> ptr = std::make_shared<MyClass>(10);
+    MyClass* raw_ptr = ptr.get();
+    return 0;
+}
+```
+
 ## Handle Signal
 
 ```cpp
@@ -57,6 +67,28 @@ int main() {
     worker.join();
 
     return 0;
+}
+```
+
+## Find SQRT of a float
+
+```C++
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main(void) {
+        float value, squareroot;
+
+        cout << "Give me a number and I will find its square root:" << endl;
+        cin >> value;
+        
+	        squareroot = sqrtf(value);
+	        cout << "You have given: " << value << endl;
+	        cout << "The square root is: " << squareroot << endl;
+        
+        return 0;
 }
 ```
 
