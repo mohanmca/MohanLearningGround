@@ -153,6 +153,30 @@ private:
 };
 ```
 
+## How to do pretty print for a class?
+
+```cpp
+#include <iostream>
+
+class Point {
+public:
+    int x, y;
+    Point(int x = 0, int y = 0) : x(x), y(y) {}
+};
+
+// Overload the operator<< for Point
+std::ostream& operator<<(std::ostream& os, const Point& point) {
+    os << "Point(" << point.x << ", " << point.y << ")";
+    return os;
+}
+
+int main() {
+    Point p1(3, 4);
+    std::cout << p1 << std::endl; // Output: Point(3, 4)
+    return 0;
+}
+```
+
 ## Structured binding example
 1. The auto [n,v] declares two local variables n and v with their types deduced from read_entry()’s return type. This mechanism for giving local names to members of a class object is called structured binding.
 ```cpp
