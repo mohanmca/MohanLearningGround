@@ -1,6 +1,12 @@
 ## Where to run Cpp
 1. [https://godbolt.org/](https://godbolt.org/)
 
+
+## CPP Courses
+1. [Modern-CPP-Programming](https://github.com/federico-busato/Modern-CPP-Programming?tab=readme-ov-file)
+2. [Modern CPP overview](https://oleksandrkvl.github.io/2021/04/02/cpp-20-overview.html)
+3. 
+
 ## What is hello world program in CPP?
 ```c++
 #include <iostream>
