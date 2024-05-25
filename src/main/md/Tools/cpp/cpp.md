@@ -5,7 +5,10 @@
 ## CPP Courses
 1. [Modern-CPP-Programming](https://github.com/federico-busato/Modern-CPP-Programming?tab=readme-ov-file)
 2. [Modern CPP overview](https://oleksandrkvl.github.io/2021/04/02/cpp-20-overview.html)
-3. 
+3. [ISO Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rc-zero)
+4. [C++ FAQ](https://yosefk.com/c++fqa/)
+5. [C++ University Lectures and notes](https://www.ipb.uni-bonn.de/teaching/cpp-2020/lectures/index.html)
+6. [Fastest Modern CPP book](https://changkun.de/modern-cpp/pdf/modern-cpp-tutorial-en-us.pdf)
 
 ## What is hello world program in CPP?
 ```c++
