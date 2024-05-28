@@ -3,6 +3,11 @@
 docker ps -a --format "table {{.Names}}\t{{.Ports}}"
 ```
 
+## Find docker.service log from systemd journal
+```
+sudo journalctl -u docker.service
+```
+
 ## [How to print file inside image](https://stackoverflow.com/questions/43063587/how-to-cat-a-file-inside-a-docker-image)
 ```bash
 alias dcat='docker run -it --rm -a stdout --entrypoint cat'
