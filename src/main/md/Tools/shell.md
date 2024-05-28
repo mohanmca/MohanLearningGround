@@ -1,7 +1,12 @@
 ### If you have access to SSH, can you connect to remote machine to another port from localhost?
 1. Yes, Use SSL tunnelling
 2. ssh -L localhost:23473:remotehost:23473 mohan.narayanaswamy@remotehost -N -v -f
-3. Finally connect to localhost:23473 
+3. Finally connect to localhost:23473
+
+## Find docker.service log from systemd journal
+```
+sudo journalctl -u docker.service
+```
 
 ## How to confirm if port is open without connecting to it?
 1. ```nc -v -z localhost 9038``` Or ```lsof -i :9038```
