@@ -67,7 +67,32 @@ ar rcs tools.a tools.o
 2. Supports updating and maintaining the archive without re-archiving all files.
 
 ## Command to find library named tools in current directory to create exeuctable
-
 ```bash
 clang++  -std=c++17 -L . -ltools -o main
+```
+
+## Build system
+1. shell < make
+2. CMake -> meta build system, it is not build system
+3. CMake + (Make or Ninja) ~~> BuildSystem
+
+
+## CMakeLists.txt
+
+```CMakeLists.txt
+cmake_minimum_required(VERSION 3.1) # Mandatory.
+project( first_project ) # Mandatory.
+set( CMAKE_CXX_STANDARD 17) # Use c++17.
+
+# tell cmake where to look for *.hpp, *.h files
+include_directories(include /)
+
+# create library "libtools"
+add_library(tools src/tools.cpp) # creates libtools.a from tools.cpp
+
+# add executable main
+add_executable(main src/tools_main .cpp) # main.o
+
+# tell the linker to bind these objects together
+target_link_libraries(main tools) # ./main
 ```
