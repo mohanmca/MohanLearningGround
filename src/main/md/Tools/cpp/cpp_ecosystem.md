@@ -82,8 +82,9 @@ clang++  -std=c++17 -L . -ltools -o main
 ```CMakeLists.txt
 cmake_minimum_required(VERSION 3.1) # Mandatory.
 project( first_project ) # Mandatory.
-set( CMAKE_CXX_STANDARD 17) # Use c++17.
-
+set(CMAKE_CXX_STANDARD 17) # Use c++17.
+set (COMPILE_CXX_FLAGS "-Wall")
+set(CMAKE_EXPORT_COMPILE_COMMANDS on)
 # tell cmake where to look for *.hpp, *.h files
 include_directories(include /)
 
@@ -96,3 +97,5 @@ add_executable(main src/tools_main .cpp) # main.o
 # tell the linker to bind these objects together
 target_link_libraries(main tools) # ./main
 ```
+
+1. build/compile_commands.json is exported, that has all the commands
