@@ -236,6 +236,29 @@ int main() {
 }
 ```
 
+## What is the output of the following code?
+
+```c
+/***
+Copy this!
+Copy this!
+this!
+**/
+#include <cstring> 
+#include <iostream>
+
+int main() {
+    const char source[] = "Copy this!"; 
+    char dest [5];
+    std::cout << source << '\n'; 
+    std::strcpy(dest, source);
+    std::cout << dest << '\n';
+    // source is const, no problem right?
+    std::cout << source << '\n'; return 0;
+}
+```
+
+
 ## Generate MdAnki
 ```bash
 mdanki sample_codes.md sample_codes.apkg --deck "Mohan::DeepWork::sample_code_cpp"
