@@ -295,6 +295,41 @@ f(); // counter = 1
 f(); // counter = 2
 ```
 
+
+## Function Arguments
+1. use function name as CamelCase
+1. use argument name as snake_case
+1. Always try to pass arguments as const-pass-by-reference (const std::string& huge_string);
+
+
+## how to run benchmark?
+1. [Sample cpp benchmark](https://quick-bench.com/q/yovU63tEGtde-VjFD1xB2e_VhPY)
+
+## Function calls
+1. It is expensive
+1. make it inline if it is small
+1. inline is a hint to the compiler
+1. [Manipulate function definition with inline](https://godbolt.org/z/EGd6aG)
+
+## Namespace
+1. Avoid using namespace <name>, local definition might shadow other namespace declaration
+1. namespace splits the project into logical unit
+1. Never use using namespace name in *.hpp files
+1. Prefer using explicit using even in *.cpp files
+1. Use using correctly,... "using my_namepspace::myFunc"
+
+## Namless namespace [Stroustrup chapter-014]
+1. If you find yourself relying on some constants in a file and these constants should not be see in any other fiile
+1. Put them into nameless namespace on the top of this file.
+
+```cpp
+namespace {
+    const int  kLocal = 13;
+    const float kLocalFloat = 13.0f
+}
+```
+
+
 ## Generate MdAnki
 ```bash
 mdanki sample_codes.md sample_codes.apkg --deck "Mohan::DeepWork::sample_code_cpp"
