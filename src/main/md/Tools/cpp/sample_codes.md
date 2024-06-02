@@ -259,6 +259,42 @@ int main() {
 ```
 
 
+## What is the failure?
+//Program terminated with signal: SIGSEGV
+```cpp
+#
+#include <cstring> 
+#include <iostream>
+
+int& MultiplyBy10(int num) {
+    int ret = 0;
+    ret = 10 * num;
+    return ret;
+
+}
+
+int main() {
+    std::cout << MultiplyBy10(11) << std::endl;
+    return 0;
+}
+```
+Never return reference to local variable
+
+
+## static variables
+1. static is happens during compile time
+1. Dynami is only during run-time
+1. Avoid static as much as possible
+1. f::counter  has been statically allcoated
+```cpp
+void Counter() {
+    static int counter = 0;
+    counter++;
+}
+f(); // counter = 1
+f(); // counter = 2
+```
+
 ## Generate MdAnki
 ```bash
 mdanki sample_codes.md sample_codes.apkg --deck "Mohan::DeepWork::sample_code_cpp"

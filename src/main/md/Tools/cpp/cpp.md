@@ -417,6 +417,35 @@ int main()
 1. “A function can return only a single value, but that value can be a class object with many members. This allows us to elegantly return many values.”
 
 
+## Function
+1. Function can't be invoked uless it was already declared
+1. ```cpp
+    [[attributes]] ReturnType FuncName(ArgumentList...) {
+      // Some awesome code here.
+      return return_value; 
+    }
+```
+1. When function returns void, it is called sub-routine or procedure
+1. ARTD - Automated return type deduction
+```cpp
+auto GetDictionary() {
+  return std:map<char, int>{{'a',2}, {'b',7}};
+}
+```
+
+## Function to return multiple values using tuple > 17
+```cpp
+#<tuple>
+auto GetDictionary() {
+  return make_tuple("string", 14);
+}
+int main() {
+  auto [name, value] = GetDictionary();
+  cout << name << value << endl;
+  return 0;
+}
+```
+
 ## Copy ellision
 ## Move constructor
 
