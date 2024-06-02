@@ -212,6 +212,30 @@ void incr(map<string,int>& m)        // increment the value of each element of m
 }
 ```
 
+## What is the output of this program
+
+```cpp
+/**
+* Number is: 205
+* Extension is: .txt
+**/ 
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+
+using namespace std;
+
+int main() {
+    stringstream filename {"00205.txt"};
+    int num = 0, n=0;
+    string name, ext;
+    filename >> num >> ext;
+    cout << "Number is: " << num << endl;
+    cout << "Extension is: " << ext << endl;
+    return 0;
+}
+```
+
 ## Generate MdAnki
 ```bash
 mdanki sample_codes.md sample_codes.apkg --deck "Mohan::DeepWork::sample_code_cpp"
