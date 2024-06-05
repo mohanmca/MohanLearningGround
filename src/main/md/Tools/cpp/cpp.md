@@ -1,8 +1,9 @@
 ## Where to run Cpp
 1. [https://godbolt.org/](https://godbolt.org/)
 
-2. ## Missing lectures
-3. [https://missing.csail.mit.edu/](https://missing.csail.mit.edu/2019/)
+## Missing lectures
+1. [https://missing.csail.mit.edu/](https://missing.csail.mit.edu/2019/)
+1. [Software Carpentry](https://software-carpentry.org/lessons/)
 
 
 ## CPP Courses
