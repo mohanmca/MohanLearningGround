@@ -1,6 +1,9 @@
 ## Where to run Cpp
 1. [https://godbolt.org/](https://godbolt.org/)
 
+2. ## Missing lectures
+3. [https://missing.csail.mit.edu/](https://missing.csail.mit.edu/2019/)
+
 
 ## CPP Courses
 1. [C++ University Lectures and notes](https://www.ipb.uni-bonn.de/teaching/cpp-2020/lectures/index.html)
