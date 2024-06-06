@@ -1,10 +1,10 @@
 ## [Generic programming or Template Programming or Meta-Programming](https://www.ipb.uni-bonn.de/html/teaching/modern-cpp/slides/lecture_9.pdf)
 
 1. 
-  ```cpp
-    Cup<T>
-    Cup<Cofee>
-  ```
+    ```cpp
+      Cup<T>
+      Cup<Cofee>
+    ```
 2. Iterator is also part of Generic programming
 3. Writing programming that manipulate other or same programs as if they were data - Anders Hejlsberg
 
