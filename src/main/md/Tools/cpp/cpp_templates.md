@@ -27,3 +27,13 @@ T abs(T x) {
 ```
 1. Function templates are not functions
 2. If nobody calls abs<int>, it won't be instantiated by the compiler at all.   
+
+## Function Template sample code
+```cpp
+template <typename T>
+void Foo() {}
+int main() {
+  Foo<int>(); //comment and check in compiler explorer
+  Foo<double>(); //comment and check in compiler explorer
+}
+```
