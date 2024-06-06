@@ -23,6 +23,8 @@
 2. Don’t pay for what you don’t use: If nobody calls MyClass<int>, it won’t be instantiated by the compiler at all.
 3. Template Parameters - Think the template parameters the same way as any function arguemnents, but at compile-time.
 4. Every template is parameterized by one or more template parameters: template < parameter-list > declaration
+5. Type deduction for function templates might mislead us to believe some of function calls are not template functions? (It is!)
+6. 
 
 ## Function Templates
 ```cpp
