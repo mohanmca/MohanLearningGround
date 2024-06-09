@@ -450,6 +450,12 @@ int main() {
 }
 ```
 
+## Why most of addresses are shown in 12digit hexa decimal?
+1. In most of the systems, only the lower 48 bits (48 bits will have 12 hexadecimal digit) (or even fewer) are used for addressing, while the higher bits are either reserved or fixed.
+1. With 48 bits, it could address nearly 262,144 GB of space (217 TB)
+1. Rarely even if they use 64bit, leadingzeros are not shown
+2. 0x56330247ce70 - How come it shows 12 digit hexa decimal? shouldn't be just 8 digit hexadecimal on64 bit computer?
+
 ## Copy ellision
 ## Move constructor
 
