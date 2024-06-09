@@ -388,10 +388,14 @@ int main()
 ```
 
 ## When to pass by value or by reference?
-
 1. When we care about performance, we usually pass small values by-value and larger ones by-reference.
 2. Here “small” means “something that’s really cheap to copy.” Exactly what “small” means depends on machine architecture
 3. but “the size of two or three pointers or less” is a good rule of thumb. ”
+
+## Memory error
+1. try to not create pointer for stack variable, prefer to use reference.
+2. Don't create pointer of varaible in stack and use that in shared pointer (don't do it)
+3. std::unique_ptr(can_take_existing_ptr)
 
 ## Is CPP supports default function argument?
 * yes!
