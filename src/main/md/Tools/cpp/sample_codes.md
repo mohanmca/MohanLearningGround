@@ -351,6 +351,70 @@ int main(int argc, char** argv) {
 }
 ```
 
+## Behaviour of shared pointer 
+
+```cpp
+#include <iostream>
+#include <memory> // For std::shared_ptr
+
+class MyClass {
+public:
+    MyClass() {
+        ++instance_count;
+        std::cout << "MyClass constructor called! Instance count: " << instance_count << std::endl;
+    }
+    
+    ~MyClass() {
+        --instance_count;
+        std::cout << "MyClass destructor called! Instance count: " << instance_count << std::endl;
+    }
+    
+    void display() const {
+        std::cout << "MyClass instance method called! Current instance count: " << instance_count << std::endl;
+    }
+
+    static int getInstanceCount() {
+        return instance_count;
+    }
+
+private:
+    static int instance_count;
+};
+
+// Define and initialize the static member variable
+int MyClass::instance_count = 0;
+
+void useSharedPtr(std::shared_ptr<MyClass> ptr) {
+    std::cout << "In function, use count: " << ptr.use_count() << std::endl;
+    ptr->display();
+}
+
+int main() {
+    std::cout << "Initial instance count: " << MyClass::getInstanceCount() << std::endl;
+
+    // Create a shared_ptr instance
+    std::shared_ptr<MyClass> ptr1 = std::make_shared<MyClass>();
+    std::cout << "After creation, use count: " << ptr1.use_count() << std::endl;
+    std::cout << "Instance count: " << MyClass::getInstanceCount() << std::endl;
+
+    {
+        // Create another shared_ptr instance that shares ownership with ptr1
+        std::shared_ptr<MyClass> ptr2 = ptr1;
+        std::cout << "In scope, use count: " << ptr1.use_count() << std::endl;
+        std::cout << "Instance count: " << MyClass::getInstanceCount() << std::endl;
+
+        useSharedPtr(ptr2);
+        std::cout << "After function call, use count: " << ptr1.use_count() << std::endl;
+    }
+    
+    std::cout << "Out of inner scope, use count: " << ptr1.use_count() << std::endl;
+    std::cout << "Instance count: " << MyClass::getInstanceCount() << std::endl;
+
+    // ptr1 goes out of scope here, and the managed object will be deleted
+    return 0;
+}
+```
+
 ## Generate MdAnki
 ```bash
 mdanki sample_codes.md sample_codes.apkg --deck "Mohan::DeepWork::sample_code_cpp"
