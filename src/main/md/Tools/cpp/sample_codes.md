@@ -329,6 +329,27 @@ namespace {
 }
 ```
 
+## Pointer to rescue stack space
+```
+#include <iostream>
+#include <cstdlib>
+// Type your code here, or load an example.
+int square(int num) {
+    return num * num;
+}
+
+using std::cout;
+
+int main(int argc, char** argv) {
+    int size=2;
+    int* ptr = nullptr;
+    {
+        int arr[2] = {2, 3};
+        ptr = arr;
+    }
+    for(int i=0;i<2;i++) cout << ptr[i] << std::endl;
+}
+```
 
 ## Generate MdAnki
 ```bash
