@@ -359,7 +359,6 @@ There are four disadvantages
 
 ## Role of using directive
 
-
 1. A using-declaration makes a name from a namespace usable as if it were declared in the scope in which it appears. After using std::swap, it is exactly as if swap had been declared in current scope.
 2. A using-directive makes unqualified names from the named namespace accessible from the scope in which we placed the directive. 
 3. So after the using-directive for std, we can simply write cout rather than std::cout.
@@ -470,7 +469,11 @@ int main() {
 1. Rarely even if they use 64bit, leadingzeros are not shown
 2. 0x56330247ce70 - How come it shows 12 digit hexa decimal? shouldn't be just 8 digit hexadecimal on64 bit computer?
 
+## In C++, is object names are constant?
+* An object name is like a constant, which cannot be reassigned with a new object?
+
 ## Copy ellision
+
 ## Move constructor
 
 ## Reference
