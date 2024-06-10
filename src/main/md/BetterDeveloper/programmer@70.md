@@ -1,6 +1,6 @@
 **Programming is not what I do, but who I am.**
 
-# What does organization/ceo need? Who can adopt?
+# [What does organization/ceo need? Who can adopt?](https://www.think-cell.com/en/career/dev#9o0dlZEqxJY)
 1. Smart developer
 1. Who is working in a structured way
 1. Analyzing problem clearly
