@@ -14,6 +14,7 @@
 5. [CPP Quizes](https://www.reddit.com/r/cpp/comments/fcqruv/c_quizzes/)
 6. [Edabit](https://edabit.com/)
 7. [C++ Chapterwise quiz](https://www.cprogramming.com/quiz/)
+8. [Hard to crack C++ Quiz](https://pvs-studio.com/en/blog/quest/kushnirenko_quiz/)
 
 ## CPP Courses
 1. [C++ University Lectures and notes](https://www.ipb.uni-bonn.de/teaching/cpp-2020/lectures/index.html)
