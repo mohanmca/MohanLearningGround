@@ -5,6 +5,15 @@
 1. [https://missing.csail.mit.edu/](https://missing.csail.mit.edu/2019/)
 1. [Software Carpentry](https://software-carpentry.org/lessons/)
 
+## CPP Test
+1. [Linked In Assesment for C++](https://linkedin-faq.github.io/skill-assessments-quizzes/quiz/c%2B%2B)
+1. [google.com/edu/c++ quiz](https://developers.google.com/edu/c++/quiz)
+2. [CPP Standard Quiz](https://cppquiz.org/)
+3. [C++ Chapter wise test](https://test.sanfoundry.com/cplusplus-programming-tests/)
+4. [C++ Test](https://picake314.github.io/cppishard/#/)
+5. [CPP Quizes](https://www.reddit.com/r/cpp/comments/fcqruv/c_quizzes/)
+6. [Edabit](https://edabit.com/)
+7. [C++ Chapterwise quiz](https://www.cprogramming.com/quiz/)
 
 ## CPP Courses
 1. [C++ University Lectures and notes](https://www.ipb.uni-bonn.de/teaching/cpp-2020/lectures/index.html)
