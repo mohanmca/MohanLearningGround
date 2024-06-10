@@ -1,5 +1,12 @@
 **Programming is not what I do, but who I am.**
 
+# What does organization/ceo need? Who can adopt?
+1. Smart developer
+1. Who is working in a structured way
+1. Analyzing problem clearly
+1. Come up with well justified solution and
+1. Come up with well structured solution
+
 # Bias against old programmers
 * The major problem for older programmers is that people believe that the ability to learn decreases with age
 * Older programmers have higher salary requirements. My company interviewed (and eventually hired) a 60-year-old iOS developer, and he asked us for double what the developers in their 30s were asking for.
