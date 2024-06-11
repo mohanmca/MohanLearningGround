@@ -5,6 +5,10 @@
 1. [https://missing.csail.mit.edu/](https://missing.csail.mit.edu/2019/)
 1. [Software Carpentry](https://software-carpentry.org/lessons/)
 
+## CPP Lectures
+1. [C++ University Lectures and notes](https://www.ipb.uni-bonn.de/teaching/cpp-2020/lectures/index.html)
+2. [Systems Programming in C++](https://db.in.tum.de/teaching/ss23/c++praktikum/slides/lecture.pdf?lang=en)
+
 ## CPP Test
 1. [Linked In Assesment for C++](https://linkedin-faq.github.io/skill-assessments-quizzes/quiz/c%2B%2B)
 1. [google.com/edu/c++ quiz](https://developers.google.com/edu/c++/quiz)
@@ -17,7 +21,6 @@
 8. [Hard to crack C++ Quiz](https://pvs-studio.com/en/blog/quest/kushnirenko_quiz/)
 
 ## CPP Courses
-1. [C++ University Lectures and notes](https://www.ipb.uni-bonn.de/teaching/cpp-2020/lectures/index.html)
 1. [Modern-CPP-Programming](https://github.com/federico-busato/Modern-CPP-Programming?tab=readme-ov-file)
 1. [Modern CPP overview](https://oleksandrkvl.github.io/2021/04/02/cpp-20-overview.html)
 1. [ISO Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rc-zero)
