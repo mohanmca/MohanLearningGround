@@ -258,6 +258,23 @@ int main() {
 }
 ```
 
+## How to force compiler not to generate implicit constructors?
+
+```cpp
+class MyClass {
+public:
+    MyClass() = delete;                      // Delete default constructor
+    MyClass(const MyClass&) = delete;        // Delete copy constructor
+    MyClass(MyClass&&) = delete;             // Delete move constructor
+    MyClass& operator=(const MyClass&) = delete; // Delete copy assignment operator
+    MyClass& operator=(MyClass&&) = delete;  // Delete move assignment operator
+
+    // Add your own constructors or methods here
+    MyClass(int x) {
+        // constructor code
+    }
+};
+```
 
 ## What is the failure?
 //Program terminated with signal: SIGSEGV
