@@ -24,6 +24,13 @@
 1. [C++ FAQ](https://yosefk.com/c++fqa/)
 1. [Fastest Modern CPP book](https://changkun.de/modern-cpp/pdf/modern-cpp-tutorial-en-us.pdf)
 
+## CPP - Design Patterns
+1. [Singleton](https://refactoring.guru/design-patterns/singleton/cpp/example)
+2. [Strategy](https://refactoring.guru/design-patterns/strategy/cpp/example)
+3. [Iterator](https://refactoring.guru/design-patterns/iterator/cpp/example)
+4. [Template method](https://refactoring.guru/design-patterns/template-method/cpp/example)
+5. [Prototype](https://refactoring.guru/design-patterns/prototype/cpp/example)
+   
 ## What is hello world program in CPP?
 ```c++
 #include <iostream>
