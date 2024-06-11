@@ -8,6 +8,7 @@
 ## CPP Lectures
 1. [C++ University Lectures and notes](https://www.ipb.uni-bonn.de/teaching/cpp-2020/lectures/index.html)
 2. [Systems Programming in C++](https://db.in.tum.de/teaching/ss23/c++praktikum/slides/lecture.pdf?lang=en)
+3. [Systems Programming in C++ with video recordings](https://db.in.tum.de/teaching/ss21/c++praktikum/index.shtml?lang=en)
 
 ## CPP Test
 1. [Linked In Assesment for C++](https://linkedin-faq.github.io/skill-assessments-quizzes/quiz/c%2B%2B)
