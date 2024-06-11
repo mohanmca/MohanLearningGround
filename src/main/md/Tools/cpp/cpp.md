@@ -33,6 +33,7 @@
 
 ## Mastering CPP
 1. [Entire game engine coded live](https://handmadehero.org/)
+2. [Everything about CPP hacking](https://hackingcpp.com/cpp/blogs.html)
    
 ## What is hello world program in CPP?
 ```c++
