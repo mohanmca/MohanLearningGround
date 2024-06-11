@@ -30,6 +30,9 @@
 3. [Iterator](https://refactoring.guru/design-patterns/iterator/cpp/example)
 4. [Template method](https://refactoring.guru/design-patterns/template-method/cpp/example)
 5. [Prototype](https://refactoring.guru/design-patterns/prototype/cpp/example)
+
+## Mastering CPP
+1. [Entire game engine coded live](https://handmadehero.org/)
    
 ## What is hello world program in CPP?
 ```c++
