@@ -3,6 +3,7 @@
 .classpath
 *.ibc
 *.iml
+**/*.apkg
 **/node_modules/*
 /.idea/
 /.worksheet/

@@ -48,7 +48,6 @@
     * [Go Concurrency Patterns](src/main/md/Tools/golang/go_concurrency_patterns.md)
 
 ## Data Engineering - Spark
-
 * [Spark Manual](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Data_Engineering/Spark/ApacheSparkManual_Anki.md)
 * [Spark_Practical](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Data_Engineering/Spark/Spark_Practical.md)
 * [SparkAnki](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Data_Engineering/Spark/SparkAnki.md)
@@ -59,6 +58,9 @@
 * [Heath miller Project_Spark_400_Part2](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/data_engineering/Project_Spark_400_Part2_Anki.md)
 * [Heath miller Project_Spark_400_Part3](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/data_engineering/Project_Spark_400_Part3_Anki.md)
 * [Heath miller Project_Spark_400_Part4](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/data_engineering/Project_Spark_400_Part4_Anki.md)
+
+## C++
+* [C++ Manual](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp.md)
 
 
 ## Finance

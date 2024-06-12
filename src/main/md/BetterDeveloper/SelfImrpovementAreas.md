@@ -4,19 +4,18 @@
   * Write a note about code search using git cli
   
 ## Webpack
-  * Read documentation of webpack
+* Read documentation of webpack
   
 ## Weekly review
-  * Effective Java
-  * Effective Javascript
-  * Typeclass signatures
-  * Airbnb code signatures
+* Effective Java
+* Effective Javascript
+* Typeclass signatures
+* Airbnb code signatures
 
 ## Improving Coding Skills  
-  * Reading 2K lines of code each day continuously for a month    
+* Reading 2K lines of code each day continuously for a month    
 
 ## Javascript
-
 * Core Javascript development using functional style
 * Chrome Dev Tools
 * Visual studio code
