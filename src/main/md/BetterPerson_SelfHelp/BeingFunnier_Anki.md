@@ -11,7 +11,6 @@
    6. We laugh to regress
 
 
-
 ## Reference
 1. [Why Is That Funny?](https://news.ycombinator.com/item?id=33299987)
 2. [Comedy Writing Secrets](https://read.amazon.com/?asin=B01AOH7B64&ref_=kwl_kr_iv_rec_1&languge=en-US)

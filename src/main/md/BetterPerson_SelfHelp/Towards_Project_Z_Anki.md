@@ -1,5 +1,4 @@
 ## What is project-z?
-
 1. Creating simple, peaceful, disciplined life
 2. Creating daily routines
 3. Focusing on daily Positive actions in life
@@ -12,7 +11,6 @@
 3. Focus on improving positive actions
 
 ## How not to motivate ourselves to change behaviour?
-
 1. Fear
     1. Not works most often as per statistics
 2. Science shows that warning has little influence on behavior; it's effective but limited.
@@ -27,7 +25,6 @@
 
 
 ## How to motivate ourselves to change behaviour?
-
 1. Social incentives
    1. 9/10 people paid taxes before the dead-line
    2. we are motivated through the positive actions of others.
@@ -43,11 +40,9 @@
    2. The difference is discipline weighs ounces while regret weighs tons
 
 ## Emotional Literacy
-
 1. Resist the desire to act or speak when it will not help the situation
 
 ## What is the most important skill?
-
 1. Self confidence
    1. Belief that you can accomplish is the self-confidence.
 
@@ -76,6 +71,9 @@
 ## Where are references taken from?
 1. [Ted - How to motivate yourself](https://www.youtube.com/watch?v=xp0O2vi8DX4&t=606s)
 2. [The skill of self confidence | Dr. Ivan Joseph | TEDxRyersonU](https://www.youtube.com/watch?v=w-HYZv6HzAs)
+
+## [Intentionally Making Close Friends (neelnanda.io)](https://news.ycombinator.com/item?id=33774353)
+1. Why intentionally making friends matter?
 
 ## How to create anki from this markdown file
 * mdanki Towards_Project_Z_Anki.md Towards_Project_Z_Anki.apkg --deck "Mohan::project-z"
