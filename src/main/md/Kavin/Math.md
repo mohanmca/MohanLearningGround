@@ -19,4 +19,5 @@ How many $10-notes are there?
 4. [The total area of the shaded parts is 56π cm^2. To find the total area of the shaded parts, we need to find the area of the bigger semicircle and subtract the area of the circle and the two identical semicircles. where r is the radius of the bigger semicircle, which is 14 cm](https://ask.manytutors.com/questions/39938)
 5. [Area of the square from Diagonal](https://www.wikihow.com/Find-the-Area-of-a-Square-Using-the-Length-of-its-Diagonal)
 6. [Equal fraction method](https://jimmymaths.com/understanding-the-equal-fractions-concept/#:~:text=The%20Equal%20Fractions%20Concept%20is,fractions%20into%20the%20same%20number.)
-7. [Equal fraction](https://youtu.be/kQk_-4TUNmw?feature=shared)
+  1. [Equal fraction](https://youtu.be/kQk_-4TUNmw?feature=shared)
+7. [5 tough questions](https://www.youtube.com/watch?v=kvCIZegheug)
