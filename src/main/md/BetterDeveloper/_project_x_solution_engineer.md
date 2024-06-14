@@ -1,5 +1,7 @@
 ## To become good developer
 1. Form regular/daily practice, review certain materials periodically
+1. [Deliberate practice](https://norvig.com/21-days.html)
+1. 
 
 
 ## Periodic materials
