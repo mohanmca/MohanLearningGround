@@ -1,8 +1,18 @@
 ## To become good developer
 1. Form regular/daily practice, review certain materials periodically
 1. [Deliberate practice](https://norvig.com/21-days.html)
-1. 
 
+## Qualities and symptoms of good developers
+1. Way, way faster at solving problems than a normal dev
+1. Comes up with solutions that no one else would ever think of
+1. Understands and correctly utilizes libraries and tools down to the system call level or lower.
+1. Knows how to ship and the engineering and business processes behind making that happen.
+1. Knows other world class devs and can attract them to the host company.
+1. Knowing systematic approaches to evaluating costs and benefits
+1. Knowing that just because something is good, doesn't mean more of it is better.
+1. Being cognisant of your own biases and weaknesses.
+1. Knowing how to delegate effectively
+1. Having a sense of humour. & Being human.
 
 ## Periodic materials
 1. [How to write un-testable code](https://testing.googleblog.com/2008/07/how-to-write-3v1l-untestable-code.html)
