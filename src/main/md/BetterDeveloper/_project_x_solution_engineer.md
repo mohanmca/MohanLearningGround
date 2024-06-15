@@ -25,6 +25,8 @@
 * [Programming, Data Structures and Algorithms using Python](https://nptel.ac.in/courses/106/106/106106145/)
 * [Programming and Data structures](https://nptel.ac.in/courses/106/106/106106130/)
 
+## Programmer
+1. [adder ](https://mozinc.wordpress.com/2017/06/18/99/)
 
 ## Data-structure
 * https://www.hackerrank.com/domains/data-structures
@@ -35,7 +37,5 @@
 * [System Design](https://www.educative.io/courses/grokking-the-system-design-interview)
 * [Code Interview](Cracking the Coding Interview)
 * [System Design Primer](https://github.com/donnemartin/system-design-primer)
-
-
 * [Technical Interview Preparation Checklist](https://itnext.io/technical-interview-preparation-checklist-b000125f1535)
 * [Tech interview @ Amazon](https://www.byte-by-byte.com/amazon-interview/)
