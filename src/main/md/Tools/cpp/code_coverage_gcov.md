@@ -17,5 +17,3 @@
 3. For further execution, .gcda file would be updated
 4. To get the output, gcov main.c can be issues, to see the result. During result creation, it creates source.c.gcov file
 5. They are binary files not human redable.
-
-

@@ -7,3 +7,8 @@
 6. [CppCon 2019: Arthur O'Dwyer “Back to Basics: Smart Pointers”](https://www.youtube.com/watch?v=xGDLkt-jBJ4)
 7. [Template Metaprogramming: Type Traits (part 1 of 2) - Jody Hagins - CppCon 2020](https://github.com/CppCon/CppCon2020/blob/main/Presentations/template_metaprogramming_type_traits/template_metaprogramming_type_traits__jody_hagins__cppcon_2020.pdf)
 8. [Template Metaprogramming: Type Traits (part 2 of 2) - Jody Hagins - CppCon 2020](https://github.com/CppCon/CppCon2020/blob/main/Presentations/template_metaprogramming_type_traits/template_metaprogramming_type_traits__jody_hagins__cppcon_2020.pdf)
+
+
+## Concurrency and parallelism
+1. [An Introduction to Multithreading in C++20 - Anthony Williams - CppCon 2022](https://www.youtube.com/watch?v=A7sVFJLJM-A)
+1. 
