@@ -435,6 +435,52 @@ int main() {
 }
 ```
 
+## How to parse URL path using STD algorithm in C++
+
+```cpp
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <iterator>
+
+void parse_url(const std::string& url) {
+    // Find the protocol using std::search
+    auto protocol_end = std::search(url.begin(), url.end(), "://", "://" + 3);
+    std::string protocol(url.begin(), protocol_end);
+
+    // Find the host using std::find
+    auto host_start = protocol_end;
+    if (host_start != url.end()) {
+        std::advance(host_start, 3); // Skip "://"
+    }
+    auto path_start = std::find(host_start, url.end(), '/');
+    std::string host(host_start, path_start);
+
+    // Find the path using std::find
+    auto query_start = std::find(path_start, url.end(), '?');
+    std::string path(path_start, query_start);
+
+    // Find the query
+    std::string query;
+    if (query_start != url.end()) {
+        ++query_start; // Skip '?'
+        query = std::string(query_start, url.end());
+    }
+
+    // Output the results
+    std::cout << "Protocol: " << protocol << std::endl;
+    std::cout << "Host: " << host << std::endl;
+    std::cout << "Path: " << path << std::endl;
+    std::cout << "Query: " << query << std::endl;
+}
+
+int main() {
+    std::string url = "https://www.example.com/path/to/resource?query=example";
+    parse_url(url);
+    return 0;
+}
+```
+
 ## Generate MdAnki
 ```bash
 mdanki sample_codes.md sample_codes.apkg --deck "Mohan::DeepWork::sample_code_cpp"
