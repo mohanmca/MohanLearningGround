@@ -7,7 +7,7 @@
 
 ## CPP Lectures
 1. [C++ University Lectures and notes](https://www.ipb.uni-bonn.de/teaching/cpp-2020/lectures/index.html)
-2. [C++ Bonn Lectures and combined notes](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/resources/uni-bonn-de-teaching-modern-cpp-2020-lecture.pdf)()
+2. [C++ Bonn Lectures and combined notes](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/resources/uni-bonn-de-teaching-modern-cpp-2020-lecture.pdf)
 3. [Systems Programming in C++](https://db.in.tum.de/teaching/ss23/c++praktikum/slides/lecture.pdf?lang=en)
 4. [Systems Programming in C++- Combined notes](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/resources/SystemsProgramminginC%2B%2BMunich.pdf)
 5. [Systems Programming in C++ with video recordings](https://db.in.tum.de/teaching/ss21/c++praktikum/index.shtml?lang=en)
