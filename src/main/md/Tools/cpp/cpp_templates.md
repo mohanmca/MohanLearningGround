@@ -70,3 +70,28 @@ int main() {
   return 0;
 }
 ```
+
+## Usage of template keyword in invoking method
+
+```cpp
+#include <iostream>
+#include <string>
+
+template <typename T>
+class MyClass {
+public:
+    template <typename U>
+    void myMethod(U arg) {
+        std::cout << "Value: " << arg << std::endl;
+    }
+};
+
+int main() {
+    MyClass<int> obj;
+    obj.template myMethod<int>(10);        // Accessing template method with int
+    obj.template myMethod<double>(3.14);      // Accessing template method with double
+    obj.template myMethod<std::string>("Mohan");   // Accessing template method with std::string
+    obj.template myMethod<const char*>("Hello");     // Accessing template method with const char*
+    return 0;
+}
+```
