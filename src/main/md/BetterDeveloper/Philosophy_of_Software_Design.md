@@ -124,9 +124,18 @@
 
 1. If something is important, then the system must reflect that; trying to hide it will just cause problems. 
    1. However, if you can reduce the number of things that are important (e.g., by handling several things in the same way, so that the distinction between them is no longer important), you can end up with a simpler design.
-2. 
 
 
+## [All softwares are patch + patch + patch](https://www.reddit.com/r/programming/comments/16dba6a/leslie_lamport_says_if_you_dont_get_the_design/)
+1. Leslie Lamport says if you don’t get the design right from the beginning, then every piece of the code you write is a patch.
+2. In this case the 99% of all software is a patch. As soon as requirements change design should change, ain't nobody has time to start from scratch, so we just patch patch patch.
+3. “No war was ever won according to plan, but none was without a plan either” - from the podcast, though possibly butchered quote.
+4. Leslie asserts that you aren't using formal methods and you should be. He's saying your software is broken and difficult to maintain because you skipped the first 2/3 of software engineering, and all you did was the easy part, the coding, and you did it without much understanding of what you were attempting to build.
+   1. you don't plan what your software actually is (and equally is NOT), and how it should work, then your only real plan is to patch.
+6. The initial design is incredibly important even though it's very difficult to get right. Whilst no design will ever be perfect, there are certainly better and worse designs.
+7. Code is just a set of instructions that follow a design to solve a specific problem.
+8. Where I learned the philosophy of "fail fast". Failure is not bad. Usually it costs little. Failing slowly costs the most. So better to patch than waiting for good design
+9. 
 
 ## Philosophy of software design | John Ousterhout | Talks at Google
 
