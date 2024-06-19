@@ -4,10 +4,10 @@
 git  log -10000 --pretty=format:"%aN" | sort | uniq -c | sort -nr > authors.txt
 ```
 
-## Find list of files modified by authors
+## Find list of files modified by authors under specific directory
 
 ```
-git  log --author=Mohan --name-only > filesModifiedByMohan.txt
+git  log --author=Mohan --name-only -- serice_directory > filesModifiedByMohan.txt
 sort filesModifiedByMohan.txt | gawk -F/ '{print $NF}' | sort |  uniq -c| sort -nr > authorModifiedFiles.txt
 ```
 
