@@ -6,23 +6,14 @@
 5. ["Aeron: Open-source high-performance messaging" by Martin Thompson](https://www.youtube.com/watch?v=tM4YskS94b0)
 6. [High Performance Managed Languages • Martin Thompson • YOW! 2017](https://www.youtube.com/watch?v=VbTJHQe3nNg&t=961s)
 7. [Fault Tolerant 24/7 Operations with Aeron Cluster - Todd Montgomery, Adaptive Financial Consulting](https://www.youtube.com/watch?v=H9yqzfNiEb4)
-8. [SREcon23 Americas - The Making of an Ultra Low Latency Trading System with Go and Java](https://www.youtube.com/watch?v=6SXd0cNRVN8&t=17s)
 9. [How low can you go? Ultra low latency Java in the real world - Daniel Shaya](https://youtu.be/BD9cRbxWQx8?si=5n8zu2foYZP2qGVj)
-10. [Coleman Ruiz: Overcoming Physical & Emotional Challenges](https://www.youtube.com/watch?v=acgz0C-z-gc)
-11. [Lightning Talk: Dependency Injection for Modern C++ - Tyler Weaver - CppCon 2022](https://www.youtube.com/watch?v=Yr0w62Gjrlw)
-12. [Don't chase test coverage](https://www.youtube.com/watch?v=BVErL_Ez9LI)
-13. [Unit Testing Is Not Good Enough](https://www.youtube.com/watch?v=h-4i5N89TUI)
-14. ["How NOT to Measure Latency" by Gil Tene](https://www.youtube.com/watch?v=lJ8ydIuPFeU)
-15. [Top 5 techniques for building the worst microservice system ever - William Brander - NDC London 2023](https://www.youtube.com/watch?v=88_LUw1Wwe4)
-16. [Smarter Cpp Atomic Smart Pointers - Efficient Concurrent Memory Management - Daniel Anderson  CppCon](https://www.youtube.com/watch?v=OS7Asaa6zmY)
-17. [Modifying gRPC Services Over Time [I] - Eric Anderson, Google](https://www.youtube.com/watch?v=F2WYEFLTKEw)
-18. [CppCon 2015: Greg Law " Give me 15 minutes & I'll change your view of GDB" ](https://www.youtube.com/watch?v=PorfLSr3DDI)
-19. (https://www.youtube.com/watch?v=Bt3zcJZIalk&list=PLHTh1InhhwT4TJaHBVWzvBOYhp27UO7mI)[CPP 2021 Back to Basics]
-20. [CPP 2020 Back to Basics](https://www.youtube.com/watch?v=ZAji7PkXaKY&list=PLHTh1InhhwT5o3GwbFYy3sR7HDNRA353e)
-21. [CPP 2019 Back to Basics](https://www.youtube.com/watch?v=32tDTD9UJCE&list=PLHTh1InhhwT4CTnVjJqnAKeMfGzOWjsRa)
-22. [CppCon 2014: Herb Sutter "Back to the Basics! Essentials of Modern C++ Style"](https://www.youtube.com/watch?v=xnqTKD8uD64&t=28m27s)
-23. [CppCon 2019: Alisdair Meredith, Pablo Halpern “Getting Allocators out of Our Way”](https://www.youtube.com/watch?v=RLezJuqNcEQ)
-22. [CppCon 2017: Pablo Halpern “Allocators: The Good Parts”](https://www.youtube.com/watch?v=v3dz-AKOVL8)
+10. ["How NOT to Measure Latency" by Gil Tene](https://www.youtube.com/watch?v=lJ8ydIuPFeU)
+11. [Top 5 techniques for building the worst microservice system ever - William Brander - NDC London 2023](https://www.youtube.com/watch?v=88_LUw1Wwe4)
+12. [Smarter Cpp Atomic Smart Pointers - Efficient Concurrent Memory Management - Daniel Anderson  CppCon](https://www.youtube.com/watch?v=OS7Asaa6zmY)
+13. [Building Low Latency Trading Systems](https://www.youtube.com/watch?v=yBNpSqOOoRk)
+14. [Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022](https://www.youtube.com/watch?v=8uAW5FQtcvE&t=2671s)
+15. [Core C++ 2019 :: Nimrod Sapir :: High Frequency Trading and Ultra Low Latency development techniques](https://www.youtube.com/watch?v=_0aU8S-hFQI)
+16. [How low can you go? Ultra low latency Java in the real world - Daniel Shaya](https://www.youtube.com/watch?v=BD9cRbxWQx8)
 
 
 ## [Exchange@Coinbase Slides](https://www.usenix.org/sites/default/files/conference/protected-files/sre23amer_slides_sun.pdf)
@@ -105,6 +96,15 @@
 1. The latency introduced by garbage collection in Java, which can cause stop-the-world events, is a significant factor in overall system latency. However, the exact values are not mentioned.
 1. The latency introduced by AWS's compute and storage choices, as well as its network architecture, is a significant factor in overall system latency. However, the exact values are not mentioned.
 
+## Programming facts for exchanges
+1. Reprsent Strings are 2 longs
+2. Use only primitive collection and avoid boxing and unboxing
+3. No allocation on hot path
+4. SBE - Simple binary encoding
+5. Regulated exchange can't warm up using some proprietary code
+6. But we can create JVM profile and use it
+7. Azul Prime JVM - Pauseless Garbage Collector
+   
 ## NIC for low-latency
 1. OpenOnLoad in DC
 2. DPDK in the cloud (for AERON)
