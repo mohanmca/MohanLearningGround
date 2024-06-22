@@ -23,3 +23,44 @@
 22. [CppCon 2014: Herb Sutter "Back to the Basics! Essentials of Modern C++ Style"](https://www.youtube.com/watch?v=xnqTKD8uD64&t=28m27s)
 23. [CppCon 2019: Alisdair Meredith, Pablo Halpern “Getting Allocators out of Our Way”](https://www.youtube.com/watch?v=RLezJuqNcEQ)
 22. [CppCon 2017: Pablo Halpern “Allocators: The Good Parts”](https://www.youtube.com/watch?v=v3dz-AKOVL8)
+
+
+## [Exchange@Coinbase Slides](https://www.usenix.org/sites/default/files/conference/protected-files/sre23amer_slides_sun.pdf)
+1. It is coinbase derivatie exchange architecture
+2. Users are Bots, HF/MM would connect to exchange.
+3. MarketData consumed by everyone in near realtime
+4. Exchagnge = OMS + ME + Ledger
+
+## [Open AI Summary](https://www.usenix.org/sites/default/files/conference/protected-files/sre23amer_slides_sun.pdf)
+1. **Trading System**: This is a mechanism for buying and selling securities, currencies, or other financial instruments. It involves multiple components such as order submission, matching orders, generating fill and order events, and sending them out. It is treated as a deterministic state machine.
+
+2. **Matching Logic**: This is the core of the exchange system. It handles the submission of orders, matches them against orders that have not yet been filled, and generates fill and order events.
+
+3. **Consensus Algorithm**: This is used to achieve high availability and fault tolerance in a replicated state machine. If the leader fails, the other nodes can hold a re-election, choose a new leader, and continue processing messages.
+
+4. **Replicated State Machine**: This is a state machine that is replicated across multiple nodes for fault tolerance and high availability. It uses a consensus algorithm to ensure that all nodes agree on the state of the system.
+
+5. **Raft Protocol**: This is a consensus algorithm used in distributed systems to ensure that all nodes agree on the state of the system. It is used for high availability and fault tolerance.
+
+6. **Aeron Cluster**: This is a high-performance messaging system used for consensus and replication in the trading system.
+
+7. **Regulated Exchange**: This is an exchange that operates under regulations set by a financial regulatory authority. The books of a regulated exchange are public, meaning every order is matchable and there are no complex trading relationships where only certain parties can trade with others.
+
+8. **Trading System State**: This is the state of the trading system at any given time. It can be snapshotted to a file and restored from that file to have a live trading system. It can also be replayed from an old snapshot plus some old input to catch up to the live system.
+
+9. **Feature Flags**: These are used to control the visibility and rollout of features in an application. They allow developers to enable or disable features during runtime.
+
+10. **Data Center**: This is a facility used to house computer systems and related components. It is used for data storage, processing, and distribution. In the context of the document, the trading system is co-located in a data center with its customers for low latency.
+
+11. **Commodity Hardware**: This refers to a standard-issue hardware that is widely available and not specialized for any specific task. In the context of the document, the trading system runs on commodity hardware with very fast disks.
+
+12. **Network Latency**: This is the delay that occurs when processing data over a network. In the context of the document, network latency is a dominant factor in the overall latency of the trading system.
+
+13. **Kernel Bypass**: This is a method of sending and receiving network packets without the involvement of the operating system's kernel. It is used to reduce network latency.
+
+14. **Garbage Collection**: This is a form of automatic memory management. The garbage collector attempts to reclaim memory occupied by objects that are no longer in use by the program. In the context of the document, understanding the behavior of garbage collection in different programming languages and its impact on performance is discussed.
+
+15. **CPU Layout and Memory Access**: Understanding CPU layout and memory access is important for performance optimization. In the context of the document, it is mentioned as a key point in optimizing system performance.
+
+16. **Market Data Feed**: This is a critical component of a trading system. It provides the system with information about what's happening in the market, which is essential for placing orders. Timely delivery of market data to trading firms and market makers is emphasized in the document.
+ 
