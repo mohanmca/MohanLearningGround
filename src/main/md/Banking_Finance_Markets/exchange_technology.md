@@ -92,7 +92,6 @@
 1. Finally, an order acknowledgment is sent back to the client.
 1. This path is critical because it involves the processing of trading orders, which is the core function of their system. Any delay or inefficiency in this path can significantly impact the system's performance and the user's experience.
 
-
 ## [Exchange@Coinbase Latencies](https://www.usenix.org/sites/default/files/conference/protected-files/sre23amer_slides_sun.pdf)Round-trip time outliers less than 100 microseconds.
 1. Medians less than 50 microseconds.
 1. Trading system processing times around one microsecond.
@@ -105,3 +104,20 @@
 1. Cut-through forwarding switches can offer lower latency but are not used in AWS.
 1. The latency introduced by garbage collection in Java, which can cause stop-the-world events, is a significant factor in overall system latency. However, the exact values are not mentioned.
 1. The latency introduced by AWS's compute and storage choices, as well as its network architecture, is a significant factor in overall system latency. However, the exact values are not mentioned.
+
+## NIC for low-latency
+1. OpenOnLoad in DC
+2. DPDK in the cloud (for AERON)
+3. Disable to SWAP
+   
+## OS Scheduling delay/context switches
+1. /proc/sched_debug - what tasks are running?
+2. What does your application do? 
+3. Is your hot threads have all the CPU time?
+   1. We can check this out with various methods using proc schedule debug
+   2. We can see within a CPU what tasks are running and how much runtime they get
+   3. We can go into schedule stat to see for a particular thread how much time they spent on CPU
+   4. The Run queue and the time size is on the CPU
+   5. ideally we don't want the timeline run queue to change because that implies as being context switched
+   6. We can look at the interrupts and soft interrupts running per core
+   7. If we want to get even deeper you can use perf or BPF tools to see exactly what might be contributing to latency on your system
