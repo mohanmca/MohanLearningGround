@@ -64,3 +64,44 @@
 
 16. **Market Data Feed**: This is a critical component of a trading system. It provides the system with information about what's happening in the market, which is essential for placing orders. Timely delivery of market data to trading firms and market makers is emphasized in the document.
  
+
+## [Exchange@Coinbase Keysummary](https://www.usenix.org/sites/default/files/conference/protected-files/sre23amer_slides_sun.pdf)
+1. The speakers are discussing the architecture and optimization of trading systems, specifically focusing on latency and throughput.
+1. They mention the use of different programming languages and technologies such as Go, Java, and AWS.
+1. They discuss the importance of understanding the internal workings of AWS and the impact of its architecture on latency.
+1. They talk about the challenges of optimizing legacy systems and the need to understand the behavior of these systems.
+1. They mention the use of different methodologies and tools for performance optimization, such as flame graphs, schedulers, and profilers.
+1. They discuss the importance of understanding the behavior of garbage collection in different programming languages and its impact on performance.
+1. They mention the use of different data structures and their impact on performance.
+1. They discuss the concept of "happy path" and "unhappy path" in system performance.
+1. They mention the use of different JVMs and their impact on performance.
+1. They discuss the concept of "Heisenberg system", where observing the system can affect its latency.
+1. They mention the use of different network optimizations, such as kernel bypass, to improve system performance.
+1. They discuss the importance of understanding CPU layout and memory access for performance optimization.
+1. They mention the use of different strategies for improving system performance, such as spinning and batching.
+1. They discuss the importance of understanding the behavior of databases and their impact on system performance.
+1. They conclude by emphasizing the importance of not optimizing something that should not exist in the first place, quoting Elon Musk.
+
+## [Exchange@Coinbase HOT PATH](https://www.usenix.org/sites/default/files/conference/protected-files/sre23amer_slides_sun.pdf)
+An order is submitted by a client.
+The order goes through an order gateway where it is parsed and validated.
+The validated order is sent as a request to the trading system.
+The trading system performs consensus and once it gets quorum, it runs through the matching algorithm.
+The matching algorithm generates any fills or order events.
+These events are sent back to the order gateway to be translated via whatever protocol is being used.
+Finally, an order acknowledgment is sent back to the client.
+This path is critical because it involves the processing of trading orders, which is the core function of their system. Any delay or inefficiency in this path can significantly impact the system's performance and the user's experience.
+
+
+## [Exchange@Coinbase Latencies](https://www.usenix.org/sites/default/files/conference/protected-files/sre23amer_slides_sun.pdf)Round-trip time outliers less than 100 microseconds.
+1. Medians less than 50 microseconds.
+1. Trading system processing times around one microsecond.
+1. Achieved 300,000 requests per second peak throughput.
+1. Network latency is a dominant factor in the overall latency of the trading system.
+1. Inter-AZ latency in AWS can be between 1 millisecond to 2 milliseconds.
+1. The latency from a given node to the live system scales with log n of the number of nodes in the graph.
+1. The system latency on AWS is dominated by network hops and is higher than on their data center setup.
+1. The latency introduced by store-and-forward switches can be between 5 microseconds to 50 microseconds.
+1. Cut-through forwarding switches can offer lower latency but are not used in AWS.
+1. The latency introduced by garbage collection in Java, which can cause stop-the-world events, is a significant factor in overall system latency. However, the exact values are not mentioned.
+1. The latency introduced by AWS's compute and storage choices, as well as its network architecture, is a significant factor in overall system latency. However, the exact values are not mentioned.
