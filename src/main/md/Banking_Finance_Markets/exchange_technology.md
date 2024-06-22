@@ -83,14 +83,14 @@
 1. They conclude by emphasizing the importance of not optimizing something that should not exist in the first place, quoting Elon Musk.
 
 ## [Exchange@Coinbase HOT PATH](https://www.usenix.org/sites/default/files/conference/protected-files/sre23amer_slides_sun.pdf)
-An order is submitted by a client.
-The order goes through an order gateway where it is parsed and validated.
-The validated order is sent as a request to the trading system.
-The trading system performs consensus and once it gets quorum, it runs through the matching algorithm.
-The matching algorithm generates any fills or order events.
-These events are sent back to the order gateway to be translated via whatever protocol is being used.
-Finally, an order acknowledgment is sent back to the client.
-This path is critical because it involves the processing of trading orders, which is the core function of their system. Any delay or inefficiency in this path can significantly impact the system's performance and the user's experience.
+1. An order is submitted by a client.
+1. The order goes through an order gateway where it is parsed and validated.
+1. The validated order is sent as a request to the trading system.
+1. The trading system performs consensus and once it gets quorum, it runs through the matching algorithm.
+1. The matching algorithm generates any fills or order events.
+1. These events are sent back to the order gateway to be translated via whatever protocol is being used.
+1. Finally, an order acknowledgment is sent back to the client.
+1. This path is critical because it involves the processing of trading orders, which is the core function of their system. Any delay or inefficiency in this path can significantly impact the system's performance and the user's experience.
 
 
 ## [Exchange@Coinbase Latencies](https://www.usenix.org/sites/default/files/conference/protected-files/sre23amer_slides_sun.pdf)Round-trip time outliers less than 100 microseconds.
