@@ -33,6 +33,7 @@
 1. When fear about accident while travelling in bike as a pillion passenger, we try to escape or hold on to something. (Depends on age, our action changes)
 1. When fear comes, we try to escape or hold on to something
 1. If we could wipe impression, we can remove fear
+1. Impressions are potential energy, thoughts are kinetic energy
 
 
 ## Reference
