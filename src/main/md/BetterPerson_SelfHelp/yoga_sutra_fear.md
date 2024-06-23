@@ -23,7 +23,8 @@
 1. [When to fear](https://dailypractice.info/thirukkural/index.html?202)
 
 ## How to remove fear?
-1. When there is temperature, take tablet and we reduce them.
+1. Fear is not ingrained nature, There is no job-loss or food related fear when we are babies, Fear is slowly gained, we can also remove.
+2. When there is temperature, take tablet and we reduce them.
    1. Temperature is effect, not the  cause
    2. Bacteria may cause it, but we can't directly control bacteria, but we treat effect (so cause as well)
 1. When there is fear, fear is effect (in the form of thought), not cause. Not disease
