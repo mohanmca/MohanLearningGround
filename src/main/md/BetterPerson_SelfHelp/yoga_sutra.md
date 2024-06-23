@@ -29,7 +29,11 @@
 1. When there is fear, fear is effect (in the form of thought), not cause. Not disease
    1. We can remove fear by dhyana
    2. Fear come in the form of thought, Dhyana can remove fear (by removing thought)
-1. 
+1. Fear comes from other impressions
+1. When fear about accident while travelling in bike as a pillion passenger, we try to escape or hold on to something. (Depends on age, our action changes)
+1. When fear comes, we try to escape or hold on to something
+1. If we could wipe impression, we can remove fear
+
 
 ## Reference
 1. [duḥkha-anuśayī dveṣaḥ](https://yogasutrastudy.info/yoga-sutra-translations/ysp-sutras2-01-2-20/)
