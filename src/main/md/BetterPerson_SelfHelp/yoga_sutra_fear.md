@@ -6,18 +6,18 @@
 
 ## [Notes-sukha-anuśayī rāgaḥ](https://www.yogapradipika.com/yoga-sutra-sutra-2-7)
 1. Kid doesn't want to enter cold river, but once entered, they want to keep on play in it.
-2. Once ther is a joy, we have tendency to go behind it and keep repeating it.
-3. When there is no happiness, there is no attachment. [Ragah]
-4. When there is dis-pleassure, there is repulsion from that event, mind wants to go-away from it. [Dwehsha]
+1. Once ther is a joy, we have tendency to go behind it and keep repeating it.
+1. When there is no happiness, there is no attachment. [Ragah]
+1. When there is dis-pleassure, there is repulsion from that event, mind wants to go-away from it. [Dwehsha]
    1. [duḥkha-anuśayī dveṣaḥ](https://yogasutrastudy.info/yoga-sutra-translations/ysp-sutras2-01-2-20/)
-5. Joy of loving god is just empty statement, unless they experience it.
-6. [svarasavāhī viduṣo’pi tathārūḍho’bhiniveśaḥ॥9॥]
+1. Joy of loving god is just empty statement, unless they experience it.
+1. [svarasavāhī viduṣo’pi tathārūḍho’bhiniveśaḥ॥9॥]
    1. Ultimately all the problems are in-security problems?
    2. Is there any total security?
    3. Security fellow is most insecure
 1. Fear is direcly proportionate to the knowledge
-1. Fear is different kinds and comes as a form of knowledge and imagination
-2. Certain fear was not there till the age of 18, Fear is ingrained once we enjoy certain things 
+1. Fear is different kinds and comes as a form of thought and imagination
+1. Certain fear was not there till the age of 18, Fear is ingrained once we enjoy certain things 
 
 ## [Insecurity is in mind](https://dailypractice.info/thirukkural/index.html?428)
 1. [When to fear](https://dailypractice.info/thirukkural/index.html?202)
