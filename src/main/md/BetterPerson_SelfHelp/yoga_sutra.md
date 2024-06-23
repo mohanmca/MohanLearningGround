@@ -22,5 +22,14 @@
 ## [Insecurity is in mind](https://dailypractice.info/thirukkural/index.html?428)
 1. [When to fear](https://dailypractice.info/thirukkural/index.html?202)
 
+## How to remove fear?
+1. When there is temperature, take tablet and we reduce them.
+   1. Temperature is effect, not the  cause
+   2. Bacteria may cause it, but we can't directly control bacteria, but we treat effect (so cause as well)
+1. When there is fear, fear is effect (in the form of thought), not cause. Not disease
+   1. We can remove fear by dhyana
+   2. Fear come in the form of thought, Dhyana can remove fear (by removing thought)
+1. 
+
 ## Reference
 1. [duḥkha-anuśayī dveṣaḥ](https://yogasutrastudy.info/yoga-sutra-translations/ysp-sutras2-01-2-20/)
