@@ -15,6 +15,9 @@
    1. Ultimately all the problems are in-security problems?
    2. Is there any total security?
    3. Security fellow is most insecure
+1. Fear is direcly proportionate to the knowledge
+1. Fear is different kinds and comes as a form of knowledge and imagination
+2. Certain fear was not there till the age of 18, Fear is ingrained once we enjoy certain things 
 
 ## [Insecurity is in mind](https://dailypractice.info/thirukkural/index.html?428)
 1. [When to fear](https://dailypractice.info/thirukkural/index.html?202)
