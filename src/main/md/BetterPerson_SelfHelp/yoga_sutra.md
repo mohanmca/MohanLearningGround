@@ -16,5 +16,8 @@
    2. Is there any total security?
    3. Security fellow is most insecure
 
- ## Reference
- 1. [duḥkha-anuśayī dveṣaḥ](https://yogasutrastudy.info/yoga-sutra-translations/ysp-sutras2-01-2-20/)
+## [Insecurity is in mind](https://dailypractice.info/thirukkural/index.html?428)
+1. [When to fear](https://dailypractice.info/thirukkural/index.html?202)
+
+## Reference
+1. [duḥkha-anuśayī dveṣaḥ](https://yogasutrastudy.info/yoga-sutra-translations/ysp-sutras2-01-2-20/)
