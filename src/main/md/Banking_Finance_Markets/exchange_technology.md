@@ -1,11 +1,12 @@
 ## Exchange vidoes
 1. [AWS re:Invent 2023 - Coinbase: Building an ultra-low-latency crypto exchange on AWS (FSI309)](https://www.youtube.com/watch?v=iB78FrFWrLE)
-2. [SREcon23 Americas - The Making of an Ultra Low Latency Trading System with Go and Java](https://www.youtube.com/watch?v=6SXd0cNRVN8)
-3. [Evolution of Financial Exchange Architectures](https://www.youtube.com/watch?v=qDhTjE0XmkE)
-4. [Hot Deploying Low-Latency Services for 24/7 Operation • Martin Thompson • YOW! 2022](https://www.youtube.com/watch?v=_KvFapRkR9I)
-5. ["Aeron: Open-source high-performance messaging" by Martin Thompson](https://www.youtube.com/watch?v=tM4YskS94b0)
-6. [High Performance Managed Languages • Martin Thompson • YOW! 2017](https://www.youtube.com/watch?v=VbTJHQe3nNg&t=961s)
-7. [Fault Tolerant 24/7 Operations with Aeron Cluster - Todd Montgomery, Adaptive Financial Consulting](https://www.youtube.com/watch?v=H9yqzfNiEb4)
+   1. [Coinbase Presentation](https://d1.awsstatic.com/events/Summits/reinvent2023/FSI309_Coinbase-Building-an-ultra-low-latency-crypto-exchange-on-AWS.pdf)
+3. [SREcon23 Americas - The Making of an Ultra Low Latency Trading System with Go and Java](https://www.youtube.com/watch?v=6SXd0cNRVN8)
+4. [Evolution of Financial Exchange Architectures](https://www.youtube.com/watch?v=qDhTjE0XmkE)
+5. [Hot Deploying Low-Latency Services for 24/7 Operation • Martin Thompson • YOW! 2022](https://www.youtube.com/watch?v=_KvFapRkR9I)
+6. ["Aeron: Open-source high-performance messaging" by Martin Thompson](https://www.youtube.com/watch?v=tM4YskS94b0)
+7. [High Performance Managed Languages • Martin Thompson • YOW! 2017](https://www.youtube.com/watch?v=VbTJHQe3nNg&t=961s)
+8. [Fault Tolerant 24/7 Operations with Aeron Cluster - Todd Montgomery, Adaptive Financial Consulting](https://www.youtube.com/watch?v=H9yqzfNiEb4)
 9. [How low can you go? Ultra low latency Java in the real world - Daniel Shaya](https://youtu.be/BD9cRbxWQx8?si=5n8zu2foYZP2qGVj)
 10. ["How NOT to Measure Latency" by Gil Tene](https://www.youtube.com/watch?v=lJ8ydIuPFeU)
 11. [Top 5 techniques for building the worst microservice system ever - William Brander - NDC London 2023](https://www.youtube.com/watch?v=88_LUw1Wwe4)
@@ -15,6 +16,9 @@
 15. [Core C++ 2019 :: Nimrod Sapir :: High Frequency Trading and Ultra Low Latency development techniques](https://www.youtube.com/watch?v=_0aU8S-hFQI)
 16. [How low can you go? Ultra low latency Java in the real world - Daniel Shaya](https://www.youtube.com/watch?v=BD9cRbxWQx8)
 
+## How to fetcch youtube transcript
+1. "Show Transcript" on youtube and grab transcript
+2. grep -vE  "[0-9]+:[0-9]{2}" coinbase.txt > coinbase2.txt         
 
 ## [Exchange@Coinbase Slides](https://www.usenix.org/sites/default/files/conference/protected-files/sre23amer_slides_sun.pdf)
 1. It is coinbase derivatie exchange architecture
@@ -121,3 +125,11 @@
    5. ideally we don't want the timeline run queue to change because that implies as being context switched
    6. We can look at the interrupts and soft interrupts running per core
    7. If we want to get even deeper you can use perf or BPF tools to see exactly what might be contributing to latency on your system
+
+## [AWS re:Invent 2023 - Coinbase: Building an ultra-low-latency crypto exchange on AWS (FSI309)](https://www.youtube.com/watch?v=iB78FrFWrLE)
+1. [Coinbase Presentation](https://d1.awsstatic.com/events/Summits/reinvent2023/FSI309_Coinbase-Building-an-ultra-low-latency-crypto-exchange-on-AWS.pdf)
+2. Coinbase uses VPC peering between their VPC
+   1. The process of creating a VPC peering connection leverages the existing VPC infrastructure to establish this connection, without the requirement of a gateway, AWS Site-to-Site VPN, or any additional physical hardware.
+3. Customer placement group used to keep nodes close to each other
+4. 
+      
