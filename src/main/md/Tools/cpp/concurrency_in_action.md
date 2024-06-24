@@ -28,3 +28,48 @@
 4. If the task running is quite light (dwarf) don't use threads...
 5. Too many threads ---> Too much memory consumption
 6. Each stack has 1MB stack on typical machine
+7. Prefer to use threadpools to reduce thread
+8. More thread more context switch
+9. If clarifty of design improved due to multithreaded, then it might be okay to use despite acceptable performance degrade.
+
+## C++ Concurrency before C++11
+1. Rely on compiler extension
+2. Rely on C library and wrapped by Boost or ACE
+3. Rely on platform API provided by MFC or Windows (internally C API), wrapped using RAII
+4. Till C++11, threads were not accepted (and defined) by C++ standard
+
+## C++ 11 specification
+1. C++ Memory model
+2. C++ STL was extended to include classes for managing threads
+3. Protecting shared data
+4. Synchronizing operation between threads
+5. Low-level atomic operations
+6. Based on C++ Boost thread library (primary model)   
+
+## C++ 14/17 -  specification
+1. C++14 - New mutex type for protecting data
+2. A full suite of parallel algorithm
+3. Synchronizing operation between threads for functions and classes
+
+## C++ Efficiency in the C++ Thread library
+1. Abstraction cost quite low
+2. you dont pay for things that you don't use
+3. Reduce the contention always
+4. Thread library may offer native_handle() member function that allows the underlying implementation to be directly manipulated using platform-specific API. It is not portable
+
+
+## C++ Concurrency
+
+```
+#include <iostream>
+#include <thread>
+
+int hello() {
+   std::cout<<"Hello Concurrent world\n";
+}
+int main() {
+   std::thread t(hello);
+   t.join();
+}
+```
+   
