@@ -16,6 +16,11 @@
 15. [Core C++ 2019 :: Nimrod Sapir :: High Frequency Trading and Ultra Low Latency development techniques](https://www.youtube.com/watch?v=_0aU8S-hFQI)
 16. [How low can you go? Ultra low latency Java in the real world - Daniel Shaya](https://www.youtube.com/watch?v=BD9cRbxWQx8)
 
+## Articles
+1. [Derbit client connection routing from AWS to DC](https://insights.deribit.com/industry/deribit-extends-customer-trading-service-using-cloudnations-advanced-cloud-networking/)
+1. [Step-by-Step guide to benchmarking Aeron in your AWS environment](https://hub.aeron.io/hubfs/Aeron-Assets/Aeron_AWS_Performance_Testing_Guide_Nov23.pdf)
+2. [Step-by-Step guide to benchmarking Aeron in your Google Cloud environment.](https://hub.aeron.io/hubfs/Aeron-Assets/Aeron_GoogleCloud_Performance_Testing_Guide_Feb24.pdf)
+
 ## How to fetcch youtube transcript
 1. "Show Transcript" on youtube and grab transcript
 2. grep -vE  "[0-9]+:[0-9]{2}" coinbase.txt > coinbase2.txt         
