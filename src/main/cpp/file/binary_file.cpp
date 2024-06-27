@@ -11,5 +11,6 @@ int main() {
     file.write(reinterpret_cast<char*>(&rows), sizeof(rows));
     file.write(reinterpret_cast<char*>(&cols), sizeof(cols));
     file.write(reinterpret_cast<char*>(&vec.front()), vec.size() * sizeof(float));
+    std::cout<<"Image created"<<std::endl;
     return 0;
 }
