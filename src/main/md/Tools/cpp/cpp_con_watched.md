@@ -20,10 +20,10 @@
 1. [CppCon 2017: Pablo Halpern “Allocators: The Good Parts”](https://www.youtube.com/watch?v=v3dz-AKOVL8)
 
 ## [John Lakos videos on large scale development in C++]
-*[CppCon 2018: John Lakos “C++ Modules and Large-Scale Development”](https://www.youtube.com/watch?v=K_fTl_hIEGY)
-*[CppCon 2016: John Lakos “Advanced Levelization Techniques (part 1 of 3)"](https://www.youtube.com/watch?v=QjFpKJ8Xx78)
-*[CppCon 2016: John Lakos “Advanced Levelization Techniques (part 2 of 3)"](https://www.youtube.com/watch?v=fzFOLsFASjU)
-*[CppCon 2016: John Lakos “Advanced Levelization Techniques (part 3 of 3)"](https://www.youtube.com/watch?v=NrARQ7rHV-c)
+* [CppCon 2018: John Lakos “C++ Modules and Large-Scale Development”](https://www.youtube.com/watch?v=K_fTl_hIEGY)
+* [CppCon 2016: John Lakos “Advanced Levelization Techniques (part 1 of 3)"](https://www.youtube.com/watch?v=QjFpKJ8Xx78)
+* [CppCon 2016: John Lakos “Advanced Levelization Techniques (part 2 of 3)"](https://www.youtube.com/watch?v=fzFOLsFASjU)
+* [CppCon 2016: John Lakos “Advanced Levelization Techniques (part 3 of 3)"](https://www.youtube.com/watch?v=NrARQ7rHV-c)
 
 ## Unit testing
 1. [Coleman Ruiz: Overcoming Physical & Emotional Challenges](https://www.youtube.com/watch?v=acgz0C-z-gc)
