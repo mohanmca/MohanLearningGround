@@ -9,7 +9,7 @@
 8. [Template Metaprogramming: Type Traits (part 2 of 2) - Jody Hagins - CppCon 2020](https://github.com/CppCon/CppCon2020/blob/main/Presentations/template_metaprogramming_type_traits/template_metaprogramming_type_traits__jody_hagins__cppcon_2020.pdf)
 9. [CppCon 2016: Arthur O'Dwyer “Template Normal Programming (part 1 of 2)”](https://www.youtube.com/watch?v=vwrXHznaYLA)
 10. [CppCon 2016: Arthur O'Dwyer “Template Normal Programming (part 2 of 2)”](https://www.youtube.com/watch?v=VIz6xBvwYd8)
-11. [CppCon 2017: Arthur O'Dwyer “A Soupçon of SFINAE”](CppCon 2017: Arthur O'Dwyer “A Soupçon of SFINAE”)
+11. [CppCon 2017: Arthur O'Dwyer “A Soupçon of SFINAE”](https://www.youtube.com/watch?v=ybaE9qlhHvw)
 
 ## Recommended by colleagues
 1. [Modifying gRPC Services Over Time I - Eric Anderson, Google](https://www.youtube.com/watch?v=F2WYEFLTKEw)
