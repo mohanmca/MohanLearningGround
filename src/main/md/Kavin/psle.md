@@ -1,6 +1,0 @@
-1. [Areas of Quadrilaterals](https://www.youtube.com/watch?v=rB9VrzCDHVA&t=10s)
-2. [Area of Circular Shapes](https://www.youtube.com/watch?v=p3hmwh-KFGk)
-3. [PSLE Maths 2023 Speed - How to solve easily](https://www.youtube.com/watch?v=ymBDrmmn5uM&list=PLWmj1DjlVoXlHE4bw_FFserIHRuQKNuhi)
-4. [Singapore Math Benjamin Low](https://www.youtube.com/watch?v=DhLP45At0e0&list=PLWmj1DjlVoXl3uGCimiz3Cql4TKOvfqEH&index=1)
-5. [PSLE & P5 Math 2022 / 2023 AL1 Time Management - Paper 1](https://www.youtube.com/watch?v=t6mGGxhlpNk&list=PLWmj1DjlVoXnm3d_jQLB77BSFOSOVJiWp&index=1)
-6. [PSLE 2021 Tough Math Questions Made Simple Q6 - Bookshelf Replacement by Groups](https://www.youtube.com/watch?v=HuGlAkTXiBQ&list=PLWmj1DjlVoXkKPrATG5Kei2kzp7pBl70j)
