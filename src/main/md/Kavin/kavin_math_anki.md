@@ -30,7 +30,8 @@
 
 
 ## More Than, Less Than, As Many As
-1. James had 120 more marbles than Dan. After James lost 1/5 of his marbles and Dan lost 3/4 of his marbles, James had 184 more marbles than Dan. How many marbles did Dan have at first?
+1. [James had 120 more marbles than Dan. After James lost 1/5 of his marbles and Dan lost 3/4 of his marbles, James had 184 more marbles than Dan. How many marbles did Dan have at first?](https://www.youtube.com/watch?v=mKfVpVF-yMw)
+1. Felicia and Julia had some pink and yellow beads. Felicia had 100 more beads than Julia. The number of pink beads that she had was 25 more than the number of pink beads than Julia had. Julia had 68 more yellow beads than pink beads. How many more yellow than pink beads did Felicia have?
 
 ## Constant Part Concept -n Ration Question
 1. The word “Constant” means remain the same. You need to identify the part which remain constant and make them equal in both ratios. 
@@ -132,6 +133,12 @@
 1. At first, chairs in a hall were arranged in rows of 6. 
     1. Then, 68 more chairs were brought in and all the chairs were rearranged into rows of 20. There were 12 fewer rows. How many rows of chairs were in the hall at first? 
 
+
+## Problem solved PSLE
+1. [PSLE 2019 Solved Maths Paper 1 Booklet A](https://www.youtube.com/watch?v=bSQiP04ZX-8)
+1. [PSLE 2020 Solved Maths Paper 1 Booklet A](https://www.youtube.com/watch?v=O_l2jIo2esU)
+1. [PSLE 2020 Solved Maths Paper 1 Booklet B](https://www.youtube.com/watch?v=yyxoKC1xq5M)
+1. [PSLE 2020 Solved Maths Paper 2 Q1 to Q8](https://www.youtube.com/watch?v=TH96BC9b9EY)
 
 ## Generate mdanki
 1. mdanki kavin_math_anki.md psle_tricks.apkg --deck "Kavin::PSLE::tricks"
