@@ -1,7 +1,15 @@
+## C++
+* [C++ Manual](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp.md)
+* [CPP Basics](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp_nptel.md)
+* [CPPCon - Need to watch](https://github.com/mohanmca/MohanLearningGround/tree/master/src/main/md/Tools/cpp)
+* [CPP - Multithread](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/concurrency_in_action.md)
+* [CPP - Ecosystem](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp_ecosystem.md)
+* [CPP - Samplecode](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/sample_codes.md)
+
+
 ## Index of my notes
 
 * [Python](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Python/Python.md)
-
 * [ElasticSearch notes](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/Search/most_useful_es_query.md)
 * [Algorithm notes](https://github.com/mohanmca/professional_certification/blob/master/algorithms/README.md)
 * [System Design](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/system_design/System_Design_Anki.md)
@@ -59,13 +67,6 @@
 * [Heath miller Project_Spark_400_Part3](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/data_engineering/Project_Spark_400_Part3_Anki.md)
 * [Heath miller Project_Spark_400_Part4](https://github.com/mohanmca/CodingChallenges/blob/master/src/md/data_engineering/Project_Spark_400_Part4_Anki.md)
 
-## C++
-* [C++ Manual](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp.md)
-* [CPP Basics](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp_nptel.md)
-* [CPPCon - Need to watch](https://github.com/mohanmca/MohanLearningGround/tree/master/src/main/md/Tools/cpp)
-* [CPP - Multithread](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/concurrency_in_action.md)
-* [CPP - Ecosystem](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp_ecosystem.md)
-* [CPP - Samplecode](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/sample_codes.md)
 
 ## Finance
 
@@ -74,6 +75,8 @@
 
 ## Kavin
 * [Tamil](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/Tamil.md)
+* [Bar model problems](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/psle_youtube.md)
+* [Different types of problems](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/kavin_math_anki.md)
 * [Kavin Python Code](https://github.com/mohanmca/KavinPython)
 
 
