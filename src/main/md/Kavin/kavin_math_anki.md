@@ -127,6 +127,10 @@
 1. A school bus can either sit 24 adults or 36 children. If it already has 12 adults on the bus, how many more children can it sit?
 
 
+## Samnple problems for excess and shortage
+1. Memi has some balloons, if she packs 4 balloons in each bag, she will be short of 2 balloons, if she packs 6 balloons in each bac, she will be short of 28 balloons, how many bags does meimei has?
+1. At first, chairs in a hall were arranged in rows of 6. 
+    1. Then, 68 more chairs were brought in and all the chairs were rearranged into rows of 20. There were 12 fewer rows. How many rows of chairs were in the hall at first? 
 
 
 ## Generate mdanki
