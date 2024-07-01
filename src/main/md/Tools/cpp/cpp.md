@@ -1,5 +1,6 @@
 ## Where to run Cpp
 1. [https://godbolt.org/](https://godbolt.org/)
+2. [Hacking CPP](https://hackingcpp.com/cpp/cheat_sheets.html)
 
 ## Missing lectures
 1. [https://missing.csail.mit.edu/](https://missing.csail.mit.edu/2019/)
@@ -588,6 +589,68 @@ int main() {
     return 0;
 }
 ```
+
+## why are we separating template parameters here:
+```cpp
+template<typename Host> template<typename T, typename F>
+template<typename Host> template<typename T, typename F> void Sink<Host>::doSomething(T const& msg, F next) {
+//block
+}
+```
+1. It supposed to mean, class Sink takes a template parameter Host, while Sink::do_something take 2 template parameters
+
+## Template usage in using
+```
+template <typename Handler> using Service = std::shared_ptr<Service<Handler>>;
+```
+1. C++ is not whitespace or layout sensitive
+
+
+## Define function that can be called only on LValue or RValue?
+
+```
+#include <iostream>
+
+class Example {
+public:
+    void onlyLvalue() & {
+        std::cout << "This function can only be called on an lvalue." << std::endl;
+    }
+
+    void onlyRvalue() && {
+        std::cout << "This function can only be called on an rvalue." << std::endl;
+    }
+};
+
+int main() {
+    Example e;
+
+    e.onlyLvalue(); // OK, e is an lvalue
+    // Example().onlyLvalue(); // Error, temporary object is an rvalue
+
+    // e.onlyRvalue(); // Error, e is an lvalue
+    Example().onlyRvalue(); // OK, temporary object is an rvalue
+
+    return 0;
+}
+```
+
+## LValue and RValue
+1. Things that are declared as rvalue reference can be lvalues or rvalues. The distinguishing criterion is: if it has a name, then it is an lvalue. Otherwise, it is an rvalue.
+2. ```int const r& = 10;```
+3. C++ cannot bind a non-const lvalue reference to a temporary object (or rvalue).
+   1. ```int& r=10;```  //will fails to compile
+5. The expression 10 is a temporary int, and only a const int& can bind to a temporary object.
+   1. ```const int& r = 10;```
+
+## TODO 
+1. [Tag dispatching](https://www.fluentcpp.com/2018/04/27/tag-dispatching/)
+1. [Tag vs ENum](https://www.fluentcpp.com/2018/05/01/when-to-use-enums-and-when-to-use-tag-dispatching-in-cpp/)
+2. [Ranges](https://mariusbancila.ro/blog/2019/01/20/cpp-code-samples-before-and-after-ranges/)
+3. [Julian Templeman on Templates](https://learning.oreilly.com/course/diving-deeper-into/9781491988701/)
+4. [Julian Templeman on Templates](https://learning.oreilly.com/course/further-exploration-of/9781491988732/)
+5. [31 nooby C++ habits you need to ditch ](https://www.youtube.com/watch?v=i_wDa2AS_8w)
+6. 
 
 
 ## Reference
