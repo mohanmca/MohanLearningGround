@@ -6,6 +6,12 @@
 * [CPP - Ecosystem](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp_ecosystem.md)
 * [CPP - Samplecode](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/sample_codes.md)
 
+## Kavin
+* [Tamil](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/Tamil.md)
+* [Bar model problems](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/psle_youtube.md)
+* [Different types of problems](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/kavin_math_anki.md)
+* [Kavin Python Code](https://github.com/mohanmca/KavinPython)
+
 
 ## Index of my notes
 
@@ -72,13 +78,6 @@
 
 1. [EFP - Exchange for Physical](https://www.nzx.com/markets/nzx-dairy-derivatives/dairy-hedging-academy/features-of-derivatives-markets)
    1. [EFP - Usecase](https://www.nzx.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbElRIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--adb90e3de59c7c46e12fa28079426e1ec843b1d1/Exchange%20for%20Physical%20&%20Exchange%20for%20Swap%20(EFP%20&%20EFS%20facility).pdf)
-
-## Kavin
-* [Tamil](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/Tamil.md)
-* [Bar model problems](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/psle_youtube.md)
-* [Different types of problems](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/kavin_math_anki.md)
-* [Kavin Python Code](https://github.com/mohanmca/KavinPython)
-
 
 
 ## Mind, Focus and Remembering
