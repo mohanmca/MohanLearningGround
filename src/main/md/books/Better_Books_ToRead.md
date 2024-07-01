@@ -1,4 +1,4 @@
-# Priority
+## Priority
 * [Event-Driven Microservices - Chris Richardson] (https://www.safaribooksonline.com/videos/event-driven-microservices/9781491944165)
 * Code: The Hidden Language of Computer Hardware and Software
 * Understanding Computation - From Simple Machines to Impossible Programs
@@ -7,15 +7,13 @@
 * Cassandra: The Definitive Guide: Distributed Data at Web Scale 2nd Edition
 * Fluent Python
 
-
-
 ## Done
 * [Elasticsearch: The Definitive Guide] (https://www.safaribooksonline.com/library/view/elasticsearch-the-definitive/9781449358532/)
 
-# Communication
+## Communication
 * Marshall Rosenberg - https://www.amazon.co.uk/Nonviolent-Communication-Language-Marshall-Rosenberg/dp/1892005034
 
-# Math series
+## Math series
 * The Signal and the Noise: Why So Many Predictions Fail--but Some Don't (Statistics)
 * Everybody-Lies-Internet-About-Really
 * Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy
@@ -23,11 +21,11 @@
 * Bayes' Theorem Examples: A Visual Introduction For Beginners
 * How Not to Be Wrong - Jordan Ellenberg
 
-# Memory
+## Memory
 * Unlimited Memory: How to Use Advanced Learning Strategies to Learn Faster, Remember More and be More Productive Kindle Edition by Kevin Horsley
 * 
 
-# Demystified Math series
+## Demystified Math series
 * Discrete Mathematics 
 * Calculus DeMYSTiFieD
 * Math Proofs Demystified by Stan Gibilisco	
@@ -54,7 +52,7 @@
 * Product Roadmaps Relaunched: How to Set Direction while Embracing Uncertainty
  
 
-# Other books
+## Other books
 * Amazon "Best Sellers in Computer Science"
 * https://www.amazon.com/Best-Sellers-Books-Computer-Science/zgbs/books/3508/ref=zg_bs_nav_b_2_5
 * Tech books that were translated to other languages
@@ -70,7 +68,7 @@
 * ["The Cartoon Guide to Calculus"](https://www.amazon.com/Cartoon-Guide-Calculus/dp/0061689092/ref=sr_1_5?s=books&ie=UTF8&qid=1537065864&sr=1-5&keywords=cartoon+guide+to+statistics&dpID=51gQZ9XpaYL&preST=_SX218_BO1,204,203,200_QL40_&dpSrc=srch)
 * Larry Gonick - books - https://www.amazon.com/Larry-Gonick/e/B000AQ75IY/ref=dp_byline_cont_book_1
 
-# Self help books
+## Self help books
 * The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life - Mark Manson
 * Thinking in Bets - Annie Duke  
 * How will you measure your Life - Clayton M/Christensen
