@@ -6,6 +6,8 @@
 * [CPP - Ecosystem](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp_ecosystem.md)
 * [CPP - Samplecode](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/sample_codes.md)
 
+## My Math
+* [Unique counting](https://arxiv.org/abs/2301.10191)
 ## Kavin
 * [Tamil](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/Tamil.md)
 * [Bar model problems](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/psle_youtube.md)
