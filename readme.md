@@ -8,6 +8,8 @@
 
 ## My Math
 * [Unique counting](https://arxiv.org/abs/2301.10191)
+   * [Count distinct problem](https://en.wikipedia.org/wiki/Count-distinct_problem#:~:text=The%20CVM%20Algorithm%20provides%20an,to%20ensure%20B%20is%20reduced.)
+
 ## Kavin
 * [Tamil](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/Tamil.md)
 * [Bar model problems](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Kavin/psle_youtube.md)
