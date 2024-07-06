@@ -134,6 +134,11 @@
     1. Then, 68 more chairs were brought in and all the chairs were rearranged into rows of 20. There were 12 fewer rows. How many rows of chairs were in the hall at first? 
 
 
+## Tap rate problems
+1. Tap A can fill a tank in 3 hours, while tap B can fill in 6 hours. In how much time will the tank be filled if both the taps are opened together?
+1. When Taps A and B are turned on at the same time, they can fill up a container completely in 6 minutes. Tap A alone will take 10 minutes to fill up the container completely. How long will it take for Tap B alone to fill up the container completely?
+
+
 ## Problem solved PSLE
 1. [PSLE 2019 Solved Maths Paper 1 Booklet A](https://www.youtube.com/watch?v=bSQiP04ZX-8)
 1. [PSLE 2020 Solved Maths Paper 1 Booklet A](https://www.youtube.com/watch?v=O_l2jIo2esU)
