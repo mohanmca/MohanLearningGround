@@ -42,6 +42,9 @@
 ## Mastering CPP
 1. [Entire game engine coded live](https://handmadehero.org/)
 2. [Everything about CPP hacking](https://hackingcpp.com/cpp/blogs.html)
+
+## [Low latency C++ Exchange Thread](https://news.ycombinator.com/item?id=40908273)
+1. [Review comments about queue and code](https://news.ycombinator.com/item?id=40908273)
    
 ## What is hello world program in CPP?
 ```c++
