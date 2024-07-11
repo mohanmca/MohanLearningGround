@@ -40,6 +40,8 @@
 ## Constant Total Concept
 1. Under questions which involve “Internal Transfer”, the total remains the same. 
 1. Ali and Billy have money in the ratio of 5 : 4. After Ali gave Billy $20, they have an equal amount of money. How much money does Billy have in the end?
+2. Amy, Ben and Cindy bought a present. Amy's share was 1/4 of Ben's and Cindy's share. Ben's share was 1/2 of Amy's and Cindy's share. Cindy's share was $17 more than that of Ben's. How much did the present cost?
+
 
  
 ## Constant Difference Concept
