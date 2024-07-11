@@ -47,6 +47,7 @@
 ## Constant Difference Concept
 1. For questions relating to age, the age difference between 2 people will always remain the same.
 1. The ages of Ali and Billy are in the ratio of 4 : 7. In 3 years’ time, their ages will be in the ratio of 3 : 5. How old is Billy now?
+2. John had some pens. The ratio of red pens to blue pens was 3: 5. After selling an equal number of red and blue pens at $5 each, the ratio of red pens to blue pens became 1: 4. John collected a total of $1120 from the sale of the pens. How many blue pens are there at first?
 
 ## Everything Changed Concept (Units and Parts)
 1. This is a more challenging type of PSLE Math questions. 
