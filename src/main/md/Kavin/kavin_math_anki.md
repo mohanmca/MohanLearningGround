@@ -118,7 +118,7 @@ If he packed 7 balls into each bag, he would need another 4 more balls.
     Timothy participated in a marathon. There were drinking stations equally spaced along the route. Timothy took 48 min to run from the 1st drinking station to the 13th drinking station. Which drinking station would he reach after running for 120 min since the start of the marathon?
     ```
 
-## Repeated Identity
+## [Repeated Identity](https://jimmymaths.com/topic/repeated-identity-concept-3/)
 1. Repeated Identity involves one of the items being repeated in the question. 
 1. Your child needs to identify it and use the Ratio method and make it the same.
 1. ```
@@ -126,6 +126,7 @@ If he packed 7 balls into each bag, he would need another 4 more balls.
 
     If there are 10 more adults than boys, how many people are there inside the room?
     ```
+1. James and Kelvin had a number of marbles in the ratio 9: 2. Kelvin and Johnny had a number of marbles in the ratio 4: 9. If they had a total of 310 marbles altogether, how many more marbles did James have than Johnny?    
 
 ## Replacement
 1. It involves replacing one object with another object to solve the question. 
