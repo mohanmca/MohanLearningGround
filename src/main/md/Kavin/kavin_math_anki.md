@@ -58,7 +58,8 @@
 
 ## Excess and shortage question
 ```
-    Tom packed 5 balls into each bag and found that he had 8 balls left over. If he packed 7 balls into each bag, he would need another 4 more balls.
+    Tom packed 5 balls into each bag and found that he had 8 balls left over.
+If he packed 7 balls into each bag, he would need another 4 more balls.
     a) How many bags did he have?
     b) How many balls did he have altogether?
 ```
