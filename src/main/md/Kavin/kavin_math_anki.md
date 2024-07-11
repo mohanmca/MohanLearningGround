@@ -1,12 +1,13 @@
 ## Name list of types of questions
+1. Constant Part Concept -n Ration Question
+1. Constant Total Concept
+1. Constant Difference Concept
+1. Repeated Identity
 1. Remainder Concept (Branching)
-2. Equal Fractions Concept 
-3. More Than, Less Than, As Many As
-4. Constant Part Concept -n Ration Question
-5. Constant Total Concept
-6. Constant Difference Concept
-7. Part-Whole Concept
-8. Everything Changed Concept (Units and Parts)
+1. Equal Fractions Concept 
+1. More Than, Less Than, As Many As
+1. Part-Whole Concept
+1. Everything Changed Concept (Units and Parts)
 9. Excess and Shortage Concept
 10. Grouping Concept
 11. Number x Value Concept
@@ -16,9 +17,32 @@
 15. Double If Concept
 16. Equal Stage
 17. Interval
-18. Repeated Identity
 19. Replacement
 
+
+## Constant Part Concept -n Ration Question
+1. The word “Constant” means remain the same. You need to identify the part which remain constant and make them equal in both ratios. 
+1. Ali and Billy have money in the ratio of 5 : 6. After Billy spent $16, the ratio became 3 : 2. How much money does Billy have in the end?
+
+## Constant Total Concept
+1. Under questions which involve “Internal Transfer”, the total remains the same. 
+1. Ali and Billy have money in the ratio of 5 : 4. After Ali gave Billy $20, they have an equal amount of money. How much money does Billy have in the end?
+2. Amy, Ben and Cindy bought a present. Amy's share was 1/4 of Ben's and Cindy's share. Ben's share was 1/2 of Amy's and Cindy's share. Cindy's share was $17 more than that of Ben's. How much did the present cost?
+ 
+## Constant Difference Concept
+1. For questions relating to age, the age difference between 2 people will always remain the same.
+1. The ages of Ali and Billy are in the ratio of 4 : 7. In 3 years’ time, their ages will be in the ratio of 3 : 5. How old is Billy now?
+2. John had some pens. The ratio of red pens to blue pens was 3: 5. After selling an equal number of red and blue pens at $5 each, the ratio of red pens to blue pens became 1: 4. John collected a total of $1120 from the sale of the pens. How many blue pens are there at first?
+
+## [Repeated Identity](https://jimmymaths.com/topic/repeated-identity-concept-3/)
+1. Repeated Identity involves one of the items being repeated in the question. 
+1. Your child needs to identify it and use the Ratio method and make it the same.
+1. ```
+    The number of adults to the number of children in a room is 5 : 6. There are twice as many boys as girls in the room. 
+
+    If there are 10 more adults than boys, how many people are there inside the room?
+    ```
+1. James and Kelvin had a number of marbles in the ratio 9: 2. Kelvin and Johnny had a number of marbles in the ratio 4: 9. If they had a total of 310 marbles altogether, how many more marbles did James have than Johnny?    
 
 
 ## What is the example of Remainder Concept (Branching)?
@@ -33,21 +57,6 @@
 1. [James had 120 more marbles than Dan. After James lost 1/5 of his marbles and Dan lost 3/4 of his marbles, James had 184 more marbles than Dan. How many marbles did Dan have at first?](https://www.youtube.com/watch?v=mKfVpVF-yMw)
 1. Felicia and Julia had some pink and yellow beads. Felicia had 100 more beads than Julia. The number of pink beads that she had was 25 more than the number of pink beads than Julia had. Julia had 68 more yellow beads than pink beads. How many more yellow than pink beads did Felicia have?
 
-## Constant Part Concept -n Ration Question
-1. The word “Constant” means remain the same. You need to identify the part which remain constant and make them equal in both ratios. 
-1. Ali and Billy have money in the ratio of 5 : 6. After Billy spent $16, the ratio became 3 : 2. How much money does Billy have in the end?
-
-## Constant Total Concept
-1. Under questions which involve “Internal Transfer”, the total remains the same. 
-1. Ali and Billy have money in the ratio of 5 : 4. After Ali gave Billy $20, they have an equal amount of money. How much money does Billy have in the end?
-2. Amy, Ben and Cindy bought a present. Amy's share was 1/4 of Ben's and Cindy's share. Ben's share was 1/2 of Amy's and Cindy's share. Cindy's share was $17 more than that of Ben's. How much did the present cost?
-
-
- 
-## Constant Difference Concept
-1. For questions relating to age, the age difference between 2 people will always remain the same.
-1. The ages of Ali and Billy are in the ratio of 4 : 7. In 3 years’ time, their ages will be in the ratio of 3 : 5. How old is Billy now?
-2. John had some pens. The ratio of red pens to blue pens was 3: 5. After selling an equal number of red and blue pens at $5 each, the ratio of red pens to blue pens became 1: 4. John collected a total of $1120 from the sale of the pens. How many blue pens are there at first?
 
 ## Everything Changed Concept (Units and Parts)
 1. This is a more challenging type of PSLE Math questions. 
@@ -118,15 +127,6 @@ If he packed 7 balls into each bag, he would need another 4 more balls.
     Timothy participated in a marathon. There were drinking stations equally spaced along the route. Timothy took 48 min to run from the 1st drinking station to the 13th drinking station. Which drinking station would he reach after running for 120 min since the start of the marathon?
     ```
 
-## [Repeated Identity](https://jimmymaths.com/topic/repeated-identity-concept-3/)
-1. Repeated Identity involves one of the items being repeated in the question. 
-1. Your child needs to identify it and use the Ratio method and make it the same.
-1. ```
-    The number of adults to the number of children in a room is 5 : 6. There are twice as many boys as girls in the room. 
-
-    If there are 10 more adults than boys, how many people are there inside the room?
-    ```
-1. James and Kelvin had a number of marbles in the ratio 9: 2. Kelvin and Johnny had a number of marbles in the ratio 4: 9. If they had a total of 310 marbles altogether, how many more marbles did James have than Johnny?    
 
 ## Replacement
 1. It involves replacing one object with another object to solve the question. 
