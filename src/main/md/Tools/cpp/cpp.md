@@ -45,6 +45,9 @@
 
 ## [Low latency C++ Exchange Thread](https://news.ycombinator.com/item?id=40908273)
 1. [Review comments about queue and code](https://news.ycombinator.com/item?id=40908273)
+
+## CPP - Todo
+1. CPP - Iterator Invalidation Rules
    
 ## What is hello world program in CPP?
 ```c++
