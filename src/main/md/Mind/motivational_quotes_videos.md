@@ -3,6 +3,10 @@
 * A wise man proportions his beliefs to the evidence - David Hume
   * Bayes theorem was proposed by Thiest, but core of theorem expects evidence
 
+## Always there is consequences..
+1. Eventually everything is consistent
+2. Coffee always comes with cup
+
 ## Going fast
 * If you want to go fast, go alone; if you want to go far; go togther.
 * If everything seems under control you�re just not going fast enough. 
