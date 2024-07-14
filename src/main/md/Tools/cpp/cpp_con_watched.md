@@ -20,6 +20,7 @@
 1. [CppCon 2014: Herb Sutter "Back to the Basics! Essentials of Modern C++ Style"](https://www.youtube.com/watch?v=xnqTKD8uD64&t=28m27s)
 1. [CppCon 2019: Alisdair Meredith, Pablo Halpern “Getting Allocators out of Our Way”](https://www.youtube.com/watch?v=RLezJuqNcEQ)
 1. [CppCon 2017: Pablo Halpern “Allocators: The Good Parts”](https://www.youtube.com/watch?v=v3dz-AKOVL8)
+1. [Practical Advice for Maintaining and Migrating Working Code - Brian Ruth - CppCon 2021](https://www.youtube.com/watch?v=CktRuMALe2A)
 
 ## [John Lakos videos on large scale development in C++]
 * [CppCon 2018: John Lakos “C++ Modules and Large-Scale Development”](https://www.youtube.com/watch?v=K_fTl_hIEGY)
