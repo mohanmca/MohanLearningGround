@@ -40,9 +40,9 @@
 38. Capabilities drive requirements, regardless of what the systems engineering textbooks say.
 39. Any exploration program which "just happens" to include a new launch vehicle is, de facto, a launch vehicle program.
 39. (alternate formulation) The three keys to keeping a new human space program affordable and on schedule:
-  1. No new launch vehicles.
-  2. No new launch vehicles.
-  3. Whatever you do, don't develop any new launch vehicles.
+    1. No new launch vehicles.
+    2. No new launch vehicles.
+    3. Whatever you do, don't develop any new launch vehicles.
 40. (McBryan's Law) You can't make it better until you make it work.
 41. There's never enough time to do it right, but somehow, there's always enough time to do it over.
 42. Space is a completely unforgiving environment. If you screw up the engineering, somebody dies (and there's no partial credit because most of the analysis was right...)
