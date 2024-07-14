@@ -36,6 +36,8 @@
 1. If we could wipe impression, we can remove fear
 1. Impressions are potential energy, thoughts are kinetic energy
 
+## When oppressed by negative deliberation, cultivate the opposite side
+1. [vitarka-bādhane pratipakṣa-bhāvanam](https://yogastudies.org/sutra/yoga-sutra-chapter-2-verse-33/)
 
 ## Reference
 1. [duḥkha-anuśayī dveṣaḥ](https://yogasutrastudy.info/yoga-sutra-translations/ysp-sutras2-01-2-20/)
