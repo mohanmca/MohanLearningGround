@@ -21,6 +21,9 @@
 1. [Step-by-Step guide to benchmarking Aeron in your AWS environment](https://hub.aeron.io/hubfs/Aeron-Assets/Aeron_AWS_Performance_Testing_Guide_Nov23.pdf)
 2. [Step-by-Step guide to benchmarking Aeron in your Google Cloud environment.](https://hub.aeron.io/hubfs/Aeron-Assets/Aeron_GoogleCloud_Performance_Testing_Guide_Feb24.pdf)
 
+## System Design
+1. [Exponential Backoff with Jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
 ## Kernel by-pass
 1.[Aeron Kernel ByPass](https://hub.aeron.io/hubfs/Aeron-Assets/Aeron-KernelBypass-Overview-Web.pdf)
 
