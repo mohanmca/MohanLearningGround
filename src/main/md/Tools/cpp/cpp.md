@@ -59,6 +59,9 @@ int main(void) {
 }
 ```
 
+## Real Errors
+1. [Error: pure virtual method called - terminate called without an active exception - Aborted](https://stackoverflow.com/questions/63261761/qt-pure-virtual-method-called-terminate-called-without-an-active-exception)
+
 ## Stack, Heap and Segments
 1. Stack
    1. Every function call has function-call-frame
