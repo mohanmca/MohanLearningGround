@@ -481,6 +481,33 @@ int main() {
 }
 ```
 
+## Standard way of catching exceptions
+
+```cpp
+#define EXPECT_NO_THROW_WITH_DETAIL(stmt) \
+    try { \
+        stmt; \
+    } catch (const std::invalid_argument& e) { \
+        std::cerr << "Caught invalid_argument: " << e.what() << std::endl; \
+        FAIL() << "invalid_argument thrown: " << e.what(); \
+    } catch (const std::out_of_range& e) { \
+        std::cerr << "Caught out_of_range: " << e.what() << std::endl; \
+        FAIL() << "out_of_range thrown: " << e.what(); \
+    } catch (const std::runtime_error& e) { \
+        std::cerr << "Caught runtime_error: " << e.what() << std::endl; \
+        FAIL() << "runtime_error thrown: " << e.what(); \
+    } catch (const std::logic_error& e) { \
+        std::cerr << "Caught logic_error: " << e.what() << std::endl; \
+        FAIL() << "logic_error thrown: " << e.what(); \
+    } catch (const std::exception& e) { \
+        std::cerr << "Caught exception: " << e.what() << std::endl; \
+        FAIL() << "Exception thrown: " << e.what(); \
+    } catch (...) { \
+        std::cerr << "Caught unknown exception" << std::endl; \
+        FAIL() << "Unknown exception thrown"; \
+    }
+```
+
 ## Generate MdAnki
 ```bash
 mdanki cpp_sample_codes.md cpp_sample_codes.apkg --deck "Mohan::DeepWork::sample_code_cpp"
