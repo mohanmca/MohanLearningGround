@@ -135,5 +135,11 @@
 1. Once the leader has received a successful response from a majority of followers for a particular log entry (i.e., it has been replicated on a majority of servers), the entry can be considered committed. 
 1. The leader then updates its commitIndex and notifies the followers of the new commit.
 
+## Why Raft over paxos?
+* Raft uses randomization over agreeing on single value in Paxos
+* Raft assumes leader log is always correct
+* sometimes PAXOS assumes there are no leader (like leaderless)
+
+
 ## How to create raft anki
-mdanki api_gemini.md api_gemini.apkg --deck "Mohan::DeepWork::Api"
+mdanki raft_anki.md raft_anki.apkg --deck "Mohan::DeepWork::Raft"
