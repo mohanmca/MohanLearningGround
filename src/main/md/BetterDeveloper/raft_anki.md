@@ -56,6 +56,17 @@
 }
 ```
 
+## RequestVote (Candidate to Follower):
+
+```json
+{
+  "term": 5,
+  "candidateId": 3,
+  "lastLogIndex": 10,
+  "lastLogTerm": 4
+}
+```
+
 ## Commit Index Updates (AppendEntries RPCs with log entries)
 
 ```json
@@ -89,6 +100,14 @@
 }
 ```
 
+## The follower response to the RequestVote request indicating whether it voted for the candidate.
+```json
+{
+  "term": 5,
+  "voteGranted": true
+}
+```
+
 ## Tracking State for Each Follower:
 
 1. The leader maintains a state for each follower, including:
@@ -97,7 +116,8 @@
 1. These indices help the leader keep track of which entries have been acknowledged by each follower and which entries still need to be sent.    
 
 ## When does Leader Committs Entries:
-1. Once the leader has received a successful response from a majority of followers for a particular log entry (i.e., it has been replicated on a majority of servers), the entry can be considered committed. The leader then updates its commitIndex and notifies the followers of the new commit.
+1. Once the leader has received a successful response from a majority of followers for a particular log entry (i.e., it has been replicated on a majority of servers), the entry can be considered committed. 
+1. The leader then updates its commitIndex and notifies the followers of the new commit.
 
 ## How to create raft anki
 mdanki api_gemini.md api_gemini.apkg --deck "Mohan::DeepWork::Api"
