@@ -18,6 +18,22 @@
 ## Leader election mechanism handles failures of what kind?
 1. This leader election mechanism is designed to handle various failure scenarios, such as network partitions or node crashes.
 
+## What is Term?
+1. Term is a crucial concept that helps in managing leader election and ensuring consistency. 
+1. In RAFT, the term is used as a logical clock to detect stale information and resolve conflicts. 
+1. The term comparison helps in determining which information (votes, entries, etc.) is more recent and should be prioritized.
+
+## What are properties of Terms
+1. The term is a monotonically increasing integer that represents a logical clock across the cluster. 
+1. When a server's term is updated, the new term is immediately persisted to stable storage. This ensures that even if the server crashes and restarts, it will not revert to an outdated term.
+1. An increase in term causes the server to transition to the follower state, relinquishing its candidate or leader status if it held such roles.
+
+## When and how the term gets incremented:
+1. Starting a New Election:
+1. Receiving a RequestVote RPC with a Higher Term:
+1. Receiving an AppendEntries RPC with a Higher Term:
+1. Discovering a Higher Term in a Response:
+
 
 ## What are all the messages sent by Leader without any request
 1. Heartbeat Messages (AppendEntries RPCs with no log entries)
