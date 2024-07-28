@@ -141,5 +141,29 @@
 * sometimes PAXOS assumes there are no leader (like leaderless)
 
 
+## Raft complexities and depth understaning
+
+1. Leadership Stability and Term Conflicts: "How does RAFT ensure leadership stability in the presence of network partitions and how does it handle potential term conflicts when network partitions heal?"
+1. Explore how RAFT handles split votes and network partitions, especially when partitions merge and multiple candidates might believe they are the leader. 
+1. Discuss the concept of "leadership disambiguation" and the role of the term number in resolving conflicts.
+
+## Log Compaction and Snapshot Handling: "Can you explain how log compaction works in RAFT, and how the system ensures consistency and safety when restoring from snapshots?"
+1. Investigate their understanding of the snapshot process, including how entries are safely discarded, and the process of installing and applying snapshots.
+1. Discuss how log indices are handled in the context of snapshots and what happens to entries that precede the snapshot.
+
+## Commit Index Calculation and Log Matching: "In what situations can a leader's commit index move backward, and how does RAFT handle such scenarios to ensure consistency across all followers?"
+1. Probe into scenarios where the leader might misinterpret the majority's acknowledgment and incorrectly adjust the commit index.
+1. Examine their understanding of the log matching property and its role in maintaining a consistent replicated log.
+
+## Cluster Membership Changes
+1. "How does RAFT handle dynamic membership changes (such as adding or removing nodes), and what are the potential pitfalls and solutions associated with these changes?"
+1. Discuss the joint consensus approach used in RAFT for safe membership changes.
+1. Explore the issues that might arise during the transition phase and how they are mitigated.
+
+## Election Timing and Randomization
+1. "Why does RAFT use randomized election timeouts, and how would the system behave if this randomness were removed or improperly implemented?"
+1. Discuss the importance of randomized timeouts in preventing split votes and reducing the likelihood of multiple candidates starting an election simultaneously.
+1. Analyze the potential issues that might arise with deterministic timeouts and how they could lead to decreased system reliability or availability.
+
 ## How to create raft anki
 mdanki raft_anki.md raft_anki.apkg --deck "Mohan::DeepWork::Raft"
