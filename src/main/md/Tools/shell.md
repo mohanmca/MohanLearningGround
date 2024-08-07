@@ -34,6 +34,12 @@ for x in 2 3; do ssh aws-worker-00$x.aws-sandbox.host 'cat /proc/cmdline'; done
 1. Restart the rsyslog
 2. ```sudo lsof | grep containers;sudo systemctl restart rsyslog```
 
+## Sed invalid json into json by introducing [ and ] and , ?
+1. introduce , between }{
+2. introduce , between } | {, "So consider | {"
+3. introduce [ and ]
+5. ```grep "Failed to process" extract-2024-08-07T07_35_23.171Z.csv | egrep -o "{.*}" | sed 's/""/"/g' | head -1 | sed -e 's/}{/},{/g' -e 's/|{/,{/g' -e 's/| {/,{/g' -e  's/^/[&/' -e 's/$/&]/' | jq ".[0]"```
+
 ### Find Java Environemnt Variable from Shell
 <details><summary>show</summary>
 <p>
