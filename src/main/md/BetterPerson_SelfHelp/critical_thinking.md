@@ -20,3 +20,19 @@
 1. Don’t just learn out of curiosity—use diagrams to build mental models and connect new knowledge to existing concepts.
 1. Keep a small diary to jot down inspiring questions and thoughts, gradually accumulating valuable knowledge.
 1. Engage in discussions and debates to share your diagrams and notes. When they are reviewed by others, they become even more useful.
+
+
+## What is First Principles Thinking?
+1. “A first principle is a basic assumption that cannot be deduced any further.
+  1. Boil things down to the most fundamental truths you can imagine and reason up from there
+  1. Aristotle defined a first principle as “the first basis from which a thing is known.”
+1. First principles thinking that’s fused with contrarian views and horizontal + vertical depth of analysis
+  1. Identify underlying assumptions
+  1. Challenge conventional wisdom - considering alternative perspectives that go against the mainstream
+  1. Develop innovative solutions
+
+## What is First Principles Thinking - Framework?
+1. Start with the most basic truths
+1. Use these truths to understand the nature of the problem
+1. Develop solutions that are based on these fundamental truths
+   
