@@ -3,16 +3,14 @@
 2. [very compact representation of nesting that can be efficiently encoded using a combination of Run Length Encoding and bit packing.](https://blog.x.com/engineering/en_us/a/2013/dremel-made-simple-with-parquet)
 3. [Apache Parquet: Parquet file internals and inspecting Parquet file structure](https://www.youtube.com/watch?v=rVC9F1y38oU)
 
-4. ## Who uses Parquet?
+## Who uses Parquet?
 1. Apache Spark
 2. Apache Hive
 3. Presto (AWS - Athena is Presto based)
-4. 
 
 ## Open-questions
 1. Would Parquest support 128-int?
 2. How to adjust size of file using block-size and row-group?
-3. 
 
 ## Tidbits
 1. Borrowed from Dremel for nested columns
