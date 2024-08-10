@@ -21,6 +21,9 @@
 1. Keep a small diary to jot down inspiring questions and thoughts, gradually accumulating valuable knowledge.
 1. Engage in discussions and debates to share your diagrams and notes. When they are reviewed by others, they become even more useful.
 
+## Awarness and knowing well with exact sample are different level of knowledge.
+1. Knowing about Run-length-encoding is one
+2. Knowing how multiple product details are stored using bitma-index inside parquet file and encoded using RLE with sample data would be different level of knowledge
 
 ## What is First Principles Thinking?
 1. “A first principle is a basic assumption that cannot be deduced any further.
