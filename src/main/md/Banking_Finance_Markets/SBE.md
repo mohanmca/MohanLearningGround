@@ -145,6 +145,10 @@ System.out.println(nosDecoder);
       System.out.println(decoderToString);
    ```
 
+## Sample public SBE interface
+1. [Binance-Simple Binary Encoding (SBE) FAQ](https://developers.binance.com/docs/binance-spot-api-docs/faqs/sbe_faq#how-to-get-an-sbe-response)
+2. ```curl -v -sX GET -H "Accept: application/sbe" -H "X-MBX-SBE: 1:0" 'https://api.binance.com/api/v3/exchangeInfo?symbol=BTCUSDT' > output.txt```
+
 ## Reference
 1. [Design principles for SBE, the ultra-low latency marshaling API](https://weareadaptive.com/2013/12/15/design-principles-for-sbe-the-ultra-low-latency-marshaling-api/)
 2. [SBE Gotchas](https://github.com/tommyqqt/sbe-gotchas/tree/master)
