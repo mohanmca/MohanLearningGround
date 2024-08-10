@@ -73,10 +73,81 @@ int main() {
 4. The bswap instruction on x86 architectures is a highly efficient way to swap the byte order of a 16-bit, 32-bit, or 64-bit integer, converting it between little-endian and big-endian formats.
 5. Java uses integer.reverse, which gets optimized away as well as bswap.
 
+## SBE ENcoding
+1. Header
+2. Block Fields
+3. Repeating Group
+   4. Var length fields (sub-field of repeating group)
+5. Var length fields (root fields)
+
+
+## When Encoded Length Isn’t Encoded Length
+```java
+final int encodedLength = nosEncoder.encodedLength();
+final byte[] bytes = new byte[encodedLength];
+buffer.getBytes(0, bytes); //why we need this?
+final DirectBuffer readBuffer = new UnsafeBuffer(bytes);
+wrapDecoder(headerDecoder, nosDecoder, readBuffer, 0);
+System.out.println(nosDecoder);
+```
+1. java.lang.IndexOutOfBoundsException: index=262 length=22 capacity=276
+2. We get an exception because encoder.encodedLength() excludes the header length. The whole byte array is required to decode the message, not just the body.
+
+
+## How to determine the encoded length if we only have the encoded buffer?
+1. Unfortunately, the decoder has to traverse to the end of the message to get the encoded length.
+2. One other way is to remember the encoded length at the time that the message was encoded and pass it along with the encoded buffer as a method parameter.
+3. Sample code to find encodedLength
+   ```java
+      skipGroup(nosDecoder.allocations(), allocDec -> {
+          skipGroup(allocDec.nestedParties(), partyDec -> {
+                     partyDec.nestedPartyDescription();
+          });
+          allocDec.allocDescription();
+      });
+      nosDecoder.traderDescription();
+      nosDecoder.orderDescription();
+      //decoder encoded length at end of message = actual encoded Length
+      encodedLengthFromDecoder = headerDecoder.encodedLength() + nosDecoder.encodedLength();
+   ```
+
+## The Moving Repeating Group
+1. Don't invoke same method multiple times expecting same result (it is buffer reader, and moves pointer)
+2. Unless the field is a fixed length field, every field subsequent to the mutated field needs to be encoded again.
+3. Remember the limit just before encoding it, then use the limit to backtrack later.
+4. ```java
+      //I want to change trader description later so remember the limit here
+      final int limit = nosEncoder.limit();
+      nosEncoder.traderDescription("TRADER-1");
+      nosEncoder.orderDescription("ORDER DESC");
+      nosEncoder.limit(limit);
+      nosEncoder.traderDescription("TRADER-00001");
+      //Everything subsequent to the above needs to be encoded again
+      nosEncoder.orderDescription("ORDER DESC");
+   ```
+
+## The Semi-Forbidden Schema Evolution
+1. Code that uses SBE also tends to reuse the buffers to reduce allocations.
+2. Even though we don’t care about the last field, the buffer may contains some bytes from the previous message that encroaches on the new field when we encode the new message.
+3. Use base64 encoder to compare SBE strings
+4. ```java
+      final int encodedLength = headerEncoder.encodedLength() + nosEncoder.encodedLength();
+   
+      final byte[] bytes = new byte[encodedLength];
+      buffer.getBytes(0, bytes);
+      
+      final String base64EncStr = Base64.getEncoder().encodeToString(bytes);
+      System.out.println(base64EncStr);
+      final byte[] decoderBytes = Base64.getDecoder().decode(base64EncStr);
+      final DirectBuffer decoderBuffer = new UnsafeBuffer(decoderBytes);
+      wrapDecoder(headerDecoder, nosDecoder, decoderBuffer, 0);
+      final String decoderToString = nosDecoder.toString();
+      System.out.println(decoderToString);
+   ```
 
 ## Reference
 1. [Design principles for SBE, the ultra-low latency marshaling API](https://weareadaptive.com/2013/12/15/design-principles-for-sbe-the-ultra-low-latency-marshaling-api/)
-
+2. [SBE Gotchas](https://github.com/tommyqqt/sbe-gotchas/tree/master)
 ## Generate Anki
 ```bash
 mdanki SBE.md sbe.apkg --deck "Mohan::DeepWork::Encoding::SBE"
