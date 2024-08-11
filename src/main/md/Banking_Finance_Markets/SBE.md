@@ -11,9 +11,11 @@
 1. Within the fields section, fields are encoded in the order specified by schema.
 2. Then repeating groups, again in the order specified in the schema.
 3. Finally variable length fields, in the order specified by the schema.
-4. Developer encode and decode in the order specified by the schema. Failing to do so could at best reduce performance, at worst return invalid data during decoding or corrupt data in the buffer during encoding.
-5. API might let encode and decode out of order. But there are plans to improve that and throw errors if detected an invalid sequence
-6. That constraint helps simplifying the flyweight design and make it more hardware friendly.
+
+## Order of encoding - API   
+1. Developer encode and decode in the order specified by the schema. Failing to do so could at best reduce performance, at worst return invalid data during decoding or corrupt data in the buffer during encoding.
+1. API might let encode and decode out of order. But there are plans to improve that and throw errors if detected an invalid sequence
+1. That constraint helps simplifying the flyweight design and make it more hardware friendly.
 
 ## Encoder / Decoder
 1. Encoder/Decoder does no allocation or very less(i.e in case of String).
@@ -21,10 +23,18 @@
 3. Buffer can be allocated at thread level and can be used for decoding and encoding of message.
 4. Decoder has to know very little metadata about message(i.e offset and size).
 
+## What are 5 fields related to MessageHeaderEncoder/Decoder
+1. static ByteOrder	BYTE_ORDER 
+1. static int	ENCODED_LENGTH 
+1. static int	SCHEMA_ID 
+1. static int	SCHEMA_VERSION 
+1. static String	SEMANTIC_VERSION 
+
+
 ## SBE Flyweights vs DTO
 1. SBE does not work with DTO: the flyweight writes directly to the underlying buffer during encoding and reads directly from the buffer during decoding.
 2. When we write orderId = 72 in the order flyweight, what it does is encode 72 in its byte representation (which depends of the orderId primitive type and of the endianess) and store it directly in the underlying buffer.
-3. Flyweights can be reused indefinitely, to encode and decode different messages.But it is not threadsafe
+3. Flyweights can be reused indefinitely, to encode and decode different messages. But it is not threadsafe
 4. When you decode a field of one of the primitive types, nothing is allocated, it’s only a stack operation.
 
 ## How to decode array?
