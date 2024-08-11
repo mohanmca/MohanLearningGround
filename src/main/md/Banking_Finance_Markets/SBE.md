@@ -41,7 +41,7 @@
 1. when you decode a field of type array you do not get a new array allocated and given back you:
 2. Provide your own buffer (that you can reuse on your side) and the flyweight will copy data to your buffer.
 3. Again, this allows your system to not allocate.
-  1. Why limiting or preventing allocation? To limit or suppress GCs, which will slow down your encoding and decoding operations
+    1. Why limiting or preventing allocation? To limit or suppress GCs, which will slow down your encoding and decoding operations
 
 ## Google Protocol Buffer vs SBE
 1. SBE is significantly faster, but there is a more subtle aspect:
@@ -97,7 +97,7 @@ int main() {
 1. Header
 2. Block Fields
 3. Repeating Group
-   4. Var length fields (sub-field of repeating group)
+    1. Var length fields (sub-field of repeating group)
 5. Var length fields (root fields)
 
 
