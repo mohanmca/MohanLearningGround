@@ -28,6 +28,13 @@
 1. Knowing about Run-length-encoding is one
 2. Knowing how multiple product details are stored using bitma-index inside parquet file and encoded using RLE with sample data would be different level of knowledge
 
+## Improve problem solving skills
+* Solve problems
+* Afterward, reflect on what went well and what didn't
+* Write down what you should have done differently
+* Solve more problems, keep those notes handy
+* Repeat
+
 ## What is First Principles Thinking?
 1. “A first principle is a basic assumption that cannot be deduced any further.
   1. Boil things down to the most fundamental truths you can imagine and reason up from there
