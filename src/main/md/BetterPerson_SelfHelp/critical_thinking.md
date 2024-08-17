@@ -8,6 +8,7 @@
 7. [Clear Thinking](https://www.amazon.sg/Clear-Thinking-Turning-Ordinary-Extraordinary/dp/0593086112)
 8. [Peak: Secrets from the New Science of Expertise](https://www.amazon.com/Peak-Secrets-New-Science-Expertise-ebook/dp/B011H56MKS)
 9. [How to solve it](https://www.amazon.com/How-Solve-Aspect-Mathematical-Method-ebook)
+10. [Informal Logic: A Pragmatic Approach pdf](https://www.amazon.sg/Informal-Logic-Pragmatic-Douglas-Walton/dp/0521713803/ref=cm_cr_arp_d_product_top?ie=UTF8)
 
 ## Notes from Rajan
 1. He doesn't trust his memory, and believes that he is so bad at remembering things.
