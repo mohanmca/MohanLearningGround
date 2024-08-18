@@ -23,12 +23,6 @@
 * Consensus algorithms allow a collection of machines to work as a coherent group that can provide continuous service even if some of its members fail.
 * Paxos and Raft both solves CA
 
-
-## Why Raft over paxos?
-
-* Raft uses randomization over agreeing on single value in Paxos
-* Raft assumes leader log is always correct
-
 ## Raft excercises?
 
 * [Distributed Systems-Go Programming Cookbook - Second Edition](https://learning.oreilly.com/library/view/go-programming-cookbook/9781789800982/f31ccddf-d039-47c0-9a9d-365c64b4b8c4.xhtml#uuid-6a541d4d-79bd-4568-abd0-abb030097790)
