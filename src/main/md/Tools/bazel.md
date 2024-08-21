@@ -8,6 +8,62 @@
     1. If you have actions that have output files aren't that depth-set, it may not get executed
     1. Bazel might see no dependent actions that require these outputs. Hence it might miss few
 
+## Bazel Rule
+1. A rule defines how Bazel should transform a set of input files into output files, typically by invoking a compiler, linker, or other tools.
+2. Rules are used to define new types of targets in your BUILD files. For example, Bazel's built-in rules like cc_library, java_library, etc., are all rules.
+3. Rules are more powerful than macros because they define custom logic for how to build a target, and they can access and manipulate files, run commands, etc. However, they are also more complex to write.
+
+## Sample Bazel rule
+
+```python
+def _my_rule_impl(ctx):
+    # Implementation logic for the rule
+    output_file = ctx.actions.declare_file(ctx.label.name + ".out")
+    ctx.actions.run(
+        outputs = [output_file],
+        executable = ctx.executable.my_tool,
+        arguments = [ctx.file.src.path, output_file.path],
+    )
+
+my_rule = rule(
+    implementation = _my_rule_impl,
+    attrs = {
+        "src": attr.label(allow_single_file = True),
+        "my_tool": attr.label(executable = True, cfg = "host"),
+    },
+    outputs = {"out": "%{name}.out"},
+)
+
+# Usage in BUILD file
+my_rule(
+    name = "my_target",
+    src = "foo.txt",
+    my_tool = ":my_tool_binary",
+)
+```
+
+ ## Bazel Macros
+ 1. A macro is essentially a function written in Starlark (the language used in Bazel's build files). It is used to simplify and reuse common sets of build instructions. Macros can call other rules or macros.
+ 2. Macros are typically used to reduce repetition in your BUILD files.
+ 3. Macros allow for more flexibility in structuring your build files because they can take parameters and generate multiple rules or targets.
+
+## Sample bazel macros
+
+```python
+def my_macro(name, srcs):
+    cc_library(
+        name = name,
+        srcs = srcs,
+        deps = ["//some:dependency"],
+    )
+
+# Usage in BUILD file
+my_macro(
+    name = "mylib",
+    srcs = ["foo.cc", "bar.cc"],
+)
+```
+
 ## Bazel commands
 1. bazel version
 2. bazel info
