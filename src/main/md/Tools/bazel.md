@@ -129,3 +129,7 @@ bazel query --noimplicit_deps 'deps(@docker//:client)' --output=build
 3. [April 2022: Bazel Custom Rules Workshop (Ulf Adams)](https://www.youtube.com/watch?v=OPmUbpBNK9g&list=PLxx_fSA_YtcV_EcmWXSKVoQcTWba8nO38)
 4. [An Overview of the Starlark language](https://laurent.le-brun.eu/blog/an-overview-of-starlark)
 
+## How to create anki?
+```
+mdanki ./src/main/md/Tools/bazel.md bazel.apkg --deck "Mohan::DeepWork::bazel"
+```
