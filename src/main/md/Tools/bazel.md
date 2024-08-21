@@ -5,8 +5,8 @@
 4. Execution - Actions are executed (possibly remotely)
 5. All the above can be executed in pipeline based (like parallel, compare with CPU pipeline), they are executed in interleaved..
 6. Gotcha
-   7. If you have actions that have output files aren't that depth-set, it may not get executed
-   8. Bazel might see no dependent actions that require these outputs. Hence it might miss few
+    1. If you have actions that have output files aren't that depth-set, it may not get executed
+    1. Bazel might see no dependent actions that require these outputs. Hence it might miss few
 
 ## Bazel commands
 1. bazel version
@@ -142,6 +142,28 @@ bazel query 'kind(rule, //:*)' --output label_kind
 bazel query --noimplicit_deps 'deps(trafficking/ui/selectors.jsar)' --output=build
 bazel query --noimplicit_deps 'deps(@docker//:client)' --output=build
 ```
+
+## Example rule
+```bzl
+binary_alias = rule(
+   implementation = _binary_alias_impl,
+   excutable = True,
+   attrs = {
+      "actual": attr.label(allow_single_file=True, executable=True, cfg="exec",),
+   },
+)
+
+def __binary_alias_imp(ctx):
+   out = ctx.actions.declare_file(ctx.label.name + ".exe")
+   ctx.actions.symlink(
+      output = out,
+      target_file = ctx.file.actual,
+      is_executable = True,
+   )
+   return [DefaultInfo(files=depset([out]), executable = out,)]
+```
+* excutable - bazel run would work
+* actual - is of type label (not string), declares dependency, it could be single file
 
 ## Reference
 1. [Bazel BootCamp](https://www.youtube.com/watch?v=jY0BGMB21hw)
