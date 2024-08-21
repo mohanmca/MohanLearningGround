@@ -14,7 +14,8 @@ query --repository_cache=~/.cache/bazel-repo
 build --disk_cache=~/.cache/bazel-disk
 ```
 
-## Bazel notes
+## [Bazel notes - Starlark Language]
+1. [An Overview of the Starlark language](https://laurent.le-brun.eu/blog/an-overview-of-starlark)
 1. Pythonic syntax and Make semanics
 1. Path based
 1. Distributed and remote build is possible in bazel
@@ -85,6 +86,33 @@ bazel query --noimplicit_deps 'deps(@docker//:client)' --output=build
 7. "@maven//:jar" is a special label that refers to the maven_jar rule in the maven repository.
 8. "@maven//:junit_jar" is a special label that refers to the junit_jar rule in the maven repository.
 
+## Bazel rule
+1. It should have name
+2. It can have multiple attributes
+3. Bazel uses a lots of label instead of string - A *Label is a special type* in Starlark that uniquely identifies a Bazel target.
+   1. srcs and targets are generally Label
+   2. It creates dependency
+
+## Bazel Rules vs Macros vs Functions
+1. Functions - called while evaluating a BUILD file, function can call other functions (but not rules)
+2. Macros - Macros can call other functions and rules
+3. Rules - Special evaulation model, Each call to a rule creates a node in the BUILD grpah
+4. All looks like function calls, all three are written in Starlark
+
+## Starlark
+1. Imperative language - with sandbox properties
+2. No hardware, or filesystem access (Sandbox mode)
+3. Multi-threaded (No shared writable memory, shared read-only data structure is available)
+4. No 'Set' type
+5. We can't react by looking at the file system easily
+6. Completely deterministic (Map iteration across machines are deterministic, No floating-point types)
+
+## Phase model
+1. All models are wrong, but some of them are useful
+2. Loading - Reading & Executing Build Files, List files  glob()
+3. Analysis - Each rule can create output files and actions to generate tehm
+4. Execution - Actions are executed (possibly remotely)
+
 ## Bazel rules
 1. cc_binary
 2. java_binary, java_library, java_test, java_toolchain
@@ -99,3 +127,5 @@ bazel query --noimplicit_deps 'deps(@docker//:client)' --output=build
 1. [Bazel BootCamp](https://www.youtube.com/watch?v=jY0BGMB21hw)
 2. [Build Event Protocol for Reclient (Ola Rozenfeld @ EngFlow) - Oct 2023](https://www.youtube.com/watch?v=w6-cMumFDgA)
 3. [April 2022: Bazel Custom Rules Workshop (Ulf Adams)](https://www.youtube.com/watch?v=OPmUbpBNK9g&list=PLxx_fSA_YtcV_EcmWXSKVoQcTWba8nO38)
+4. [An Overview of the Starlark language](https://laurent.le-brun.eu/blog/an-overview-of-starlark)
+
