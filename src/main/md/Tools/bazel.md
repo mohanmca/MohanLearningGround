@@ -1,5 +1,5 @@
 ## Phase model
-1. All models are wrong, but some of them are useful
+1. *All models are wrong, but some of them are useful*
 2. Loading - Reading & Executing Build Files, List files  glob()
 3. Analysis - Each rule can create output files and actions to generate tehm
 4. Execution - Actions are executed (possibly remotely)
@@ -94,6 +94,12 @@
 1. Works for multiple build tools, not just for bazel
 2. Bazel-BSP - Build Server Protocol is common protocol helps IDE to integrate
 3. 
+
+## CQuery in Bazel - (Configurable Query)
+1. Cquery is execute during analysis phase, query is executed during loading phase
+2. bazel cquery "//my/app:app" --output=build
+3. bazel cquery "deps(//my/app:app)" --output=label
+4. Bazel queries are faster than cqueries - Because queries does not evaluate configurations.
 
 ## How to save time and space in bazel
 * Create .bazelrc
