@@ -75,6 +75,14 @@ my_macro(
 ## How to do remote debug using bazel
 1. bazel run //target/application -- --jvm_flags="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005
 
+## How to create uber jar using bazel
+1. Add "_deploy.jar", it would automatically create uber jar
+1.
+    ```bash
+        bazel build module/sub_module:ParquetGenerator
+        bazel build module/sub_module:ParquetGenerator_deploy.jar
+    ```
+
 ## Bazel query
 1. How to query all the packages
   1. bazel query //...
