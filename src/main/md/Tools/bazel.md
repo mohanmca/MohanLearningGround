@@ -36,6 +36,10 @@ build --disk_cache=~/.cache/bazel-disk
 3. bazel help build
 4. bazel query ...
 5. bazel run :frontend //alias based target
+6. bazel run //target/application -- --jvm_flags="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005
+
+## How to do remote debug using bazel
+1. bazel run //target/application -- --jvm_flags="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005
 
 ## Bazel query
 1. How to query all the packages
