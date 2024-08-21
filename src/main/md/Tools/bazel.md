@@ -3,6 +3,10 @@
 2. Loading - Reading & Executing Build Files, List files  glob()
 3. Analysis - Each rule can create output files and actions to generate tehm
 4. Execution - Actions are executed (possibly remotely)
+5. All the above can be executed in pipeline based (like parallel, compare with CPU pipeline), they are executed in interleaved..
+6. Gotcha
+   7. If you have actions that have output files aren't that depth-set, it may not get executed
+   8. Bazel might see no dependent actions that require these outputs. Hence it might miss few
 
 ## Bazel commands
 1. bazel version
