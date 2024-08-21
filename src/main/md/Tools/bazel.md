@@ -66,7 +66,6 @@ bazel query --noimplicit_deps 'deps(trafficking/ui/selectors.jsar)' --output=bui
 bazel query --noimplicit_deps 'deps(@docker//:client)' --output=build
 ```
 
-
 ## Basic bazel concepts
 1. WORKSPACE and BUILD
 2. WORKSPACE - unique name and only one workspace for one monorepo (google has only one WORKSPACE)
@@ -89,10 +88,14 @@ bazel query --noimplicit_deps 'deps(@docker//:client)' --output=build
 ## Bazel rules
 1. cc_binary
 2. java_binary, java_library, java_test, java_toolchain
-3. Alias rule - https://docs.bazel.build/versions/master/be/general.html#alias
-    4. We can use alias rule to create a short name for a long target
+3. [We can use alias rule to create a short name for a long target](https://docs.bazel.build/versions/master/be/general.html#alias)
 
+## BES - BuildEventStream
+1. Works for multiple build tools, not just for bazel
+2. Bazel-BSP - Build Server Protocol is common protocol helps IDE to integrate
+3. 
 
 ## Reference
 1. [Bazel BootCamp](https://www.youtube.com/watch?v=jY0BGMB21hw)
-   
+2. [Build Event Protocol for Reclient (Ola Rozenfeld @ EngFlow) - Oct 2023](https://www.youtube.com/watch?v=w6-cMumFDgA)
+3. [April 2022: Bazel Custom Rules Workshop (Ulf Adams)](https://www.youtube.com/watch?v=OPmUbpBNK9g&list=PLxx_fSA_YtcV_EcmWXSKVoQcTWba8nO38)
