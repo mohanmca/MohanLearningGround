@@ -141,6 +141,13 @@
    6. We can look at the interrupts and soft interrupts running per core
    7. If we want to get even deeper you can use perf or BPF tools to see exactly what might be contributing to latency on your system
 
+## Notes from - https://laabhum.com/
+1. Leveraged concurrency of Go for our websockets usecase (touching million connections) and scae.
+2. Moving away from Kafka to NATs for ticker publishing.
+3. Have around 50 microservices and using google cloud.
+4. NATS better in publishing tickers at nano seconds level.. we need a pub/sub model not the topic/partitions model here
+5. NATS combined with Go.. gives an edge on websocket subscription as we will have around 10k connections for each isntruments
+
 ## [AWS re:Invent 2023 - Coinbase: Building an ultra-low-latency crypto exchange on AWS (FSI309)](https://www.youtube.com/watch?v=iB78FrFWrLE)
 1. [Coinbase Presentation](https://d1.awsstatic.com/events/Summits/reinvent2023/FSI309_Coinbase-Building-an-ultra-low-latency-crypto-exchange-on-AWS.pdf)
 2. Coinbase uses VPC peering between their VPC
