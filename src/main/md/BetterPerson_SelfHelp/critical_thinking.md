@@ -55,11 +55,12 @@
 
 ## Understand deeply
 1. Practicing basics daily - trumphet
-2. What is the simple problem than this, create similar smaller problem to understand this problem bigger
-3. Make invisible visible
-4. Add adjective and understand, create as many adjective as possible
-5. Learning is a spectrum, not binary
-6. Have microscoping view of the same problem
+2. Take a paper and try to write 5 paragraphs about something that we want to master
+3. Find the simple problem than this, create similar smaller problem to understand this problem bigger
+4. Make invisible visible
+5. Add adjective and understand, create as many adjective as possible
+6. Learning is a spectrum, not binary
+7. Have microscoping view of the same problem
 
 ## Fail Effectively
 1. Learn new insight from every of your failure
