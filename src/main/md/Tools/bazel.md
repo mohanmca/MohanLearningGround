@@ -42,6 +42,11 @@ my_rule(
 )
 ```
 
+## bazel troubleshoot
+1. bazel build target --subcommands --explain=explanation.log
+2. bazel query "rdeps(//...,//3rdparty/jvm/com/propensive:*)"
+3. bazel query "//3rdparty/jvm/com/propensive:*"
+
  ## Bazel Macros
  1. A macro is essentially a function written in Starlark (the language used in Bazel's build files). It is used to simplify and reuse common sets of build instructions. Macros can call other rules or macros.
  2. Macros are typically used to reduce repetition in your BUILD files.
