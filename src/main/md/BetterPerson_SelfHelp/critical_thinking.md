@@ -1,15 +1,3 @@
-## How to practice for "Analysing problem systematically?  Or How to scientifically systematically analyse problem? and how to practice for it?
-1. [Critical Thinking Skills for University Success](https://www.coursera.org/learn/critical-thinking-skills)
-2. [Edx Critical thinking](https://www.edx.org/learn/critical-thinking-skills)
-3. [Problem solving](https://www.coursera.org/learn/problem-solving)
-4. [The 5 Elements of Effective Thinking](https://www.amazon.com/5-Elements-Effective-Thinking/dp/0691156662)
-5. [How to Solve It: A New Aspect of Mathematical Method (Princeton Science Library, 34)](https://www.amazon.com/How-Solve-Mathematical-Princeton-Science/dp/069111966X)
-6. [Critical Thinker Academy: Learn to Think Like a Philosopher](https://www.udemy.com/course/critical-thinker-academy/)
-7. [Clear Thinking](https://www.amazon.sg/Clear-Thinking-Turning-Ordinary-Extraordinary/dp/0593086112)
-8. [Peak: Secrets from the New Science of Expertise](https://www.amazon.com/Peak-Secrets-New-Science-Expertise-ebook/dp/B011H56MKS)
-9. [How to solve it](https://www.amazon.com/How-Solve-Aspect-Mathematical-Method-ebook)
-10. [Informal Logic: A Pragmatic Approach pdf](https://www.amazon.sg/Informal-Logic-Pragmatic-Douglas-Walton/dp/0521713803/ref=cm_cr_arp_d_product_top?ie=UTF8)
-11. [Intuition Pumps and Other Tools for Thinking by Daniel C. Dennett]
 
 ## Notes from Rajan
 1. He doesn't trust his memory, and believes that he is so bad at remembering things.
@@ -57,4 +45,60 @@
 1. Start with the most basic truths
 1. Use these truths to understand the nature of the problem
 1. Develop solutions that are based on these fundamental truths
+
+## Effective thinking
+1. Understand deeply
+2. Fail effectively
+3. Create questions
+4. Go with flow
+5. Adopt change
+
+## Understand deeply
+1. What is the simple problem than this, create similar smaller problem to understand this problem bigger
+2. Make invisible visible
+3. Add adjective and understand, create as many adjective as possible
+4. Learning is a spectrum, not binary
+5. Have microscoping view of the same problem
+
+## Fail Effectively
+1. Learn new insight from every of your failure
+1. Fail fast - focus on process by faily quickly
+   1. start with some junk and keep remove failure
+   1. For every failure - count there are 9 more to go
+1. Fail intentionally
+
+## Create questions
+1. Force more questions - forced to listen, leads to deeper understanding
+2. Be socrates - Ask what is the problem here?
+3. What if .... question?
+4. Create basic questions
+5. What if our prevous assumption was wrong? What if two weight travel at different speed if dropped from sky-scrapper?
+
+## Go with flow
+1. What comes next?
+2. What was the problem before this problem exists? Think from historical perspective, go 50 years back and forward
+3. Run down all the paths
+4. Embrace doubt - empathy
+   1. Consider alternative and opposite side and understand. Bohr - every hour accepted quantum was right
+   2. Open mind for opponenets view
+5. Never stop the flow of ideas
+
+## Be part of change - keep practice
+1. Quintessential element
+
+
+
+## How to practice for "Analysing problem systematically?  Or How to scientifically systematically analyse problem? and how to practice for it?
+1. [Critical Thinking Skills for University Success](https://www.coursera.org/learn/critical-thinking-skills)
+2. [Edx Critical thinking](https://www.edx.org/learn/critical-thinking-skills)
+3. [Problem solving](https://www.coursera.org/learn/problem-solving)
+4. [The 5 Elements of Effective Thinking](https://www.amazon.com/5-Elements-Effective-Thinking/dp/0691156662)
+5. [How to Solve It: A New Aspect of Mathematical Method (Princeton Science Library, 34)](https://www.amazon.com/How-Solve-Mathematical-Princeton-Science/dp/069111966X)
+6. [Critical Thinker Academy: Learn to Think Like a Philosopher](https://www.udemy.com/course/critical-thinker-academy/)
+7. [Clear Thinking](https://www.amazon.sg/Clear-Thinking-Turning-Ordinary-Extraordinary/dp/0593086112)
+8. [Peak: Secrets from the New Science of Expertise](https://www.amazon.com/Peak-Secrets-New-Science-Expertise-ebook/dp/B011H56MKS)
+9. [How to solve it](https://www.amazon.com/How-Solve-Aspect-Mathematical-Method-ebook)
+10. [Informal Logic: A Pragmatic Approach pdf](https://www.amazon.sg/Informal-Logic-Pragmatic-Douglas-Walton/dp/0521713803/ref=cm_cr_arp_d_product_top?ie=UTF8)
+11. [Intuition Pumps and Other Tools for Thinking by Daniel C. Dennett]
+   
    
