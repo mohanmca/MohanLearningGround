@@ -46,6 +46,13 @@
   1. Challenge conventional wisdom - considering alternative perspectives that go against the mainstream
   1. Develop innovative solutions
 
+## One of the tools to solve problem
+1. When we solve a problem that has many facts, we might stuck by missing one or two fact, or we might misinterpret one or two fact
+2. To overcome this issue
+    1. Interpret facts from top to bottom and write down
+    1. Interpret facts from bottom to top and write down
+3. You might notice the missing fact
+
 ## What is First Principles Thinking - Framework?
 1. Start with the most basic truths
 1. Use these truths to understand the nature of the problem
