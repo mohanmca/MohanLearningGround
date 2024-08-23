@@ -61,6 +61,8 @@
 5. Add adjective and understand, create as many adjective as possible
 6. Learning is a spectrum, not binary
 7. Have microscoping view of the same problem
+8. Teach to someone and understand deeply
+
 
 ## Fail Effectively
 1. Learn new insight from every of your failure
