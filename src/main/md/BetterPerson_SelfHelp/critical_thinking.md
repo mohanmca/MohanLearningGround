@@ -46,12 +46,12 @@
 1. Use these truths to understand the nature of the problem
 1. Develop solutions that are based on these fundamental truths
 
-## Effective thinking
-1. Understand deeply
-2. Fail effectively
-3. Create questions
-4. Go with flow
-5. Adopt change
+## [Effective thinking](https://readingraphics.com/book-summary-the-5-elements-of-effective-thinking/)
+1. Ground your Thinking (Earth): Understand Deeply
+2. Ignite Insights through Failure (Fire): Learn from Mistakes
+3. Create Questions from Thin Air (Air): Ask Challenging Questions
+4. Tap on the Flow of Ideas (Water): Look Forward & Backward
+5. Transform yourself (The Quintessential Element): Engage Change
 
 ## Understand deeply
 1. Practicing basics daily - trumphet
