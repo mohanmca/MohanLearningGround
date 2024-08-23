@@ -67,6 +67,7 @@
    1. start with some junk and keep remove failure
    1. For every failure - count there are 9 more to go
 1. Fail intentionally
+1. Fail quickly and find why you failed, and use binary search to go towards proper answer
 
 ## Create questions
 1. Force more questions - forced to listen, leads to deeper understanding
