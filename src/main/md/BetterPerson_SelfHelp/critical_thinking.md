@@ -54,11 +54,12 @@
 5. Adopt change
 
 ## Understand deeply
-1. What is the simple problem than this, create similar smaller problem to understand this problem bigger
-2. Make invisible visible
-3. Add adjective and understand, create as many adjective as possible
-4. Learning is a spectrum, not binary
-5. Have microscoping view of the same problem
+1. Practicing basics daily - trumphet
+2. What is the simple problem than this, create similar smaller problem to understand this problem bigger
+3. Make invisible visible
+4. Add adjective and understand, create as many adjective as possible
+5. Learning is a spectrum, not binary
+6. Have microscoping view of the same problem
 
 ## Fail Effectively
 1. Learn new insight from every of your failure
