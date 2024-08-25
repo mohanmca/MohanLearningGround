@@ -208,3 +208,4 @@
 10. [Informal Logic: A Pragmatic Approach pdf](https://www.amazon.sg/Informal-Logic-Pragmatic-Douglas-Walton/dp/0521713803/ref=cm_cr_arp_d_product_top?ie=UTF8)
 11. [Intuition Pumps and Other Tools for Thinking by Daniel C. Dennett]
 12. [Prompt Questions](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterPerson_SelfHelp/prompt_questions.md)
+13. [Meta checklist for requirement analysis](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/BetterPerson_SelfHelp/meta_checklist_critical_thinking.md)
