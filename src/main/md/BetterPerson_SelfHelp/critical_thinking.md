@@ -179,9 +179,20 @@
     2. Open mind for opponenets view
 5. Never stop the flow of ideas
 
-## Be part of change - keep practice
+## Quintessential element
 
-1. Quintessential element
+1. Change sre slow and steady, keep at it!
+2. Be part of change - keep practice
+
+## [How to retain longer](https://www.reddit.com/r/IAmA/comments/2rgsan/i_am_elon_musk_ceocto_of_a_rocket_company_ama/)
+1. Central theam should be given priority and shouldn't start with special case
+2. Primary branch of knowledge and move from there..
+   1. Learn the basics such as trunk, big-branch and slowly move towards leaft
+3. Frankly, though, I think most people can learn a lot more than they think they can. They sell themselves short without trying.
+4. One bit of advice: it is important to view knowledge as sort of a semantic tree -- make sure you understand the fundamental principles, ie the trunk and big branches, before you get into the leaves/details or there is nothing for them to hang on to.
+5. You can't remember what you can't connect
+6. Exponential learning by effective thinking..
+
 
 ## How to practice for "Analysing problem systematically? Or How to scientifically systematically analyse problem? and how to practice for it?
 
