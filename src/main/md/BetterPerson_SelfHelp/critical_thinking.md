@@ -191,7 +191,8 @@
 3. Frankly, though, I think most people can learn a lot more than they think they can. They sell themselves short without trying.
 4. One bit of advice: it is important to view knowledge as sort of a semantic tree -- make sure you understand the fundamental principles, ie the trunk and big branches, before you get into the leaves/details or there is nothing for them to hang on to.
 5. You can't remember what you can't connect
-6. Exponential learning by effective thinking..
+6. Exponential learning by effective thinking.
+7. Brain constantly trying to forget, most of the things that we see and hear is not useful, In order to remeber something, we have to establish why it is relevant, and assign meaning to it.
 
 
 ## How to practice for "Analysing problem systematically? Or How to scientifically systematically analyse problem? and how to practice for it?
