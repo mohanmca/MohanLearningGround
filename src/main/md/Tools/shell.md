@@ -94,6 +94,24 @@ gfind -name "*.scala" -exec wc -l {} \; | awk '{print $1}' | awk '{s+=$1} END {p
 </p>
 </details> 
 
+
+### First line of each bash script
+
+<details><summary>show</summary>
+<p>
+
+```bash
+#!/bin/bash
+set -euo pipefail
+In this example:
+
+-e: The script exits on any error.
+-u: The script treats unset variables as errors.
+-o pipefail: The script fails if any command in a pipeline fails. (otherwise fails only if lastcommand fails)
+```
+</p>
+</details> 
+
 ## Find the Canonical path from actual path
 
 readlink -f -- /root/data/app/data.txt --> /local/1/apps/rates_etrading/
