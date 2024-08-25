@@ -20,11 +20,6 @@
 3. Effective thiking is not...
 4. Analyze pros and cons of all the options available
 
-## Questioning
-
-1. Question to learn, not question to suspect
-2.
-
 ## If thinking is physical
 
 1. Think straight
@@ -165,6 +160,7 @@
 4. Create basic questions
     1. Generating questions will lead to a deeper understanding
 5. What if our prevous assumption was wrong? What if two weight travel at different speed if dropped from sky-scrapper?
+6. Question to learn, not question to suspect (Spritual advise)
 
 ## Generate oposite view - questions current stand
 
