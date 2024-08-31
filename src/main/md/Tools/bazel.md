@@ -143,7 +143,7 @@ my_macro(
 ## [Bazel notes - Starlark Language]
 1. [An Overview of the Starlark language](https://laurent.le-brun.eu/blog/an-overview-of-starlark)
 1. Pythonic syntax and Make semanics
-    1. Python-(class, import, import) + load_function
+    1. Python - (class, import, import) + load_function
 1. Path based
 1. Distributed and remote build is possible in bazel
 1. starlark language
@@ -236,6 +236,7 @@ def __binary_alias_imp(ctx):
 
 ## Reference
 1. [Bazel BootCamp](https://www.youtube.com/watch?v=jY0BGMB21hw)
+2. [Bazel bootcamp-slides](https://docs.google.com/presentation/d/1vNuuY97NmxP85MLEheYcMDHbpFb6cwSYWPNloBqdrPM/edit?usp=sharing)
 2. [Build Event Protocol for Reclient (Ola Rozenfeld @ EngFlow) - Oct 2023](https://www.youtube.com/watch?v=w6-cMumFDgA)
 3. [April 2022: Bazel Custom Rules Workshop (Ulf Adams)](https://www.youtube.com/watch?v=OPmUbpBNK9g&list=PLxx_fSA_YtcV_EcmWXSKVoQcTWba8nO38)
 4. [An Overview of the Starlark language](https://laurent.le-brun.eu/blog/an-overview-of-starlark)
