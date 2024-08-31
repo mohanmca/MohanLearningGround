@@ -96,8 +96,7 @@ my_macro(
 2. Find reverse dependency
 3. bazel query "rdeps(//web-module/test/web:tests)"
 4. bazel query "rdeps(..., //apps/node_web:index.js)" --output package
-5. Query language can work with cycle - implemented by Alan Donovan
-6. 
+5. Query language can work with cycle - implemented by Alan Donovan 
 
 
 ## Basic bazel concepts
@@ -144,6 +143,7 @@ my_macro(
 ## [Bazel notes - Starlark Language]
 1. [An Overview of the Starlark language](https://laurent.le-brun.eu/blog/an-overview-of-starlark)
 1. Pythonic syntax and Make semanics
+    1. Python-(class, import, import) + load_function
 1. Path based
 1. Distributed and remote build is possible in bazel
 1. starlark language
