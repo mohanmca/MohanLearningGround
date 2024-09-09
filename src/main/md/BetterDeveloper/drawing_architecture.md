@@ -15,4 +15,4 @@
 
 ## Draw.io beginners playlist
 1. https://www.youtube.com/watch?v=Em_8IeJBmsQ&list=PLX6xdk86h_0xpW82Q0YkdN6xpHa6hvHjO
-2. 
+2. [Interactive diagram](https://www.youtube.com/watch?v=28ltI8GUXi0)
