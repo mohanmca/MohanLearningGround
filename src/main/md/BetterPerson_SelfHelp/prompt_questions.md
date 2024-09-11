@@ -2,11 +2,10 @@
 
 - What is the problem you are trying to solve
 - What are the constraints or limitations
-- What is the desired outcome
+- What is the desired outcome? What would success look like?
 - Have you encountered a similar problem before? How was it solved
 - What assumptions are you making about the problem? Can any be challenged
 - What are the key variables or factors involved
-- What would success look like?
 
 
 ## 2. Breaking Down the Problem
