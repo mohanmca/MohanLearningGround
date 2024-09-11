@@ -10,6 +10,25 @@
 * Exercise MEMORY (LONG-TERM): Remember to repeat.
 * True art of memory is attention
 
+--
+## An ancient Indian memorization technique!
+
+1. Write target material in your own hand
+   1. What you write in your own hand is easier to master
+2. Read 10 times the target material right before you go to sleep (wash with cold water just before reading)
+   1. Reading should be the last thing before your sleep
+3. Place the material by your side - right next to your bed
+4. Read 10 times the target material right after wake-up (after washing your face with cold-water)
+
+## How to learn faster with the Feynman Technique
+1. You are the easiest person to fool with, avoid it using following four steps of Feynman learning technique
+2. Take a piece of paper and write the concept's name at the top.
+   1. Write Pythagorean theorem
+3. Explain the concept using simple language. or  Explain it to a 12-year-old. Now that you think you understand a topic reasonably well, explain it to a 12-year-old. ...
+4. Identify the problem areas, then go back to the sources to review
+   1. Pinpoint any complicated terms and challenge yourself to simplify them
+5. You should be able to explain to others, hence try to teach to someone else
+
 ## Some techniques used to increase retention of technical material
 
 1. Rewrite
@@ -39,12 +58,11 @@
  * Helps to remember list of items
  * Association should be ridiculous or illogical
  * Should see the picture of the word in our mind, don't see the word
-----
-* Example link for ridiculous & illogiacl -  Bottle & paper association (X and Y)
-  * reading a giant bottle instead of paper   - use x like y
-  * Writing on giantic bottle instead of paper - use y like x
-  * Bottle pouring paper instead of water - y producing x or x producing y
-  * Bottle mad of paper instead of glass - x made of y or y made of x
+ * Example link for ridiculous & illogiacl -  Bottle & paper association (X and Y)
+   * reading a giant bottle instead of paper   - use x like y
+   * Writing on giantic bottle instead of paper - use y like x
+   * Bottle pouring paper instead of water - y producing x or x producing y
+   * Bottle mad of paper instead of glass - x made of y or y made of x
 
 
 ## To make illogical linking
@@ -55,14 +73,7 @@
 * Picturing one item instead of other (bottle made of paper)
 
 ----
-## How to learn faster with the Feynman Technique
-1. You are the easiest person to fool with, avoid it using following four steps of Feynman learning technique
-2. Take a piece of paper and write the concept's name at the top.
-   1. Write Pythagorean theorem
-3. Explain the concept using simple language. or  Explain it to a 12-year-old. Now that you think you understand a topic reasonably well, explain it to a 12-year-old. ...
-4. Identify the problem areas, then go back to the sources to review
-   1. Pinpoint any complicated terms and challenge yourself to simplify them
-5. You should be able to explain to others, hence try to teach to someone else
+
 
 ----
 ## Systematic way of reading a book - (Matt DiMaio)
@@ -84,16 +95,8 @@
    1. Repetition is mother of learning
    1. Reticular activating system creates awarness
 ----
-## An ancient Indian memorization technique!
-
-1. Write target material in your own hand
-   1. What you write in your own hand is easier to master
-2. Read 10 times the target material right before you go to sleep (wash with cold water just before reading)
-   1. Reading should be the last thing before your sleep
-3. Place the material by your side - right next to your bed
-4. Read 10 times the target material right after wake-up (after washing your face with cold-water)
 ---
-# Reference
+## Reference
 * (Ask HN: How do you remember what you read?)
 * [Lisa Genova: How your memory works -- and why forgetting is totally OK | TED](https://www.youtube.com/watch?v=Irx0tC92fdE)
 * [CDU Memory](https://www.youtube.com/watch?v=ojoI-DfeGtA)
