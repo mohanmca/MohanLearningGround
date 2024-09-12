@@ -1,3 +1,14 @@
+## What is the difference between BigEndian and LittleEndian
+1. Order in which msb are stored is different between two
+2. Higher significant stored in lower order bytes, hence they travel first in network
+3. BigEndian is less commmon and LittleIndian is more widely used on ARM/Intel on MAC/Linux
+4. PowerPC and Spark processor uses BigEndian
+5. Java.class file and CD-ROW, Mp3 and JPEG also uses BigEndian
+
+## Algorithms uses bigEndian
+1. MD5
+2. Sha-1
+
 ## How to store 128 BigDecimal in java
 
 ```
@@ -26,6 +37,8 @@
         }
     }
 ```
+
+
 
 ## How to create MD anki
 mdanki src/main/md/BetterDeveloper/daily_practice.md dp.apkg --deck "Mohan::DeepWork::Java::BigDecimal"
