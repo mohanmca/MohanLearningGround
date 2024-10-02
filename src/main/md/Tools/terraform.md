@@ -12,3 +12,11 @@
 1. To export existing infrastructure into Terraform code, you’ll use a combination of Terraform’s import functionality and manually defining the configuration files (since Terraform doesn't auto-generate configuration files from existing resources). 
 2. create placeholder
 3. terraform import
+
+
+## Terraform state
+1. terraform play - always compares changes with state and show the differences
+2. terraform destory - destroys what is known as per the state
+3. State can be stored locally or remotely on S3
+4. terraform state list -- shows list of all resources known to its state
+5. terrafrom show
