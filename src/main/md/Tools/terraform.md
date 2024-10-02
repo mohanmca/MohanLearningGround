@@ -20,3 +20,10 @@
 3. State can be stored locally or remotely on S3
 4. terraform state list -- shows list of all resources known to its state
 5. terrafrom show
+6. will terrafrom init destry existing state? - No, it won't destory state. It might download additional providers
+
+
+## Hashicorp Language
+
+1. [Hashicorp language blocks](https://github.com/mohanmca/hashicorp/blob/master/terraform/Hands-On%20Labs/Section%2004%20-%20Understand%20Terraform%20Basics/02%20-%20HashiCorp_Configuration_Language.md)
+2. Both human and machine readable
