@@ -584,7 +584,7 @@
   - **./src/main/md/LearningJournal**
     - [journal.md](./src/main/md/LearningJournal/journal.md)
   - **./src/main/md/People**
-    - [Awesome People.md](./src/main/md/People/Awesome People.md)
+    - [Awesome People.md](./src/main/md/People/Awesome_People.md)
   - **./src/main/md/NLP**
     - [StrongWords_CheckList.md](./src/main/md/NLP/StrongWords_CheckList.md)
   - **./src/main/md/Mind**
