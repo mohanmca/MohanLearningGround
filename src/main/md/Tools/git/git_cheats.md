@@ -1,11 +1,18 @@
 ## Find important authors who commit code
-
 ```
 git  log -10000 --pretty=format:"%aN" | sort | uniq -c | sort -nr > authors.txt
 ```
 
-## Find list of files modified by authors under specific directory
+## Git cofig alias
+```bash
+git config --global alias.staash 'stash --all'
+git config --global alias.bb !better-branch.sh
+git blame -L 15,26 path/to/file
+git log -L10,15:FunctionTrackingData.scala
+``
 
+
+## Find list of files modified by authors under specific directory
 ```
 git  log --author=Mohan --name-only -- serice_directory > filesModifiedByMohan.txt
 sort filesModifiedByMohan.txt | gawk -F/ '{print $NF}' | sort |  uniq -c| sort -nr > authorModifiedFiles.txt
@@ -13,7 +20,6 @@ sort filesModifiedByMohan.txt | gawk -F/ '{print $NF}' | sort |  uniq -c| sort -
 
 
 ## Find multiple repositories under one org
-
 ```javascript
 navigate to: http://bitbucket/org/
 
@@ -23,7 +29,6 @@ let ssh_links = links.map(link => link.toLowerCase().replace('https','ssh').repl
 
 
 ## Clone multiple repositories
-
 ```bash
 while read name;
 do 
@@ -33,7 +38,6 @@ done < git_links.txt
 ```
 
 ## Update multiple repos
-
 ```bash
 base=`pwd`
 for folder in `ls -d *`;
@@ -48,7 +52,10 @@ done
 
 
 ## Find branch operations
-
 ```
 git checkout -b new_branch_from_checkedout_branch
 ```
+
+## Git reference
+1. [So you think you know git](https://app.datadoghq.com/dashboard/zyw-iqn-axe)(https://app.datadoghq.com/dashboard/zyw-iqn-axe)
+2. [blog.githbutler.com](https://blog.gitbutler.com)
