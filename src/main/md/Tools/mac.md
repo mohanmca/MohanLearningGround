@@ -38,6 +38,9 @@ echo 'export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"' >> ~/.zshrc
    1. to file - ```Command-Shift-3```
    1. to clipbord - ```Command-Control-Shift-3```
 
+## How to switch application focus
+1. control + shift + f4
+
 ## Update software tools
 ```shell
 softwareupdate --all --install --force

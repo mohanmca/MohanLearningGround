@@ -1,3 +1,13 @@
+## Guidelines
+
+1. Anything that you don't want to give-it-up to the chance, don't it in the evening
+2. Any add-hoc task (ex: negotiation), Should be performed in the morning when energy is hight
+    3. On the contrary, don't have tough negotitations when energy is drained
+3. Event 5 minutes is matter, 5 minutes habit for life long is extreemly powerful
+
+
+## Sample 
+
 1. 6:30 AM – 7:30 AM: Morning exercise
 1. 7:30 AM – 8:00 AM: Bathing and 10 minute reading
 1. 8:00 AM – 12:00 PM: Work on project (focus time)
