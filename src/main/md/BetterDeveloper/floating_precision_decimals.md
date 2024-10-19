@@ -9,8 +9,31 @@
 1. MD5
 2. Sha-1
 
-## How to store 128 BigDecimal in java
+## In Avro, Hive - what is precision and scale
+1. Precision refers to the total number of digits that can be stored, regardless of the decimal point's position.
+2. Scale indicates the number of digits that can be stored to the right of the decimal point. The scale must be less than or equal to the precision
+3. DECIMAL(precision, scale)
 
+## Avro - decimal type
+1. Avro type for decimal is specified as bytes. (It has underlying type and logicaltype)
+2. Logical Type: This is set to "decimal".
+
+## How is BigInteger is saved internall?
+1. let us say N = 2**70+5 == 1180591620717411303425 == 1000000000000000000000000000000000000000000000000000000000000000101
+2. N would be split into 32-bit chunks {10000000000000000000000000000000 (32 bits), 00000000000000000000000000000000 (32 bits), 00000000000000000000000000000101 (32 bits)} 
+3. int[] value = { 5, 0, 1073741824 };  // base-2^32 chunks
+4. signum = 1
+5. ```java
+  // Define the large number 2^70 + 5
+        BigInteger bigInt = BigInteger.valueOf(2).pow(70).add(BigInteger.valueOf(5));
+        // Print the value
+        System.out.println("BigInteger value: " + bigInt);        
+        // Print the internal representation
+        System.out.println("BigInteger internal array: " + java.util.Arrays.toString(bigInt.toByteArray()));
+```
+6. [0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05] //Buffere representation, 0x40 ~= 64xx``x``
+
+## How to store 128 BigDecimal in java
 ```
     import java.nio.*;
 
