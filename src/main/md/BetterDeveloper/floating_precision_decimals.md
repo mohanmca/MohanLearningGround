@@ -5,6 +5,9 @@
 4. PowerPC and Spark processor uses BigEndian
 5. Java.class file and CD-ROW, Mp3 and JPEG also uses BigEndian
 
+## Default program for Floating point
+1. [JDK Decimal Tool](https://github.com/mohanmca/modern_java/blob/main/src/main/java/com/decimal/DecimalTool.java)
+
 ## Algorithms uses bigEndian
 1. MD5
 2. Sha-1
