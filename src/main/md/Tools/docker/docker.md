@@ -14,6 +14,12 @@ alias dcat='docker run -it --rm -a stdout --entrypoint cat'
 dcat <image> <filename>
 ```
 
+## How to pass all local env environment variable to docker (two ways.. as a file, or as redirect)
+```bash
+docker run --env-file <(env) my-container
+docker run --env-file=./env.list my-container
+```
+
 ## How to run as a root user
 ```bash
 docker exec -it -u 0 containerid bash
