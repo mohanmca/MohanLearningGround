@@ -4,6 +4,13 @@
 git  log -10000 --pretty=format:"%aN" | sort | uniq -c | sort -nr > authors.txt
 ```
 
+## Find changes between two commit (only merged) for a particular directory
+1. Filters the log to show only merge commits (i.e., commits created by merging branches).
+2. --first-parent: Shows only the commits made on the "first parent" branch (mainline branch), ignoring commits from merged branches. This is useful when you want a simplified view of how the mainline progressed, focusing only on the top-level history.
+```bash
+git log --merges --first-parent --date=short --pretty=format:"| %h | %ad | %<(22,trunc)%an | %<(70,trunc)%b |" f0e25515431ec72de90e87995ca204cbf8baec17..95c73df718b46331e9512bd5005c45c8ca60dd8a service-gateway/
+```
+
 ## Find list of files modified by authors
 
 ```
