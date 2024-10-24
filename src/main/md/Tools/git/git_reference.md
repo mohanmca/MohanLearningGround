@@ -1,5 +1,4 @@
 ## Find important authors who commit code
-
 ```
 git  log -10000 --pretty=format:"%aN" | sort | uniq -c | sort -nr > authors.txt
 ```
@@ -9,6 +8,11 @@ git  log -10000 --pretty=format:"%aN" | sort | uniq -c | sort -nr > authors.txt
 2. --first-parent: Shows only the commits made on the "first parent" branch (mainline branch), ignoring commits from merged branches. This is useful when you want a simplified view of how the mainline progressed, focusing only on the top-level history.
 ```bash
 git log --merges --first-parent --date=short --pretty=format:"| %h | %ad | %<(22,trunc)%an | %<(70,trunc)%b |" f0e25515431ec72de90e87995ca204cbf8baec17..95c73df718b46331e9512bd5005c45c8ca60dd8a service-gateway/
+```
+
+## Compare the difference between two commits
+```
+[https://github.com/mohanmca/MohanLearningGround/compare/5452da25f8bffd93de34fda4ce0c1929f53de83b...89d46bfdb0637b6be6bb4bea1a728d8a3800d99e](https://github.com/mohanmca/MohanLearningGround/compare/90fab3f685bfa56bde79d37b1d336b896f5f6d64...6f5b7f9ec1a7759fe378f72f84e33d3f1524881e)
 ```
 
 ## Find list of files modified by authors
