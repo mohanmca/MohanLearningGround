@@ -7,6 +7,8 @@
 5. [Modern open source C++ FIX framework](https://github.com/fix8/fix8)
 6. [GRPC C++](https://github.com/grpc/grpc/tree/master/src/cpp)
 7. [SBE C++](https://github.com/real-logic/simple-binary-encoding/wiki/Cpp-User-Guide)
+8. [K8S-EKS]
+9. [Envoy, Istio, Haproxy, Loadbalancer - learn well]
 
 ## Why hyperrealm libconfig being used?
 1. Libconfig is a library for reading, manipulating, and writing structured configuration files.
