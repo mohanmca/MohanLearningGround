@@ -8,6 +8,12 @@
 sudo journalctl -u docker.service
 ```
 
+## How to recursively grep for multiple words in specific extension file
+
+```
+grep -r --include="*.bazel" -e "JSW_IDX_FIELD" -e "JSW_FIELD" .
+```
+
 ## How to confirm if port is open without connecting to it?
 1. ```nc -v -z localhost 9038``` Or ```lsof -i :9038```
 1. NC is telling netcat to perform a verbose port scan on port 9038 of the localhost (the local machine).
