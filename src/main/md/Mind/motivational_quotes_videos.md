@@ -63,6 +63,7 @@ The legend!
 * Everyone you will ever meet knows something you don't
 * [Why it Pays to Be Hungry | Les Brown | Goalcast](https://youtu.be/xFr0FKnaLDk)
 * [How to live Painless life? by Nithyananda (Tamil)](https://www.youtube.com/watch?v=OIaDIrIQbTI)
+* "A professor who  rejected students for many years... kept coming back... a professor said..."Good thing about you, Despite I rejected, you didn't reject yourself".
 
 
 ## To achieve greatness
