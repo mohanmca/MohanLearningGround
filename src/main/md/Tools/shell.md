@@ -3,6 +3,12 @@
 2. ssh -L localhost:23473:remotehost:23473 mohan.narayanaswamy@remotehost -N -v -f
 3. Finally connect to localhost:23473
 
+## Kill All Java
+```bash
+kill -9 $(ps -ef | grep java  | awk '{print $2}'  | tr '\n' ' ')
+```
+
+
 ## Find docker.service log from systemd journal
 ```
 sudo journalctl -u docker.service
