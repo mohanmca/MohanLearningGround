@@ -1,3 +1,7 @@
+## Nested array questions
+jq 'flatten' working_nested_array.json
+
+
 ## How to combine multi-line independent json inside a file
 ```bash
 jq . -s input_file.json
