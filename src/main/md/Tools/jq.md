@@ -1,5 +1,9 @@
-## Nested array questions
+## Nested array questions, flatten array and filter arrays (inside parrent array or nested array), where inner array object has one of the attribute 'correlationId'
+
+```bash
 jq 'flatten' working_nested_array.json
+jq '.[] | select(any(.[]; has("correlationId")))' working_json.json
+```
 
 
 ## How to combine multi-line independent json inside a file
