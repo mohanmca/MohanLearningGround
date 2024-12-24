@@ -160,6 +160,10 @@ $1 ==> 0.30000000000000004
     ```
 6. [0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05] //Buffere representation, 0x40 ~= 64xx``x``
 
+## Value of BigDecimal
+1. The value of a BigDecimal is determined by its unscaled value and its scale:
+2. Value = Unscaled Value ×  10^−Scale
+
 ## How to store 128 BigDecimal in java
 ```
     import java.nio.*;
