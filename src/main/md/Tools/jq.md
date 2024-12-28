@@ -5,6 +5,11 @@ jq 'flatten' working_nested_array.json
 jq '.[] | select(any(.[]; has("correlationId")))' working_json.json
 ```
 
+## How to count number of attributes in nested array of objects
+1. jq '[.[][] | length]' jq.json 
+1. jq '[.[][] | select(has("Name"))]  | length' jq.json 
+1. jq '[.[][] | select(.Name == "AggressorFill")]  | length' jq.json 
+
 
 ## How to combine multi-line independent json inside a file
 ```bash
