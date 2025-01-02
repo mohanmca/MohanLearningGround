@@ -11,3 +11,7 @@
    ```bash
        CREATE TEMPORARY TABLE cached_result AS SELECT * FROM parquet_scan('/path/to/files/**/*.parquet');
    ```
+
+## Often used SQL
+1. SELECT column_name FROM information_schema.columns WHERE table_name = 'TRANSFER_EVENTS';
+2. select to_timestamp(timestamp/1000000000) from TRANSFER_EVENTS; (Convert epoch in nanos to timestamp)
