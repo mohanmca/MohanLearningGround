@@ -7,7 +7,8 @@ jq '.[] | select(any(.[]; has("correlationId")))' working_json.json
 
 ## How to count number of attributes in nested array of objects
 1. jq '[.[][] | length]' jq.json 
-1. jq '[.[][] | select(has("Name"))]  | length' jq.json 
+1. jq '[.[][] | select(has("Name"))]  | length' jq.json
+1. jq '[.[][] | select(.Name == "RestingFill")]' fill_json.json  | jq 'map(.orders|length)' ## if one of the attribute is array, find its length
 1. jq '[.[][] | select(.Name == "AggressorFill")]  | length' jq.json
 1. jq '[.[] | map(select(has("Name"))) | length]' jq.json
 1. jq '.[] | select(any(.[]; (.Name == "OrderExecution" and .action == "ModifyOrder")))' jq.json 
