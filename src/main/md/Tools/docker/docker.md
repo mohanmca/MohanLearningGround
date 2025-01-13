@@ -26,6 +26,16 @@ docker container ps -a | grep 223c7fe3639
 docker cp  93c619fce02a:/tmp test        
 ```
 
+## Docker running AWS Glue interactive Glue
+```bash
+docker run -it \               
+    -v ~/.aws:/home/glue_user/.aws \
+    -v /Users/mohan.narayanaswamy/project/aws_glue_compactor/:/home/glue_user/workspace/ \
+    --name glue_spark_submit \
+    amazon/aws-glue-libs:glue_libs_4.0.0_image_01 \
+    pyspark
+```
+
 ## How to pass all local env environment variable to docker (two ways.. as a file, or as redirect)
 ```bash
 docker run --env-file <(env) my-container
