@@ -14,6 +14,18 @@ alias dcat='docker run -it --rm -a stdout --entrypoint cat'
 dcat <image> <filename>
 ```
 
+## How to dump file from image
+
+```bash
+docker run -it docke_image_url:tag
+find the image it of the above using
+docker images  | grep main-dist-v1 | awk '{print $3}'
+docker run -it 223c7fe36394 ls
+## Find container id
+docker container ps -a | grep 223c7fe3639
+docker cp  93c619fce02a:/tmp test        
+```
+
 ## How to pass all local env environment variable to docker (two ways.. as a file, or as redirect)
 ```bash
 docker run --env-file <(env) my-container
