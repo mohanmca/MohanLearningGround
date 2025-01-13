@@ -330,143 +330,6 @@ int main(int argc, char** argv) {
 }
 ```
 
-## Behaviour of shared pointer 
-
-```cpp
-#include <iostream>
-#include <memory> // For std::shared_ptr
-
-class MyClass {
-public:
-    MyClass() {
-        ++instance_count;
-        std::cout << "MyClass constructor called! Instance count: " << instance_count << std::endl;
-    }
-    
-    ~MyClass() {
-        --instance_count;
-        std::cout << "MyClass destructor called! Instance count: " << instance_count << std::endl;
-    }
-    
-    void display() const {
-        std::cout << "MyClass instance method called! Current instance count: " << instance_count << std::endl;
-    }
-
-    static int getInstanceCount() {
-        return instance_count;
-    }
-
-private:
-    static int instance_count;
-};
-
-// Define and initialize the static member variable
-int MyClass::instance_count = 0;
-
-void useSharedPtr(std::shared_ptr<MyClass> ptr) {
-    std::cout << "In function, use count: " << ptr.use_count() << std::endl;
-    ptr->display();
-}
-
-int main() {
-    std::cout << "Initial instance count: " << MyClass::getInstanceCount() << std::endl;
-
-    // Create a shared_ptr instance
-    std::shared_ptr<MyClass> ptr1 = std::make_shared<MyClass>();
-    std::cout << "After creation, use count: " << ptr1.use_count() << std::endl;
-    std::cout << "Instance count: " << MyClass::getInstanceCount() << std::endl;
-
-    {
-        // Create another shared_ptr instance that shares ownership with ptr1
-        std::shared_ptr<MyClass> ptr2 = ptr1;
-        std::cout << "In scope, use count: " << ptr1.use_count() << std::endl;
-        std::cout << "Instance count: " << MyClass::getInstanceCount() << std::endl;
-
-        useSharedPtr(ptr2);
-        std::cout << "After function call, use count: " << ptr1.use_count() << std::endl;
-    }
-    
-    std::cout << "Out of inner scope, use count: " << ptr1.use_count() << std::endl;
-    std::cout << "Instance count: " << MyClass::getInstanceCount() << std::endl;
-
-    // ptr1 goes out of scope here, and the managed object will be deleted
-    return 0;
-}
-```
-
-
-## How to get the address of the underlying object of the smart pointer?
-
-```bash
-int main() {
-    std::shared_ptr<MyClass> ptr = std::make_shared<MyClass>(10);
-    MyClass* raw_ptr = ptr.get();
-    return 0;
-}
-```
-
-## Handle Signal
-
-```cpp
-#include <iostream>
-#include <csignal>
-#include <atomic>
-#include <thread>
-#include <mutex>
-
-using namespace std;
-
-// Atomic flag to indicate whether the signal was received
-atomic<bool> signalReceived(false);
-
-// Mutex to protect shared resources
-mutex mtx;
-
-// Signal handler function
-void signalHandler(int signum) {
-    // Set the atomic flag to true
-    signalReceived.store(true, memory_order_relaxed);
-}
-
-// Worker thread function
-void workerThread() {
-    while (true) {
-        // Check if the signal was received
-        if (signalReceived.load(memory_order_relaxed)) {
-            // Lock the mutex before accessing shared resources
-            unique_lock<mutex> lock(mtx);
-
-            // Perform any necessary operations here
-            cout << "Signal received! Performing cleanup...\n";
-
-            // Reset the signal flag
-            signalReceived.store(false, memory_order_relaxed);
-
-            // Release the lock
-            lock.unlock();
-        }
-
-        // Simulate some work being done
-        this_thread::sleep_for(chrono::seconds(1));
-    }
-}
-
-int main() {
-    // Register signal SIGINT and signal handler
-    signal(SIGINT, signalHandler);
-
-    cout << "Signal handling example. Press Ctrl+C to trigger SIGINT.\n";
-
-    // Start the worker thread
-    thread worker(workerThread);
-
-    // Wait for the worker thread to finish (which it won't)
-    worker.join();
-
-    return 0;
-}
-```
-
 ## How to force compiler not to generate implicit constructors?
 
 ```cpp
@@ -500,26 +363,11 @@ f(); // counter = 2
 ```
 
 
-## how to run benchmark?
-1. [Sample cpp benchmark](https://quick-bench.com/q/yovU63tEGtde-VjFD1xB2e_VhPY)
-
 ## Function calls
 1. It is expensive
 1. make it inline if it is small
 1. inline is a hint to the compiler
 1. [Manipulate function definition with inline](https://godbolt.org/z/EGd6aG)
-
-
-## Namless namespace [Stroustrup chapter-014]
-1. If you find yourself relying on some constants in a file and these constants should not be see in any other fiile
-1. Put them into nameless namespace on the top of this file.
-
-```cpp
-namespace {
-    const int  kLocal = 13;
-    const float kLocalFloat = 13.0f
-}
-```
 
 ## Pointer to rescue stack space
 ```
@@ -679,6 +527,10 @@ int main() {
         FAIL() << "Unknown exception thrown"; \
     }
 ```
+
+## how to run benchmark?
+1. [Sample cpp benchmark](https://quick-bench.com/q/yovU63tEGtde-VjFD1xB2e_VhPY)
+
 
 ## Generate MdAnki
 ```bash
