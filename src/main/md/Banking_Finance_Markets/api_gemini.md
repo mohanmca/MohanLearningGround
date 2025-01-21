@@ -133,6 +133,19 @@ X-GEMINI-SIGNATURE: 337cc8b4ea692cfe65b4a85fcc9f042b2e3f
     "stop_price": "3622"
 }```
 
-## Generate mdanki
+## Public endpoint for Gemini-API
 
+```
+curl https://api.gemini.com/v1/book/trumpgusdperp?limit_bids=0&limit_asks=0
+curl https://api.gemini.com/v1/symbols
+curl https://api.gemini.com/v1/symbols/details/trumpgusdperp
+curl https://api.gemini.com/v2/derivatives/candles/trumpgusdperp/1m
+curl https://api.gemini.com/v1/trades/TRUMPGUSDPERP
+curl https://api.gemini.com/v1/pubticker/trumpgusdperp
+curl https://api.gemini.com/v1/book/trumpgusdperp
+curl https://api.gemini.com/v2/candles/trumpgusdperp/1m
+wscat --connect=wss://api.gemini.com/v1/marketdata/trumpgusdperp?top_of_book=false\&bids=false\&offers=false\&trades=true
+```
+
+## Generate mdanki
 mdanki api_gemini.md api_gemini.apkg --deck "Mohan::DeepWork::Api"
