@@ -48,7 +48,11 @@
 
 ## CPP - Todo
 1. CPP - Iterator Invalidation Rules
-   
+
+
+## What is stack-frame? How is stack used during function invocation?
+1. Use this as prompt: In C++, when local variables are stored on the stack within a function, how are they accessed during the function's execution? Do the variables require repeated push and pop operations, or is there a different mechanism used to access them?
+
 ## What is hello world program in CPP?
 ```c++
 #include <iostream>
