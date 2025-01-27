@@ -653,6 +653,25 @@ int main() {
 5. The expression 10 is a temporary int, and only a const int& can bind to a temporary object.
    1. ```const int& r = 10;```
 
+
+## What is template function?
+1. A template function in C++ is a special kind of function that allows you to write generic and reusable code.
+2. Instead of writing separate functions for different data types, you can use a template to define a single function that works with any type.
+```cpp
+#include <iostream>
+template<typename T, std::size_t N>
+constexpr std::size_t size(const T(&arr)[N]) noexcept
+{
+	return N;
+}
+int main()
+{
+	constexpr int a[]{ 5,4,3,2,1 };
+	std::cout << size(a) << '\n';
+	return 0;
+}
+```
+
 ## TODO 
 1. [Tag dispatching](https://www.fluentcpp.com/2018/04/27/tag-dispatching/)
 1. [Tag vs ENum](https://www.fluentcpp.com/2018/05/01/when-to-use-enums-and-when-to-use-tag-dispatching-in-cpp/)
