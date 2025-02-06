@@ -144,7 +144,8 @@ curl https://api.gemini.com/v1/trades/TRUMPGUSDPERP
 curl https://api.gemini.com/v1/pubticker/trumpgusdperp
 curl https://api.gemini.com/v1/book/trumpgusdperp
 curl https://api.gemini.com/v2/candles/trumpgusdperp/1m
-wscat --connect=wss://api.gemini.com/v1/marketdata/trumpgusdperp?top_of_book=false\&bids=false\&offers=false\&trades=true
+wscat --connect='wss://api.gemini.com/v1/marketdata/trumpgusdperp?top_of_book=false\&bids=false\&offers=false\&trades=true'
+wscat --connect='wss://api.gemini.com/v1/marketdata/btcusd?top_of_book=false\&bids=true\&offers=false\&trades=true'
 ```
 
 ## Generate mdanki
