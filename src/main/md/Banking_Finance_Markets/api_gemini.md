@@ -161,6 +161,10 @@ wscat --connect='wss://api.gemini.com/v1/marketdata/btcusd?top_of_book=false\&bi
 10. [Gemini Fee Promos](https://api.gemini.com/v1/feepromos)
 11. [PriceFeed](https://api.gemini.com/v1/pricefeed)
 12. [BTCGUSDPERP Funding amount](https://api.gemini.com/v1/fundingamount/BTCGUSDPERP)
+13. [Funding amount download](https://api.gemini.com/v1/fundingamountreport/records.xlsx?symbol=BTCGUSDPERP&fromDate=2021-01-01&toDate=2024-04-25&numRows=100000)
+14. [Funding amount json download](https://api.gemini.com/v1/fundingamountreport/records.json?symbol=BTCGUSDPERP&fromDate=2021-01-01&toDate=2024-04-25&numRows=100000)
+15. [FX-Price](https://api.gemini.com/v2/fxrate/gbpusd/2024-01-01)
+16. [Staking rates](https://api.gemini.com/v1/staking/rates)
 
 
 ## Generate mdanki
