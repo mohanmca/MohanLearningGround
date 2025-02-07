@@ -148,5 +148,20 @@ wscat --connect='wss://api.gemini.com/v1/marketdata/trumpgusdperp?top_of_book=fa
 wscat --connect='wss://api.gemini.com/v1/marketdata/btcusd?top_of_book=false\&bids=true\&offers=false\&trades=true'
 ```
 
+## Accessible API
+1. [BTC - Ticker](https://api.gemini.com/v1/pubticker/btcusd)
+2. [ETH - Current Order Book](https://api.gemini.com/v1/book/ethusd?limit_bids=5&limit_asks=5)
+3. [BTC Trade history](https://api.gemini.com/v1/trades/btcusd)
+4. [All the symbols API](https://api.gemini.com/v1/symbols)
+5. [1hr - Candles API](https://api.gemini.com/v2/candles/btcusd/1hr)
+6. [1m - 1m Candles API](https://api.gemini.com/v2/candles/btcusd/1m)
+7. [BTCUSD SYmbol details](https://api.gemini.com/v1/symbols/details/btcusd)
+8. [Network token for SOL](https://api.gemini.com/v1/network/SOL)
+9. [Canldes API documentation](https://docs.gemini.com/rest-api/#candles)
+10. [Gemini Fee Promos](https://api.gemini.com/v1/feepromos)
+11. [PriceFeed](https://api.gemini.com/v1/pricefeed)
+12. [BTCGUSDPERP Funding amount](https://api.gemini.com/v1/fundingamount/BTCGUSDPERP)
+
+
 ## Generate mdanki
 mdanki api_gemini.md api_gemini.apkg --deck "Mohan::DeepWork::Api"
