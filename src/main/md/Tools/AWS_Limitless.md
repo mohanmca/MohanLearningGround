@@ -18,6 +18,52 @@
 4. We can choose multiple table that has same shard-key (customer and order table)
 5. We can keep some simple reference data across all the shards
 
+## Shard Group
+1. There is Distributed Transaction Routes
+2. Data Access Shards
+3. There is primary writer for each shard
+4. There is writer and reader endpoint
+
+## Distributed transaction routers
+1. Serve all application traffic
+2. Scale vertically and horizontally based on load
+3. Knows schema and key range placement
+4. Assign time for transaction snapshot and drive distributed commits
+5. Perform initial planning of query and aggregate results from multi-shard queries
+
+
+## Data access shards
+1. Own portion of sharded table key space and have full copies of reference tables
+2. Scale vertically and split based on load
+3. Perform local planning and execution of query fragments
+4. Execute local transaction logic
+5. Backed by Aurora distributed storage
+
+```
+aws rds create-db-cluster \
+  --db-cluster-identifier my-limitless-cluster \
+  --engine aurora-postgresql \
+  --engine-version 16.6-limitless \
+  --storage-type aurora-iopt1 \
+  --cluster-scalability-type limitless \
+  --master-username myuser \
+  --master-user-password mypassword \
+  --enable-performance-insights \
+  --performance-insights-retention-period 31 \
+  --monitoring-interval 5 \
+  --monitoring-role-arn arn:aws:iam::123456789012:role/EMrole \
+  --enable-cloudwatch-logs-exports postgresql
+```
+
+```
+aws rds create-db-shard-group \
+  --db-shard-group-identifier my-db-shard-group \
+  --db-cluster-identifier my-limitless-cluster \
+  --max-acu 1000 \
+  --min-acu 16 \
+  --compute-redundancy 1 \
+  --publicly-accessible
+```
 
 ## AWS Commands
 ```
