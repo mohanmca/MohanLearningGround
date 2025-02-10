@@ -1,3 +1,7 @@
+## Intellij Bazel
+1. [Instructions](https://github.com/bazelbuild/intellij/blob/master/docs/index.md)
+2. [What is the Bazel IntelliJ plugin?](https://www.youtube.com/watch?v=GV_KwWK3Qy8)
+
 ## Phase model
 1. *All models are wrong, but some of them are useful*
 2. Loading - Reading & Executing Build Files, List files  glob()
