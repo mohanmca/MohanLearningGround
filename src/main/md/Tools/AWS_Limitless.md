@@ -30,6 +30,7 @@
 3. Knows schema and key range placement
 4. Assign time for transaction snapshot and drive distributed commits
 5. Perform initial planning of query and aggregate results from multi-shard queries
+6. ROuters own any data, any router can do the work... Router doesn't require any dedicated failover configurations
 
 
 ## Data access shards
@@ -73,3 +74,5 @@ SET rds_aurora.limitless_create_table_mode='reference';
 SET rds_aurora.limitless_create_table_mode='standard';
 SET rds_aurora.limitless_create_table_collocate_with='customer';
 ```
+
+
