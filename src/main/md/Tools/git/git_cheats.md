@@ -11,6 +11,10 @@ git blame -L 15,26 path/to/file
 git log -L10,15:FunctionTrackingData.scala
 ``
 
+## How to mutate and ignore file from checkin
+```
+git update-index --assume-unchanged file.txt
+```
 
 ## Find list of files modified by authors under specific directory
 ```
