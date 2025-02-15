@@ -67,5 +67,24 @@ WHEN MATCHED THEN UPDATE SET * WHEN NOT MATCHED THEN  INSERT *;
 - Auto Loader monitors the cloud storage location for new data files and automatically loads them into the Delta table.
 
 
+## Why we need Hive-Meta-Store?
+1. SELECT * FROM delta.`s3://your-bucket/orders_table/`; (without hive meta store)
+2. SELECT * FROM orders_table;
+3. Hive Metastore is a central repository to store metadata for tables and partitions in a data warehouse.
+4. ```SQL
+      CREATE TABLE orders_table (
+         order_id BIGINT,
+         customer_name STRING,
+         order_amount DOUBLE
+      )
+      USING DELTA
+      LOCATION 's3://your-bucket/orders_table/';
+   ```
+
+## Why we need Unity Catalog?
+1. Unity Catalog does internally use Hive Metastore for certain functionality, but it goes beyond it by adding additional layers of governance, security, and data management.
+2. Unity Catalog allows you to query data from multiple sources, including Delta Lake, Apache Hive, and other data sources, using a single SQL query.
+3. Data Governanace, Fine-grained access control, Data lineage tracking, Centralized governance across multiple Databricks workspaces, 
+
 ## ## Generate mdanki
 mdanki Delta_Lake.md Delta_Lake.apkg --deck "Mohan::DeltaLake::Delta_Lake"
