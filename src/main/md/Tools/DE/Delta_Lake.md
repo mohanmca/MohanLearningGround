@@ -32,8 +32,10 @@
 2. Create table foo using Delta; // using delta is not required because it is default
 
 ## What is Delta Live Tables or DLT?
-- DLT aim for Make reliable ETL easy on Delta Lake
-- Declarative tools to build batch and streaming data pipelines
+- DLT aim for Make reliable ETL easy on Delta Lake - using SQL
+- DLT is a declarative framework for building batch and streaming data pipelines.
+- It is built on top of Delta Lake and Apache Spark.
+- It provides a simple and powerful way to define and manage data pipelines using SQL.
 
 ## What is Live Tables?
 1. Live Tables is a declarative framework for building batch and streaming data pipelines.
@@ -61,7 +63,7 @@ WHEN MATCHED THEN UPDATE SET * WHEN NOT MATCHED THEN  INSERT *;
 ```
 
 ## Give an example to use Delta Live Tables (DLT) with Auto Loader to stream from S3?
-- DLT is a declarative framework for building batch and streaming data pipelines.
+- 
 - Auto Loader is a feature of Databricks Delta that automatically loads new data files from cloud storage into a Delta table.
 - Auto Loader is designed to work with cloud storage systems like S3, ADLS, and GCS.
 - Auto Loader monitors the cloud storage location for new data files and automatically loads them into the Delta table.
