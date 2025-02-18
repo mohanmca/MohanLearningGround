@@ -693,5 +693,5 @@ int main()
 
 ## Generate MdAnki
 ```bash
-mdanki cpp.md cpp.apkg --deck "Mohan::DeepWork::cpp"
+mdanki cpp.md cpp.apkg --deck "Mohan::DeepWork::cpp::cpp"
 ```

@@ -513,5 +513,5 @@ int main() {
 
 ## Generate MdAnki
 ```bash
-mdanki cpp_sample_codes.md cpp_sample_codes.apkg --deck "Mohan::DeepWork::sample_code_cpp"
+mdanki cpp_sample_codes.md cpp_sample_codes.apkg --deck "Mohan::DeepWork::cpp::sample_code_cpp"
 ```
