@@ -1,3 +1,12 @@
+## How to query from multiple parquet file
+```
+%sql
+select count(*), accountId, symbol, eventId from parquet.`s3a://bucket/event_los/staging/*/*/*.parquet`
+where balance is null group by accountId, symbol, eventId having count(*) > 1 order by 1 desc
+```
+
+
+
 ## How to create temp table in Spark backed by S3 parquet data
 ```sql
 -- Load the data into a temporary table
