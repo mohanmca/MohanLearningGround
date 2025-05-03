@@ -116,6 +116,13 @@ my_macro(
 5. Targets are the smallest units that can be built
 6. bazel build //path/to/mypackage:mytarget
 
+
+## How to find container image tar built by bazel and use it
+```
+find /private/var/tmp/ -name "*.tar"  | grep "app.sub.directory.name"      | grep image.tar
+docker save my_app_image:latest -o my_app_image.tar
+```
+
 ## Command Reference
 1. "@workspace" is a special label that refers to the root of the workspace.
 2. @label, @label can be searched within the code space
