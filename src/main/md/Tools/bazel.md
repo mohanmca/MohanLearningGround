@@ -121,6 +121,7 @@ my_macro(
 ```
 find /private/var/tmp/ -name "*.tar"  | grep "app.sub.directory.name"      | grep image.tar
 docker save my_app_image:latest -o my_app_image.tar
+docker load -i /private/var/tmp/_bazel_mohan.narayanaswamy/my_app_image.tar
 ```
 
 ## Command Reference
