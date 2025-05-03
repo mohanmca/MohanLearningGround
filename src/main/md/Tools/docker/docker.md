@@ -1,3 +1,8 @@
+## How to login to image despite any entry-point
+```
+docker run -it --entrypoint /bin/sh $IMAGEID
+```
+
 ## How to query list of ports and containers
 ```bash
 docker ps -a --format "table {{.Names}}\t{{.Ports}}"
