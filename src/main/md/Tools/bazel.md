@@ -84,10 +84,10 @@ my_macro(
 3. bazel help build
 4. bazel query ...
 5. bazel run :frontend //alias based target
-6. bazel run //target/application -- --jvm_flags="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005
+6. bazel run //target/application -- --jvm_flags="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
 
 ## How to do remote debug using bazel
-1. bazel run //target/application -- --jvm_flags="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005
+1. bazel run //target/application -- --jvm_flags="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
 
 ## How to create uber jar using bazel
 1. Add "_deploy.jar", it would automatically create uber jar
