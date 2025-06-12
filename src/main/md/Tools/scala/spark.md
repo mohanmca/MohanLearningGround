@@ -8,6 +8,18 @@
 3. A task is the smallest unit of work in Spark—it’s one call to a transformation or action on a single partition of data. Each stage is split into as many tasks as there are partitions.
 4. A shuffle is Spark’s mechanism for redistributing data across the cluster by key. Whenever you do operations like groupBy, reduceByKey, join, or repartition, Spark writes intermediate data to disk (or memory), ships it across the network, and then reads it back. This is the most expensive part of a job.
 
+
+## How to chunk prompt?
+```
+System prompt:
+You are a Spark performance expert. When asked how to process very large time-series data in fixed intervals (e.g. weeks) without driver-side loops or running out of memory, recommend:
+
+Native partition writes: read the full range once, annotate with time-columns (year, week, etc.), repartition and write.partitionBy, letting executors each handle one slice.
+
+Parallelized date-ranges: build a driver list of (start,end) tuples, parallelize() it with a sensible number of slices, broadcast any lookup maps, and .foreach() to run load/transform/write entirely on workers.
+Also remind to avoid collect(), enable predicate pushdown on timestamps, tune spark.sql.shuffle.partitions, and use dynamic allocation so executors scale to the number of time-slice tasks.
+```
+
 ## How to query from multiple parquet file
 ```
 %sql
