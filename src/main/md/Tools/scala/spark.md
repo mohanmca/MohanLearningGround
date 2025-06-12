@@ -1,3 +1,13 @@
+## What are task, job
+1. A job in Spark is created whenever you call an *action* (e.g. .count(), .collect(), .write()).
+   1. Here, .count() is the action. Spark will plan out everything needed to compute the distinct count, then submit it as Job 0, Job 1,
+2. A stage is a set of parallel tasks that can run without requiring data to be reshuffled. Spark builds a DAG of your operations and breaks it into stages at points where a shuffle is required (e.g. groupBy, join, repartition).
+   1. mapped = df.filter(df.event_type == "click").select("user_id", "timestamp")
+   2. filter and select is a stage (no shuffle here)
+   3. Some stage is all about shuffling without filter and map (groupBy  partition)
+3. A task is the smallest unit of work in Spark—it’s one call to a transformation or action on a single partition of data. Each stage is split into as many tasks as there are partitions.
+4. A shuffle is Spark’s mechanism for redistributing data across the cluster by key. Whenever you do operations like groupBy, reduceByKey, join, or repartition, Spark writes intermediate data to disk (or memory), ships it across the network, and then reads it back. This is the most expensive part of a job.
+
 ## How to query from multiple parquet file
 ```
 %sql
@@ -5,7 +15,7 @@ select count(*), accountId, symbol, eventId from parquet.`s3a://bucket/event_los
 where balance is null group by accountId, symbol, eventId having count(*) > 1 order by 1 desc
 ```
 
-
+## What are A job in Spark is created whenever you call an action (e.g. .count(), .collect(), .write()).
 
 ## How to create temp table in Spark backed by S3 parquet data
 ```sql
