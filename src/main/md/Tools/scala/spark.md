@@ -76,3 +76,39 @@ CREATE TABLE account_ts_view as  select * from account_ts_view_temp where assetI
  ## Schema evaluation
  1. structure steam fails when there is new column, and restarts and would add new columns
  2. cloudFiles.schemaEvolutionMode - addNewColumn|rescue|failOnNewColumns|none (new column rescued would contain the data)
+
+## What are they? how they are being used inside spark?
+1. 2671 TaskSetManager:
+1. 478 DAGScheduler:
+1. 434 BlockManagerInfo:
+1. 140 TaskSchedulerImpl:
+1. 133 MemoryStore:
+1. 104 SparkContext:
+1.  39 FileSourceStrategy:
+1.  36 FileFormatWriter:
+1.  36 AnalyzerLogHelper$:
+1.  29 GlueLogger:
+1.  26 SQLConfCommitterProvider:
+1.  26 FileSourceScanExec:
+1.  26 FileOutputCommitter:
+1.  26 EmrOptimizedParquetOutputCommitter:
+1.  25 ParquetOutputFormat:
+1.  15 ExecutorTaskManagement:
+1.  13 ParquetFileFormat:
+1.  13 JESSchedulerBackend:
+1.  13 InMemoryFileIndex:
+1.  13 HadoopFSUtils:
+1.  12 ShufflePartitionsUtil:
+1.  12 MapOutputTrackerMasterEndpoint:
+1.  11 ExecutorAllocationManager:
+1.   6 TaskGroupInterface:
+1.   6 BlockManagerMasterEndpoint:
+1.   5 SecurityManager:
+1.   4 Utils:
+1.   4 SparkEnv:
+1.   4 JESSchedulerBackend$JESAsSchedulerBackendEndpoint:
+1.   3 PlatformInfo:
+1.   3 ObservabilityTaskInfoRecorderListener:
+1.   3 GlueCloudwatchSink:
+1.   3 ExecutorMonitor:
+1.   3 ExecutorEventListener:
