@@ -1,3 +1,11 @@
+## How to squash without squasing
+```bash
+git checkout yourBranch
+git reset $(git merge-base main $(git branch --show-current))
+git add -A
+git commit -m "one commit on yourBranch"
+```
+
 ## Find important authors who commit code
 ```
 git  log -10000 --pretty=format:"%aN" | sort | uniq -c | sort -nr > authors.txt
