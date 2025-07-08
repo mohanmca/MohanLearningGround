@@ -1,3 +1,7 @@
+## How to learn basics
+1. [Learn Go with tests](https://quii.gitbook.io/learn-go-with-tests/meta/why)
+2. [Go welcome](https://go.dev/tour/welcome/1)
+
 ## Important libraries
 1. Protobuf - 1.5.3
 2. gotest - v3.5.0
