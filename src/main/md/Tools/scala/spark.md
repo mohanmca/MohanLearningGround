@@ -58,6 +58,14 @@ CREATE TABLE account_ts_view as  select * from account_ts_view_temp where assetI
 2. Listing cloud files are costly, and we need to deal only newfiles
 3. New file might contain new column, how to manage new columns
 
+## Dabricks commands
+```bash
+databricks jobs list-runs  --job-id  654421358946423
+databricks jobs get-run  847204524992418
+databricks jobs list-runs  --job-id  654421358946423 --start-time-from 1752444000000 --start-time-to 1752501600000 --completed-only
+
+```
+
 ## Further prompt quiz
 1. API for autoloader allowing incremental data loading
 2.   spark.readStream().writeStream() and relationship with autoloader
