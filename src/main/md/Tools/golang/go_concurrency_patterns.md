@@ -1,16 +1,16 @@
 ## GOlang channel concurrency patterns
 ```
-	Pattern	Purpose
-	Ping-Pong	Bi-directional communication
-	Fan-Out / Fan-In	Parallelism & aggregation
-	Done Channel	Cancellation
-	Timeout / Ticker	Time-based control
-	Semaphore	Concurrency limiting
-	Pipeline	Data processing stages
-	Or-Done	Unified cancellation
-	Tee	Duplication of stream
-	Bridge	Merging channels of channels
-	Closing Channel	Signaling producer termination
+Pattern	Purpose
+Ping-Pong	Bi-directional communication
+Fan-Out / Fan-In	Parallelism & aggregation
+Done Channel	Cancellation
+Timeout / Ticker	Time-based control
+Semaphore	Concurrency limiting
+Pipeline	Data processing stages
+Or-Done	Unified cancellation
+Tee	Duplication of stream
+Bridge	Merging channels of channels
+Closing Channel	Signaling producer termination
 ```
 
 ## Basic Go routine without Channel
