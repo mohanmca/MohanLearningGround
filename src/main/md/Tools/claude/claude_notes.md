@@ -9,3 +9,4 @@
 
 ## Reference
 1. [Master Claude Code in 14 Minutes (8 Steps)](https://www.youtube.com/watch?v=cjW6ofe7AY4)
+2. [Mastering Claude Code in 30 minutes](https://www.youtube.com/watch?v=6eBSHbLKuN0&t=12s)
