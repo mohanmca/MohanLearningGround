@@ -14,3 +14,6 @@
 ## Reference
 1. [Master Claude Code in 14 Minutes (8 Steps)](https://www.youtube.com/watch?v=cjW6ofe7AY4)
 2. [Mastering Claude Code in 30 minutes](https://www.youtube.com/watch?v=6eBSHbLKuN0&t=12s)
+3. https://www.anthropic.com/engineering/claude-code-best-practices
+4. https://harper.blog/2025/05/08/basic-claude-code/
+5. https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/
