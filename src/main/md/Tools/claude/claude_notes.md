@@ -11,6 +11,21 @@
 2.  
 
 
+## Use claude code to answer questions about your codebase
+1. How is @RoutingController.py used
+2. How do I make a new @app/services/ValidationTemplateFactory?
+3. Why does recoverFromException take so many arguments? Look through git history to answer
+4. Why did we fix issue #1882 by addding if/else in @src/login.ts API?
+5. In which version did we release the new @api/ext/PreHooks.php API?
+6. Look at PR #92929, then carefully verify which app versions were impacted
+7. What dis we ship yesterday
+8. Use 3 parallel agents to brainstorm ideas for how to clean up @services/aggregator/feed_serice.cpp
+9. Figure out the root cause for issue @92292, Let me choose an approach before you code. Ultrathink
+10. 
+
+# Claude commands
+1. commit, push, pr
+
 ## Reference
 1. [Master Claude Code in 14 Minutes (8 Steps)](https://www.youtube.com/watch?v=cjW6ofe7AY4)
 2. [Mastering Claude Code in 30 minutes](https://www.youtube.com/watch?v=6eBSHbLKuN0&t=12s)
