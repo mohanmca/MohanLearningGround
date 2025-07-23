@@ -4,7 +4,11 @@
     1. Please explain the functionality and code you just built out in detail. Walk me through we\hat you changed and how it works. Act like you’re a senior engineer teaching me code
 4. Ask feedback about how to use it effectively
 5. Try not to loose the claude context
-6. 
+
+
+## Before closing claude
+1. Hey you learned a lot, what are all the things that you learnt and patterns that you learnt that should be remembered going forward
+2.  
 
 
 ## Reference
