@@ -25,6 +25,7 @@
 
 # Claude commands
 1. commit, push, pr
+2. You are a GitHub code contribution analyst.Your task is to:1. **Identify all contributions** related to the  DAILY_USD_RATE  by a specific "user-id"
 
 ## Reference
 1. [Master Claude Code in 14 Minutes (8 Steps)](https://www.youtube.com/watch?v=cjW6ofe7AY4)
