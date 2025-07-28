@@ -60,12 +60,12 @@ CREATE TABLE account_ts_view as  select * from account_ts_view_temp where assetI
 
 ## Dabricks commands
 ```bash
+databricks jobs list --name "rds_job"
 databricks jobs list-runs  --job-id  654421358946423
 databricks jobs get-run  847204524992418
 databricks jobs list-runs  --job-id  654421358946423 --start-time-from 1752444000000 --start-time-to 1752501600000 --completed-only
 databricks jobs get-run-output  15254730485937
 databricks jobs get-run-output  529358573202460
-
 ```
 
 ## Further prompt quiz
