@@ -213,9 +213,11 @@ build --disk_cache=~/.cache/bazel-disk
 bazel query 'rdeps(..., //vistar/geo/qtdb:go_default_library)' --output package 
 ```
 
-## which packages does qtdb depend on?
+## which packages does qtdb depend on? Find all the library that is using //services:services library
 ```
 bazel query 'deps(//vistar/geo/qtdb:go_default_library)' --output package
+bazel query 'rdeps(//..., //services:services)'  --keep_going
+bazel query 'rdeps(//web-server/..., //services:services)' --keep_going
 ```
 
 ## which rules are defined in package root?
