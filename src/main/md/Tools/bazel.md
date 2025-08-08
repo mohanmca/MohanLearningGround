@@ -103,8 +103,8 @@ my_macro(
     1. It prints the entire tree   
   1. bazel query "deps(//web-module/test/web:tests)"
 2. Find reverse dependency
-3. bazel query "rdeps(//web-module/test/web:tests)"
-4. bazel query "rdeps(..., //apps/node_web:index.js)" --output package
+3. bazel query "rdeps(//web-module/test/web:tests)"  --keep_going
+4. bazel query "rdeps(..., //apps/node_web:index.js)"  --keep_going --output package
 5. Query language can work with cycle - implemented by Alan Donovan 
 
 
