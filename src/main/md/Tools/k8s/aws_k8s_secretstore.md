@@ -19,3 +19,8 @@
 ## How does external-secret uses SecretStore
 1. Secret-Store has which service-account (IRSA)
 2. It is centralized, multiple external-secrets can use it
+
+## 🧭 Analogy: Database + Connection Pool
+1. SecretStore = Database connection info (driver, creds, host, port)
+1. ExternalSecret = SQL query to fetch specific data
+1. K8s Secret = The result of the query, written locally
