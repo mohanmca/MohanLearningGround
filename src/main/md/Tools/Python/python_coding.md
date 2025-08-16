@@ -227,11 +227,6 @@ s = f"Name: {name} Age: {age}"
 s = {1, 2, 3}
 ```
 
-## How to check if set contains element
-
-```python
-exists = 2 in {1, 2, 3}
-```
 
 ## How to find set intersection
 
@@ -279,4 +274,344 @@ flat = [x for sub in [[1, 2], [3]] for x in sub]
 
 ```python
 idx = nums.index(3)
+```
+
+## How to iterate over two lists together
+
+```python
+a = [1, 2, 3]
+b = ['x', 'y', 'z']
+for x, y in zip(a, b):
+    print(x, y)
+```
+
+## How to enumerate starting from 1
+
+```python
+nums = [10, 20, 30]
+for i, val in enumerate(nums, start=1):
+    print(i, val)
+```
+
+## How to sort with custom key using lambda
+
+```python
+words = ["aaa", "b", "cc"]
+words.sort(key=lambda x: len(x))
+```
+
+## How to create dictionary from two lists
+
+```python
+keys = ["a", "b"]
+vals = [1, 2]
+d = dict(zip(keys, vals))
+```
+
+## How to unpack list into variables
+
+```python
+nums = [1, 2, 3]
+x, y, z = nums
+```
+
+## How to unpack with star
+
+```python
+a, *b = [1, 2, 3, 4]
+```
+
+## How to merge two dictionaries
+
+```python
+d1 = {"a": 1}
+d2 = {"b": 2}
+merged = {**d1, **d2}
+```
+
+## How to count elements in list
+
+```python
+from collections import Counter
+cnt = Counter([1, 2, 2, 3])
+cnt[2]==2
+```
+
+## How to get most common elements
+
+```python
+from collections import Counter
+cnt = Counter("banana")
+top = cnt.most_common(2)
+cnt.most_common(0)==[]
+cnt.most_common(1)==[('a', 3)]
+cnt.most_common(2)==[('a', 3), ('n', 2)] 
+```
+
+## How to create default dictionary
+
+```python
+from collections import defaultdict
+d = defaultdict(int)
+d["a"] += 1
+```
+
+## How to group list by key
+
+```python
+from collections import defaultdict
+groups = defaultdict(list)
+for k, v in [("a", 1), ("b", 2), ("a", 3)]:
+    groups[k].append(v)
+```
+
+## How to use heap as min-heap
+
+```python
+import heapq
+heap = []
+heapq.heappush(heap, 3)
+heapq.heappush(heap, 1)
+min_val = heapq.heappop(heap)
+```
+
+## How to use heap as max-heap
+
+```python
+import heapq
+heap = []
+heapq.heappush(heap, -3)
+heapq.heappush(heap, -1)
+max_val = -heapq.heappop(heap)
+```
+
+## How to get n smallest elements
+
+```python
+import heapq
+nums = [5, 1, 3, 2]
+smallest = heapq.nsmallest(2, nums)
+```
+
+## How to get n largest elements
+
+```python
+import heapq
+nums = [5, 1, 3, 2]
+largest = heapq.nlargest(2, nums)
+```
+
+## How to use deque for queue
+
+```python
+from collections import deque
+q = deque()
+q.append(1)
+q.popleft()
+```
+
+## How to use deque for stack
+
+```python
+from collections import deque
+stack = deque()
+stack.append(1)
+stack.pop()
+```
+
+## How to rotate deque
+
+```python
+from collections import deque
+d = deque([1, 2, 3])
+d.rotate(1)
+```
+
+## How to slice list with step
+
+```python
+nums = [0, 1, 2, 3, 4, 5]
+evens = nums[::2]
+evens == [0, 2, 4]
+```
+
+## How to reverse slice
+
+```python
+nums = [1, 2, 3]
+rev = nums[::-1]
+```
+
+## How to flatten list of lists with sum
+
+```python
+nested = [[1, 2], [3, 4]]
+flat = sum(nested, [])
+```
+
+## How to flatten with itertools.chain
+
+```python
+import itertools
+flat = list(itertools.chain.from_iterable([[1, 2], [3, 4]]))
+```
+
+## How to create infinite counter
+
+```python
+import itertools
+counter = itertools.count(start=1, step=2)
+next(counter) == 1
+next(counter) == 3
+next(counter) == 5
+```
+
+## How to cycle through list
+
+```python
+import itertools
+for val in itertools.islice(itertools.cycle([1, 2, 3]), 5):
+    print(val)
+```
+
+## How to accumulate sums
+
+```python
+import itertools
+nums = [1, 2, 3]
+acc = list(itertools.accumulate(nums))
+```
+
+## How to all elements satisfy condition
+
+```python
+nums = [2, 4, 6]
+res = all(x % 2 == 0 for x in nums)
+```
+
+## How to any element satisfy condition
+
+```python
+nums = [1, 2, 3]
+res = any(x > 2 for x in nums)
+```
+
+## How to zip with index
+
+```python
+nums = [10, 20]
+for i, val in zip(range(len(nums)), nums):
+    print(i, val)
+```
+
+## How to transpose matrix
+
+```python
+matrix = [[1, 2], [3, 4]]
+transposed = list(zip(*matrix))
+```
+
+## How to get unique elements preserving order
+```python
+nums = [1, 2, 1, 3]
+seen = set()
+res = [x for x in nums if not (x in seen or seen.add(x))]
+```
+
+## How to find index with condition
+```python
+nums = [10, 20, 30]
+idx = next(i for i, x in enumerate(nums) if x > 15)
+```
+
+## How to safely find index or -1
+```python
+nums = [10, 20, 30]
+idx = next((i for i, x in enumerate(nums) if x > 50), -1)
+```
+
+## How to sort by multiple keys
+```python
+items = [(1, 2), (1, 1), (0, 3)]
+items.sort(key=lambda x: (x[0], -x[1]))
+```
+
+## How to create dictionary comprehension
+```python
+d = {x: x*x for x in range(5)}
+```
+
+## How to create set comprehension
+```python
+s = {x*x for x in range(5)}
+```
+
+## How to filter list comprehension
+
+```python
+nums = [1, 2, 3, 4]
+evens = [x for x in nums if x % 2 == 0]
+```
+
+## How to use defaultdict with list
+
+```python
+from collections import defaultdict
+d = defaultdict(list)
+d["a"].append(1)
+```
+
+## How to count frequency without Counter
+
+```python
+freq = {}
+for num in [1, 2, 1]:
+    freq[num] = freq.get(num, 0) + 1
+```
+
+## How to get min with key
+
+```python
+nums = [1, 2, 3]
+val = min(nums, key=lambda x: -x)
+```
+
+## How to get max with key
+
+```python
+nums = ["a", "bb", "ccc"]
+val = max(nums, key=len)
+```
+
+## How to sort dict by key
+
+```python
+d = {"b": 2, "a": 1}
+sorted_items = sorted(d.items())
+```
+
+## How to sort dict by value
+
+```python
+d = {"a": 2, "b": 1}
+sorted_items = sorted(d.items(), key=lambda x: x[1])
+```
+
+## How to zip into sorted pairs
+
+```python
+keys = ["a", "b"]
+vals = [2, 1]
+pairs = sorted(zip(keys, vals), key=lambda x: x[1])
+```
+
+## How to flatten deeply nested list with recursion
+
+```python
+def flatten(lst):
+    for x in lst:
+        if isinstance(x, list):
+            yield from flatten(x)
+        else:
+            yield x
 ```
