@@ -14,4 +14,6 @@
 1. Extra-ordinary people are ordinary people and thinking differently
 
 
-## 
+## Rote Memorisation is Thinking
+1. [Memorisation helps in thinking](https://news.ycombinator.com/item?id=44972416)
+2. [In praise of memorisation](https://www.pearlleff.com/in-praise-of-memorization)
