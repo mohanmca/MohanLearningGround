@@ -143,9 +143,11 @@ Here’s a compact, battle-tested playbook for PostgreSQL index design—split i
 * Track usage in **`pg_stat_user_indexes`** / **`pg_stat_all_indexes`** (look for low/zero `idx_scan`). Clean up unused/duplicate indexes. ([PostgreSQL][20])
 * Periodically VACUUM/ANALYZE as needed so planner estimates and visibility map stay healthy (improves index-only scans). ([PostgreSQL][21])
 
+**Analyze Query using explain plan**
+If you heaviest queries (text + `EXPLAIN (ANALYZE, BUFFERS)` output), use explain plan to find the exact indexes and key orderings.
+
 ---
 
-If you want, share a couple of your heaviest queries (text + `EXPLAIN (ANALYZE, BUFFERS)` output), and I’ll propose the exact indexes and key orderings.
 
 [1]: https://www.postgresql.org/docs/current/indexes.html?utm_source=chatgpt.com "PostgreSQL: Documentation: 17: Chapter 11. Indexes"
 [2]: https://www.postgresql.org/docs/current/indexes-types.html?utm_source=chatgpt.com "PostgreSQL: Documentation: 17: 11.2. Index Types"
