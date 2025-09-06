@@ -615,3 +615,46 @@ def flatten(lst):
         else:
             yield x
 ```
+
+## Trie Implementation
+
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = [None] * 26
+        self.end = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    
+    def _idx(self, c: str) -> int:
+        return ord(c) - ord('a')
+    
+    def insert(self, word: str) -> None:
+        node = self.root
+        for c in word:
+            i = self._idx(c)
+            if not node.children[i]:
+                node.children[i] = TrieNode()
+            node = node.children[i]
+        node.end = True
+    
+    def search(self, word: str) -> bool:
+        node = self.root
+        for c in word:
+            i = self._idx(c)
+            if not node.children[i]:
+                return False
+            node = node.children[i]
+        return node.end
+    
+    def startsWith(self, prefix: str) -> bool:
+        node = self.root
+        for c in prefix:
+            i = self._idx(c)
+            if not node.children[i]:
+                return False
+            node = node.children[i]
+        return True
+```
