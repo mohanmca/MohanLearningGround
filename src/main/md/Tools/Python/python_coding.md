@@ -69,6 +69,15 @@ lst = list((1, 2, 3))
 tpl = tuple([1, 2, 3])
 ```
 
+
+# reverse from index 2 to 4 (inclusive of 2, exclusive of 5)
+```python
+arr = [1, 2, 3, 4, 5, 6]
+arr[2:5] = arr[2:5][::-1]
+arr[2:5] = reversed(arr[2:5])
+print(arr)  # [1, 2, 5, 4, 3, 6]
+```
+
 ## How to iterate with index
 
 ```python
