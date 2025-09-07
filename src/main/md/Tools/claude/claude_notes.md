@@ -6,7 +6,7 @@
 5. you can have ~/CLAUDE.md and give commands that you often use and context about project that you work often
 6. Ask Claude to do only what were asked to do, don't involve in other activities
 7. Ask claude to explain "What it is going to do?"
-8. 
+8. When Claude caught up in loop in a cycle, interrupt, ask to use, "Think Hard". "Ultra Think" and "Mega Think" could be used to break the loop and move on
 
 ## Claude Commands and prompts
 1. ```claude --resume```
