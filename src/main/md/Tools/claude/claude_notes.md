@@ -1,3 +1,7 @@
+## Claude Usages
+1. You can interact with Cluad like another developer before implementing
+2. 
+
 ## Effective usage of claude
 1. Use plan mode before aking claude to do actual coding/change
 2. Ask Claude to explain
