@@ -1,6 +1,24 @@
 ## Claude Usages
 1. You can interact with Cluad like another developer before implementing
-2. 
+2. You can improver user-memory by asking lesson learnt
+3. Create your own Claude commands to improve your workflow
+4. You can have different perceiption by keep CLAUDE.md under each folder, admin-tools/CLAUDE.md, internal-tools/CLAUDE.md can have different context for claude
+5. you can have ~/CLAUDE.md and give commands that you often use and context about project that you work often
+6. Ask Claude to do only what were asked to do, don't involve in other activities
+7. 
+
+## Claude Commands and prompts
+1. ```claude --resume```
+2. *#* I forget to complete xyz, please remind me if we work through my calendary block. (Project memory, project memory local, user memory
+3. '/forwar-slash to bring claude commands'
+4. ```/compact``` -- summarize and clear context and keep only summary
+5. bash commands to execute, "! echo mohan" "!pwd"
+6. ```Ask Claude to use git ls-files isntead of find command when searching files```
+7. ```/permissions command```
+8. You can ask claude to read the PR review feedback and fix it
+9. You can ask Claude to address all the feedback
+10. 
+
 
 ## Effective usage of claude
 1. Use plan mode before aking claude to do actual coding/change
