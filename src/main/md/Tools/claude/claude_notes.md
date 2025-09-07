@@ -5,7 +5,8 @@
 4. You can have different perceiption by keep CLAUDE.md under each folder, admin-tools/CLAUDE.md, internal-tools/CLAUDE.md can have different context for claude
 5. you can have ~/CLAUDE.md and give commands that you often use and context about project that you work often
 6. Ask Claude to do only what were asked to do, don't involve in other activities
-7. 
+7. Ask claude to explain "What it is going to do?"
+8. 
 
 ## Claude Commands and prompts
 1. ```claude --resume```
