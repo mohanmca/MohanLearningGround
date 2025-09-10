@@ -1,5 +1,6 @@
 ## How to list all the scheama?
 ```select * from information_schema.schemata;```
+```SELECT datname FROM pg_database WHERE datistemplate = false;```
 
 ## How to show each record in columnar multi-row format?
 ```
