@@ -10,7 +10,7 @@ Expanded display is on.
 
 ## From CLI
 ```
-time psql "service=exchange_activity" -X -v ON_ERROR_STOP=1 -c "SELECT count(*) FROM closed_order_activities;"
+time psql "service=exchange_activity" -X -v ON_ERROR_STOP=1 -c "SELECT count(*) FROM order_details;"
 ```
 
 
