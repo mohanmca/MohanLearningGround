@@ -98,6 +98,7 @@
 ---
 ## Reference
 * (Ask HN: How do you remember what you read?)
+* [Memorisation Rote](https://news.ycombinator.com/item?id=44972416)
 * [Lisa Genova: How your memory works -- and why forgetting is totally OK | TED](https://www.youtube.com/watch?v=Irx0tC92fdE)
 * [CDU Memory](https://www.youtube.com/watch?v=ojoI-DfeGtA)
 * [Memory course](https://courses.ted.com/product/how-to-boost-your-brain-memory)
