@@ -87,6 +87,11 @@ databricks jobs get-run-output  529358573202460
  1. structure steam fails when there is new column, and restarts and would add new columns
  2. cloudFiles.schemaEvolutionMode - addNewColumn|rescue|failOnNewColumns|none (new column rescued would contain the data)
 
+## Configure oAuth
+1. https://docs.databricks.com/aws/en/admin/users-groups/service-principals
+2. https://docs.databricks.com/aws/en/dev-tools/auth/
+3. https://docs.databricks.com/aws/en/dev-tools/auth/oauth-m2m
+
 ## What are they? how they are being used inside spark?
 1. 2671 TaskSetManager:
 1. 478 DAGScheduler:
