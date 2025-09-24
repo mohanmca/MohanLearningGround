@@ -6,3 +6,7 @@
 5. [Redis]
 6. [Kafka]
 7. [MongoDB]
+8. [Aeron cluster with Replicated statemachine with raft consensus]
+9. [Protobuf]
+10. Teams are 1. Grid team, Dollar Cost average team, Algo Engine Team
+11. 
