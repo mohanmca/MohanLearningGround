@@ -166,6 +166,9 @@ wscat --connect='wss://api.gemini.com/v1/marketdata/btcusd?top_of_book=false\&bi
 15. [FX-Price](https://api.gemini.com/v2/fxrate/gbpusd/2024-01-01)
 16. [Staking rates](https://api.gemini.com/v1/staking/rates)
 
+## Tokenized stock
+1. Dinari
+2. Arbitrium
 
 ## Generate mdanki
 mdanki api_gemini.md api_gemini.apkg --deck "Mohan::DeepWork::Api"
