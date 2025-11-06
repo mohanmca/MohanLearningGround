@@ -62,6 +62,9 @@ Ensure the article is **version 1 (v1)** and has a **bluish theme**. Ensure you 
 * Add a **sequence diagram**, **SQL snippets** for troubleshooting, and **key table schema details**.
 * Include a **state transition diagram** and references to **important code blocks** (≤15).
 * Document the **important APIs** used in the context.
+* What are the main components (API endpoints, GRPC services, database tables)
+* How does it work architecturally
+* What are the key code files I should reference
 * At the end, Include **25 quizzes** to validate user knowledge, with feedback on incorrect answers.
 * For images locally create using python or node and attach as html
 
