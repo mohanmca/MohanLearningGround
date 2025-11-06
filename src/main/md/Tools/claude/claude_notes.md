@@ -46,6 +46,36 @@
 9. Figure out the root cause for issue @92292, Let me choose an approach before you code. Ultrathink
 10. 
 
+
+## Create document prompt
+Here’s a concise and precise rewrite of your system prompt, with optional points separated clearly:
+
+---
+
+### Core Instruction
+
+Create a **new HTML article** about **XYZ** in the directory `~/git/mohan_notes/scripts/cluade_article/`.
+Ensure the article is **version 1 (v1)** and has a **bluish theme**. Ensure you add white-space: pre-wrap; to both the .code-block and .sql-block CSS classes in the HTML file.
+
+### Core Content Requirements
+
+* Add a **sequence diagram**, **SQL snippets** for troubleshooting, and **key table schema details**.
+* Include a **state transition diagram** and references to **important code blocks** (≤15).
+* Document the **important APIs** used in the context.
+* At the end, Include **25 quizzes** to validate user knowledge, with feedback on incorrect answers.
+* For images locally create using python or node and attach as html
+
+
+### Architectural Components
+
+* Add an **"Architecture Overview"** section with a detailed **system design**.
+* Include a **cross-component diagram** and **Bazel integration insights**.
+* Reference relevant **Architecture Decision Records (ADRs)** for the article.
+
+---
+
+
+
 # Claude commands
 1. commit, push, pr
 2. You are a GitHub code contribution analyst.Your task is to:1. **Identify all contributions** related to the  DAILY_USD_RATE  by a specific "user-id"
