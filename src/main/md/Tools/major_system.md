@@ -7,3 +7,7 @@
 3. [Namesake](2307)
 4. [Mat Chops Juice Chef](31696068)
 8. [busink-buff](902798)
+
+
+## What is the model of TV in bedroom?
+1. [Luck zoos - Lexus](webos LG TVLM5700PTC)
