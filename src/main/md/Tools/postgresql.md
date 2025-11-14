@@ -85,6 +85,56 @@ time psql "service=db_active" -X -v ON_ERROR_STOP=1 -c "SELECT count(*) FROM ord
    4. Index Rows Read per Table & Index
    5. Index Rows Fetched per Table & Index
 
+## RDS vs Aurora
+
+Here’s a **concise, fact-based summary** of everything from the discussion:
+
+---
+
+### ⚙️ **RDS PostgreSQL**
+
+* **No Paxos.** Uses PostgreSQL’s native **WAL + EBS storage** for durability.
+* **Replication:** Standard **WAL streaming** (async/sync) between primary and standby.
+* **Write path:** Local commit → fsync to EBS → optional WAL streaming to standby.
+* **Performance:**
+
+  * Faster for **bulk or sequential writes** (e.g., ingestion, COPY).
+  * Low-latency local commits, fewer network hops.
+* **Multi-AZ failover:** Promotes standby by remounting EBS; slower failover than Aurora.
+
+---
+
+### ⚙️ **Aurora PostgreSQL**
+
+* **Uses Paxos** for every write: 6 copies of data across 3 AZs, **4-of-6 quorum commit**.
+* **Storage:** Decoupled, distributed, shared across all nodes.
+* **Write path:** Instance → distributed log service → Paxos quorum commit.
+* **Performance:**
+
+  * Faster for **high-concurrency workloads** and **reads** (many small queries).
+  * Slower for **single-threaded or batch ingestion** because of quorum latency (~1–2 ms per commit).
+* **Failover:** Instant, since all nodes share the same distributed storage.
+
+---
+
+### ⚡ **Key Performance Insights**
+
+| Scenario                            | Better Choice      | Reason                                |
+| ----------------------------------- | ------------------ | ------------------------------------- |
+| Bulk ingestion / ETL                | **RDS PostgreSQL** | Local I/O, no Paxos overhead          |
+| High read or concurrent OLTP        | **Aurora**         | Parallel commit and distributed reads |
+| Multi-AZ durability / fast failover | **Aurora**         | Shared storage, quorum durability     |
+| Single-threaded ingestion           | **RDS PostgreSQL** | Avoids global quorum latency          |
+
+---
+
+### 🧩 **Bottom Line**
+
+* **RDS PostgreSQL = Simpler, faster for large sequential writes.**
+* **Aurora PostgreSQL = More scalable and resilient, but higher write latency due to Paxos.**
+* **Hence:** Aurora is generally faster overall, but RDS wins for *high-volume bulk ingestion workloads*.
+
+
 
 ## Generate mdanki
 mdanki postgresql.md postgresql.apkg --deck "Mohan::DeepWork::postgresql"
