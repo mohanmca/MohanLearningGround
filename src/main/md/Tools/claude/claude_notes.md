@@ -34,6 +34,13 @@
 2.  
 
 
+## What are Codex equivalent of Ultrathink in Claude
+1. Think step by step.
+2. Explain assumptions.
+3. Consider edge cases.
+4. Reason like a senior engineer.
+5. Do not jump to conclusions.
+
 ## Use claude code to answer questions about your codebase
 1. How is @RoutingController.py used
 2. How do I make a new @app/services/ValidationTemplateFactory?
