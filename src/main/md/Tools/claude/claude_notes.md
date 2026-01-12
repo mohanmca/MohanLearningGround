@@ -84,6 +84,18 @@ Ensure the article is **version 1 (v1)** and has a **bluish theme**. Ensure you 
 
 ---
 
+## Quiz needs in article developments
+
+### Quiz Requirements
+1. Provide **4 answer options** per question
+2. Quiz should be interactive and validate answers **after each questions are submitted**
+3. Include feedback on incorrect answers
+4. All the quiz informtaion should be saved in json along html file
+5. Quiz could be like slide show, should not increase page hight due to number of quizzes
+6. It can use local state in browser should display progress
+7. Upon right answer slide should move automatically
+8. Answers should be shuffled, so user won't use same option
+
 
 
 # Claude commands
