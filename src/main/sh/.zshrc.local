@@ -1,0 +1,56 @@
+#### PATH (safe)
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+#### History (robust)
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+unsetopt HIST_IGNORE_SPACE
+
+#### Shell behavior
+setopt AUTO_CD           # type a dir name to cd
+setopt AUTO_PUSHD        # pushd on cd
+setopt PUSHD_IGNORE_DUPS # no duplicate dirs
+setopt INTERACTIVE_COMMENTS
+setopt NO_BEEP
+
+#### Completion (good defaults)
+autoload -Uz compinit
+# Faster compinit when cached
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
+#### Prompt (simple, fast)
+autoload -Uz vcs_info
+precmd() { vcs_info }
+setopt PROMPT_SUBST
+zstyle ':vcs_info:git:*' formats ' (%b)'
+PROMPT='%n@%m %~${vcs_info_msg_0_} %# '
+
+#### Useful aliases
+alias ll='ls -lah'
+alias gs='git status'
+alias gl='git log --oneline --decorate --graph --all | head -100'
+alias gd='git diff'
+alias gc='git commit'
+alias gco='git checkout'
+alias k='kubectl'
+alias d='docker'
+alias dc='docker compose'
+
+#### Quality-of-life
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+#### Local overrides (secrets, machine-specific)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
