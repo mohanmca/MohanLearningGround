@@ -1,6 +1,9 @@
 #### PATH (safe)
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="./node_modules/.bin:$PATH"
 
 #### History (robust)
 HISTFILE=~/.zsh_history
@@ -11,14 +14,20 @@ setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY          # show command before executing from history
 unsetopt HIST_IGNORE_SPACE
 
 #### Shell behavior
-setopt AUTO_CD           # type a dir name to cd
-setopt AUTO_PUSHD        # pushd on cd
-setopt PUSHD_IGNORE_DUPS # no duplicate dirs
+setopt AUTO_CD              # type a dir name to cd
+setopt AUTO_PUSHD           # pushd on cd
+setopt PUSHD_IGNORE_DUPS    # no duplicate dirs
+setopt PUSHD_SILENT         # don't print dir stack
 setopt INTERACTIVE_COMMENTS
 setopt NO_BEEP
+setopt CORRECT              # spell correction for commands
+setopt GLOB_DOTS            # include dotfiles in globs
+setopt EXTENDED_GLOB        # advanced globbing
 
 #### Completion (good defaults)
 autoload -Uz compinit
@@ -29,28 +38,439 @@ else
   compinit -C
 fi
 
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+
 #### Prompt (simple, fast)
 autoload -Uz vcs_info
 precmd() { vcs_info }
 setopt PROMPT_SUBST
 zstyle ':vcs_info:git:*' formats ' (%b)'
+zstyle ':vcs_info:git:*' actionformats ' (%b|%a)'
 PROMPT='%n@%m %~${vcs_info_msg_0_} %# '
 
-#### Useful aliases
-alias ll='ls -lah'
-alias gs='git status'
-alias gl='git log --oneline --decorate --graph --all | head -100'
-alias gd='git diff'
-alias gc='git commit'
-alias gco='git checkout'
-alias k='kubectl'
-alias d='docker'
-alias dc='docker compose'
+#### Editor
+export EDITOR='vim'
+export VISUAL='code'
+bindkey -e  # emacs keybindings (ctrl-a, ctrl-e, etc.)
 
-#### Quality-of-life
+#### Key bindings
+bindkey '^[[A' history-search-backward  # up arrow searches history
+bindkey '^[[B' history-search-forward   # down arrow searches history
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+bindkey '^U' backward-kill-line
+bindkey '^K' kill-line
+bindkey '^W' backward-kill-word
+bindkey '\e.' insert-last-word          # alt+. inserts last argument
+
+#### Basic aliases
+alias ll='ls -lah'
+alias la='ls -A'
+alias l='ls -CF'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias -- -='cd -'
+
+#### Git aliases
+alias gs='git status'
+alias gss='git status -s'
+alias gl='git log --oneline --decorate --graph --all | head -100'
+alias glo='git log --oneline -20'
+alias glp='git log -p -5'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gdn='git diff --name-only'
+alias gc='git commit'
+alias gca='git commit --amend'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbD='git branch -D'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gpu='git push -u origin HEAD'
+alias gpl='git pull'
+alias gplr='git pull --rebase'
+alias gf='git fetch'
+alias gfa='git fetch --all --prune'
+alias gm='git merge'
+alias gr='git rebase'
+alias gri='git rebase -i'
+alias grc='git rebase --continue'
+alias gra='git rebase --abort'
+alias gcp='git cherry-pick'
+alias gst='git stash'
+alias gstp='git stash pop'
+alias gstl='git stash list'
+alias grh='git reset HEAD'
+alias grhh='git reset --hard HEAD'
+alias gclean='git clean -fd'
+alias gwip='git add -A && git commit -m "WIP"'
+alias gunwip='git reset HEAD~1'
+alias gbl='git blame -L'
+
+#### GitHub CLI
+alias ghpr='gh pr view --web'
+alias ghprc='gh pr create --draft'
+alias ghprs='gh pr status'
+alias ghprl='gh pr list'
+alias ghprco='gh pr checkout'
+alias ghis='gh issue list'
+alias ghic='gh issue create'
+
+#### Docker/Kubernetes
+alias d='docker'
+alias dc='docker compose'
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
+alias dcl='docker compose logs -f'
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias dimg='docker images'
+alias drmi='docker rmi'
+alias dprune='docker system prune -af'
+alias k='kubectl'
+alias kx='kubectx'
+alias kn='kubens'
+alias kg='kubectl get'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get svc'
+alias kgd='kubectl get deployments'
+alias kd='kubectl describe'
+alias kdp='kubectl describe pod'
+alias kl='kubectl logs'
+alias klf='kubectl logs -f'
+alias kex='kubectl exec -it'
+alias kaf='kubectl apply -f'
+alias kdf='kubectl delete -f'
+alias kctx='kubectl config current-context'
+
+#### Node/npm/pnpm
+alias ni='npm install'
+alias nid='npm install --save-dev'
+alias nig='npm install -g'
+alias nu='npm uninstall'
+alias nr='npm run'
+alias nrb='npm run build'
+alias nrd='npm run dev'
+alias nrt='npm test'
+alias nrs='npm start'
+alias nrl='npm run lint'
+alias nrf='npm run format'
+alias nci='npm ci'
+alias ncu='npx npm-check-updates'
+alias pi='pnpm install'
+alias pr='pnpm run'
+alias px='pnpm dlx'
+
+#### Python
+alias py='python3'
+alias pip='pip3'
+alias venv='python3 -m venv'
+alias activate='source venv/bin/activate'
+alias pipr='pip install -r requirements.txt'
+
+#### Searching (ripgrep/fd preferred)
+alias rg='rg --smart-case'
+alias rgf='rg --files | rg'
+alias fd='fd --hidden --exclude .git'
+alias grep='grep --color=auto'
+
+#### File operations
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias mkdir='mkdir -pv'
+alias df='df -h'
+alias du='du -h'
+alias dus='du -sh * | sort -h'
+alias tree='tree -C'
+
+#### Network
+alias ip='curl -s ifconfig.me'
+alias localip='ipconfig getifaddr en0'
+alias ports='lsof -i -P -n | grep LISTEN'
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+
+#### Process management
+alias psg='ps aux | grep -v grep | grep'
+alias top='htop 2>/dev/null || top'
+alias killport='f() { lsof -ti:$1 | xargs kill -9 2>/dev/null || echo "No process on port $1"; }; f'
+
+#### Misc utilities
+alias cls='clear'
+alias h='history'
+alias hg='history | grep'
+alias path='echo $PATH | tr ":" "\n"'
+alias now='date +"%Y-%m-%d %H:%M:%S"'
+alias week='date +%V'
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
+alias json='python3 -m json.tool'
+alias urlencode='python3 -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.argv[1]))"'
+alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
+alias b64e='base64'
+alias b64d='base64 -d'
+alias sha256='shasum -a 256'
+
+#### Directory bookmarks
+alias cdc='cd ~/code'
+alias cdg='cd ~/git'
+alias cdd='cd ~/Downloads'
+alias cdt='cd /tmp'
+
+#### Editor shortcuts
+alias c='code .'
+alias v='vim'
+alias zshrc='${EDITOR:-vim} ~/.zshrc'
+alias reload='source ~/.zshrc && echo "Reloaded .zshrc"'
+
+#=============================================================================
+# Functions
+#=============================================================================
+
+# Create directory and cd into it
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+# Extract various archive formats
+extract() {
+  if [[ -f "$1" ]]; then
+    case "$1" in
+      *.tar.bz2) tar xjf "$1" ;;
+      *.tar.gz)  tar xzf "$1" ;;
+      *.tar.xz)  tar xJf "$1" ;;
+      *.bz2)     bunzip2 "$1" ;;
+      *.gz)      gunzip "$1" ;;
+      *.tar)     tar xf "$1" ;;
+      *.tbz2)    tar xjf "$1" ;;
+      *.tgz)     tar xzf "$1" ;;
+      *.zip)     unzip "$1" ;;
+      *.Z)       uncompress "$1" ;;
+      *.7z)      7z x "$1" ;;
+      *.rar)     unrar x "$1" ;;
+      *)         echo "'$1' cannot be extracted" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# Quick find file by name
+ff() {
+  find . -type f -iname "*$1*" 2>/dev/null
+}
+
+# Quick find directory by name
+fd() {
+  find . -type d -iname "*$1*" 2>/dev/null
+}
+
+# Git branch fuzzy checkout (requires fzf)
+fbr() {
+  local branches branch
+  branches=$(git branch -a --sort=-committerdate) &&
+  branch=$(echo "$branches" | fzf --height=20 --reverse) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/origin/##")
+}
+
+# Git log fuzzy (requires fzf)
+fgl() {
+  git log --oneline --decorate --all | fzf --preview 'git show --color=always {1}' | awk '{print $1}'
+}
+
+# Quick server (Python)
+serve() {
+  local port="${1:-8000}"
+  echo "Serving on http://localhost:$port"
+  python3 -m http.server "$port"
+}
+
+# Backup file with timestamp
+bak() {
+  cp -v "$1" "$1.bak.$(date +%Y%m%d_%H%M%S)"
+}
+
+# Quick notes
+note() {
+  local note_dir="$HOME/notes"
+  [[ -d "$note_dir" ]] || mkdir -p "$note_dir"
+  if [[ -z "$1" ]]; then
+    ls -lt "$note_dir" | head -20
+  else
+    ${EDITOR:-vim} "$note_dir/$1.md"
+  fi
+}
+
+# Weather
+weather() {
+  curl -s "wttr.in/${1:-}"
+}
+
+# Cheat sheet
+cheat() {
+  curl -s "cheat.sh/$1"
+}
+
+# Git commit with message (convenience)
+gcm() {
+  git commit -m "$*"
+}
+
+# Git add and commit
+gac() {
+  git add -A && git commit -m "$*"
+}
+
+# Open GitHub repo in browser
+ghopen() {
+  local url
+  url=$(git remote get-url origin 2>/dev/null | sed 's/git@github.com:/https:\/\/github.com\//' | sed 's/\.git$//')
+  [[ -n "$url" ]] && open "$url" || echo "Not a git repo or no origin"
+}
+
+# Show top N largest files in current directory
+largest() {
+  find . -type f -exec du -h {} + 2>/dev/null | sort -rh | head -n "${1:-10}"
+}
+
+# Watch command with refresh
+watchcmd() {
+  while true; do
+    clear
+    echo "=== $(date) ==="
+    eval "$@"
+    sleep "${WATCH_INTERVAL:-2}"
+  done
+}
+
+# JSON pretty print from clipboard (macOS)
+jsonclip() {
+  pbpaste | python3 -m json.tool
+}
+
+# Diff two URLs
+diffu() {
+  diff <(curl -s "$1") <(curl -s "$2")
+}
+
+# Quick git ignore
+gi() {
+  curl -sL "https://www.toptal.com/developers/gitignore/api/$@"
+}
+
+# Port forward shortcut
+portfwd() {
+  echo "Forwarding localhost:$1 -> $2:$3"
+  ssh -N -L "$1:$2:$3" "$4"
+}
+
+# Retry command until success
+retry() {
+  local max_attempts="${RETRY_MAX:-5}"
+  local delay="${RETRY_DELAY:-2}"
+  local attempt=1
+  until "$@"; do
+    if (( attempt >= max_attempts )); then
+      echo "Failed after $attempt attempts"
+      return 1
+    fi
+    echo "Attempt $attempt failed. Retrying in ${delay}s..."
+    sleep "$delay"
+    ((attempt++))
+  done
+}
+
+# Clean up merged git branches
+git-cleanup() {
+  git branch --merged | grep -v '\*\|main\|master' | xargs -n 1 git branch -d 2>/dev/null
+  echo "Cleaned up merged branches"
+}
+
+# Docker shell into container
+dsh() {
+  docker exec -it "$1" /bin/sh -c "[ -x /bin/bash ] && exec /bin/bash || exec /bin/sh"
+}
+
+# Kubernetes pod shell
+ksh() {
+  kubectl exec -it "$1" -- /bin/sh -c "[ -x /bin/bash ] && exec /bin/bash || exec /bin/sh"
+}
+
+# Quick timestamp
+ts() {
+  date +%Y%m%d_%H%M%S
+}
+
+# Convert epoch to human readable
+epoch() {
+  if [[ -z "$1" ]]; then
+    date +%s
+  else
+    date -r "$1" 2>/dev/null || date -d "@$1" 2>/dev/null
+  fi
+}
+
+#=============================================================================
+# Tool integrations (load if available)
+#=============================================================================
+
+# fzf integration
+if [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+  export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git 2>/dev/null || find . -type f'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+# zoxide (better cd)
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+  alias cd='z'
+fi
+
+# direnv
+if command -v direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# nvm (Node Version Manager)
+export NVM_DIR="$HOME/.nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use  # lazy load
+[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+
+# pyenv
+if command -v pyenv &>/dev/null; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
+
+# rbenv
+if command -v rbenv &>/dev/null; then
+  eval "$(rbenv init - zsh)"
+fi
+
+# Google Cloud SDK
+[[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/google-cloud-sdk/path.zsh.inc"
+[[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/google-cloud-sdk/completion.zsh.inc"
+
+# AWS CLI completion
+if command -v aws_completer &>/dev/null; then
+  complete -C aws_completer aws
+fi
 
 #### Local overrides (secrets, machine-specific)
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+[[ -f ~/.zshrc.secrets ]] && source ~/.zshrc.secrets
