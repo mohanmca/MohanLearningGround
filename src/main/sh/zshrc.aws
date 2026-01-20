@@ -1,0 +1,896 @@
+#=============================================================================
+# AWS CLI & SDK Developer Configuration
+# Source this file: source ~/sh/zshrc.aws
+#=============================================================================
+
+#=============================================================================
+# Environment & Credentials
+#=============================================================================
+
+export AWS_PAGER=""                          # Disable pager for CLI output
+export AWS_CLI_AUTO_PROMPT=on-partial        # Auto-prompt for incomplete commands
+export AWS_DEFAULT_OUTPUT="json"             # Default output format
+export SAM_CLI_TELEMETRY=0                   # Disable SAM telemetry
+
+# Default region (override in ~/.zshrc.secrets)
+export AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION:-us-east-1}"
+
+# SDK settings
+export AWS_SDK_LOAD_CONFIG=1                 # Load config from ~/.aws/config
+export AWS_MAX_ATTEMPTS=3                    # Retry attempts
+export AWS_RETRY_MODE=standard               # Retry mode
+
+#=============================================================================
+# Profile & Region Management
+#=============================================================================
+
+# Quick profile switch
+awsp() {
+  if [[ -z "$1" ]]; then
+    echo "Available profiles:"
+    aws configure list-profiles | nl
+    echo "\nCurrent: ${AWS_PROFILE:-default}"
+  else
+    export AWS_PROFILE="$1"
+    echo "Switched to profile: $AWS_PROFILE"
+    aws sts get-caller-identity --output table 2>/dev/null || echo "Failed to validate credentials"
+  fi
+}
+
+# Quick region switch
+awsr() {
+  if [[ -z "$1" ]]; then
+    echo "Current region: ${AWS_DEFAULT_REGION:-not set}"
+    echo "\nCommon regions: us-east-1, us-west-2, eu-west-1, ap-southeast-1"
+  else
+    export AWS_DEFAULT_REGION="$1"
+    echo "Switched to region: $AWS_DEFAULT_REGION"
+  fi
+}
+
+# List all profiles
+alias awsprofiles='aws configure list-profiles'
+
+# Show current identity
+alias awswho='aws sts get-caller-identity --output table'
+alias awswhoami='aws sts get-caller-identity'
+
+# Assume role helper
+awsassume() {
+  local role_arn="$1"
+  local session_name="${2:-cli-session}"
+
+  if [[ -z "$role_arn" ]]; then
+    echo "Usage: awsassume <role-arn> [session-name]"
+    return 1
+  fi
+
+  local creds=$(aws sts assume-role \
+    --role-arn "$role_arn" \
+    --role-session-name "$session_name" \
+    --output json)
+
+  if [[ $? -eq 0 ]]; then
+    export AWS_ACCESS_KEY_ID=$(echo "$creds" | jq -r '.Credentials.AccessKeyId')
+    export AWS_SECRET_ACCESS_KEY=$(echo "$creds" | jq -r '.Credentials.SecretAccessKey')
+    export AWS_SESSION_TOKEN=$(echo "$creds" | jq -r '.Credentials.SessionToken')
+    echo "Assumed role: $role_arn"
+    echo "Expires: $(echo "$creds" | jq -r '.Credentials.Expiration')"
+  else
+    echo "Failed to assume role"
+    return 1
+  fi
+}
+
+# Clear assumed role
+awsunassume() {
+  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+  echo "Cleared assumed role credentials"
+}
+
+# SSO login
+alias awslogin='aws sso login'
+alias awslogout='aws sso logout'
+
+#=============================================================================
+# Documentation Quick Access
+#=============================================================================
+
+# Open AWS CLI command reference
+awsdoc() {
+  local service="${1:-}"
+  local command="${2:-}"
+  local base_url="https://awscli.amazonaws.com/v2/documentation/api/latest/reference"
+
+  if [[ -z "$service" ]]; then
+    echo "Usage: awsdoc <service> [command]"
+    echo "Examples:"
+    echo "  awsdoc ec2              # EC2 service docs"
+    echo "  awsdoc ec2 describe-instances"
+    echo "  awsdoc s3 cp"
+    open "$base_url/index.html"
+  elif [[ -z "$command" ]]; then
+    open "$base_url/$service/index.html"
+  else
+    open "$base_url/$service/$command.html"
+  fi
+}
+
+# Open AWS SDK documentation
+awssdk() {
+  local lang="${1:-}"
+  local base_urls=(
+    "python:https://boto3.amazonaws.com/v1/documentation/api/latest/index.html"
+    "js:https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/"
+    "go:https://pkg.go.dev/github.com/aws/aws-sdk-go-v2"
+    "java:https://sdk.amazonaws.com/java/api/latest/"
+    "rust:https://docs.rs/aws-sdk-rust/latest/aws_sdk_rust/"
+    "dotnet:https://docs.aws.amazon.com/sdkfornet/v3/apidocs/"
+  )
+
+  if [[ -z "$lang" ]]; then
+    echo "Usage: awssdk <language>"
+    echo "Languages: python, js, go, java, rust, dotnet"
+    return
+  fi
+
+  for entry in "${base_urls[@]}"; do
+    local key="${entry%%:*}"
+    local url="${entry#*:}"
+    if [[ "$key" == "$lang" ]]; then
+      open "$url"
+      return
+    fi
+  done
+  echo "Unknown language: $lang"
+}
+
+# Boto3 specific documentation
+boto3doc() {
+  local service="${1:-}"
+  if [[ -z "$service" ]]; then
+    open "https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/index.html"
+  else
+    open "https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/$service.html"
+  fi
+}
+
+# Open AWS service console
+awsconsole() {
+  local service="${1:-console}"
+  local region="${AWS_DEFAULT_REGION:-us-east-1}"
+  local base="https://${region}.console.aws.amazon.com"
+
+  case "$service" in
+    ec2)        open "$base/ec2/home?region=$region" ;;
+    s3)         open "https://s3.console.aws.amazon.com/s3/home?region=$region" ;;
+    lambda)     open "$base/lambda/home?region=$region" ;;
+    rds)        open "$base/rds/home?region=$region" ;;
+    dynamodb)   open "$base/dynamodb/home?region=$region" ;;
+    cloudwatch) open "$base/cloudwatch/home?region=$region" ;;
+    iam)        open "https://console.aws.amazon.com/iam/home" ;;
+    cloudformation|cfn) open "$base/cloudformation/home?region=$region" ;;
+    ecs)        open "$base/ecs/home?region=$region" ;;
+    eks)        open "$base/eks/home?region=$region" ;;
+    sqs)        open "$base/sqs/home?region=$region" ;;
+    sns)        open "$base/sns/home?region=$region" ;;
+    secrets)    open "$base/secretsmanager/home?region=$region" ;;
+    ssm)        open "$base/systems-manager/home?region=$region" ;;
+    logs)       open "$base/cloudwatch/home?region=$region#logsV2:log-groups" ;;
+    api|apigateway) open "$base/apigateway/home?region=$region" ;;
+    route53)    open "https://console.aws.amazon.com/route53/home" ;;
+    cost)       open "https://console.aws.amazon.com/cost-management/home" ;;
+    billing)    open "https://console.aws.amazon.com/billing/home" ;;
+    *)          open "https://console.aws.amazon.com/$service/home?region=$region" ;;
+  esac
+}
+
+# Quick cheat sheet
+awscheat() {
+  local topic="${1:-aws}"
+  curl -s "cheat.sh/$topic"
+}
+
+#=============================================================================
+# EC2
+#=============================================================================
+
+alias ec2ls='aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId,State.Name,InstanceType,PrivateIpAddress,PublicIpAddress,Tags[?Key==\`Name\`].Value|[0]]" --output table'
+alias ec2lsr='aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId,State.Name,InstanceType,PrivateIpAddress,Tags[?Key==\`Name\`].Value|[0]]" --output table'
+alias ec2running='aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" --query "Reservations[*].Instances[*].[InstanceId,InstanceType,PrivateIpAddress,Tags[?Key==\`Name\`].Value|[0]]" --output table'
+
+# Get instance by name tag
+ec2id() {
+  aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=*$1*" \
+    --query "Reservations[*].Instances[*].[InstanceId,State.Name,Tags[?Key==\`Name\`].Value|[0]]" \
+    --output table
+}
+
+# SSH to instance (by instance ID or name)
+ec2ssh() {
+  local target="$1"
+  local user="${2:-ec2-user}"
+  local key="${3:-}"
+
+  # If target looks like a name, resolve to IP
+  if [[ ! "$target" =~ ^i- ]]; then
+    target=$(aws ec2 describe-instances \
+      --filters "Name=tag:Name,Values=*$target*" "Name=instance-state-name,Values=running" \
+      --query "Reservations[0].Instances[0].PrivateIpAddress" \
+      --output text)
+  else
+    target=$(aws ec2 describe-instances \
+      --instance-ids "$target" \
+      --query "Reservations[0].Instances[0].PrivateIpAddress" \
+      --output text)
+  fi
+
+  if [[ "$target" == "None" || -z "$target" ]]; then
+    echo "Instance not found or not running"
+    return 1
+  fi
+
+  if [[ -n "$key" ]]; then
+    ssh -i "$key" "$user@$target"
+  else
+    ssh "$user@$target"
+  fi
+}
+
+# SSM Session Manager connect
+ec2ssm() {
+  local instance_id="$1"
+  if [[ ! "$instance_id" =~ ^i- ]]; then
+    instance_id=$(aws ec2 describe-instances \
+      --filters "Name=tag:Name,Values=*$instance_id*" "Name=instance-state-name,Values=running" \
+      --query "Reservations[0].Instances[0].InstanceId" \
+      --output text)
+  fi
+  aws ssm start-session --target "$instance_id"
+}
+
+# Start/stop/reboot instances
+ec2start() { aws ec2 start-instances --instance-ids "$@" && echo "Starting: $@"; }
+ec2stop() { aws ec2 stop-instances --instance-ids "$@" && echo "Stopping: $@"; }
+ec2reboot() { aws ec2 reboot-instances --instance-ids "$@" && echo "Rebooting: $@"; }
+ec2terminate() {
+  echo "Are you sure you want to terminate $@? (y/N)"
+  read -r confirm
+  [[ "$confirm" == "y" ]] && aws ec2 terminate-instances --instance-ids "$@"
+}
+
+# Security groups
+alias sgls='aws ec2 describe-security-groups --query "SecurityGroups[*].[GroupId,GroupName,Description]" --output table'
+sgfind() {
+  aws ec2 describe-security-groups \
+    --filters "Name=group-name,Values=*$1*" \
+    --query "SecurityGroups[*].[GroupId,GroupName,VpcId]" \
+    --output table
+}
+
+# VPCs and Subnets
+alias vpcls='aws ec2 describe-vpcs --query "Vpcs[*].[VpcId,CidrBlock,Tags[?Key==\`Name\`].Value|[0],State]" --output table'
+alias subnetls='aws ec2 describe-subnets --query "Subnets[*].[SubnetId,VpcId,CidrBlock,AvailabilityZone,Tags[?Key==\`Name\`].Value|[0]]" --output table'
+
+#=============================================================================
+# S3
+#=============================================================================
+
+alias s3ls='aws s3 ls'
+alias s3mb='aws s3 mb'
+alias s3rb='aws s3 rb'
+alias s3cp='aws s3 cp'
+alias s3mv='aws s3 mv'
+alias s3rm='aws s3 rm'
+alias s3sync='aws s3 sync'
+
+# List bucket contents with size
+s3du() {
+  local bucket="$1"
+  aws s3 ls "s3://$bucket" --recursive --summarize --human-readable | tail -2
+}
+
+# List all buckets with region
+s3buckets() {
+  aws s3api list-buckets --query "Buckets[*].[Name,CreationDate]" --output table
+}
+
+# Get bucket location
+s3region() {
+  aws s3api get-bucket-location --bucket "$1" --output text
+}
+
+# Presigned URL
+s3presign() {
+  local bucket="$1"
+  local key="$2"
+  local expires="${3:-3600}"
+  aws s3 presign "s3://$bucket/$key" --expires-in "$expires"
+}
+
+# Quick upload with public read
+s3pub() {
+  local file="$1"
+  local bucket="$2"
+  local key="${3:-$(basename $file)}"
+  aws s3 cp "$file" "s3://$bucket/$key" --acl public-read
+  echo "https://$bucket.s3.amazonaws.com/$key"
+}
+
+#=============================================================================
+# Lambda
+#=============================================================================
+
+alias lambdals='aws lambda list-functions --query "Functions[*].[FunctionName,Runtime,MemorySize,Timeout]" --output table'
+
+# Invoke lambda
+lambdainvoke() {
+  local fn="$1"
+  local payload="${2:-{}}"
+  aws lambda invoke \
+    --function-name "$fn" \
+    --payload "$payload" \
+    --cli-binary-format raw-in-base64-out \
+    /dev/stdout
+}
+
+# Get lambda logs (last 5 minutes)
+lambdalogs() {
+  local fn="$1"
+  local mins="${2:-5}"
+  aws logs filter-log-events \
+    --log-group-name "/aws/lambda/$fn" \
+    --start-time $(($(date +%s) * 1000 - mins * 60 * 1000)) \
+    --query "events[*].[timestamp,message]" \
+    --output text
+}
+
+# Update lambda code from zip
+lambdaupdate() {
+  local fn="$1"
+  local zipfile="$2"
+  aws lambda update-function-code \
+    --function-name "$fn" \
+    --zip-file "fileb://$zipfile"
+}
+
+# Lambda function URL
+lambdaurl() {
+  aws lambda get-function-url-config --function-name "$1" --query "FunctionUrl" --output text 2>/dev/null || echo "No function URL configured"
+}
+
+#=============================================================================
+# ECS
+#=============================================================================
+
+alias ecscluster='aws ecs list-clusters --query "clusterArns[*]" --output table'
+alias ecssvc='aws ecs list-services --query "serviceArns[*]" --output table'
+
+# List tasks in a cluster
+ecstasks() {
+  local cluster="$1"
+  aws ecs list-tasks --cluster "$cluster" --query "taskArns[*]" --output table
+}
+
+# Describe service
+ecsdesc() {
+  local cluster="$1"
+  local service="$2"
+  aws ecs describe-services --cluster "$cluster" --services "$service" --query "services[0]" --output yaml
+}
+
+# Force new deployment
+ecsdeploy() {
+  local cluster="$1"
+  local service="$2"
+  aws ecs update-service --cluster "$cluster" --service "$service" --force-new-deployment
+  echo "Triggered deployment for $service in $cluster"
+}
+
+# Exec into container
+ecsexec() {
+  local cluster="$1"
+  local task="$2"
+  local container="${3:-}"
+  local cmd="${4:-/bin/sh}"
+
+  if [[ -n "$container" ]]; then
+    aws ecs execute-command --cluster "$cluster" --task "$task" --container "$container" --interactive --command "$cmd"
+  else
+    aws ecs execute-command --cluster "$cluster" --task "$task" --interactive --command "$cmd"
+  fi
+}
+
+#=============================================================================
+# RDS
+#=============================================================================
+
+alias rdsls='aws rds describe-db-instances --query "DBInstances[*].[DBInstanceIdentifier,DBInstanceClass,Engine,DBInstanceStatus,Endpoint.Address]" --output table'
+
+# Get connection string
+rdsconn() {
+  local instance="$1"
+  aws rds describe-db-instances \
+    --db-instance-identifier "$instance" \
+    --query "DBInstances[0].[Endpoint.Address,Endpoint.Port,Engine]" \
+    --output text
+}
+
+# Snapshots
+alias rdssnapshots='aws rds describe-db-snapshots --query "DBSnapshots[*].[DBSnapshotIdentifier,DBInstanceIdentifier,SnapshotCreateTime,Status]" --output table'
+
+#=============================================================================
+# DynamoDB
+#=============================================================================
+
+alias ddbls='aws dynamodb list-tables --output table'
+
+# Describe table
+ddbdesc() {
+  aws dynamodb describe-table --table-name "$1" --query "Table.[TableName,TableStatus,ItemCount,TableSizeBytes]" --output table
+}
+
+# Scan table (limited)
+ddbscan() {
+  local table="$1"
+  local limit="${2:-10}"
+  aws dynamodb scan --table-name "$table" --limit "$limit"
+}
+
+# Query by partition key
+ddbquery() {
+  local table="$1"
+  local pk_name="$2"
+  local pk_value="$3"
+  aws dynamodb query \
+    --table-name "$table" \
+    --key-condition-expression "$pk_name = :v" \
+    --expression-attribute-values "{\":v\":{\"S\":\"$pk_value\"}}"
+}
+
+# Put item (JSON)
+ddbput() {
+  local table="$1"
+  local item="$2"
+  aws dynamodb put-item --table-name "$table" --item "$item"
+}
+
+#=============================================================================
+# CloudWatch Logs
+#=============================================================================
+
+alias cwlogs='aws logs describe-log-groups --query "logGroups[*].[logGroupName,storedBytes]" --output table'
+
+# Tail logs
+cwltail() {
+  local group="$1"
+  local mins="${2:-5}"
+  aws logs filter-log-events \
+    --log-group-name "$group" \
+    --start-time $(($(date +%s) * 1000 - mins * 60 * 1000)) \
+    --query "events[*].message" \
+    --output text
+}
+
+# Search logs
+cwlsearch() {
+  local group="$1"
+  local pattern="$2"
+  local mins="${3:-60}"
+  aws logs filter-log-events \
+    --log-group-name "$group" \
+    --filter-pattern "$pattern" \
+    --start-time $(($(date +%s) * 1000 - mins * 60 * 1000)) \
+    --query "events[*].[timestamp,message]" \
+    --output text
+}
+
+# Start live tail (requires logs:StartLiveTail permission)
+cwlive() {
+  local group="$1"
+  aws logs start-live-tail --log-group-identifiers "arn:aws:logs:${AWS_DEFAULT_REGION}:$(aws sts get-caller-identity --query Account --output text):log-group:$group"
+}
+
+#=============================================================================
+# Secrets Manager & SSM Parameter Store
+#=============================================================================
+
+alias secretsls='aws secretsmanager list-secrets --query "SecretList[*].[Name,Description]" --output table'
+
+# Get secret value
+secretget() {
+  aws secretsmanager get-secret-value --secret-id "$1" --query "SecretString" --output text
+}
+
+# Get secret as JSON
+secretjson() {
+  aws secretsmanager get-secret-value --secret-id "$1" --query "SecretString" --output text | jq .
+}
+
+# SSM Parameters
+alias ssmls='aws ssm describe-parameters --query "Parameters[*].[Name,Type,LastModifiedDate]" --output table'
+
+# Get SSM parameter
+ssmget() {
+  aws ssm get-parameter --name "$1" --with-decryption --query "Parameter.Value" --output text
+}
+
+# Set SSM parameter
+ssmput() {
+  local name="$1"
+  local value="$2"
+  local type="${3:-SecureString}"
+  aws ssm put-parameter --name "$name" --value "$value" --type "$type" --overwrite
+}
+
+#=============================================================================
+# SQS
+#=============================================================================
+
+alias sqsls='aws sqs list-queues --query "QueueUrls[*]" --output table'
+
+# Get queue URL by name
+sqsurl() {
+  aws sqs get-queue-url --queue-name "$1" --query "QueueUrl" --output text
+}
+
+# Send message
+sqssend() {
+  local queue_url="$1"
+  local body="$2"
+  aws sqs send-message --queue-url "$queue_url" --message-body "$body"
+}
+
+# Receive messages
+sqsrecv() {
+  local queue_url="$1"
+  local count="${2:-1}"
+  aws sqs receive-message --queue-url "$queue_url" --max-number-of-messages "$count"
+}
+
+# Purge queue
+sqspurge() {
+  echo "Are you sure you want to purge $1? (y/N)"
+  read -r confirm
+  [[ "$confirm" == "y" ]] && aws sqs purge-queue --queue-url "$1"
+}
+
+# Queue attributes
+sqsattr() {
+  aws sqs get-queue-attributes --queue-url "$1" --attribute-names All --output table
+}
+
+#=============================================================================
+# SNS
+#=============================================================================
+
+alias snsls='aws sns list-topics --query "Topics[*].TopicArn" --output table'
+alias snssubs='aws sns list-subscriptions --query "Subscriptions[*].[TopicArn,Protocol,Endpoint]" --output table'
+
+# Publish message
+snspub() {
+  local topic_arn="$1"
+  local message="$2"
+  aws sns publish --topic-arn "$topic_arn" --message "$message"
+}
+
+#=============================================================================
+# CloudFormation
+#=============================================================================
+
+alias cfnls='aws cloudformation list-stacks --query "StackSummaries[?StackStatus!=\`DELETE_COMPLETE\`].[StackName,StackStatus,CreationTime]" --output table'
+
+# Stack events
+cfnevents() {
+  aws cloudformation describe-stack-events \
+    --stack-name "$1" \
+    --query "StackEvents[*].[Timestamp,ResourceStatus,ResourceType,LogicalResourceId]" \
+    --output table | head -30
+}
+
+# Stack outputs
+cfnoutputs() {
+  aws cloudformation describe-stacks \
+    --stack-name "$1" \
+    --query "Stacks[0].Outputs[*].[OutputKey,OutputValue]" \
+    --output table
+}
+
+# Stack resources
+cfnresources() {
+  aws cloudformation list-stack-resources \
+    --stack-name "$1" \
+    --query "StackResourceSummaries[*].[LogicalResourceId,PhysicalResourceId,ResourceType,ResourceStatus]" \
+    --output table
+}
+
+# Delete stack
+cfndelete() {
+  echo "Are you sure you want to delete stack $1? (y/N)"
+  read -r confirm
+  [[ "$confirm" == "y" ]] && aws cloudformation delete-stack --stack-name "$1"
+}
+
+# Validate template
+cfnvalidate() {
+  aws cloudformation validate-template --template-body "file://$1"
+}
+
+#=============================================================================
+# IAM
+#=============================================================================
+
+alias iamuser='aws iam get-user'
+alias iamusers='aws iam list-users --query "Users[*].[UserName,CreateDate]" --output table'
+alias iamroles='aws iam list-roles --query "Roles[*].[RoleName,CreateDate]" --output table'
+alias iampolicies='aws iam list-policies --scope Local --query "Policies[*].[PolicyName,Arn]" --output table'
+
+# Get role policy
+iamrolepolicy() {
+  local role="$1"
+  echo "=== Attached Policies ==="
+  aws iam list-attached-role-policies --role-name "$role" --query "AttachedPolicies[*].[PolicyName,PolicyArn]" --output table
+  echo "\n=== Inline Policies ==="
+  aws iam list-role-policies --role-name "$role" --query "PolicyNames[*]" --output table
+}
+
+# Simulate policy
+iamsimulate() {
+  local arn="$1"
+  local action="$2"
+  local resource="$3"
+  aws iam simulate-principal-policy \
+    --policy-source-arn "$arn" \
+    --action-names "$action" \
+    --resource-arns "$resource"
+}
+
+#=============================================================================
+# Cost & Billing
+#=============================================================================
+
+# Current month cost
+awscost() {
+  local start=$(date -v1d +%Y-%m-%d)
+  local end=$(date +%Y-%m-%d)
+  aws ce get-cost-and-usage \
+    --time-period "Start=$start,End=$end" \
+    --granularity MONTHLY \
+    --metrics "UnblendedCost" \
+    --query "ResultsByTime[0].Total.UnblendedCost" \
+    --output table
+}
+
+# Cost by service
+awscostbyservice() {
+  local start=$(date -v1d +%Y-%m-%d)
+  local end=$(date +%Y-%m-%d)
+  aws ce get-cost-and-usage \
+    --time-period "Start=$start,End=$end" \
+    --granularity MONTHLY \
+    --metrics "UnblendedCost" \
+    --group-by Type=DIMENSION,Key=SERVICE \
+    --query "ResultsByTime[0].Groups[*].[Keys[0],Metrics.UnblendedCost.Amount]" \
+    --output table
+}
+
+#=============================================================================
+# Utility Functions
+#=============================================================================
+
+# Get account ID
+awsaccount() {
+  aws sts get-caller-identity --query "Account" --output text
+}
+
+# ARN builder helper
+awsarn() {
+  local service="$1"
+  local resource="$2"
+  local account=$(awsaccount)
+  local region="${AWS_DEFAULT_REGION}"
+  echo "arn:aws:$service:$region:$account:$resource"
+}
+
+# Describe any resource by ARN
+awsdescribe() {
+  local arn="$1"
+  # Parse ARN: arn:aws:service:region:account:resource
+  local service=$(echo "$arn" | cut -d: -f3)
+  echo "Service: $service"
+  echo "ARN: $arn"
+  # Add specific describe commands based on service
+}
+
+# JSON to DynamoDB format
+json2ddb() {
+  python3 -c "
+import json, sys
+def convert(obj):
+    if isinstance(obj, str): return {'S': obj}
+    elif isinstance(obj, bool): return {'BOOL': obj}
+    elif isinstance(obj, int) or isinstance(obj, float): return {'N': str(obj)}
+    elif isinstance(obj, list): return {'L': [convert(i) for i in obj]}
+    elif isinstance(obj, dict): return {'M': {k: convert(v) for k, v in obj.items()}}
+    elif obj is None: return {'NULL': True}
+print(json.dumps(convert(json.loads(sys.argv[1]))))
+" "$1"
+}
+
+# Wait for resource
+awswait() {
+  local service="$1"
+  local waiter="$2"
+  shift 2
+  echo "Waiting for $service $waiter..."
+  aws "$service" wait "$waiter" "$@"
+  echo "Done!"
+}
+
+# Quick resource tagging
+awstag() {
+  local arn="$1"
+  local key="$2"
+  local value="$3"
+  aws resourcegroupstaggingapi tag-resources \
+    --resource-arn-list "$arn" \
+    --tags "$key=$value"
+}
+
+# Find resources by tag
+awsfindtag() {
+  local key="$1"
+  local value="$2"
+  aws resourcegroupstaggingapi get-resources \
+    --tag-filters "Key=$key,Values=$value" \
+    --query "ResourceTagMappingList[*].ResourceARN" \
+    --output table
+}
+
+#=============================================================================
+# Development Helpers
+#=============================================================================
+
+# Generate AWS credentials for Docker
+awsdockerenv() {
+  echo "AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)"
+  echo "AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)"
+  [[ -n "$AWS_SESSION_TOKEN" ]] && echo "AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN"
+  echo "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}"
+}
+
+# Export credentials for subprocess
+awsexport() {
+  export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
+  export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
+  echo "Exported AWS credentials to environment"
+}
+
+# Local DynamoDB
+alias ddblocal='docker run -p 8000:8000 amazon/dynamodb-local'
+alias ddblocal-admin='open http://localhost:8001'
+
+# LocalStack
+alias localstack='docker run -p 4566:4566 localstack/localstack'
+
+# SAM local
+alias samlocal='sam local start-api'
+alias sambuild='sam build'
+alias samdeploy='sam deploy --guided'
+
+# CDK
+alias cdkdiff='cdk diff'
+alias cdksynth='cdk synth'
+alias cdkdeploy='cdk deploy'
+alias cdkdestroy='cdk destroy'
+alias cdkls='cdk list'
+
+#=============================================================================
+# Quick Reference / Help
+#=============================================================================
+
+awshelp() {
+  cat << 'EOF'
+AWS CLI Quick Reference
+=======================
+
+PROFILE/REGION
+  awsp [profile]     - Switch/list AWS profiles
+  awsr [region]      - Switch/show region
+  awswho             - Show current identity
+  awsassume <arn>    - Assume IAM role
+  awsunassume        - Clear assumed role
+  awslogin           - SSO login
+
+DOCUMENTATION
+  awsdoc <svc> [cmd] - Open CLI docs
+  awssdk <lang>      - Open SDK docs (python/js/go/java/rust/dotnet)
+  boto3doc [svc]     - Open Boto3 docs
+  awsconsole <svc>   - Open AWS console
+  awscheat <topic>   - Cheat sheet
+
+EC2
+  ec2ls              - List all instances
+  ec2running         - List running instances
+  ec2id <name>       - Find instance by name
+  ec2ssh <id|name>   - SSH to instance
+  ec2ssm <id|name>   - SSM session
+  ec2start/stop/reboot <id>
+
+S3
+  s3ls/cp/mv/rm/sync - S3 operations
+  s3du <bucket>      - Bucket size
+  s3presign <b> <k>  - Generate presigned URL
+  s3pub <file> <b>   - Upload with public-read
+
+LAMBDA
+  lambdals           - List functions
+  lambdainvoke <fn>  - Invoke function
+  lambdalogs <fn>    - Get recent logs
+  lambdaupdate <fn> <zip>
+
+LOGS
+  cwlogs             - List log groups
+  cwltail <group>    - Tail logs
+  cwlsearch <g> <p>  - Search logs
+
+SECRETS/SSM
+  secretget <name>   - Get secret
+  ssmget <name>      - Get parameter
+  ssmput <n> <v>     - Set parameter
+
+DynamoDB
+  ddbls              - List tables
+  ddbscan <table>    - Scan table
+  ddbquery <t> <pk> <v>
+
+SQS/SNS
+  sqsls/snsls        - List queues/topics
+  sqssend <url> <msg>
+  snspub <arn> <msg>
+
+CloudFormation
+  cfnls              - List stacks
+  cfnevents <stack>  - Stack events
+  cfnoutputs <stack> - Stack outputs
+
+IAM
+  iamusers/iamroles  - List users/roles
+  iamrolepolicy <r>  - Show role policies
+
+COST
+  awscost            - Current month cost
+  awscostbyservice   - Cost breakdown
+
+UTILITIES
+  awsaccount         - Get account ID
+  awsfindtag <k> <v> - Find resources by tag
+  json2ddb <json>    - Convert to DynamoDB format
+EOF
+}
+
+#=============================================================================
+# Completions
+#=============================================================================
+
+# Enable AWS CLI v2 completion
+if command -v aws_completer &>/dev/null; then
+  complete -C aws_completer aws
+fi
+
+# Profile completion
+_awsp_complete() {
+  local profiles=($(aws configure list-profiles 2>/dev/null))
+  COMPREPLY=($(compgen -W "${profiles[*]}" -- "${COMP_WORDS[COMP_CWORD]}"))
+}
+complete -F _awsp_complete awsp
+
+# Region completion
+_awsr_complete() {
+  local regions=(us-east-1 us-east-2 us-west-1 us-west-2 eu-west-1 eu-west-2 eu-central-1 ap-southeast-1 ap-southeast-2 ap-northeast-1)
+  COMPREPLY=($(compgen -W "${regions[*]}" -- "${COMP_WORDS[COMP_CWORD]}"))
+}
+complete -F _awsr_complete awsr
+
+echo "AWS CLI tools loaded. Type 'awshelp' for quick reference."
