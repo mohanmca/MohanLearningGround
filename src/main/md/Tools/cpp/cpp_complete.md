@@ -123,7 +123,7 @@ int main() {
 
 ### Basics of C
 1. By default it returns 0, unless we return something explicit
-2. char/int/foat/double/_Bool
+2. char/int/float/double/_Bool
 3. void : is a special type, it indicates 'no type', we can use in many places except parameter to function
   1. when function has nothing to return, use void
   2. Function to memory location that has nothing to point, then we can use (void*), later we can cast to any other pointer-type such as int*
@@ -178,10 +178,10 @@ struct Complex {
   double im;
 } c;
 
-strct Complex x = {2.0, 3.0};
-strct Complex x = {2.0}; //initialize only first member
+struct Complex x = {2.0, 3.0};
+struct Complex x = {2.0}; //initialize only first member
 ```
-1. strcut - is called - tag
+1. struct - is called - tag
 2. c is variable of type Compex structure
 
 ### Strcture using type-def alias
@@ -189,7 +189,7 @@ strct Complex x = {2.0}; //initialize only first member
 typedef struct _Books {
   char title[50];
   char author[50];
-  itn book_id;
+  int book_id;
 } Books;
 Books book;
 book.book_id = 23;
@@ -236,7 +236,7 @@ free(p);
 ```
 
 ```c
-strct Complex *p = &c;
+struct Complex *p = &c;
 (*p).re = 2.5;
 p->im = 3.6 // Access by redirection p-> == "(*p)."
 ```
@@ -478,9 +478,9 @@ int main()
 3. char == [-128 to 127], unsigned char == 0 255
 4. long can be declared in 3 days
 	5. literal value goes beyond the acceptable range of type int; 98l or 987L (suffix L)
- 6. short modifer never works with float, but `long float` would work, 'long float == double'
- 7. double can store larger number and with better accuracy
- 8. float would store 8 digits after decimal point for accuracy, double would store 15-17 accuracy
+ 6. short modifier never works with float; `long double` exists for extended precision (note: `long float` is NOT valid in C++)
+ 7. double can store larger numbers and with better accuracy
+ 8. float has ~6-7 significant digits of precision, double has ~15-17 significant digits
  9. numerical anomaly - is unavoidable
 
 ### boolean
@@ -489,7 +489,7 @@ int main()
 3. zero == false, non-zero == true
 
 ### empty for-loop
-1. when data missing, c++ assumes 1 is there, hence below is infinite;
+1. When the condition is omitted, C++ treats it as `true`, making the loop infinite:
 ```c++
 for( ; ; ) {
   /* the body goes here */
@@ -574,13 +574,13 @@ int main() {
 [Usual arithmetic coversion](https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions)
 
 ### Pure function and const, consteval and constexpr
-1. const at runtime, wheras constexpr is during compiletime, const-expr places value in read-only memory
-2. Function can also be declared with constexpr (it has to evaluate during compile time, otherwise it would error)
-  1. ```"constexpr double square(double x) { return x*x; }"```
-  1. ```"consteval double square(double x) { return x*x; }"``` //function that needs to eval'ed only during compilation time
+1. `const` can be evaluated at compile-time or runtime; `constexpr` indicates the value/function CAN be evaluated at compile-time
+2. `constexpr` functions can run at runtime if arguments aren't compile-time constants; `consteval` functions MUST be evaluated at compile-time
+  1. ```"constexpr double square(double x) { return x*x; }"``` // can be evaluated at compile-time OR runtime
+  1. ```"consteval double square(double x) { return x*x; }"``` // MUST be evaluated at compile-time only
 3.  *Pure Function*
-  3.1. Function declared with constexpr and consteval are C++ version of "pure function", they cannot have side effects
-  3.2. Pure function can only operate within the arguments given, they can't modify non-local variable
+  3.1. `consteval` functions are closer to "pure functions" as they only run at compile-time where side effects are restricted
+  3.2. `constexpr` functions can have side effects when executed at runtime
 4. size of the array must be constant expression
 
 ### Auto for-loop
@@ -716,9 +716,9 @@ auto GetDictionary() {
 }
 ```
 
-### Function to return multiple values using tuple > 17
+### Function to return multiple values using tuple (C++17)
 ```cpp
-#<tuple>
+#include <tuple>
 auto GetDictionary() {
   return make_tuple("string", 14);
 }
@@ -744,7 +744,7 @@ int main() {
 
 ### LValue and RValue
 1. Things that are declared as rvalue reference can be lvalues or rvalues. The distinguishing criterion is: if it has a name, then it is an lvalue. Otherwise, it is an rvalue.
-2. ```int const r& = 10;```
+2. ```int const& r = 10;```
 3. C++ cannot bind a non-const lvalue reference to a temporary object (or rvalue).
    1. ```int& r=10;```  //will fails to compile
 5. The expression 10 is a temporary int, and only a const int& can bind to a temporary object.
@@ -865,7 +865,7 @@ f(); // counter = 2
 1. max(double, double)
 2. max(int, int)
 3. max(float,float)
-4. abs, labs, llabc=s, fabs, fabsl
+4. abs, labs, llabs, fabs, fabsl
 
 ### Template keywords
 1. Classes templates are not classes. They are templates for making classes
@@ -991,7 +991,7 @@ int main()
 ## Concurrency
 
 ### C++ Concurrency in action
-1. Multithreadin is added in C++1
+1. Multithreading support was added in C++11
 2. We can eat and watch tv, walk and talk at the same time while scratching head
 3. Task switching is fundamental in olden days
 4. All threads in a process share same address space
@@ -1056,7 +1056,7 @@ int main()
 #include <iostream>
 #include <thread>
 
-int hello() {
+void hello() {
    std::cout<<"Hello Concurrent world\n";
 }
 int main() {
@@ -1226,7 +1226,7 @@ target_link_libraries(main tools) # ./main
 1.[Introduction GCov](https://github.com/vikasnagpaliitd/linux-prog-tools/blob/master/gcov_notes.pdf)
 2. Compiler instruments file for coverage report
 3. gcovr --root ../service -j 10 --html-details -o html/ .
-4. Alternative to gcov is lcob
+4. Alternative to gcov is lcov
 
 ### .gcda .gcno files
 1. compiler generates .gcno file
@@ -1375,11 +1375,13 @@ struct MyStruct {
     char c;
 };
 
-// Initializing a struct using aggregate initialization
-MyStruct s = {10, 3.14, 'X'};
+// Initializing a struct using aggregate initialization (C++11 and later)
+MyStruct s1 = {10, 3.14, 'X'};
 
-// Initializing a struct using direct initialization
-MyStruct s(10, 3.14, 'X');
+// Initializing a struct using brace initialization (C++11 and later)
+MyStruct s2{10, 3.14, 'X'};
+
+// Note: MyStruct s(10, 3.14, 'X'); does NOT work for aggregates without a constructor
 ```
 
 ### How to initialize member varaible in class using Direct Initialization Technique
@@ -1520,27 +1522,29 @@ int main() {
 ```
 Never return reference to local variable
 
-### Pointer to rescue stack space
-```
+### Dangling Pointer Anti-Pattern (WARNING: Undefined Behavior)
+
+**WARNING:** The following code demonstrates UNDEFINED BEHAVIOR - do NOT use this pattern!
+
+```cpp
 #include <iostream>
 #include <cstdlib>
-// Type your code here, or load an example.
-int square(int num) {
-    return num * num;
-}
 
 using std::cout;
 
 int main(int argc, char** argv) {
-    int size=2;
     int* ptr = nullptr;
     {
         int arr[2] = {2, 3};
-        ptr = arr;
-    }
+        ptr = arr;  // ptr points to local array
+    }  // arr goes out of scope here - ptr is now DANGLING!
+
+    // UNDEFINED BEHAVIOR: accessing memory through dangling pointer
     for(int i=0;i<2;i++) cout << ptr[i] << std::endl;
 }
 ```
+
+**Why this is dangerous:** The local array `arr` is destroyed when its scope ends, leaving `ptr` pointing to invalid memory. Accessing it may appear to work, crash, or produce garbage values.
 
 ### Behaviour of shared pointer
 
