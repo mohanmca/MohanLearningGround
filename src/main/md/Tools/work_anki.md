@@ -25,14 +25,16 @@ SSH_AGENT_PID
 ```
 
 ## How to validate
-
 ```
 echo $SSH_AUTH_SOCK
 ssh-add -l
 ```
 
 ## How to open-idea from command-line
-
 ```
 fssh;open -na "IntelliJ IDEA.app"
+```
+
+## Learn to work with - How to use git work-tree?
+```
 ```
