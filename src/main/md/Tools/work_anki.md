@@ -35,6 +35,9 @@ ssh-add -l
 fssh;open -na "IntelliJ IDEA.app"
 ```
 
+## How to find which service unable to read kafka topic
+1. use datadog MSK dashboard and group by consumer-group, will find application that one is lagging
+
 ## Learn to work with - How to use git work-tree?
 ```
 ```
