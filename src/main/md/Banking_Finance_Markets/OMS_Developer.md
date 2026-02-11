@@ -9,5 +9,6 @@
 1. Buy "Yes" - increase position
 2. Sell "Yes" - decrease position
 3. Buy "No" - decrease position
-3. Sell "No" - increase position (Sell No == 1-price and buy - yes)
+4. Sell "No" - increase position (Sell No == 1-price and buy - yes)
+  1. We can only send "Sell Yes" or Buy No if we already have long position.
 
