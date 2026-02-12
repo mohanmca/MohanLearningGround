@@ -3,6 +3,9 @@
 docker run -it --entrypoint /bin/sh $IMAGEID
 ```
 
+## container id  alone
+export container_id=$(docker ps --filter "name=kafka_tools" --format "{{.ID}}")
+
 ## How to query list of ports and containers
 ```bash
 docker ps -a --format "table {{.Names}}\t{{.Ports}}"
