@@ -1,6 +1,7 @@
-## How to create "MSK VPC connectivity"?
+## What is "Amazon MSK Multi-VPC Private Connectivity"?
 1. blah
-2. 
+2. Use Amazon MSK Multi-VPC Private Connectivity (powered by AWS PrivateLink).
+3. It’s designed specifically to let Kafka clients in other VPCs and even other AWS accounts connect privately to an MSK cluster.
 
 ## How to discover bootstrap brokers programmatically
 ```
