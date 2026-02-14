@@ -118,3 +118,20 @@ aws kafka create-vpc-connection \
   ]
 }
 ```
+
+## What is resourced based policy?
+1. “resource-based policy” means a policy that is attached directly to the AWS resource itself, not to an IAM user/role.
+2. For AWS MSK, that resource is the MSK cluster, and the policy is called a Cluster Policy.
+
+## What are other type?
+1. Identity-based
+  1. User
+  2. Role
+3. Resource-based
+
+## Possible issues
+1. VPC Endpoint not created in your account
+1. VPC Endpoint created in subnets that your applications cannot reach
+1. Security groups blocking outbound traffic from your applications
+1. DNS resolution issues
+
