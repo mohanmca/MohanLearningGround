@@ -10,3 +10,5 @@
   * Answer to the trivia: When a TaskManager crashes between pre-commit and commit of a Kafka transaction, Flink handles this on restart by recovering the transactional.id from the checkpoint metadata. The new TaskManager instance re-opens the transaction with the same
   transactional.id and either commits or aborts it based on the checkpoint state. Kafka's transaction timeout (transaction.timeout.ms) acts as a safety net — if Flink doesn't recover in time, the broker auto-aborts the dangling transaction, and consumers with
   read_committed isolation never see those uncommitted records.
+* In Flink's exactly-once Kafka sink, what's the role of the transactional.id prefix — and what happens if two job instances accidentally share the same prefix?
+* In Flink's ProcessFunction, what is the difference between processElement() output via Collector<O> vs side output via OutputTag<T>? When would you choose one over the other?
