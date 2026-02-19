@@ -12,3 +12,6 @@
   read_committed isolation never see those uncommitted records.
 * In Flink's exactly-once Kafka sink, what's the role of the transactional.id prefix — and what happens if two job instances accidentally share the same prefix?
 * In Flink's ProcessFunction, what is the difference between processElement() output via Collector<O> vs side output via OutputTag<T>? When would you choose one over the other?
+* In Apache Flink's checkpointing mechanism, what is the difference between "exactly-once" and "at-least-once" checkpoint semantics in terms of barrier alignment?
+  * Now — about that Flink trivia: barrier alignment in exactly-once mode means each operator waits for barriers from all input channels before checkpointing, which can cause backpressure. At-least-once skips alignment — operators process
+records from faster channels while waiting, so records between barriers may be replayed on recovery. What's your take?
