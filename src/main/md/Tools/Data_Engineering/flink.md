@@ -15,3 +15,6 @@
 * In Apache Flink's checkpointing mechanism, what is the difference between "exactly-once" and "at-least-once" checkpoint semantics in terms of barrier alignment?
   * Now — about that Flink trivia: barrier alignment in exactly-once mode means each operator waits for barriers from all input channels before checkpointing, which can cause backpressure. At-least-once skips alignment — operators process
 records from faster channels while waiting, so records between barriers may be replayed on recovery. What's your take?
+
+## Terraform
+* To create AWS Application via terraform we have to use resource "aws_kinesisanalyticsv2_application" "this"
