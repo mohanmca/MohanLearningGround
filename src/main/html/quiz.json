@@ -1,0 +1,4443 @@
+{
+  "title": "Apache Flink Streaming & State API Quiz",
+  "version": "2.0",
+  "totalQuestions": 200,
+  "moduleCount": 18,
+  "modules": [
+    {
+      "id": 0,
+      "name": "M0: Flink Cluster Architecture",
+      "slug": "flink-cluster-architecture",
+      "questionCount": 12,
+      "tags": [
+        "flink",
+        "flink-cluster-architecture",
+        "cluster-architecture"
+      ],
+      "questions": [
+        {
+          "id": "q00_01",
+          "number": 1,
+          "globalNumber": 1,
+          "questionNumber": "M00-Q01",
+          "question": "What is the primary role of the JobManager in a Flink cluster?",
+          "options": [
+            "Coordinate distributed execution, manage checkpoints, and handle job scheduling",
+            "Execute user-defined functions on data partitions",
+            "Store intermediate state data on disk",
+            "Manage network buffer pools between operators"
+          ],
+          "answer": 0,
+          "explanation": "The JobManager coordinates task scheduling, checkpoint triggering, and failure recovery across the cluster.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_02",
+          "number": 2,
+          "globalNumber": 2,
+          "questionNumber": "M00-Q02",
+          "question": "Which component within the JobManager triggers checkpoints?",
+          "options": [
+            "CheckpointCoordinator",
+            "Dispatcher",
+            "ResourceManager",
+            "TaskExecutor"
+          ],
+          "answer": 0,
+          "explanation": "The CheckpointCoordinator initiates and tracks the distributed checkpoint process across all tasks.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_03",
+          "number": 3,
+          "globalNumber": 3,
+          "questionNumber": "M00-Q03",
+          "question": "What is the role of the Dispatcher in the JobManager?",
+          "options": [
+            "Receive job submissions and spawn JobMasters for each job",
+            "Execute tasks on TaskManagers",
+            "Coordinate checkpoint barriers",
+            "Manage network buffers"
+          ],
+          "answer": 0,
+          "explanation": "The Dispatcher receives job submissions via REST API and creates a JobMaster for each submitted job.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_04",
+          "number": 4,
+          "globalNumber": 4,
+          "questionNumber": "M00-Q04",
+          "question": "What is a Task Slot in a TaskManager?",
+          "options": [
+            "A fixed share of the TaskManager's memory and CPU resources for running task threads",
+            "A time window for processing",
+            "A network connection between operators",
+            "A checkpoint storage location"
+          ],
+          "answer": 0,
+          "explanation": "Task slots divide a TaskManager's resources into fixed portions. Each slot can run one or more operator subtasks.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_05",
+          "number": 5,
+          "globalNumber": 5,
+          "questionNumber": "M00-Q05",
+          "question": "What is slot sharing in Flink?",
+          "options": [
+            "Multiple subtasks from different operators sharing the same task slot",
+            "Multiple TaskManagers sharing the same JVM",
+            "Sharing state between slots",
+            "Sharing network buffers between slots"
+          ],
+          "answer": 0,
+          "explanation": "Slot sharing allows subtasks from different operators of the same job to run in the same slot, improving resource utilization.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_06",
+          "number": 6,
+          "globalNumber": 6,
+          "questionNumber": "M00-Q06",
+          "question": "How many task slots does a TaskManager typically have?",
+          "options": [
+            "Configurable via taskmanager.numberOfTaskSlots (typically = number of CPU cores)",
+            "Always exactly 1",
+            "Always equals the job parallelism",
+            "Determined by the JobManager at runtime"
+          ],
+          "answer": 0,
+          "explanation": "The number of slots is configured per TaskManager. A common practice is to set it equal to the number of CPU cores.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_07",
+          "number": 7,
+          "globalNumber": 7,
+          "questionNumber": "M00-Q07",
+          "question": "What are the three Flink cluster deployment modes?",
+          "options": [
+            "Session mode, Per-Job mode, Application mode",
+            "Local, Remote, Cloud",
+            "Master, Worker, Hybrid",
+            "Standalone, Managed, Serverless"
+          ],
+          "answer": 0,
+          "explanation": "Session mode shares a cluster across jobs, Per-Job mode creates a cluster per job, Application mode runs main() on the cluster.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_08",
+          "number": 8,
+          "globalNumber": 8,
+          "questionNumber": "M00-Q08",
+          "question": "How does Flink achieve high availability for the JobManager?",
+          "options": [
+            "Using ZooKeeper or Kubernetes for leader election among standby JobManagers",
+            "By running multiple JobManagers simultaneously processing the same job",
+            "Replicating JobManager state to every TaskManager",
+            "Using a database for JobManager persistence"
+          ],
+          "answer": 0,
+          "explanation": "Flink uses ZooKeeper or Kubernetes for leader election. A standby JobManager takes over if the active one fails, recovering from persisted metadata.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_09",
+          "number": 9,
+          "globalNumber": 9,
+          "questionNumber": "M00-Q09",
+          "question": "What is the ResourceManager responsible for in Flink?",
+          "options": [
+            "Allocating and deallocating TaskManager slots, and communicating with external resource managers (YARN/K8s)",
+            "Managing checkpoint storage",
+            "Parsing user job code",
+            "Routing network traffic between operators"
+          ],
+          "answer": 0,
+          "explanation": "The ResourceManager manages task slots across TaskManagers and interfaces with external resource providers to request or release containers.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_10",
+          "number": 10,
+          "globalNumber": 10,
+          "questionNumber": "M00-Q10",
+          "question": "What network protocol does the client use to submit jobs to the JobManager?",
+          "options": [
+            "REST API (HTTP)",
+            "gRPC",
+            "Custom TCP protocol",
+            "WebSocket"
+          ],
+          "answer": 0,
+          "explanation": "Flink uses a REST API for job submission, monitoring, and management. The Web UI is also built on this REST endpoint (default port 8081).",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_11",
+          "number": 11,
+          "globalNumber": 11,
+          "questionNumber": "M00-Q11",
+          "question": "What happens when a TaskManager loses its heartbeat connection to the JobManager?",
+          "options": [
+            "The JobManager considers the TaskManager lost and triggers failover for affected tasks",
+            "Nothing, it continues processing",
+            "The TaskManager automatically restarts",
+            "Other TaskManagers take over its slots immediately"
+          ],
+          "answer": 0,
+          "explanation": "The JobManager detects missing heartbeats, marks the TaskManager as lost, and initiates the configured failover strategy for affected tasks.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        },
+        {
+          "id": "q00_12",
+          "number": 12,
+          "globalNumber": 12,
+          "questionNumber": "M00-Q12",
+          "question": "In Application mode, where does the user's main() method execute?",
+          "options": [
+            "On the JobManager within the cluster",
+            "On the client machine",
+            "On a random TaskManager",
+            "On a separate application server"
+          ],
+          "answer": 0,
+          "explanation": "In Application mode, main() runs on the JobManager, avoiding the need to ship dependencies from the client. This is the recommended production mode.",
+          "category": "Cluster Architecture",
+          "tags": [
+            "flink",
+            "flink-cluster-architecture",
+            "cluster-architecture"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "M1: Execution Model & Runtime Planning",
+      "slug": "execution-model-and-runtime-planning",
+      "questionCount": 12,
+      "tags": [
+        "flink",
+        "execution-model-and-runtime-planning",
+        "execution-model"
+      ],
+      "questions": [
+        {
+          "id": "q01_01",
+          "number": 1,
+          "globalNumber": 13,
+          "questionNumber": "M01-Q01",
+          "question": "What is the difference between a StreamGraph, JobGraph, and ExecutionGraph?",
+          "options": [
+            "StreamGraph is the logical plan from user code, JobGraph is the optimized plan with chaining, ExecutionGraph is the parallel physical plan",
+            "They are three names for the same thing",
+            "StreamGraph is for streaming, JobGraph for batch, ExecutionGraph for SQL",
+            "They represent different serialization formats"
+          ],
+          "answer": 0,
+          "explanation": "StreamGraph captures the logical topology. JobGraph optimizes it (operator chaining). ExecutionGraph parallelizes it for deployment across TaskManager slots.",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_02",
+          "number": 2,
+          "globalNumber": 14,
+          "questionNumber": "M01-Q02",
+          "question": "What is operator chaining?",
+          "options": [
+            "Fusing consecutive operators with the same parallelism into a single task to avoid serialization overhead",
+            "Linking multiple Flink clusters together",
+            "Chaining multiple jobs in sequence",
+            "Connecting operators to external systems"
+          ],
+          "answer": 0,
+          "explanation": "Operator chaining merges compatible operators into one task, eliminating serialization/deserialization and thread context switching between them.",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_03",
+          "number": 3,
+          "globalNumber": 15,
+          "questionNumber": "M01-Q03",
+          "question": "When does Flink break an operator chain?",
+          "options": [
+            "When operators have different parallelism, after a keyBy/rebalance/shuffle, or when explicitly disabled",
+            "Never — all operators are always chained",
+            "Only when the user requests it",
+            "After every 10 operators"
+          ],
+          "answer": 0,
+          "explanation": "Chains break on parallelism changes, data redistribution (keyBy, rebalance, shuffle), different slot sharing groups, or explicit disableChaining().",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_04",
+          "number": 4,
+          "globalNumber": 16,
+          "questionNumber": "M01-Q04",
+          "question": "What is parallelism in Flink?",
+          "options": [
+            "The number of concurrent instances (subtasks) of an operator",
+            "The number of TaskManagers in the cluster",
+            "The number of CPU cores per slot",
+            "The number of concurrent jobs"
+          ],
+          "answer": 0,
+          "explanation": "Parallelism determines how many parallel subtask instances an operator runs. Higher parallelism = more concurrent processing capacity.",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_05",
+          "number": 5,
+          "globalNumber": 17,
+          "questionNumber": "M01-Q05",
+          "question": "How do you set the parallelism for a specific operator?",
+          "options": [
+            "Using .setParallelism(n) on the operator, or env.setParallelism(n) for default",
+            "Only through flink-conf.yaml",
+            "Through the REST API at runtime",
+            "By adding more TaskManagers"
+          ],
+          "answer": 0,
+          "explanation": "Parallelism can be set per-operator (.setParallelism()), per-environment (env.setParallelism()), in flink-conf.yaml, or via CLI (-p flag).",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_06",
+          "number": 6,
+          "globalNumber": 18,
+          "questionNumber": "M01-Q06",
+          "question": "What data exchange patterns exist between operators in Flink?",
+          "options": [
+            "Forward (same partition), hash (keyBy), rebalance (round-robin), broadcast, rescale, and custom partitioning",
+            "Only broadcast",
+            "Only hash partitioning",
+            "Forward and reverse"
+          ],
+          "answer": 0,
+          "explanation": "Flink supports multiple exchange patterns: forward (pipelined, no shuffle), hash (keyBy), rebalance (round-robin), broadcast, rescale, and custom partitioners.",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_07",
+          "number": 7,
+          "globalNumber": 19,
+          "questionNumber": "M01-Q07",
+          "question": "What is the difference between STREAMING and BATCH execution modes?",
+          "options": [
+            "STREAMING processes data continuously with incremental updates; BATCH waits for all data and uses optimized shuffle/scheduling",
+            "STREAMING is faster; BATCH is slower",
+            "STREAMING uses event time; BATCH uses processing time",
+            "They produce different final results"
+          ],
+          "answer": 0,
+          "explanation": "STREAMING processes records as they arrive (incremental). BATCH can use sort-based shuffles, optimized scheduling, and produces one final result. Both produce the same final output.",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_08",
+          "number": 8,
+          "globalNumber": 20,
+          "questionNumber": "M01-Q08",
+          "question": "What does AUTOMATIC execution mode do?",
+          "options": [
+            "Chooses BATCH if all sources are bounded, otherwise STREAMING",
+            "Automatically tunes parallelism",
+            "Automatically restarts failed jobs",
+            "Automatically scales the cluster"
+          ],
+          "answer": 0,
+          "explanation": "AUTOMATIC mode inspects all sources: if all are bounded, it uses BATCH optimizations; if any are unbounded, it uses STREAMING mode.",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_09",
+          "number": 9,
+          "globalNumber": 21,
+          "questionNumber": "M01-Q09",
+          "question": "What is a network shuffle in Flink?",
+          "options": [
+            "The process of redistributing data across the network between operator subtasks (e.g., after keyBy)",
+            "Randomly reordering records",
+            "Encrypting network traffic",
+            "Compressing data for transfer"
+          ],
+          "answer": 0,
+          "explanation": "A network shuffle happens when data must be redistributed — e.g., keyBy hash-partitions data across subtasks, requiring network transfer.",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_10",
+          "number": 10,
+          "globalNumber": 22,
+          "questionNumber": "M01-Q10",
+          "question": "What determines how records flow between two operators with different parallelism?",
+          "options": [
+            "The data partitioning strategy (forward, rebalance, rescale, hash, broadcast, etc.)",
+            "The operator chain",
+            "The checkpoint interval",
+            "The state backend"
+          ],
+          "answer": 0,
+          "explanation": "The partitioning strategy determines data routing. Forward requires same parallelism. Rebalance distributes round-robin. Hash uses key-based partitioning.",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_11",
+          "number": 11,
+          "globalNumber": 23,
+          "questionNumber": "M01-Q11",
+          "question": "What role does the buffer pool play in Flink's network stack?",
+          "options": [
+            "Network buffers hold serialized records between operators; buffer pool exhaustion causes backpressure",
+            "It stores checkpoint data",
+            "It caches external data lookups",
+            "It stores watermark information"
+          ],
+          "answer": 0,
+          "explanation": "Flink uses network buffer pools for data exchange. When downstream is slow, buffers fill up, causing natural backpressure upstream.",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        },
+        {
+          "id": "q01_12",
+          "number": 12,
+          "globalNumber": 24,
+          "questionNumber": "M01-Q12",
+          "question": "How does env.getExecutionPlan() help?",
+          "options": [
+            "It returns a JSON representation of the job's execution plan for visualization before submission",
+            "It executes the plan immediately",
+            "It generates a cost estimate",
+            "It lists all available TaskManagers"
+          ],
+          "answer": 0,
+          "explanation": "getExecutionPlan() returns a JSON string of the StreamGraph that can be visualized without executing the job.",
+          "category": "Execution Model",
+          "tags": [
+            "flink",
+            "execution-model-and-runtime-planning",
+            "execution-model"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "M2: DataStream Transformations",
+      "slug": "datastream-transformations",
+      "questionCount": 15,
+      "tags": [
+        "flink",
+        "datastream-transformations",
+        "datastream-transformations"
+      ],
+      "questions": [
+        {
+          "id": "q02_01",
+          "number": 1,
+          "globalNumber": 25,
+          "questionNumber": "M02-Q01",
+          "question": "In the WordCount Tokenizer, what does \\\\W+ match in value.toLowerCase().split(\"\\\\W+\")?",
+          "options": [
+            "One or more non-word characters (anything not a letter, digit, or underscore)",
+            "One or more word characters (letters, digits, underscore)",
+            "One or more whitespace characters only",
+            "Exactly one non-word character"
+          ],
+          "answer": 0,
+          "explanation": "\\W+ matches one or more non-word characters — the complement of \\w which matches [a-zA-Z0-9_].",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_02",
+          "number": 2,
+          "globalNumber": 26,
+          "questionNumber": "M02-Q02",
+          "question": "What is the return type of flatMap() in FlatMapFunction<String, Tuple2<String, Integer>>?",
+          "options": [
+            "void — it uses Collector<Tuple2<String, Integer>> to emit results",
+            "Tuple2<String, Integer>",
+            "List<Tuple2<String, Integer>>",
+            "String"
+          ],
+          "answer": 0,
+          "explanation": "flatMap returns void. Results are emitted via out.collect(element) using the Collector parameter.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_03",
+          "number": 3,
+          "globalNumber": 27,
+          "questionNumber": "M02-Q03",
+          "question": "What does .name(\"tokenizer\") do on a DataStream operator?",
+          "options": [
+            "Sets a human-readable name shown in the Flink Web UI and logs",
+            "Sets the operator's class name",
+            "Renames the output field",
+            "Sets the Kafka topic name"
+          ],
+          "answer": 0,
+          "explanation": ".name() sets the operator's display name in the Web UI, making job graphs easier to understand.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_04",
+          "number": 4,
+          "globalNumber": 28,
+          "questionNumber": "M02-Q04",
+          "question": "How does keyBy(value -> value.f0) partition data in WordCount?",
+          "options": [
+            "Hash-partitions tuples by the word (f0) so all instances of the same word go to the same subtask",
+            "Sorts by the first field",
+            "Filters by the first field",
+            "Groups into windows by the first field"
+          ],
+          "answer": 0,
+          "explanation": "keyBy uses a hash of value.f0 (the word) to determine which parallel subtask receives each tuple.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_05",
+          "number": 5,
+          "globalNumber": 29,
+          "questionNumber": "M02-Q05",
+          "question": "What does .sum(1) do on a KeyedStream of Tuple2<String, Integer>?",
+          "options": [
+            "Incrementally sums field at index 1 (the count) for each key, emitting running totals",
+            "Sums all fields",
+            "Returns the total sum across all keys",
+            "Sums the first element only"
+          ],
+          "answer": 0,
+          "explanation": "sum(1) performs a rolling aggregation on field index 1 (the integer count), grouped by key. Each new input updates the running sum.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_06",
+          "number": 6,
+          "globalNumber": 30,
+          "questionNumber": "M02-Q06",
+          "question": "What is the Collector<T> interface used for in flatMap?",
+          "options": [
+            "Emitting zero, one, or multiple output elements via collect(element)",
+            "Garbage collection",
+            "Collecting metrics",
+            "Collecting input elements"
+          ],
+          "answer": 0,
+          "explanation": "Collector is the output mechanism in flatMap. Call out.collect(new Tuple2<>(token, 1)) to emit each output record.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_07",
+          "number": 7,
+          "globalNumber": 31,
+          "questionNumber": "M02-Q07",
+          "question": "What does RichMapFunction add over MapFunction?",
+          "options": [
+            "open()/close() lifecycle methods and getRuntimeContext() for state access and initialization",
+            "Richer output types",
+            "Nothing, they're identical",
+            "Support for multiple outputs"
+          ],
+          "answer": 0,
+          "explanation": "Rich variants add lifecycle hooks (open for initialization, close for cleanup) and RuntimeContext for state, metrics, and broadcast variables.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_08",
+          "number": 8,
+          "globalNumber": 32,
+          "questionNumber": "M02-Q08",
+          "question": "How does ParseCarData from TopSpeedWindowing extract data?",
+          "options": [
+            "Strips brackets, splits by comma, and creates Tuple4<Integer, Integer, Double, Long>",
+            "Using JSON parsing",
+            "Using Avro deserialization",
+            "Using regex matching"
+          ],
+          "answer": 0,
+          "explanation": "ParseCarData strips the enclosing parentheses, splits by comma, and parses each field: (carId, speed, distance, timestamp).",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_09",
+          "number": 9,
+          "globalNumber": 33,
+          "questionNumber": "M02-Q09",
+          "question": "What is the difference between map() and flatMap()?",
+          "options": [
+            "map produces exactly one output per input; flatMap can produce zero, one, or many outputs per input via Collector",
+            "map is faster",
+            "flatMap is deprecated",
+            "map works only with Tuples"
+          ],
+          "answer": 0,
+          "explanation": "map: 1→1 transformation. flatMap: 1→N transformation (N can be 0, 1, or many). flatMap is more flexible.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_10",
+          "number": 10,
+          "globalNumber": 34,
+          "questionNumber": "M02-Q10",
+          "question": "What does filter() do to a DataStream?",
+          "options": [
+            "Keeps elements where the filter function returns true, drops elements where it returns false (1→0 or 1→1)",
+            "Removes duplicate elements",
+            "Sorts the stream",
+            "Transforms element types"
+          ],
+          "answer": 0,
+          "explanation": "filter is a conditional pass-through: elements pass if the boolean function returns true, otherwise they're dropped.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_11",
+          "number": 11,
+          "globalNumber": 35,
+          "questionNumber": "M02-Q11",
+          "question": "What does .setParallelism(1) do on an operator?",
+          "options": [
+            "Forces that operator to run with a single parallel instance (subtask)",
+            "Sets the cluster to use 1 TaskManager",
+            "Sets the number of output files to 1",
+            "Sets the checkpoint parallelism to 1"
+          ],
+          "answer": 0,
+          "explanation": "setParallelism(1) makes the operator run as a single subtask, often used for ordered output (print sinks, file sinks).",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_12",
+          "number": 12,
+          "globalNumber": 36,
+          "questionNumber": "M02-Q12",
+          "question": "What does env.fromData(WordCountData.WORDS) create?",
+          "options": [
+            "A bounded DataStream from an in-memory collection of strings",
+            "A Kafka source",
+            "A file source",
+            "An unbounded stream"
+          ],
+          "answer": 0,
+          "explanation": "fromData() creates a bounded DataStream from a Java collection or array. Used for testing and examples with embedded data.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_13",
+          "number": 13,
+          "globalNumber": 37,
+          "questionNumber": "M02-Q13",
+          "question": "What does rebalance() do to a DataStream?",
+          "options": [
+            "Redistributes elements round-robin across all parallel subtasks for even load distribution",
+            "Sorts elements",
+            "Removes duplicates",
+            "Checkpoints the stream"
+          ],
+          "answer": 0,
+          "explanation": "rebalance() applies round-robin partitioning, useful for fixing data skew after a non-keyed operation.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_14",
+          "number": 14,
+          "globalNumber": 38,
+          "questionNumber": "M02-Q14",
+          "question": "What is a Tuple2<String, Integer> in Flink?",
+          "options": [
+            "A fixed-size typed pair from Flink's Tuple types, accessed via .f0 and .f1 fields",
+            "A Java Map entry",
+            "A Java record",
+            "A Flink-specific String type"
+          ],
+          "answer": 0,
+          "explanation": "Flink provides Tuple0 through Tuple25. Tuple2<A,B> has typed fields f0 (type A) and f1 (type B), used extensively in examples.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        },
+        {
+          "id": "q02_15",
+          "number": 15,
+          "globalNumber": 39,
+          "questionNumber": "M02-Q15",
+          "question": "What does union() do between two DataStreams?",
+          "options": [
+            "Merges two or more streams of the same type into one stream (no deduplication)",
+            "Joins them by key",
+            "Removes common elements",
+            "Sorts and merges"
+          ],
+          "answer": 0,
+          "explanation": "union() merges streams of the same type. All elements from all input streams appear in the output. No key matching or deduplication.",
+          "category": "DataStream Transformations",
+          "tags": [
+            "flink",
+            "datastream-transformations",
+            "datastream-transformations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "M3: Sources & Kafka Integrations",
+      "slug": "sources-and-kafka-integrations",
+      "questionCount": 11,
+      "tags": [
+        "flink",
+        "sources-and-kafka-integrations",
+        "sources",
+        "aws-msk-and-kafka"
+      ],
+      "questions": [
+        {
+          "id": "q03_01",
+          "number": 1,
+          "globalNumber": 40,
+          "questionNumber": "M03-Q01",
+          "question": "How does FileSource.forRecordStreamFormat work?",
+          "options": [
+            "Creates a file source that reads records one at a time using the specified format (e.g., TextLineInputFormat reads lines)",
+            "Reads entire files as one record",
+            "Reads files in parallel chunks",
+            "Reads binary files only"
+          ],
+          "answer": 0,
+          "explanation": "forRecordStreamFormat creates a source that processes files record-by-record. TextLineInputFormat splits by newlines, producing one String per line.",
+          "category": "Sources",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "sources"
+          ]
+        },
+        {
+          "id": "q03_02",
+          "number": 2,
+          "globalNumber": 41,
+          "questionNumber": "M03-Q02",
+          "question": "What does monitorContinuously(Duration) do on a FileSource?",
+          "options": [
+            "Turns a bounded file source into an unbounded source that periodically checks directories for new files",
+            "Monitors CPU usage",
+            "Monitors file size",
+            "Monitors network traffic"
+          ],
+          "answer": 0,
+          "explanation": "monitorContinuously makes the source watch directories at the specified interval, reading new files as they appear — converting bounded to unbounded.",
+          "category": "Sources",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "sources"
+          ]
+        },
+        {
+          "id": "q03_03",
+          "number": 3,
+          "globalNumber": 42,
+          "questionNumber": "M03-Q03",
+          "question": "How is DataGeneratorSource configured?",
+          "options": [
+            "new DataGeneratorSource<>(generatorFunction, maxCount, rateLimiterStrategy, typeInfo)",
+            "DataGeneratorSource.builder()...build()",
+            "env.generateSource(fn)",
+            "new DataGeneratorSource<>(fn, typeInfo)"
+          ],
+          "answer": 0,
+          "explanation": "Constructor takes: GeneratorFunction, max record count, RateLimiterStrategy (e.g., perSecond(100)), and TypeInformation.",
+          "category": "Sources",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "sources"
+          ]
+        },
+        {
+          "id": "q03_04",
+          "number": 4,
+          "globalNumber": 43,
+          "questionNumber": "M03-Q04",
+          "question": "What does RateLimiterStrategy.perSecond(100) do?",
+          "options": [
+            "Throttles generation to approximately 100 records per second per parallel instance",
+            "Limits to 100 records total",
+            "Sets parallelism to 100",
+            "Adds 100ms delay between records"
+          ],
+          "answer": 0,
+          "explanation": "Rate limiting ensures the source doesn't overwhelm downstream operators. Each parallel source instance generates ~100 records/second.",
+          "category": "Sources",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "sources"
+          ]
+        },
+        {
+          "id": "q03_05",
+          "number": 5,
+          "globalNumber": 44,
+          "questionNumber": "M03-Q05",
+          "question": "How is KafkaSource configured in StateMachineExample?",
+          "options": [
+            "KafkaSource.<Event>builder().setBootstrapServers(brokers).setGroupId(group).setTopics(topic).setDeserializer(schema).setStartingOffsets(offsets).build()",
+            "new KafkaSource<>(brokers, topic)",
+            "KafkaSource.create(config)",
+            "env.addKafkaSource(topic)"
+          ],
+          "answer": 0,
+          "explanation": "KafkaSource uses a fluent builder pattern as shown in StateMachineExample with bootstrap servers, group ID, topics, deserializer, and starting offsets.",
+          "category": "Sources",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "sources"
+          ]
+        },
+        {
+          "id": "q03_06",
+          "number": 6,
+          "globalNumber": 45,
+          "questionNumber": "M03-Q06",
+          "question": "What does KafkaRecordDeserializationSchema.valueOnly(schema) do?",
+          "options": [
+            "Deserializes only the value portion of Kafka records, ignoring the key",
+            "Deserializes key and value",
+            "Validates value against a schema registry",
+            "Deserializes headers only"
+          ],
+          "answer": 0,
+          "explanation": "valueOnly() wraps a value deserializer, extracting only the value from Kafka ConsumerRecords. Key and metadata are discarded.",
+          "category": "Sources",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "sources"
+          ]
+        },
+        {
+          "id": "q03_07",
+          "number": 7,
+          "globalNumber": 46,
+          "questionNumber": "M03-Q07",
+          "question": "What does OffsetsInitializer.latest() configure?",
+          "options": [
+            "Start reading from the newest available offset (only new messages after job start)",
+            "Read from earliest offset",
+            "Read committed offsets",
+            "Read from a specific timestamp"
+          ],
+          "answer": 0,
+          "explanation": "latest() starts from the most recent offset. Other options: earliest() (beginning), committedOffsets() (last committed), timestamp(ts) (specific time).",
+          "category": "Sources",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "sources"
+          ]
+        },
+        {
+          "id": "q03_08",
+          "number": 8,
+          "globalNumber": 47,
+          "questionNumber": "M03-Q08",
+          "question": "What is the difference between env.fromSource() and legacy addSource()?",
+          "options": [
+            "fromSource() uses the new unified Source interface (FLIP-27) with split-level granularity and watermark support; addSource() uses legacy SourceFunction",
+            "They're identical",
+            "addSource() is faster",
+            "fromSource() is for batch only"
+          ],
+          "answer": 0,
+          "explanation": "fromSource() is the modern API supporting both batch and streaming. addSource() uses the deprecated SourceFunction API.",
+          "category": "Sources",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "sources"
+          ]
+        },
+        {
+          "id": "q03_09",
+          "number": 9,
+          "globalNumber": 48,
+          "questionNumber": "M03-Q09",
+          "question": "How is GeneratorFunction defined in SessionWindowing?",
+          "options": [
+            "GeneratorFunction<Long, Tuple3<String, Long, Integer>> that maps index to input.get(index.intValue())",
+            "GeneratorFunction<Integer, T>",
+            "Supplier<T>",
+            "Function<T, T>"
+          ],
+          "answer": 0,
+          "explanation": "GeneratorFunction<Long, T> maps a Long index to an output element. In SessionWindowing, it indexes into a pre-built list of tuples.",
+          "category": "Sources",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "sources"
+          ]
+        },
+        {
+          "id": "q03_10",
+          "number": 10,
+          "globalNumber": 49,
+          "questionNumber": "M03-Q10",
+          "question": "What type information is needed for DataGeneratorSource with generics?",
+          "options": [
+            "TypeInformation or TypeHint to overcome Java's type erasure for generic types like Tuple4<Integer,Integer,Double,Long>",
+            "None needed",
+            "String class name",
+            "JSON schema"
+          ],
+          "answer": 0,
+          "explanation": "Java erases generic types at runtime. TypeInformation.of(new TypeHint<Tuple4<...>>(){}) preserves the full type for Flink's serialization.",
+          "category": "Sources",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "sources"
+          ]
+        },
+        {
+          "id": "q03_11",
+          "number": 11,
+          "globalNumber": 50,
+          "questionNumber": "M03-Q11",
+          "question": "What authentication mechanism does AWS MSK IAM use for Flink Kafka connectors?",
+          "options": [
+            "SASL_SSL with AWS_MSK_IAM mechanism using IAMLoginModule and IAMClientCallbackHandler from aws-msk-iam-auth library",
+            "Username/password via PLAIN SASL",
+            "OAuth2 tokens",
+            "mTLS client certificates only"
+          ],
+          "answer": 0,
+          "explanation": "MSK IAM auth uses SASL_SSL protocol + AWS_MSK_IAM mechanism + IAMLoginModule for JAAS config + IAMClientCallbackHandler for token generation.",
+          "category": "AWS MSK & Kafka",
+          "tags": [
+            "flink",
+            "sources-and-kafka-integrations",
+            "aws-msk-and-kafka"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "M4: Sinks",
+      "slug": "sinks",
+      "questionCount": 8,
+      "tags": [
+        "flink",
+        "sinks",
+        "sinks"
+      ],
+      "questions": [
+        {
+          "id": "q04_01",
+          "number": 1,
+          "globalNumber": 51,
+          "questionNumber": "M04-Q01",
+          "question": "How is FileSink configured for row-format output?",
+          "options": [
+            "FileSink.<T>forRowFormat(path, new SimpleStringEncoder<>()).withRollingPolicy(...).build()",
+            "new FileSink<>(path)",
+            "FileSink.builder().path(path).build()",
+            "env.writeTo(path)"
+          ],
+          "answer": 0,
+          "explanation": "FileSink uses a builder: forRowFormat(path, encoder) for line-by-line output, with a configurable rolling policy.",
+          "category": "Sinks",
+          "tags": [
+            "flink",
+            "sinks",
+            "sinks"
+          ]
+        },
+        {
+          "id": "q04_02",
+          "number": 2,
+          "globalNumber": 52,
+          "questionNumber": "M04-Q02",
+          "question": "What does SimpleStringEncoder do?",
+          "options": [
+            "Calls toString() on each element and writes it as UTF-8 with a newline separator",
+            "Encodes as JSON",
+            "Compresses output",
+            "Encodes as Avro"
+          ],
+          "answer": 0,
+          "explanation": "SimpleStringEncoder<T> converts each element to its toString() representation and writes it as a UTF-8 encoded line.",
+          "category": "Sinks",
+          "tags": [
+            "flink",
+            "sinks",
+            "sinks"
+          ]
+        },
+        {
+          "id": "q04_03",
+          "number": 3,
+          "globalNumber": 53,
+          "questionNumber": "M04-Q03",
+          "question": "What does DefaultRollingPolicy.builder().withMaxPartSize(1MB).withRolloverInterval(10s).build() configure?",
+          "options": [
+            "Files roll when EITHER condition is met: file reaches 1MB or 10 seconds elapse, whichever comes first",
+            "Files roll at 1MB AND 10s",
+            "Files roll only at 1MB",
+            "Files roll only at 10s"
+          ],
+          "answer": 0,
+          "explanation": "Rolling policy triggers on either condition: size threshold or time interval, whichever triggers first.",
+          "category": "Sinks",
+          "tags": [
+            "flink",
+            "sinks",
+            "sinks"
+          ]
+        },
+        {
+          "id": "q04_04",
+          "number": 4,
+          "globalNumber": 54,
+          "questionNumber": "M04-Q04",
+          "question": "What does .print() do on a DataStream?",
+          "options": [
+            "Adds a sink that writes all elements to stdout using toString(), prefixed with subtask index",
+            "Prints first 10 elements",
+            "Logs at INFO level",
+            "Prints the job graph"
+          ],
+          "answer": 0,
+          "explanation": "print() adds a PrintSink that writes every element to System.out with the subtask index prefix for parallel identification.",
+          "category": "Sinks",
+          "tags": [
+            "flink",
+            "sinks",
+            "sinks"
+          ]
+        },
+        {
+          "id": "q04_05",
+          "number": 5,
+          "globalNumber": 55,
+          "questionNumber": "M04-Q05",
+          "question": "What is the FileSink part file lifecycle?",
+          "options": [
+            "In-progress → pending (on checkpoint) → committed (on checkpoint confirmation) for exactly-once guarantees",
+            "Write directly to final file",
+            "Draft → published",
+            "Temporary → permanent"
+          ],
+          "answer": 0,
+          "explanation": "Part files transition: in-progress (being written) → pending (checkpoint taken) → committed (checkpoint confirmed). This ensures exactly-once file output.",
+          "category": "Sinks",
+          "tags": [
+            "flink",
+            "sinks",
+            "sinks"
+          ]
+        },
+        {
+          "id": "q04_06",
+          "number": 6,
+          "globalNumber": 56,
+          "questionNumber": "M04-Q06",
+          "question": "What encoding modes does FileSink support?",
+          "options": [
+            "Both row format (forRowFormat, line-by-line) and bulk format (forBulkFormat, columnar: Parquet/ORC/Avro)",
+            "Only row format",
+            "Only bulk format",
+            "Only JSON"
+          ],
+          "answer": 0,
+          "explanation": "Row format writes element-by-element (SimpleStringEncoder). Bulk format writes columnar files (ParquetWriterFactory, OrcBulkWriterFactory).",
+          "category": "Sinks",
+          "tags": [
+            "flink",
+            "sinks",
+            "sinks"
+          ]
+        },
+        {
+          "id": "q04_07",
+          "number": 7,
+          "globalNumber": 57,
+          "questionNumber": "M04-Q07",
+          "question": "What method attaches a sink to a DataStream in current Flink?",
+          "options": [
+            "stream.sinkTo(sink) for the new Sink interface",
+            "stream.addSink(sink)",
+            "stream.writeTo(sink)",
+            "stream.output(sink)"
+          ],
+          "answer": 0,
+          "explanation": "sinkTo() is the current API for the new Sink interface. addSink() was for the legacy SinkFunction.",
+          "category": "Sinks",
+          "tags": [
+            "flink",
+            "sinks",
+            "sinks"
+          ]
+        },
+        {
+          "id": "q04_08",
+          "number": 8,
+          "globalNumber": 58,
+          "questionNumber": "M04-Q08",
+          "question": "Why does StateMachineExample set .setParallelism(1) on the file sink?",
+          "options": [
+            "To ensure all output is written by a single writer, producing ordered, non-interleaved output",
+            "Performance optimization",
+            "Required by FileSink",
+            "To save disk space"
+          ],
+          "answer": 0,
+          "explanation": "Single-writer parallelism ensures all alerts go to one output location without interleaving from multiple parallel subtasks.",
+          "category": "Sinks",
+          "tags": [
+            "flink",
+            "sinks",
+            "sinks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "M5: Event Time & Watermarks",
+      "slug": "event-time-and-watermarks",
+      "questionCount": 12,
+      "tags": [
+        "flink",
+        "event-time-and-watermarks",
+        "time-and-watermarks"
+      ],
+      "questions": [
+        {
+          "id": "q05_01",
+          "number": 1,
+          "globalNumber": 59,
+          "questionNumber": "M05-Q01",
+          "question": "What is event time in Flink?",
+          "options": [
+            "The timestamp embedded in the data representing when the event actually occurred in the real world",
+            "When Flink processes the record",
+            "When the record enters the Flink cluster",
+            "The current system clock time"
+          ],
+          "answer": 0,
+          "explanation": "Event time is derived from the data itself (e.g., a timestamp field). It enables deterministic, replayable processing regardless of processing delays.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_02",
+          "number": 2,
+          "globalNumber": 60,
+          "questionNumber": "M05-Q02",
+          "question": "What does WatermarkStrategy.noWatermarks() mean?",
+          "options": [
+            "No watermarks are generated — event-time windows will never fire; only use with processing-time operations",
+            "Watermarks are generated automatically",
+            "Watermarks are disabled globally",
+            "Maximum possible watermarks"
+          ],
+          "answer": 0,
+          "explanation": "noWatermarks() means no event-time progress tracking. Event-time windows won't trigger. Used when event time isn't needed (processing-time-only jobs).",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_03",
+          "number": 3,
+          "globalNumber": 61,
+          "questionNumber": "M05-Q03",
+          "question": "What does forMonotonousTimestamps() assume?",
+          "options": [
+            "Timestamps arrive in non-decreasing order — watermark equals the last seen timestamp",
+            "Timestamps are random",
+            "Timestamps are monotonically decreasing",
+            "All timestamps are the same"
+          ],
+          "answer": 0,
+          "explanation": "forMonotonousTimestamps() generates watermarks equal to max-seen-timestamp. Assumes no out-of-order events. Any late event is considered late.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_04",
+          "number": 4,
+          "globalNumber": 62,
+          "questionNumber": "M05-Q04",
+          "question": "What does forBoundedOutOfOrderness(Duration.ofSeconds(5)) do?",
+          "options": [
+            "Generates watermarks = max-seen-timestamp - 5 seconds, allowing events up to 5 seconds late to be processed in their correct window",
+            "Drops all events more than 5 seconds late",
+            "Adds 5 seconds to every timestamp",
+            "Buffers events for 5 seconds"
+          ],
+          "answer": 0,
+          "explanation": "Watermark = maxTimestamp - outOfOrderness. Events within 5 seconds of the max are still considered on-time. Beyond 5 seconds, they're late.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_05",
+          "number": 5,
+          "globalNumber": 63,
+          "questionNumber": "M05-Q05",
+          "question": "What does withTimestampAssigner((car, ts) -> car.f3) do?",
+          "options": [
+            "Extracts the event timestamp from the f3 field of each Tuple4 element for watermark generation",
+            "Assigns a random timestamp",
+            "Assigns the processing time",
+            "Assigns a monotonic counter"
+          ],
+          "answer": 0,
+          "explanation": "The TimestampAssigner extracts the event timestamp from each record. Here, car.f3 (a Long) is the timestamp field.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_06",
+          "number": 6,
+          "globalNumber": 64,
+          "questionNumber": "M05-Q06",
+          "question": "What is AscendingTimestampsWatermarks?",
+          "options": [
+            "A WatermarkGenerator that produces watermarks equal to the maximum observed timestamp — equivalent to forMonotonousTimestamps()",
+            "A deprecated class",
+            "A watermark that counts up from 0",
+            "A processing-time watermark"
+          ],
+          "answer": 0,
+          "explanation": "AscendingTimestampsWatermarks generates watermarks assuming monotonically increasing timestamps. Used in WindowJoin's IngestionTimeWatermarkStrategy.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_07",
+          "number": 7,
+          "globalNumber": 65,
+          "questionNumber": "M05-Q07",
+          "question": "How do watermarks propagate through a multi-input operator?",
+          "options": [
+            "Minimum of all input watermarks — the operator's event time can only advance when ALL inputs have progressed",
+            "Maximum of all input watermarks",
+            "Average of input watermarks",
+            "The latest received watermark"
+          ],
+          "answer": 0,
+          "explanation": "min(watermarks) ensures correctness: we can only assert event-time progress when all inputs confirm they've passed that point.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_08",
+          "number": 8,
+          "globalNumber": 66,
+          "questionNumber": "M05-Q08",
+          "question": "What is allowedLateness()?",
+          "options": [
+            "Configures how long a window keeps its state after the watermark passes it, allowing late elements to still be processed",
+            "How late a checkpoint can be",
+            "How late sources can start",
+            "The maximum event delay"
+          ],
+          "answer": 0,
+          "explanation": "allowedLateness(Duration) keeps window state alive after firing, allowing late arrivals within the specified duration to trigger re-computation.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_09",
+          "number": 9,
+          "globalNumber": 67,
+          "questionNumber": "M05-Q09",
+          "question": "What does sideOutputLateData(outputTag) do?",
+          "options": [
+            "Redirects elements that arrive after the watermark + allowedLateness to a side output stream instead of dropping them",
+            "Creates a new stream",
+            "Outputs errors to a side channel",
+            "Creates a backup stream"
+          ],
+          "answer": 0,
+          "explanation": "Late elements (past watermark + allowedLateness) are sent to a side output tagged with the OutputTag, allowing separate handling.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_10",
+          "number": 10,
+          "globalNumber": 68,
+          "questionNumber": "M05-Q10",
+          "question": "What determines if an event is 'late'?",
+          "options": [
+            "If its event timestamp is less than the current watermark — meaning Flink has already declared all events up to that time have arrived",
+            "If it arrives after 5 seconds",
+            "If it has a null timestamp",
+            "If it arrives out of order"
+          ],
+          "answer": 0,
+          "explanation": "An event is late if its timestamp < current watermark. The watermark represents Flink's assertion that no more events with earlier timestamps will arrive.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_11",
+          "number": 11,
+          "globalNumber": 69,
+          "questionNumber": "M05-Q11",
+          "question": "What happens to late events by default (no allowedLateness)?",
+          "options": [
+            "They are silently dropped",
+            "They are buffered indefinitely",
+            "They cause an exception",
+            "They are sent to a dead-letter queue"
+          ],
+          "answer": 0,
+          "explanation": "By default, events arriving after the watermark passes the window end are dropped. Use allowedLateness or sideOutputLateData to handle them.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        },
+        {
+          "id": "q05_12",
+          "number": 12,
+          "globalNumber": 70,
+          "questionNumber": "M05-Q12",
+          "question": "Why is event time preferred for production systems?",
+          "options": [
+            "It provides deterministic, reproducible results regardless of processing delays, reprocessing speed, or system clock differences",
+            "It's faster than processing time",
+            "It uses less memory",
+            "It's simpler to implement"
+          ],
+          "answer": 0,
+          "explanation": "Event time ensures the same input produces the same output regardless of when or how fast it's processed — critical for correctness and replayability.",
+          "category": "Time & Watermarks",
+          "tags": [
+            "flink",
+            "event-time-and-watermarks",
+            "time-and-watermarks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "M6: Windowing",
+      "slug": "windowing",
+      "questionCount": 15,
+      "tags": [
+        "flink",
+        "windowing",
+        "windowing"
+      ],
+      "questions": [
+        {
+          "id": "q06_01",
+          "number": 1,
+          "globalNumber": 71,
+          "questionNumber": "M06-Q01",
+          "question": "What is TumblingEventTimeWindows?",
+          "options": [
+            "Fixed-size, non-overlapping windows aligned to event time — every element belongs to exactly one window",
+            "Windows that overlap",
+            "Count-based windows",
+            "Session windows"
+          ],
+          "answer": 0,
+          "explanation": "Tumbling event-time windows: fixed duration, no overlap. Window boundaries determined by event timestamps, not wall clock.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_02",
+          "number": 2,
+          "globalNumber": 72,
+          "questionNumber": "M06-Q02",
+          "question": "How is the window size specified in TumblingEventTimeWindows.of(Duration.ofMillis(2000))?",
+          "options": [
+            "2-second event-time windows",
+            "2000 events per window",
+            "2000 bytes per window",
+            "2000 checkpoints per window"
+          ],
+          "answer": 0,
+          "explanation": "Duration.ofMillis(2000) creates 2-second tumbling windows based on event timestamps.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_03",
+          "number": 3,
+          "globalNumber": 73,
+          "questionNumber": "M06-Q03",
+          "question": "What is SlidingProcessingTimeWindows?",
+          "options": [
+            "Overlapping windows based on processing time, defined by window size and slide interval",
+            "Non-overlapping windows",
+            "Single global window",
+            "Session windows"
+          ],
+          "answer": 0,
+          "explanation": "Sliding windows overlap: size=10s, slide=5s means each element belongs to 2 windows. Processing time uses the wall clock.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_04",
+          "number": 4,
+          "globalNumber": 74,
+          "questionNumber": "M06-Q04",
+          "question": "If window size is 10s and slide is 5s, how many windows does each element belong to?",
+          "options": [
+            "2",
+            "1",
+            "5",
+            "10"
+          ],
+          "answer": 0,
+          "explanation": "With size/slide = 10/5 = 2, each element falls in exactly 2 overlapping windows.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_05",
+          "number": 5,
+          "globalNumber": 75,
+          "questionNumber": "M06-Q05",
+          "question": "What is EventTimeSessionWindows.withGap(Duration.ofMillis(3))?",
+          "options": [
+            "Session windows that close when no events arrive for 3 milliseconds for a given key",
+            "Fixed 3ms windows",
+            "Windows of 3 elements",
+            "Tumbling windows of 3ms"
+          ],
+          "answer": 0,
+          "explanation": "Session windows merge if events are within the gap. A session closes when no event arrives within 3ms for that key.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_06",
+          "number": 6,
+          "globalNumber": 76,
+          "questionNumber": "M06-Q06",
+          "question": "In the SessionWindowing example, why does key 'b' have sum=3?",
+          "options": [
+            "Events at times 1, 3, 5 are all within gap=3ms of each other, forming one session with count=1+1+1=3",
+            "Three separate sessions",
+            "The value field is 3",
+            "Three windows overlap"
+          ],
+          "answer": 0,
+          "explanation": "b@1→b@3 (gap=2<3, same session), b@3→b@5 (gap=2<3, same session). One session with 3 events, sum of field 2 = 3.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_07",
+          "number": 7,
+          "globalNumber": 77,
+          "questionNumber": "M06-Q07",
+          "question": "What is GlobalWindows.create()?",
+          "options": [
+            "Creates a single window per key that never closes — requires a custom trigger to emit results",
+            "Creates windows spanning all keys",
+            "Creates time-based global windows",
+            "Creates the largest possible window"
+          ],
+          "answer": 0,
+          "explanation": "GlobalWindows assigns all elements for a key to one window. Without a trigger, no results are emitted. Used with custom triggers and evictors.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_08",
+          "number": 8,
+          "globalNumber": 78,
+          "questionNumber": "M06-Q08",
+          "question": "What does countWindow(250, 150) create?",
+          "options": [
+            "Sliding count windows: 250 elements per window, sliding by 150 elements",
+            "250 windows of 150 elements",
+            "150 windows of 250 elements",
+            "A window that fires after 250+150 elements"
+          ],
+          "answer": 0,
+          "explanation": "countWindow(size, slide) creates sliding count windows. Window of 250 elements, slides every 150 elements. Elements belong to ceil(250/150) windows.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_09",
+          "number": 9,
+          "globalNumber": 79,
+          "questionNumber": "M06-Q09",
+          "question": "What is the ReduceFunction used for in windows?",
+          "options": [
+            "Incrementally combining two elements into one within a window — O(1) state per window",
+            "Reducing parallelism",
+            "Reducing window size",
+            "Filtering elements"
+          ],
+          "answer": 0,
+          "explanation": "ReduceFunction.reduce(T, T) → T incrementally combines elements. Only stores one accumulator per window, making it very efficient.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_10",
+          "number": 10,
+          "globalNumber": 80,
+          "questionNumber": "M06-Q10",
+          "question": "How does AggregateFunction differ from ReduceFunction?",
+          "options": [
+            "AggregateFunction supports different input, accumulator, and output types; ReduceFunction requires all types to be the same",
+            "They are identical",
+            "AggregateFunction is slower",
+            "ReduceFunction supports more types"
+          ],
+          "answer": 0,
+          "explanation": "AggregateFunction<IN, ACC, OUT> is more flexible: input type can differ from accumulator and output. ReduceFunction requires the same type throughout.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_11",
+          "number": 11,
+          "globalNumber": 81,
+          "questionNumber": "M06-Q11",
+          "question": "What does ProcessWindowFunction provide that ReduceFunction doesn't?",
+          "options": [
+            "Access to all elements in the window, the window metadata (start/end time), and side outputs — but stores all elements in state",
+            "Better performance",
+            "Nothing extra",
+            "Type safety"
+          ],
+          "answer": 0,
+          "explanation": "ProcessWindowFunction receives an Iterable of all window elements plus Context (window, time, side outputs). More powerful but higher memory usage.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_12",
+          "number": 12,
+          "globalNumber": 82,
+          "questionNumber": "M06-Q12",
+          "question": "What is the purpose of .maxBy(1) in TopSpeedWindowing?",
+          "options": [
+            "Returns the full tuple with the maximum value in field 1 (speed) from the window contents",
+            "Limits output to 1 element",
+            "Sets max parallelism to 1",
+            "Filters elements above 1"
+          ],
+          "answer": 0,
+          "explanation": "maxBy(1) is a window aggregation that returns the complete Tuple4 record having the highest value in field index 1 (speed).",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_13",
+          "number": 13,
+          "globalNumber": 83,
+          "questionNumber": "M06-Q13",
+          "question": "Can you apply windows to a non-keyed DataStream?",
+          "options": [
+            "Yes, using windowAll() — but it runs with parallelism 1 since there's no key partitioning",
+            "No, windows require keyBy() first",
+            "Yes, using window() directly",
+            "Yes, but only tumbling windows"
+          ],
+          "answer": 0,
+          "explanation": "windowAll() applies windows to a non-keyed stream but runs on a single parallel instance. For scalable windowing, use keyBy() first.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_14",
+          "number": 14,
+          "globalNumber": 84,
+          "questionNumber": "M06-Q14",
+          "question": "What is the window assigner's role?",
+          "options": [
+            "Determining which window(s) each incoming element belongs to based on timestamp or count",
+            "Computing window results",
+            "Assigning keys to elements",
+            "Managing checkpoint storage"
+          ],
+          "answer": 0,
+          "explanation": "The assigner maps each element to one or more windows. Tumbling → 1 window, Sliding → multiple windows, Session → dynamic merge-based windows.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        },
+        {
+          "id": "q06_15",
+          "number": 15,
+          "globalNumber": 85,
+          "questionNumber": "M06-Q15",
+          "question": "What happens when a window fires?",
+          "options": [
+            "The trigger condition is met, the evictor (if any) removes elements, the window function computes results, and results are emitted downstream",
+            "The window is deleted",
+            "A checkpoint is triggered",
+            "The job restarts"
+          ],
+          "answer": 0,
+          "explanation": "Fire sequence: trigger fires → evictor removes elements (optional) → window function processes remaining elements → results emitted → window may be purged.",
+          "category": "Windowing",
+          "tags": [
+            "flink",
+            "windowing",
+            "windowing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "M7: Triggers & Evictors",
+      "slug": "triggers-and-evictors",
+      "questionCount": 10,
+      "tags": [
+        "flink",
+        "triggers-and-evictors",
+        "triggers-and-evictors"
+      ],
+      "questions": [
+        {
+          "id": "q07_01",
+          "number": 1,
+          "globalNumber": 86,
+          "questionNumber": "M07-Q01",
+          "question": "What is a DeltaTrigger?",
+          "options": [
+            "A trigger that fires when the difference (delta) between the current element and a reference point exceeds a threshold",
+            "A trigger that fires at regular intervals",
+            "A trigger that fires on every element",
+            "A trigger based on watermarks"
+          ],
+          "answer": 0,
+          "explanation": "DeltaTrigger fires when DeltaFunction.getDelta(oldPoint, newPoint) exceeds the threshold. In TopSpeedWindowing, it fires every 50 meters of distance change.",
+          "category": "Triggers & Evictors",
+          "tags": [
+            "flink",
+            "triggers-and-evictors",
+            "triggers-and-evictors"
+          ]
+        },
+        {
+          "id": "q07_02",
+          "number": 2,
+          "globalNumber": 87,
+          "questionNumber": "M07-Q02",
+          "question": "How is the DeltaFunction implemented in TopSpeedWindowing?",
+          "options": [
+            "return newDataPoint.f2 - oldDataPoint.f2 (distance delta)",
+            "return newDataPoint.f1 - oldDataPoint.f1 (speed delta)",
+            "return newDataPoint.f3 - oldDataPoint.f3 (time delta)",
+            "return newDataPoint.f0 - oldDataPoint.f0 (ID delta)"
+          ],
+          "answer": 0,
+          "explanation": "The DeltaFunction computes distance change: newDataPoint.f2 - oldDataPoint.f2, where f2 is the elapsed distance field.",
+          "category": "Triggers & Evictors",
+          "tags": [
+            "flink",
+            "triggers-and-evictors",
+            "triggers-and-evictors"
+          ]
+        },
+        {
+          "id": "q07_03",
+          "number": 3,
+          "globalNumber": 88,
+          "questionNumber": "M07-Q03",
+          "question": "What does TimeEvictor.of(Duration.ofSeconds(10)) do?",
+          "options": [
+            "Removes elements older than 10 seconds (relative to the max timestamp in the window) before the window function runs",
+            "Evicts windows after 10 seconds",
+            "Delays window firing by 10 seconds",
+            "Limits processing to 10 seconds"
+          ],
+          "answer": 0,
+          "explanation": "TimeEvictor keeps only elements within the last N seconds relative to the maximum timestamp seen in the window. Older elements are evicted before computation.",
+          "category": "Triggers & Evictors",
+          "tags": [
+            "flink",
+            "triggers-and-evictors",
+            "triggers-and-evictors"
+          ]
+        },
+        {
+          "id": "q07_04",
+          "number": 4,
+          "globalNumber": 89,
+          "questionNumber": "M07-Q04",
+          "question": "What is a CountTrigger?",
+          "options": [
+            "Fires the window when the number of elements in the window reaches the specified count",
+            "Triggers when the count field reaches a threshold",
+            "Triggers counting operations",
+            "Counts the number of triggers"
+          ],
+          "answer": 0,
+          "explanation": "CountTrigger.of(N) fires the window function every time the window accumulates N elements.",
+          "category": "Triggers & Evictors",
+          "tags": [
+            "flink",
+            "triggers-and-evictors",
+            "triggers-and-evictors"
+          ]
+        },
+        {
+          "id": "q07_05",
+          "number": 5,
+          "globalNumber": 90,
+          "questionNumber": "M07-Q05",
+          "question": "What is the default trigger for TumblingEventTimeWindows?",
+          "options": [
+            "EventTimeTrigger — fires when the watermark passes the window's end time",
+            "CountTrigger",
+            "ProcessingTimeTrigger",
+            "DeltaTrigger"
+          ],
+          "answer": 0,
+          "explanation": "Event-time windows default to EventTimeTrigger, which fires when the watermark exceeds window.maxTimestamp() (end - 1).",
+          "category": "Triggers & Evictors",
+          "tags": [
+            "flink",
+            "triggers-and-evictors",
+            "triggers-and-evictors"
+          ]
+        },
+        {
+          "id": "q07_06",
+          "number": 6,
+          "globalNumber": 91,
+          "questionNumber": "M07-Q06",
+          "question": "What trigger return values exist?",
+          "options": [
+            "CONTINUE (do nothing), FIRE (compute results), PURGE (discard window), FIRE_AND_PURGE (compute and discard)",
+            "Only FIRE",
+            "START and STOP",
+            "OPEN and CLOSE"
+          ],
+          "answer": 0,
+          "explanation": "TriggerResult has four values controlling window lifecycle: continue waiting, fire computation, purge state, or both fire and purge.",
+          "category": "Triggers & Evictors",
+          "tags": [
+            "flink",
+            "triggers-and-evictors",
+            "triggers-and-evictors"
+          ]
+        },
+        {
+          "id": "q07_07",
+          "number": 7,
+          "globalNumber": 92,
+          "questionNumber": "M07-Q07",
+          "question": "What is a CountEvictor?",
+          "options": [
+            "Keeps only the last N elements in the window, removing older ones before the window function runs",
+            "Evicts windows after a count",
+            "Counts evicted elements",
+            "Evicts every Nth element"
+          ],
+          "answer": 0,
+          "explanation": "CountEvictor.of(N) retains only the most recent N elements in the window. Earlier elements are removed before the window function executes.",
+          "category": "Triggers & Evictors",
+          "tags": [
+            "flink",
+            "triggers-and-evictors",
+            "triggers-and-evictors"
+          ]
+        },
+        {
+          "id": "q07_08",
+          "number": 8,
+          "globalNumber": 93,
+          "questionNumber": "M07-Q08",
+          "question": "Can you combine multiple evictors?",
+          "options": [
+            "No — only one evictor can be set per window; use a custom evictor for complex logic",
+            "Yes, chain them",
+            "Yes, using evictorChain()",
+            "Yes, but only TimeEvictor + CountEvictor"
+          ],
+          "answer": 0,
+          "explanation": "Flink supports one evictor per window. For complex eviction logic, implement a custom Evictor that combines multiple conditions.",
+          "category": "Triggers & Evictors",
+          "tags": [
+            "flink",
+            "triggers-and-evictors",
+            "triggers-and-evictors"
+          ]
+        },
+        {
+          "id": "q07_09",
+          "number": 9,
+          "globalNumber": 94,
+          "questionNumber": "M07-Q09",
+          "question": "When does the evictor run relative to the window function?",
+          "options": [
+            "Before the window function by default (evictBefore), with an optional evictAfter callback",
+            "After the window function",
+            "During the window function",
+            "At checkpoint time"
+          ],
+          "answer": 0,
+          "explanation": "The evictor's evictBefore() runs before the window function, removing unwanted elements. evictAfter() runs after (less common).",
+          "category": "Triggers & Evictors",
+          "tags": [
+            "flink",
+            "triggers-and-evictors",
+            "triggers-and-evictors"
+          ]
+        },
+        {
+          "id": "q07_10",
+          "number": 10,
+          "globalNumber": 95,
+          "questionNumber": "M07-Q10",
+          "question": "Why can't you use incremental aggregation (ReduceFunction) with an evictor?",
+          "options": [
+            "Because evictors can remove arbitrary elements, the incremental aggregate would be invalid; a full ProcessWindowFunction is needed",
+            "You can — there's no restriction",
+            "Evictors don't work with windows",
+            "Technical limitation in the JVM"
+          ],
+          "answer": 0,
+          "explanation": "Incremental aggregation maintains a running result. If an evictor removes elements, the aggregate becomes incorrect. Flink falls back to storing all elements.",
+          "category": "Triggers & Evictors",
+          "tags": [
+            "flink",
+            "triggers-and-evictors",
+            "triggers-and-evictors"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "M8: Joins",
+      "slug": "joins",
+      "questionCount": 6,
+      "tags": [
+        "flink",
+        "joins",
+        "joins"
+      ],
+      "questions": [
+        {
+          "id": "q08_01",
+          "number": 1,
+          "globalNumber": 96,
+          "questionNumber": "M08-Q01",
+          "question": "What join chain does WindowJoin use?",
+          "options": [
+            "grades.join(salaries).where(keySelector1).equalTo(keySelector2).window(assigner).apply(joinFn)",
+            "grades.coGroup(salaries)...",
+            "grades.connect(salaries).keyBy()...",
+            "grades.union(salaries).keyBy()..."
+          ],
+          "answer": 0,
+          "explanation": "The fluent join API: join → where (left key) → equalTo (right key) → window (assigner) → apply (join function producing output).",
+          "category": "Joins",
+          "tags": [
+            "flink",
+            "joins",
+            "joins"
+          ]
+        },
+        {
+          "id": "q08_02",
+          "number": 2,
+          "globalNumber": 97,
+          "questionNumber": "M08-Q02",
+          "question": "What interface does NameKeySelector implement?",
+          "options": [
+            "KeySelector<Tuple2<String, Integer>, String>",
+            "Function<Tuple2, String>",
+            "KeyExtractor<Tuple2, String>",
+            "Comparable<Tuple2>"
+          ],
+          "answer": 0,
+          "explanation": "KeySelector<IN, KEY> extracts the join/partition key from each element. NameKeySelector returns value.f0 (the name).",
+          "category": "Joins",
+          "tags": [
+            "flink",
+            "joins",
+            "joins"
+          ]
+        },
+        {
+          "id": "q08_03",
+          "number": 3,
+          "globalNumber": 98,
+          "questionNumber": "M08-Q03",
+          "question": "What window type is used in WindowJoin?",
+          "options": [
+            "TumblingEventTimeWindows.of(Duration.ofMillis(windowSize))",
+            "SlidingEventTimeWindows",
+            "GlobalWindows",
+            "SessionWindows"
+          ],
+          "answer": 0,
+          "explanation": "WindowJoin uses tumbling event-time windows for non-overlapping join windows.",
+          "category": "Joins",
+          "tags": [
+            "flink",
+            "joins",
+            "joins"
+          ]
+        },
+        {
+          "id": "q08_04",
+          "number": 4,
+          "globalNumber": 99,
+          "questionNumber": "M08-Q04",
+          "question": "What does the JoinFunction produce in WindowJoin?",
+          "options": [
+            "Tuple3<String, Integer, Integer> — (name, grade, salary)",
+            "Tuple2<String, Integer>",
+            "String concatenation",
+            "Tuple4 with timestamp"
+          ],
+          "answer": 0,
+          "explanation": "The JoinFunction combines matched pairs: new Tuple3<>(first.f0, first.f1, second.f1) = (name, grade, salary).",
+          "category": "Joins",
+          "tags": [
+            "flink",
+            "joins",
+            "joins"
+          ]
+        },
+        {
+          "id": "q08_05",
+          "number": 5,
+          "globalNumber": 100,
+          "questionNumber": "M08-Q05",
+          "question": "What is the difference between join() and coGroup()?",
+          "options": [
+            "join() is inner join (one call per matching pair); coGroup() provides all elements from both sides per key (enables outer joins)",
+            "They're identical",
+            "coGroup() is deprecated",
+            "join() supports more window types"
+          ],
+          "answer": 0,
+          "explanation": "join() calls JoinFunction once per matching pair (inner join). coGroup() gives Iterables of both sides, enabling left/right/full outer join logic.",
+          "category": "Joins",
+          "tags": [
+            "flink",
+            "joins",
+            "joins"
+          ]
+        },
+        {
+          "id": "q08_06",
+          "number": 6,
+          "globalNumber": 101,
+          "questionNumber": "M08-Q06",
+          "question": "What does the IngestionTimeWatermarkStrategy assign as event timestamp?",
+          "options": [
+            "System.currentTimeMillis() — the current wall clock time when the element is processed at the source",
+            "Kafka ingestion timestamp",
+            "The tuple's timestamp field",
+            "A monotonic counter"
+          ],
+          "answer": 0,
+          "explanation": "IngestionTimeWatermarkStrategy uses (event, timestamp) -> System.currentTimeMillis(), implementing ingestion-time semantics with system clock.",
+          "category": "Joins",
+          "tags": [
+            "flink",
+            "joins",
+            "joins"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "M9: State Management",
+      "slug": "state-management",
+      "questionCount": 15,
+      "tags": [
+        "flink",
+        "state-management",
+        "state-management"
+      ],
+      "questions": [
+        {
+          "id": "q09_01",
+          "number": 1,
+          "globalNumber": 102,
+          "questionNumber": "M09-Q01",
+          "question": "What is ValueState<T>?",
+          "options": [
+            "A keyed state type that stores a single value per key, with value(), update(T), and clear() operations",
+            "A static variable",
+            "A window state",
+            "A broadcast variable"
+          ],
+          "answer": 0,
+          "explanation": "ValueState stores one value per key. StateMachineExample uses ValueState<State> to track each IP address's current DFA state.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_02",
+          "number": 2,
+          "globalNumber": 103,
+          "questionNumber": "M09-Q02",
+          "question": "How do you create a ValueState in a RichFlatMapFunction?",
+          "options": [
+            "getRuntimeContext().getState(new ValueStateDescriptor<>(\"name\", Type.class)) in open()",
+            "new ValueState<>()",
+            "ValueState.create()",
+            "env.createState()"
+          ],
+          "answer": 0,
+          "explanation": "State handles are obtained from RuntimeContext using descriptors. Must be done in open() after the function is initialized on the TaskManager.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_03",
+          "number": 3,
+          "globalNumber": 104,
+          "questionNumber": "M09-Q03",
+          "question": "What does currentState.value() return when no value has been set for a key?",
+          "options": [
+            "null — the default for reference types",
+            "An empty string",
+            "An exception",
+            "A default value"
+          ],
+          "answer": 0,
+          "explanation": "ValueState returns null for uninitialized keys (reference types) or type defaults for primitives. StateMachineExample checks: if (state == null) state = State.Initial.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_04",
+          "number": 4,
+          "globalNumber": 105,
+          "questionNumber": "M09-Q04",
+          "question": "What does currentState.update(nextState) do?",
+          "options": [
+            "Updates the value for the CURRENT key only — state is automatically scoped to the key of the element being processed",
+            "Updates all keys",
+            "Updates the state backend",
+            "Triggers a checkpoint"
+          ],
+          "answer": 0,
+          "explanation": "update() writes the new value for the current key. Flink automatically scopes state access to the key determined by keyBy().",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_05",
+          "number": 5,
+          "globalNumber": 106,
+          "questionNumber": "M09-Q05",
+          "question": "What does currentState.clear() do?",
+          "options": [
+            "Removes the state for the CURRENT key only, freeing associated memory/storage",
+            "Deletes all state for all keys",
+            "Clears the checkpoint",
+            "Resets the state backend"
+          ],
+          "answer": 0,
+          "explanation": "clear() removes the state entry for the current key. In StateMachineExample, it's called when a terminal state is reached to clean up.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_06",
+          "number": 6,
+          "globalNumber": 107,
+          "questionNumber": "M09-Q06",
+          "question": "What is ListState<T>?",
+          "options": [
+            "A keyed state type that stores a list of values per key — supports add(T), get() (Iterable), update(List), clear()",
+            "A read-only list",
+            "A list of state backends",
+            "A list of checkpoints"
+          ],
+          "answer": 0,
+          "explanation": "ListState stores an appendable list per key. Useful for collecting events or maintaining ordered history.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_07",
+          "number": 7,
+          "globalNumber": 108,
+          "questionNumber": "M09-Q07",
+          "question": "What is MapState<K,V>?",
+          "options": [
+            "A keyed state type storing key-value pairs per stream key — supports get(K), put(K,V), entries(), remove(K), clear()",
+            "A state that maps keys to operators",
+            "A Java HashMap wrapper",
+            "A configuration map"
+          ],
+          "answer": 0,
+          "explanation": "MapState provides a per-key map. Useful for maintaining lookup tables or counters per sub-category within each key.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_08",
+          "number": 8,
+          "globalNumber": 109,
+          "questionNumber": "M09-Q08",
+          "question": "What is the difference between keyed state and operator state?",
+          "options": [
+            "Keyed state is scoped to each key (requires keyBy); operator state is scoped to each parallel operator instance (no keyBy needed)",
+            "They are the same",
+            "Keyed state is faster",
+            "Operator state supports more types"
+          ],
+          "answer": 0,
+          "explanation": "Keyed state: one state per key, accessed after keyBy(). Operator state: one state per parallel subtask, used for source offsets or broadcast state.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_09",
+          "number": 9,
+          "globalNumber": 110,
+          "questionNumber": "M09-Q09",
+          "question": "Where should state be initialized in a RichFunction?",
+          "options": [
+            "In the open() method — called after distribution to TaskManagers, when RuntimeContext is available",
+            "In the constructor",
+            "In flatMap() on first call",
+            "In a static initializer"
+          ],
+          "answer": 0,
+          "explanation": "open() runs after the function is deserialized on the TaskManager. RuntimeContext (needed for state) is only available at this point.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_10",
+          "number": 10,
+          "globalNumber": 111,
+          "questionNumber": "M09-Q10",
+          "question": "What is State TTL (Time-to-Live)?",
+          "options": [
+            "A configuration that automatically expires and cleans up state entries after a specified duration",
+            "A network protocol",
+            "State type naming convention",
+            "Checkpoint timeout"
+          ],
+          "answer": 0,
+          "explanation": "State TTL auto-removes stale state entries, preventing unbounded state growth. Configure via StateTtlConfig with expiration time and cleanup strategy.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_11",
+          "number": 11,
+          "globalNumber": 112,
+          "questionNumber": "M09-Q11",
+          "question": "Why is the AsyncClient marked transient in AsyncIOExample?",
+          "options": [
+            "Because it's not serializable — the function is serialized to TaskManagers, so non-serializable fields must be transient and initialized in open()",
+            "For performance",
+            "It's a Flink requirement for all fields",
+            "To save memory"
+          ],
+          "answer": 0,
+          "explanation": "Functions are serialized for distribution. Non-serializable objects (clients, connections) must be transient and created fresh in open() after deserialization.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_12",
+          "number": 12,
+          "globalNumber": 113,
+          "questionNumber": "M09-Q12",
+          "question": "What happens to keyed state during rescaling (changing parallelism)?",
+          "options": [
+            "Flink redistributes keyed state across the new number of subtasks using key groups from the savepoint",
+            "State is lost",
+            "State stays on the same subtask",
+            "State is duplicated to all subtasks"
+          ],
+          "answer": 0,
+          "explanation": "Key groups are redistributed: some subtasks gain key groups (and their state), others lose them. The total state is preserved, just repartitioned.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_13",
+          "number": 13,
+          "globalNumber": 114,
+          "questionNumber": "M09-Q13",
+          "question": "What is ReducingState<T>?",
+          "options": [
+            "A keyed state that automatically applies a ReduceFunction when elements are added — get() returns the accumulated result",
+            "State that reduces memory usage",
+            "A deprecated state type",
+            "State for reduce operations only"
+          ],
+          "answer": 0,
+          "explanation": "ReducingState auto-reduces: add(T) combines the new element with the current value using the registered ReduceFunction. get() returns the result.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_14",
+          "number": 14,
+          "globalNumber": 115,
+          "questionNumber": "M09-Q14",
+          "question": "How does Flink serialize keyed state for checkpoints?",
+          "options": [
+            "Using registered TypeSerializers — Flink's built-in serializers for primitives/tuples, Kryo for complex types, or custom serializers",
+            "Java serialization only",
+            "JSON serialization",
+            "Protobuf only"
+          ],
+          "answer": 0,
+          "explanation": "Flink uses its type serialization framework. Built-in serializers handle common types efficiently. Kryo is the fallback. Custom TypeSerializer can be registered.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        },
+        {
+          "id": "q09_15",
+          "number": 15,
+          "globalNumber": 116,
+          "questionNumber": "M09-Q15",
+          "question": "What is broadcast state?",
+          "options": [
+            "A special operator state pattern where one stream broadcasts its state to all parallel instances of another operator",
+            "State shared across all keys",
+            "State for broadcast operations",
+            "State stored in ZooKeeper"
+          ],
+          "answer": 0,
+          "explanation": "Broadcast state allows a control/rules stream to be broadcast to all parallel instances of a processing operator, enabling dynamic rule updates.",
+          "category": "State Management",
+          "tags": [
+            "flink",
+            "state-management",
+            "state-management"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "M10: State Backends",
+      "slug": "state-backends",
+      "questionCount": 12,
+      "tags": [
+        "flink",
+        "state-backends",
+        "state-backends"
+      ],
+      "questions": [
+        {
+          "id": "q10_01",
+          "number": 1,
+          "globalNumber": 117,
+          "questionNumber": "M10-Q01",
+          "question": "What is the MemoryStateBackend (default) used for?",
+          "options": [
+            "Development and testing only — stores state in JVM heap with small size limits",
+            "Production with large state",
+            "Distributed state storage",
+            "GPU-accelerated state processing"
+          ],
+          "answer": 0,
+          "explanation": "MemoryStateBackend stores state in the TaskManager's JVM heap and checkpoints to the JobManager's heap. Only suitable for development due to size limitations.",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_02",
+          "number": 2,
+          "globalNumber": 118,
+          "questionNumber": "M10-Q02",
+          "question": "How does HashMapStateBackend store state?",
+          "options": [
+            "In Java HashMap objects on the TaskManager's JVM heap, with checkpoints to external storage",
+            "In a distributed hash table",
+            "In RocksDB on disk",
+            "In a separate database"
+          ],
+          "answer": 0,
+          "explanation": "HashMapStateBackend keeps state in JVM heap as Java objects (HashMap). Checkpoints are serialized to configured checkpoint storage (filesystem/S3).",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_03",
+          "number": 3,
+          "globalNumber": 119,
+          "questionNumber": "M10-Q03",
+          "question": "What is the EmbeddedRocksDBStateBackend?",
+          "options": [
+            "A state backend that stores state in a local RocksDB instance (on disk/SSD), enabling state larger than available memory",
+            "A remote database connection",
+            "An in-memory cache for RocksDB",
+            "A cloud-managed state service"
+          ],
+          "answer": 0,
+          "explanation": "RocksDB stores state on local disk using an embedded LSM-tree database. This allows state sizes far exceeding available JVM heap, making it suitable for large-state jobs.",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_04",
+          "number": 4,
+          "globalNumber": 120,
+          "questionNumber": "M10-Q04",
+          "question": "When should you choose RocksDB over HashMapStateBackend?",
+          "options": [
+            "When state size is large (potentially exceeding available JVM heap memory) or when incremental checkpoints are needed",
+            "Always, as it's faster",
+            "When you need the lowest possible latency",
+            "When running in BATCH mode"
+          ],
+          "answer": 0,
+          "explanation": "RocksDB is slower per-access (disk I/O + serialization) but handles much larger state. Choose it when state doesn't fit in heap or when incremental checkpoints reduce checkpoint duration.",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_05",
+          "number": 5,
+          "globalNumber": 121,
+          "questionNumber": "M10-Q05",
+          "question": "What is the serialization overhead difference between HashMapStateBackend and RocksDB?",
+          "options": [
+            "HashMapStateBackend stores objects natively in heap (no serialization on access); RocksDB serializes/deserializes on every read/write",
+            "No difference",
+            "RocksDB is faster because it uses native code",
+            "HashMapStateBackend uses more serialization"
+          ],
+          "answer": 0,
+          "explanation": "HashMapStateBackend keeps Java objects in heap — no ser/de on access. RocksDB requires serialization to byte arrays on every get/put, adding CPU overhead per state access.",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_06",
+          "number": 6,
+          "globalNumber": 122,
+          "questionNumber": "M10-Q06",
+          "question": "What does incremental checkpointing mean?",
+          "options": [
+            "Only the state changes since the last checkpoint are persisted, rather than the full state snapshot",
+            "Checkpoints are taken more frequently over time",
+            "Checkpoints increase in size over time",
+            "State is checkpointed one key at a time"
+          ],
+          "answer": 0,
+          "explanation": "Incremental checkpoints (RocksDB only) leverage RocksDB's LSM-tree: only new/changed SST files since the last checkpoint are uploaded, dramatically reducing checkpoint size and duration.",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_07",
+          "number": 7,
+          "globalNumber": 123,
+          "questionNumber": "M10-Q07",
+          "question": "How do you configure the RocksDB state backend in code?",
+          "options": [
+            "configuration.set(StateBackendOptions.STATE_BACKEND, \"rocksdb\") or the full factory class name",
+            "env.setStateBackend(new RocksDB())",
+            "RocksDBStateBackend.enable()",
+            "env.useRocksDB()"
+          ],
+          "answer": 0,
+          "explanation": "As shown in StateMachineExample: configuration.set(StateBackendOptions.STATE_BACKEND, \"org.apache.flink.contrib.streaming.state.EmbeddedRocksDBStateBackendFactory\")",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_08",
+          "number": 8,
+          "globalNumber": 124,
+          "questionNumber": "M10-Q08",
+          "question": "Where does the checkpoint data get stored?",
+          "options": [
+            "In configured checkpoint storage: filesystem (local/HDFS) or S3, as set by CheckpointingOptions.CHECKPOINTS_DIRECTORY",
+            "Always on the JobManager",
+            "Only in TaskManager memory",
+            "In ZooKeeper"
+          ],
+          "answer": 0,
+          "explanation": "Checkpoint storage is configured separately from the state backend. Common choices: HDFS, S3, or local filesystem for testing.",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_09",
+          "number": 9,
+          "globalNumber": 125,
+          "questionNumber": "M10-Q09",
+          "question": "Can you change the state backend between job restarts?",
+          "options": [
+            "Yes, but only between HashMapStateBackend and RocksDB (both use the same serialization format for checkpoints/savepoints)",
+            "No, never",
+            "Yes, between any backends freely",
+            "Only during the first restart"
+          ],
+          "answer": 0,
+          "explanation": "You can switch between HashMap and RocksDB when restoring from a savepoint, as both use the same serialized format. The in-memory representation differs but persistence format is compatible.",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_10",
+          "number": 10,
+          "globalNumber": 126,
+          "questionNumber": "M10-Q10",
+          "question": "What are RocksDB's tuning options in Flink?",
+          "options": [
+            "Block cache size, write buffer count, compaction style, bloom filters, and more via RocksDBOptionsFactory",
+            "None — RocksDB is auto-tuned",
+            "Only memory allocation",
+            "Only disk path"
+          ],
+          "answer": 0,
+          "explanation": "Flink exposes extensive RocksDB tuning: state.backend.rocksdb.block.cache-size, write buffer settings, compaction options, and custom RocksDBOptionsFactory implementations.",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_11",
+          "number": 11,
+          "globalNumber": 127,
+          "questionNumber": "M10-Q11",
+          "question": "What happens if the JVM heap runs out of memory with HashMapStateBackend?",
+          "options": [
+            "The TaskManager crashes with OutOfMemoryError, triggering failover",
+            "Flink automatically switches to RocksDB",
+            "State is automatically spilled to disk",
+            "Flink reduces the state size"
+          ],
+          "answer": 0,
+          "explanation": "HashMapStateBackend keeps all state on heap. If state exceeds available heap, the JVM throws OOM and the task fails. This is why RocksDB is preferred for large state.",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        },
+        {
+          "id": "q10_12",
+          "number": 12,
+          "globalNumber": 128,
+          "questionNumber": "M10-Q12",
+          "question": "What managed memory is allocated for RocksDB?",
+          "options": [
+            "Flink allocates off-heap managed memory for RocksDB's block cache and write buffers, configured via taskmanager.memory.managed.fraction",
+            "None — RocksDB uses only JVM heap",
+            "RocksDB uses network buffer memory",
+            "RocksDB uses metaspace"
+          ],
+          "answer": 0,
+          "explanation": "Flink reserves managed memory (off-heap) for RocksDB caches. The fraction is configurable via taskmanager.memory.managed.fraction (default 0.4).",
+          "category": "State Backends",
+          "tags": [
+            "flink",
+            "state-backends",
+            "state-backends"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "M11: Checkpointing & Recovery",
+      "slug": "checkpointing-and-recovery",
+      "questionCount": 12,
+      "tags": [
+        "flink",
+        "checkpointing-and-recovery",
+        "checkpointing-and-recovery"
+      ],
+      "questions": [
+        {
+          "id": "q11_01",
+          "number": 1,
+          "globalNumber": 129,
+          "questionNumber": "M11-Q01",
+          "question": "What algorithm does Flink use for distributed snapshots (checkpoints)?",
+          "options": [
+            "Chandy-Lamport distributed snapshot algorithm using checkpoint barriers",
+            "Two-phase commit",
+            "Paxos consensus",
+            "Raft consensus"
+          ],
+          "answer": 0,
+          "explanation": "Flink's checkpointing is based on the Chandy-Lamport algorithm (1985). Checkpoint barriers are injected at sources and flow through the dataflow graph.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_02",
+          "number": 2,
+          "globalNumber": 130,
+          "questionNumber": "M11-Q02",
+          "question": "What are checkpoint barriers?",
+          "options": [
+            "Special markers injected into the data stream by sources that separate records belonging to different checkpoint epochs",
+            "Physical walls between TaskManagers",
+            "Memory limits for checkpoints",
+            "Time intervals between checkpoints"
+          ],
+          "answer": 0,
+          "explanation": "Barriers are lightweight markers that flow with the data. When an operator receives barriers from all inputs, it snapshots its state for that checkpoint epoch.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_03",
+          "number": 3,
+          "globalNumber": 131,
+          "questionNumber": "M11-Q03",
+          "question": "What is barrier alignment?",
+          "options": [
+            "An operator blocks fast input channels until barriers arrive from all channels, ensuring a consistent cut across the stream",
+            "Ensuring barriers are evenly spaced in time",
+            "Aligning barriers with watermarks",
+            "Sorting barriers by timestamp"
+          ],
+          "answer": 0,
+          "explanation": "With exactly-once, operators wait for barriers from ALL input channels before snapshotting. This ensures the snapshot represents a consistent point across all inputs.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_04",
+          "number": 4,
+          "globalNumber": 132,
+          "questionNumber": "M11-Q04",
+          "question": "What are unaligned checkpoints?",
+          "options": [
+            "Checkpoints where barriers can overtake in-flight records; in-flight data is stored as part of the checkpoint to avoid blocking",
+            "Checkpoints without any barriers",
+            "Checkpoints that don't align with watermarks",
+            "Checkpoints without state"
+          ],
+          "answer": 0,
+          "explanation": "Unaligned checkpoints (Flink 1.11+) let barriers pass through without waiting. In-flight records are captured in the checkpoint, avoiding blocking on skewed inputs.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_05",
+          "number": 5,
+          "globalNumber": 133,
+          "questionNumber": "M11-Q05",
+          "question": "How do you enable checkpointing in Flink?",
+          "options": [
+            "Call env.enableCheckpointing(intervalMs) — e.g., env.enableCheckpointing(2000L) for every 2 seconds",
+            "It's always enabled by default",
+            "Set a system property",
+            "Use a special annotation"
+          ],
+          "answer": 0,
+          "explanation": "Checkpointing is disabled by default. env.enableCheckpointing(2000L) enables it with a 2-second interval, as shown in StateMachineExample.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_06",
+          "number": 6,
+          "globalNumber": 134,
+          "questionNumber": "M11-Q06",
+          "question": "What happens during a checkpoint?",
+          "options": [
+            "Each operator asynchronously snapshots its state to checkpoint storage when it receives aligned barriers from all inputs; processing continues",
+            "The job pauses completely",
+            "All data is written to disk",
+            "The cluster restarts"
+          ],
+          "answer": 0,
+          "explanation": "Checkpointing is designed to be asynchronous and non-blocking. Operators snapshot state in the background while continuing to process records.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_07",
+          "number": 7,
+          "globalNumber": 135,
+          "questionNumber": "M11-Q07",
+          "question": "What is the checkpoint timeout?",
+          "options": [
+            "How long a checkpoint can take before it's considered failed and aborted",
+            "The interval between checkpoints",
+            "How long to wait before the first checkpoint",
+            "The time to restore from a checkpoint"
+          ],
+          "answer": 0,
+          "explanation": "If a checkpoint doesn't complete within the timeout, it's aborted. Default is 10 minutes. Configure via CheckpointConfig.setCheckpointTimeout().",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_08",
+          "number": 8,
+          "globalNumber": 136,
+          "questionNumber": "M11-Q08",
+          "question": "What is the minimum pause between checkpoints?",
+          "options": [
+            "A configurable delay ensuring the previous checkpoint completes before the next starts, preventing checkpoint storms",
+            "There is no minimum",
+            "Always 1 second",
+            "Always 0"
+          ],
+          "answer": 0,
+          "explanation": "setMinPauseBetweenCheckpoints(ms) ensures a minimum gap between checkpoint completions and the next trigger, preventing overlapping checkpoints under load.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_09",
+          "number": 9,
+          "globalNumber": 137,
+          "questionNumber": "M11-Q09",
+          "question": "How does Flink recover from a failure?",
+          "options": [
+            "It restores operator state from the latest completed checkpoint and replays source data from checkpointed offsets",
+            "It loses all data and starts fresh",
+            "It recovers from a database backup",
+            "It asks the user to manually fix the state"
+          ],
+          "answer": 0,
+          "explanation": "On failure, Flink resets all operators to their state from the last successful checkpoint, resets sources to their checkpointed positions, and resumes processing.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_10",
+          "number": 10,
+          "globalNumber": 138,
+          "questionNumber": "M11-Q10",
+          "question": "What is externalized checkpoint cleanup?",
+          "options": [
+            "Configuring whether checkpoints are retained or deleted when a job is cancelled, enabling recovery from cancellation",
+            "Deleting checkpoints from external storage",
+            "Cleaning up temporary files",
+            "Defragmenting checkpoint storage"
+          ],
+          "answer": 0,
+          "explanation": "ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION keeps checkpoints after job cancellation, allowing restart from them. DELETE_ON_CANCELLATION removes them.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_11",
+          "number": 11,
+          "globalNumber": 139,
+          "questionNumber": "M11-Q11",
+          "question": "How many concurrent checkpoints can Flink run by default?",
+          "options": [
+            "1 — only one checkpoint can be in progress at a time (configurable via setMaxConcurrentCheckpoints)",
+            "Unlimited",
+            "Equal to the parallelism",
+            "10"
+          ],
+          "answer": 0,
+          "explanation": "By default, only one checkpoint runs at a time. setMaxConcurrentCheckpoints() can allow multiple concurrent checkpoints if needed.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        },
+        {
+          "id": "q11_12",
+          "number": 12,
+          "globalNumber": 140,
+          "questionNumber": "M11-Q12",
+          "question": "What is the difference between at-least-once and exactly-once checkpointing?",
+          "options": [
+            "Exactly-once uses barrier alignment (may block channels); at-least-once skips alignment (faster but may reprocess records on recovery)",
+            "At-least-once is faster and has no data loss; exactly-once may lose data",
+            "They are identical",
+            "At-least-once checkpoints more frequently"
+          ],
+          "answer": 0,
+          "explanation": "Exactly-once requires barrier alignment, which can add latency. At-least-once allows records past the barrier to be processed before snapshot, leading to potential duplicates on recovery.",
+          "category": "Checkpointing & Recovery",
+          "tags": [
+            "flink",
+            "checkpointing-and-recovery",
+            "checkpointing-and-recovery"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "M12: Savepoints",
+      "slug": "savepoints",
+      "questionCount": 8,
+      "tags": [
+        "flink",
+        "savepoints",
+        "savepoints"
+      ],
+      "questions": [
+        {
+          "id": "q12_01",
+          "number": 1,
+          "globalNumber": 141,
+          "questionNumber": "M12-Q01",
+          "question": "What is a savepoint in Flink?",
+          "options": [
+            "A user-triggered, portable snapshot of the complete job state used for planned maintenance, upgrades, and rescaling",
+            "An automatic periodic snapshot of state",
+            "A backup of the Flink configuration",
+            "A snapshot of the JVM heap"
+          ],
+          "answer": 0,
+          "explanation": "Savepoints are manually triggered via CLI or REST API. They capture the full state in a portable format for version upgrades, rescaling, or job modifications.",
+          "category": "Savepoints",
+          "tags": [
+            "flink",
+            "savepoints",
+            "savepoints"
+          ]
+        },
+        {
+          "id": "q12_02",
+          "number": 2,
+          "globalNumber": 142,
+          "questionNumber": "M12-Q02",
+          "question": "How do you trigger a savepoint?",
+          "options": [
+            "Use flink savepoint <jobId> [targetDirectory] via CLI, or the REST API",
+            "It happens automatically",
+            "Call env.savepoint() in code",
+            "Savepoints are triggered by checkpoints"
+          ],
+          "answer": 0,
+          "explanation": "Savepoints are triggered externally: via CLI (flink savepoint), REST API, or the Flink Kubernetes Operator. They are NOT automatic.",
+          "category": "Savepoints",
+          "tags": [
+            "flink",
+            "savepoints",
+            "savepoints"
+          ]
+        },
+        {
+          "id": "q12_03",
+          "number": 3,
+          "globalNumber": 143,
+          "questionNumber": "M12-Q03",
+          "question": "What is the key difference between savepoints and checkpoints?",
+          "options": [
+            "Savepoints are user-triggered and portable (for upgrades/rescaling); checkpoints are automatic and optimized for fast recovery",
+            "They use different formats",
+            "Savepoints are smaller",
+            "Checkpoints are more reliable"
+          ],
+          "answer": 0,
+          "explanation": "Checkpoints are automatic, lightweight, and can use incremental formats. Savepoints are full snapshots, manually triggered, designed for operational tasks like upgrades.",
+          "category": "Savepoints",
+          "tags": [
+            "flink",
+            "savepoints",
+            "savepoints"
+          ]
+        },
+        {
+          "id": "q12_04",
+          "number": 4,
+          "globalNumber": 144,
+          "questionNumber": "M12-Q04",
+          "question": "Why are operator UIDs important for savepoints?",
+          "options": [
+            "UIDs map state to operators during restore — without stable UIDs, Flink cannot match state to operators after job modifications",
+            "They are cosmetic names",
+            "They control parallelism",
+            "They determine operator order"
+          ],
+          "answer": 0,
+          "explanation": "When restoring from a savepoint, Flink uses operator UIDs to match persisted state to operators. If UIDs change, state mapping fails. Always assign .uid() to stateful operators.",
+          "category": "Savepoints",
+          "tags": [
+            "flink",
+            "savepoints",
+            "savepoints"
+          ]
+        },
+        {
+          "id": "q12_05",
+          "number": 5,
+          "globalNumber": 145,
+          "questionNumber": "M12-Q05",
+          "question": "Can you restore a savepoint with a different parallelism?",
+          "options": [
+            "Yes — Flink redistributes keyed state across the new number of parallel subtasks using key groups",
+            "No, parallelism must match exactly",
+            "Only if increasing parallelism",
+            "Only with RocksDB backend"
+          ],
+          "answer": 0,
+          "explanation": "Flink supports rescaling from savepoints. Keyed state is redistributed based on key groups (max parallelism determines the number of key groups).",
+          "category": "Savepoints",
+          "tags": [
+            "flink",
+            "savepoints",
+            "savepoints"
+          ]
+        },
+        {
+          "id": "q12_06",
+          "number": 6,
+          "globalNumber": 146,
+          "questionNumber": "M12-Q06",
+          "question": "What is state schema evolution?",
+          "options": [
+            "The ability to modify the data types stored in state (e.g., adding fields to a POJO) and still restore from a savepoint",
+            "Migrating from one state backend to another",
+            "Changing the checkpoint interval",
+            "Evolving the job graph topology"
+          ],
+          "answer": 0,
+          "explanation": "Flink supports schema evolution for state types (POJOs, Avro). You can add/remove fields and restore from savepoints, with certain compatibility rules.",
+          "category": "Savepoints",
+          "tags": [
+            "flink",
+            "savepoints",
+            "savepoints"
+          ]
+        },
+        {
+          "id": "q12_07",
+          "number": 7,
+          "globalNumber": 147,
+          "questionNumber": "M12-Q07",
+          "question": "What is max parallelism and why does it matter for savepoints?",
+          "options": [
+            "The upper bound on key groups, set at job start — determines how state can be redistributed during rescaling from savepoints",
+            "The maximum number of TaskManagers",
+            "The maximum CPU usage",
+            "The maximum number of concurrent jobs"
+          ],
+          "answer": 0,
+          "explanation": "Max parallelism (default 128) determines the number of key groups. It's fixed at job creation and limits future rescaling. Choose wisely as it cannot be changed without losing state.",
+          "category": "Savepoints",
+          "tags": [
+            "flink",
+            "savepoints",
+            "savepoints"
+          ]
+        },
+        {
+          "id": "q12_08",
+          "number": 8,
+          "globalNumber": 148,
+          "questionNumber": "M12-Q08",
+          "question": "How does savepoint format differ between native and canonical?",
+          "options": [
+            "Native format is backend-specific (faster but less portable); canonical format is backend-independent (slower but portable across backends)",
+            "They are the same",
+            "Native is for Kafka; canonical is for files",
+            "Native is compressed; canonical is not"
+          ],
+          "answer": 0,
+          "explanation": "Native savepoints use the backend's own format (fast for RocksDB). Canonical format is state-backend-independent, allowing switching backends on restore.",
+          "category": "Savepoints",
+          "tags": [
+            "flink",
+            "savepoints",
+            "savepoints"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "M13: Memory Model",
+      "slug": "memory-model",
+      "questionCount": 8,
+      "tags": [
+        "flink",
+        "memory-model",
+        "memory-model"
+      ],
+      "questions": [
+        {
+          "id": "q13_01",
+          "number": 1,
+          "globalNumber": 149,
+          "questionNumber": "M13-Q01",
+          "question": "What are the main memory segments in a Flink TaskManager?",
+          "options": [
+            "Framework heap/off-heap, task heap/off-heap, managed memory, network memory, and JVM metaspace/overhead",
+            "Just JVM heap",
+            "Heap and stack only",
+            "State memory and compute memory"
+          ],
+          "answer": 0,
+          "explanation": "TaskManager memory is divided into: framework heap/off-heap, task heap/off-heap, managed memory (for RocksDB/sorting), network buffers, JVM metaspace, and JVM overhead.",
+          "category": "Memory Model",
+          "tags": [
+            "flink",
+            "memory-model",
+            "memory-model"
+          ]
+        },
+        {
+          "id": "q13_02",
+          "number": 2,
+          "globalNumber": 150,
+          "questionNumber": "M13-Q02",
+          "question": "What is managed memory used for in Flink?",
+          "options": [
+            "RocksDB state backend cache, batch sort/hash operations, and Python UDF processing",
+            "Only for storing user objects",
+            "Network communication",
+            "Checkpoint storage"
+          ],
+          "answer": 0,
+          "explanation": "Managed memory is off-heap memory used by RocksDB (block cache, write buffers), batch operators (sorting, hashing), and Python processes.",
+          "category": "Memory Model",
+          "tags": [
+            "flink",
+            "memory-model",
+            "memory-model"
+          ]
+        },
+        {
+          "id": "q13_03",
+          "number": 3,
+          "globalNumber": 151,
+          "questionNumber": "M13-Q03",
+          "question": "What causes backpressure at the network buffer level?",
+          "options": [
+            "When downstream operators are slow, their input buffers fill up, causing upstream buffers to fill, propagating back to the source",
+            "Too many watermarks",
+            "Too many checkpoints",
+            "High parallelism"
+          ],
+          "answer": 0,
+          "explanation": "Backpressure is Flink's natural flow control. When a downstream operator can't keep up, network buffers fill, blocking upstream sending.",
+          "category": "Memory Model",
+          "tags": [
+            "flink",
+            "memory-model",
+            "memory-model"
+          ]
+        },
+        {
+          "id": "q13_04",
+          "number": 4,
+          "globalNumber": 152,
+          "questionNumber": "M13-Q04",
+          "question": "What is the default network buffer memory fraction?",
+          "options": [
+            "0.1 of total Flink memory, with min 64MB and max 1GB by default",
+            "0.1 (10%)",
+            "0.5 (50%)",
+            "Fixed at 256MB"
+          ],
+          "answer": 0,
+          "explanation": "Network memory defaults to 0.1 (10%) of total Flink memory, bounded by min (64MB) and max (1GB). Configurable via taskmanager.memory.network.fraction.",
+          "category": "Memory Model",
+          "tags": [
+            "flink",
+            "memory-model",
+            "memory-model"
+          ]
+        },
+        {
+          "id": "q13_05",
+          "number": 5,
+          "globalNumber": 153,
+          "questionNumber": "M13-Q05",
+          "question": "What happens when JVM Metaspace is exhausted?",
+          "options": [
+            "The TaskManager crashes with OutOfMemoryError: Metaspace — often caused by too many dynamically loaded classes",
+            "Flink spills to disk",
+            "Nothing, it's unlimited",
+            "Flink automatically increases it"
+          ],
+          "answer": 0,
+          "explanation": "Metaspace stores class metadata. Exhaustion (default limit 256MB) causes OOM. Increase via taskmanager.memory.jvm-metaspace.size if needed.",
+          "category": "Memory Model",
+          "tags": [
+            "flink",
+            "memory-model",
+            "memory-model"
+          ]
+        },
+        {
+          "id": "q13_06",
+          "number": 6,
+          "globalNumber": 154,
+          "questionNumber": "M13-Q06",
+          "question": "How can you detect memory issues in a Flink TaskManager?",
+          "options": [
+            "Monitor GC logs, Flink metrics (heap/off-heap usage, managed memory usage), and TaskManager web UI memory tab",
+            "Only through application logs",
+            "Check CPU usage",
+            "Inspect network traffic"
+          ],
+          "answer": 0,
+          "explanation": "Use Flink metrics (Status.JVM.Memory.*), GC logs (-verbose:gc), the Web UI memory tab, and profiling tools to diagnose memory issues.",
+          "category": "Memory Model",
+          "tags": [
+            "flink",
+            "memory-model",
+            "memory-model"
+          ]
+        },
+        {
+          "id": "q13_07",
+          "number": 7,
+          "globalNumber": 155,
+          "questionNumber": "M13-Q07",
+          "question": "What is JVM overhead memory for?",
+          "options": [
+            "Additional JVM memory for thread stacks, code cache, and other native overhead not accounted for elsewhere",
+            "Flink operator state",
+            "Network buffers",
+            "Checkpoint data"
+          ],
+          "answer": 0,
+          "explanation": "JVM overhead covers thread stacks, compiled code cache, and other native memory. Default is a fraction (0.1) of total process memory.",
+          "category": "Memory Model",
+          "tags": [
+            "flink",
+            "memory-model",
+            "memory-model"
+          ]
+        },
+        {
+          "id": "q13_08",
+          "number": 8,
+          "globalNumber": 156,
+          "questionNumber": "M13-Q08",
+          "question": "How do you configure total TaskManager memory?",
+          "options": [
+            "Via taskmanager.memory.process.size (total OS process) or taskmanager.memory.flink.size (Flink-managed portion)",
+            "Only through environment variables",
+            "By setting JVM -Xmx",
+            "Through the Web UI"
+          ],
+          "answer": 0,
+          "explanation": "Set either process.size (includes JVM overhead) or flink.size (excludes JVM overhead). Flink automatically calculates sub-component sizes from fractions.",
+          "category": "Memory Model",
+          "tags": [
+            "flink",
+            "memory-model",
+            "memory-model"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "M14: Fault Tolerance",
+      "slug": "fault-tolerance",
+      "questionCount": 9,
+      "tags": [
+        "flink",
+        "fault-tolerance",
+        "fault-tolerance"
+      ],
+      "questions": [
+        {
+          "id": "q14_01",
+          "number": 1,
+          "globalNumber": 157,
+          "questionNumber": "M14-Q01",
+          "question": "What is the default restart strategy when checkpointing is enabled?",
+          "options": [
+            "Exponential-delay restart strategy",
+            "No restart (fail immediately)",
+            "Fixed-delay with 3 attempts",
+            "Failure-rate restart"
+          ],
+          "answer": 0,
+          "explanation": "With checkpointing enabled, Flink defaults to exponential-delay restart: increasing delays between attempts (1s initial, 2x multiplier, with jitter).",
+          "category": "Fault Tolerance",
+          "tags": [
+            "flink",
+            "fault-tolerance",
+            "fault-tolerance"
+          ]
+        },
+        {
+          "id": "q14_02",
+          "number": 2,
+          "globalNumber": 158,
+          "questionNumber": "M14-Q02",
+          "question": "What is the difference between full restart and region failover?",
+          "options": [
+            "Full restart cancels and restarts ALL tasks; region failover only restarts the failed task's pipelined region and affected downstream",
+            "They are identical",
+            "Full restart is faster",
+            "Region failover restarts more tasks"
+          ],
+          "answer": 0,
+          "explanation": "Region failover (default) minimizes blast radius by identifying the minimal set of tasks to restart based on pipelined data exchange boundaries.",
+          "category": "Fault Tolerance",
+          "tags": [
+            "flink",
+            "fault-tolerance",
+            "fault-tolerance"
+          ]
+        },
+        {
+          "id": "q14_03",
+          "number": 3,
+          "globalNumber": 159,
+          "questionNumber": "M14-Q03",
+          "question": "How does Flink achieve exactly-once with Kafka end-to-end?",
+          "options": [
+            "Combining Flink checkpoints with Kafka transactional producer (two-phase commit) and consumer read_committed isolation",
+            "Using Kafka's built-in exactly-once only",
+            "Deduplicating records in the network layer",
+            "Writing idempotent records with unique IDs"
+          ],
+          "answer": 0,
+          "explanation": "End-to-end exactly-once uses: (1) checkpointed source offsets, (2) Kafka transactions (pre-commit on checkpoint, commit on completion), (3) read_committed isolation.",
+          "category": "Fault Tolerance",
+          "tags": [
+            "flink",
+            "fault-tolerance",
+            "fault-tolerance"
+          ]
+        },
+        {
+          "id": "q14_04",
+          "number": 4,
+          "globalNumber": 160,
+          "questionNumber": "M14-Q04",
+          "question": "What is the two-phase commit protocol in Flink's sink context?",
+          "options": [
+            "TwoPhaseCommitSinkFunction pre-commits data during checkpoint and commits on checkpoint completion, ensuring exactly-once output",
+            "A protocol between JobManager and ResourceManager",
+            "A protocol for state serialization",
+            "A protocol for watermark generation"
+          ],
+          "answer": 0,
+          "explanation": "Phase 1: pre-commit (make data durable but invisible) during checkpoint. Phase 2: commit (make visible) on notifyCheckpointComplete(). Rollback on failure.",
+          "category": "Fault Tolerance",
+          "tags": [
+            "flink",
+            "fault-tolerance",
+            "fault-tolerance"
+          ]
+        },
+        {
+          "id": "q14_05",
+          "number": 5,
+          "globalNumber": 161,
+          "questionNumber": "M14-Q05",
+          "question": "What is the fixed-delay restart strategy?",
+          "options": [
+            "Restarts a fixed number of times with a fixed delay between attempts; fails permanently if exhausted",
+            "Restarts immediately without delay",
+            "Delays the job start by a fixed amount",
+            "Applies delay to each operator"
+          ],
+          "answer": 0,
+          "explanation": "Example: 3 attempts with 10-second delay. After 3 failures, the job fails permanently. Configure via restart-strategy.fixed-delay.attempts and .delay.",
+          "category": "Fault Tolerance",
+          "tags": [
+            "flink",
+            "fault-tolerance",
+            "fault-tolerance"
+          ]
+        },
+        {
+          "id": "q14_06",
+          "number": 6,
+          "globalNumber": 162,
+          "questionNumber": "M14-Q06",
+          "question": "What is the failure-rate restart strategy?",
+          "options": [
+            "Allows a maximum number of failures within a time window; exceeding the rate fails the job permanently",
+            "Limits CPU usage on failure",
+            "Adjusts parallelism based on failure rate",
+            "Sends alerts on high failure rates"
+          ],
+          "answer": 0,
+          "explanation": "Example: max 3 failures per 5 minutes with 10-second restart delay. If a 4th failure occurs within 5 minutes, the job fails permanently.",
+          "category": "Fault Tolerance",
+          "tags": [
+            "flink",
+            "fault-tolerance",
+            "fault-tolerance"
+          ]
+        },
+        {
+          "id": "q14_07",
+          "number": 7,
+          "globalNumber": 163,
+          "questionNumber": "M14-Q07",
+          "question": "What happens to in-flight data during failure recovery?",
+          "options": [
+            "In-flight data is lost; sources replay from checkpointed offsets, reprocessing those records",
+            "It's preserved and continues processing",
+            "It's stored in a dead-letter queue",
+            "It's forwarded to the next checkpoint"
+          ],
+          "answer": 0,
+          "explanation": "On recovery, all in-flight data (in network buffers) is discarded. Sources reset to checkpointed positions and replay, ensuring consistency.",
+          "category": "Fault Tolerance",
+          "tags": [
+            "flink",
+            "fault-tolerance",
+            "fault-tolerance"
+          ]
+        },
+        {
+          "id": "q14_08",
+          "number": 8,
+          "globalNumber": 164,
+          "questionNumber": "M14-Q08",
+          "question": "How does notifyCheckpointComplete work for exactly-once sinks?",
+          "options": [
+            "After all tasks snapshot successfully, the CheckpointCoordinator sends this callback, triggering sinks to commit their pre-committed transactions",
+            "It does nothing",
+            "It notifies the user via email",
+            "It triggers the next checkpoint"
+          ],
+          "answer": 0,
+          "explanation": "This callback signals that a global checkpoint succeeded, allowing TwoPhaseCommitSinkFunction to commit the Kafka transaction, making output visible.",
+          "category": "Fault Tolerance",
+          "tags": [
+            "flink",
+            "fault-tolerance",
+            "fault-tolerance"
+          ]
+        },
+        {
+          "id": "q14_09",
+          "number": 9,
+          "globalNumber": 165,
+          "questionNumber": "M14-Q09",
+          "question": "What is the exponential-delay restart strategy?",
+          "options": [
+            "Checkpoints are taken exponentially faster",
+            "Restarts with increasing delays between attempts (initial delay × backoff multiplier, with jitter and max cap)",
+            "The job runs exponentially faster after restart",
+            "Parallelism increases exponentially"
+          ],
+          "answer": 0,
+          "explanation": "Default when checkpointing is enabled. Starts at 1s delay, multiplies by 2 each time, adds random jitter, caps at a maximum backoff. Handles transient failures gracefully.",
+          "category": "Fault Tolerance",
+          "tags": [
+            "flink",
+            "fault-tolerance",
+            "fault-tolerance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "M15: Async I/O",
+      "slug": "async-i-o",
+      "questionCount": 8,
+      "tags": [
+        "flink",
+        "async-i-o",
+        "async-i-o"
+      ],
+      "questions": [
+        {
+          "id": "q15_01",
+          "number": 1,
+          "globalNumber": 166,
+          "questionNumber": "M15-Q01",
+          "question": "What class does SampleAsyncFunction extend in AsyncIOExample?",
+          "options": [
+            "RichAsyncFunction<Integer, String>",
+            "AsyncFunction<Integer, String>",
+            "AsyncMapFunction<Integer, String>",
+            "RichMapFunction<Integer, String>"
+          ],
+          "answer": 0,
+          "explanation": "RichAsyncFunction provides open() for initializing the transient AsyncClient. AsyncFunction alone doesn't have lifecycle methods.",
+          "category": "Async I/O",
+          "tags": [
+            "flink",
+            "async-i-o",
+            "async-i-o"
+          ]
+        },
+        {
+          "id": "q15_02",
+          "number": 2,
+          "globalNumber": 167,
+          "questionNumber": "M15-Q02",
+          "question": "What method must AsyncFunction implement?",
+          "options": [
+            "asyncInvoke(input, resultFuture)",
+            "invoke(input, callback)",
+            "processAsync(input)",
+            "asyncMap(input)"
+          ],
+          "answer": 0,
+          "explanation": "asyncInvoke(IN input, ResultFuture<OUT> resultFuture) is the core method. Results are returned asynchronously via the ResultFuture.",
+          "category": "Async I/O",
+          "tags": [
+            "flink",
+            "async-i-o",
+            "async-i-o"
+          ]
+        },
+        {
+          "id": "q15_03",
+          "number": 3,
+          "globalNumber": 168,
+          "questionNumber": "M15-Q03",
+          "question": "How is the async result returned?",
+          "options": [
+            "resultFuture.complete(Collections.singletonList(response)) or resultFuture.completeExceptionally(error)",
+            "return result",
+            "out.collect(result)",
+            "callback.onSuccess(result)"
+          ],
+          "answer": 0,
+          "explanation": "ResultFuture is completed asynchronously: complete(Collection<OUT>) for success, completeExceptionally(Throwable) for failure.",
+          "category": "Async I/O",
+          "tags": [
+            "flink",
+            "async-i-o",
+            "async-i-o"
+          ]
+        },
+        {
+          "id": "q15_04",
+          "number": 4,
+          "globalNumber": 169,
+          "questionNumber": "M15-Q04",
+          "question": "What is the difference between orderedWait and unorderedWait?",
+          "options": [
+            "orderedWait preserves input element order in output; unorderedWait emits results as soon as they complete (higher throughput)",
+            "orderedWait is faster",
+            "unorderedWait doesn't support timeouts",
+            "orderedWait uses single thread"
+          ],
+          "answer": 0,
+          "explanation": "Ordered buffers results to maintain input order (may have higher latency). Unordered emits immediately (lower latency, higher throughput).",
+          "category": "Async I/O",
+          "tags": [
+            "flink",
+            "async-i-o",
+            "async-i-o"
+          ]
+        },
+        {
+          "id": "q15_05",
+          "number": 5,
+          "globalNumber": 170,
+          "questionNumber": "M15-Q05",
+          "question": "What do the last two parameters of orderedWait(stream, fn, 10000, TimeUnit.MS, 20) mean?",
+          "options": [
+            "Timeout (10 seconds) and capacity (max 20 concurrent async requests)",
+            "Timeout and retry count",
+            "Timeout and parallelism",
+            "Timeout and buffer size"
+          ],
+          "answer": 0,
+          "explanation": "Timeout: max wait time before failure. Capacity: max concurrent in-flight async requests (backpressure if exceeded).",
+          "category": "Async I/O",
+          "tags": [
+            "flink",
+            "async-i-o",
+            "async-i-o"
+          ]
+        },
+        {
+          "id": "q15_06",
+          "number": 6,
+          "globalNumber": 171,
+          "questionNumber": "M15-Q06",
+          "question": "When should you prefer orderedWait?",
+          "options": [
+            "When downstream processing requires elements in original input order (e.g., event-time processing)",
+            "When throughput is the only concern",
+            "When using processing time",
+            "When async operations are very fast"
+          ],
+          "answer": 0,
+          "explanation": "Use orderedWait when output ordering matters (event-time windows, causal ordering). Use unorderedWait when throughput matters more.",
+          "category": "Async I/O",
+          "tags": [
+            "flink",
+            "async-i-o",
+            "async-i-o"
+          ]
+        },
+        {
+          "id": "q15_07",
+          "number": 7,
+          "globalNumber": 172,
+          "questionNumber": "M15-Q07",
+          "question": "What happens if an async operation exceeds the timeout?",
+          "options": [
+            "A TimeoutException is thrown, treating it as a failure that triggers task restart by default",
+            "Silently dropped",
+            "Result is replaced with null",
+            "Operation is retried"
+          ],
+          "answer": 0,
+          "explanation": "Timeout throws TimeoutException. Override timeout() in AsyncFunction for custom handling (e.g., returning a default value).",
+          "category": "Async I/O",
+          "tags": [
+            "flink",
+            "async-i-o",
+            "async-i-o"
+          ]
+        },
+        {
+          "id": "q15_08",
+          "number": 8,
+          "globalNumber": 173,
+          "questionNumber": "M15-Q08",
+          "question": "Why is AsyncClient initialized in open() instead of the constructor?",
+          "options": [
+            "open() runs after distribution to TaskManagers; the transient client must be created after deserialization on each parallel instance",
+            "Constructor runs before JVM",
+            "Constructor can't access parameters",
+            "open() is called once globally"
+          ],
+          "answer": 0,
+          "explanation": "The function is serialized to TaskManagers. Transient fields are null after deserialization. open() creates them fresh on each instance.",
+          "category": "Async I/O",
+          "tags": [
+            "flink",
+            "async-i-o",
+            "async-i-o"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "M16: Deployment & Operations",
+      "slug": "deployment-and-operations",
+      "questionCount": 12,
+      "tags": [
+        "flink",
+        "deployment-and-operations",
+        "deployment-and-operations"
+      ],
+      "questions": [
+        {
+          "id": "q16_01",
+          "number": 1,
+          "globalNumber": 174,
+          "questionNumber": "M16-Q01",
+          "question": "What is the purpose of the Flink Kubernetes Operator?",
+          "options": [
+            "A Kubernetes controller that manages Flink application lifecycle (deploy, upgrade, savepoint, scale) using FlinkDeployment CRDs",
+            "It's a Flink connector for Kubernetes events",
+            "It monitors Kubernetes health",
+            "It converts Flink SQL to K8s manifests"
+          ],
+          "answer": 0,
+          "explanation": "The operator watches FlinkDeployment custom resources and manages the full lifecycle: deploy, scale, upgrade with savepoints, health monitoring.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_02",
+          "number": 2,
+          "globalNumber": 175,
+          "questionNumber": "M16-Q02",
+          "question": "How do you deploy Flink on Kubernetes in Application Mode?",
+          "options": [
+            "Use the Flink Kubernetes Operator or build a Docker image with the user JAR; JobManager runs main()",
+            "Run the JAR with kubectl exec",
+            "Deploy as a DaemonSet",
+            "Use a CronJob"
+          ],
+          "answer": 0,
+          "explanation": "Application Mode on K8s: use the Kubernetes Operator (FlinkDeployment CRD) or build a Docker image containing the JAR. The JobManager pod runs main().",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_03",
+          "number": 3,
+          "globalNumber": 176,
+          "questionNumber": "M16-Q03",
+          "question": "What does the Flink Web UI show?",
+          "options": [
+            "Running/completed jobs, execution plans, metrics, checkpoints, backpressure, and exception logs on port 8081",
+            "Source code of running jobs",
+            "Only cluster configuration",
+            "Only log files"
+          ],
+          "answer": 0,
+          "explanation": "The Web UI (port 8081) provides comprehensive monitoring: job topology, task status, throughput, latency, checkpoint history, backpressure status, and exceptions.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_04",
+          "number": 4,
+          "globalNumber": 177,
+          "questionNumber": "M16-Q04",
+          "question": "How does Flink detect backpressure?",
+          "options": [
+            "Measuring how often tasks are blocked waiting for output buffers and monitoring buffer usage metrics",
+            "Monitoring CPU usage",
+            "Counting dropped records",
+            "Analyzing GC logs"
+          ],
+          "answer": 0,
+          "explanation": "Flink detects backpressure via buffer utilization metrics (outPoolUsage, inPoolUsage) and task blocking time. The Web UI shows OK/LOW/HIGH per subtask.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_05",
+          "number": 5,
+          "globalNumber": 178,
+          "questionNumber": "M16-Q05",
+          "question": "What metric types does Flink support?",
+          "options": [
+            "Counter, Gauge, Histogram, and Meter — with reporters for Prometheus, Graphite, JMX, StatsD, Datadog, etc.",
+            "Only counters",
+            "Only Prometheus metrics",
+            "Only JMX"
+          ],
+          "answer": 0,
+          "explanation": "Flink's metric system supports four types with hierarchical scopes (JobManager/TaskManager/Job/Task/Operator) and pluggable reporters.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_06",
+          "number": 6,
+          "globalNumber": 179,
+          "questionNumber": "M16-Q06",
+          "question": "How do you rescale a running stateful Flink job?",
+          "options": [
+            "Take a savepoint, cancel the job, resubmit with new parallelism restoring from the savepoint",
+            "Change parallelism at runtime without stopping",
+            "Add more TaskManagers and it auto-scales",
+            "Use flink rescale command"
+          ],
+          "answer": 0,
+          "explanation": "Rescaling requires: savepoint → cancel → resubmit with new parallelism from savepoint. Flink redistributes keyed state across new subtask count.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_07",
+          "number": 7,
+          "globalNumber": 180,
+          "questionNumber": "M16-Q07",
+          "question": "What is the recommended way to handle configuration?",
+          "options": [
+            "flink-conf.yaml for cluster settings, ParameterTool or Configuration for job-level settings",
+            "Hard-code everything in JAR",
+            "Environment variables only",
+            "ZooKeeper for all config"
+          ],
+          "answer": 0,
+          "explanation": "Cluster-level config in flink-conf.yaml. Job parameters via ParameterTool.fromArgs(args) or Configuration objects, as shown in all example files.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_08",
+          "number": 8,
+          "globalNumber": 181,
+          "questionNumber": "M16-Q08",
+          "question": "How do you access Flink's REST API?",
+          "options": [
+            "HTTP requests to JobManager REST endpoint (default port 8081) — e.g., GET /jobs, GET /jobs/{id}",
+            "SSH into JobManager only",
+            "Proprietary binary protocol",
+            "Only through Web UI"
+          ],
+          "answer": 0,
+          "explanation": "The REST API shares port 8081 with the Web UI. Supports job submission, monitoring, cancellation, savepoint triggers, and metrics retrieval.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_09",
+          "number": 9,
+          "globalNumber": 182,
+          "questionNumber": "M16-Q09",
+          "question": "What is the YARN Application Master's role for Flink on YARN?",
+          "options": [
+            "It runs the Flink JobManager and communicates with YARN for TaskManager container allocation",
+            "It acts as a TaskManager",
+            "It only stores checkpoints in HDFS",
+            "It manages Kafka offsets"
+          ],
+          "answer": 0,
+          "explanation": "On YARN, the JobManager runs inside the Application Master container. Flink's ResourceManager requests YARN containers for TaskManagers.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_10",
+          "number": 10,
+          "globalNumber": 183,
+          "questionNumber": "M16-Q10",
+          "question": "What logging framework does Flink use?",
+          "options": [
+            "Log4j2 — configured via log4j.properties in conf/ directory, with separate configs for JM and TM",
+            "java.util.logging",
+            "SLF4J with no backend",
+            "Logback only"
+          ],
+          "answer": 0,
+          "explanation": "Flink uses Log4j2 for logging. Configuration files in conf/ control log levels, appenders, rotation for both JobManager and TaskManager processes.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_11",
+          "number": 11,
+          "globalNumber": 184,
+          "questionNumber": "M16-Q11",
+          "question": "What is Standalone deployment mode?",
+          "options": [
+            "Manual deployment where the user starts JobManager and TaskManager processes without external resource managers",
+            "Running on a single machine only",
+            "Running without state",
+            "Running without checkpoints"
+          ],
+          "answer": 0,
+          "explanation": "Standalone mode: manually start JM and TM processes (or via scripts). No dynamic resource allocation. Simplest but least flexible deployment.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        },
+        {
+          "id": "q16_12",
+          "number": 12,
+          "globalNumber": 185,
+          "questionNumber": "M16-Q12",
+          "question": "How do you monitor checkpoint health?",
+          "options": [
+            "Via Web UI checkpoint tab (duration, size, alignment duration), REST API, and checkpoint metrics (e.g., lastCheckpointDuration)",
+            "Only through logs",
+            "By checking disk usage",
+            "Through JMX only"
+          ],
+          "answer": 0,
+          "explanation": "The checkpoint tab shows history, duration, state size, alignment duration, and failure reasons. Metrics expose this for external monitoring.",
+          "category": "Deployment & Operations",
+          "tags": [
+            "flink",
+            "deployment-and-operations",
+            "deployment-and-operations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "M17: Core Classes & Traits",
+      "slug": "core-classes-and-traits",
+      "questionCount": 15,
+      "tags": [
+        "flink",
+        "core-classes-and-traits",
+        "class-trait-names"
+      ],
+      "questions": [
+        {
+          "id": "q17_01",
+          "number": 1,
+          "globalNumber": 186,
+          "questionNumber": "M17-Q01",
+          "question": "Which class is the entry point for Flink streaming jobs?",
+          "options": [
+            "StreamExecutionEnvironment",
+            "ExecutionEnvironment",
+            "FlinkStreamJob",
+            "DataStreamFactory"
+          ],
+          "answer": 0,
+          "explanation": "StreamExecutionEnvironment is the entry point for all streaming programs. Obtained via StreamExecutionEnvironment.getExecutionEnvironment().",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_02",
+          "number": 2,
+          "globalNumber": 187,
+          "questionNumber": "M17-Q02",
+          "question": "What is the DataStream class?",
+          "options": [
+            "The core abstraction representing a distributed stream of records with transformation methods (map, filter, keyBy, window, etc.)",
+            "A configuration class",
+            "A class for writing data",
+            "A utility for parsing arguments"
+          ],
+          "answer": 0,
+          "explanation": "DataStream<T> is Flink's primary abstraction for distributed streams, providing the full transformation API.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_03",
+          "number": 3,
+          "globalNumber": 188,
+          "questionNumber": "M17-Q03",
+          "question": "What does keyBy() return?",
+          "options": [
+            "KeyedStream — enables keyed state and keyed windowing",
+            "WindowedStream",
+            "ConnectedStreams",
+            "SplitStream"
+          ],
+          "answer": 0,
+          "explanation": "keyBy() returns KeyedStream<T,K> which partitions by key and enables per-key state access and keyed window operations.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_04",
+          "number": 4,
+          "globalNumber": 189,
+          "questionNumber": "M17-Q04",
+          "question": "What is ProcessFunction?",
+          "options": [
+            "Flink's most expressive function — provides access to event time, watermarks, timers, side outputs, and per-key state",
+            "A simple stateless map",
+            "Used only for savepoints",
+            "Processes only windowed data"
+          ],
+          "answer": 0,
+          "explanation": "ProcessFunction (and KeyedProcessFunction, CoProcessFunction) is the most powerful low-level API with access to timestamps, timers, state, and side outputs.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_05",
+          "number": 5,
+          "globalNumber": 190,
+          "questionNumber": "M17-Q05",
+          "question": "What does RichFlatMapFunction add over FlatMapFunction?",
+          "options": [
+            "open()/close() lifecycle methods and getRuntimeContext() for state access, broadcast variables, and accumulators",
+            "Richer output types",
+            "Nothing, they're identical",
+            "Batch support only"
+          ],
+          "answer": 0,
+          "explanation": "All Rich* variants add lifecycle methods and RuntimeContext access, enabling stateful processing. FlatMapFunction is purely stateless.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_06",
+          "number": 6,
+          "globalNumber": 191,
+          "questionNumber": "M17-Q06",
+          "question": "How do you declare keyed state in an operator?",
+          "options": [
+            "Create a ValueStateDescriptor and call getRuntimeContext().getState(descriptor) in open()",
+            "new ValueState<>() directly",
+            "Static variable in the function",
+            "Declare in StreamExecutionEnvironment"
+          ],
+          "answer": 0,
+          "explanation": "State is declared via descriptors and obtained from RuntimeContext in the open() method. State is automatically scoped to the current key.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_07",
+          "number": 7,
+          "globalNumber": 192,
+          "questionNumber": "M17-Q07",
+          "question": "What is WindowedStream?",
+          "options": [
+            "The result of .window() on a KeyedStream — represents windowed data awaiting aggregation (reduce, aggregate, process)",
+            "A GUI window component",
+            "A stream of only first N elements",
+            "A debug buffer"
+          ],
+          "answer": 0,
+          "explanation": "WindowedStream = KeyedStream + window assigner. Apply window functions (reduce, aggregate, apply, process) to compute results per window.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_08",
+          "number": 8,
+          "globalNumber": 193,
+          "questionNumber": "M17-Q08",
+          "question": "What does WatermarkStrategy define?",
+          "options": [
+            "How to extract event timestamps and generate watermarks for event-time processing",
+            "Serialization format",
+            "Water cooling for hardware",
+            "Checkpoint barrier ordering"
+          ],
+          "answer": 0,
+          "explanation": "WatermarkStrategy combines TimestampAssigner (extract timestamps) and WatermarkGenerator (produce watermarks tracking event-time progress).",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_09",
+          "number": 9,
+          "globalNumber": 194,
+          "questionNumber": "M17-Q09",
+          "question": "What is ParameterTool?",
+          "options": [
+            "A utility for parsing CLI args, properties files, and system properties into a key-value configuration",
+            "Configures state backend",
+            "Measures performance",
+            "Manages parallelism at runtime"
+          ],
+          "answer": 0,
+          "explanation": "ParameterTool.fromArgs(args) parses command-line arguments. Used in all Flink examples for configurable job parameters.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_10",
+          "number": 10,
+          "globalNumber": 195,
+          "questionNumber": "M17-Q10",
+          "question": "What is the Configuration class used for?",
+          "options": [
+            "A mutable key-value map for passing typed configuration options to Flink runtime and operators",
+            "Log4j configuration",
+            "Read-only JVM settings",
+            "YAML parser only"
+          ],
+          "answer": 0,
+          "explanation": "Configuration is Flink's internal configuration container, used with typed ConfigOption keys. Used in StateMachineExample for state backend config.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_11",
+          "number": 11,
+          "globalNumber": 196,
+          "questionNumber": "M17-Q11",
+          "question": "What does CheckpointedFunction provide?",
+          "options": [
+            "snapshotState() and initializeState() methods for custom checkpoint/restore logic with operator state",
+            "Configures checkpoint interval",
+            "Marks functions as non-checkpointed",
+            "Defines storage location"
+          ],
+          "answer": 0,
+          "explanation": "CheckpointedFunction provides hooks for custom state serialization during checkpoints and initialization during restore. Supports both keyed and operator state.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_12",
+          "number": 12,
+          "globalNumber": 197,
+          "questionNumber": "M17-Q12",
+          "question": "What is SingleOutputStreamOperator?",
+          "options": [
+            "The return type of most DataStream transformations — extends DataStream with methods like .name(), .uid(), .setParallelism()",
+            "An operator with exactly one output element",
+            "A single-threaded operator",
+            "An operator with no side outputs"
+          ],
+          "answer": 0,
+          "explanation": "SingleOutputStreamOperator<T> extends DataStream<T> and is returned by map, flatMap, filter, etc. Adds operator configuration methods.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_13",
+          "number": 13,
+          "globalNumber": 198,
+          "questionNumber": "M17-Q13",
+          "question": "What is the Collector interface used for?",
+          "options": [
+            "Used in flatMap and ProcessFunction to emit output elements — collect(T) adds elements to the output stream",
+            "Collecting garbage",
+            "Collecting metrics",
+            "Collecting checkpoints"
+          ],
+          "answer": 0,
+          "explanation": "Collector<T> is the output mechanism in flatMap and ProcessFunction. Call out.collect(element) to emit one or more output records.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_14",
+          "number": 14,
+          "globalNumber": 199,
+          "questionNumber": "M17-Q14",
+          "question": "What does TypeInformation represent?",
+          "options": [
+            "Flink's type system descriptor that enables efficient serialization — required for generics and complex types",
+            "Runtime type checking",
+            "Java reflection data",
+            "IDE type hints"
+          ],
+          "answer": 0,
+          "explanation": "TypeInformation<T> describes a type to Flink's serialization framework. Required when Java type erasure loses generic information (e.g., DataGeneratorSource).",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        },
+        {
+          "id": "q17_15",
+          "number": 15,
+          "globalNumber": 200,
+          "questionNumber": "M17-Q15",
+          "question": "What is the purpose of .uid() on operators?",
+          "options": [
+            "Assigns a stable unique identifier to an operator, essential for savepoint/checkpoint state mapping across job modifications",
+            "For debugging labels only",
+            "Sets the operator's parallelism",
+            "Configures the operator's memory"
+          ],
+          "answer": 0,
+          "explanation": "uid() provides a stable identifier for state-to-operator mapping. Without stable UIDs, savepoint restore may fail after job modifications. Always set on stateful operators.",
+          "category": "Class/Trait Names",
+          "tags": [
+            "flink",
+            "core-classes-and-traits",
+            "class-trait-names"
+          ]
+        }
+      ]
+    }
+  ]
+}

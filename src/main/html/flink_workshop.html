@@ -1,0 +1,2618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apache Flink Concepts, Watermarks &amp; Fault Tolerance Workshop</title>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.6}
+        code,pre,.diagram{font-family:'JetBrains Mono','Fira Code','Cascadia Code',monospace}
+        #progress-bar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,#2563eb,#7c3aed);z-index:1000;transition:width .3s}
+        #app{max-width:1100px;margin:0 auto;padding:10px 20px 80px}
+        #header{position:sticky;top:6px;background:#fff;border-radius:10px;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 4px rgba(0,0,0,.06);z-index:100;margin-bottom:16px}
+        #header .left{font-weight:600;color:#2563eb;font-size:.95rem;min-width:180px}
+        #header .center{font-size:.9rem;color:#64748b}
+        #header .right{display:flex;align-items:center;gap:10px}
+        #header button{background:#e2e8f0;border:none;padding:5px 14px;border-radius:6px;cursor:pointer;font-size:.85rem;font-weight:500;transition:background .2s}
+        #header button:hover{background:#cbd5e1}
+        #pct{font-weight:600;color:#7c3aed;font-size:.9rem;min-width:36px;text-align:right}
+        #slide{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:40px 48px;min-height:520px;margin-bottom:16px}
+        #slide h1{font-size:1.7rem;color:#1e293b;margin-bottom:20px;border-bottom:2px solid #e2e8f0;padding-bottom:12px}
+        #slide h2{font-size:1.3rem;color:#334155;margin:20px 0 12px}
+        #slide h3{font-size:1.1rem;color:#475569;margin:16px 0 8px}
+        #slide p{margin:10px 0;font-size:.97rem}
+        #slide ul,#slide ol{margin:10px 0 10px 24px;font-size:.97rem}
+        #slide li{margin:4px 0}
+        #slide pre{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:16px;white-space:pre;overflow-x:auto;font-size:.85rem;line-height:1.5;margin:12px 0}
+        #slide code{background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:.88rem}
+        #slide pre code{background:none;padding:0}
+        #slide table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.93rem}
+        #slide th{background:#f1f5f9;text-align:left;padding:10px 12px;border:1px solid #e2e8f0;font-weight:600}
+        #slide td{padding:10px 12px;border:1px solid #e2e8f0}
+        #slide tr:hover td{background:#f8fafc}
+        .diagram{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:8px;padding:16px;white-space:pre;overflow-x:auto;font-size:.82rem;line-height:1.4;margin:12px 0}
+        .note{border-left:4px solid #2563eb;background:#eff6ff;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.93rem}
+        .tip{border-left:4px solid #22c55e;background:#f0fdf4;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.93rem}
+        .warn{border-left:4px solid #eab308;background:#fefce8;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.93rem}
+        .real{border-left:4px solid #7c3aed;background:#faf5ff;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.93rem}
+        .quiz-container{max-width:700px;margin:0 auto}
+        .quiz-q{font-size:1.1rem;font-weight:600;margin-bottom:20px;color:#1e293b}
+        .quiz-opt{border:2px solid #e2e8f0;border-radius:8px;padding:14px 18px;margin:8px 0;cursor:pointer;transition:all .2s;font-size:.95rem}
+        .quiz-opt:hover{border-color:#2563eb;background:#eff6ff}
+        .quiz-opt.correct{border-color:#22c55e;background:#f0fdf4;color:#166534}
+        .quiz-opt.wrong{border-color:#ef4444;background:#fef2f2;color:#991b1b}
+        .quiz-opt.disabled{pointer-events:none;opacity:.7}
+        .quiz-opt.reveal-correct{border-color:#22c55e;background:#f0fdf4}
+        .quiz-feedback{display:none;padding:12px 16px;border-radius:8px;margin-top:16px;font-size:.93rem}
+        .quiz-feedback.show{display:block}
+        .quiz-feedback.pass{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}
+        .quiz-feedback.fail{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+        .quiz-score{text-align:center;padding:30px}
+        .quiz-score h2{color:#2563eb;margin-bottom:12px}
+        .quiz-progress{font-size:.85rem;color:#64748b;margin-bottom:16px;text-align:center}
+        #nav{display:flex;justify-content:space-between;max-width:1100px;margin:0 auto;padding:0 20px}
+        #nav button{padding:10px 28px;border:none;border-radius:8px;font-size:.95rem;font-weight:500;cursor:pointer;transition:all .2s}
+        #nav .prev{background:#e2e8f0;color:#475569}
+        #nav .prev:hover{background:#cbd5e1}
+        #nav .next{background:#2563eb;color:#fff}
+        #nav .next:hover{background:#1d4ed8}
+        #toc-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:200}
+        #toc{position:fixed;top:0;left:-370px;width:350px;height:100vh;background:#fff;z-index:201;box-shadow:2px 0 12px rgba(0,0,0,.1);transition:left .3s;overflow-y:auto;padding:20px}
+        #toc.open{left:0}
+        #toc h2{font-size:1.1rem;margin-bottom:16px;color:#1e293b}
+        .toc-module{margin:8px 0}
+        .toc-module-title{font-weight:600;font-size:.9rem;color:#2563eb;cursor:pointer;padding:6px 8px;border-radius:6px;transition:background .2s}
+        .toc-module-title:hover{background:#eff6ff}
+        .toc-module-title.active{background:#eff6ff}
+        .toc-slides{margin:2px 0 2px 16px;display:none}
+        .toc-slides.open{display:block}
+        .toc-slide{font-size:.83rem;padding:4px 8px;border-radius:4px;cursor:pointer;color:#475569;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .toc-slide:hover{background:#f1f5f9;color:#1e293b}
+        .toc-slide.active{background:#2563eb;color:#fff}
+        .kbd{display:inline-block;background:#f1f5f9;border:1px solid #d1d5db;border-radius:4px;padding:2px 8px;font-family:monospace;font-size:.82rem}
+        @media(max-width:768px){#slide{padding:20px 24px}#header .left{min-width:auto;font-size:.85rem}}
+        @media print{#header,#nav,#progress-bar,#toc,#toc-overlay{display:none}#slide{box-shadow:none}}
+    </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div id="app">
+    <div id="header">
+        <div class="left" id="module-label">M0: Orientation</div>
+        <div class="center" id="slide-counter">1 / 100</div>
+        <div class="right">
+            <button onclick="toggleTOC()" title="Table of Contents (T)">TOC</button>
+            <button id="exam-btn" onclick="toggleExamMode()" title="Open comprehensive exam (E)">Exam</button>
+            <button onclick="retryFailed()" title="Retry failed quiz questions (R)">Retry</button>
+            <span id="pct">0%</span>
+        </div>
+    </div>
+    <div id="slide"></div>
+    <div id="nav">
+        <button class="prev" onclick="go(-1)">&larr; Prev</button>
+        <button class="next" onclick="go(1)">Next &rarr;</button>
+    </div>
+</div>
+<div id="toc-overlay" onclick="toggleTOC()"></div>
+<div id="toc"><h2>Table of Contents</h2><div id="toc-body"></div></div>
+
+<script>
+    const INLINE_QUIZ_DATA = {
+        "title": "Apache Flink Concepts, Watermarks & Fault Tolerance Workshop",
+        "version": "1.0",
+        "totalQuestions": 15,
+        "modules": [
+            {
+                "id": 0, "name": "M0: Orientation & The Flink Mental Model",
+                "questions": [
+                    {"id":"q0_1","question":"Flink describes its core approach through four pillars. Which of the following is NOT one of Flink's four foundational pillars?","options":["Micro-batching","Continuous processing","Event time semantics","Stateful computations"],"answer":0,"explanation":"Flink's four pillars are: continuous processing of streaming data, event time semantics, stateful stream processing, and state snapshots. Micro-batching is the approach used by Spark Structured Streaming, not Flink."}
+                ]
+            },
+            {
+                "id": 1, "name": "M1: Flink Architecture Deep Dive",
+                "questions": [
+                    {"id":"q1_1","question":"The Flink JobManager consists of three components. Which component is responsible for managing the execution of a single JobGraph?","options":["JobMaster","ResourceManager","Dispatcher","CheckpointCoordinator"],"answer":0,"explanation":"The JobMaster manages execution of a single JobGraph. The ResourceManager manages task slots. The Dispatcher provides REST interface for submission."}
+                ]
+            },
+            {
+                "id": 2, "name": "M2: DataStream API Fundamentals",
+                "questions": [
+                    {"id":"q2_1","question":"Flink recognizes a Java class as a POJO type for efficient serialization when certain conditions are met. Which is NOT a POJO requirement?","options":["The class must implement Serializable","The class must be public and standalone","The class must have a public no-argument constructor","Fields must be public or have getter/setter methods"],"answer":0,"explanation":"Flink POJOs do NOT need to implement java.io.Serializable. Flink uses its own TypeInformation serialization, not Java serialization."}
+                ]
+            },
+            {
+                "id": 3, "name": "M3: Stateful Stream Processing",
+                "questions": [
+                    {"id":"q3_1","question":"What is the atomic unit by which Flink redistributes keyed state when parallelism changes?","options":["Key Group","Individual key","Operator subtask","Task slot"],"answer":0,"explanation":"Key Groups are the atomic unit of state redistribution. There are exactly as many Key Groups as the defined maximum parallelism."},
+                    {"id":"q3_2","question":"Which keyed state type stores multiple key-value pairs per stream key, ideal for per-window aggregates?","options":["MapState","ValueState","ListState","ReducingState"],"answer":0,"explanation":"MapState<UK,UV> maps keys to values per stream key. Each MapState entry is a separate RocksDB object, enabling efficient access."}
+                ]
+            },
+            {
+                "id": 4, "name": "M4: Event Time & Watermarks",
+                "questions": [
+                    {"id":"q4_1","question":"What does a Watermark(t) in Flink assert about the data stream?","options":["No more elements with timestamp t' where t' \u2264 t","All elements with timestamp t have been processed","The system clock has reached time t","The next element will have timestamp > t"],"answer":0,"explanation":"Watermark(t) declares event time has reached t, meaning no more elements with timestamp \u2264 t should arrive."},
+                    {"id":"q4_2","question":"When an operator consumes multiple input streams, how does it determine its current event time?","options":["Minimum of input streams' event times","Maximum of input streams' event times","Average of input streams' event times","Event time of most recently received record"],"answer":0,"explanation":"The min-of-inputs rule ensures correctness: the operator cannot advance past a time until ALL inputs confirm no more events at or before that time."}
+                ]
+            },
+            {
+                "id": 5, "name": "M5: Windowing Deep Dive",
+                "questions": [
+                    {"id":"q5_1","question":"Sliding windows of 24-hour length with 15-minute slide: how many copies per event?","options":["96","24","15","1"],"answer":0,"explanation":"24 hours \u00d7 4 slides/hour = 96 windows. Sliding window assigners copy each event into every overlapping window."}
+                ]
+            },
+            {
+                "id": 6, "name": "M6: Checkpointing & Chandy-Lamport",
+                "questions": [
+                    {"id":"q6_1","question":"During aligned checkpointing, what happens when a multi-input operator receives barrier n from one input but not yet from another?","options":["It buffers records from the input that sent the barrier until all inputs have sent barrier n","It immediately snapshots its state and forwards the barrier","It discards records from the faster input","It aborts the checkpoint"],"answer":0,"explanation":"Barrier alignment: the operator stops processing records from inputs where barrier n arrived, buffering them, until barrier n arrives on ALL inputs."},
+                    {"id":"q6_2","question":"How does unaligned checkpointing handle barriers differently from aligned?","options":["Operator reacts to first barrier, immediately forwards it, and stores overtaken in-flight records as state","Barriers are removed and replaced with periodic snapshots","Multiple barriers are merged into one","Barriers are sent only to sink operators"],"answer":0,"explanation":"Unaligned checkpointing avoids blocking by immediately forwarding the first barrier and storing all overtaken in-flight data as part of the checkpoint state."}
+                ]
+            },
+            {
+                "id": 7, "name": "M7: Savepoints & Snapshot Lifecycle",
+                "questions": [
+                    {"id":"q7_1","question":"What is a key difference between Flink checkpoints and savepoints?","options":["Checkpoints are automatic and can be incremental; savepoints are manual and always full snapshots","Savepoints are automatic; checkpoints are manual","Checkpoints support schema evolution; savepoints do not","Savepoints are in-memory; checkpoints are on disk"],"answer":0,"explanation":"Checkpoints: automatic, can be incremental (RocksDB), optimized for fast recovery. Savepoints: manual, always full, optimized for operational flexibility."}
+                ]
+            },
+            {
+                "id": 8, "name": "M8: State Backends & Checkpoint Storage",
+                "questions": [
+                    {"id":"q8_1","question":"Which state backend supports incremental snapshotting for large, slowly-changing state?","options":["EmbeddedRocksDBStateBackend","HashMapStateBackend","JobManagerCheckpointStorage","FileSystemCheckpointStorage"],"answer":0,"explanation":"Only EmbeddedRocksDBStateBackend supports incremental snapshots. HashMapStateBackend (JVM heap) only does full snapshots."}
+                ]
+            },
+            {
+                "id": 9, "name": "M9: Fault Tolerance & Recovery",
+                "questions": [
+                    {"id":"q9_1","question":"For exactly-once end-to-end guarantees, which two conditions must be met?","options":["Replayable sources AND transactional/idempotent sinks","Aligned checkpoints AND HDFS storage","Stateless operators AND bounded sources","Unaligned checkpoints AND RocksDB backend"],"answer":0,"explanation":"Exactly-once E2E requires: (1) replayable sources (e.g., Kafka), and (2) transactional or idempotent sinks."}
+                ]
+            },
+            {
+                "id": 10, "name": "M10: ETL & Event-Driven Patterns",
+                "questions": [
+                    {"id":"q10_1","question":"In KeyedProcessFunction, which method fires when a registered event time timer's timestamp is passed by the watermark?","options":["onTimer()","processElement()","open()","close()"],"answer":0,"explanation":"onTimer() is called when watermark advances past the registered timer timestamp. processElement() handles incoming events."}
+                ]
+            },
+            {
+                "id": 11, "name": "M11: Ops & Best Practices",
+                "questions": [
+                    {"id":"q11_1","question":"Which anti-pattern causes savepoint incompatibility when upgrading a Flink application?","options":["Not assigning explicit Operator UIDs to stateful operators","Using too many task slots per TaskManager","Setting checkpoint interval too low","Using event time instead of processing time"],"answer":0,"explanation":"Without explicit UIDs (.uid(\"my-op\")), Flink auto-generates them from topology position. Topology changes break the mapping, making savepoints unusable."}
+                ]
+            }
+        ]
+    };
+
+    const QUIZ_DATA_URL = './quiz.json';
+    let QUIZ_DATA = null;
+    let quizDataLoadError = '';
+    let examMode = false;
+    let examState = {answers:{},score:0,total:0,done:false};
+    let examFailedQs = [];
+
+    const MODULE_NAMES = [
+        "M0: Orientation & The Flink Mental Model",
+        "M1: Flink Architecture Deep Dive",
+        "M2: DataStream API Fundamentals",
+        "M3: Stateful Stream Processing",
+        "M4: Timely Stream Processing \u2014 Event Time & Watermarks",
+        "M5: Windowing Deep Dive",
+        "M6: Checkpointing Mechanism & Chandy-Lamport Algorithm",
+        "M7: Savepoints & Snapshot Lifecycle",
+        "M8: State Backends & Checkpoint Storage",
+        "M9: Fault Tolerance Guarantees & Recovery",
+        "M10: ETL & Event-Driven Patterns",
+        "M11: Ops, Monitoring & Best Practices"
+    ];
+
+    const SLIDES = [
+// ===== M0: Orientation & The Flink Mental Model =====
+        {m:0,t:"Welcome & Workshop Navigation",c:`<h1>Apache Flink: Concepts, Watermarks &amp; Fault Tolerance</h1>
+<h2>Workshop Overview</h2>
+<p>Welcome to this comprehensive workshop covering Apache Flink 1.20 fundamentals &mdash; from core mental models through stateful stream processing, event time and watermarks, the Chandy-Lamport inspired checkpointing mechanism, state backends, and operational best practices.</p>
+<p><strong>12 Modules &bull; 100 Slides &bull; 15 Quiz Questions</strong></p>
+<h2>Keyboard Navigation</h2>
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td><span class="kbd">Space</span> or <span class="kbd">&rarr;</span></td><td>Next slide</td></tr>
+<tr><td><span class="kbd">Shift+Space</span> or <span class="kbd">&larr;</span></td><td>Previous slide</td></tr>
+<tr><td><span class="kbd">Home</span></td><td>First slide</td></tr>
+<tr><td><span class="kbd">End</span></td><td>Last slide</td></tr>
+<tr><td><span class="kbd">T</span></td><td>Toggle Table of Contents</td></tr>
+<tr><td><span class="kbd">R</span></td><td>Retry failed quiz questions</td></tr>
+</table>
+<div class="tip"><strong>Tip:</strong> Your progress is saved automatically in your browser. Pick up where you left off anytime.</div>`},
+
+        {m:0,t:"What Is Apache Flink?",c:`<h1>What Is Apache Flink?</h1>
+<p>Apache Flink is an open-source, distributed stream processing framework designed for <strong>stateful computations over unbounded and bounded data streams</strong>. Unlike batch-first frameworks that bolt on streaming, Flink is <em>stream-first</em> &mdash; it treats batch processing as a special case of stream processing where the input happens to be bounded.</p>
+<p>Flink provides different levels of abstraction for developing streaming/batch applications:</p>
+<ul>
+<li><strong>SQL &amp; Table API</strong> &mdash; highest level, declarative relational operations</li>
+<li><strong>DataStream API</strong> &mdash; core API for transformations, joins, aggregations, windows, state</li>
+<li><strong>ProcessFunction</strong> &mdash; lowest level, timers + state + event-by-event control</li>
+</ul>
+<div class="diagram">
+    SQL            &larr; Declarative, highest abstraction
+    Table API      &larr; Relational DSL on dynamic tables
+    DataStream API &larr; Core: map, keyBy, window, state
+    ProcessFunction&larr; Low-level: timers, side outputs
+</div>
+<div class="note"><strong>Key insight:</strong> You can seamlessly mix levels &mdash; drop from Table API to DataStream to ProcessFunction and back within one application.</div>`},
+
+        {m:0,t:"Batch vs Stream Processing: Why Streams First",c:`<h1>Batch vs Stream Processing: Why Streams First</h1>
+<p>Data is naturally born as a stream &mdash; events from web servers, trades from a stock exchange, sensor readings from IoT devices. The question is how you choose to process it.</p>
+<h2>Batch Processing (Bounded Streams)</h2>
+<p>You ingest the <em>entire</em> dataset before producing results. You can sort data, compute global statistics, or produce a final report. Think: "process all of yesterday's data at 2am."</p>
+<h2>Stream Processing (Unbounded Streams)</h2>
+<p>Input may <em>never end</em>, so you continuously process data as it arrives. Results are produced incrementally. Think: "alert me within seconds when fraud is detected."</p>
+<table>
+<tr><th>Aspect</th><th>Batch</th><th>Stream</th></tr>
+<tr><td>Input</td><td>Bounded, finite</td><td>Unbounded, continuous</td></tr>
+<tr><td>Latency</td><td>Minutes to hours</td><td>Milliseconds to seconds</td></tr>
+<tr><td>Completeness</td><td>Full knowledge of input</td><td>Must handle incomplete data</td></tr>
+<tr><td>Results</td><td>Produced once</td><td>Continuously updated</td></tr>
+</table>
+<div class="real"><strong>Real:</strong> Flink handles both paradigms with one engine. Set <code>RuntimeExecutionMode.BATCH</code> to run the same pipeline in batch mode &mdash; no checkpoints, full replay on failure.</div>`},
+
+        {m:0,t:"Four Pillars: Continuous, Event Time, Stateful, Snapshots",c:`<h1>Four Pillars of Flink</h1>
+<p>Flink's training material introduces four critical concepts that underpin everything else in the framework:</p>
+<h2>1. Continuous Processing of Streaming Data</h2>
+<p>Flink processes events one at a time as they arrive (true streaming), not in micro-batches. This enables sub-second latency for real-time applications.</p>
+<h2>2. Event Time Semantics</h2>
+<p>Results depend on <em>when events occurred</em>, not when they arrive at the system. This enables reproducible results and correct reprocessing of historical data.</p>
+<h2>3. Stateful Stream Processing</h2>
+<p>Operators can remember information across events. The parallel instances of a stateful operator form a <strong>sharded key-value store</strong>, where each instance handles events for a specific group of keys.</p>
+<h2>4. State Snapshots (Fault Tolerance)</h2>
+<p>Flink captures consistent <strong>distributed snapshots</strong> of the entire pipeline &mdash; including source offsets and all operator state &mdash; without stopping processing. On failure, sources rewind and state is restored.</p>
+<div class="note"><strong>Note:</strong> These four pillars are interconnected. Event time needs watermarks (pillar 2), watermarks need state (pillar 3), and state needs snapshots (pillar 4) to survive failures.</div>`},
+
+        {m:0,t:"Flink Application Anatomy: Sources, Operators, Sinks",c:`<h1>Flink Application Anatomy</h1>
+<p>Every Flink application is composed of <strong>streaming dataflows</strong> that form a directed acyclic graph (DAG) starting with one or more <strong>sources</strong> and ending in one or more <strong>sinks</strong>.</p>
+<div class="diagram">
+┌────────┐    ┌─────────┐    ┌─────────┐    ┌──────┐
+│ Source  │&rarr;  │  map()  │&rarr;  │ keyBy() │&rarr;  │ Sink │
+│ (Kafka) │    │ filter()│    │ window()│    │(HDFS)│
+└────────┘    └─────────┘    └─────────┘    └──────┘
+</div>
+<h2>Data Flow Patterns</h2>
+<ul>
+<li><strong>One-to-one (forwarding)</strong> &mdash; preserves partitioning and ordering (e.g., Source &rarr; map). Subtask[1] of map sees the same elements as subtask[1] of Source.</li>
+<li><strong>Redistributing</strong> &mdash; changes partitioning (e.g., keyBy, broadcast, rebalance). Elements are sent to different target subtasks based on the transformation.</li>
+</ul>
+<p>Common sources: Apache Kafka, Kinesis, filesystems, socket streams. Common sinks: Kafka, HDFS/S3, JDBC databases, Elasticsearch.</p>
+<div class="tip"><strong>Tip:</strong> For fault tolerance, sources must be <em>replayable</em> (support rewinding to a prior offset). Kafka is the canonical example.</div>`},
+
+        {m:0,t:"Bounded vs Unbounded Streams",c:`<h1>Bounded vs Unbounded Streams</h1>
+<p>Flink unifies batch and stream processing through the concept of bounded and unbounded streams:</p>
+<h2>Unbounded Streams</h2>
+<p>Have a defined start but no defined end. Data is continuously generated and must be processed as it arrives. You cannot wait for all input &mdash; it never finishes. Examples: click streams, IoT sensor data, financial transaction feeds.</p>
+<h2>Bounded Streams</h2>
+<p>Have both a defined start and a defined end. You can ingest all data before performing computation. Examples: a day's worth of log files, a database export, a finite CSV dataset.</p>
+<div class="diagram">
+Unbounded:  ───●──●───●──●──●──●──●──●──●─── &rarr; (no end)
+Bounded:    ───●──●───●──●──●──●──| (end)
+</div>
+<h2>Flink's Unified Approach</h2>
+<p>Flink treats batch as a <em>special case</em> of streaming. The same DataStream API handles both, with the <code>RuntimeExecutionMode</code> setting determining behavior:</p>
+<ul>
+<li><code>STREAMING</code> &mdash; continuous processing, checkpoints enabled</li>
+<li><code>BATCH</code> &mdash; no checkpoints, sorts data by key, full replay on failure</li>
+<li><code>AUTOMATIC</code> &mdash; Flink picks based on whether sources are bounded</li>
+</ul>`},
+
+        {m:0,t:"Flink Glossary Crash Course",c:`<h1>Flink Glossary Crash Course</h1>
+<p>Before diving deeper, let's establish precise terminology. Flink uses specific terms that are easy to confuse:</p>
+<table>
+<tr><th>Term</th><th>Definition</th></tr>
+<tr><td><strong>Flink Application</strong></td><td>A user program that spawns one or more Flink jobs from its <code>main()</code> method</td></tr>
+<tr><td><strong>Job</strong></td><td>A runtime representation of a Flink application, created by calling <code>env.execute()</code></td></tr>
+<tr><td><strong>JobGraph</strong></td><td>The logical DAG of operators that Flink compiles from your code</td></tr>
+<tr><td><strong>ExecutionGraph</strong></td><td>The parallelized version of JobGraph &mdash; each operator expanded into subtasks</td></tr>
+<tr><td><strong>Operator</strong></td><td>A logical unit of computation (e.g., map, keyBy, window)</td></tr>
+<tr><td><strong>Task</strong></td><td>A physical unit of execution: one or more chained operators running in a single thread</td></tr>
+<tr><td><strong>Subtask</strong></td><td>One parallel instance of a task. If parallelism=4, the operator has 4 subtasks.</td></tr>
+<tr><td><strong>Operator Chain</strong></td><td>Multiple operators fused into one task to reduce thread handover overhead</td></tr>
+</table>
+<div class="note"><strong>Key distinction:</strong> "Operator" is a logical concept in your code. "Task" is the physical unit that runs on a TaskManager. Multiple operators can be chained into one task for efficiency.</div>`},
+
+        {m:0,t:"DataStream vs Table API: When To Use Which",c:`<h1>DataStream vs Table API</h1>
+<p>Flink offers two main programming APIs, each suited to different use cases:</p>
+<h2>DataStream API</h2>
+<ul>
+<li>Imperative, Java/Scala/Python fluent API</li>
+<li>Full control over state, timers, windows, side outputs</li>
+<li>Best for: complex event processing, custom windowing logic, event-driven applications</li>
+<li>Use <code>ProcessFunction</code> for maximum flexibility</li>
+</ul>
+<h2>Table API &amp; SQL</h2>
+<ul>
+<li>Declarative, relational operations on dynamic tables</li>
+<li>Automatic query optimization</li>
+<li>Best for: ETL pipelines, SQL-native teams, OLAP-style analytics</li>
+<li>Less code, but less control over low-level behavior</li>
+</ul>
+<table>
+<tr><th>Criteria</th><th>DataStream</th><th>Table/SQL</th></tr>
+<tr><td>Abstraction</td><td>Imperative</td><td>Declarative</td></tr>
+<tr><td>State control</td><td>Explicit (ValueState, etc.)</td><td>Managed by planner</td></tr>
+<tr><td>Optimization</td><td>Manual</td><td>Automatic (Calcite)</td></tr>
+<tr><td>Expressiveness</td><td>Maximum</td><td>Relational subset</td></tr>
+</table>
+<div class="tip"><strong>Tip:</strong> You can mix both! Convert between DataStream and Table within one application using <code>tableEnv.toDataStream()</code> and <code>tableEnv.fromDataStream()</code>.</div>`},
+
+        {m:0,t:"Repository Tour: docs/content/docs Layout",c:`<h1>Repository Tour: docs/content/docs</h1>
+<p>This workshop is grounded in the Flink 1.20 documentation. Here is the directory layout and what each section covers:</p>
+<pre>
+docs/content/docs/
+├── concepts/            &larr; Deep conceptual explanations
+│   ├── overview.md         API levels of abstraction
+│   ├── flink-architecture.md  JM, TM, slots, deployment
+│   ├── stateful-stream-processing.md  State, checkpoints, Chandy-Lamport
+│   ├── time.md             Event time, watermarks, lateness
+│   └── glossary.md         Terminology definitions
+├── learn-flink/         &larr; Hands-on training tutorials
+│   ├── overview.md         Four pillars introduction
+│   ├── datastream_api.md   DataStream basics, POJOs, serialization
+│   ├── etl.md              Stateless/stateful transformations, keyBy
+│   ├── event_driven.md     ProcessFunction, timers, side outputs
+│   ├── streaming_analytics.md  Watermarks, windows, late events
+│   └── fault_tolerance.md  State backends, snapshot definitions
+├── ops/state/           &larr; Operational guides
+│   ├── checkpoints.md, savepoints.md, checkpoints_vs_savepoints.md
+└── dev/datastream/fault-tolerance/
+    └── checkpointing.md &larr; Checkpoint configuration API
+</pre>
+<div class="note"><strong>Learning path:</strong> Start with <code>learn-flink/</code> for hands-on tutorials, then <code>concepts/</code> for depth, then <code>ops/</code> for production guidance.</div>`},
+
+        {m:0,t:"Quiz: Flink Mental Model",q:true},
+
+// ===== M1: Flink Architecture Deep Dive =====
+        {m:1,t:"JobManager Architecture: ResourceManager, Dispatcher, JobMaster",c:`<h1>JobManager Architecture</h1>
+<p>The Flink runtime consists of two types of processes: a <strong>JobManager</strong> and one or more <strong>TaskManagers</strong>. The JobManager coordinates distributed execution and consists of three distinct components:</p>
+<h2>ResourceManager</h2>
+<p>Responsible for resource allocation and provisioning. It manages <strong>task slots</strong>, the unit of resource scheduling. Flink implements different ResourceManagers for YARN, Kubernetes, and standalone deployments. In standalone mode, it can only distribute slots from available TaskManagers but cannot start new ones.</p>
+<h2>Dispatcher</h2>
+<p>Provides a <strong>REST interface</strong> to submit Flink applications. It starts a new JobMaster for each submitted job and runs the Flink WebUI for monitoring job executions.</p>
+<h2>JobMaster</h2>
+<p>Manages the execution of a <strong>single JobGraph</strong>. Multiple jobs can run simultaneously in a Flink cluster, each with its own JobMaster. It decides when to schedule tasks, reacts to failures, and coordinates checkpoints.</p>
+<div class="diagram">
+┌───────────────── JobManager ─────────────────┐
+│  ┌──────────────┐ ┌────────────┐ ┌─────────┐ │
+│  │ResourceManager│ │ Dispatcher │ │JobMaster│ │
+│  │(slot mgmt)   │ │ (REST API) │ │(per job)│ │
+│  └──────────────┘ └────────────┘ └─────────┘ │
+└──────────────────────────────────────────────┘
+</div>`},
+
+        {m:1,t:"TaskManagers & Task Slots",c:`<h1>TaskManagers &amp; Task Slots</h1>
+<p>TaskManagers (also called <strong>workers</strong>) execute the actual tasks of a dataflow and buffer and exchange data streams. Each TaskManager is a <strong>JVM process</strong> that may execute one or more subtasks in separate threads.</p>
+<h2>Task Slots</h2>
+<p>The smallest unit of resource scheduling is a <strong>task slot</strong>. Each slot represents a <em>fixed subset of resources</em> of the TaskManager. A TaskManager with 3 slots dedicates 1/3 of its managed memory to each slot.</p>
+<ul>
+<li><strong>Memory isolation:</strong> Slots separate managed memory (no cross-slot competition)</li>
+<li><strong>No CPU isolation:</strong> Currently, slots only separate memory, not CPU</li>
+<li><strong>Shared resources:</strong> Tasks in the same JVM share TCP connections (via multiplexing) and heartbeat messages</li>
+</ul>
+<div class="diagram">
+┌─── TaskManager (JVM process) ───┐
+│ ┌───────┐ ┌───────┐ ┌───────┐  │
+│ │ Slot 1│ │ Slot 2│ │ Slot 3│  │
+│ │ 1/3   │ │ 1/3   │ │ 1/3   │  │
+│ │memory │ │memory │ │memory │  │
+│ └───────┘ └───────┘ └───────┘  │
+└─────────────────────────────────┘
+</div>
+<div class="warn"><strong>Caution:</strong> 1 slot per TaskManager = maximum isolation (separate JVM/container). Multiple slots per TM = better resource utilization but shared failure domain.</div>`},
+
+        {m:1,t:"Slot Sharing: Why Flink Colocates Operators",c:`<h1>Slot Sharing</h1>
+<p>By default, Flink allows subtasks of <em>different</em> operators from the same job to share a slot. This means one slot can hold an <strong>entire pipeline</strong> of the job.</p>
+<h2>Two Key Benefits</h2>
+<ol>
+<li><strong>Simplified resource calculation:</strong> The cluster needs exactly as many task slots as the <em>highest parallelism</em> used in the job. No need to calculate total tasks across operators with varying parallelism.</li>
+<li><strong>Better resource utilization:</strong> Without slot sharing, lightweight source/map subtasks would block as many resources as heavy window subtasks. With sharing, heavy subtasks are distributed fairly across TaskManagers.</li>
+</ol>
+<div class="diagram">
+With Slot Sharing (default):
+┌─────────────┐  ┌─────────────┐
+│   Slot 1    │  │   Slot 2    │
+│ Source[1]   │  │ Source[2]   │
+│ Map[1]      │  │ Map[2]      │
+│ Window[1]   │  │ Window[2]   │
+│ Sink[1]     │  │ Sink[2]     │
+└─────────────┘  └─────────────┘
+Full pipeline per slot!
+</div>
+<p>Slot sharing can be configured per operator using <code>slotSharingGroup("name")</code> to force certain operators into separate slots when needed.</p>`},
+
+        {m:1,t:"Parallelism, Key Groups & State Partitioning",c:`<h1>Parallelism, Key Groups &amp; State Partitioning</h1>
+<p>Every operator in Flink can have a different <strong>parallelism</strong> &mdash; the number of parallel instances (subtasks) executing that operator.</p>
+<h2>Parallelism Hierarchy</h2>
+<ul>
+<li><strong>Operator level:</strong> <code>stream.map(...).setParallelism(4)</code></li>
+<li><strong>Environment level:</strong> <code>env.setParallelism(2)</code> (default for all operators)</li>
+<li><strong>Cluster level:</strong> <code>parallelism.default</code> in <code>flink-conf.yaml</code></li>
+</ul>
+<h2>Key Groups</h2>
+<p>Keyed state is organized into <strong>Key Groups</strong> &mdash; the atomic unit by which Flink can redistribute keyed state. There are exactly as many Key Groups as the <strong>maximum parallelism</strong> (configurable, default 128). During execution, each parallel subtask handles one or more Key Groups.</p>
+<div class="diagram">
+Keys:        [a, b, c, d, e, f, g, h, ...]
+                  │ hash │
+Key Groups:  [KG0] [KG1] [KG2] [KG3] ... [KG-maxP]
+                  │ assign │
+Subtasks:    [ST-0: KG0,KG1] [ST-1: KG2,KG3]
+</div>
+<div class="note"><strong>Note:</strong> Maximum parallelism should be set thoughtfully at job creation &mdash; it cannot be changed after a savepoint without losing state compatibility.</div>`},
+
+        {m:1,t:"Application Mode vs Session Mode vs Job Mode",c:`<h1>Deployment Modes</h1>
+<p>Flink supports different cluster lifecycle and resource isolation models:</p>
+<h2>Flink Application Cluster (Application Mode)</h2>
+<ul>
+<li><strong>Lifecycle:</strong> Dedicated cluster per application. <code>main()</code> runs on the cluster, not the client.</li>
+<li><strong>Isolation:</strong> ResourceManager &amp; Dispatcher scoped to a single application</li>
+<li><strong>Use case:</strong> Production &mdash; deploy like any K8s application</li>
+</ul>
+<h2>Flink Session Cluster (Session Mode)</h2>
+<ul>
+<li><strong>Lifecycle:</strong> Long-running, pre-existing cluster. Accepts multiple job submissions.</li>
+<li><strong>Isolation:</strong> Jobs share cluster resources. One TM crash affects all jobs on that TM.</li>
+<li><strong>Use case:</strong> Interactive analysis, short jobs where startup time matters</li>
+</ul>
+<h2>Flink Job Cluster (Per-Job Mode) &mdash; Deprecated</h2>
+<ul>
+<li><strong>Deprecated</strong> since Flink 1.15 (YARN only). Use Application Mode instead.</li>
+<li>Spun up a dedicated cluster per submitted job via YARN.</li>
+</ul>
+<div class="tip"><strong>Tip:</strong> For Kubernetes deployments, Application Mode is the recommended approach. It packages your application JAR and starts a dedicated cluster with full resource isolation.</div>`},
+
+        {m:1,t:"Execution Graph: JobGraph → ExecutionGraph → Physical Graph",c:`<h1>Execution Graph Pipeline</h1>
+<p>Flink transforms your code through several graph representations before execution:</p>
+<h2>1. StreamGraph (internal)</h2>
+<p>Direct translation of your DataStream API calls. Each transformation becomes a node.</p>
+<h2>2. JobGraph</h2>
+<p>Optimized graph where chainable operators are fused into <strong>operator chains</strong>. Sent to the JobManager. Operator chaining reduces thread-to-thread handover overhead and increases throughput while decreasing latency.</p>
+<h2>3. ExecutionGraph</h2>
+<p>The JobManager creates the parallelized version &mdash; each operator is expanded into its parallel subtasks. This is the core data structure for scheduling.</p>
+<h2>4. Physical Execution</h2>
+<p>The ExecutionGraph is deployed onto TaskManagers. Each subtask runs as a thread in a task slot.</p>
+<div class="diagram">
+Your Code           StreamGraph         JobGraph
+map().keyBy()  &rarr;  [map]&rarr;[keyBy]  &rarr;  [map|keyBy chain]
+.window()          &rarr;[window]          &rarr;[window]
+.sink()            &rarr;[sink]            &rarr;[window|sink chain]
+
+JobGraph &rarr; ExecutionGraph (parallelize) &rarr; Physical (deploy to TMs)
+</div>`},
+
+        {m:1,t:"Flink Cluster Lifecycle & Resource Allocation",c:`<h1>Cluster Lifecycle &amp; Resource Allocation</h1>
+<p>Understanding the cluster lifecycle helps reason about startup latency, resource utilization, and failure domains:</p>
+<h2>Application Mode Lifecycle</h2>
+<ol>
+<li>Client packages application JAR, submits to cluster entrypoint (<code>ApplicationClusterEntryPoint</code>)</li>
+<li>Cluster entrypoint calls <code>main()</code>, extracts JobGraph</li>
+<li>ResourceManager requests TaskManager containers from the resource provider (K8s, YARN)</li>
+<li>TaskManagers start, register with ResourceManager, offer slots</li>
+<li>JobMaster requests slots, deploys tasks</li>
+<li>Job completes &rarr; cluster torn down</li>
+</ol>
+<h2>Session Mode Lifecycle</h2>
+<ol>
+<li>Cluster started independently (persists across jobs)</li>
+<li>Client connects, submits JobGraph via Dispatcher REST API</li>
+<li>Dispatcher starts JobMaster for the job</li>
+<li>Slots allocated from available TaskManagers (may request new ones)</li>
+<li>Job completes &rarr; slots released, cluster continues running</li>
+</ol>
+<div class="note"><strong>Key difference:</strong> In Application Mode, the cluster lifetime = application lifetime (better isolation). In Session Mode, cluster outlives individual jobs (faster startup).</div>`},
+
+        {m:1,t:"Flink on YARN / Kubernetes: Deployment Modes",c:`<h1>Flink on YARN / Kubernetes</h1>
+<p>Flink integrates with common cluster resource managers for production deployments:</p>
+<h2>Kubernetes (Recommended)</h2>
+<ul>
+<li><strong>Native K8s integration:</strong> Flink's ResourceManager directly talks to K8s API to create/destroy TaskManager pods</li>
+<li><strong>Application Mode:</strong> One Flink cluster per application, deployed as K8s pods</li>
+<li><strong>High Availability:</strong> Use K8s ConfigMaps for leader election and metadata storage</li>
+<li><strong>Recommended for:</strong> Cloud-native environments, containerized infrastructure</li>
+</ul>
+<h2>YARN</h2>
+<ul>
+<li><strong>Session Mode:</strong> Long-running Flink cluster on YARN, submit multiple jobs</li>
+<li><strong>Application Mode:</strong> Dedicated YARN application per Flink job</li>
+<li><strong>Per-Job Mode:</strong> Deprecated since 1.15</li>
+<li><strong>Recommended for:</strong> Hadoop-based infrastructure, shared YARN clusters</li>
+</ul>
+<h2>Standalone</h2>
+<ul>
+<li>Manual setup: start JM and TMs on bare machines/VMs</li>
+<li>ResourceManager can only distribute existing slots, cannot provision new TaskManagers</li>
+<li>Suitable for: development, testing, small fixed-size deployments</li>
+</ul>`},
+
+        {m:1,t:"Quiz: Flink Architecture",q:true},
+
+// ===== M2: DataStream API Fundamentals =====
+        {m:2,t:"What Is a DataStream?",c:`<h1>What Is a DataStream?</h1>
+<p>A <code>DataStream&lt;T&gt;</code> is the fundamental abstraction in Flink's streaming API. It represents a potentially unbounded sequence of elements of type <code>T</code> flowing through the system.</p>
+<h2>Creating DataStreams</h2>
+<pre>
+// From elements (testing/prototyping)
+DataStream&lt;String&gt; stream = env.fromElements("a", "b", "c");
+
+// From a collection
+DataStream&lt;Person&gt; people = env.fromCollection(personList);
+
+// From a socket (development)
+DataStream&lt;String&gt; lines = env.socketTextStream("localhost", 9999);
+
+// From Kafka (production)
+DataStream&lt;Event&gt; events = env.fromSource(
+    kafkaSource, WatermarkStrategy.noWatermarks(), "kafka-source");
+</pre>
+<h2>What Can Be Streamed?</h2>
+<p>Flink's DataStream APIs let you stream anything that can be serialized:</p>
+<ul>
+<li><strong>Basic types:</strong> String, Long, Integer, Boolean, Array</li>
+<li><strong>Composite types:</strong> Tuples (<code>Tuple0</code> through <code>Tuple25</code>), POJOs, Scala case classes</li>
+<li><strong>Generic types:</strong> Falls back to Kryo serialization</li>
+<li><strong>Avro:</strong> Well-supported, recommended for schema evolution</li>
+</ul>
+<div class="tip"><strong>Tip:</strong> Always prefer POJOs or Tuples over generic types. Flink's native serializer is significantly faster than Kryo.</div>`},
+
+        {m:2,t:"Transformations: map, flatMap, filter, keyBy",c:`<h1>Core Transformations</h1>
+<h2>map()</h2>
+<p>One-to-one transformation. Each input element produces exactly one output element.</p>
+<pre>
+DataStream&lt;EnrichedRide&gt; enriched = rides.map(ride -&gt; new EnrichedRide(ride));
+</pre>
+<h2>flatMap()</h2>
+<p>One-to-zero-or-more transformation. Use the <code>Collector</code> to emit zero, one, or many elements.</p>
+<pre>
+rides.flatMap((ride, out) -&gt; {
+    if (valid.filter(ride)) out.collect(new EnrichedRide(ride));
+});
+</pre>
+<h2>filter()</h2>
+<p>Retains elements where the predicate returns <code>true</code>.</p>
+<pre>
+DataStream&lt;Person&gt; adults = people.filter(p -&gt; p.age &gt;= 18);
+</pre>
+<h2>keyBy()</h2>
+<p>Partitions the stream by a key. All elements with the same key go to the same subtask. This is a <strong>network shuffle</strong> &mdash; expensive but necessary for keyed operations (aggregations, windows, state).</p>
+<pre>
+KeyedStream&lt;Ride, Integer&gt; keyed = rides.keyBy(ride -&gt; ride.startCell);
+</pre>
+<div class="warn"><strong>Important:</strong> Keys must be deterministic and have valid <code>hashCode()</code>/<code>equals()</code>. Arrays and Enums are NOT valid keys.</div>`},
+
+        {m:2,t:"Physical Partitioning: shuffle, rebalance, rescale",c:`<h1>Physical Partitioning</h1>
+<p>Beyond <code>keyBy()</code>, Flink provides several physical partitioning strategies to control data distribution:</p>
+<table>
+<tr><th>Method</th><th>Strategy</th><th>Use Case</th></tr>
+<tr><td><code>shuffle()</code></td><td>Uniform random distribution</td><td>Statistical sampling</td></tr>
+<tr><td><code>rebalance()</code></td><td>Round-robin across all subtasks</td><td>Fix data skew (full network shuffle)</td></tr>
+<tr><td><code>rescale()</code></td><td>Round-robin to subset of downstream subtasks</td><td>Fix skew with less network cost</td></tr>
+<tr><td><code>broadcast()</code></td><td>Send every element to ALL subtasks</td><td>Small reference data to all operators</td></tr>
+<tr><td><code>global()</code></td><td>Send everything to subtask 0</td><td>Single-instance processing (caution!)</td></tr>
+<tr><td><code>forward()</code></td><td>One-to-one, same partitioning</td><td>Chained operators (default when possible)</td></tr>
+</table>
+<div class="diagram">
+rebalance() &mdash; Full shuffle:     rescale() &mdash; Local round-robin:
+  P1 &rarr; C1, C2, C3, C4            P1 &rarr; C1, C2
+  P2 &rarr; C1, C2, C3, C4            P2 &rarr; C3, C4
+  (all-to-all)                    (subset-to-subset)
+</div>
+<div class="note"><strong>Note:</strong> <code>rescale()</code> is preferred over <code>rebalance()</code> when possible because it avoids full network shuffles by only communicating with a subset of downstream tasks.</div>`},
+
+        {m:2,t:"Connected Streams & CoProcessFunction",c:`<h1>Connected Streams</h1>
+<p>Sometimes you need to dynamically alter a transformation by streaming in thresholds, rules, or parameters. Flink supports this through <strong>connected streams</strong> &mdash; a single operator consuming two input streams.</p>
+<pre>
+DataStream&lt;String&gt; control = env.fromElements("DROP", "IGNORE").keyBy(x -&gt; x);
+DataStream&lt;String&gt; words = env.fromElements("Apache", "DROP", "Flink").keyBy(x -&gt; x);
+
+control.connect(words).flatMap(new ControlFunction()).print();
+</pre>
+<h2>RichCoFlatMapFunction</h2>
+<p>Provides <code>flatMap1()</code> for elements from the first stream and <code>flatMap2()</code> for elements from the second stream. Both share the same keyed state.</p>
+<pre>
+public class ControlFunction extends RichCoFlatMapFunction&lt;String, String, String&gt; {
+    private ValueState&lt;Boolean&gt; blocked;
+    public void flatMap1(String ctrl, Collector&lt;String&gt; out) {
+        blocked.update(true);
+    }
+    public void flatMap2(String data, Collector&lt;String&gt; out) {
+        if (blocked.value() == null) out.collect(data);
+    }
+}
+</pre>
+<div class="warn"><strong>Important:</strong> You have NO control over the order in which <code>flatMap1</code> and <code>flatMap2</code> are called. The two inputs race each other. If ordering matters, buffer events in managed state.</div>`},
+
+        {m:2,t:"Rich Functions & Function Lifecycle",c:`<h1>Rich Functions &amp; Lifecycle</h1>
+<p>For each function interface (FilterFunction, MapFunction, FlatMapFunction), Flink provides a "rich" variant with additional lifecycle methods:</p>
+<h2>Rich Function Methods</h2>
+<table>
+<tr><th>Method</th><th>When Called</th><th>Use Case</th></tr>
+<tr><td><code>open(Configuration)</code></td><td>Once during operator initialization</td><td>Load static data, open connections, initialize state descriptors</td></tr>
+<tr><td><code>close()</code></td><td>During operator teardown</td><td>Close connections, release resources</td></tr>
+<tr><td><code>getRuntimeContext()</code></td><td>Available after open()</td><td>Access managed state, broadcast variables, accumulators</td></tr>
+</table>
+<pre>
+public class Deduplicator extends RichFlatMapFunction&lt;Event, Event&gt; {
+    ValueState&lt;Boolean&gt; seen;
+
+    @Override
+    public void open(Configuration conf) {
+        seen = getRuntimeContext().getState(
+            new ValueStateDescriptor&lt;&gt;("seen", Types.BOOLEAN));
+    }
+
+    @Override
+    public void flatMap(Event event, Collector&lt;Event&gt; out) {
+        if (seen.value() == null) {
+            out.collect(event);
+            seen.update(true);
+        }
+    }
+}
+</pre>
+<div class="note"><strong>Note:</strong> In <code>open()</code>, there is no event/key in context. State descriptors are created here but actual state access happens in <code>flatMap()</code> where the key is available.</div>`},
+
+        {m:2,t:"Type System & Serialization: TypeInformation & POJO Rules",c:`<h1>Type System &amp; Serialization</h1>
+<p>Flink has its own type system for efficient serialization and state management. Understanding it helps avoid performance pitfalls.</p>
+<h2>TypeInformation Hierarchy</h2>
+<ul>
+<li><strong>BasicTypeInfo:</strong> String, Integer, Long, Double, Boolean, etc. &mdash; most efficient</li>
+<li><strong>TupleTypeInfo:</strong> Flink Tuples (Tuple0 through Tuple25) &mdash; very efficient, zero-indexed</li>
+<li><strong>PojoTypeInfo:</strong> User POJOs meeting specific rules &mdash; efficient, supports schema evolution</li>
+<li><strong>GenericTypeInfo:</strong> Fallback to Kryo &mdash; least efficient, no schema evolution</li>
+</ul>
+<h2>POJO Requirements</h2>
+<p>Flink recognizes a class as a POJO when:</p>
+<ol>
+<li>The class is <strong>public and standalone</strong> (no non-static inner class)</li>
+<li>It has a <strong>public no-argument constructor</strong></li>
+<li>All non-static, non-transient fields are <strong>public</strong> OR have <strong>public getter/setter</strong> following Java beans conventions</li>
+</ol>
+<pre>
+public class Person {
+    public String name;
+    public Integer age;
+    public Person() {}  // required no-arg constructor
+    public Person(String name, Integer age) { ... }
+}
+</pre>
+<div class="real"><strong>Real:</strong> Flink's POJO serializer supports schema evolution &mdash; you can add or remove fields and still restore from savepoints. This does NOT work with Kryo fallback.</div>`},
+
+        {m:2,t:"Execution Environment Setup & Configuration",c:`<h1>Execution Environment</h1>
+<p>Every Flink application starts with an execution environment that controls job execution:</p>
+<pre>
+// Standard entry point
+StreamExecutionEnvironment env =
+    StreamExecutionEnvironment.getExecutionEnvironment();
+
+// Set default parallelism
+env.setParallelism(4);
+
+// Set runtime mode
+env.setRuntimeMode(RuntimeExecutionMode.STREAMING);
+
+// Build your pipeline
+DataStream&lt;Event&gt; events = env.addSource(...);
+events.keyBy(...).window(...).process(...).print();
+
+// MUST call execute() to run the job
+env.execute("My Flink Job");
+</pre>
+<h2>Key Configuration Points</h2>
+<ul>
+<li><strong>Parallelism:</strong> operator-level &gt; env-level &gt; cluster-level (flink-conf.yaml)</li>
+<li><strong>Restart strategy:</strong> <code>env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, 10000))</code></li>
+<li><strong>State backend:</strong> <code>env.setStateBackend(new EmbeddedRocksDBStateBackend())</code></li>
+<li><strong>Checkpointing:</strong> <code>env.enableCheckpointing(60000)</code></li>
+</ul>
+<div class="warn"><strong>Important:</strong> If you don't call <code>env.execute()</code>, your application won't run. All the API calls before it just build the job graph &mdash; nothing executes until <code>execute()</code>.</div>`},
+
+        {m:2,t:"Hands-On: Building Your First Pipeline",c:`<h1>Hands-On: Your First Pipeline</h1>
+<p>Let's walk through a complete, minimal Flink application that filters a stream of people to only include adults:</p>
+<pre>
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.api.common.functions.FilterFunction;
+
+public class AdultFilter {
+    public static void main(String[] args) throws Exception {
+        final StreamExecutionEnvironment env =
+            StreamExecutionEnvironment.getExecutionEnvironment();
+
+        DataStream&lt;Person&gt; flintstones = env.fromElements(
+            new Person("Fred", 35),
+            new Person("Wilma", 35),
+            new Person("Pebbles", 2));
+
+        DataStream&lt;Person&gt; adults = flintstones
+            .filter(person -&gt; person.age &gt;= 18);
+
+        adults.print();
+        env.execute("Adult Filter");
+    }
+}
+</pre>
+<p>Output (the numbers <code>1&gt;</code>, <code>2&gt;</code> indicate which subtask produced the output):</p>
+<pre>
+1&gt; Fred: age 35
+2&gt; Wilma: age 35
+</pre>
+<div class="tip"><strong>Tip:</strong> For real applications, replace <code>fromElements()</code> with a Kafka source and <code>print()</code> with a production sink. The same pipeline structure applies &mdash; source &rarr; transform &rarr; sink.</div>`},
+
+        {m:2,t:"Quiz: DataStream API",q:true},
+
+// ===== M3: Stateful Stream Processing =====
+        {m:3,t:"What Is State? Stateless vs Stateful Operators",c:`<h1>What Is State?</h1>
+<p>Many operations in a dataflow simply look at one individual event at a time (e.g., a parser or filter). These are <strong>stateless</strong>. Other operations remember information across multiple events &mdash; these are <strong>stateful</strong>.</p>
+<h2>Examples of Stateful Operations</h2>
+<ul>
+<li><strong>Pattern matching:</strong> Storing the sequence of events encountered so far</li>
+<li><strong>Aggregations:</strong> Holding pending aggregates per minute/hour/day</li>
+<li><strong>Machine learning:</strong> Maintaining current model parameters over a stream of data points</li>
+<li><strong>Deduplication:</strong> Remembering which keys have been seen</li>
+<li><strong>Windows:</strong> Buffering events until a window fires</li>
+</ul>
+<h2>Why Flink Must Manage State</h2>
+<p>Flink needs to be aware of state for three critical reasons:</p>
+<ol>
+<li><strong>Fault tolerance:</strong> State must be checkpointed to survive failures</li>
+<li><strong>Rescaling:</strong> State must be redistributed when parallelism changes</li>
+<li><strong>Queryable state:</strong> External systems can read state without going through the sink</li>
+</ol>
+<div class="note"><strong>Key insight:</strong> Even "simple" operations like <code>keyBy().maxBy()</code> are stateful internally &mdash; Flink transparently maintains the running maximum per key.</div>`},
+
+        {m:3,t:"Keyed State: Embedded Key/Value Store Model",c:`<h1>Keyed State</h1>
+<p>Keyed state is maintained in what can be thought of as an <strong>embedded key/value store</strong>. The state is partitioned and distributed strictly together with the streams read by the stateful operator.</p>
+<h2>How It Works</h2>
+<ul>
+<li>Access to key/value state is only possible on <strong>keyed streams</strong> (after a <code>keyBy()</code>)</li>
+<li>State access is restricted to values associated with the <strong>current event's key</strong></li>
+<li>Aligning keys of streams and state makes all state updates <strong>local operations</strong></li>
+<li>No transaction overhead &mdash; consistency is guaranteed by the key partitioning</li>
+</ul>
+<pre>
+// Conceptual model:
+// For key="Alice": {totalAmount: 150.0, count: 3}
+// For key="Bob":   {totalAmount: 75.0, count: 1}
+// Each parallel subtask owns a disjoint subset of keys
+
+ValueState&lt;Double&gt; totalAmount;  // one value per key
+// When processing key="Alice", totalAmount.value() returns 150.0
+// When processing key="Bob", totalAmount.value() returns 75.0
+</pre>
+<div class="real"><strong>Real:</strong> When you see <code>ValueState&lt;Boolean&gt; keyHasBeenSeen;</code> in a <code>RichFlatMapFunction</code>, understand this represents not a single Boolean, but a <em>distributed, sharded, key/value store</em> &mdash; one Boolean per distinct key.</div>`},
+
+        {m:3,t:"State Types: ValueState, ListState, MapState, ReducingState, AggregatingState",c:`<h1>Keyed State Types</h1>
+<p>Flink provides several types of keyed state, each optimized for different access patterns:</p>
+<table>
+<tr><th>State Type</th><th>Stores</th><th>Access Pattern</th></tr>
+<tr><td><code>ValueState&lt;T&gt;</code></td><td>Single value per key</td><td><code>value()</code>, <code>update(T)</code></td></tr>
+<tr><td><code>ListState&lt;T&gt;</code></td><td>List of elements per key</td><td><code>add(T)</code>, <code>get()</code> (Iterable), <code>update(List)</code></td></tr>
+<tr><td><code>MapState&lt;UK,UV&gt;</code></td><td>Map of key-value pairs per key</td><td><code>get(UK)</code>, <code>put(UK,UV)</code>, <code>entries()</code></td></tr>
+<tr><td><code>ReducingState&lt;T&gt;</code></td><td>Single aggregated value</td><td><code>add(T)</code> triggers ReduceFunction, <code>get()</code></td></tr>
+<tr><td><code>AggregatingState&lt;IN,OUT&gt;</code></td><td>Single aggregated value</td><td><code>add(IN)</code> triggers AggregateFunction, <code>get()</code></td></tr>
+</table>
+<h2>State Descriptors</h2>
+<p>Each state type requires a descriptor specifying the name and type information:</p>
+<pre>
+// In open():
+ValueStateDescriptor&lt;Long&gt; desc =
+    new ValueStateDescriptor&lt;&gt;("counter", Types.LONG);
+counter = getRuntimeContext().getState(desc);
+</pre>
+<div class="tip"><strong>Performance tip:</strong> With RocksDB backend, <code>MapState</code> and <code>ListState</code> are significantly more efficient than a <code>ValueState&lt;HashMap&gt;</code> or <code>ValueState&lt;List&gt;</code>, because each entry is a separate RocksDB object (no full ser/deser on every access).</div>`},
+
+        {m:3,t:"Operator State vs Keyed State",c:`<h1>Operator State vs Keyed State</h1>
+<p>Flink supports two categories of managed state:</p>
+<h2>Keyed State</h2>
+<ul>
+<li>Available only on <strong>keyed streams</strong> (after <code>keyBy()</code>)</li>
+<li>Partitioned by key &mdash; each subtask sees only its own keys</li>
+<li>Types: ValueState, ListState, MapState, ReducingState, AggregatingState</li>
+<li>Used in: most user functions (RichMapFunction, ProcessFunction, etc.)</li>
+</ul>
+<h2>Operator State (Non-Keyed State)</h2>
+<ul>
+<li>Bound to a <strong>parallel operator instance</strong> (subtask), not to a key</li>
+<li>Types: ListState, UnionListState, BroadcastState</li>
+<li>Used in: source/sink implementations, broadcast state pattern</li>
+<li>Redistribution modes: even-split (ListState) or full-broadcast (UnionListState)</li>
+</ul>
+<table>
+<tr><th>Aspect</th><th>Keyed State</th><th>Operator State</th></tr>
+<tr><td>Requires <code>keyBy()</code></td><td>Yes</td><td>No</td></tr>
+<tr><td>Partitioned by</td><td>Key (via Key Groups)</td><td>Subtask index</td></tr>
+<tr><td>Redistribution on rescale</td><td>Key Group reassignment</td><td>Even split or union</td></tr>
+<tr><td>Common use</td><td>Application logic</td><td>Connectors, broadcast patterns</td></tr>
+</table>`},
+
+        {m:3,t:"Key Groups: Atomic Unit of State Redistribution",c:`<h1>Key Groups</h1>
+<p>Key Groups are the <strong>atomic unit</strong> by which Flink redistributes keyed state when parallelism changes. Understanding them is essential for savepoint/checkpoint compatibility.</p>
+<h2>How Key Groups Work</h2>
+<ul>
+<li>There are exactly <strong>maxParallelism</strong> Key Groups (default: 128)</li>
+<li>Each key is assigned to a Key Group via: <code>keyGroupId = hash(key) % maxParallelism</code></li>
+<li>Key Groups are distributed evenly across subtasks: subtask <em>i</em> gets Key Groups <code>[i * maxP/p, (i+1) * maxP/p)</code></li>
+</ul>
+<div class="diagram">
+maxParallelism = 8, parallelism = 2:
+
+Subtask 0: Key Groups [0, 1, 2, 3]
+Subtask 1: Key Groups [4, 5, 6, 7]
+
+Rescale to parallelism = 4:
+Subtask 0: Key Groups [0, 1]
+Subtask 1: Key Groups [2, 3]
+Subtask 2: Key Groups [4, 5]
+Subtask 3: Key Groups [6, 7]
+</div>
+<h2>Important Constraints</h2>
+<ul>
+<li><code>maxParallelism</code> must be set before the first savepoint &mdash; changing it invalidates state</li>
+<li><code>parallelism</code> must be &le; <code>maxParallelism</code></li>
+<li>Choose <code>maxParallelism</code> that's a power of 2 for even distribution</li>
+</ul>
+<div class="warn"><strong>Caution:</strong> If you don't set maxParallelism explicitly, Flink uses a default. Once state is saved, you cannot change it without losing state compatibility.</div>`},
+
+        {m:3,t:"State TTL: Expiring Stale State",c:`<h1>State TTL (Time-To-Live)</h1>
+<p>When the key space is unbounded (e.g., user IDs that grow indefinitely), state will grow without bound unless cleaned up. Flink's <strong>State TTL</strong> feature automatically expires stale state entries.</p>
+<pre>
+StateTtlConfig ttlConfig = StateTtlConfig
+    .newBuilder(Duration.ofHours(1))           // expire after 1 hour
+    .setUpdateType(UpdateType.OnCreateAndWrite) // reset TTL on write
+    .setStateVisibility(
+        StateVisibility.NeverReturnExpired)     // never return stale data
+    .build();
+
+ValueStateDescriptor&lt;String&gt; desc =
+    new ValueStateDescriptor&lt;&gt;("myState", String.class);
+desc.enableTimeToLive(ttlConfig);
+</pre>
+<h2>TTL Configuration Options</h2>
+<table>
+<tr><th>Option</th><th>Values</th><th>Effect</th></tr>
+<tr><td>UpdateType</td><td><code>OnCreateAndWrite</code>, <code>OnReadAndWrite</code></td><td>When to reset the TTL timer</td></tr>
+<tr><td>StateVisibility</td><td><code>NeverReturnExpired</code>, <code>ReturnExpiredIfNotCleanedUp</code></td><td>Whether to return stale data before cleanup</td></tr>
+<tr><td>CleanupStrategy</td><td>IncrementalCleanup, RocksDB compaction filter</td><td>When expired entries are physically removed</td></tr>
+</table>
+<div class="note"><strong>Note:</strong> Expired state is not immediately removed &mdash; it's cleaned up lazily. With RocksDB, you can enable the compaction filter for background cleanup. With heap backend, incremental cleanup removes entries during state access.</div>`},
+
+        {m:3,t:"Broadcast State Pattern",c:`<h1>Broadcast State Pattern</h1>
+<p>The broadcast state pattern allows you to connect a <strong>broadcast stream</strong> (small, slow-changing reference data) with a regular keyed or non-keyed stream. The broadcast data is sent to ALL parallel subtasks.</p>
+<h2>Use Cases</h2>
+<ul>
+<li>Dynamic rule evaluation (rules broadcast, events processed against rules)</li>
+<li>Real-time feature enrichment (features broadcast, events enriched)</li>
+<li>Configuration updates without restart</li>
+</ul>
+<pre>
+// Define broadcast state descriptor
+MapStateDescriptor&lt;String, Rule&gt; ruleDesc =
+    new MapStateDescriptor&lt;&gt;("rules", String.class, Rule.class);
+
+// Create broadcast stream
+BroadcastStream&lt;Rule&gt; ruleBroadcast =
+    ruleStream.broadcast(ruleDesc);
+
+// Connect with main stream
+events.keyBy(e -&gt; e.userId)
+    .connect(ruleBroadcast)
+    .process(new RuleEvaluator());
+</pre>
+<div class="warn"><strong>Important:</strong> In <code>processElement()</code> (non-broadcast side), you can only <em>read</em> broadcast state. Only <code>processBroadcastElement()</code> can <em>write</em> to broadcast state. This prevents non-deterministic writes from parallel subtasks.</div>`},
+
+        {m:3,t:"Queryable State (Read-Only External Access)",c:`<h1>Queryable State</h1>
+<p>Flink's queryable state feature allows external applications to <strong>read managed keyed state</strong> from outside the running Flink job, without routing data through a traditional sink.</p>
+<h2>How It Works</h2>
+<ol>
+<li>Mark state as queryable in your operator: <code>desc.setQueryable("my-query-name")</code></li>
+<li>External client connects to a TaskManager and queries state by key</li>
+<li>The TaskManager routes the query to the subtask owning that key</li>
+</ol>
+<h2>Limitations</h2>
+<ul>
+<li><strong>Read-only:</strong> External systems can only read, not write state</li>
+<li><strong>No consistency guarantees:</strong> You might read state from different checkpoint epochs</li>
+<li><strong>Deprecated in practice:</strong> Many teams prefer periodic sink-to-database instead</li>
+</ul>
+<div class="note"><strong>Note:</strong> Queryable state is useful for debugging and monitoring dashboards, but for production read paths, consider writing state to an external store (Redis, database) via a sink and querying that instead. This gives you better consistency and availability guarantees.</div>
+<p>An alternative pattern is to use Flink's <strong>Table API</strong> with temporal joins for real-time enrichment rather than exposing internal state externally.</p>`},
+
+        {m:3,t:"State Rescaling: How Flink Redistributes On Parallelism Change",c:`<h1>State Rescaling</h1>
+<p>When you change the parallelism of a Flink job (e.g., scaling from 4 to 8 subtasks), Flink must <strong>redistribute state</strong> across the new set of parallel operators. The mechanism differs for keyed vs operator state.</p>
+<h2>Keyed State Rescaling</h2>
+<p>Uses Key Groups as the redistribution unit:</p>
+<div class="diagram">
+Before (parallelism=2):          After (parallelism=4):
+Subtask 0: KG[0,1,2,3]          Subtask 0: KG[0,1]
+Subtask 1: KG[4,5,6,7]          Subtask 1: KG[2,3]
+                                 Subtask 2: KG[4,5]
+                                 Subtask 3: KG[6,7]
+</div>
+<h2>Operator State Rescaling</h2>
+<table>
+<tr><th>Mode</th><th>Behavior on Rescale</th></tr>
+<tr><td><code>ListState</code> (even-split)</td><td>Items distributed evenly across new subtasks</td></tr>
+<tr><td><code>UnionListState</code></td><td>Each new subtask receives the <em>full union</em> of all items</td></tr>
+<tr><td><code>BroadcastState</code></td><td>Each new subtask receives a complete copy</td></tr>
+</table>
+<div class="real"><strong>Real:</strong> Kafka source connectors use <code>UnionListState</code> to store partition offsets. On rescale, every new subtask sees ALL partition offsets and picks up the ones it's now responsible for. This is why checkpoints with UnionListState succeed only if none or all subtasks using it have finished.</div>`},
+
+        {m:3,t:"Quiz: Stateful Stream Processing",q:true},
+
+// ===== M4: Timely Stream Processing — Event Time & Watermarks =====
+        {m:4,t:"Notions Of Time: Event Time vs Processing Time vs Ingestion Time",c:`<h1>Notions of Time</h1>
+<p>When referring to time in a streaming program, Flink distinguishes three notions:</p>
+<h2>Event Time</h2>
+<p>The time when an event <em>actually occurred</em>, typically embedded in the record (e.g., a timestamp field). Progress depends on the data, not on wall clocks. Enables <strong>deterministic, reproducible</strong> results and correct reprocessing of historical data.</p>
+<h2>Processing Time</h2>
+<p>The system time of the machine executing the operation. Simplest notion, lowest latency, but <strong>non-deterministic</strong> &mdash; results depend on when events arrive and how fast machines process them.</p>
+<h2>Ingestion Time</h2>
+<p>The time when Flink ingests the event at the source. A middle ground &mdash; but largely superseded by event time with proper watermarking.</p>
+<table>
+<tr><th>Property</th><th>Event Time</th><th>Processing Time</th></tr>
+<tr><td>Determinism</td><td>Yes (same input &rarr; same output)</td><td>No</td></tr>
+<tr><td>Handles out-of-order</td><td>Yes (via watermarks)</td><td>No</td></tr>
+<tr><td>Reprocessing historic data</td><td>Correct results</td><td>Different results each run</td></tr>
+<tr><td>Latency</td><td>Higher (must wait for watermarks)</td><td>Lower</td></tr>
+</table>
+<div class="note"><strong>Recommendation:</strong> Use event time for most applications. Only fall back to processing time when you need absolute minimum latency and can tolerate non-deterministic results.</div>`},
+
+        {m:4,t:"Why Event Time Matters: Determinism & Reprocessing",c:`<h1>Why Event Time Matters</h1>
+<p>Consider computing the maximum stock price during the first hour of trading. With <strong>processing time</strong>, the result depends on which events happen to be processed during that system-clock hour &mdash; network delays, backpressure, or reprocessing will give different answers each time.</p>
+<p>With <strong>event time</strong>, the result is determined by which events carry timestamps within that hour, regardless of when they arrive or are processed. Run the same pipeline on the same data tomorrow and you get the same result.</p>
+<h2>Reprocessing Guarantee</h2>
+<p>Event time is essential for:</p>
+<ul>
+<li><strong>Bug fixes:</strong> Fix logic and reprocess historical data with correct results</li>
+<li><strong>A/B testing:</strong> Run two pipeline versions on the same data, compare outputs</li>
+<li><strong>Backfilling:</strong> Process weeks of historical data in minutes (fast-forward through Kafka)</li>
+<li><strong>Auditing:</strong> Prove results are deterministic and reproducible</li>
+</ul>
+<div class="real"><strong>Real:</strong> In financial trading, event time processing is often mandated by regulators. You must be able to prove that your risk calculations produce the same results when reprocessed, regardless of infrastructure timing.</div>
+<div class="warn"><strong>Trade-off:</strong> Event time introduces latency because the system must wait for watermarks before triggering computations. This is the fundamental latency vs. completeness trade-off.</div>`},
+
+        {m:4,t:"What Is a Watermark? The Stream Sorter Thought Experiment",c:`<h1>The Stream Sorter Thought Experiment</h1>
+<p>Imagine building a <strong>stream sorter</strong> that reorders out-of-order events by timestamp:</p>
+<div class="diagram">
+Input (arrival order):  ... 23 19 22 24 21 14 17 13 12 15 9 11 7 2 4 &rarr;
+Desired output:         ... 2 4 7 9 11 12 13 14 15 17 19 21 22 23 24 &rarr;
+</div>
+<h2>Three Observations</h2>
+<ol>
+<li><strong>Buffering is necessary.</strong> You see event 4 first, but can't emit it &mdash; event 2 hasn't arrived yet. You must buffer and wait.</li>
+<li><strong>You can't wait forever.</strong> After seeing event 2, will event 1 ever arrive? Maybe. Maybe not. Waiting forever means no output ever.</li>
+<li><strong>You need a policy.</strong> Some mechanism must tell you: "it's safe to emit event 2 now &mdash; nothing earlier is coming."</li>
+</ol>
+<h2>That's Exactly What Watermarks Do</h2>
+<p>A <strong>watermark</strong> is a special timestamped element injected into the stream. A <code>Watermark(t)</code> is an assertion that the stream is <em>(probably)</em> complete up through time <em>t</em>. When the stream sorter sees <code>Watermark(2)</code>, it can safely emit all events with timestamp &le; 2.</p>
+<div class="note"><strong>Key insight:</strong> Watermarks define <em>when to stop waiting for earlier events</em>. They are the mechanism that lets Flink make progress in event time despite out-of-order arrival.</div>`},
+
+        {m:4,t:"Watermark(t) Semantics: \"No More Events ≤ t\"",c:`<h1>Watermark(t) Semantics</h1>
+<p>A <code>Watermark(t)</code> declares that <strong>event time has reached time <em>t</em></strong> in that stream, meaning there should be no more elements with a timestamp <em>t' &le; t</em>.</p>
+<h2>Formal Semantics</h2>
+<ul>
+<li>Watermarks flow as part of the data stream, carrying a timestamp</li>
+<li>When a watermark reaches an operator, it <strong>advances the operator's internal event time clock</strong> to the watermark's value</li>
+<li>This triggers any time-based computation waiting on that time (e.g., windows closing, timers firing)</li>
+</ul>
+<div class="diagram">
+Stream with watermarks (events in order):
+─── E(1) ── E(2) ── W(2) ── E(3) ── E(4) ── W(4) ── E(5) ─── &rarr;
+                     │                          │
+              "No more &le;2"              "No more &le;4"
+
+Stream with watermarks (out-of-order events):
+─── E(4) ── E(2) ── E(3) ── W(3) ── E(7) ── E(5) ── W(5) ─── &rarr;
+                              │                          │
+                     "No more &le;3"              "No more &le;5"
+</div>
+<div class="warn"><strong>Important:</strong> Watermarks are <em>heuristic</em> assertions. They say "probably no more events &le; t." Events that violate this are called <strong>late events</strong>. The system must handle them (drop, side output, or allowed lateness).</div>`},
+
+        {m:4,t:"Bounded-Out-Of-Orderness Watermarking Strategy",c:`<h1>Bounded-Out-Of-Orderness</h1>
+<p>The most common watermarking strategy assumes delays are bounded by some <strong>maximum out-of-orderness</strong>. If you set this to 5 seconds, you're saying: "events may arrive up to 5 seconds late, but no more."</p>
+<h2>How It Works</h2>
+<ul>
+<li>Track the maximum timestamp seen so far: <code>maxTimestamp</code></li>
+<li>Emit watermarks as: <code>Watermark(maxTimestamp - maxOutOfOrderness)</code></li>
+<li>This provides a buffer window for late-arriving events</li>
+</ul>
+<div class="diagram">
+maxOutOfOrderness = 5 seconds
+
+Events:    E(10) E(8) E(12) E(7) E(15) ...
+maxTS:      10    10   12    12   15
+Watermark:   5     5    7     7   10    ...
+
+At E(15): watermark = 15 - 5 = 10
+&rarr; Any event with timestamp &le; 10 is now considered "late"
+</div>
+<h2>Choosing the Right Value</h2>
+<ul>
+<li><strong>Too small:</strong> More data treated as late, potentially dropped or requiring side output handling</li>
+<li><strong>Too large:</strong> Higher latency before windows fire, more buffering required</li>
+<li><strong>Just right:</strong> Observe your actual data distribution and pick a value that covers the 99th percentile of delay</li>
+</ul>
+<div class="note"><strong>Note:</strong> Flink refers to this strategy as "bounded-out-of-orderness" watermarking. It's the default recommendation for most use cases.</div>`},
+
+        {m:4,t:"WatermarkStrategy API",c:`<h1>WatermarkStrategy API</h1>
+<p>In Flink 1.20, the <code>WatermarkStrategy</code> API is the standard way to configure timestamps and watermarks:</p>
+<pre>
+DataStream&lt;Event&gt; stream = ...;
+
+WatermarkStrategy&lt;Event&gt; strategy = WatermarkStrategy
+    .&lt;Event&gt;forBoundedOutOfOrderness(Duration.ofSeconds(20))
+    .withTimestampAssigner((event, timestamp) -&gt; event.timestamp);
+
+DataStream&lt;Event&gt; withWatermarks =
+    stream.assignTimestampsAndWatermarks(strategy);
+</pre>
+<h2>Built-In Strategies</h2>
+<table>
+<tr><th>Strategy</th><th>Usage</th></tr>
+<tr><td><code>forBoundedOutOfOrderness(Duration)</code></td><td>Most common. Set max expected delay.</td></tr>
+<tr><td><code>forMonotonousTimestamps()</code></td><td>Events arrive in order. Watermark = max timestamp (no delay).</td></tr>
+<tr><td><code>noWatermarks()</code></td><td>No watermarks emitted. Use for processing-time only pipelines.</td></tr>
+</table>
+<h2>withTimestampAssigner</h2>
+<p>Extracts the event timestamp from each record. This is called for every element and must be efficient.</p>
+<pre>
+.withTimestampAssigner(
+    (event, recordTimestamp) -&gt; event.getEventTime())
+</pre>
+<div class="tip"><strong>Tip:</strong> Assign watermarks as early as possible in the pipeline (ideally right after the source) before any operation that might shuffle or rebalance the stream.</div>`},
+
+        {m:4,t:"Watermarks In Parallel Streams: Min-of-Inputs Propagation",c:`<h1>Watermarks in Parallel Streams</h1>
+<p>In a parallel Flink application, watermarks are generated independently by each source subtask and propagate through the operator graph.</p>
+<h2>Generation</h2>
+<p>Each parallel source subtask generates its own watermarks based on the events it processes. Different subtasks may have different watermark values at any given time.</p>
+<h2>Propagation Rule: Min-of-Inputs</h2>
+<p>When an operator consumes <strong>multiple input streams</strong> (e.g., after keyBy, after union), its current event time is the <strong>minimum</strong> of its input streams' event times.</p>
+<div class="diagram">
+Source[0] watermark: 42      Source[1] watermark: 37
+         \                    /
+          \                  /
+           keyBy() / shuffle
+          /                  \
+Subtask A                  Subtask B
+  sees both                 sees both
+  min(42, 37) = 37          min(42, 37) = 37
+</div>
+<h2>Implications</h2>
+<ul>
+<li><strong>One slow partition holds back everything:</strong> If one Kafka partition has no data, its watermark stays at Long.MIN_VALUE, preventing all downstream operators from advancing event time</li>
+<li><strong>Idle sources:</strong> Use <code>WatermarkStrategy.withIdleness(Duration.ofMinutes(1))</code> to mark idle sources so they don't hold back watermarks</li>
+</ul>
+<div class="warn"><strong>Common pitfall:</strong> Empty Kafka partitions will stall your entire pipeline's event time progress. Always configure idleness timeout for sources that may have idle partitions.</div>`},
+
+        {m:4,t:"Latency vs Completeness Trade-Off",c:`<h1>Latency vs Completeness</h1>
+<p>Watermarks give you control over the fundamental trade-off between <strong>latency</strong> (how quickly you produce results) and <strong>completeness</strong> (how confident you are that all data is accounted for).</p>
+<h2>The Spectrum</h2>
+<div class="diagram">
+Aggressive watermarks         Conservative watermarks
+(short delay)                 (long delay)
+  │                                │
+  ▼                                ▼
+Fast results                  Slower results
+More late events              Fewer late events
+Less complete                 More complete
+</div>
+<h2>Strategies for Different Requirements</h2>
+<table>
+<tr><th>Approach</th><th>Latency</th><th>Completeness</th><th>Use Case</th></tr>
+<tr><td>Aggressive watermark + drop late</td><td>Low</td><td>Lower</td><td>Real-time dashboards</td></tr>
+<tr><td>Conservative watermark</td><td>High</td><td>Higher</td><td>Billing, compliance</td></tr>
+<tr><td>Aggressive + side output late events</td><td>Low</td><td>Full (with reprocessing)</td><td>Best of both worlds</td></tr>
+<tr><td>Aggressive + allowed lateness</td><td>Low initial, updates later</td><td>High</td><td>Real-time with corrections</td></tr>
+</table>
+<div class="real"><strong>Real:</strong> Many production systems use the "hybrid" approach: produce fast initial results, then issue corrections as late data arrives. This is supported natively by Flink's <code>allowedLateness</code> configuration on windows.</div>`},
+
+        {m:4,t:"Lateness Defined: Events Behind the Watermark",c:`<h1>Lateness</h1>
+<p><strong>Lateness</strong> is defined relative to watermarks. An event is <strong>late</strong> if it arrives after the watermark has already passed its timestamp.</p>
+<h2>Formal Definition</h2>
+<p>A <code>Watermark(t)</code> asserts the stream is complete up through time <em>t</em>. Any event following this watermark whose timestamp is &le; <em>t</em> is <strong>late</strong>.</p>
+<div class="diagram">
+Timeline: ── W(10) ── E(12) ── E(8) ── E(15) ── W(15) ── E(11) ──
+                                 │                          │
+                           Late! (8 &le; 10)           Late! (11 &le; 15)
+</div>
+<h2>Handling Late Events</h2>
+<p>Flink provides three mechanisms:</p>
+<ol>
+<li><strong>Drop (default):</strong> Late events are silently discarded</li>
+<li><strong>Side output:</strong> Route late events to a separate stream for later processing</li>
+<li><strong>Allowed lateness:</strong> Keep window state longer and re-fire on late arrivals</li>
+</ol>
+<pre>
+// Side output for late events
+OutputTag&lt;Event&gt; lateTag = new OutputTag&lt;Event&gt;("late"){};
+result = stream.keyBy(...).window(...)
+    .sideOutputLateData(lateTag)
+    .process(...);
+DataStream&lt;Event&gt; lateStream = result.getSideOutput(lateTag);
+</pre>
+<div class="note"><strong>Note:</strong> Late events are a natural consequence of the latency/completeness trade-off. Your watermarking strategy determines how much lateness to expect.</div>`},
+
+        {m:4,t:"Custom WatermarkGenerators: Periodic vs Punctuated",c:`<h1>Custom WatermarkGenerators</h1>
+<p>When built-in strategies aren't sufficient, you can implement custom watermark generators:</p>
+<h2>Periodic Generators</h2>
+<p>Called at regular intervals (configured via <code>env.getConfig().setAutoWatermarkInterval(200)</code>). Emits watermarks based on accumulated state (e.g., max timestamp seen).</p>
+<pre>
+public class MyPeriodicGenerator
+    implements WatermarkGenerator&lt;Event&gt; {
+    private long maxTimestamp = Long.MIN_VALUE;
+
+    @Override
+    public void onEvent(Event event, long ts, WatermarkOutput out) {
+        maxTimestamp = Math.max(maxTimestamp, event.timestamp);
+    }
+
+    @Override
+    public void onPeriodicEmit(WatermarkOutput out) {
+        out.emitWatermark(new Watermark(maxTimestamp - 5000));
+    }
+}
+</pre>
+<h2>Punctuated Generators</h2>
+<p>Emit watermarks in response to specific events (e.g., a special marker event in the stream). Useful when the data itself contains progress indicators.</p>
+<pre>
+public void onEvent(Event event, long ts, WatermarkOutput out) {
+    if (event.isWatermarkMarker()) {
+        out.emitWatermark(new Watermark(event.timestamp));
+    }
+}
+</pre>
+<div class="tip"><strong>Tip:</strong> Most applications should use <code>forBoundedOutOfOrderness()</code>. Only implement custom generators when you have domain-specific knowledge about data arrival patterns.</div>`},
+
+        {m:4,t:"Quiz: Event Time & Watermarks",q:true},
+
+// ===== M5: Windowing Deep Dive =====
+        {m:5,t:"Why Windows? Aggregating Unbounded Streams",c:`<h1>Why Windows?</h1>
+<p>In stream processing, you cannot count "all elements" because the stream is (potentially) infinite. Instead, you scope aggregations to bounded subsets called <strong>windows</strong>.</p>
+<h2>Questions Windows Answer</h2>
+<ul>
+<li>Number of page views <em>per minute</em></li>
+<li>Number of sessions <em>per user per week</em></li>
+<li>Maximum temperature <em>per sensor per minute</em></li>
+</ul>
+<h2>Window API Structure</h2>
+<pre>
+stream
+    .keyBy(&lt;key selector&gt;)     // partition by key
+    .window(&lt;window assigner&gt;) // define windows
+    .reduce|aggregate|process(&lt;window function&gt;); // compute
+</pre>
+<p>Windows depend on two principal abstractions:</p>
+<ol>
+<li><strong>Window Assigners:</strong> determine which window(s) each event belongs to</li>
+<li><strong>Window Functions:</strong> compute the result for each window when it fires</li>
+</ol>
+<div class="note"><strong>Note:</strong> Non-keyed windows use <code>.windowAll()</code> instead of <code>.window()</code>, but processing is NOT parallel &mdash; all events go to a single subtask.</div>`},
+
+        {m:5,t:"Window Assigners: Tumbling, Sliding, Session, Global",c:`<h1>Window Assigners</h1>
+<table>
+<tr><th>Type</th><th>Behavior</th><th>Example</th></tr>
+<tr><td><strong>Tumbling</strong></td><td>Fixed-size, non-overlapping</td><td><code>TumblingEventTimeWindows.of(Time.minutes(1))</code></td></tr>
+<tr><td><strong>Sliding</strong></td><td>Fixed-size, overlapping (size + slide)</td><td><code>SlidingEventTimeWindows.of(Time.minutes(1), Time.seconds(10))</code></td></tr>
+<tr><td><strong>Session</strong></td><td>Dynamic, activity-based (gap defines boundary)</td><td><code>EventTimeSessionWindows.withGap(Time.minutes(30))</code></td></tr>
+<tr><td><strong>Global</strong></td><td>All events in one window (needs custom trigger)</td><td><code>GlobalWindows.create()</code></td></tr>
+</table>
+<div class="diagram">
+Tumbling (no overlap):
+|----W1----|----W2----|----W3----|
+
+Sliding (overlap):
+|------W1------|
+     |------W2------|
+          |------W3------|
+
+Session (gap-based):
+|--W1--| gap |---W2---|  gap  |-W3-|
+</div>
+<p>All time-based assigners come in both <strong>event time</strong> and <strong>processing time</strong> flavors. Processing time windows cannot correctly handle out-of-order data or reprocess historical data &mdash; results will be non-deterministic.</p>
+<div class="warn"><strong>Caution:</strong> Count-based windows (e.g., <code>countWindow(100)</code>) won't fire until the batch is complete. There's no built-in timeout for partial windows.</div>`},
+
+        {m:5,t:"Window Functions: ProcessWindowFunction vs ReduceFunction vs AggregateFunction",c:`<h1>Window Functions</h1>
+<p>Three options for processing window contents, each with different trade-offs:</p>
+<h2>1. ProcessWindowFunction (Batch)</h2>
+<p>Receives an <code>Iterable</code> with <em>all</em> elements in the window. Most flexible but <strong>buffers everything in state</strong>.</p>
+<pre>
+.process(new ProcessWindowFunction&lt;Reading, Result, String, TimeWindow&gt;() {
+    public void process(String key, Context ctx,
+            Iterable&lt;Reading&gt; elements, Collector&lt;Result&gt; out) {
+        // Access to window metadata via ctx.window()
+        // Full access to all elements
+    }
+});
+</pre>
+<h2>2. ReduceFunction / AggregateFunction (Incremental)</h2>
+<p>Called on each incoming element. Only stores the <strong>aggregated result</strong>, not all elements. Much more efficient.</p>
+<pre>
+.reduce((r1, r2) -&gt; r1.value &gt; r2.value ? r1 : r2)
+</pre>
+<h2>3. Combined: Incremental + ProcessWindowFunction</h2>
+<p>Best of both worlds: incremental aggregation for efficiency, ProcessWindowFunction for window metadata access.</p>
+<pre>
+.reduce(new MyMax(), new MyWindowFunction())
+// MyMax reduces incrementally, MyWindowFunction receives only the final result
+</pre>
+<div class="tip"><strong>Best practice:</strong> Always prefer incremental aggregation (option 2 or 3). Only use standalone ProcessWindowFunction when you truly need all elements.</div>`},
+
+        {m:5,t:"Incremental Aggregation With ProcessWindowFunction",c:`<h1>Combined Pattern: Incremental + Process</h1>
+<p>The recommended pattern combines a <code>ReduceFunction</code> or <code>AggregateFunction</code> with a <code>ProcessWindowFunction</code>. The incremental function pre-aggregates; the process function adds window metadata.</p>
+<pre>
+input
+    .keyBy(x -&gt; x.key)
+    .window(TumblingEventTimeWindows.of(Time.minutes(1)))
+    .reduce(new MyReducingMax(), new MyWindowFunction());
+
+// Incremental: called on each element, keeps only the max
+private static class MyReducingMax implements ReduceFunction&lt;SensorReading&gt; {
+    public SensorReading reduce(SensorReading r1, SensorReading r2) {
+        return r1.value() &gt; r2.value() ? r1 : r2;
+    }
+}
+
+// Process: receives ONLY the pre-aggregated result (1 element!)
+private static class MyWindowFunction extends ProcessWindowFunction&lt;
+    SensorReading, Tuple3&lt;String, Long, SensorReading&gt;, String, TimeWindow&gt; {
+
+    public void process(String key, Context context,
+            Iterable&lt;SensorReading&gt; maxReading, Collector&lt;...&gt; out) {
+        SensorReading max = maxReading.iterator().next(); // exactly one!
+        out.collect(Tuple3.of(key, context.window().getEnd(), max));
+    }
+}
+</pre>
+<div class="note"><strong>Key insight:</strong> The <code>Iterable</code> in the <code>ProcessWindowFunction</code> will contain exactly <strong>one</strong> reading &mdash; the pre-aggregated result from <code>MyReducingMax</code>. This means only the final aggregate is buffered, not all events.</div>`},
+
+        {m:5,t:"Triggers & Evictors",c:`<h1>Triggers &amp; Evictors</h1>
+<h2>Triggers</h2>
+<p>A <strong>Trigger</strong> determines when a window function is called (when a window "fires"). The default triggers fire when the watermark passes the window's end time (event time) or when the system clock passes (processing time).</p>
+<p>Custom triggers can fire based on:</p>
+<ul>
+<li>Element count reaching a threshold</li>
+<li>Processing time timer</li>
+<li>Custom conditions (e.g., fire on every 100th element AND at window end)</li>
+</ul>
+<p>Trigger return values: <code>CONTINUE</code>, <code>FIRE</code>, <code>PURGE</code>, <code>FIRE_AND_PURGE</code></p>
+<h2>Evictors</h2>
+<p>An <strong>Evictor</strong> can remove elements from the window <em>before</em> and/or <em>after</em> the window function is applied. Flink provides built-in evictors:</p>
+<ul>
+<li><code>CountEvictor</code> &mdash; keep only the last N elements</li>
+<li><code>TimeEvictor</code> &mdash; keep only elements within a time range</li>
+<li><code>DeltaEvictor</code> &mdash; keep elements based on a delta threshold</li>
+</ul>
+<div class="warn"><strong>Caution:</strong> Using an Evictor prevents some optimizations. Flink must buffer ALL elements (can't do incremental aggregation) since the Evictor might remove any element. Only use evictors when truly necessary.</div>`},
+
+        {m:5,t:"Late Events: sideOutputLateData & allowedLateness",c:`<h1>Late Events in Windows</h1>
+<p>By default, late events (arriving after the watermark passed the window's end) are <strong>dropped</strong>. Flink provides two mechanisms for handling them:</p>
+<h2>Side Output Late Data</h2>
+<pre>
+OutputTag&lt;Event&gt; lateTag = new OutputTag&lt;Event&gt;("late"){};
+
+SingleOutputStreamOperator&lt;Result&gt; result = stream
+    .keyBy(...)
+    .window(...)
+    .sideOutputLateData(lateTag)
+    .process(...);
+
+DataStream&lt;Event&gt; lateStream = result.getSideOutput(lateTag);
+// Process late events separately (write to DLQ, alert, etc.)
+</pre>
+<h2>Allowed Lateness</h2>
+<pre>
+stream.keyBy(...)
+    .window(...)
+    .allowedLateness(Time.seconds(10))
+    .process(...);
+</pre>
+<p>With allowed lateness &gt; 0:</p>
+<ul>
+<li>Window state is retained for an additional period after the watermark passes</li>
+<li>Late events within the allowed lateness window cause the window function to fire again (<strong>late firing</strong>)</li>
+<li>Events beyond the allowed lateness are either dropped or sent to side output</li>
+</ul>
+<div class="note"><strong>Note:</strong> Late firings produce <em>updated</em> results for the same window. Downstream operators must handle these updates (e.g., upsert to a database, not append-only).</div>`},
+
+        {m:5,t:"Surprises: Sliding Copies, Epoch Alignment, Empty Windows, Late Merges",c:`<h1>Window Surprises</h1>
+<p>Several aspects of Flink's windowing may behave unexpectedly:</p>
+<h2>1. Sliding Windows Make Copies</h2>
+<p>Each event is copied into EVERY relevant window. 24-hour windows sliding every 15 minutes = <strong>96 copies</strong> per event. Memory impact can be massive.</p>
+<h2>2. Time Windows Aligned to Epoch</h2>
+<p>If you start an hour-long processing-time window at 12:05, the first window is only 55 minutes (closes at 1:00). Windows are aligned to Unix epoch, not application start time. Use the optional <code>offset</code> parameter to change alignment.</p>
+<h2>3. No Results for Empty Windows</h2>
+<p>Windows are only created when events are assigned to them. If no events arrive in a time period, <strong>no window exists</strong> and no result is produced. This can be surprising for dashboards expecting regular output.</p>
+<h2>4. Late Events Can Cause Late Merges (Session Windows)</h2>
+<p>Session windows can <strong>merge</strong>. A late event can bridge the gap between two previously separate sessions, causing them to merge into one. This late merge produces a new combined result.</p>
+<div class="warn"><strong>Sliding window cost:</strong> If you need <code>windowSize / slideInterval</code> &gt; 50 copies per event, consider an alternative design using ProcessFunction for better memory efficiency.</div>`},
+
+        {m:5,t:"Windows Can Follow Windows: Chaining Pattern",c:`<h1>Window Chaining Pattern</h1>
+<p>You can chain windows &mdash; the output of one window feeds into another:</p>
+<pre>
+stream
+    .keyBy(t -&gt; t.key)
+    .window(&lt;window assigner&gt;)
+    .reduce(&lt;reduce function&gt;)       // first-level aggregation
+    .windowAll(&lt;same window assigner&gt;)
+    .reduce(&lt;same reduce function&gt;);  // global aggregation
+</pre>
+<h2>How This Works</h2>
+<p>Events produced by a time window are assigned timestamps based on the <strong>end of the window</strong>. The downstream window (same or multiple duration) can correctly group these results.</p>
+<h2>Example Use Case</h2>
+<p>Compute per-key hourly aggregates, then compute global hourly aggregates:</p>
+<div class="diagram">
+Per-key windows:
+Key A: [sum=100, end=13:00] [sum=150, end=14:00]
+Key B: [sum=200, end=13:00] [sum=180, end=14:00]
+                    │
+                    ▼
+Global windowAll:
+[total=300, end=13:00] [total=330, end=14:00]
+</div>
+<div class="note"><strong>Note:</strong> Flink does NOT automatically do parallel pre-aggregation. You must explicitly implement the two-level pattern. The downstream window duration must be the same as (or a multiple of) the upstream window.</div>`},
+
+        {m:5,t:"Quiz: Windowing",q:true},
+
+// ===== M6: Checkpointing Mechanism & Chandy-Lamport Algorithm =====
+        {m:6,t:"State Persistence: Stream Replay + Checkpointing",c:`<h1>State Persistence</h1>
+<p>Flink implements fault tolerance using a combination of <strong>stream replay</strong> and <strong>checkpointing</strong>:</p>
+<h2>The Core Idea</h2>
+<ol>
+<li>A <strong>checkpoint</strong> marks a specific point in each input stream along with the corresponding state for each operator</li>
+<li>The streaming dataflow can be <strong>resumed from a checkpoint</strong> by restoring operator state and replaying records from the checkpoint position</li>
+<li>The <strong>checkpoint interval</strong> trades off fault tolerance overhead during execution with recovery time (how many records must be replayed)</li>
+</ol>
+<div class="diagram">
+Normal operation:
+Source &rarr; [offset: 1000] &rarr; Operator &rarr; [state: {count: 42}] &rarr; Sink
+
+Checkpoint taken at offset 1000, state {count: 42}
+
+After failure + recovery:
+Source &rarr; [rewind to 1000] &rarr; Operator &rarr; [restore {count: 42}] &rarr; Sink
+</div>
+<h2>Key Properties</h2>
+<ul>
+<li>Snapshots are <strong>asynchronous</strong> &mdash; stream processing continues during snapshot creation</li>
+<li>For small state, snapshots are very lightweight and can be drawn frequently</li>
+<li>State is stored at a configurable place (distributed filesystem recommended for production)</li>
+<li>By default, checkpointing is <strong>disabled</strong> &mdash; you must call <code>env.enableCheckpointing(interval)</code></li>
+</ul>`},
+
+        {m:6,t:"The Chandy-Lamport Algorithm: Original Distributed Snapshot Concept",c:`<h1>The Chandy-Lamport Algorithm</h1>
+<p>Flink's checkpointing is inspired by the <strong>Chandy-Lamport algorithm</strong> (1985), the foundational algorithm for consistent distributed snapshots.</p>
+<h2>The Problem</h2>
+<p>How do you capture a consistent global snapshot of a distributed system where processes communicate via message passing, without stopping the system?</p>
+<h2>The Chandy-Lamport Approach</h2>
+<ol>
+<li>An initiator process records its own state and sends a <strong>marker message</strong> on all outgoing channels</li>
+<li>When a process receives a marker on a channel for the first time, it records its own state and sends markers on all its outgoing channels</li>
+<li>For each channel, the process records all messages received <em>between</em> its own snapshot and the marker's arrival on that channel (these are <strong>in-flight messages</strong>)</li>
+<li>The global snapshot = all process states + all recorded channel states (in-flight messages)</li>
+</ol>
+<div class="diagram">
+Process A ──marker──&gt; Process B ──marker──&gt; Process C
+    │                     │                     │
+  record               record               record
+  state A              state B              state C
+    │                     │
+  + record             + record
+  channel msgs         channel msgs
+</div>
+<div class="note"><strong>Key insight:</strong> The marker serves as a <em>cut point</em> in the channel &mdash; everything before it belongs to "this" snapshot, everything after belongs to the next. Flink's checkpoint barriers serve the same purpose.</div>`},
+
+        {m:6,t:"Flink's Adaptation: Asynchronous Barrier Snapshotting",c:`<h1>Asynchronous Barrier Snapshotting</h1>
+<p>Flink's mechanism is described in the paper <em>"Lightweight Asynchronous Snapshots for Distributed Dataflows"</em> (2015). It adapts Chandy-Lamport specifically for Flink's execution model.</p>
+<h2>Key Differences from Original Chandy-Lamport</h2>
+<table>
+<tr><th>Aspect</th><th>Chandy-Lamport</th><th>Flink's Adaptation</th></tr>
+<tr><td>Markers</td><td>Sent by any process</td><td><strong>Barriers injected at sources</strong> by checkpoint coordinator</td></tr>
+<tr><td>Channel state</td><td>Records in-flight messages</td><td>Aligned: no in-flight recording (blocks input). Unaligned: records in-flight data</td></tr>
+<tr><td>State recording</td><td>Synchronous at marker receipt</td><td><strong>Asynchronous</strong> (copy-on-write, background upload)</td></tr>
+<tr><td>Topology</td><td>General graph</td><td>DAG (sources &rarr; sinks)</td></tr>
+</table>
+<h2>The "Asynchronous" Part</h2>
+<p>Everything to do with checkpointing can be done asynchronously:</p>
+<ul>
+<li>Barriers don't travel in lock step</li>
+<li>Operators can asynchronously snapshot their state (copy-on-write)</li>
+<li>State upload to durable storage happens in the background</li>
+</ul>
+<div class="note"><strong>Note:</strong> Since Flink 1.11, checkpoints can be taken with or without alignment. Aligned checkpoints (pre-1.11 default) are slightly different from Chandy-Lamport; unaligned checkpoints are actually <em>closer</em> to the original algorithm.</div>`},
+
+        {m:6,t:"Checkpoint Barriers: Injection, Flow & Barrier IDs",c:`<h1>Checkpoint Barriers</h1>
+<p><strong>Stream barriers</strong> are the core element of Flink's distributed snapshotting. They are injected into the data stream and flow with records as part of the stream.</p>
+<h2>Properties</h2>
+<ul>
+<li>Barriers <strong>never overtake records</strong> &mdash; they flow strictly in line</li>
+<li>A barrier separates records into: those belonging to the <strong>current snapshot</strong> vs. the <strong>next snapshot</strong></li>
+<li>Each barrier carries a <strong>snapshot ID</strong></li>
+<li>Multiple barriers from different snapshots can be in the stream simultaneously (concurrent checkpoints)</li>
+<li>Barriers are <strong>lightweight</strong> &mdash; they don't interrupt stream flow</li>
+</ul>
+<div class="diagram">
+Stream data flow with barriers:
+──[record]──[record]──[barrier n]──[record]──[record]──[barrier n+1]──
+                          │
+            "Everything before me = snapshot n"
+            "Everything after me = snapshot n+1"
+</div>
+<h2>Injection at Sources</h2>
+<p>The <strong>checkpoint coordinator</strong> (part of JobManager) instructs sources to inject barriers. The injection point <em>S<sub>n</sub></em> records the source's position (e.g., Kafka partition offset). This position is reported back to the coordinator.</p>
+<div class="note"><strong>Note:</strong> Once snapshot n is completed, the job will never ask the source for records before S<sub>n</sub>, because those records and their descendants have passed through the entire topology.</div>`},
+
+        {m:6,t:"Barrier Alignment: Multi-Input Operator Synchronization",c:`<h1>Barrier Alignment</h1>
+<p>Operators with <strong>multiple input streams</strong> must <em>align</em> barriers to ensure the snapshot is consistent. This is the key mechanism for exactly-once semantics.</p>
+<h2>The Alignment Process</h2>
+<ol>
+<li>Operator receives barrier <em>n</em> from input channel 1</li>
+<li>It <strong>stops processing</strong> records from channel 1, buffering them</li>
+<li>It continues processing records from channel 2 (which haven't sent barrier <em>n</em> yet)</li>
+<li>Barrier <em>n</em> arrives from channel 2</li>
+<li>Operator <strong>snapshots its state</strong></li>
+<li>Operator emits barrier <em>n</em> to all output channels</li>
+<li>Operator resumes processing buffered records from channel 1, then normal processing from both</li>
+</ol>
+<div class="diagram">
+Channel 1: ──[a]──[barrier n]──[b]──[c]──
+Channel 2: ──[x]──[y]──[z]──[barrier n]──[w]──
+
+Step 1: Barrier n arrives on Ch1
+Step 2: Buffer b,c from Ch1; process x,y,z from Ch2
+Step 3: Barrier n arrives on Ch2
+Step 4: Snapshot state (reflects a,x,y,z but NOT b,c,w)
+Step 5: Emit barrier n downstream
+Step 6: Process buffered b,c, then resume both channels
+</div>
+<div class="warn"><strong>Performance impact:</strong> Barrier alignment causes <strong>backpressure</strong> on faster channels. Under high backpressure, alignment time can reach hours. This is the primary motivation for unaligned checkpointing.</div>`},
+
+        {m:6,t:"Snapshotting Operator State: Copy-On-Write Mechanism",c:`<h1>Snapshotting Operator State</h1>
+<p>When an operator receives all barriers from its inputs, it snapshots its state. Flink uses a <strong>copy-on-write</strong> mechanism to avoid blocking stream processing during the (potentially expensive) state upload.</p>
+<h2>The Process</h2>
+<ol>
+<li>Operator receives all barriers, records its state</li>
+<li>A <strong>copy-on-write snapshot</strong> is created (logical copy, not physical)</li>
+<li>Operator emits barriers downstream and <strong>immediately resumes processing</strong></li>
+<li>In the background, the snapshot is <strong>asynchronously serialized and uploaded</strong> to durable storage</li>
+<li>Once upload completes, the operator acknowledges the checkpoint to the coordinator</li>
+<li>Old snapshot data is garbage collected</li>
+</ol>
+<h2>Copy-On-Write Semantics</h2>
+<p>The snapshot references the state data at the point in time the barriers aligned. If the operator modifies state while the upload is in progress, the copy-on-write mechanism ensures the old version (the snapshot) remains intact while the new version reflects ongoing processing.</p>
+<div class="note"><strong>Both state backends support async snapshots:</strong> HashMapStateBackend uses copy-on-write Java objects. EmbeddedRocksDBStateBackend uses RocksDB's native snapshot mechanism, which is extremely efficient for large state.</div>`},
+
+        {m:6,t:"What a Snapshot Contains",c:`<h1>What a Snapshot Contains</h1>
+<p>A completed checkpoint snapshot contains exactly two types of information:</p>
+<h2>1. Source Offsets</h2>
+<p>For each parallel stream data source, the <strong>position in the stream</strong> when the snapshot was started (e.g., Kafka partition offsets, file positions).</p>
+<h2>2. Operator State Pointers</h2>
+<p>For each operator, a <strong>pointer to the state</strong> that was stored as part of the snapshot (pointing to files in the checkpoint storage).</p>
+<div class="diagram">
+Checkpoint #42:
+┌─────────────────────────────────────────────┐
+│ Source[0]: Kafka partition 0, offset 15023   │
+│ Source[1]: Kafka partition 1, offset 8891    │
+│ Source[2]: Kafka partition 2, offset 12340   │
+│                                             │
+│ Operator "window-agg"[0]: hdfs://ckpt/42/op0│
+│ Operator "window-agg"[1]: hdfs://ckpt/42/op1│
+│ Operator "sink"[0]:       hdfs://ckpt/42/s0 │
+│ Operator "sink"[1]:       hdfs://ckpt/42/s1 │
+└─────────────────────────────────────────────┘
+</div>
+<h2>Checkpoint Completion Protocol</h2>
+<ol>
+<li>All sources inject barriers and report their offsets</li>
+<li>All operators snapshot state and acknowledge to the coordinator</li>
+<li>All sinks receive barriers from all inputs and acknowledge</li>
+<li>Coordinator marks checkpoint as <strong>completed</strong></li>
+</ol>
+<div class="note"><strong>Note:</strong> Flink uses the terms "snapshot" and "checkpoint" interchangeably. A "snapshot" can also refer to a "savepoint."</div>`},
+
+        {m:6,t:"Unaligned Checkpointing: In-Flight Data As State",c:`<h1>Unaligned Checkpointing</h1>
+<p>Introduced to address the backpressure problem with aligned checkpoints. The key insight: <strong>checkpoints can overtake in-flight data</strong> as long as that data becomes part of the operator state.</p>
+<h2>How It Works</h2>
+<ol>
+<li>Operator reacts to the <strong>first barrier</strong> in any input buffer</li>
+<li>It <strong>immediately forwards</strong> the barrier to downstream by appending it to the output buffer end</li>
+<li>It marks all <strong>overtaken records</strong> (in both input and output buffers) to be stored asynchronously as part of the checkpoint</li>
+<li>It snapshots its own operator state</li>
+</ol>
+<div class="diagram">
+Aligned (blocks fast input):
+Ch1: ──[a]──|barrier|──[b]──   &larr; BLOCKED until Ch2 barrier arrives
+Ch2: ──[x]──[y]──[z]──|barrier|──
+
+Unaligned (no blocking):
+Ch1: ──[a]──|barrier|──[b]──   &larr; NOT blocked!
+  &darr; immediately forward barrier
+  &darr; store overtaken [b] as in-flight state
+Ch2: ──[x]──[y]──[z]──|barrier|──
+  &darr; store overtaken [x][y][z] as in-flight state
+</div>
+<h2>Trade-offs</h2>
+<ul>
+<li><strong>Pro:</strong> Barrier reaches sinks as fast as possible &mdash; no alignment delay</li>
+<li><strong>Pro:</strong> Ideal for applications with slow data paths or high backpressure</li>
+<li><strong>Con:</strong> Larger checkpoint size (includes in-flight data)</li>
+<li><strong>Con:</strong> Additional I/O pressure for storing in-flight buffers</li>
+</ul>`},
+
+        {m:6,t:"Aligned vs Unaligned: When To Use Which",c:`<h1>Aligned vs Unaligned Checkpoints</h1>
+<table>
+<tr><th>Aspect</th><th>Aligned</th><th>Unaligned</th></tr>
+<tr><td>Barrier handling</td><td>Wait for all inputs</td><td>React to first barrier</td></tr>
+<tr><td>In-flight data</td><td>Not stored</td><td>Stored as checkpoint state</td></tr>
+<tr><td>Backpressure impact</td><td>Can stall checkpoints</td><td>Minimal impact</td></tr>
+<tr><td>Checkpoint size</td><td>Smaller</td><td>Larger (includes buffers)</td></tr>
+<tr><td>I/O overhead</td><td>Lower</td><td>Higher</td></tr>
+<tr><td>Recovery</td><td>Standard</td><td>Must restore in-flight data first</td></tr>
+<tr><td>Guarantee</td><td>Exactly-once or at-least-once</td><td>Exactly-once only</td></tr>
+<tr><td>Concurrent checkpoints</td><td>Multiple allowed</td><td>Only one at a time</td></tr>
+</table>
+<h2>Decision Matrix</h2>
+<ul>
+<li><strong>Use aligned</strong> when: backpressure is low, checkpoint times are acceptable, you want smaller checkpoints</li>
+<li><strong>Use unaligned</strong> when: backpressure causes checkpoint timeouts, alignment times reach minutes/hours</li>
+<li><strong>Enable via:</strong> <code>env.getCheckpointConfig().enableUnalignedCheckpoints()</code></li>
+</ul>
+<div class="note"><strong>Historical note:</strong> Unaligned checkpointing is actually <em>closer</em> to the original Chandy-Lamport algorithm (which records channel state). Aligned checkpointing avoids recording channel state by blocking input channels instead. Flink still injects barriers at sources (unlike Chandy-Lamport) to avoid overloading the checkpoint coordinator.</div>`},
+
+        {m:6,t:"Quiz: Checkpointing & Chandy-Lamport",q:true},
+
+// ===== M7: Savepoints & Snapshot Lifecycle =====
+        {m:7,t:"Snapshot Terminology: Snapshot vs Checkpoint vs Externalized Checkpoint vs Savepoint",c:`<h1>Snapshot Terminology</h1>
+<p>Flink uses several related terms that are important to distinguish:</p>
+<table>
+<tr><th>Term</th><th>Triggered By</th><th>Incremental?</th><th>Lifetime</th><th>Purpose</th></tr>
+<tr><td><strong>Snapshot</strong></td><td>Generic term</td><td>&mdash;</td><td>&mdash;</td><td>Any consistent image of job state</td></tr>
+<tr><td><strong>Checkpoint</strong></td><td>Automatic (periodic)</td><td>Yes (RocksDB)</td><td>Auto-expired (keep last N)</td><td>Fault recovery</td></tr>
+<tr><td><strong>Externalized Checkpoint</strong></td><td>Automatic</td><td>Yes (RocksDB)</td><td>Retained on cancellation</td><td>Recovery + manual restore</td></tr>
+<tr><td><strong>Savepoint</strong></td><td>Manual (user/API)</td><td>No (always full)</td><td>Never auto-expired</td><td>Upgrades, rescaling, migration</td></tr>
+</table>
+<h2>Key Differences</h2>
+<ul>
+<li><strong>Checkpoints</strong> are optimized for fast recovery. Flink manages their lifecycle automatically &mdash; only the N most recent are kept.</li>
+<li><strong>Savepoints</strong> are optimized for operational flexibility. They're always complete snapshots suitable for job upgrades, topology changes, and cluster migrations.</li>
+<li><strong>Externalized checkpoints</strong> bridge the gap: automatic like checkpoints but retained like savepoints.</li>
+</ul>
+<div class="note"><strong>Note:</strong> Savepoints are always <em>aligned</em> (even if unaligned checkpointing is enabled). This ensures they produce a clean, portable snapshot.</div>`},
+
+        {m:7,t:"Savepoints: Manually Triggered, Never Auto-Expired",c:`<h1>Savepoints</h1>
+<p>Savepoints are <strong>manually triggered checkpoints</strong> that take a complete snapshot and write it to a state backend. Unlike regular checkpoints, savepoints:</p>
+<ul>
+<li>Are <strong>triggered by the user</strong> (CLI, REST API, or programmatic API)</li>
+<li><strong>Don't automatically expire</strong> when newer snapshots are taken</li>
+<li>Are always <strong>full snapshots</strong> (never incremental)</li>
+<li>Are designed for <strong>operational purposes</strong>: upgrades, bug fixes, rescaling, A/B testing, migration</li>
+</ul>
+<h2>Triggering a Savepoint</h2>
+<pre>
+# CLI
+$ flink savepoint :jobId [:targetDirectory]
+
+# Cancel with savepoint (atomic stop + snapshot)
+$ flink cancel -s [:targetDirectory] :jobId
+
+# REST API
+$ curl -X POST /jobs/:jobId/savepoints -d '{"target-directory": "hdfs://..."}'
+</pre>
+<h2>Savepoint Directory Structure</h2>
+<pre>
+/savepoints/savepoint-abc123/
+  ├── _metadata        (job graph + state handle pointers)
+  └── (state files referenced by metadata)
+</pre>
+<div class="real"><strong>Real:</strong> Production workflows typically take a savepoint before every deployment, keep a rolling window of savepoints (e.g., last 5), and use them for rollback if the new version has issues.</div>`},
+
+        {m:7,t:"Checkpoints vs Savepoints: Optimization vs Operational Flexibility",c:`<h1>Checkpoints vs Savepoints</h1>
+<table>
+<tr><th>Property</th><th>Checkpoint</th><th>Savepoint</th></tr>
+<tr><td>Trigger</td><td>Automatic (periodic)</td><td>Manual (user/API)</td></tr>
+<tr><td>Incremental</td><td>Yes (EmbeddedRocksDB)</td><td>No (always full)</td></tr>
+<tr><td>Expiration</td><td>Auto-cleaned (keep last N)</td><td>Never auto-expired</td></tr>
+<tr><td>Optimized for</td><td>Fast recovery</td><td>Portability &amp; flexibility</td></tr>
+<tr><td>Format stability</td><td>May change between Flink versions</td><td>Stable across Flink versions</td></tr>
+<tr><td>Alignment</td><td>Aligned or unaligned</td><td>Always aligned</td></tr>
+<tr><td>Use case</td><td>Automatic fault recovery</td><td>Upgrades, rescaling, migration</td></tr>
+</table>
+<h2>When to Use Which</h2>
+<ul>
+<li><strong>Checkpoints:</strong> Always enabled in production for automatic recovery. Configure <code>enableCheckpointing(interval)</code>.</li>
+<li><strong>Externalized checkpoints:</strong> Enable <code>RETAIN_ON_CANCELLATION</code> as a safety net &mdash; you can resume from them if savepoint fails.</li>
+<li><strong>Savepoints:</strong> Take explicitly before deployments, rescaling, or any planned change.</li>
+</ul>
+<div class="tip"><strong>Best practice:</strong> Use externalized checkpoints as your "always available" fallback, and savepoints for planned operational changes. Don't rely solely on savepoints for fault recovery &mdash; they're too expensive to take frequently.</div>`},
+
+        {m:7,t:"Triggering & Resuming From Savepoints",c:`<h1>Triggering &amp; Resuming</h1>
+<h2>Triggering Savepoints</h2>
+<pre>
+# Take savepoint while job runs
+$ flink savepoint &lt;jobId&gt; hdfs:///savepoints/
+
+# Stop job with savepoint (graceful shutdown)
+$ flink stop --savepointPath hdfs:///savepoints/ &lt;jobId&gt;
+
+# Cancel with savepoint (immediate)
+$ flink cancel -s hdfs:///savepoints/ &lt;jobId&gt;
+</pre>
+<h2>Resuming from Savepoints</h2>
+<pre>
+# Start job from a savepoint
+$ flink run -s hdfs:///savepoints/savepoint-abc123 myJob.jar
+
+# With allow-non-restored state (skip state for removed operators)
+$ flink run -s hdfs:///savepoints/savepoint-abc123 \\
+    --allowNonRestoredState myJob.jar
+</pre>
+<h2>Programmatic API</h2>
+<pre>
+// Via REST
+POST /jobs/:jobId/savepoints
+{"target-directory": "hdfs:///savepoints/", "cancel-job": false}
+
+// Check status
+GET /jobs/:jobId/savepoints/:triggerId
+</pre>
+<div class="warn"><strong>Caution:</strong> <code>--allowNonRestoredState</code> silently drops state for operators that no longer exist. Only use this when you've intentionally removed operators and understand the state loss implications.</div>`},
+
+        {m:7,t:"Operator UIDs: Why They Matter For Savepoint Compatibility",c:`<h1>Operator UIDs</h1>
+<p>When restoring from a savepoint, Flink maps saved state to operators using <strong>Operator UIDs</strong>. This is one of the most critical operational details to get right.</p>
+<h2>The Problem</h2>
+<p>Without explicit UIDs, Flink auto-generates them based on the operator's position in the JobGraph. If you change the topology (add/remove/reorder operators), the auto-generated UIDs change, and Flink <strong>cannot map old state to new operators</strong>.</p>
+<h2>The Solution</h2>
+<pre>
+stream
+    .keyBy(e -&gt; e.key)
+    .map(new MyMapper()).uid("my-mapper")    // Explicit UID!
+    .filter(new MyFilter()).uid("my-filter") // Explicit UID!
+    .addSink(new MySink()).uid("my-sink");   // Explicit UID!
+</pre>
+<h2>Rules</h2>
+<ul>
+<li><strong>Always assign UIDs</strong> to every stateful operator (and ideally to all operators)</li>
+<li>UIDs must be <strong>unique within the job</strong></li>
+<li>UIDs must be <strong>stable across deployments</strong> (don't change them)</li>
+<li>UIDs are arbitrary strings &mdash; use descriptive names</li>
+</ul>
+<div class="warn"><strong>Anti-pattern:</strong> Forgetting <code>.uid()</code> is the #1 cause of savepoint restore failures. Once you have state saved without UIDs, you cannot retroactively add them without losing state.</div>`},
+
+        {m:7,t:"Upgrade & Rescaling Workflows Using Savepoints",c:`<h1>Upgrade &amp; Rescaling with Savepoints</h1>
+<h2>Application Upgrade Workflow</h2>
+<ol>
+<li>Take a savepoint: <code>flink savepoint &lt;jobId&gt; hdfs:///savepoints/</code></li>
+<li>Stop the running job: <code>flink cancel &lt;jobId&gt;</code> (or use stop with savepoint)</li>
+<li>Deploy new application version</li>
+<li>Resume from savepoint: <code>flink run -s &lt;savepointPath&gt; newVersion.jar</code></li>
+</ol>
+<h2>Rescaling Workflow</h2>
+<ol>
+<li>Take a savepoint</li>
+<li>Stop the job</li>
+<li>Restart with new parallelism: <code>flink run -s &lt;savepointPath&gt; -p 8 myJob.jar</code></li>
+<li>Flink automatically redistributes state across the new parallelism (via Key Groups)</li>
+</ol>
+<h2>What Changes Are Safe?</h2>
+<table>
+<tr><th>Change</th><th>Safe?</th><th>Notes</th></tr>
+<tr><td>Change parallelism</td><td>Yes</td><td>Within maxParallelism</td></tr>
+<tr><td>Add new stateful operator</td><td>Yes</td><td>Starts with empty state</td></tr>
+<tr><td>Remove operator</td><td>Yes*</td><td>Need <code>--allowNonRestoredState</code></td></tr>
+<tr><td>Change operator UID</td><td>No</td><td>State cannot be mapped</td></tr>
+<tr><td>Change maxParallelism</td><td>No</td><td>Key Groups incompatible</td></tr>
+<tr><td>Change state type (e.g., ValueState &rarr; MapState)</td><td>No</td><td>Serialization incompatible</td></tr>
+</table>`},
+
+        {m:7,t:"Quiz: Savepoints & Snapshot Lifecycle",q:true},
+
+// ===== M8: State Backends & Checkpoint Storage =====
+        {m:8,t:"State Backend Concept: Where Working State Lives",c:`<h1>State Backends</h1>
+<p>A <strong>state backend</strong> determines where and how the working copy of operator state is stored during normal processing. It also implements the logic to take point-in-time snapshots and store them as part of checkpoints.</p>
+<h2>Two Responsibilities</h2>
+<ol>
+<li><strong>Working state storage:</strong> Where state lives during normal processing (accessed on every event)</li>
+<li><strong>Snapshot mechanism:</strong> How state is serialized and uploaded during checkpoints</li>
+</ol>
+<p>Flink provides two state backend implementations:</p>
+<table>
+<tr><th>Backend</th><th>Working State</th><th>Snapshotting</th></tr>
+<tr><td><code>HashMapStateBackend</code></td><td>JVM Heap (Java objects)</td><td>Full snapshots only</td></tr>
+<tr><td><code>EmbeddedRocksDBStateBackend</code></td><td>Local disk (serialized bytes in RocksDB)</td><td>Full or Incremental</td></tr>
+</table>
+<div class="note"><strong>Important distinction:</strong> The state backend controls <em>working state</em> (local, fast access). The <em>checkpoint storage</em> (separate concept) controls where durable snapshots are persisted. Don't confuse the two.</div>`},
+
+        {m:8,t:"HashMapStateBackend: JVM Heap, Fast, GC-Bound",c:`<h1>HashMapStateBackend</h1>
+<p>Stores all working state as Java objects on the <strong>JVM heap</strong>.</p>
+<h2>Characteristics</h2>
+<ul>
+<li><strong>Fast:</strong> Direct object access, no serialization on read/write</li>
+<li><strong>Memory-limited:</strong> State size bounded by available JVM heap</li>
+<li><strong>GC-sensitive:</strong> Large heaps cause long GC pauses</li>
+<li><strong>Full snapshots only:</strong> Must serialize and upload entire state on every checkpoint</li>
+<li><strong>Asynchronous snapshots:</strong> Uses copy-on-write mechanism to avoid blocking processing</li>
+</ul>
+<h2>When to Use</h2>
+<ul>
+<li>State fits comfortably in memory</li>
+<li>Need maximum read/write performance</li>
+<li>Development and testing</li>
+<li>State size typically &lt; a few GB per TaskManager</li>
+</ul>
+<pre>
+env.setStateBackend(new HashMapStateBackend());
+</pre>
+<div class="warn"><strong>Caution:</strong> With large state, GC pauses can cause checkpoint timeouts and heartbeat failures, leading to TaskManager loss. Monitor GC closely.</div>
+<div class="real"><strong>Rule of thumb:</strong> The heap-based backend is roughly <strong>10x faster</strong> than RocksDB for state access, but limited by available memory.</div>`},
+
+        {m:8,t:"EmbeddedRocksDBStateBackend: Disk-Based, Incremental Snapshots",c:`<h1>EmbeddedRocksDBStateBackend</h1>
+<p>Stores working state in an embedded <strong>RocksDB</strong> instance on local disk. RocksDB is a fast key/value store using Log-Structured Merge (LSM) trees.</p>
+<h2>Characteristics</h2>
+<ul>
+<li><strong>Disk-based:</strong> State size limited only by local disk, not memory</li>
+<li><strong>Serialization overhead:</strong> Every state access involves serialization/deserialization</li>
+<li><strong>Incremental snapshots:</strong> Only uploads changed data since last checkpoint (SST files)</li>
+<li><strong>Scales to TB:</strong> Suitable for very large state</li>
+</ul>
+<h2>Incremental Checkpoints</h2>
+<p>RocksDB produces <strong>SST (Sorted String Table) files</strong>. Flink tracks which SST files are new since the last checkpoint and only uploads those. This makes checkpoints for large, slowly-changing state very efficient.</p>
+<pre>
+EmbeddedRocksDBStateBackend rocksDB = new EmbeddedRocksDBStateBackend(true);
+// true = enable incremental checkpointing
+env.setStateBackend(rocksDB);
+</pre>
+<h2>Performance Optimization</h2>
+<ul>
+<li>Use <code>MapState</code> and <code>ListState</code> instead of <code>ValueState&lt;Map&gt;</code> or <code>ValueState&lt;List&gt;</code></li>
+<li>Each MapState entry = separate RocksDB key (efficient random access)</li>
+<li>Configure RocksDB block cache size and write buffer size for your workload</li>
+</ul>`},
+
+        {m:8,t:"Checkpoint Storage: FileSystemCheckpointStorage vs JobManagerCheckpointStorage",c:`<h1>Checkpoint Storage</h1>
+<p><strong>Checkpoint storage</strong> defines where durable checkpoint snapshots are persisted (separate from the state backend which holds working state).</p>
+<table>
+<tr><th>Storage</th><th>Location</th><th>Use Case</th></tr>
+<tr><td><code>FileSystemCheckpointStorage</code></td><td>Distributed filesystem (HDFS, S3, GCS)</td><td><strong>Production</strong>: highly durable, supports large state</td></tr>
+<tr><td><code>JobManagerCheckpointStorage</code></td><td>JobManager JVM heap</td><td><strong>Testing only</strong>: small state, local development</td></tr>
+</table>
+<h2>Configuration</h2>
+<pre>
+// In code (Java)
+Configuration config = new Configuration();
+config.set(CheckpointingOptions.CHECKPOINT_STORAGE, "filesystem");
+config.set(CheckpointingOptions.CHECKPOINTS_DIRECTORY, "hdfs:///checkpoints");
+env.configure(config);
+
+// In flink-conf.yaml
+state.checkpoints.dir: hdfs:///checkpoints
+execution.checkpointing.storage: filesystem
+</pre>
+<div class="diagram">
+┌──────────────────────────────────────────┐
+│           State Backend                   │
+│  (working state: heap or RocksDB)        │
+│         ↓ checkpoint ↓                   │
+│     Checkpoint Storage                    │
+│  (durable: HDFS/S3 or JM heap)          │
+└──────────────────────────────────────────┘
+</div>
+<div class="warn"><strong>Production rule:</strong> Always use <code>FileSystemCheckpointStorage</code> with a distributed filesystem. <code>JobManagerCheckpointStorage</code> loses all state if the JobManager fails.</div>`},
+
+        {m:8,t:"Configuring State Backend & Checkpoint Storage",c:`<h1>Configuration Options</h1>
+<h2>In Code</h2>
+<pre>
+StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+
+// State backend
+env.setStateBackend(new EmbeddedRocksDBStateBackend(true)); // incremental
+
+// Checkpointing
+env.enableCheckpointing(60000); // every 60 seconds
+env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
+env.getCheckpointConfig().setMinPauseBetweenCheckpoints(500);
+env.getCheckpointConfig().setCheckpointTimeout(60000);
+env.getCheckpointConfig().setMaxConcurrentCheckpoints(1);
+env.getCheckpointConfig().setTolerableCheckpointFailureNumber(2);
+
+// Externalized checkpoints (survive job cancellation)
+env.getCheckpointConfig().setExternalizedCheckpointRetention(
+    ExternalizedCheckpointRetention.RETAIN_ON_CANCELLATION);
+
+// Checkpoint storage
+Configuration config = new Configuration();
+config.set(CheckpointingOptions.CHECKPOINT_STORAGE, "filesystem");
+config.set(CheckpointingOptions.CHECKPOINTS_DIRECTORY, "hdfs:///checkpoints");
+env.configure(config);
+</pre>
+<h2>In flink-conf.yaml (Cluster-Wide Defaults)</h2>
+<pre>
+state.backend.type: rocksdb
+state.backend.incremental: true
+state.checkpoints.dir: hdfs:///flink/checkpoints
+execution.checkpointing.interval: 60000
+execution.checkpointing.mode: EXACTLY_ONCE
+</pre>
+<div class="tip"><strong>Tip:</strong> Code settings override cluster defaults. Use cluster config for sensible defaults, code config for job-specific tuning.</div>`},
+
+        {m:8,t:"Choosing The Right Backend: Decision Matrix",c:`<h1>Decision Matrix</h1>
+<table>
+<tr><th>Criteria</th><th>HashMapStateBackend</th><th>EmbeddedRocksDBStateBackend</th></tr>
+<tr><td>State size</td><td>&lt; a few GB per TM</td><td>Up to TBs</td></tr>
+<tr><td>Access speed</td><td>~10x faster</td><td>Slower (ser/deser)</td></tr>
+<tr><td>GC pressure</td><td>High (large heap)</td><td>Low (off-heap)</td></tr>
+<tr><td>Incremental checkpoints</td><td>No</td><td>Yes</td></tr>
+<tr><td>Checkpoint size impact</td><td>Full state every time</td><td>Only changes</td></tr>
+<tr><td>Memory cost</td><td>State fully in memory</td><td>Block cache + indices in memory</td></tr>
+</table>
+<h2>Quick Decision Guide</h2>
+<ul>
+<li><strong>Small state, need speed:</strong> HashMapStateBackend</li>
+<li><strong>Large state (GBs+):</strong> EmbeddedRocksDBStateBackend with incremental checkpoints</li>
+<li><strong>Slowly-changing large state:</strong> EmbeddedRocksDB + incremental (biggest win &mdash; tiny checkpoint diffs)</li>
+<li><strong>Not sure:</strong> Start with EmbeddedRocksDB &mdash; it's the safer default for production</li>
+</ul>
+<div class="real"><strong>Real:</strong> Most production Flink deployments use EmbeddedRocksDBStateBackend because it provides a predictable memory footprint and incremental checkpointing. The 10x performance difference rarely matters because state access is typically not the bottleneck &mdash; serialization, I/O, and business logic usually dominate.</div>`},
+
+        {m:8,t:"Quiz: State Backends & Checkpoint Storage",q:true},
+
+// ===== M9: Fault Tolerance Guarantees & Recovery =====
+        {m:9,t:"Recovery Flow: Redeploy, Restore State, Replay Sources",c:`<h1>Recovery Flow</h1>
+<p>When a failure occurs, Flink executes a straightforward recovery process:</p>
+<h2>Steps</h2>
+<ol>
+<li><strong>Detect failure:</strong> TaskManager heartbeat timeout, task exception, or OOM</li>
+<li><strong>Select checkpoint:</strong> Flink selects the latest <strong>completed</strong> checkpoint <em>k</em></li>
+<li><strong>Redeploy tasks:</strong> The entire distributed dataflow is redeployed</li>
+<li><strong>Restore state:</strong> Each operator receives the state snapshotted in checkpoint <em>k</em></li>
+<li><strong>Reset sources:</strong> Sources rewind to the positions recorded in checkpoint <em>k</em> (e.g., Kafka offsets)</li>
+<li><strong>Resume processing:</strong> Processing resumes from checkpoint <em>k</em> as if nothing happened</li>
+</ol>
+<div class="diagram">
+Failure detected!
+  │
+  ▼
+Select latest completed checkpoint (k=42)
+  │
+  ▼
+Redeploy all tasks
+  │
+  ├─&gt; Restore Source[0]: Kafka offset = 15023
+  ├─&gt; Restore Source[1]: Kafka offset = 8891
+  ├─&gt; Restore Operator "agg": state from hdfs://ckpt/42/agg
+  └─&gt; Restore Sink: state from hdfs://ckpt/42/sink
+  │
+  ▼
+Resume processing (replay from offsets)
+</pre>
+</div>
+<div class="note"><strong>Incremental recovery:</strong> If state was snapshotted incrementally (RocksDB), the operator starts with the latest full snapshot and applies incremental updates to reconstruct the state.</div>`},
+
+        {m:9,t:"Exactly Once vs At Least Once vs At Most Once",c:`<h1>Processing Guarantees</h1>
+<p>Flink supports three guarantee levels, depending on configuration:</p>
+<h2>At Most Once</h2>
+<p>Flink makes no effort to recover from failures. Events may be <strong>lost</strong> on failure. Simplest, lowest overhead. Use only when data loss is acceptable.</p>
+<h2>At Least Once</h2>
+<p>No events are lost, but events may be <strong>duplicated</strong>. Achieved by disabling barrier alignment (<code>CheckpointingMode.AT_LEAST_ONCE</code>). Better performance than exactly-once for some workloads.</p>
+<h2>Exactly Once</h2>
+<p>No events are lost or duplicated. Every event affects Flink's managed state <strong>exactly once</strong>. Achieved via aligned checkpointing (barrier alignment ensures consistent snapshots).</p>
+<div class="warn"><strong>Important nuance:</strong> "Exactly once" means every event affects <em>state</em> exactly once. It does NOT mean every event is <em>processed</em> exactly once &mdash; on recovery, events between the checkpoint and the failure ARE reprocessed, but the state is restored to the checkpoint, so the net effect is as if each event was processed once.</div>
+<div class="note"><strong>Note:</strong> For embarrassingly parallel operations (map, flatMap, filter with no shuffle), even AT_LEAST_ONCE mode gives effectively exactly-once guarantees, because barrier alignment only matters at multi-input operators.</div>`},
+
+        {m:9,t:"Exactly Once End-To-End: Replayable Sources + Transactional Sinks",c:`<h1>End-to-End Exactly Once</h1>
+<p>Flink's internal exactly-once (via checkpoints) only guarantees state consistency. For <strong>end-to-end exactly-once</strong> &mdash; where external systems see each event's effect exactly once &mdash; additional requirements must be met:</p>
+<h2>Two Requirements</h2>
+<ol>
+<li><strong>Replayable sources:</strong> Must be able to rewind to checkpoint positions. Kafka, Kinesis, and file-based sources support this.</li>
+<li><strong>Transactional or idempotent sinks:</strong>
+  <ul>
+  <li><strong>Transactional (two-phase commit):</strong> Sink pre-commits data, then commits only after checkpoint completes (e.g., <code>TwoPhaseCommitSinkFunction</code>, Kafka producer with transactions)</li>
+  <li><strong>Idempotent:</strong> Writing the same result multiple times produces the same effect (e.g., upsert to a database with a natural key)</li>
+  </ul>
+</li>
+</ol>
+<div class="diagram">
+┌──────────┐    ┌─────────────┐    ┌──────────────────┐
+│  Kafka   │&rarr;  │    Flink    │&rarr;  │ Transactional    │
+│ (replay) │    │ (exactly-   │    │ Sink (commit on  │
+│          │    │  once state)│    │ checkpoint done) │
+└──────────┘    └─────────────┘    └──────────────────┘
+  Replayable       Internal            External
+  Source           Exactly Once       Exactly Once
+</div>`},
+
+        {m:9,t:"Unaligned Recovery: Restoring In-Flight Data",c:`<h1>Unaligned Recovery</h1>
+<p>When recovering from a checkpoint that used unaligned checkpointing, there's an additional step compared to aligned recovery:</p>
+<h2>Recovery Steps</h2>
+<ol>
+<li>Standard recovery: redeploy tasks, restore operator state</li>
+<li><strong>Additional step:</strong> Restore in-flight data (the buffered records that were stored as part of the unaligned checkpoint)</li>
+<li>Operators process the restored in-flight data <strong>before</strong> processing any new data from upstream</li>
+<li>Resume normal processing from sources</li>
+</ol>
+<h2>Implications</h2>
+<ul>
+<li><strong>Larger checkpoints:</strong> In-flight buffers can be substantial, especially under backpressure</li>
+<li><strong>Slower recovery start:</strong> Must inject in-flight data back into operator buffers before resuming</li>
+<li><strong>Consistent:</strong> The combination of operator state + in-flight data + source offsets forms a complete, consistent snapshot</li>
+</ul>
+<div class="note"><strong>Note:</strong> Aside from restoring in-flight data first, unaligned recovery follows the same steps as aligned recovery. The end result is identical &mdash; a consistent restored state.</div>`},
+
+        {m:9,t:"Restart Strategies: Fixed-Delay, Failure-Rate, No-Restart",c:`<h1>Restart Strategies</h1>
+<p>Flink's restart strategies control how the job reacts to task failures:</p>
+<table>
+<tr><th>Strategy</th><th>Behavior</th><th>Configuration</th></tr>
+<tr><td><strong>Fixed-Delay</strong></td><td>Restart up to N times with fixed delay between restarts</td><td><code>RestartStrategies.fixedDelayRestart(3, Time.seconds(10))</code></td></tr>
+<tr><td><strong>Failure-Rate</strong></td><td>Restart as long as failure rate doesn't exceed threshold</td><td><code>RestartStrategies.failureRateRestart(3, Time.minutes(5), Time.seconds(10))</code></td></tr>
+<tr><td><strong>Exponential-Delay</strong></td><td>Increasing delay between restarts (with jitter)</td><td>Configured via <code>flink-conf.yaml</code></td></tr>
+<tr><td><strong>No-Restart</strong></td><td>Job fails immediately on any failure</td><td><code>RestartStrategies.noRestart()</code></td></tr>
+</table>
+<h2>Default Behavior</h2>
+<ul>
+<li>If checkpointing is <strong>enabled</strong>: fixed-delay restart with <code>Integer.MAX_VALUE</code> attempts and 1-second delay</li>
+<li>If checkpointing is <strong>disabled</strong>: no restart (job fails on first error)</li>
+</ul>
+<div class="tip"><strong>Production recommendation:</strong> Use <code>failure-rate</code> strategy. It allows recovery from transient failures while failing fast on persistent issues. Example: max 3 failures per 5 minutes, 10-second delay between restarts.</div>`},
+
+        {m:9,t:"Batch Execution Mode: No Checkpoints, Full Replay",c:`<h1>Batch Execution Mode</h1>
+<p>Flink handles batch programs as a special case of streaming, using <code>RuntimeExecutionMode.BATCH</code>. The fault tolerance approach differs significantly:</p>
+<h2>Key Differences from Streaming Mode</h2>
+<table>
+<tr><th>Aspect</th><th>Streaming Mode</th><th>Batch Mode</th></tr>
+<tr><td>Checkpointing</td><td>Enabled (periodic)</td><td><strong>Disabled</strong></td></tr>
+<tr><td>Recovery method</td><td>Restore checkpoint + replay from offset</td><td><strong>Full replay</strong> from the beginning</td></tr>
+<tr><td>State backend</td><td>Key/value indexes (HashMap or RocksDB)</td><td>Simplified in-memory/out-of-core structures</td></tr>
+<tr><td>Data processing order</td><td>Arrival order (per-key)</td><td>Sorted by key (enables sort-merge joins)</td></tr>
+<tr><td>Cost model</td><td>Checkpoint overhead during execution</td><td>No overhead; higher recovery cost</td></tr>
+</table>
+<h2>When Batch Mode Makes Sense</h2>
+<ul>
+<li>Input is <strong>bounded</strong> (finite, known size)</li>
+<li>Full replay on failure is acceptable (input is re-readable)</li>
+<li>You want the simplicity and efficiency of batch processing</li>
+<li>The same Flink application should handle both bounded and unbounded inputs</li>
+</ul>
+<div class="note"><strong>Note:</strong> Batch mode is possible because inputs are bounded &mdash; full replay is feasible. For unbounded streams, checkpointing is essential because you can't replay an infinite stream.</div>`},
+
+        {m:9,t:"Quiz: Fault Tolerance & Recovery",q:true},
+
+// ===== M10: ETL & Event-Driven Patterns =====
+        {m:10,t:"Stateless Transformations: map, flatMap, filter In Practice",c:`<h1>Stateless Transformations in Practice</h1>
+<p>Stateless transformations form the backbone of ETL pipelines. They process each event independently with no memory of previous events.</p>
+<h2>map() — Enrichment Pattern</h2>
+<pre>
+// Add computed fields to each event
+DataStream&lt;EnrichedRide&gt; enriched = rides
+    .map(ride -&gt; {
+        EnrichedRide e = new EnrichedRide(ride);
+        e.startCell = GeoUtils.mapToGridCell(ride.startLon, ride.startLat);
+        e.endCell = GeoUtils.mapToGridCell(ride.endLon, ride.endLat);
+        return e;
+    });
+</pre>
+<h2>flatMap() — Filter + Transform in One</h2>
+<pre>
+// Filter and transform in a single operation (zero or one output per input)
+DataStream&lt;EnrichedRide&gt; enrichedNYC = rides
+    .flatMap((ride, out) -&gt; {
+        if (GeoUtils.isInNYC(ride.startLon, ride.startLat)) {
+            out.collect(new EnrichedRide(ride));
+        }
+    });
+</pre>
+<h2>keyBy() + Aggregation — Stateful Under the Hood</h2>
+<pre>
+// "Stateless" in user code, but Flink manages state internally
+minutesByStartCell
+    .keyBy(value -&gt; value.f0)  // network shuffle
+    .maxBy(1)                   // Flink tracks running max per key
+    .print();
+</pre>
+<div class="note"><strong>Note:</strong> Even "simple" aggregations like <code>maxBy()</code> are stateful internally &mdash; Flink tracks the maximum per key. Think about whether your key space is bounded to avoid unbounded state growth.</div>`},
+
+        {m:10,t:"Keyed Streams & Aggregations: ETL Pipeline Pattern",c:`<h1>Keyed Streams &amp; ETL Patterns</h1>
+<p>A typical Flink ETL pipeline follows this pattern:</p>
+<div class="diagram">
+Source &rarr; Parse/Validate &rarr; Enrich &rarr; keyBy(key) &rarr; Aggregate &rarr; Sink
+ │           │              │         │              │         │
+ │     (stateless)    (stateless   (shuffle)    (stateful)  (output)
+ │                    or lookup)
+</div>
+<h2>Aggregation Types on KeyedStreams</h2>
+<table>
+<tr><th>Method</th><th>Description</th><th>State Impact</th></tr>
+<tr><td><code>sum(field)</code></td><td>Running sum per key</td><td>Single value per key</td></tr>
+<tr><td><code>min(field)</code></td><td>Running minimum per key</td><td>Single value per key</td></tr>
+<tr><td><code>max(field)</code></td><td>Running maximum per key</td><td>Single value per key</td></tr>
+<tr><td><code>minBy(field)</code></td><td>Element with minimum value</td><td>Full element per key</td></tr>
+<tr><td><code>maxBy(field)</code></td><td>Element with maximum value</td><td>Full element per key</td></tr>
+<tr><td><code>reduce(fn)</code></td><td>Custom reduction</td><td>Single reduced value per key</td></tr>
+</table>
+<div class="warn"><strong>Unbounded state warning:</strong> If the key space grows without bound (e.g., user IDs, session IDs), state will grow indefinitely. Use State TTL, windows with bounded retention, or periodic cleanup via ProcessFunction timers.</div>`},
+
+        {m:10,t:"ProcessFunction: Timers, Side Outputs & Low-Level Control",c:`<h1>ProcessFunction</h1>
+<p>The <code>ProcessFunction</code> (and <code>KeyedProcessFunction</code>) is Flink's most powerful building block. It combines event processing with <strong>timers</strong> and <strong>state</strong>.</p>
+<h2>Key Capabilities</h2>
+<ul>
+<li><code>processElement()</code> &mdash; called for each incoming event</li>
+<li><code>onTimer()</code> &mdash; called when registered timers fire</li>
+<li>Access to <code>TimerService</code> for registering event time and processing time timers</li>
+<li>Access to <code>Context</code> for current key, timestamp, and side outputs</li>
+</ul>
+<pre>
+public class PseudoWindow extends KeyedProcessFunction&lt;Long, TaxiFare, Result&gt; {
+    private MapState&lt;Long, Float&gt; sumOfTips;
+
+    public void open(Configuration conf) {
+        sumOfTips = getRuntimeContext().getMapState(
+            new MapStateDescriptor&lt;&gt;("sumOfTips", Long.class, Float.class));
+    }
+
+    public void processElement(TaxiFare fare, Context ctx, Collector&lt;Result&gt; out) {
+        long endOfWindow = computeWindowEnd(fare.getEventTime());
+        ctx.timerService().registerEventTimeTimer(endOfWindow);
+        Float sum = sumOfTips.get(endOfWindow);
+        sumOfTips.put(endOfWindow, (sum == null ? 0 : sum) + fare.tip);
+    }
+
+    public void onTimer(long timestamp, OnTimerContext ctx, Collector&lt;Result&gt; out) {
+        out.collect(new Result(ctx.getCurrentKey(), timestamp, sumOfTips.get(timestamp)));
+        sumOfTips.remove(timestamp);
+    }
+}
+</pre>`},
+
+        {m:10,t:"Side Outputs: Routing Late Data & Multi-Output Splits",c:`<h1>Side Outputs</h1>
+<p>Side outputs allow a Flink operator to produce <strong>multiple output streams</strong>. Common use cases include routing late events, error records, or splitting a stream by criteria.</p>
+<h2>Defining a Side Output</h2>
+<pre>
+// Define an OutputTag (the generic type must match the side output type)
+private static final OutputTag&lt;TaxiFare&gt; lateFares =
+    new OutputTag&lt;TaxiFare&gt;("lateFares") {};
+</pre>
+<h2>Emitting to Side Output</h2>
+<pre>
+// In processElement():
+if (eventTime &lt;= timerService.currentWatermark()) {
+    // Late event &rarr; send to side output
+    ctx.output(lateFares, fare);
+} else {
+    // Normal processing
+    out.collect(result);
+}
+</pre>
+<h2>Consuming Side Output</h2>
+<pre>
+SingleOutputStreamOperator&lt;Result&gt; mainResult = fares
+    .keyBy(fare -&gt; fare.driverId)
+    .process(new MyProcessFunction());
+
+// Get the side output stream
+DataStream&lt;TaxiFare&gt; lateStream = mainResult.getSideOutput(lateFares);
+lateStream.addSink(deadLetterQueueSink);
+</pre>
+<div class="tip"><strong>Tip:</strong> Side outputs are also great for splitting a stream into multiple paths based on event type, without processing the stream multiple times.</div>`},
+
+        {m:10,t:"Connected Streams Pattern: Enrichment & Dynamic Rules",c:`<h1>Connected Streams: Enrichment &amp; Dynamic Rules</h1>
+<p>The connected streams pattern is powerful for two major use cases:</p>
+<h2>1. Stream Enrichment</h2>
+<p>Combine a high-volume event stream with a low-volume reference data stream (e.g., user profiles, product catalog). The reference data is broadcast and stored in state; events are enriched against it.</p>
+<div class="diagram">
+Events stream ──┐
+                 ├──&gt; CoProcessFunction ──&gt; Enriched events
+Rules stream  ──┘     (shared state)
+</div>
+<h2>2. Dynamic Rule Evaluation</h2>
+<p>Stream rules or thresholds that change at runtime, evaluate events against the latest rules without restarting the job.</p>
+<h2>Important Caveats</h2>
+<ul>
+<li><strong>No ordering guarantees</strong> between the two inputs &mdash; <code>flatMap1</code> and <code>flatMap2</code> are called in arbitrary order</li>
+<li>If a rule must be loaded before any events are processed, you need to <strong>buffer events in state</strong> until the rule arrives</li>
+<li>Both streams must be keyed in a <strong>compatible way</strong> (same key type and partitioning)</li>
+</ul>
+<div class="real"><strong>Real:</strong> Fraud detection systems often use this pattern: business rules are streamed from a configuration service, and financial transactions are evaluated against the latest rules in real-time. Rule changes take effect within seconds without any job restart.</div>`},
+
+        {m:10,t:"Quiz: ETL & Event-Driven Patterns",q:true},
+
+// ===== M11: Ops, Monitoring & Best Practices =====
+        {m:11,t:"Checkpoint Monitoring: Web UI Metrics & Alerts",c:`<h1>Checkpoint Monitoring</h1>
+<p>Flink's Web UI provides comprehensive checkpoint monitoring. Key metrics to watch:</p>
+<h2>Critical Metrics</h2>
+<table>
+<tr><th>Metric</th><th>What It Tells You</th><th>Alert Threshold</th></tr>
+<tr><td><strong>Checkpoint Duration</strong></td><td>End-to-end time for checkpoint completion</td><td>Approaching checkpoint timeout</td></tr>
+<tr><td><strong>Checkpoint Size</strong></td><td>Total state size per checkpoint</td><td>Sudden growth indicates state leak</td></tr>
+<tr><td><strong>Alignment Duration</strong></td><td>Time spent in barrier alignment</td><td>Growing = backpressure issue</td></tr>
+<tr><td><strong>Checkpoints Failed</strong></td><td>Number of failed/expired checkpoints</td><td>Any failures need investigation</td></tr>
+<tr><td><strong>End-to-End Duration</strong></td><td>From trigger to acknowledgment</td><td>Consistently near timeout</td></tr>
+<tr><td><strong>Processed/Buffered Data</strong></td><td>Data during alignment</td><td>Large buffers = alignment delay</td></tr>
+</table>
+<h2>Web UI Checkpoint Tab</h2>
+<p>The checkpoint tab shows: checkpoint history (completed/failed/in-progress), per-subtask breakdown, state size per operator, alignment duration per subtask. Use this to identify slow operators or imbalanced state distribution.</p>
+<div class="tip"><strong>Tip:</strong> Set up alerts on checkpoint duration and failure count. A growing checkpoint duration often predicts a checkpoint timeout failure before it happens.</div>`},
+
+        {m:11,t:"Tuning Checkpoints: Interval, Timeout, Concurrent, Min Pause",c:`<h1>Tuning Checkpoints</h1>
+<h2>Key Parameters</h2>
+<pre>
+env.enableCheckpointing(60000);  // interval: 60 seconds
+
+CheckpointConfig cfg = env.getCheckpointConfig();
+cfg.setCheckpointTimeout(600000);         // timeout: 10 minutes
+cfg.setMinPauseBetweenCheckpoints(30000); // min pause: 30 seconds
+cfg.setMaxConcurrentCheckpoints(1);       // max concurrent: 1
+cfg.setTolerableCheckpointFailureNumber(3); // tolerate 3 failures
+</pre>
+<h2>Tuning Guidelines</h2>
+<table>
+<tr><th>Parameter</th><th>Trade-off</th><th>Recommendation</th></tr>
+<tr><td>Interval</td><td>Shorter = less replay on recovery, more overhead</td><td>30s-5min for most jobs</td></tr>
+<tr><td>Timeout</td><td>Too short = checkpoints fail; too long = slow failure detection</td><td>2-5x the typical checkpoint duration</td></tr>
+<tr><td>Min pause</td><td>Ensures processing progress between checkpoints</td><td>Set to ensure &ge; 50% time for processing</td></tr>
+<tr><td>Concurrent</td><td>Multiple concurrent = more throughput for slow checkpoints</td><td>1 for most jobs (can't use with min-pause)</td></tr>
+</table>
+<div class="note"><strong>Note:</strong> It's often easier to configure <code>minPauseBetweenCheckpoints</code> than the interval directly, because it's not sensitive to varying checkpoint durations. Setting min-pause also implies max-concurrent-checkpoints = 1.</div>`},
+
+        {m:11,t:"Large State Tuning: Incremental Checkpoints & RocksDB Tuning",c:`<h1>Large State Tuning</h1>
+<h2>Essential: Incremental Checkpoints</h2>
+<p>For state sizes &gt; 1 GB, incremental checkpointing is critical:</p>
+<pre>
+env.setStateBackend(new EmbeddedRocksDBStateBackend(true)); // enable incremental
+</pre>
+<p>Instead of uploading the full state, only new/changed SST files are uploaded. For slowly-changing state, this can reduce checkpoint size by 90%+.</p>
+<h2>RocksDB Tuning</h2>
+<ul>
+<li><strong>Block cache:</strong> Increase for read-heavy workloads (default: 8 MB per column family)</li>
+<li><strong>Write buffer:</strong> Increase for write-heavy workloads to reduce compaction frequency</li>
+<li><strong>Compaction:</strong> Tune for your SSD/HDD characteristics</li>
+<li><strong>Timer state:</strong> Use <code>RocksDBStateBackend.setRocksDBOptions(...)</code> for custom tuning</li>
+</ul>
+<h2>General Large State Tips</h2>
+<ul>
+<li>Use <code>MapState</code>/<code>ListState</code> instead of <code>ValueState&lt;Collection&gt;</code> for RocksDB efficiency</li>
+<li>Enable <strong>local recovery</strong> to speed up restarts (avoids downloading state from HDFS)</li>
+<li>Use <strong>task-local state</strong> for RocksDB to keep working state on fast local SSDs</li>
+<li>Monitor <strong>checkpoint size growth</strong> over time &mdash; unexpected growth indicates a state leak</li>
+</ul>
+<div class="warn"><strong>File merging (Flink 1.20):</strong> Enable <code>execution.checkpointing.file-merging.enabled</code> to reduce small-file pressure on HDFS/S3 during incremental checkpoints. Trade-off: some space amplification.</div>`},
+
+        {m:11,t:"Anti-Patterns To Avoid",c:`<h1>Anti-Patterns To Avoid</h1>
+<h2>1. Missing Operator UIDs</h2>
+<p>Without <code>.uid("stable-name")</code>, savepoint restore fails when topology changes. <strong>Always assign UIDs to every operator.</strong></p>
+<h2>2. Unbounded State Growth</h2>
+<p>Using keyed state with unbounded key space without TTL or cleanup. State grows until the job OOMs or checkpoint takes forever.</p>
+<p><strong>Fix:</strong> Use State TTL, explicit <code>clear()</code> in timers, or windows with bounded retention.</p>
+<h2>3. Checkpoint Storms</h2>
+<p>Setting checkpoint interval too aggressively (e.g., every 1 second) for large-state jobs. Each checkpoint hasn't finished before the next starts, causing cascading backpressure.</p>
+<p><strong>Fix:</strong> Use <code>minPauseBetweenCheckpoints</code> and monitor checkpoint duration.</p>
+<h2>4. Using ValueState for Collections</h2>
+<p>Storing <code>ValueState&lt;HashMap&lt;K,V&gt;&gt;</code> instead of <code>MapState&lt;K,V&gt;</code> with RocksDB. The entire map is serialized/deserialized on every access.</p>
+<h2>5. Not Enabling Checkpointing</h2>
+<p>Checkpointing is <strong>disabled by default</strong>. Running production jobs without checkpoints means any failure loses all state.</p>
+<div class="warn"><strong>Critical:</strong> Forgetting UIDs is the most common cause of production incidents during Flink upgrades. Add UIDs to every operator from day one.</div>`},
+
+        {m:11,t:"Best Practices Checklist: Production Readiness",c:`<h1>Production Readiness Checklist</h1>
+<h2>State &amp; Checkpointing</h2>
+<ul>
+<li>&#9745; Enable checkpointing with appropriate interval (30s-5min)</li>
+<li>&#9745; Use <code>EmbeddedRocksDBStateBackend</code> with incremental checkpoints</li>
+<li>&#9745; Configure <code>FileSystemCheckpointStorage</code> on HDFS/S3</li>
+<li>&#9745; Enable externalized checkpoints (<code>RETAIN_ON_CANCELLATION</code>)</li>
+<li>&#9745; Set <code>minPauseBetweenCheckpoints</code></li>
+<li>&#9745; Configure tolerable checkpoint failures (&ge; 1)</li>
+</ul>
+<h2>Application Code</h2>
+<ul>
+<li>&#9745; Assign <code>.uid("stable-name")</code> to <strong>every</strong> operator</li>
+<li>&#9745; Set <code>maxParallelism</code> explicitly</li>
+<li>&#9745; Use State TTL for unbounded key spaces</li>
+<li>&#9745; Use <code>MapState</code>/<code>ListState</code> instead of <code>ValueState&lt;Collection&gt;</code></li>
+<li>&#9745; Handle late events (side output or allowed lateness)</li>
+</ul>
+<h2>Operations</h2>
+<ul>
+<li>&#9745; Configure restart strategy (failure-rate recommended)</li>
+<li>&#9745; Monitor checkpoint duration, size, and failure rate</li>
+<li>&#9745; Set up alerts on checkpoint degradation</li>
+<li>&#9745; Test savepoint/restore workflow before production deploy</li>
+<li>&#9745; Document upgrade runbook (savepoint &rarr; stop &rarr; deploy &rarr; restore)</li>
+</ul>
+<div class="real"><strong>Real:</strong> Run a "savepoint drill" quarterly &mdash; take a savepoint, stop the job, restore from it, and verify output correctness. This validates your entire recovery pipeline before you need it in an emergency.</div>`},
+
+        {m:11,t:"Quiz: Ops & Best Practices",q:true}
+    ];
+
+    // ===== ENGINE =====
+    const STORE_KEY = 'flink_fault_tolerance_workshop';
+    let cur = 0;
+    let quizState = {};
+    let failedQs = [];
+    let quizDataLoadPromise = null;
+
+    function save(){
+        const d={cur,quizState,failedQs,examMode,examState,examFailedQs,ts:Date.now()};
+        try{localStorage.setItem(STORE_KEY,JSON.stringify(d))}catch(e){}
+        try{document.cookie=STORE_KEY+'='+cur+';max-age=31536000;path=/'}catch(e){}
+    }
+
+    function load(){
+        try{
+            const d=JSON.parse(localStorage.getItem(STORE_KEY));
+            if(d){
+                cur=d.cur||0;
+                quizState=d.quizState||{};
+                failedQs=d.failedQs||[];
+                examMode=Boolean(d.examMode);
+                examState=d.examState||{answers:{},score:0,total:0,done:false};
+                examFailedQs=d.examFailedQs||[];
+            }
+        }catch(e){}
+    }
+
+    function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+    function hashSeed(seed){
+        let h=0;
+        for(let i=0;i<seed.length;i++){h=((h<<5)-h)+seed.charCodeAt(i);h|=0;}
+        return Math.abs(h);
+    }
+
+    function getShuffledOptions(question){
+        const opts=question.options.map((text,index)=>({text,isCorrect:index===question.answer,originalIndex:index}));
+        let h=hashSeed(question.id||question.question||'question');
+        for(let i=opts.length-1;i>0;i--){
+            h=(h*1103515245+12345)&0x7fffffff;
+            const j=h%(i+1);
+            [opts[i],opts[j]]=[opts[j],opts[i]];
+        }
+        return opts;
+    }
+
+    function getCorrectIndex(opts){
+        return opts.findIndex(opt=>opt.isCorrect);
+    }
+
+    function getExamQuestions(){
+        if(!QUIZ_DATA||!Array.isArray(QUIZ_DATA.modules))return [];
+        return QUIZ_DATA.modules.flatMap(mod=>(mod.questions||[]).map(q=>({...q,moduleId:mod.id,moduleName:mod.name,moduleTags:mod.tags||[]})));
+    }
+
+    function recountExamScore(){
+        const questions=getExamQuestions();
+        let score=0;
+        Object.entries(examState.answers||{}).forEach(([qId,chosen])=>{
+            const q=questions.find(item=>item.id===qId);
+            if(!q)return;
+            const opts=getShuffledOptions(q);
+            if(chosen===getCorrectIndex(opts))score++;
+        });
+        examState.score=score;
+        examState.total=questions.length;
+    }
+
+    function updateExamButton(){
+        const btn=document.getElementById('exam-btn');
+        if(!btn)return;
+        if(examMode){
+            btn.textContent='Workshop';
+            btn.title='Return to workshop slides (E)';
+            btn.disabled=false;
+            return;
+        }
+        btn.textContent='Exam';
+        if(quizDataLoadPromise&&!QUIZ_DATA&&!quizDataLoadError){
+            btn.title='Loading exam bank...';
+            btn.disabled=true;
+            return;
+        }
+        btn.disabled=false;
+        if(QUIZ_DATA){
+            btn.title='Open comprehensive exam ('+QUIZ_DATA.totalQuestions+' questions) (E)';
+        }else if(quizDataLoadError){
+            btn.title='Exam bank unavailable: '+quizDataLoadError;
+        }else{
+            btn.title='Open comprehensive exam (E)';
+        }
+    }
+
+    function validateQuizData(data){
+        if(!data||!Array.isArray(data.modules))throw new Error('Invalid quiz data: missing modules array.');
+        data.modules.forEach((mod,moduleIndex)=>{
+            if(!Array.isArray(mod.questions))throw new Error('Invalid quiz data: module '+moduleIndex+' is missing questions.');
+            mod.questions.forEach((q,questionIndex)=>{
+                if(!Array.isArray(q.options)||q.options.length<2)throw new Error('Invalid quiz data: question '+moduleIndex+':'+questionIndex+' has invalid options.');
+                if(typeof q.answer!=='number'||q.answer<0||q.answer>=q.options.length)throw new Error('Invalid quiz data: question '+moduleIndex+':'+questionIndex+' has invalid answer index.');
+            });
+        });
+    }
+
+    async function loadExternalQuizData(){
+        if(quizDataLoadPromise)return quizDataLoadPromise;
+        quizDataLoadPromise=(async()=>{
+            try{
+                const res=await fetch(QUIZ_DATA_URL,{cache:'no-store'});
+                if(!res.ok)throw new Error('HTTP '+res.status);
+                const data=await res.json();
+                validateQuizData(data);
+                QUIZ_DATA=data;
+                quizDataLoadError='';
+                examState.total=getExamQuestions().length;
+                recountExamScore();
+            }catch(err){
+                QUIZ_DATA=null;
+                quizDataLoadError=err&&err.message?err.message:'Unable to load quiz.json';
+            }finally{
+                updateExamButton();
+                if(examMode)render();
+            }
+        })();
+        return quizDataLoadPromise;
+    }
+
+    function setNavDisabled(disabled){
+        const prev=document.querySelector('#nav .prev');
+        const next=document.querySelector('#nav .next');
+        if(prev){prev.disabled=disabled;}
+        if(next){next.disabled=disabled;}
+    }
+
+    function render(){
+        updateExamButton();
+        if(examMode){
+            document.getElementById('progress-bar').style.width='100%';
+            document.getElementById('pct').textContent='EXAM';
+            document.getElementById('slide-counter').textContent=QUIZ_DATA?('1 / '+QUIZ_DATA.totalQuestions):'Loading';
+            document.getElementById('module-label').textContent='Comprehensive Exam';
+            document.getElementById('slide').innerHTML=renderExam();
+            setNavDisabled(true);
+            save();
+            buildTOC();
+            return;
+        }
+        if(cur<0)cur=0;
+        if(cur>=SLIDES.length)cur=SLIDES.length-1;
+        const s=SLIDES[cur];
+        const pct=Math.round(((cur+1)/SLIDES.length)*100);
+        document.getElementById('progress-bar').style.width=pct+'%';
+        document.getElementById('pct').textContent=pct+'%';
+        document.getElementById('slide-counter').textContent=(cur+1)+' / '+SLIDES.length;
+        document.getElementById('module-label').textContent=MODULE_NAMES[s.m];
+        if(s.q){
+            document.getElementById('slide').innerHTML='<h1>'+esc(s.t)+'</h1>'+renderQuiz(s.m);
+        }else{
+            document.getElementById('slide').innerHTML=s.c;
+        }
+        setNavDisabled(false);
+        save();
+        buildTOC();
+    }
+
+    function renderQuiz(moduleId){
+        const mod=INLINE_QUIZ_DATA.modules.find(m=>m.id===moduleId);
+        if(!mod)return '<p>No quiz data for this module.</p>';
+        if(!quizState[moduleId])quizState[moduleId]={answers:{},score:0,total:mod.questions.length,done:false};
+        const st=quizState[moduleId];
+        let qIdx=-1;
+        for(let i=0;i<mod.questions.length;i++){
+            if(st.answers[mod.questions[i].id]===undefined){qIdx=i;break;}
+        }
+        if(qIdx===-1 && st.done){
+            return '<div class="quiz-score"><h2>Module Complete!</h2><p>Score: <strong>'+st.score+' / '+st.total+'</strong></p>'+(st.score===st.total?'<p style="color:#22c55e;font-size:1.2rem">&#10003; Perfect score!</p>':'<p>Press <span class="kbd">R</span> to retry failed questions.</p>')+'</div>';
+        }
+        if(qIdx===-1){st.done=true;save();return renderQuiz(moduleId);}
+        const q=mod.questions[qIdx];
+        const opts=getShuffledOptions(q);
+        let html='<div class="quiz-container">';
+        html+='<div class="quiz-progress">Question '+(qIdx+1)+' of '+mod.questions.length+'</div>';
+        html+='<div class="quiz-q">'+esc(q.question)+'</div>';
+        for(let i=0;i<opts.length;i++){
+            html+='<div class="quiz-opt" id="opt-'+i+'" data-correct="'+(opts[i].isCorrect?'true':'false')+'" onclick="answerQuiz('+moduleId+',\''+q.id+'\','+i+','+qIdx+')">'+String.fromCharCode(65+i)+'. '+esc(opts[i].text)+'</div>';
+        }
+        html+='<div class="quiz-feedback" id="quiz-fb"></div>';
+        html+='</div>';
+        return html;
+    }
+
+    function answerQuiz(moduleId,qId,chosen,qIndex){
+        const st=quizState[moduleId];
+        if(st.answers[qId]!==undefined)return;
+        st.answers[qId]=chosen;
+        const mod=INLINE_QUIZ_DATA.modules.find(m=>m.id===moduleId);
+        const q=mod.questions[qIndex];
+        const opts=getShuffledOptions(q);
+        const correct=getCorrectIndex(opts);
+        const fb=document.getElementById('quiz-fb');
+        const allOpts=document.querySelectorAll('.quiz-opt');
+        allOpts.forEach(o=>o.classList.add('disabled'));
+        if(chosen===correct){
+            st.score++;
+            document.getElementById('opt-'+chosen).classList.add('correct');
+            fb.className='quiz-feedback show pass';
+            fb.innerHTML='&#10003; Correct!';
+            save();
+            setTimeout(()=>{render();},1200);
+        }else{
+            document.getElementById('opt-'+chosen).classList.add('wrong');
+            document.getElementById('opt-'+correct).classList.add('correct','reveal-correct');
+            fb.className='quiz-feedback show fail';
+            fb.innerHTML='&#10007; Incorrect. '+esc(q.explanation);
+            failedQs.push({moduleId,qId});
+            save();
+            setTimeout(()=>{render();},3000);
+        }
+    }
+
+    function renderExam(){
+        if(quizDataLoadError){
+            return '<div class="quiz-score"><h2>Exam Bank Unavailable</h2><p>'+esc(quizDataLoadError)+'</p><p>Serve this workshop over HTTP so the browser can load <code>quiz.json</code>, then try again.</p><p><button onclick="toggleExamMode()">Return To Workshop</button></p></div>';
+        }
+        if(!QUIZ_DATA){
+            return '<div class="quiz-score"><h2>Loading Exam Bank</h2><p>Loading external quiz data from <code>quiz.json</code>...</p></div>';
+        }
+        const questions=getExamQuestions();
+        examState.total=questions.length;
+        let qIdx=-1;
+        for(let i=0;i<questions.length;i++){
+            if(examState.answers[questions[i].id]===undefined){qIdx=i;break;}
+        }
+        if(qIdx===-1 && examState.done){
+            return '<div class="quiz-score"><h2>Exam Complete!</h2><p>Score: <strong>'+examState.score+' / '+examState.total+'</strong></p>'+(examState.score===examState.total?'<p style="color:#22c55e;font-size:1.2rem">&#10003; Perfect score!</p>':'<p>Press <span class="kbd">R</span> to retry failed exam questions.</p>')+'<p style="margin-top:16px"><button onclick="toggleExamMode()">Return To Workshop</button></p></div>';
+        }
+        if(qIdx===-1){
+            examState.done=true;
+            save();
+            return renderExam();
+        }
+        const q=questions[qIdx];
+        const opts=getShuffledOptions(q);
+        const tags=(q.tags||[]).slice(0,3).map(tag=>'<code>'+esc(tag)+'</code>').join(' ');
+        let html='<div class="quiz-container">';
+        html+='<div class="quiz-progress">Question '+(q.globalNumber||qIdx+1)+' of '+questions.length+'</div>';
+        html+='<div class="note"><strong>'+esc(q.moduleName||'Exam Module')+'</strong><br>'+esc(q.questionNumber||q.id)+' &bull; '+esc(q.category||'General')+(tags?' &bull; '+tags:'')+'</div>';
+        html+='<div class="quiz-q">'+esc(q.question)+'</div>';
+        for(let i=0;i<opts.length;i++){
+            html+='<div class="quiz-opt" id="exam-opt-'+i+'" data-correct="'+(opts[i].isCorrect?'true':'false')+'" onclick="answerExam(\''+q.id+'\','+i+','+qIdx+')">'+String.fromCharCode(65+i)+'. '+esc(opts[i].text)+'</div>';
+        }
+        html+='<div class="quiz-feedback" id="exam-fb"></div>';
+        html+='<div style="margin-top:20px;text-align:center"><button onclick="toggleExamMode()">Return To Workshop</button></div>';
+        html+='</div>';
+        return html;
+    }
+
+    function answerExam(qId,chosen,qIndex){
+        const questions=getExamQuestions();
+        const q=questions[qIndex]&&questions[qIndex].id===qId?questions[qIndex]:questions.find(item=>item.id===qId);
+        if(!q||examState.answers[qId]!==undefined)return;
+        const opts=getShuffledOptions(q);
+        const correct=getCorrectIndex(opts);
+        examState.answers[qId]=chosen;
+        const fb=document.getElementById('exam-fb');
+        const allOpts=document.querySelectorAll('[id^=\"exam-opt-\"]');
+        allOpts.forEach(o=>o.classList.add('disabled'));
+        if(chosen===correct){
+            examState.score++;
+            document.getElementById('exam-opt-'+chosen).classList.add('correct');
+            fb.className='quiz-feedback show pass';
+            fb.innerHTML='&#10003; Correct!';
+            save();
+            setTimeout(()=>{render();},1200);
+        }else{
+            document.getElementById('exam-opt-'+chosen).classList.add('wrong');
+            document.getElementById('exam-opt-'+correct).classList.add('correct','reveal-correct');
+            fb.className='quiz-feedback show fail';
+            fb.innerHTML='&#10007; Incorrect. '+esc(q.explanation);
+            examFailedQs.push({qId});
+            save();
+            setTimeout(()=>{render();},3000);
+        }
+    }
+
+    function retryFailed(){
+        if(examMode){
+            retryFailedExam();
+            return;
+        }
+        if(!failedQs.length){alert('No failed questions to retry!');return;}
+        const moduleIds=new Set();
+        failedQs.forEach(fq=>{
+            moduleIds.add(fq.moduleId);
+            if(quizState[fq.moduleId]){
+                delete quizState[fq.moduleId].answers[fq.qId];
+                quizState[fq.moduleId].done=false;
+                quizState[fq.moduleId].score=Object.keys(quizState[fq.moduleId].answers).length;
+            }
+        });
+        failedQs=[];
+        const firstMod=Math.min(...moduleIds);
+        for(let i=0;i<SLIDES.length;i++){
+            if(SLIDES[i].m===firstMod && SLIDES[i].q){cur=i;break;}
+        }
+        save();render();
+    }
+
+    function retryFailedExam(){
+        if(!examFailedQs.length){alert('No failed exam questions to retry!');return;}
+        examFailedQs.forEach(fq=>{
+            delete examState.answers[fq.qId];
+        });
+        examFailedQs=[];
+        examState.done=false;
+        recountExamScore();
+        save();
+        render();
+    }
+
+    function toggleExamMode(){
+        if(examMode){
+            examMode=false;
+            render();
+            window.scrollTo(0,0);
+            return;
+        }
+        if(QUIZ_DATA){
+            examMode=true;
+            render();
+            window.scrollTo(0,0);
+            return;
+        }
+        loadExternalQuizData().then(()=>{
+            if(QUIZ_DATA){
+                examMode=true;
+                render();
+                window.scrollTo(0,0);
+            }else{
+                alert('Unable to load quiz.json: '+quizDataLoadError);
+            }
+        });
+    }
+
+    function go(dir){
+        if(examMode)return;
+        cur+=dir;
+        if(cur<0)cur=0;
+        if(cur>=SLIDES.length)cur=SLIDES.length-1;
+        render();
+        window.scrollTo(0,0);
+    }
+
+    function toggleTOC(){
+        const toc=document.getElementById('toc');
+        const ov=document.getElementById('toc-overlay');
+        toc.classList.toggle('open');
+        ov.style.display=toc.classList.contains('open')?'block':'none';
+    }
+
+    function buildTOC(){
+        const body=document.getElementById('toc-body');
+        let html='';
+        let lastM=-1;
+        SLIDES.forEach((s,i)=>{
+            if(s.m!==lastM){
+                if(lastM>=0)html+='</div></div>';
+                const isActive=SLIDES[cur].m===s.m;
+                html+='<div class="toc-module"><div class="toc-module-title'+(isActive?' active':'')+'" onclick="this.nextElementSibling.classList.toggle(\'open\')">'+MODULE_NAMES[s.m]+'</div><div class="toc-slides'+(isActive?' open':'')+'">';
+                lastM=s.m;
+            }
+            html+='<div class="toc-slide'+(i===cur?' active':'')+'" onclick="cur='+i+';toggleTOC();render();window.scrollTo(0,0);">'+(s.q?'&#128221; ':'')+esc(s.t)+'</div>';
+        });
+        if(lastM>=0)html+='</div></div>';
+        body.innerHTML=html;
+    }
+
+    document.addEventListener('keydown',e=>{
+        if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+        if(e.key===' '&&!e.shiftKey){e.preventDefault();go(1);}
+        else if((e.key===' '&&e.shiftKey)||e.key==='ArrowLeft'){e.preventDefault();go(-1);}
+        else if(e.key==='ArrowRight'){e.preventDefault();go(1);}
+        else if(e.key==='Home'){e.preventDefault();cur=0;render();window.scrollTo(0,0);}
+        else if(e.key==='End'){e.preventDefault();cur=SLIDES.length-1;render();window.scrollTo(0,0);}
+        else if(e.key==='t'||e.key==='T'){toggleTOC();}
+        else if(e.key==='r'||e.key==='R'){retryFailed();}
+        else if(e.key==='e'||e.key==='E'){toggleExamMode();}
+    });
+
+    load();
+    updateExamButton();
+    loadExternalQuizData();
+    render();
+</script>
+</body>
+</html>
