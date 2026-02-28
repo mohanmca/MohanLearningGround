@@ -18,19 +18,19 @@
         #header button:hover{background:#cbd5e1}
         #pct{font-weight:600;color:#7c3aed;font-size:.9rem;min-width:36px;text-align:right}
         #slide{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:40px 48px;min-height:520px;margin-bottom:16px}
-        #slide h1{font-size:1.7rem;color:#1e293b;margin-bottom:20px;border-bottom:2px solid #e2e8f0;padding-bottom:12px}
-        #slide h2{font-size:1.3rem;color:#334155;margin:20px 0 12px}
-        #slide h3{font-size:1.1rem;color:#475569;margin:16px 0 8px}
-        #slide p{margin:10px 0;font-size:.97rem}
-        #slide ul,#slide ol{margin:10px 0 10px 24px;font-size:.97rem}
-        #slide li{margin:4px 0}
-        #slide pre{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:16px;white-space:pre;overflow-x:auto;font-size:.85rem;line-height:1.5;margin:12px 0}
-        #slide code{background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:.88rem}
-        #slide pre code{background:none;padding:0}
-        #slide table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.93rem}
-        #slide th{background:#f1f5f9;text-align:left;padding:10px 12px;border:1px solid #e2e8f0;font-weight:600}
-        #slide td{padding:10px 12px;border:1px solid #e2e8f0}
-        #slide tr:hover td{background:#f8fafc}
+        #slide h1,.print-slide h1{font-size:1.7rem;color:#1e293b;margin-bottom:20px;border-bottom:2px solid #e2e8f0;padding-bottom:12px}
+        #slide h2,.print-slide h2{font-size:1.3rem;color:#334155;margin:20px 0 12px}
+        #slide h3,.print-slide h3{font-size:1.1rem;color:#475569;margin:16px 0 8px}
+        #slide p,.print-slide p{margin:10px 0;font-size:.97rem}
+        #slide ul,#slide ol,.print-slide ul,.print-slide ol{margin:10px 0 10px 24px;font-size:.97rem}
+        #slide li,.print-slide li{margin:4px 0}
+        #slide pre,.print-slide pre{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:16px;white-space:pre;overflow-x:auto;font-size:.85rem;line-height:1.5;margin:12px 0}
+        #slide code,.print-slide code{background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:.88rem}
+        #slide pre code,.print-slide pre code{background:none;padding:0}
+        #slide table,.print-slide table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.93rem}
+        #slide th,.print-slide th{background:#f1f5f9;text-align:left;padding:10px 12px;border:1px solid #e2e8f0;font-weight:600}
+        #slide td,.print-slide td{padding:10px 12px;border:1px solid #e2e8f0}
+        #slide tr:hover td,.print-slide tr:hover td{background:#f8fafc}
         .diagram{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:8px;padding:16px;white-space:pre;overflow-x:auto;font-size:.82rem;line-height:1.4;margin:12px 0}
         .note{border-left:4px solid #2563eb;background:#eff6ff;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.93rem}
         .tip{border-left:4px solid #22c55e;background:#f0fdf4;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.93rem}
@@ -71,8 +71,23 @@
         .toc-slide:hover{background:#f1f5f9;color:#1e293b}
         .toc-slide.active{background:#2563eb;color:#fff}
         .kbd{display:inline-block;background:#f1f5f9;border:1px solid #d1d5db;border-radius:4px;padding:2px 8px;font-family:monospace;font-size:.82rem}
+        #print-root{display:none;max-width:1100px;margin:0 auto;padding:0 20px 40px}
+        .print-slide{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:32px 36px;margin:0 0 24px;break-after:page;page-break-after:always}
+        .print-slide:last-child{break-after:auto;page-break-after:auto}
+        .print-slide-meta{display:flex;justify-content:space-between;gap:12px;font-size:.88rem;color:#64748b;margin-bottom:16px}
+        .print-quiz-question{margin:18px 0 0}
+        .print-quiz-question h2{margin-top:0}
+        .print-quiz-options{margin:10px 0 0 24px}
+        .print-quiz-options li{margin:6px 0}
+        .print-answer{font-weight:600;color:#166534}
+        .print-explanation{margin-top:8px}
         @media(max-width:768px){#slide{padding:20px 24px}#header .left{min-width:auto;font-size:.85rem}}
-        @media print{#header,#nav,#progress-bar,#toc,#toc-overlay{display:none}#slide{box-shadow:none}}
+        @media print{
+            body{background:#fff}
+            #progress-bar,#app,#toc,#toc-overlay{display:none!important}
+            #print-root{display:block!important;padding:0}
+            .print-slide{box-shadow:none;margin:0 0 16px;border-color:#d1d5db}
+        }
     </style>
 </head>
 <body>
@@ -83,6 +98,7 @@
         <div class="center" id="slide-counter">1 / 100</div>
         <div class="right">
             <button onclick="toggleTOC()" title="Table of Contents (T)">TOC</button>
+            <button onclick="printDeck()" title="Print full deck (P)">Print</button>
             <button id="exam-btn" onclick="toggleExamMode()" title="Open comprehensive exam (E)">Exam</button>
             <button onclick="retryFailed()" title="Retry failed quiz questions (R)">Retry</button>
             <span id="pct">0%</span>
@@ -96,6 +112,7 @@
 </div>
 <div id="toc-overlay" onclick="toggleTOC()"></div>
 <div id="toc"><h2>Table of Contents</h2><div id="toc-body"></div></div>
+<div id="print-root" aria-hidden="true"></div>
 
 <script>
     const INLINE_QUIZ_DATA = {
@@ -2354,6 +2371,50 @@ env.setStateBackend(new EmbeddedRocksDBStateBackend(true)); // enable incrementa
         if(next){next.disabled=disabled;}
     }
 
+    function renderPrintableQuiz(moduleId){
+        const mod=INLINE_QUIZ_DATA.modules.find(m=>m.id===moduleId);
+        if(!mod||!mod.questions||!mod.questions.length){
+            return '<p>No quiz data for this module.</p>';
+        }
+        let html='<div class="print-quiz">';
+        mod.questions.forEach((q,index)=>{
+            html+='<div class="print-quiz-question">';
+            html+='<h2>Quiz '+(index+1)+': '+esc(q.question)+'</h2>';
+            html+='<ol class="print-quiz-options" type="A">';
+            q.options.forEach((option,optIndex)=>{
+                const isCorrect=optIndex===q.answer;
+                html+='<li'+(isCorrect?' class="print-answer"':'')+'>'+(isCorrect?'<strong>':'')+esc(option)+(isCorrect?'</strong>':'')+'</li>';
+            });
+            html+='</ol>';
+            html+='<p class="print-explanation"><strong>Explanation:</strong> '+esc(q.explanation)+'</p>';
+            html+='</div>';
+        });
+        html+='</div>';
+        return html;
+    }
+
+    function renderPrintableDeck(){
+        const root=document.getElementById('print-root');
+        if(!root)return;
+        let html='';
+        SLIDES.forEach((slide,index)=>{
+            html+='<section class="print-slide">';
+            html+='<div class="print-slide-meta"><span>'+esc(MODULE_NAMES[slide.m]||('Module '+slide.m))+'</span><span>Slide '+(index+1)+' of '+SLIDES.length+'</span></div>';
+            if(slide.q){
+                html+='<h1>'+esc(slide.t)+'</h1>'+renderPrintableQuiz(slide.m);
+            }else{
+                html+=slide.c;
+            }
+            html+='</section>';
+        });
+        root.innerHTML=html;
+    }
+
+    function printDeck(){
+        renderPrintableDeck();
+        window.print();
+    }
+
     function render(){
         updateExamButton();
         if(examMode){
@@ -2605,8 +2666,15 @@ env.setStateBackend(new EmbeddedRocksDBStateBackend(true)); // enable incrementa
         else if(e.key==='Home'){e.preventDefault();cur=0;render();window.scrollTo(0,0);}
         else if(e.key==='End'){e.preventDefault();cur=SLIDES.length-1;render();window.scrollTo(0,0);}
         else if(e.key==='t'||e.key==='T'){toggleTOC();}
+        else if(e.key==='p'||e.key==='P'){e.preventDefault();printDeck();}
         else if(e.key==='r'||e.key==='R'){retryFailed();}
         else if(e.key==='e'||e.key==='E'){toggleExamMode();}
+    });
+
+    window.addEventListener('beforeprint',()=>{renderPrintableDeck();});
+    window.addEventListener('afterprint',()=>{
+        const root=document.getElementById('print-root');
+        if(root)root.innerHTML='';
     });
 
     load();
