@@ -21,3 +21,8 @@ records from faster channels while waiting, so records between barriers may be r
 *   
 ## Terraform
 * To create AWS Application via terraform we have to use resource "aws_kinesisanalyticsv2_application" "this"
+
+
+## Kafka
+* The source consumer can read from the topic but is not authorized to use the consumer group "group-id" on the MSK cluster. This is because the env property sets KAFKA_SOURCE_GROUP_ID="group-id", and the MSK IAM. policy for the flink role likely doesn't include kafka-cluster:AlterGroup / kafka-cluster:DescribeGroup permissions for that group name.
+* The "Processing event" logs may appear from the initial burst before the group authorization kicked in — the consumer fetched records but will fail when trying to commit offsets.
