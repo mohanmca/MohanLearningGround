@@ -28,7 +28,14 @@ records from faster channels while waiting, so records between barriers may be r
 * Create savepoint ```./bin/flink stop -p [targetDirectory] <jobID>```
 * Resume savepoint ```./bin/flink run -d savepointPath```
 * Deletes a savepoint and cleans up its associated metadata and files from storage. - ```./bin/flink savepoint -d <savepointPath>```
-  
+
+## What are failure strategy
+* fixed-delay = retry on a steady cadence. Best for short, transient issues like a brief network glitch or a momentary downstream timeout, where a few predictable retries are enough.
+* failure-rate = retry only as long as failures stay within a defined budget over time. You set something like “allow at most 3 restarts in 10 minutes”; if the job exceeds that, Flink stops restarting it. This is useful when occasional failures are acceptable, but repeated flapping should fail fast instead of hiding a deeper issue.
+  * Example: if Kafka or a downstream service blips once or twice during a deployment, the job recovers; if it keeps crashing every couple of minutes, Flink stops after the budget is exhausted and surfaces the instability.
+*  exponential-delay = retry with progressively longer waits after each failure. Best when dependencies may need time to recover, and you want to avoid hammering the system with constant restarts during outages or overload.
+* no-restart = fail immediately and surface the problem. Best when the failure is likely deterministic, such as bad code, config, schema mismatch, or invalid input.
+
 ## Terraform
 * To create AWS Application via terraform we have to use resource "aws_kinesisanalyticsv2_application" "this"
 
