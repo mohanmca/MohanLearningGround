@@ -36,6 +36,9 @@ records from faster channels while waiting, so records between barriers may be r
 *  exponential-delay = retry with progressively longer waits after each failure. Best when dependencies may need time to recover, and you want to avoid hammering the system with constant restarts during outages or overload.
 * no-restart = fail immediately and surface the problem. Best when the failure is likely deterministic, such as bad code, config, schema mismatch, or invalid input.
 
+## DataGeneratorSource
+* DataGeneratorSource is Flink’s built-in synthetic source for generating records inside the job instead of reading from Kafka, files, etc. It lets you produce test/demo data in parallel, optionally with a rate limit and bounded record count.
+
 ## Terraform
 * To create AWS Application via terraform we have to use resource "aws_kinesisanalyticsv2_application" "this"
 
