@@ -39,6 +39,56 @@ records from faster channels while waiting, so records between barriers may be r
 ## DataGeneratorSource
 * DataGeneratorSource is Flink’s built-in synthetic source for generating records inside the job instead of reading from Kafka, files, etc. It lets you produce test/demo data in parallel, optionally with a rate limit and bounded record count.
 
+```java
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.connector.datagen.source.DataGeneratorSource;
+import org.apache.flink.connector.datagen.source.GeneratorFunction;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+
+// generated from your .proto
+import com.acme.proto.MyProto;
+
+public class MockProtoSourceJob {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+
+        long numberOfRecords = 10000L;
+        long rowsPerSecond = 100L;
+
+        GeneratorFunction<Long, MyProto.OrderEvent> generatorFunction = index -> {
+            long userId = index % 100;
+            String symbol = (index % 2 == 0) ? "BTCUSD" : "ETHUSD";
+            double qty = 1.0 + (index % 5);
+
+            return MyProto.OrderEvent.newBuilder()
+                    .setOrderId("order-" + index)
+                    .setUserId(userId)
+                    .setSymbol(symbol)
+                    .setQuantity(qty)
+                    .setEventTimeEpochMs(System.currentTimeMillis())
+                    .build();
+        };
+
+        DataGeneratorSource<MyProto.OrderEvent> mockSource =
+                new DataGeneratorSource<>(
+                        generatorFunction, numberOfRecords,
+                        org.apache.flink.api.common.typeinfo.TypeInformation.of(MyProto.OrderEvent.class)
+                );
+
+        DataStream<MyProto.OrderEvent> events =
+                env.fromSource(
+                        mockSource, WatermarkStrategy.noWatermarks(), "mock-proto-source"
+                );
+
+        events.print();
+
+        env.execute("Mock Protobuf Source");
+    }
+}
+```
+
 ## Terraform
 * To create AWS Application via terraform we have to use resource "aws_kinesisanalyticsv2_application" "this"
 
