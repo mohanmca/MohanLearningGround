@@ -21,7 +21,14 @@ records from faster channels while waiting, so records between barriers may be r
 *  In Flink's event time processing, what happens when a watermark arrives at an operator with multiple input channels? (a) The operator advances its watermark to the max of all input watermarks, (b) The operator advances its watermark to the
   min of all input watermarks, (c) Each input channel is processed independently, (d) The operator drops events from the slower channel.
 *   Trivia: In Flink's KeyedStream, if you apply a reduce() followed by a window(), vs a window() followed by a reduce() — which one is a rolling aggregation and which is a windowed aggregation? What's the state management difference?
-*   
+
+## Flink Savepoint vs checkpoints
+
+* Savepoints for planned, manual operations where you need to preserve the application's state while making changes. While checkpoints are for automatic failure recovery, savepoints are for user-driven management.
+* Create savepoint ```./bin/flink stop -p [targetDirectory] <jobID>```
+* Resume savepoint ```./bin/flink run -d savepointPath```
+* Deletes a savepoint and cleans up its associated metadata and files from storage. - ```./bin/flink savepoint -d <savepointPath>```
+  
 ## Terraform
 * To create AWS Application via terraform we have to use resource "aws_kinesisanalyticsv2_application" "this"
 
