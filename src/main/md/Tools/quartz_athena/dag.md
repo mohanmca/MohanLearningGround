@@ -4,5 +4,5 @@
 2. [Dag implementation](https://github.com/man-group/mdf)
 3. [MDF Documentation](https://mdf-data-flow-programming-toolkit.readthedocs.io/en/latest/introduction.html)
 4. [Beacon](https://www.beacon.io)
-5. 
+5. [Kirat - Ledger - Quartz](https://www.youtube.com/watch?v=fXPDXbrPdxI)
 6. 
