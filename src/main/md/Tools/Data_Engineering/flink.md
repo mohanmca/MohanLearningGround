@@ -2,6 +2,7 @@
 * [Apache Flink Playground](https://github.com/mohanmca/FlinkPlayground/tree/master/src/main/md/performance.md)
 * What is savepoint restore failures cause?
   * Forgetting .uid() is the #1 cause of savepoint restore failures. Once you have state saved without UIDs, you cannot retroactively add them without losing state.
+* Use SKIP_RESTORE_FROM_SNAPSHOT when starting Flink after a Java run (or vice versa). This starts from the consumer group committed offsets instead of Flink's checkpoint offset, avoiding sequence ID gaps caused by ON CONFLICT replays of already-processed events
 * In Flink's state backend, what happens to MapState entries when a checkpoint is triggered — are they snapshotted synchronously or asynchronously?
   * Trivia answer from last time (in case you were pondering): with RocksDB state backend, MapState snapshots are taken asynchronously — Flink takes a snapshot of the RocksDB native memory/SST files without blocking the processing pipeline. The embedded heap backend does
   a synchronous deep copy.
