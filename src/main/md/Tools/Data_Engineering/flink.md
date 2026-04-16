@@ -1,11 +1,12 @@
 ## Trivia
 * [Apache Flink Playground](https://github.com/mohanmca/FlinkPlayground/tree/master/src/main/md/performance.md)
-* What is savepoint restore failures cause?
-  * Forgetting .uid() is the #1 cause of savepoint restore failures. Once you have state saved without UIDs, you cannot retroactively add them without losing state.
 * Use SKIP_RESTORE_FROM_SNAPSHOT when starting Flink after a Java run (or vice versa). This starts from the consumer group committed offsets instead of Flink's checkpoint offset, avoiding sequence ID gaps caused by ON CONFLICT replays of already-processed events
 * In Flink's state backend, what happens to MapState entries when a checkpoint is triggered — are they snapshotted synchronously or asynchronously?
-  * Trivia answer from last time (in case you were pondering): with RocksDB state backend, MapState snapshots are taken asynchronously — Flink takes a snapshot of the RocksDB native memory/SST files without blocking the processing pipeline. The embedded heap backend does
-  a synchronous deep copy.
+* SKIP_RESTORE_FROM_SNAPSHOT will reprocess from the beginning of the topic. RESTORE_FROM_LATEST_SNAPSHOT would resume from where we left off
+* What is savepoint restore failures cause?
+  * Forgetting .uid() is the #1 cause of savepoint restore failures. Once you have state saved without UIDs, you cannot retroactively add them without losing state.
+ * Trivia answer from last time (in case you were pondering): with RocksDB state backend, MapState snapshots are taken asynchronously — Flink takes a snapshot of the RocksDB native memory/SST files without blocking the processing pipeline. The embedded heap backend does
+   a synchronous deep copy.
 * What's the difference between ValueState and ListState when it comes to RocksDB serialization overhead? (Hint: think about what happens on every .value() call vs .get() call.)
   * Trivia answer from before: ValueState.value() on RocksDB deserializes the entire byte array on every call. ListState.get() returns a lazy iterator that deserializes elements one at a time. So for a single counter, ValueState is fine, but for large collections
   ListState avoids the full-deserialization penalty.
