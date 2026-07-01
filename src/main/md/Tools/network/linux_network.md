@@ -2,6 +2,10 @@ Setting up and troubleshooting UDP multicast on Linux can feel like a dark art. 
 
 Here is your comprehensive, step-by-step guide to designing, validating, and troubleshooting a UDP multicast network on RHEL 9 over a `bond0` interface.
 
+* Node IP example: `169.91.200.111/26`
+* Interface: `bond0`
+* OS: RHEL 9
+* Need both:
 ---
 
 ### 1. Basic Networking Introduction
