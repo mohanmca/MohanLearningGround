@@ -137,3 +137,194 @@ Cover these topics:
     * For each step, provide the exact Linux command
 
 Make the answer practical and command-heavy. Use clear sections. Assume I am learning gradually and want to reproduce this on real RHEL 9 servers.
+
+13. Additional process-level UDP multicast investigation:
+
+    * Also include a dedicated section for investigating a real running UDP multicast process.
+    * Retain the following investigation material from `investigate.md`.
+    * Keep the command examples in fenced `bash` code blocks.
+    * Explain what each block proves and how to interpret the output.
+    * Adapt the examples to the RHEL 9 multicast guide while keeping the original process-name example available.
+
+### Investigation notes to retain from `investigate.md`
+
+This document contains a series of diagnostic scripts for troubleshooting system processes, network sockets, and multicast traffic. Each section provides command-line instructions followed by an explanation of their function.
+
+#### 9.1 Identify process and config
+
+```bash
+hostname -f
+PID=$(pgrep -f "UA2FRT01|exb-fixrouter|FixRouterRunner" | head -1)
+echo "PID=$PID"
+tr "\0" " " < /proc/$PID/cmdline; echo
+
+tr "\0" "\n" < /proc/$PID/environ | sort | grep -E "LBM|JAVA|LD_LIBRARY|PATH|CONFIG|INSTANCE|APOLLO"
+readlink -f /proc/$PID/cwd
+```
+
+This block identifies a running process matching specific names, prints its Process ID (PID), displays the exact command used to launch it, lists its environment variables (filtered for configuration keywords), and shows the directory from which it was started.
+
+#### 9.2 UDP and TCP socket proof
+
+```bash
+ss -H -u -a -n -p | grep -E "pid=$PID,|java" || true
+ss -H -t -a -n -p | grep -E "pid=$PID,|java|15658|6763" || true
+lsof -Pan -p $PID -iUDP -iTCP 2>/dev/null || true
+
+# Count UDP sockets by local port.
+ss -H -u -a -n -p | grep "pid=$PID," | awk "{print $5}" | sort | uniq -c
+```
+
+This block inspects network activity by listing all UDP and TCP sockets associated with the identified process, filters them for relevant activity, and lists open files related to those network connections. It also summarizes UDP socket usage by counting connections on each local port.
+
+#### 9.3 Multicast and packet proof
+
+```bash
+ip maddr show
+cat /proc/net/igmp
+GROUP=239.204.228.146
+ip route get $GROUP
+IFACE=$(ip route get $GROUP | awk "{for(i=1;i<=NF;i++) if($i==\"dev\") print $(i+1); exit}")
+echo "IFACE=$IFACE GROUP=$GROUP"
+timeout 10 tcpdump -ni "$IFACE" "host $GROUP and udp"
+timeout 10 tcpdump -ni any "host $GROUP or udp"
+```
+
+This block diagnoses multicast network traffic by listing current multicast group memberships, determining the network interface path for a specific multicast group, and then capturing packets for 10 seconds to verify traffic flow on that specific interface and globally across all interfaces.
+
+#### 9.4 Finding Multicast Group of a Process
+
+To identify which multicast group a process has joined, you can use socket statistics:
+
+```bash
+ss -p -m -u | grep "pid=<PID>"
+```
+
+* `-p`: Shows the process using the socket.
+* `-m`: Shows the multicast group memberships.
+* `-u`: Limits the search to UDP sockets, as multicast runs on UDP.
+
+You can also list all multicast memberships on your network interfaces using:
+
+```bash
+ip maddr show
+```
+
+14. Additional UDP multicast process troubleshooting depth:
+
+    * Show how to replace the sample process matcher with a generic application matcher:
+
+      ```bash
+      APP_PATTERN="my-producer|my-consumer|python.*multicast|java.*FixRouterRunner"
+      PID=$(pgrep -f "$APP_PATTERN" | head -1)
+      echo "PID=$PID"
+      ```
+
+    * Explain that a running process is not enough proof. Prove all of these separately:
+
+      * The process exists.
+      * The command line points to the expected binary, script, config file, and instance.
+      * The process environment has the expected multicast, port, interface, Java, library, or config variables.
+      * The process has UDP sockets open.
+      * The UDP socket is bound to the expected local address and port.
+      * The consumer has joined the expected multicast group.
+      * The kernel selected `bond0` as the route/interface for the multicast group.
+      * Packets leave the producer host.
+      * Packets arrive at the consumer host.
+      * The application actually reads from the socket and prints/processes messages.
+
+    * Include commands to inspect process identity:
+
+      ```bash
+      ps -fp "$PID"
+      tr "\0" " " < "/proc/$PID/cmdline"; echo
+      readlink -f "/proc/$PID/exe"
+      readlink -f "/proc/$PID/cwd"
+      ls -l "/proc/$PID/fd" | head
+      ```
+
+    * Include commands to inspect UDP sockets for one process:
+
+      ```bash
+      ss -uapn | grep -E "pid=$PID,"
+      lsof -Pan -p "$PID" -iUDP 2>/dev/null
+      ```
+
+    * Include commands to inspect whether a consumer joined the multicast group:
+
+      ```bash
+      GROUP=239.91.200.111
+      ip maddr show dev bond0
+      cat /proc/net/igmp
+      ss -uapnmi | grep -E "pid=$PID,|$GROUP|:5000"
+      ```
+
+    * Include commands to prove route and interface selection:
+
+      ```bash
+      GROUP=239.91.200.111
+      ip route get "$GROUP"
+      ip route show 224.0.0.0/4
+      ip -details link show dev bond0
+      ```
+
+    * Include producer-side packet proof:
+
+      ```bash
+      GROUP=239.91.200.111
+      PORT=5000
+      timeout 15 tcpdump -ni bond0 "udp and host $GROUP and port $PORT"
+      ```
+
+    * Include consumer-side packet proof:
+
+      ```bash
+      GROUP=239.91.200.111
+      PORT=5000
+      timeout 15 tcpdump -ni bond0 "udp and host $GROUP and port $PORT"
+      timeout 15 tcpdump -ni any "udp and host $GROUP and port $PORT"
+      ```
+
+    * Include process-level failure patterns and fixes:
+
+      * Process is not running: start the service, check `systemctl status`, check logs with `journalctl -u <service>`.
+      * Process is running but no UDP socket appears: check app configuration, startup arguments, and whether the app failed before opening the socket.
+      * UDP socket appears on the wrong port: correct the application config or command-line port.
+      * UDP socket binds only to `127.0.0.1`: bind to `0.0.0.0`, `169.91.200.111`, or the correct interface-specific address depending on the app design.
+      * Consumer socket exists but no multicast membership appears: check the app's `IP_ADD_MEMBERSHIP` call, group address, interface IP, and permissions/errors during startup.
+      * Route to multicast group uses the wrong interface: add or fix `224.0.0.0/4 dev bond0` and persist it with `nmcli`.
+      * Producer sends from the wrong source interface: set `IP_MULTICAST_IF` in code or use the correct `socat` interface options.
+      * Producer tcpdump sees packets but consumer tcpdump does not: check switch multicast handling, VLAN, IGMP snooping, querier, routing, TTL, and firewall.
+      * Consumer tcpdump sees packets but application does not: check bind address, UDP port, multicast group join, `SO_REUSEADDR`, firewall, SELinux logs, and whether another process consumed or conflicted with the socket.
+      * Packets appear on `any` but not `bond0`: verify interface selection, VLAN subinterfaces, namespaces, containers, and whether the traffic is on a different physical or bonded interface.
+
+    * Include a concise process troubleshooting ladder:
+
+      ```bash
+      # 1. Find process.
+      pgrep -af "my-producer|my-consumer|python.*multicast|java"
+
+      # 2. Capture PID.
+      PID=$(pgrep -f "my-producer|my-consumer|python.*multicast|java" | head -1)
+      echo "$PID"
+
+      # 3. Prove launch command and config context.
+      tr "\0" " " < "/proc/$PID/cmdline"; echo
+      tr "\0" "\n" < "/proc/$PID/environ" | sort | grep -Ei "group|port|iface|interface|config|java|lbm|path"
+      readlink -f "/proc/$PID/cwd"
+
+      # 4. Prove UDP socket.
+      ss -uapn | grep -E "pid=$PID,|:5000"
+
+      # 5. Prove multicast membership.
+      ip maddr show dev bond0
+      cat /proc/net/igmp
+
+      # 6. Prove route.
+      ip route get 239.91.200.111
+
+      # 7. Prove packets.
+      timeout 15 tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
+      ```
+
+Keep the merged answer practical and command-heavy. Use clear sections. Assume I am learning gradually and want to reproduce this on real RHEL 9 servers.
