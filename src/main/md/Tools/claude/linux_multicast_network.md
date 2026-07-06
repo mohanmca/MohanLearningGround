@@ -1,156 +1,639 @@
-I need a step-by-step guide for designing, validating, and troubleshooting a UDP multicast network on RHEL 9 using interface `bond0`.
+# RHEL 9 UDP Multicast Tutorial on `bond0`
 
-Network details:
+This tutorial walks through designing, validating, testing, and troubleshooting UDP multicast on RHEL 9 using interface `bond0`.
 
-* Node IP example: `169.91.200.111/26`
+The examples use:
+
 * Interface: `bond0`
-* OS: RHEL 9
-* Need both:
+* Node A: `169.91.200.111/26`
+* Node B: `169.91.200.112/26`
+* Node C: `169.91.200.113/26`
+* Multicast group: `239.91.200.111`
+* UDP port: `5000`
+* Same-subnet multicast TTL: `1`
 
-  1. Python producer/consumer multicast UDP example
-  2. Non-Python command-line version using tools like `socat`, `ncat`, `tcpdump`, `ss`, `ip`, `nmcli`, `firewall-cmd`
+The tutorial proves multicast in layers. First prove the host and `bond0`, then unicast, then multicast routing and firewall, then application behavior, then packet flow.
 
-Please explain from the beginning in a gradual way.
+## 1. Understand the Subnet
 
-Cover these topics:
+The example host address is:
 
-1. Basic networking introduction:
+```text
+169.91.200.111/26
+```
 
-   * What `/26` means
-   * Subnet mask
-   * Network address
-   * Usable IP range
-   * Broadcast address
-   * Number of usable nodes
-   * Whether `169.91.200.111/26` is valid
-   * Example node design using the same subnet
+The `/26` is CIDR notation. It means the first 26 bits identify the network and the remaining 6 bits identify hosts.
 
-2. Linux interface validation:
+For `169.91.200.111/26`:
 
-   * Check `bond0` link state
-   * Check IP address
-   * Check MAC address
-   * Check MTU
-   * Check bonding status using `/proc/net/bonding/bond0`
-   * Check slave interfaces
-   * Check `ethtool`
-   * Check NetworkManager connection using `nmcli`
+| Item | Value |
+|---|---|
+| CIDR | `/26` |
+| Subnet mask | `255.255.255.192` |
+| Block size | `64` addresses |
+| Network address | `169.91.200.64` |
+| First usable IP | `169.91.200.65` |
+| Last usable IP | `169.91.200.126` |
+| Broadcast address | `169.91.200.127` |
+| Total addresses | `64` |
+| Usable host addresses | `62` |
 
-3. Unicast validation before multicast:
+`169.91.200.111/26` is valid because `.111` is between `.65` and `.126`.
 
-   * `ip route`
-   * `ip route get`
-   * `ping`
-   * `ip neigh`
-   * ARP troubleshooting
-   * Confirm all nodes can reach each other
+Example same-subnet node design:
 
-4. Multicast design:
+| Node | IP address | Valid in subnet? |
+|---|---:|---|
+| Node A | `169.91.200.111/26` | Yes |
+| Node B | `169.91.200.112/26` | Yes |
+| Node C | `169.91.200.113/26` | Yes |
 
-   * Explain producer/consumer model
-   * Choose a safe multicast group, for example `239.91.200.111`
-   * Use UDP port `5000`
-   * Explain why not to use normal unicast IP as multicast destination
-   * Explain why `239.x.x.x` is suitable for private/application multicast
-   * Explain TTL 1 for same subnet
+Do not use the network address `.64` or broadcast address `.127` as a node address.
 
-5. Multicast Linux validation:
+## 2. Multicast Design Used in This Tutorial
 
-   * Check multicast route
-   * Add route `224.0.0.0/4 dev bond0` if required
-   * Make route persistent using `nmcli`
-   * Check interface has `MULTICAST` flag
-   * Enable multicast on interface if needed
-   * Check `rp_filter`
-   * Explain when reverse path filtering may affect multicast
+UDP multicast uses one sender and one or more receivers.
 
-6. Firewall validation:
+* Producer: sends UDP datagrams to a multicast group and port.
+* Consumer: joins the multicast group and receives UDP datagrams on that port.
+* Network: forwards multicast packets to interested receivers.
 
-   * Open UDP port `5000`
-   * Use `firewall-cmd`
-   * Show how to temporarily stop firewall only for controlled testing
-   * Explain not to permanently disable firewall in production
+Use this application multicast design:
 
-7. Python version:
+| Setting | Value |
+|---|---|
+| Multicast group | `239.91.200.111` |
+| UDP port | `5000` |
+| Interface | `bond0` |
+| Producer source IP | Node A, `169.91.200.111` |
+| Consumer IPs | Node B/C, `169.91.200.112`, `169.91.200.113` |
+| TTL | `1` for same subnet |
 
-   * Provide complete Python multicast consumer code
-   * Consumer should join multicast group using interface IP
-   * Provide complete Python multicast producer code
-   * Producer should send to multicast group using `bond0` source IP
-   * Use `IP_MULTICAST_IF`
-   * Use `IP_MULTICAST_TTL`
-   * Show how to run producer and consumer
-   * Show expected output
+Use `239.x.x.x` for private application multicast. This range is administratively scoped and is normally suitable for internal applications.
 
-8. Non-Python command-line version:
+Do not send multicast traffic to a normal unicast IP like `169.91.200.112`. A unicast destination identifies one host. A multicast destination identifies a group that multiple hosts can join.
 
-   * Install required tools on RHEL 9:
-     `socat`, `nmap-ncat`, `tcpdump`, `net-tools`
-   * Use `socat` as the main multicast receiver and sender
-   * Explain why plain `nc`/`netcat` is usually not enough for multicast receiving
-   * Use `ncat` for simple unicast UDP testing
-   * Show multicast consumer command using `socat`
-   * Show multicast producer command using `socat`
-   * Show repeated producer loop
-   * Show unicast UDP test using `ncat`
+## 3. Install Tools on RHEL 9
 
-9. Process and packet validation:
+Run this on every node:
 
-   * How to check if producer process is running
-   * How to check if consumer process is listening
-   * Use `ss -uapn`
-   * Use `ps -ef`
-   * Use `tcpdump` on producer to prove packets are leaving
-   * Use `tcpdump` on consumer to prove packets are arriving
-   * Use `ip maddr show dev bond0`
-   * Use `netstat -g`
+```bash
+sudo dnf install -y socat nmap-ncat tcpdump net-tools lsof ethtool
+```
 
-10. Troubleshooting flow:
+Useful tools:
 
-    * If ping fails, fix unicast first
-    * If producer tcpdump does not show packets, check producer/app/interface/route
-    * If producer tcpdump shows packets but consumer tcpdump does not, check network/switch/VLAN/IGMP/firewall
-    * If consumer tcpdump sees packets but app does not print, check app bind/group join/firewall/port
-    * Include common failure cases and fixes
+| Tool | Purpose |
+|---|---|
+| `ip` | Address, route, link, neighbor, multicast checks |
+| `nmcli` | NetworkManager connection checks and persistent routes |
+| `ss` | UDP/TCP socket proof |
+| `tcpdump` | Packet proof |
+| `socat` | Multicast sender/receiver testing |
+| `ncat` | Simple unicast UDP testing |
+| `firewall-cmd` | RHEL firewall validation |
+| `lsof` | Process socket inspection |
+| `ethtool` | Link driver/speed/duplex checks |
 
-11. Multiple-node validation:
+## 4. Validate `bond0`
 
-    * Assume Node A: `169.91.200.111`
-    * Node B: `169.91.200.112`
-    * Node C: `169.91.200.113`
-    * Provide ping matrix
-    * Provide multicast test from one producer to multiple consumers
-    * Provide commands to run on every node
+Start with the interface. Multicast cannot work reliably if the link, bond, address, or route is wrong.
 
-12. Final memory hook:
+### 4.1 Check Link State
 
-    * Give me a simple memory hook to troubleshoot in order
-    * Example: `LISA-MAP`
+```bash
+ip -br link show dev bond0
+ip -details link show dev bond0
+```
 
-      * Link
-      * IP
-      * Subnet
-      * ARP
-      * Multicast group
-      * Application socket
-      * Packets
-    * For each step, provide the exact Linux command
+Look for:
 
-Make the answer practical and command-heavy. Use clear sections. Assume I am learning gradually and want to reproduce this on real RHEL 9 servers.
+* `UP`
+* `LOWER_UP`
+* `MULTICAST`
+* Expected MTU
 
-13. Additional process-level UDP multicast investigation:
+If `bond0` is down:
 
-    * Also include a dedicated section for investigating a real running UDP multicast process.
-    * Retain the following investigation material from `investigate.md`.
-    * Keep the command examples in fenced `bash` code blocks.
-    * Explain what each block proves and how to interpret the output.
-    * Adapt the examples to the RHEL 9 multicast guide while keeping the original process-name example available.
+```bash
+sudo ip link set dev bond0 up
+```
 
-### Investigation notes to retain from `investigate.md`
+### 4.2 Check IP Address
 
-This document contains a series of diagnostic scripts for troubleshooting system processes, network sockets, and multicast traffic. Each section provides command-line instructions followed by an explanation of their function.
+```bash
+ip -br addr show dev bond0
+ip addr show dev bond0
+```
 
-#### 9.1 Identify process and config
+Expected on Node A:
+
+```text
+169.91.200.111/26
+```
+
+Expected on Node B:
+
+```text
+169.91.200.112/26
+```
+
+Expected on Node C:
+
+```text
+169.91.200.113/26
+```
+
+### 4.3 Check MAC Address and MTU
+
+```bash
+ip link show dev bond0
+cat /sys/class/net/bond0/address
+cat /sys/class/net/bond0/mtu
+```
+
+All nodes do not need the same MAC address. Each node should have its own unique MAC address for `bond0`.
+
+### 4.4 Check Bonding Status
+
+```bash
+cat /proc/net/bonding/bond0
+```
+
+Look for:
+
+* Bonding mode
+* Currently active slave
+* MII status: `up`
+* Slave interfaces
+* Link failure count
+* Speed and duplex
+
+If a slave is down, inspect the physical interface:
+
+```bash
+ip -br link
+ethtool <slave-interface>
+```
+
+Example:
+
+```bash
+ethtool ens1f0
+ethtool ens1f1
+```
+
+### 4.5 Check NetworkManager
+
+```bash
+nmcli device status
+nmcli connection show --active
+nmcli -f GENERAL,IP4 device show bond0
+```
+
+Find the active NetworkManager connection for `bond0`:
+
+```bash
+nmcli -t -f NAME,DEVICE connection show --active | awk -F: '$2=="bond0"{print $1}'
+```
+
+Save it for later:
+
+```bash
+CONN=$(nmcli -t -f NAME,DEVICE connection show --active | awk -F: '$2=="bond0"{print $1; exit}')
+echo "$CONN"
+```
+
+## 5. Prove Unicast Before Multicast
+
+Do not troubleshoot multicast before basic unicast works. All nodes must be able to reach each other on the same subnet.
+
+### 5.1 Check Routes
+
+```bash
+ip route
+ip route get 169.91.200.112
+ip route get 169.91.200.113
+```
+
+On Node A, `ip route get 169.91.200.112` should use `bond0`.
+
+### 5.2 Ping Matrix
+
+Run these from Node A:
+
+```bash
+ping -c 3 169.91.200.112
+ping -c 3 169.91.200.113
+```
+
+Run these from Node B:
+
+```bash
+ping -c 3 169.91.200.111
+ping -c 3 169.91.200.113
+```
+
+Run these from Node C:
+
+```bash
+ping -c 3 169.91.200.111
+ping -c 3 169.91.200.112
+```
+
+If ping fails, fix unicast first.
+
+### 5.3 Check ARP and Neighbor State
+
+```bash
+ip neigh show dev bond0
+```
+
+Expected good states include:
+
+* `REACHABLE`
+* `STALE`
+* `DELAY`
+
+Bad signs:
+
+* `FAILED`
+* Missing neighbor entry after ping
+* Wrong MAC address for a peer
+
+Flush and retest if needed:
+
+```bash
+sudo ip neigh flush dev bond0
+ping -c 3 169.91.200.112
+ip neigh show dev bond0
+```
+
+## 6. Validate Linux Multicast Settings
+
+### 6.1 Check That `bond0` Supports Multicast
+
+```bash
+ip -details link show dev bond0 | grep -o MULTICAST
+```
+
+If the `MULTICAST` flag is missing:
+
+```bash
+sudo ip link set dev bond0 multicast on
+ip -details link show dev bond0
+```
+
+### 6.2 Check the Multicast Route
+
+Linux normally knows that `224.0.0.0/4` is multicast, but explicit routing can help when the host has multiple interfaces.
+
+```bash
+ip route get 239.91.200.111
+ip route show 224.0.0.0/4
+```
+
+If the group routes through the wrong interface, add a route:
+
+```bash
+sudo ip route add 224.0.0.0/4 dev bond0
+ip route get 239.91.200.111
+```
+
+If the route already exists, replace it:
+
+```bash
+sudo ip route replace 224.0.0.0/4 dev bond0
+```
+
+### 6.3 Persist the Multicast Route with `nmcli`
+
+Find the `bond0` connection:
+
+```bash
+CONN=$(nmcli -t -f NAME,DEVICE connection show --active | awk -F: '$2=="bond0"{print $1; exit}')
+echo "$CONN"
+```
+
+Add a persistent multicast route:
+
+```bash
+sudo nmcli connection modify "$CONN" +ipv4.routes "224.0.0.0/4"
+sudo nmcli connection up "$CONN"
+ip route show 224.0.0.0/4
+```
+
+If your NetworkManager version requires a next hop field, use `0.0.0.0`:
+
+```bash
+sudo nmcli connection modify "$CONN" +ipv4.routes "224.0.0.0/4 0.0.0.0"
+sudo nmcli connection up "$CONN"
+```
+
+### 6.4 Check Reverse Path Filtering
+
+Reverse path filtering can drop packets when the return path does not match the receiving interface. It is more common with multihomed hosts, asymmetric routing, or traffic arriving on an interface Linux does not expect.
+
+Check it:
+
+```bash
+sysctl net.ipv4.conf.all.rp_filter
+sysctl net.ipv4.conf.default.rp_filter
+sysctl net.ipv4.conf.bond0.rp_filter
+```
+
+For controlled testing, disable it temporarily:
+
+```bash
+sudo sysctl -w net.ipv4.conf.all.rp_filter=0
+sudo sysctl -w net.ipv4.conf.default.rp_filter=0
+sudo sysctl -w net.ipv4.conf.bond0.rp_filter=0
+```
+
+For production, decide with your network/security team. Loose mode `2` is often safer than strict mode `1` on multihomed systems:
+
+```bash
+sudo sysctl -w net.ipv4.conf.bond0.rp_filter=2
+```
+
+## 7. Validate Firewall Rules
+
+Open UDP port `5000` on every consumer node.
+
+Check active zones:
+
+```bash
+sudo firewall-cmd --get-active-zones
+```
+
+Open the port temporarily:
+
+```bash
+sudo firewall-cmd --add-port=5000/udp
+```
+
+Open the port permanently:
+
+```bash
+sudo firewall-cmd --permanent --add-port=5000/udp
+sudo firewall-cmd --reload
+sudo firewall-cmd --list-ports
+```
+
+If you use a named zone, include it explicitly:
+
+```bash
+sudo firewall-cmd --zone=public --permanent --add-port=5000/udp
+sudo firewall-cmd --reload
+```
+
+For controlled testing only, you can stop the firewall briefly:
+
+```bash
+sudo systemctl stop firewalld
+```
+
+Restart it immediately after the test:
+
+```bash
+sudo systemctl start firewalld
+sudo systemctl status firewalld
+```
+
+Do not permanently disable the firewall in production.
+
+## 8. Python Multicast Test
+
+This test proves application-level multicast with explicit interface selection.
+
+### 8.1 Python Consumer
+
+Create `multicast_consumer.py`:
+
+```python
+#!/usr/bin/env python3
+import argparse
+import socket
+import struct
+
+
+parser = argparse.ArgumentParser(description="UDP multicast consumer")
+parser.add_argument("--group", default="239.91.200.111")
+parser.add_argument("--port", type=int, default=5000)
+parser.add_argument("--iface-ip", required=True, help="Local IP on bond0")
+args = parser.parse_args()
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+try:
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+except AttributeError:
+    pass
+except OSError:
+    pass
+
+sock.bind(("", args.port))
+
+mreq = socket.inet_aton(args.group) + socket.inet_aton(args.iface_ip)
+sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
+
+print(f"listening group={args.group} port={args.port} iface_ip={args.iface_ip}")
+
+while True:
+    data, addr = sock.recvfrom(65535)
+    print(f"from={addr} bytes={len(data)} message={data.decode(errors='replace')}")
+```
+
+Run it on Node B:
+
+```bash
+python3 multicast_consumer.py --iface-ip 169.91.200.112
+```
+
+Run it on Node C:
+
+```bash
+python3 multicast_consumer.py --iface-ip 169.91.200.113
+```
+
+Expected startup:
+
+```text
+listening group=239.91.200.111 port=5000 iface_ip=169.91.200.112
+```
+
+### 8.2 Python Producer
+
+Create `multicast_producer.py`:
+
+```python
+#!/usr/bin/env python3
+import argparse
+import socket
+import struct
+import time
+
+
+parser = argparse.ArgumentParser(description="UDP multicast producer")
+parser.add_argument("--group", default="239.91.200.111")
+parser.add_argument("--port", type=int, default=5000)
+parser.add_argument("--iface-ip", required=True, help="Local IP on bond0")
+parser.add_argument("--ttl", type=int, default=1)
+parser.add_argument("--interval", type=float, default=1.0)
+args = parser.parse_args()
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_IF, socket.inet_aton(args.iface_ip))
+sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, struct.pack("B", args.ttl))
+
+counter = 0
+print(f"sending group={args.group} port={args.port} iface_ip={args.iface_ip} ttl={args.ttl}")
+
+while True:
+    counter += 1
+    message = f"hello multicast {counter} from {args.iface_ip}"
+    sock.sendto(message.encode(), (args.group, args.port))
+    print(message)
+    time.sleep(args.interval)
+```
+
+Run it on Node A:
+
+```bash
+python3 multicast_producer.py --iface-ip 169.91.200.111
+```
+
+Expected consumer output:
+
+```text
+from=('169.91.200.111', 54321) bytes=42 message=hello multicast 1 from 169.91.200.111
+from=('169.91.200.111', 54321) bytes=42 message=hello multicast 2 from 169.91.200.111
+```
+
+If the producer prints messages but the consumer does not, move to packet proof with `tcpdump`.
+
+## 9. Non-Python Command-Line Test
+
+Use `socat` for multicast because it supports multicast group membership options. Plain `nc` or `netcat` is usually not enough for multicast receiving because a multicast consumer must join the group with `IP_ADD_MEMBERSHIP`.
+
+Use `ncat` for simple unicast UDP tests.
+
+### 9.1 Unicast UDP Test with `ncat`
+
+On Node B:
+
+```bash
+ncat -u -l 5000
+```
+
+On Node A:
+
+```bash
+printf 'hello unicast\n' | ncat -u 169.91.200.112 5000
+```
+
+If this fails, troubleshoot unicast, firewall, and the local listener before multicast.
+
+### 9.2 Multicast Consumer with `socat`
+
+On Node B:
+
+```bash
+socat -u UDP4-RECVFROM:5000,ip-add-membership=239.91.200.111:169.91.200.112,reuseaddr,fork -
+```
+
+On Node C:
+
+```bash
+socat -u UDP4-RECVFROM:5000,ip-add-membership=239.91.200.111:169.91.200.113,reuseaddr,fork -
+```
+
+### 9.3 Multicast Producer with `socat`
+
+On Node A:
+
+```bash
+printf 'hello multicast from node A\n' | socat -u - UDP4-DATAGRAM:239.91.200.111:5000,ip-multicast-if=169.91.200.111,ip-multicast-ttl=1
+```
+
+Repeated producer loop:
+
+```bash
+while true; do
+  printf 'hello multicast %s\n' "$(date -Is)"
+  sleep 1
+done | socat -u - UDP4-DATAGRAM:239.91.200.111:5000,ip-multicast-if=169.91.200.111,ip-multicast-ttl=1
+```
+
+## 10. Process and Packet Validation
+
+Use this section to prove what is happening instead of guessing.
+
+### 10.1 Check Producer or Consumer Process
+
+```bash
+ps -ef | grep -E 'multicast_producer|multicast_consumer|socat|python' | grep -v grep
+pgrep -af 'multicast_producer|multicast_consumer|socat|python'
+```
+
+### 10.2 Check UDP Listeners
+
+```bash
+ss -uapn | grep ':5000'
+```
+
+You may see the consumer bound to `0.0.0.0:5000`, `*:5000`, or the specific node IP. A multicast consumer often binds to all local addresses and then joins the group on one interface.
+
+### 10.3 Check Multicast Membership
+
+On the consumer:
+
+```bash
+ip maddr show dev bond0
+netstat -g
+cat /proc/net/igmp
+```
+
+Look for `239.91.200.111`. If the consumer process is running but the group is not present, the app probably did not join the group correctly.
+
+### 10.4 Prove Packets Leave the Producer
+
+On Node A:
+
+```bash
+sudo tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
+```
+
+Then run the producer. If nothing appears, check:
+
+* Producer process
+* Destination group and port
+* `IP_MULTICAST_IF`
+* Multicast route
+* `bond0` status
+
+### 10.5 Prove Packets Arrive at the Consumer
+
+On Node B or Node C:
+
+```bash
+sudo tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
+```
+
+Also test on all interfaces:
+
+```bash
+sudo tcpdump -ni any "udp and host 239.91.200.111 and port 5000"
+```
+
+If packets appear on `any` but not on `bond0`, the traffic is likely using another interface, VLAN interface, container namespace, or route.
+
+## 11. Retained Process Investigation Blocks
+
+This section retains the original investigation command blocks. Use it when troubleshooting a real running application process, not just the Python or `socat` examples.
+
+### 11.1 Identify Process and Config
 
 ```bash
 hostname -f
@@ -162,9 +645,9 @@ tr "\0" "\n" < /proc/$PID/environ | sort | grep -E "LBM|JAVA|LD_LIBRARY|PATH|CON
 readlink -f /proc/$PID/cwd
 ```
 
-This block identifies a running process matching specific names, prints its Process ID (PID), displays the exact command used to launch it, lists its environment variables (filtered for configuration keywords), and shows the directory from which it was started.
+This identifies a running process matching the sample names, prints the PID, shows the exact launch command, filters relevant environment variables, and shows the working directory.
 
-#### 9.2 UDP and TCP socket proof
+### 11.2 UDP and TCP Socket Proof
 
 ```bash
 ss -H -u -a -n -p | grep -E "pid=$PID,|java" || true
@@ -175,9 +658,9 @@ lsof -Pan -p $PID -iUDP -iTCP 2>/dev/null || true
 ss -H -u -a -n -p | grep "pid=$PID," | awk "{print $5}" | sort | uniq -c
 ```
 
-This block inspects network activity by listing all UDP and TCP sockets associated with the identified process, filters them for relevant activity, and lists open files related to those network connections. It also summarizes UDP socket usage by counting connections on each local port.
+This proves whether the process owns UDP or TCP sockets and summarizes UDP socket usage by local port.
 
-#### 9.3 Multicast and packet proof
+### 11.3 Multicast and Packet Proof
 
 ```bash
 ip maddr show
@@ -190,141 +673,324 @@ timeout 10 tcpdump -ni "$IFACE" "host $GROUP and udp"
 timeout 10 tcpdump -ni any "host $GROUP or udp"
 ```
 
-This block diagnoses multicast network traffic by listing current multicast group memberships, determining the network interface path for a specific multicast group, and then capturing packets for 10 seconds to verify traffic flow on that specific interface and globally across all interfaces.
+This lists multicast memberships, determines the route/interface for a multicast group, and captures packets on the selected interface and globally.
 
-#### 9.4 Finding Multicast Group of a Process
+### 11.4 Find Multicast Group of a Process
 
-To identify which multicast group a process has joined, you can use socket statistics:
+To identify which multicast group a process has joined, use socket statistics:
 
 ```bash
 ss -p -m -u | grep "pid=<PID>"
 ```
 
-* `-p`: Shows the process using the socket.
-* `-m`: Shows the multicast group memberships.
-* `-u`: Limits the search to UDP sockets, as multicast runs on UDP.
+Options:
 
-You can also list all multicast memberships on your network interfaces using:
+* `-p`: shows the process using the socket
+* `-m`: shows socket memory and extended socket information, which may include membership details depending on kernel/tool output
+* `-u`: limits output to UDP sockets
+
+List all multicast memberships:
 
 ```bash
 ip maddr show
 ```
 
-14. Additional UDP multicast process troubleshooting depth:
+## 12. Adapt the Process Investigation to Your App
 
-    * Show how to replace the sample process matcher with a generic application matcher:
+Replace the sample process matcher with your own producer, consumer, Java process, or service pattern.
 
-      ```bash
-      APP_PATTERN="my-producer|my-consumer|python.*multicast|java.*FixRouterRunner"
-      PID=$(pgrep -f "$APP_PATTERN" | head -1)
-      echo "PID=$PID"
-      ```
+```bash
+APP_PATTERN="my-producer|my-consumer|python.*multicast|java.*FixRouterRunner"
+PID=$(pgrep -f "$APP_PATTERN" | head -1)
+echo "PID=$PID"
+```
 
-    * Explain that a running process is not enough proof. Prove all of these separately:
+A running process alone is not proof that multicast is working. Prove each layer separately:
 
-      * The process exists.
-      * The command line points to the expected binary, script, config file, and instance.
-      * The process environment has the expected multicast, port, interface, Java, library, or config variables.
-      * The process has UDP sockets open.
-      * The UDP socket is bound to the expected local address and port.
-      * The consumer has joined the expected multicast group.
-      * The kernel selected `bond0` as the route/interface for the multicast group.
-      * Packets leave the producer host.
-      * Packets arrive at the consumer host.
-      * The application actually reads from the socket and prints/processes messages.
+| Proof | What to verify |
+|---|---|
+| Process exists | PID is present and stable |
+| Launch command | Correct binary, script, config, and instance |
+| Environment | Expected group, port, interface, Java, library, config variables |
+| UDP socket | Process opened a UDP socket |
+| Bind address | Socket is bound to expected address and port |
+| Group join | Consumer joined the expected multicast group |
+| Route | Kernel selected `bond0` for the group |
+| Producer packets | Packets leave producer host |
+| Consumer packets | Packets arrive at consumer host |
+| App handling | Application reads and processes messages |
 
-    * Include commands to inspect process identity:
+### 12.1 Inspect Process Identity
 
-      ```bash
-      ps -fp "$PID"
-      tr "\0" " " < "/proc/$PID/cmdline"; echo
-      readlink -f "/proc/$PID/exe"
-      readlink -f "/proc/$PID/cwd"
-      ls -l "/proc/$PID/fd" | head
-      ```
+```bash
+ps -fp "$PID"
+tr "\0" " " < "/proc/$PID/cmdline"; echo
+readlink -f "/proc/$PID/exe"
+readlink -f "/proc/$PID/cwd"
+ls -l "/proc/$PID/fd" | head
+```
 
-    * Include commands to inspect UDP sockets for one process:
+### 12.2 Inspect UDP Sockets for One Process
 
-      ```bash
-      ss -uapn | grep -E "pid=$PID,"
-      lsof -Pan -p "$PID" -iUDP 2>/dev/null
-      ```
+```bash
+ss -uapn | grep -E "pid=$PID,"
+lsof -Pan -p "$PID" -iUDP 2>/dev/null
+```
 
-    * Include commands to inspect whether a consumer joined the multicast group:
+### 12.3 Inspect Consumer Multicast Membership
 
-      ```bash
-      GROUP=239.91.200.111
-      ip maddr show dev bond0
-      cat /proc/net/igmp
-      ss -uapnmi | grep -E "pid=$PID,|$GROUP|:5000"
-      ```
+```bash
+GROUP=239.91.200.111
+ip maddr show dev bond0
+cat /proc/net/igmp
+ss -uapnmi | grep -E "pid=$PID,|$GROUP|:5000"
+```
 
-    * Include commands to prove route and interface selection:
+### 12.4 Prove Route and Interface Selection
 
-      ```bash
-      GROUP=239.91.200.111
-      ip route get "$GROUP"
-      ip route show 224.0.0.0/4
-      ip -details link show dev bond0
-      ```
+```bash
+GROUP=239.91.200.111
+ip route get "$GROUP"
+ip route show 224.0.0.0/4
+ip -details link show dev bond0
+```
 
-    * Include producer-side packet proof:
+### 12.5 Producer-Side Packet Proof
 
-      ```bash
-      GROUP=239.91.200.111
-      PORT=5000
-      timeout 15 tcpdump -ni bond0 "udp and host $GROUP and port $PORT"
-      ```
+```bash
+GROUP=239.91.200.111
+PORT=5000
+timeout 15 tcpdump -ni bond0 "udp and host $GROUP and port $PORT"
+```
 
-    * Include consumer-side packet proof:
+### 12.6 Consumer-Side Packet Proof
 
-      ```bash
-      GROUP=239.91.200.111
-      PORT=5000
-      timeout 15 tcpdump -ni bond0 "udp and host $GROUP and port $PORT"
-      timeout 15 tcpdump -ni any "udp and host $GROUP and port $PORT"
-      ```
+```bash
+GROUP=239.91.200.111
+PORT=5000
+timeout 15 tcpdump -ni bond0 "udp and host $GROUP and port $PORT"
+timeout 15 tcpdump -ni any "udp and host $GROUP and port $PORT"
+```
 
-    * Include process-level failure patterns and fixes:
+## 13. Troubleshooting Flow
 
-      * Process is not running: start the service, check `systemctl status`, check logs with `journalctl -u <service>`.
-      * Process is running but no UDP socket appears: check app configuration, startup arguments, and whether the app failed before opening the socket.
-      * UDP socket appears on the wrong port: correct the application config or command-line port.
-      * UDP socket binds only to `127.0.0.1`: bind to `0.0.0.0`, `169.91.200.111`, or the correct interface-specific address depending on the app design.
-      * Consumer socket exists but no multicast membership appears: check the app's `IP_ADD_MEMBERSHIP` call, group address, interface IP, and permissions/errors during startup.
-      * Route to multicast group uses the wrong interface: add or fix `224.0.0.0/4 dev bond0` and persist it with `nmcli`.
-      * Producer sends from the wrong source interface: set `IP_MULTICAST_IF` in code or use the correct `socat` interface options.
-      * Producer tcpdump sees packets but consumer tcpdump does not: check switch multicast handling, VLAN, IGMP snooping, querier, routing, TTL, and firewall.
-      * Consumer tcpdump sees packets but application does not: check bind address, UDP port, multicast group join, `SO_REUSEADDR`, firewall, SELinux logs, and whether another process consumed or conflicted with the socket.
-      * Packets appear on `any` but not `bond0`: verify interface selection, VLAN subinterfaces, namespaces, containers, and whether the traffic is on a different physical or bonded interface.
+Use this order. Do not skip to multicast before link and unicast are correct.
 
-    * Include a concise process troubleshooting ladder:
+### 13.1 If Ping Fails
 
-      ```bash
-      # 1. Find process.
-      pgrep -af "my-producer|my-consumer|python.*multicast|java"
+Fix unicast first:
 
-      # 2. Capture PID.
-      PID=$(pgrep -f "my-producer|my-consumer|python.*multicast|java" | head -1)
-      echo "$PID"
+```bash
+ip -br addr show dev bond0
+ip route
+ip route get <peer-ip>
+ping -c 3 <peer-ip>
+ip neigh show dev bond0
+```
 
-      # 3. Prove launch command and config context.
-      tr "\0" " " < "/proc/$PID/cmdline"; echo
-      tr "\0" "\n" < "/proc/$PID/environ" | sort | grep -Ei "group|port|iface|interface|config|java|lbm|path"
-      readlink -f "/proc/$PID/cwd"
+Check:
 
-      # 4. Prove UDP socket.
-      ss -uapn | grep -E "pid=$PID,|:5000"
+* Wrong IP or prefix
+* Wrong VLAN
+* `bond0` down
+* Slave links down
+* Firewall blocking ICMP
+* ARP failure
+* Duplicate IP
 
-      # 5. Prove multicast membership.
-      ip maddr show dev bond0
-      cat /proc/net/igmp
+### 13.2 If Producer `tcpdump` Shows No Packets
 
-      # 6. Prove route.
-      ip route get 239.91.200.111
+Check the producer:
 
-      # 7. Prove packets.
-      timeout 15 tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
-      ```
+```bash
+pgrep -af 'producer|python|socat|java'
+ss -uapn | grep ':5000'
+ip route get 239.91.200.111
+ip -details link show dev bond0
+```
 
-Keep the merged answer practical and command-heavy. Use clear sections. Assume I am learning gradually and want to reproduce this on real RHEL 9 servers.
+Likely causes:
+
+* Producer not running
+* Wrong group
+* Wrong port
+* Wrong interface source IP
+* Missing `IP_MULTICAST_IF`
+* Bad route to multicast group
+
+### 13.3 If Producer Sees Packets but Consumer Does Not
+
+Check the network path:
+
+```bash
+sudo tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
+ip maddr show dev bond0
+sudo firewall-cmd --list-ports
+```
+
+Likely causes:
+
+* Wrong VLAN
+* Switch IGMP snooping issue
+* Missing IGMP querier
+* Multicast disabled or filtered on switch
+* TTL too low for routed multicast
+* Firewall blocks UDP `5000`
+* Consumer joined wrong group/interface
+
+For same subnet testing, TTL `1` is correct. If multicast must cross routers, routing and TTL require a separate routed multicast design.
+
+### 13.4 If Consumer `tcpdump` Sees Packets but App Does Not Print
+
+Check the consumer app:
+
+```bash
+ss -uapn | grep ':5000'
+ip maddr show dev bond0
+cat /proc/net/igmp
+journalctl -xe
+```
+
+Likely causes:
+
+* App bound to wrong address
+* App uses wrong port
+* App did not call `IP_ADD_MEMBERSHIP`
+* App joined group on wrong interface IP
+* App did not set `SO_REUSEADDR` when needed
+* Another process has a conflicting socket
+* Firewall or SELinux blocks delivery
+
+### 13.5 Process-Level Failure Patterns
+
+| Symptom | Fix |
+|---|---|
+| Process is not running | Start service, check `systemctl status`, inspect `journalctl -u <service>` |
+| Process runs but no UDP socket appears | Check app config, startup arguments, and startup logs |
+| UDP socket appears on wrong port | Correct application config or command-line port |
+| UDP socket binds only to `127.0.0.1` | Bind to `0.0.0.0`, `169.91.200.111`, or correct interface IP |
+| Consumer socket exists but no membership appears | Check `IP_ADD_MEMBERSHIP`, group, interface IP, startup errors |
+| Route to group uses wrong interface | Add/fix `224.0.0.0/4 dev bond0` and persist with `nmcli` |
+| Producer sends from wrong interface | Set `IP_MULTICAST_IF` or correct `socat` interface option |
+| Producer sees packets but consumer does not | Check switch, VLAN, IGMP snooping, querier, TTL, firewall |
+| Consumer sees packets but app does not | Check bind, port, group join, `SO_REUSEADDR`, firewall, SELinux |
+| Packets appear on `any` but not `bond0` | Check VLAN subinterfaces, namespaces, containers, alternate routes |
+
+## 14. Concise Process Troubleshooting Ladder
+
+Run this when you need a compact end-to-end proof for one app process.
+
+```bash
+# 1. Find process.
+pgrep -af "my-producer|my-consumer|python.*multicast|java"
+
+# 2. Capture PID.
+PID=$(pgrep -f "my-producer|my-consumer|python.*multicast|java" | head -1)
+echo "$PID"
+
+# 3. Prove launch command and config context.
+tr "\0" " " < "/proc/$PID/cmdline"; echo
+tr "\0" "\n" < "/proc/$PID/environ" | sort | grep -Ei "group|port|iface|interface|config|java|lbm|path"
+readlink -f "/proc/$PID/cwd"
+
+# 4. Prove UDP socket.
+ss -uapn | grep -E "pid=$PID,|:5000"
+
+# 5. Prove multicast membership.
+ip maddr show dev bond0
+cat /proc/net/igmp
+
+# 6. Prove route.
+ip route get 239.91.200.111
+
+# 7. Prove packets.
+timeout 15 tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
+```
+
+## 15. Multiple-Node Validation Runbook
+
+Use this exact order for Node A, Node B, and Node C.
+
+### 15.1 On Every Node
+
+```bash
+ip -br addr show dev bond0
+ip -details link show dev bond0
+cat /proc/net/bonding/bond0
+ip route
+ip route get 239.91.200.111
+ip maddr show dev bond0
+sudo firewall-cmd --list-ports
+```
+
+### 15.2 On Consumers, Node B and Node C
+
+Open firewall:
+
+```bash
+sudo firewall-cmd --permanent --add-port=5000/udp
+sudo firewall-cmd --reload
+```
+
+Start consumers:
+
+```bash
+python3 multicast_consumer.py --iface-ip 169.91.200.112
+```
+
+```bash
+python3 multicast_consumer.py --iface-ip 169.91.200.113
+```
+
+### 15.3 On Producer, Node A
+
+Run packet proof:
+
+```bash
+sudo tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
+```
+
+Start producer:
+
+```bash
+python3 multicast_producer.py --iface-ip 169.91.200.111
+```
+
+Both consumers should print messages from Node A.
+
+## 16. Memory Hook: LISA-MAP
+
+Use `LISA-MAP` to remember the troubleshooting order.
+
+| Step | Meaning | Command |
+|---|---|---|
+| L | Link | `ip -details link show dev bond0` |
+| I | IP | `ip -br addr show dev bond0` |
+| S | Subnet | `ip route get <peer-ip>` |
+| A | ARP | `ip neigh show dev bond0` |
+| M | Multicast group | `ip maddr show dev bond0` |
+| A | Application socket | `ss -uapn | grep ':5000'` |
+| P | Packets | `tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"` |
+
+Quick version:
+
+```bash
+ip -details link show dev bond0
+ip -br addr show dev bond0
+ip route get 169.91.200.112
+ip neigh show dev bond0
+ip route get 239.91.200.111
+ip maddr show dev bond0
+ss -uapn | grep ':5000'
+sudo tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
+```
+
+## 17. Final Rule
+
+Troubleshoot in this order:
+
+```text
+bond0 link -> IP/subnet -> unicast ping -> ARP -> multicast route -> firewall -> app socket -> group membership -> tcpdump producer -> tcpdump consumer -> app logs
+```
+
+If one layer fails, fix that layer before moving to the next one.
