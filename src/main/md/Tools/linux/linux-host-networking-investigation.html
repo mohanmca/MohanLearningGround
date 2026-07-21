@@ -3,90 +3,1028 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RHEL 9 Linux Host Networking Investigation</title>
+  <title>RHEL 9 Host Networking: Bonds, LACP, Multicast, Routes, and UDP Investigation</title>
   <style>
-    :root{--bg:#f4f7fb;--paper:#fff;--ink:#172033;--muted:#596579;--blue:#164e8a;--cyan:#eaf5ff;--line:#d8e0ea;--green:#166534;--greenbg:#ecfdf3;--amber:#854d0e;--amberbg:#fff8df;--red:#991b1b;--redbg:#fff1f2;--code:#101827;--codeink:#e6edf7}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 system-ui,-apple-system,"Segoe UI",sans-serif}
-    header{background:linear-gradient(135deg,#12355b,#17669c);color:#fff;padding:3.2rem 1.3rem} header div,main{max-width:1040px;margin:auto}
-    h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;margin:0 0 .8rem} h2{margin-top:2.6rem;padding-bottom:.35rem;border-bottom:2px solid var(--line);color:#123f6d} h3{margin-top:1.8rem;color:#174d7e}
-    main{background:var(--paper);padding:1.5rem clamp(1rem,4vw,3.5rem) 4rem;box-shadow:0 2px 18px #16243b15}
-    nav{background:var(--cyan);border:1px solid #b9daf5;border-radius:10px;padding:1rem 1.4rem;margin:1rem 0 2rem} nav a{color:var(--blue)}
-    code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.93em} :not(pre)>code{background:#edf1f6;padding:.12rem .35rem;border-radius:4px}
-    pre{position:relative;overflow:auto;background:var(--code);color:var(--codeink);padding:1rem 1.2rem;border-radius:8px;line-height:1.48;white-space:pre}
-    .note,.good,.warn,.danger{padding:.8rem 1rem;border-left:5px solid;border-radius:5px;margin:1rem 0}.note{background:var(--cyan);border-color:#1686c8}.good{background:var(--greenbg);border-color:var(--green)}.warn{background:var(--amberbg);border-color:#d99a06}.danger{background:var(--redbg);border-color:var(--red)}
-    table{border-collapse:collapse;width:100%;display:block;overflow:auto;margin:1rem 0} th,td{border:1px solid var(--line);padding:.65rem .75rem;text-align:left;vertical-align:top}th{background:#eaf1f8;color:#173e67}
-    .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;margin:1rem 0}.flow div{border:1px solid var(--line);border-radius:8px;padding:.7rem;background:#f8fafc;text-align:center}
-    kbd{border:1px solid #9ca3af;border-bottom-width:2px;border-radius:4px;padding:.05rem .3rem;background:#fff} footer{color:var(--muted);margin-top:3rem;border-top:1px solid var(--line);padding-top:1rem}
-    @media print{body{background:#fff}header{padding:1.5rem;color:#000;background:#fff;border-bottom:2px solid #000}main{box-shadow:none;max-width:none}pre{white-space:pre-wrap;break-inside:avoid}nav{display:none}a{color:#000;text-decoration:none}}
+    :root {
+      --bg: #f5f7fb;
+      --paper: #ffffff;
+      --ink: #182033;
+      --muted: #5f6b7a;
+      --line: #d8e0eb;
+      --soft: #f8fafc;
+      --blue: #164e8a;
+      --blue-soft: #eaf5ff;
+      --green: #166534;
+      --green-soft: #ecfdf3;
+      --amber: #8a5a00;
+      --amber-soft: #fff8df;
+      --red: #991b1b;
+      --red-soft: #fff1f2;
+      --violet: #5b3a8e;
+      --violet-soft: #f3edff;
+      --code: #101827;
+      --code-ink: #e6edf7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.62 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    header {
+      background: linear-gradient(135deg, #11365b, #1f636b);
+      color: #fff;
+      padding: 3.1rem 1.25rem 3.4rem;
+    }
+
+    header div,
+    main {
+      max-width: 1080px;
+      margin: auto;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: 0 0 .85rem;
+      font-size: clamp(2rem, 5vw, 3.35rem);
+      line-height: 1.08;
+    }
+
+    header p {
+      max-width: 850px;
+      margin: 0;
+      color: #e8f3ff;
+      font-size: 1.08rem;
+    }
+
+    main {
+      background: var(--paper);
+      padding: 1.5rem clamp(1rem, 4vw, 3.5rem) 4rem;
+      box-shadow: 0 2px 20px rgba(22, 36, 59, .09);
+    }
+
+    h2 {
+      margin-top: 2.6rem;
+      padding-bottom: .35rem;
+      border-bottom: 2px solid var(--line);
+      color: #123f6d;
+      line-height: 1.18;
+    }
+
+    h3 {
+      margin-top: 1.8rem;
+      color: #174d7e;
+      line-height: 1.22;
+    }
+
+    p {
+      margin: .85rem 0;
+    }
+
+    nav {
+      background: var(--blue-soft);
+      border: 1px solid #b9daf5;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0 2rem;
+    }
+
+    nav ol {
+      margin: .55rem 0 0;
+      padding-left: 1.3rem;
+    }
+
+    a {
+      color: var(--blue);
+    }
+
+    code,
+    pre {
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    }
+
+    code {
+      font-size: .93em;
+    }
+
+    :not(pre) > code {
+      background: #edf1f6;
+      padding: .12rem .35rem;
+      border-radius: 4px;
+    }
+
+    pre {
+      position: relative;
+      overflow: auto;
+      background: var(--code);
+      color: var(--code-ink);
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      line-height: 1.48;
+      white-space: pre;
+    }
+
+    table {
+      width: 100%;
+      display: block;
+      overflow: auto;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: .65rem .75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eaf1f8;
+      color: #173e67;
+    }
+
+    .note,
+    .good,
+    .warn,
+    .danger,
+    .lacp {
+      padding: .85rem 1rem;
+      border-left: 5px solid;
+      border-radius: 5px;
+      margin: 1rem 0;
+    }
+
+    .note {
+      background: var(--blue-soft);
+      border-color: #1686c8;
+    }
+
+    .good {
+      background: var(--green-soft);
+      border-color: var(--green);
+    }
+
+    .warn {
+      background: var(--amber-soft);
+      border-color: #d99a06;
+    }
+
+    .danger {
+      background: var(--red-soft);
+      border-color: var(--red);
+    }
+
+    .lacp {
+      background: var(--violet-soft);
+      border-color: var(--violet);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: .75rem;
+      margin: 1rem 0;
+    }
+
+    .cards div {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+      padding: .85rem;
+    }
+
+    .cards strong {
+      display: block;
+      margin-bottom: .25rem;
+      color: #173e67;
+    }
+
+    .network-path {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .55rem;
+      align-items: stretch;
+      margin: 1rem 0;
+    }
+
+    .network-path div {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fafc;
+      min-height: 72px;
+      padding: .75rem;
+      text-align: center;
+    }
+
+    .network-path strong {
+      display: block;
+      color: #174d7e;
+    }
+
+    footer {
+      color: var(--muted);
+      margin-top: 3rem;
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      header {
+        background: #fff;
+        color: #000;
+        border-bottom: 2px solid #000;
+        padding: 1.5rem 1rem;
+      }
+
+      header p {
+        color: #222;
+      }
+
+      main {
+        max-width: none;
+        box-shadow: none;
+      }
+
+      nav {
+        display: none;
+      }
+
+      pre {
+        white-space: pre-wrap;
+        break-inside: avoid;
+      }
+
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+    }
   </style>
 </head>
 <body>
-<header><div><h1>RHEL 9 Linux Host Networking Investigation</h1><p>A practical, read-only Bash tutorial for Linux and Java developers diagnosing interfaces, bonds, routes, NetworkManager, and UDP sockets.</p></div></header>
+<header>
+  <div>
+    <h1>RHEL 9 Host Networking: Bonds, LACP, Multicast, Routes, and UDP Investigation</h1>
+    <p>A practical article for Linux and Java engineers who need to understand host bonding, LACP, multicast delivery, NetworkManager state, route selection, and UDP socket ownership.</p>
+  </div>
+</header>
+
 <main>
-  <div class="good"><strong>Safety:</strong> Every investigation command in this tutorial is read-only. It does not restart networking, modify a connection, change a route, kill a process, or send packets. Commands needing process details may require <code>sudo</code>.</div>
-  <nav><strong>Investigation path</strong><ol><li><a href="#addresses">IPv4 addresses and interface types</a></li><li><a href="#bonding">Bond health and active-backup behavior</a></li><li><a href="#nm">NetworkManager state</a></li><li><a href="#routes">Routes and policy rules</a></li><li><a href="#udp">UDP sockets and Java ownership</a></li><li><a href="#script">Complete read-only script</a></li><li><a href="#checklist">Final checklist</a></li></ol></nav>
+  <div class="good"><strong>Safety:</strong> The primary investigation path is read-only. Sections that install packages, change routes, alter firewall rules, adjust sysctls, or send test traffic are marked as controlled testing or remediation and should be used only with approval. Some socket/process and packet-capture details may require <code>sudo</code>.</div>
 
-  <section id="addresses"><h2>1. List IPv4 addresses</h2>
-    <pre><code>ip -br addr
-ip -br -4 addr
-ip -br -4 addr | awk 'NF &gt; 2'</code></pre>
-    <p><code>-br</code> means <em>brief</em>, so each interface occupies one line. <code>-4</code> restricts output to IPv4. The <code>awk</code> form retains rows with at least an interface, state, and address field. An address such as <code>169.91.200.111/25</code> is a unicast host address; it is unrelated to multicast merely because a multicast group might look similar, such as <code>239.91.200.111</code>.</p>
-    <table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody><tr><td>Interface</td><td><code>bond0</code></td><td>Kernel network device name</td></tr><tr><td>Administrative state</td><td><code>UP</code></td><td>Device has been enabled; it does not alone prove end-to-end reachability</td></tr><tr><td>Address</td><td><code>169.91.200.111/25</code></td><td>Host IPv4 address plus prefix length</td></tr></tbody></table>
+  <nav aria-label="Table of contents">
+    <strong>Article map</strong>
+    <ol>
+      <li><a href="#model">The host networking model</a></li>
+      <li><a href="#bonding">Linux bonding basics</a></li>
+      <li><a href="#lacp">LACP and 802.3ad</a></li>
+      <li><a href="#inventory">Read-only host inventory</a></li>
+      <li><a href="#bond-health">Bond health investigation</a></li>
+      <li><a href="#networkmanager">NetworkManager view</a></li>
+      <li><a href="#routes">Routes and unicast baseline</a></li>
+      <li><a href="#multicast-design">Multicast design and host settings</a></li>
+      <li><a href="#multicast-tests">Multicast test producers and consumers</a></li>
+      <li><a href="#packet-proof">Packet proof and troubleshooting flow</a></li>
+      <li><a href="#udp">UDP sockets and Java ownership</a></li>
+      <li><a href="#script">Complete investigation script</a></li>
+      <li><a href="#checklist">Final checklist</a></li>
+    </ol>
+  </nav>
 
-    <h3>Physical NIC versus logical bond</h3><p>A physical NIC such as <code>ens1f0</code> represents hardware. A bond such as <code>bond0</code> is a logical device that owns the host IP and selects one or more member NICs for traffic. Applications normally bind to the bond address, not to a slave's address.</p>
-    <div class="flow"><div>Java / UDP process</div><div><strong>bond0</strong><br>logical IP owner</div><div><strong>ens1f0</strong><br>active physical NIC</div><div>Switch / network</div></div>
-    <pre><code>ip -d link show type bond
-ip -br link
-ip link show master bond0</code></pre>
-    <p><code>ip -d</code> adds device-specific details. The last command lists interfaces enslaved to <code>bond0</code>.</p>
+  <section id="model">
+    <h2>1. The host networking model</h2>
+    <p>Linux host networking is easiest to investigate from the top down. Applications bind sockets to local addresses and ports. The kernel chooses a route and egress device. A logical interface such as a bond may then choose one physical NIC to carry the frame. The switch side must agree with the host design, especially when link aggregation is involved.</p>
+
+    <div class="network-path" aria-label="Application to network path">
+      <div><strong>Application</strong>Java, service, UDP socket</div>
+      <div><strong>Local address</strong>IP owned by a Linux device</div>
+      <div><strong>Bond</strong>Logical interface such as <code>bond0</code></div>
+      <div><strong>NIC</strong>Physical port such as <code>eno1</code></div>
+      <div><strong>Switch</strong>Access port or LACP group</div>
+    </div>
+
+    <p>A recurring source of confusion is the difference between a physical interface and the logical interface that owns the IP address. In a bonded setup, the IP address normally belongs to the bond. The member interfaces carry Ethernet frames, but they usually do not carry the application-facing IP address.</p>
+
+    <pre><code>eno1 ----\
+          +-- bond0 -- IP: 169.91.200.111/25
+eno2 ----/</code></pre>
+
+    <div class="note"><strong>Address note:</strong> <code>169.91.200.111/25</code> is an ordinary unicast IPv4 address in this example. It is unrelated to multicast merely because a multicast group might look similar, such as <code>239.91.200.111</code>.</div>
   </section>
 
-  <section id="bonding"><h2>2. Inspect Linux bonding</h2>
+  <section id="bonding">
+    <h2>2. Linux bonding basics</h2>
+    <p>Network bonding combines two or more physical network interfaces into one logical interface. RHEL uses this pattern for high availability, aggregate throughput in supported modes, and operational consistency when an application should bind to one stable host address rather than to a specific NIC.</p>
+
+    <div class="cards">
+      <div><strong>High availability</strong>If a NIC, cable, or switch port fails, another member can take over.</div>
+      <div><strong>Aggregate capacity</strong>Some modes can distribute separate flows across multiple links.</div>
+      <div><strong>Stable host identity</strong>The service IP lives on the bond while physical members can change role.</div>
+    </div>
+
+    <p>Physical member interfaces are commonly called bond slaves, bond ports, or bond members. On a server using <code>bond0</code>, applications normally bind to the address assigned to <code>bond0</code>, not to <code>eno1</code> or <code>eno2</code>.</p>
+
+    <h3>Common bonding modes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Mode</th>
+          <th>Name</th>
+          <th>Purpose</th>
+          <th>Switch configuration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>0</code></td><td><code>balance-rr</code></td><td>Round-robin load balancing and aggregation</td><td>Usually required</td></tr>
+        <tr><td><code>1</code></td><td><code>active-backup</code></td><td>One active NIC; another takes over on failure</td><td>Usually not required</td></tr>
+        <tr><td><code>2</code></td><td><code>balance-xor</code></td><td>Selects a member using a traffic hash</td><td>Usually required</td></tr>
+        <tr><td><code>3</code></td><td><code>broadcast</code></td><td>Sends every packet through every member</td><td>Usually not required</td></tr>
+        <tr><td><code>4</code></td><td><code>802.3ad / LACP</code></td><td>Standards-based dynamic link aggregation</td><td>LACP required</td></tr>
+        <tr><td><code>5</code></td><td><code>balance-tlb</code></td><td>Transmit load balancing</td><td>Usually not required</td></tr>
+        <tr><td><code>6</code></td><td><code>balance-alb</code></td><td>Transmit and receive load balancing</td><td>Usually not required</td></tr>
+      </tbody>
+    </table>
+
+    <p>The most common operational choices are mode <code>1</code> for simple failover and mode <code>4</code> for redundancy plus higher aggregate bandwidth when the upstream switch supports LACP.</p>
+
+    <div class="warn"><strong>Failure-domain reminder:</strong> Bonding protects against a NIC, cable, or switch-port failure. Protection against an entire switch failure requires the two NICs to connect to separate switches that support the selected bonding design.</div>
+  </section>
+
+  <section id="lacp">
+    <h2>3. LACP and 802.3ad</h2>
+    <p>LACP, the Link Aggregation Control Protocol, is the standard protocol used by Linux bonding mode <code>4</code>. It combines multiple physical Ethernet links into one logical link when the host and switch ports are configured as the same aggregation group.</p>
+
+    <pre><code>RHEL server                         Network switch
++-------------+                    +--------------+
+| eno1 -------+--------------------| Port 1       |
+| eno2 -------+--------------------| Port 2       |
+|      bond0  |      LACP group    | Port-channel |
++-------------+                    +--------------+</code></pre>
+
+    <div class="lacp"><strong>Both sides must agree:</strong> LACP must be configured on the RHEL server as an <code>802.3ad</code> bond and on the switch ports as the same port-channel or LAG. Simply connecting two cables without matching switch configuration can create connectivity problems.</div>
+
+    <h3>Why use LACP?</h3>
+    <ul>
+      <li>It provides failover if a NIC, cable, or switch port fails.</li>
+      <li>It combines link capacity across multiple independent traffic flows.</li>
+      <li>It detects whether links are correctly connected and participating.</li>
+      <li>It prevents incorrect links from silently joining the bond.</li>
+    </ul>
+
+    <p>Two 1 Gbps links may provide up to 2 Gbps of total aggregate capacity. A single TCP connection normally remains on one member link and is still limited to roughly 1 Gbps, because LACP distributes flows by hash rather than splitting one flow packet-by-packet.</p>
+
+    <h3>Useful LACP settings</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Setting</th>
+          <th>Meaning</th>
+          <th>Common value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>mode=4</code></td><td>Uses IEEE 802.3ad dynamic link aggregation</td><td>Required for LACP</td></tr>
+        <tr><td><code>lacp_rate</code></td><td>Controls how often LACP PDUs are exchanged</td><td><code>fast</code> for about 1 second; <code>slow</code> for about 30 seconds</td></tr>
+        <tr><td><code>xmit_hash_policy</code></td><td>Chooses which member carries each outgoing flow</td><td><code>layer3+4</code> is common for IP and port based distribution</td></tr>
+      </tbody>
+    </table>
+
+    <p>For LACP health, <code>/proc/net/bonding/bond0</code> should identify the mode as IEEE 802.3ad dynamic link aggregation. Members should be <code>up</code>, have compatible speed and duplex, and normally appear in the same aggregator.</p>
+
+    <pre><code>cat /proc/net/bonding/bond0</code></pre>
+
+    <pre><code>Bonding Mode: IEEE 802.3ad Dynamic link aggregation
+LACP rate: fast
+Aggregator ID: 1
+Actor Churn State: none
+Partner Churn State: none
+Slave Interface: eno1
+MII Status: up
+Slave Interface: eno2
+MII Status: up</code></pre>
+  </section>
+
+  <section id="inventory">
+    <h2>4. Read-only host inventory</h2>
+    <p>Start with the kernel view of addresses and links. These commands answer which device owns each IP address, which devices are administratively up, and whether the kernel knows about bond devices.</p>
+
+    <pre><code>ip -br addr
+ip -br -4 addr
+ip -br -4 addr | awk 'NF &gt; 2'
+ip -br link
+ip -d link show type bond</code></pre>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Example</th>
+          <th>Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Interface</td><td><code>bond0</code></td><td>Kernel network device name</td></tr>
+        <tr><td>Administrative state</td><td><code>UP</code></td><td>Device has been enabled; this alone does not prove end-to-end reachability</td></tr>
+        <tr><td>Address</td><td><code>169.91.200.111/25</code></td><td>Host IPv4 address and prefix length</td></tr>
+      </tbody>
+    </table>
+
+    <p>To list the physical interfaces enslaved to a bond, use:</p>
+
+    <pre><code>ip link show master bond0</code></pre>
+  </section>
+
+  <section id="bond-health">
+    <h2>5. Bond health investigation</h2>
+    <p>The live kernel bonding status is exposed under <code>/proc/net/bonding</code>. Each file corresponds to one bond and contains the mode, active member, link monitoring status, speed, duplex, failure counts, and LACP-specific state where applicable.</p>
+
     <pre><code>ls -1 /proc/net/bonding/
 cat /proc/net/bonding/bond0
 cat /proc/net/bonding/bond1
 cat /proc/net/bonding/bond3</code></pre>
-    <p>Only read files that exist on your host. Each file is the kernel bonding driver's live view of one bond. Important fields are <code>Bonding Mode</code>, <code>Currently Active Slave</code>, each slave's <code>MII Status</code>, speed, duplex, and <code>Link Failure Count</code>.</p>
+
+    <p>Only read files that exist on the host. To summarize every bond without dumping the full file:</p>
+
     <pre><code>for b in /proc/net/bonding/*; do
   [ -e "$b" ] || continue
   echo "== ${b##*/} =="
-  grep -E 'Bonding Mode|Primary Slave|Currently Active Slave|MII Status|Slave Interface|Speed|Duplex|Link Failure Count' "$b"
+  grep -E 'Bonding Mode|Primary Slave|Currently Active Slave|MII Status|Slave Interface|Speed|Duplex|Link Failure Count|LACP rate|Aggregator ID|Actor Churn State|Partner Churn State' "$b"
   echo
 done</code></pre>
-    <table><thead><tr><th>Observation</th><th>Interpretation</th></tr></thead><tbody><tr><td>Bond and active slave show <code>MII Status: up</code></td><td>Physical link monitoring currently sees the path as healthy</td></tr><tr><td>Failure count increases</td><td>Link has flapped since the bond was created; compare timestamps and switch logs</td></tr><tr><td>Speed or duplex differs between slaves</td><td>Configuration/cabling may be inconsistent</td></tr><tr><td>No files under <code>/proc/net/bonding</code></td><td>No kernel bond is currently registered, or the host uses another mechanism such as a team</td></tr></tbody></table>
 
-    <h3>Active-backup bonding</h3><p>Mode <code>active-backup</code> (mode 1) uses one slave at a time. The standby takes over when link monitoring declares the active slave unhealthy. It provides redundancy, not bandwidth aggregation. Depending on <code>primary</code> and <code>primary_reselect</code>, traffic may or may not return to the preferred NIC after recovery.</p>
-    <div class="warn"><strong>Do not test failover on a production host by bringing a slave down</strong> unless the change is approved and an out-of-band recovery path exists. This tutorial only observes state.</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Observation</th>
+          <th>Interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Bond and active slave show <code>MII Status: up</code></td><td>Physical link monitoring currently sees the path as healthy</td></tr>
+        <tr><td><code>Currently Active Slave</code> is set in active-backup mode</td><td>Traffic should be using that member unless the host has unusual policy or offload behavior</td></tr>
+        <tr><td><code>Link Failure Count</code> increases</td><td>The link has flapped since the bond was created; compare timestamps and switch logs</td></tr>
+        <tr><td>Speed or duplex differs between slaves</td><td>Configuration, cabling, or switch-port settings may be inconsistent</td></tr>
+        <tr><td>LACP members have different aggregator IDs</td><td>Members may not be in the same switch aggregation group</td></tr>
+        <tr><td>No files under <code>/proc/net/bonding</code></td><td>No kernel bond is currently registered, or the host uses another mechanism such as a team</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Active-backup behavior</h3>
+    <p>Mode <code>active-backup</code> uses one member at a time. The standby takes over when link monitoring declares the active member unhealthy. It provides redundancy, not bandwidth aggregation. Depending on <code>primary</code> and <code>primary_reselect</code>, traffic may or may not return to the preferred NIC after recovery.</p>
+
+    <pre><code>Bonding Mode: fault-tolerance (active-backup)
+Primary Slave: eno1
+Currently Active Slave: eno1
+Slave Interface: eno1
+MII Status: up
+Slave Interface: eno2
+MII Status: up</code></pre>
+
+    <div class="danger"><strong>Do not test failover by bringing a production slave down</strong> unless the change is approved and an out-of-band recovery path exists. Capture the read-only state first.</div>
   </section>
 
-  <section id="nm"><h2>3. Check NetworkManager</h2>
-    <pre><code>nmcli -t -f NAME,DEVICE connection show --active
+  <section id="networkmanager">
+    <h2>6. NetworkManager view</h2>
+    <p>On RHEL 9, NetworkManager is usually the management layer that creates and applies the host's connection profiles. A connection is a saved or active profile. A device is the kernel interface. The names can differ, so always check both.</p>
+
+    <pre><code>nmcli connection show
+nmcli -t -f NAME,DEVICE connection show --active
 nmcli device status
 nmcli connection show --active
 nmcli -f GENERAL,IP4 device show bond0</code></pre>
-    <p>A <strong>connection</strong> is a saved or active NetworkManager profile; a <strong>device</strong> is a kernel interface. Their names can differ. The terse option <code>-t</code> is convenient for scripts.</p>
-    <table><thead><tr><th>Device state</th><th>Meaning</th></tr></thead><tbody><tr><td><code>connected</code></td><td>NetworkManager activated a profile on the device</td></tr><tr><td><code>unmanaged</code></td><td>NetworkManager intentionally does not control the device</td></tr><tr><td><code>connected (externally)</code></td><td>The device has usable configuration created outside the active NetworkManager profile workflow; NetworkManager observes it without claiming the original configuration</td></tr><tr><td><code>disconnected</code></td><td>Managed, but no active connection profile is applied</td></tr></tbody></table>
-    <p>On a bond, slave devices can legitimately have no IP address. Check that the bond owns the intended IP and that the active profile maps to the intended device.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Device state</th>
+          <th>Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>connected</code></td><td>NetworkManager activated a profile on the device</td></tr>
+        <tr><td><code>unmanaged</code></td><td>NetworkManager intentionally does not control the device</td></tr>
+        <tr><td><code>connected (externally)</code></td><td>The device has usable configuration created outside the active NetworkManager workflow; NetworkManager observes it without claiming the original configuration</td></tr>
+        <tr><td><code>disconnected</code></td><td>Managed, but no active connection profile is applied</td></tr>
+      </tbody>
+    </table>
+
+    <p>Bond member devices can legitimately have no IP address. The important checks are whether the bond owns the intended IP address, whether the active profile maps to the intended bond device, and whether the slave profiles match the host standard.</p>
   </section>
 
-  <section id="routes"><h2>4. Check routes and policy rules</h2>
+  <section id="routes">
+    <h2>7. Routes and unicast baseline</h2>
+    <p>After confirming address ownership and bond health, prove that ordinary unicast works before troubleshooting multicast. The route lookup decides the outgoing device, source address, gateway, and routing table. It performs a lookup; it does not send a packet.</p>
+
     <pre><code>ip -4 route show
 ip rule show
 ip route get &lt;destination_ip&gt;</code></pre>
-    <p>The first command lists the main IPv4 routing table. <code>ip rule</code> shows policy-routing selection rules, which may direct traffic to other tables based on source, marks, or priority. Replace <code>&lt;destination_ip&gt;</code> with a real IP, without angle brackets:</p>
-    <pre><code>ip route get 169.91.200.50
+
+    <p>Replace <code>&lt;destination_ip&gt;</code> with a real IP address, without angle brackets:</p>
+
+    <pre><code>ip route get 169.91.200.112
+ip route get 169.91.200.113
 ip route get 239.91.200.111</code></pre>
-    <p><code>ip route get</code> asks the kernel which route it would use. Inspect the returned device, next hop, source address, and table. It performs a lookup; it does not send a packet.</p>
-    <div class="note"><strong>Multicast note:</strong> Routes choose an egress interface, but multicast reception also depends on the application joining the group, socket binding, local firewall, IGMP state, and upstream switch multicast behavior.</div>
+
+    <p>For the example multicast lab, all nodes are on the same <code>/26</code> subnet and should route through <code>bond0</code>.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Node</th>
+          <th>Address</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Node A</td><td><code>169.91.200.111/26</code></td><td>Producer</td></tr>
+        <tr><td>Node B</td><td><code>169.91.200.112/26</code></td><td>Consumer</td></tr>
+        <tr><td>Node C</td><td><code>169.91.200.113/26</code></td><td>Consumer</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Understand the example subnet</h3>
+    <p>The address <code>169.91.200.111/26</code> uses the first 26 bits for the network and the remaining 6 bits for hosts. The address is valid because <code>.111</code> is between the first and last usable addresses.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>CIDR</td><td><code>/26</code></td></tr>
+        <tr><td>Subnet mask</td><td><code>255.255.255.192</code></td></tr>
+        <tr><td>Block size</td><td>64 addresses</td></tr>
+        <tr><td>Network address</td><td><code>169.91.200.64</code></td></tr>
+        <tr><td>First usable IP</td><td><code>169.91.200.65</code></td></tr>
+        <tr><td>Last usable IP</td><td><code>169.91.200.126</code></td></tr>
+        <tr><td>Broadcast address</td><td><code>169.91.200.127</code></td></tr>
+        <tr><td>Usable host addresses</td><td>62</td></tr>
+      </tbody>
+    </table>
+
+    <div class="warn"><strong>Controlled traffic:</strong> <code>ping</code>, <code>ncat</code>, <code>socat</code>, Python producers, and <code>tcpdump</code> are test/observation tools, not passive configuration reads. Coordinate them on production hosts.</div>
+
+    <h3>Prove unicast before multicast</h3>
+    <p>Run a ping matrix before debugging multicast group delivery. If unicast cannot work between producer and consumer nodes on <code>bond0</code>, multicast will not be reliable.</p>
+
+    <pre><code># From Node A
+ping -c 3 169.91.200.112
+ping -c 3 169.91.200.113
+
+# From Node B
+ping -c 3 169.91.200.111
+ping -c 3 169.91.200.113
+
+# From Node C
+ping -c 3 169.91.200.111
+ping -c 3 169.91.200.112</code></pre>
+
+    <p>Inspect neighbor state on each node after route and ping checks:</p>
+
+    <pre><code>ip neigh show dev bond0</code></pre>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Neighbor state</th>
+          <th>Interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>REACHABLE</code>, <code>STALE</code>, <code>DELAY</code></td><td>Normal states during ordinary ARP/neighbor cache lifecycle</td></tr>
+        <tr><td><code>FAILED</code></td><td>The host could not resolve or reach the peer at layer 2</td></tr>
+        <tr><td>Missing entry after ping</td><td>Route, VLAN, subnet, firewall, or ARP behavior needs attention</td></tr>
+        <tr><td>Wrong MAC for a peer</td><td>Investigate duplicate IPs or incorrect layer-2 path</td></tr>
+      </tbody>
+    </table>
+
+    <p>If a stale neighbor entry is suspected during an approved test window, flush and retest:</p>
+
+    <pre><code>sudo ip neigh flush dev bond0
+ping -c 3 169.91.200.112
+ip neigh show dev bond0</code></pre>
   </section>
 
-  <section id="udp"><h2>5. Inspect UDP sockets</h2>
-    <pre><code>ss -uapn
-ss -uapn | head</code></pre>
-    <p><code>ss</code> inspects kernel sockets. The flags mean: <code>-u</code> UDP, <code>-a</code> all sockets, <code>-p</code> process information, and <code>-n</code> numeric addresses and ports. Use <code>sudo ss -uapn</code> when another user's PID or process name is hidden.</p>
-    <table><thead><tr><th>Output</th><th>Meaning</th></tr></thead><tbody><tr><td><code>0.0.0.0:9000</code></td><td>Socket is bound to port 9000 on all local IPv4 addresses; it does not mean “the whole world”</td></tr><tr><td><code>169.91.200.111:9000</code></td><td>Socket is bound specifically to that local address and port</td></tr><tr><td><code>UNCONN</code></td><td>Normal for an unconnected UDP socket; UDP has no TCP-style connection state</td></tr><tr><td><code>users:(("java",pid=1234,fd=87))</code></td><td>Java PID 1234 owns the socket through file descriptor 87</td></tr></tbody></table>
+  <section id="multicast-design">
+    <h2>8. Multicast design and host settings</h2>
+    <p>UDP multicast uses a producer that sends datagrams to a group and one or more consumers that join the group. The network forwards traffic only where receivers are interested, subject to host configuration, firewall policy, IGMP behavior, and switch support.</p>
 
-    <h3>Java processes owning UDP sockets</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Setting</th>
+          <th>Example value</th>
+          <th>Why it matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Multicast group</td><td><code>239.91.200.111</code></td><td>Private application group from administratively scoped <code>239.0.0.0/8</code></td></tr>
+        <tr><td>UDP port</td><td><code>5000</code></td><td>Producer and consumers must agree on the port</td></tr>
+        <tr><td>Interface</td><td><code>bond0</code></td><td>Both route selection and group join should use the intended host interface</td></tr>
+        <tr><td>Producer source</td><td><code>169.91.200.111</code></td><td>Sets the outgoing interface for explicit multicast sends</td></tr>
+        <tr><td>Consumers</td><td><code>169.91.200.112</code>, <code>169.91.200.113</code></td><td>Each consumer must join the group on its local <code>bond0</code> address</td></tr>
+        <tr><td>TTL</td><td><code>1</code></td><td>Correct for same-subnet multicast; routed multicast needs a separate design</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note"><strong>Group versus host address:</strong> Do not send multicast traffic to a normal unicast IP such as <code>169.91.200.112</code>. A unicast destination identifies one host. A multicast destination identifies a group that multiple hosts can join.</div>
+
+    <h3>Tools for controlled validation</h3>
+    <p>The base investigation commands use standard RHEL tools such as <code>ip</code>, <code>nmcli</code>, and <code>ss</code>. Active validation often needs additional tools.</p>
+
+    <pre><code>sudo dnf install -y socat nmap-ncat tcpdump net-tools lsof ethtool</code></pre>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>ip</code></td><td>Address, route, link, neighbor, and multicast checks</td></tr>
+        <tr><td><code>nmcli</code></td><td>NetworkManager connection checks and persistent routes</td></tr>
+        <tr><td><code>ss</code></td><td>UDP/TCP socket proof</td></tr>
+        <tr><td><code>tcpdump</code></td><td>Packet proof on producer and consumer hosts</td></tr>
+        <tr><td><code>socat</code></td><td>Multicast sender and receiver testing with group membership options</td></tr>
+        <tr><td><code>ncat</code></td><td>Simple unicast UDP testing before multicast</td></tr>
+        <tr><td><code>firewall-cmd</code></td><td>RHEL firewall validation</td></tr>
+        <tr><td><code>lsof</code></td><td>Process socket inspection</td></tr>
+        <tr><td><code>ethtool</code></td><td>Driver, speed, duplex, and link checks for physical members</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Check that bond0 supports multicast</h3>
+    <pre><code>ip -br link show dev bond0
+ip -details link show dev bond0
+ip -details link show dev bond0 | grep -o MULTICAST</code></pre>
+
+    <p>Look for <code>UP</code>, <code>LOWER_UP</code>, <code>MULTICAST</code>, and the expected MTU. If the <code>MULTICAST</code> flag is missing, this is an approved remediation example:</p>
+
+    <pre><code>sudo ip link set dev bond0 multicast on
+ip -details link show dev bond0</code></pre>
+
+    <h3>Check the multicast route</h3>
+    <p>Linux normally knows that <code>224.0.0.0/4</code> is multicast, but an explicit route can be useful when a host has multiple interfaces.</p>
+
+    <pre><code>ip route get 239.91.200.111
+ip route show 224.0.0.0/4</code></pre>
+
+    <p>If the group routes through the wrong interface, these are remediation examples for an approved change window:</p>
+
+    <pre><code>sudo ip route add 224.0.0.0/4 dev bond0
+ip route get 239.91.200.111
+
+sudo ip route replace 224.0.0.0/4 dev bond0</code></pre>
+
+    <p>To persist the multicast route with NetworkManager, first find the active <code>bond0</code> connection:</p>
+
+    <pre><code>CONN=$(nmcli -t -f NAME,DEVICE connection show --active | awk -F: '$2=="bond0"{print $1; exit}')
+echo "$CONN"</code></pre>
+
+    <p>Then add the route to the profile and reactivate it during an approved window:</p>
+
+    <pre><code>sudo nmcli connection modify "$CONN" +ipv4.routes "224.0.0.0/4"
+sudo nmcli connection up "$CONN"
+ip route show 224.0.0.0/4</code></pre>
+
+    <p>If your NetworkManager version requires a next-hop field, use <code>0.0.0.0</code>:</p>
+
+    <pre><code>sudo nmcli connection modify "$CONN" +ipv4.routes "224.0.0.0/4 0.0.0.0"
+sudo nmcli connection up "$CONN"</code></pre>
+
+    <h3>Check reverse path filtering</h3>
+    <p>Reverse path filtering can drop packets when the return path does not match the receiving interface. It is more common with multihomed hosts, asymmetric routing, or traffic arriving on an interface Linux does not expect.</p>
+
+    <pre><code>sysctl net.ipv4.conf.all.rp_filter
+sysctl net.ipv4.conf.default.rp_filter
+sysctl net.ipv4.conf.bond0.rp_filter</code></pre>
+
+    <p>For controlled testing, disable it temporarily or use loose mode only with network/security approval:</p>
+
+    <pre><code>sudo sysctl -w net.ipv4.conf.all.rp_filter=0
+sudo sysctl -w net.ipv4.conf.default.rp_filter=0
+sudo sysctl -w net.ipv4.conf.bond0.rp_filter=0
+
+sudo sysctl -w net.ipv4.conf.bond0.rp_filter=2</code></pre>
+
+    <h3>Validate firewall rules</h3>
+    <p>On RHEL consumers, the UDP port must be allowed by the active firewall policy. Read the active zones and open ports first:</p>
+
+    <pre><code>sudo firewall-cmd --get-active-zones
+sudo firewall-cmd --list-ports</code></pre>
+
+    <p>Approved examples for opening UDP port <code>5000</code>:</p>
+
+    <pre><code>sudo firewall-cmd --add-port=5000/udp
+
+sudo firewall-cmd --permanent --add-port=5000/udp
+sudo firewall-cmd --reload
+sudo firewall-cmd --list-ports
+
+sudo firewall-cmd --zone=public --permanent --add-port=5000/udp
+sudo firewall-cmd --reload</code></pre>
+
+    <div class="danger"><strong>Do not permanently disable the firewall in production.</strong> If a controlled test requires stopping <code>firewalld</code>, restart it immediately and preserve the test evidence.</div>
+  </section>
+
+  <section id="multicast-tests">
+    <h2>9. Multicast test producers and consumers</h2>
+    <p>After link, IP, subnet, unicast, route, and firewall checks are clean, test application-level multicast. The important application behaviors are binding a UDP socket, joining the group on the correct local interface IP, and sending through the expected interface.</p>
+
+    <h3>Python consumer</h3>
+    <p>Create <code>multicast_consumer.py</code> on each consumer node:</p>
+
+    <pre><code>#!/usr/bin/env python3
+import argparse
+import socket
+
+
+parser = argparse.ArgumentParser(description="UDP multicast consumer")
+parser.add_argument("--group", default="239.91.200.111")
+parser.add_argument("--port", type=int, default=5000)
+parser.add_argument("--iface-ip", required=True, help="Local IP on bond0")
+args = parser.parse_args()
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+try:
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+except (AttributeError, OSError):
+    pass
+
+sock.bind(("", args.port))
+
+mreq = socket.inet_aton(args.group) + socket.inet_aton(args.iface_ip)
+sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
+
+print(f"listening group={args.group} port={args.port} iface_ip={args.iface_ip}")
+
+while True:
+    data, addr = sock.recvfrom(65535)
+    print(f"from={addr} bytes={len(data)} message={data.decode(errors='replace')}")</code></pre>
+
+    <p>Run it on Node B and Node C:</p>
+
+    <pre><code>python3 multicast_consumer.py --iface-ip 169.91.200.112
+python3 multicast_consumer.py --iface-ip 169.91.200.113</code></pre>
+
+    <h3>Python producer</h3>
+    <p>Create <code>multicast_producer.py</code> on Node A:</p>
+
+    <pre><code>#!/usr/bin/env python3
+import argparse
+import socket
+import struct
+import time
+
+
+parser = argparse.ArgumentParser(description="UDP multicast producer")
+parser.add_argument("--group", default="239.91.200.111")
+parser.add_argument("--port", type=int, default=5000)
+parser.add_argument("--iface-ip", required=True, help="Local IP on bond0")
+parser.add_argument("--ttl", type=int, default=1)
+parser.add_argument("--interval", type=float, default=1.0)
+args = parser.parse_args()
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_IF, socket.inet_aton(args.iface_ip))
+sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, struct.pack("B", args.ttl))
+
+counter = 0
+print(f"sending group={args.group} port={args.port} iface_ip={args.iface_ip} ttl={args.ttl}")
+
+while True:
+    counter += 1
+    message = f"hello multicast {counter} from {args.iface_ip}"
+    sock.sendto(message.encode(), (args.group, args.port))
+    print(message)
+    time.sleep(args.interval)</code></pre>
+
+    <pre><code>python3 multicast_producer.py --iface-ip 169.91.200.111</code></pre>
+
+    <p>Expected consumer output should show datagrams from Node A:</p>
+
+    <pre><code>from=('169.91.200.111', 54321) bytes=42 message=hello multicast 1 from 169.91.200.111
+from=('169.91.200.111', 54321) bytes=42 message=hello multicast 2 from 169.91.200.111</code></pre>
+
+    <h3>Command-line tests with ncat and socat</h3>
+    <p>Use <code>ncat</code> for a simple unicast UDP test. Use <code>socat</code> for multicast because the receiver must explicitly join the group with <code>IP_ADD_MEMBERSHIP</code>.</p>
+
+    <pre><code># On Node B
+ncat -u -l 5000
+
+# On Node A
+printf 'hello unicast\n' | ncat -u 169.91.200.112 5000</code></pre>
+
+    <pre><code># On Node B
+socat -u UDP4-RECVFROM:5000,ip-add-membership=239.91.200.111:169.91.200.112,reuseaddr,fork -
+
+# On Node C
+socat -u UDP4-RECVFROM:5000,ip-add-membership=239.91.200.111:169.91.200.113,reuseaddr,fork -</code></pre>
+
+    <pre><code># On Node A
+printf 'hello multicast from node A\n' | socat -u - UDP4-DATAGRAM:239.91.200.111:5000,ip-multicast-if=169.91.200.111,ip-multicast-ttl=1</code></pre>
+
+    <p>Repeated producer loop:</p>
+
+    <pre><code>while true; do
+  printf 'hello multicast %s\n' "$(date -Is)"
+  sleep 1
+done | socat -u - UDP4-DATAGRAM:239.91.200.111:5000,ip-multicast-if=169.91.200.111,ip-multicast-ttl=1</code></pre>
+  </section>
+
+  <section id="packet-proof">
+    <h2>10. Packet proof and troubleshooting flow</h2>
+    <p>Use packet and process evidence to determine where multicast fails. A running process is not proof that multicast is working; prove each layer separately.</p>
+
+    <h3>Process and socket proof</h3>
+    <pre><code>ps -ef | grep -E 'multicast_producer|multicast_consumer|socat|python' | grep -v grep
+pgrep -af 'multicast_producer|multicast_consumer|socat|python'
+ss -uapn | grep ':5000'</code></pre>
+
+    <p>A consumer may be bound to <code>0.0.0.0:5000</code>, <code>*:5000</code>, or a specific node IP. Many multicast consumers bind to all local addresses and then join the group on one interface.</p>
+
+    <h3>Multicast membership proof</h3>
+    <pre><code>ip maddr show dev bond0
+ip -s maddr show dev bond0
+netstat -g 2&gt;/dev/null || true
+cat /proc/net/igmp
+ss -uapnmi | grep -E '239.91.200.111|:5000' || true</code></pre>
+
+    <p>Look for <code>239.91.200.111</code>. If the consumer process is running but the group is not present, the app probably did not join the group correctly or joined it on the wrong interface IP.</p>
+
+    <h3>Producer and consumer packet proof</h3>
+    <pre><code># On Node A, prove packets leave the producer
+sudo tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
+
+# On Node B or Node C, prove packets arrive at the consumer
+sudo tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
+
+# Check all visible interfaces if bond0 does not show packets
+sudo tcpdump -ni any "udp and host 239.91.200.111 and port 5000"</code></pre>
+
+    <p>If packets appear on <code>any</code> but not on <code>bond0</code>, the traffic may be using another interface, VLAN interface, container namespace, or route.</p>
+
+    <h3>Adapt process investigation to a real app</h3>
+    <pre><code>APP_PATTERN="my-producer|my-consumer|python.*multicast|java.*FixRouterRunner"
+PID=$(pgrep -f "$APP_PATTERN" | head -1)
+echo "PID=$PID"
+
+ps -fp "$PID"
+tr "\0" " " &lt; "/proc/$PID/cmdline"; echo
+tr "\0" "\n" &lt; "/proc/$PID/environ" | sort | grep -Ei "group|port|iface|interface|config|java|lbm|path"
+readlink -f "/proc/$PID/exe"
+readlink -f "/proc/$PID/cwd"
+
+ss -uapn | grep -E "pid=$PID,"
+lsof -Pan -p "$PID" -iUDP 2&gt;/dev/null || true</code></pre>
+
+    <p>For a legacy or vendor process with known naming patterns, capture launch context and multicast proof in one block:</p>
+
+    <pre><code>hostname -f
+PID=$(pgrep -f "UA2FRT01|exb-fixrouter|FixRouterRunner" | head -1)
+echo "PID=$PID"
+tr "\0" " " &lt; /proc/$PID/cmdline; echo
+
+tr "\0" "\n" &lt; /proc/$PID/environ | sort | grep -E "LBM|JAVA|LD_LIBRARY|PATH|CONFIG|INSTANCE|APOLLO"
+readlink -f /proc/$PID/cwd
+
+ip maddr show
+cat /proc/net/igmp
+GROUP=239.204.228.146
+ip route get "$GROUP"
+IFACE=$(ip route get "$GROUP" | awk '{for(i=1;i&lt;=NF;i++) if($i=="dev") print $(i+1); exit}')
+echo "IFACE=$IFACE GROUP=$GROUP"
+timeout 10 tcpdump -ni "$IFACE" "host $GROUP and udp"
+timeout 10 tcpdump -ni any "host $GROUP or udp"</code></pre>
+
+    <h3>Failure patterns</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Symptom</th>
+          <th>Likely checks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Ping fails</td><td>Wrong IP/prefix, wrong VLAN, <code>bond0</code> down, slave down, ICMP firewall, ARP failure, duplicate IP</td></tr>
+        <tr><td>Producer <code>tcpdump</code> shows no packets</td><td>Producer not running, wrong group/port, wrong interface source IP, missing <code>IP_MULTICAST_IF</code>, bad multicast route</td></tr>
+        <tr><td>Producer sees packets but consumer does not</td><td>Wrong VLAN, switch IGMP snooping, missing IGMP querier, multicast filtered on switch, TTL too low, firewall blocks UDP <code>5000</code>, consumer joined wrong group/interface</td></tr>
+        <tr><td>Consumer <code>tcpdump</code> sees packets but app does not</td><td>Wrong bind address, wrong port, no <code>IP_ADD_MEMBERSHIP</code>, wrong interface IP, missing <code>SO_REUSEADDR</code>, conflicting socket, SELinux/firewall delivery issue</td></tr>
+        <tr><td>Packets appear on <code>any</code> but not <code>bond0</code></td><td>Check VLAN subinterfaces, namespaces, containers, and alternate routes</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Concise process troubleshooting ladder</h3>
+    <pre><code># 1. Find process.
+pgrep -af "my-producer|my-consumer|python.*multicast|java"
+
+# 2. Capture PID.
+PID=$(pgrep -f "my-producer|my-consumer|python.*multicast|java" | head -1)
+echo "$PID"
+
+# 3. Prove launch command and config context.
+tr "\0" " " &lt; "/proc/$PID/cmdline"; echo
+tr "\0" "\n" &lt; "/proc/$PID/environ" | sort | grep -Ei "group|port|iface|interface|config|java|lbm|path"
+readlink -f "/proc/$PID/cwd"
+
+# 4. Prove UDP socket.
+ss -uapn | grep -E "pid=$PID,|:5000"
+
+# 5. Prove multicast membership.
+ip maddr show dev bond0
+cat /proc/net/igmp
+
+# 6. Prove route.
+ip route get 239.91.200.111
+
+# 7. Prove packets.
+timeout 15 tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"</code></pre>
+
+    <h3>Multiple-node validation order</h3>
+    <pre><code># On every node
+ip -br addr show dev bond0
+ip -details link show dev bond0
+cat /proc/net/bonding/bond0
+ip route
+ip route get 239.91.200.111
+ip maddr show dev bond0
+sudo firewall-cmd --list-ports
+
+# On Node B and Node C
+python3 multicast_consumer.py --iface-ip 169.91.200.112
+python3 multicast_consumer.py --iface-ip 169.91.200.113
+
+# On Node A
+sudo tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"
+python3 multicast_producer.py --iface-ip 169.91.200.111</code></pre>
+
+    <h3>Memory hook: LISA-MAP</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>Meaning</th>
+          <th>Command</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>L</td><td>Link</td><td><code>ip -details link show dev bond0</code></td></tr>
+        <tr><td>I</td><td>IP</td><td><code>ip -br addr show dev bond0</code></td></tr>
+        <tr><td>S</td><td>Subnet</td><td><code>ip route get &lt;peer-ip&gt;</code></td></tr>
+        <tr><td>A</td><td>ARP</td><td><code>ip neigh show dev bond0</code></td></tr>
+        <tr><td>M</td><td>Multicast group</td><td><code>ip maddr show dev bond0</code></td></tr>
+        <tr><td>A</td><td>Application socket</td><td><code>ss -uapn | grep ':5000'</code></td></tr>
+        <tr><td>P</td><td>Packets</td><td><code>tcpdump -ni bond0 "udp and host 239.91.200.111 and port 5000"</code></td></tr>
+      </tbody>
+    </table>
+
+    <div class="note"><strong>Final multicast rule:</strong> Troubleshoot in this order: <code>bond0 link -&gt; IP/subnet -&gt; unicast ping -&gt; ARP -&gt; multicast route -&gt; firewall -&gt; app socket -&gt; group membership -&gt; tcpdump producer -&gt; tcpdump consumer -&gt; app logs</code>. If one layer fails, fix that layer before moving to the next one.</div>
+  </section>
+
+  <section id="udp">
+    <h2>11. UDP sockets and Java ownership</h2>
+    <p>Use <code>ss</code> to inspect kernel sockets. For UDP investigations, it tells you which local addresses and ports are bound and, with sufficient privilege, which process owns each socket.</p>
+
+    <pre><code>ss -uapn
+ss -uapn | head
+sudo ss -uapn</code></pre>
+
+    <p>The flags mean <code>-u</code> UDP, <code>-a</code> all sockets, <code>-p</code> process information, and <code>-n</code> numeric addresses and ports.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Output</th>
+          <th>Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>0.0.0.0:9000</code></td><td>The socket is bound to port 9000 on all local IPv4 addresses; it does not mean the whole internet</td></tr>
+        <tr><td><code>169.91.200.111:9000</code></td><td>The socket is bound specifically to that local address and port</td></tr>
+        <tr><td><code>UNCONN</code></td><td>Normal for an unconnected UDP socket; UDP has no TCP-style connection state</td></tr>
+        <tr><td><code>users:(("java",pid=1234,fd=87))</code></td><td>Java PID 1234 owns the socket through file descriptor 87</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Count UDP sockets owned by Java</h3>
+
     <pre><code>sudo ss -H -uapn | awk '
   /users:\(\(\"java\"/ {
     if (match($0,/pid=[0-9]+/)) {
@@ -98,10 +1036,13 @@ ss -uapn | head</code></pre>
     printf "%-10s %s\n", "PID", "UDP_SOCKETS"
     for (pid in count) printf "%-10s %d\n", pid, count[pid]
   }'</code></pre>
-    <p>This counts socket rows reported for each Java PID. A single socket can appear in ways that make this an investigative count rather than an application-level message/channel count. Confirm the command line safely with:</p>
+
+    <p>Confirm the command line safely after you identify a PID:</p>
+
     <pre><code>ps -p &lt;pid&gt; -o pid,user,etimes,cmd --no-headers</code></pre>
 
     <h3>Count all UDP sockets by process and PID</h3>
+
     <pre><code>sudo ss -H -uapn | awk '
   {
     name="unknown"; pid="-"
@@ -122,29 +1063,37 @@ ss -uapn | head</code></pre>
   }' | sort</code></pre>
 
     <h3>Ephemeral port range</h3>
+
     <pre><code>sysctl net.ipv4.ip_local_port_range
 cat /proc/sys/net/ipv4/ip_local_port_range</code></pre>
-    <p>When an application binds to port 0, Linux normally selects an available local port from this range. Explicitly bound service ports can be outside it. Port exhaustion investigation should also consider application lifecycle, namespace boundaries, and socket counts.</p>
+
+    <p>When an application binds to port <code>0</code>, Linux normally selects an available local port from this range. Explicitly bound service ports can be outside it. Port exhaustion investigation should also consider application lifecycle, network namespaces, and socket churn.</p>
   </section>
 
-  <section id="script"><h2>6. Complete read-only investigation script</h2>
-    <p>Save the following as <code>rhel9-network-investigate.sh</code>, make it executable, and run it. An optional first argument performs a route lookup.</p>
+  <section id="script">
+    <h2>12. Complete investigation script</h2>
+    <p>The script below collects the read-only evidence covered in this article. Save it as <code>rhel9-network-investigate.sh</code>, make it executable, and run it. An optional first argument performs a route lookup for a destination IP.</p>
+
     <pre><code>chmod +x rhel9-network-investigate.sh
 ./rhel9-network-investigate.sh
 ./rhel9-network-investigate.sh 239.91.200.111</code></pre>
-    <div class="note">The script uses only inspection commands. It records command availability and permission limitations rather than aborting the entire report.</div>
+
+    <div class="note">The script records command availability and permission limitations rather than aborting the whole report. Run it with <code>sudo</code> only if the investigation needs process ownership details from <code>ss</code>.</div>
+
     <pre><code>#!/usr/bin/env bash
 set -u
 
 DESTINATION_IP="${1:-}"
 
 section() { printf '\n\n==== %s ====\n' "$1"; }
+
 run() {
   printf '\n$'
   printf ' %q' "$@"
   printf '\n'
   "$@" 2&gt;&amp;1 || printf '[command exited with status %d]\n' "$?"
 }
+
 have() { command -v "$1" &gt;/dev/null 2&gt;&amp;1; }
 
 printf 'RHEL 9 host networking investigation\n'
@@ -171,7 +1120,7 @@ if ((${#bonds[@]} == 0)); then
 else
   for b in "${bonds[@]}"; do
     printf '\n== %s ==\n' "${b##*/}"
-    grep -E 'Bonding Mode|Primary Slave|Currently Active Slave|MII Status|Slave Interface|Speed|Duplex|Link Failure Count' "$b" || true
+    grep -E 'Bonding Mode|Primary Slave|Currently Active Slave|MII Status|Slave Interface|Speed|Duplex|Link Failure Count|LACP rate|Aggregator ID|Actor Churn State|Partner Churn State' "$b" || true
   done
 fi
 shopt -u nullglob
@@ -188,7 +1137,7 @@ else
   printf 'nmcli not found; NetworkManager may be absent or tools not installed.\n'
 fi
 
-section 'Routes and policy rules'
+section 'Routes, rules, neighbors, and multicast groups'
 if have ip; then
   run ip -4 route show
   run ip rule show
@@ -197,6 +1146,31 @@ if have ip; then
   else
     printf 'No destination argument supplied; skipping ip route get.\n'
   fi
+  run ip neigh show
+  run ip maddr show
+  run ip -s maddr show
+fi
+run cat /proc/net/igmp
+if have netstat; then
+  run netstat -g
+fi
+
+section 'Reverse path filter settings'
+if have sysctl; then
+  run sysctl net.ipv4.conf.all.rp_filter
+  run sysctl net.ipv4.conf.default.rp_filter
+  for bond in /proc/net/bonding/*; do
+    [ -e "$bond" ] || continue
+    run sysctl "net.ipv4.conf.${bond##*/}.rp_filter"
+  done
+fi
+
+section 'Firewall state'
+if have firewall-cmd; then
+  run firewall-cmd --get-active-zones
+  run firewall-cmd --list-ports
+else
+  printf 'firewall-cmd not found; firewalld may be absent or tools not installed.\n'
 fi
 
 section 'UDP sockets'
@@ -234,37 +1208,40 @@ section 'Investigation notes'
 printf '%s\n' \
   'UP is not proof of application reachability.' \
   'A healthy bond is not proof that routes, firewall, multicast joins, or switches are correct.' \
+  'LACP requires matching host and switch configuration.' \
   'Missing process details in ss usually require elevated privileges.' \
-  'Correlate findings with application logs and approved network telemetry.'
-</code></pre>
-
-    <h3>Bash here-document to create an HTML file</h3>
-    <p>The requested shell pattern is below. Use a <strong>quoted</strong> delimiter so Bash does not expand <code>$variables</code>, command substitutions, or backslashes inside the HTML:</p>
-    <pre><code>cat &gt; linux-host-networking-investigation.html &lt;&lt;'HTML'
-&lt;!doctype html&gt;
-&lt;html lang="en"&gt;
-  &lt;!-- paste the complete HTML document here --&gt;
-&lt;/html&gt;
-HTML
-</code></pre>
-    <p>Then open it locally:</p><pre><code>xdg-open linux-host-networking-investigation.html</code></pre>
+  'Correlate findings with application logs and approved network telemetry.'</code></pre>
   </section>
 
-  <section id="checklist"><h2>7. Final investigation checklist</h2>
-    <table><thead><tr><th>Check</th><th>Command / evidence</th><th>Healthy indication</th><th>Follow-up if unexpected</th></tr></thead><tbody>
-      <tr><td>Correct IPv4 owner</td><td><code>ip -br -4 addr</code></td><td>Expected IP/prefix is on the logical bond</td><td>Compare approved NetworkManager profile; do not modify during investigation</td></tr>
-      <tr><td>Bond mode</td><td><code>/proc/net/bonding/bond*</code></td><td>Expected mode and active slave</td><td>Compare host build standard</td></tr>
-      <tr><td>Slave link</td><td>MII, speed, duplex, failures</td><td>UP; consistent speed/duplex; stable counter</td><td>Correlate with NIC and switch logs</td></tr>
-      <tr><td>NetworkManager ownership</td><td><code>nmcli device status</code></td><td>State agrees with host design</td><td>Determine whether external/unmanaged state is intentional</td></tr>
-      <tr><td>Route selection</td><td><code>ip route get DEST</code></td><td>Expected device, source, gateway, table</td><td>Inspect <code>ip rule</code> and all relevant tables</td></tr>
-      <tr><td>UDP listener</td><td><code>sudo ss -uapn</code></td><td>Expected local address/port and PID</td><td>Check application bind settings and namespace</td></tr>
-      <tr><td>Java ownership</td><td><code>ss</code> plus <code>ps</code></td><td>Expected JVM owns socket</td><td>Match PID to deployment/service definition</td></tr>
-      <tr><td>Ephemeral range</td><td><code>sysctl net.ipv4.ip_local_port_range</code></td><td>Matches platform standard</td><td>Assess socket churn/exhaustion; change only through approval</td></tr>
-      <tr><td>Multicast receive path</td><td>Route + socket + group membership + firewall/switch evidence</td><td>All layers agree</td><td>Inspect <code>ip maddr show</code>, packet capture, IGMP, and switch configuration under approval</td></tr>
-    </tbody></table>
-    <div class="danger"><strong>Escalate before changing anything.</strong> Preserve the report, timestamps, destination IP, affected port, PID, and expected network path. A snapshot taken before remediation is often the best evidence.</div>
+  <section id="checklist">
+    <h2>13. Final checklist</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Check</th>
+          <th>Command or evidence</th>
+          <th>Healthy indication</th>
+          <th>Follow-up if unexpected</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Correct IPv4 owner</td><td><code>ip -br -4 addr</code></td><td>Expected IP and prefix are on the logical bond</td><td>Compare the approved NetworkManager profile; do not modify during investigation</td></tr>
+        <tr><td>Bond mode</td><td><code>/proc/net/bonding/bond*</code></td><td>Expected mode, active slave, or LACP state</td><td>Compare against the host build standard</td></tr>
+        <tr><td>Slave link</td><td>MII, speed, duplex, failures</td><td>Up, consistent speed/duplex, stable failure counter</td><td>Correlate with NIC and switch logs</td></tr>
+        <tr><td>LACP participation</td><td><code>Aggregator ID</code>, churn state, switch port-channel</td><td>Members are up, stable, and in the expected aggregator</td><td>Verify host bond options and switch LAG configuration</td></tr>
+        <tr><td>NetworkManager ownership</td><td><code>nmcli device status</code></td><td>State agrees with host design</td><td>Determine whether external or unmanaged state is intentional</td></tr>
+        <tr><td>Route selection</td><td><code>ip route get DEST</code></td><td>Expected device, source, gateway, and table</td><td>Inspect <code>ip rule</code> and relevant route tables</td></tr>
+        <tr><td>UDP listener</td><td><code>sudo ss -uapn</code></td><td>Expected local address, port, and PID</td><td>Check application bind settings and network namespace</td></tr>
+        <tr><td>Java ownership</td><td><code>ss</code> plus <code>ps</code></td><td>Expected JVM owns the socket</td><td>Match PID to deployment or service definition</td></tr>
+        <tr><td>Ephemeral range</td><td><code>sysctl net.ipv4.ip_local_port_range</code></td><td>Matches platform standard</td><td>Assess socket churn or exhaustion; change only through approval</td></tr>
+        <tr><td>Multicast receive path</td><td>Route, socket, group membership, firewall, switch evidence</td><td>All layers agree</td><td>Inspect IGMP and packet capture only under approval</td></tr>
+      </tbody>
+    </table>
+
+    <div class="danger"><strong>Escalate before changing anything.</strong> Preserve the report, timestamps, destination IP, affected port, PID, expected network path, and observed bond/LACP state. A snapshot taken before remediation is often the best evidence.</div>
   </section>
-  <footer>Self-contained RHEL 9 tutorial · Inline CSS only · No external URLs, images, fonts, scripts, or libraries.</footer>
+
+  <footer>Self-contained RHEL 9 networking article. Inline CSS only. No external URLs, images, fonts, scripts, or libraries.</footer>
 </main>
 </body>
 </html>
