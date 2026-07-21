@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RHEL 9 Linux Host Networking Investigation</title>
+  <style>
+    :root{--bg:#f4f7fb;--paper:#fff;--ink:#172033;--muted:#596579;--blue:#164e8a;--cyan:#eaf5ff;--line:#d8e0ea;--green:#166534;--greenbg:#ecfdf3;--amber:#854d0e;--amberbg:#fff8df;--red:#991b1b;--redbg:#fff1f2;--code:#101827;--codeink:#e6edf7}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 system-ui,-apple-system,"Segoe UI",sans-serif}
+    header{background:linear-gradient(135deg,#12355b,#17669c);color:#fff;padding:3.2rem 1.3rem} header div,main{max-width:1040px;margin:auto}
+    h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;margin:0 0 .8rem} h2{margin-top:2.6rem;padding-bottom:.35rem;border-bottom:2px solid var(--line);color:#123f6d} h3{margin-top:1.8rem;color:#174d7e}
+    main{background:var(--paper);padding:1.5rem clamp(1rem,4vw,3.5rem) 4rem;box-shadow:0 2px 18px #16243b15}
+    nav{background:var(--cyan);border:1px solid #b9daf5;border-radius:10px;padding:1rem 1.4rem;margin:1rem 0 2rem} nav a{color:var(--blue)}
+    code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.93em} :not(pre)>code{background:#edf1f6;padding:.12rem .35rem;border-radius:4px}
+    pre{position:relative;overflow:auto;background:var(--code);color:var(--codeink);padding:1rem 1.2rem;border-radius:8px;line-height:1.48;white-space:pre}
+    .note,.good,.warn,.danger{padding:.8rem 1rem;border-left:5px solid;border-radius:5px;margin:1rem 0}.note{background:var(--cyan);border-color:#1686c8}.good{background:var(--greenbg);border-color:var(--green)}.warn{background:var(--amberbg);border-color:#d99a06}.danger{background:var(--redbg);border-color:var(--red)}
+    table{border-collapse:collapse;width:100%;display:block;overflow:auto;margin:1rem 0} th,td{border:1px solid var(--line);padding:.65rem .75rem;text-align:left;vertical-align:top}th{background:#eaf1f8;color:#173e67}
+    .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;margin:1rem 0}.flow div{border:1px solid var(--line);border-radius:8px;padding:.7rem;background:#f8fafc;text-align:center}
+    kbd{border:1px solid #9ca3af;border-bottom-width:2px;border-radius:4px;padding:.05rem .3rem;background:#fff} footer{color:var(--muted);margin-top:3rem;border-top:1px solid var(--line);padding-top:1rem}
+    @media print{body{background:#fff}header{padding:1.5rem;color:#000;background:#fff;border-bottom:2px solid #000}main{box-shadow:none;max-width:none}pre{white-space:pre-wrap;break-inside:avoid}nav{display:none}a{color:#000;text-decoration:none}}
+  </style>
+</head>
+<body>
+<header><div><h1>RHEL 9 Linux Host Networking Investigation</h1><p>A practical, read-only Bash tutorial for Linux and Java developers diagnosing interfaces, bonds, routes, NetworkManager, and UDP sockets.</p></div></header>
+<main>
+  <div class="good"><strong>Safety:</strong> Every investigation command in this tutorial is read-only. It does not restart networking, modify a connection, change a route, kill a process, or send packets. Commands needing process details may require <code>sudo</code>.</div>
+  <nav><strong>Investigation path</strong><ol><li><a href="#addresses">IPv4 addresses and interface types</a></li><li><a href="#bonding">Bond health and active-backup behavior</a></li><li><a href="#nm">NetworkManager state</a></li><li><a href="#routes">Routes and policy rules</a></li><li><a href="#udp">UDP sockets and Java ownership</a></li><li><a href="#script">Complete read-only script</a></li><li><a href="#checklist">Final checklist</a></li></ol></nav>
+
+  <section id="addresses"><h2>1. List IPv4 addresses</h2>
+    <pre><code>ip -br addr
+ip -br -4 addr
+ip -br -4 addr | awk 'NF &gt; 2'</code></pre>
+    <p><code>-br</code> means <em>brief</em>, so each interface occupies one line. <code>-4</code> restricts output to IPv4. The <code>awk</code> form retains rows with at least an interface, state, and address field. An address such as <code>169.91.200.111/25</code> is a unicast host address; it is unrelated to multicast merely because a multicast group might look similar, such as <code>239.91.200.111</code>.</p>
+    <table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody><tr><td>Interface</td><td><code>bond0</code></td><td>Kernel network device name</td></tr><tr><td>Administrative state</td><td><code>UP</code></td><td>Device has been enabled; it does not alone prove end-to-end reachability</td></tr><tr><td>Address</td><td><code>169.91.200.111/25</code></td><td>Host IPv4 address plus prefix length</td></tr></tbody></table>
+
+    <h3>Physical NIC versus logical bond</h3><p>A physical NIC such as <code>ens1f0</code> represents hardware. A bond such as <code>bond0</code> is a logical device that owns the host IP and selects one or more member NICs for traffic. Applications normally bind to the bond address, not to a slave's address.</p>
+    <div class="flow"><div>Java / UDP process</div><div><strong>bond0</strong><br>logical IP owner</div><div><strong>ens1f0</strong><br>active physical NIC</div><div>Switch / network</div></div>
+    <pre><code>ip -d link show type bond
+ip -br link
+ip link show master bond0</code></pre>
+    <p><code>ip -d</code> adds device-specific details. The last command lists interfaces enslaved to <code>bond0</code>.</p>
+  </section>
+
+  <section id="bonding"><h2>2. Inspect Linux bonding</h2>
+    <pre><code>ls -1 /proc/net/bonding/
+cat /proc/net/bonding/bond0
+cat /proc/net/bonding/bond1
+cat /proc/net/bonding/bond3</code></pre>
+    <p>Only read files that exist on your host. Each file is the kernel bonding driver's live view of one bond. Important fields are <code>Bonding Mode</code>, <code>Currently Active Slave</code>, each slave's <code>MII Status</code>, speed, duplex, and <code>Link Failure Count</code>.</p>
+    <pre><code>for b in /proc/net/bonding/*; do
+  [ -e "$b" ] || continue
+  echo "== ${b##*/} =="
+  grep -E 'Bonding Mode|Primary Slave|Currently Active Slave|MII Status|Slave Interface|Speed|Duplex|Link Failure Count' "$b"
+  echo
+done</code></pre>
+    <table><thead><tr><th>Observation</th><th>Interpretation</th></tr></thead><tbody><tr><td>Bond and active slave show <code>MII Status: up</code></td><td>Physical link monitoring currently sees the path as healthy</td></tr><tr><td>Failure count increases</td><td>Link has flapped since the bond was created; compare timestamps and switch logs</td></tr><tr><td>Speed or duplex differs between slaves</td><td>Configuration/cabling may be inconsistent</td></tr><tr><td>No files under <code>/proc/net/bonding</code></td><td>No kernel bond is currently registered, or the host uses another mechanism such as a team</td></tr></tbody></table>
+
+    <h3>Active-backup bonding</h3><p>Mode <code>active-backup</code> (mode 1) uses one slave at a time. The standby takes over when link monitoring declares the active slave unhealthy. It provides redundancy, not bandwidth aggregation. Depending on <code>primary</code> and <code>primary_reselect</code>, traffic may or may not return to the preferred NIC after recovery.</p>
+    <div class="warn"><strong>Do not test failover on a production host by bringing a slave down</strong> unless the change is approved and an out-of-band recovery path exists. This tutorial only observes state.</div>
+  </section>
+
+  <section id="nm"><h2>3. Check NetworkManager</h2>
+    <pre><code>nmcli -t -f NAME,DEVICE connection show --active
+nmcli device status
+nmcli connection show --active
+nmcli -f GENERAL,IP4 device show bond0</code></pre>
+    <p>A <strong>connection</strong> is a saved or active NetworkManager profile; a <strong>device</strong> is a kernel interface. Their names can differ. The terse option <code>-t</code> is convenient for scripts.</p>
+    <table><thead><tr><th>Device state</th><th>Meaning</th></tr></thead><tbody><tr><td><code>connected</code></td><td>NetworkManager activated a profile on the device</td></tr><tr><td><code>unmanaged</code></td><td>NetworkManager intentionally does not control the device</td></tr><tr><td><code>connected (externally)</code></td><td>The device has usable configuration created outside the active NetworkManager profile workflow; NetworkManager observes it without claiming the original configuration</td></tr><tr><td><code>disconnected</code></td><td>Managed, but no active connection profile is applied</td></tr></tbody></table>
+    <p>On a bond, slave devices can legitimately have no IP address. Check that the bond owns the intended IP and that the active profile maps to the intended device.</p>
+  </section>
+
+  <section id="routes"><h2>4. Check routes and policy rules</h2>
+    <pre><code>ip -4 route show
+ip rule show
+ip route get &lt;destination_ip&gt;</code></pre>
+    <p>The first command lists the main IPv4 routing table. <code>ip rule</code> shows policy-routing selection rules, which may direct traffic to other tables based on source, marks, or priority. Replace <code>&lt;destination_ip&gt;</code> with a real IP, without angle brackets:</p>
+    <pre><code>ip route get 169.91.200.50
+ip route get 239.91.200.111</code></pre>
+    <p><code>ip route get</code> asks the kernel which route it would use. Inspect the returned device, next hop, source address, and table. It performs a lookup; it does not send a packet.</p>
+    <div class="note"><strong>Multicast note:</strong> Routes choose an egress interface, but multicast reception also depends on the application joining the group, socket binding, local firewall, IGMP state, and upstream switch multicast behavior.</div>
+  </section>
+
+  <section id="udp"><h2>5. Inspect UDP sockets</h2>
+    <pre><code>ss -uapn
+ss -uapn | head</code></pre>
+    <p><code>ss</code> inspects kernel sockets. The flags mean: <code>-u</code> UDP, <code>-a</code> all sockets, <code>-p</code> process information, and <code>-n</code> numeric addresses and ports. Use <code>sudo ss -uapn</code> when another user's PID or process name is hidden.</p>
+    <table><thead><tr><th>Output</th><th>Meaning</th></tr></thead><tbody><tr><td><code>0.0.0.0:9000</code></td><td>Socket is bound to port 9000 on all local IPv4 addresses; it does not mean “the whole world”</td></tr><tr><td><code>169.91.200.111:9000</code></td><td>Socket is bound specifically to that local address and port</td></tr><tr><td><code>UNCONN</code></td><td>Normal for an unconnected UDP socket; UDP has no TCP-style connection state</td></tr><tr><td><code>users:(("java",pid=1234,fd=87))</code></td><td>Java PID 1234 owns the socket through file descriptor 87</td></tr></tbody></table>
+
+    <h3>Java processes owning UDP sockets</h3>
+    <pre><code>sudo ss -H -uapn | awk '
+  /users:\(\(\"java\"/ {
+    if (match($0,/pid=[0-9]+/)) {
+      pid=substr($0,RSTART+4,RLENGTH-4)
+      count[pid]++
+    }
+  }
+  END {
+    printf "%-10s %s\n", "PID", "UDP_SOCKETS"
+    for (pid in count) printf "%-10s %d\n", pid, count[pid]
+  }'</code></pre>
+    <p>This counts socket rows reported for each Java PID. A single socket can appear in ways that make this an investigative count rather than an application-level message/channel count. Confirm the command line safely with:</p>
+    <pre><code>ps -p &lt;pid&gt; -o pid,user,etimes,cmd --no-headers</code></pre>
+
+    <h3>Count all UDP sockets by process and PID</h3>
+    <pre><code>sudo ss -H -uapn | awk '
+  {
+    name="unknown"; pid="-"
+    if (match($0,/users:\(\(\"[^\"]+\"/)) {
+      name=substr($0,RSTART+9,RLENGTH-10)
+    }
+    if (match($0,/pid=[0-9]+/)) {
+      pid=substr($0,RSTART+4,RLENGTH-4)
+    }
+    count[name SUBSEP pid]++
+  }
+  END {
+    printf "%-24s %-10s %s\n", "PROCESS", "PID", "UDP_SOCKETS"
+    for (key in count) {
+      split(key,a,SUBSEP)
+      printf "%-24s %-10s %d\n", a[1], a[2], count[key]
+    }
+  }' | sort</code></pre>
+
+    <h3>Ephemeral port range</h3>
+    <pre><code>sysctl net.ipv4.ip_local_port_range
+cat /proc/sys/net/ipv4/ip_local_port_range</code></pre>
+    <p>When an application binds to port 0, Linux normally selects an available local port from this range. Explicitly bound service ports can be outside it. Port exhaustion investigation should also consider application lifecycle, namespace boundaries, and socket counts.</p>
+  </section>
+
+  <section id="script"><h2>6. Complete read-only investigation script</h2>
+    <p>Save the following as <code>rhel9-network-investigate.sh</code>, make it executable, and run it. An optional first argument performs a route lookup.</p>
+    <pre><code>chmod +x rhel9-network-investigate.sh
+./rhel9-network-investigate.sh
+./rhel9-network-investigate.sh 239.91.200.111</code></pre>
+    <div class="note">The script uses only inspection commands. It records command availability and permission limitations rather than aborting the entire report.</div>
+    <pre><code>#!/usr/bin/env bash
+set -u
+
+DESTINATION_IP="${1:-}"
+
+section() { printf '\n\n==== %s ====\n' "$1"; }
+run() {
+  printf '\n$'
+  printf ' %q' "$@"
+  printf '\n'
+  "$@" 2&gt;&amp;1 || printf '[command exited with status %d]\n' "$?"
+}
+have() { command -v "$1" &gt;/dev/null 2&gt;&amp;1; }
+
+printf 'RHEL 9 host networking investigation\n'
+printf 'Generated: '; date --iso-8601=seconds
+printf 'Host: '; hostname
+printf 'Kernel: '; uname -r
+printf 'User: '; id
+printf 'Safety: read-only inspection; no network state is changed.\n'
+
+section 'IPv4 addresses and links'
+if have ip; then
+  run ip -br -4 addr
+  run ip -br link
+  run ip -d link show type bond
+else
+  printf 'ip command not found\n'
+fi
+
+section 'Kernel bonding status'
+shopt -s nullglob
+bonds=(/proc/net/bonding/*)
+if ((${#bonds[@]} == 0)); then
+  printf 'No bond status files found under /proc/net/bonding.\n'
+else
+  for b in "${bonds[@]}"; do
+    printf '\n== %s ==\n' "${b##*/}"
+    grep -E 'Bonding Mode|Primary Slave|Currently Active Slave|MII Status|Slave Interface|Speed|Duplex|Link Failure Count' "$b" || true
+  done
+fi
+shopt -u nullglob
+
+section 'NetworkManager'
+if have nmcli; then
+  run nmcli -t -f NAME,DEVICE connection show --active
+  run nmcli device status
+  run nmcli connection show --active
+  while IFS= read -r bond; do
+    [ -n "$bond" ] &amp;&amp; run nmcli -f GENERAL,IP4 device show "$bond"
+  done &lt; &lt;(ls -1 /proc/net/bonding 2&gt;/dev/null || true)
+else
+  printf 'nmcli not found; NetworkManager may be absent or tools not installed.\n'
+fi
+
+section 'Routes and policy rules'
+if have ip; then
+  run ip -4 route show
+  run ip rule show
+  if [ -n "$DESTINATION_IP" ]; then
+    run ip route get "$DESTINATION_IP"
+  else
+    printf 'No destination argument supplied; skipping ip route get.\n'
+  fi
+fi
+
+section 'UDP sockets'
+if have ss; then
+  run ss -uapn
+  printf '\nUDP socket rows grouped by process and PID:\n'
+  ss -H -uapn 2&gt;/dev/null | awk '
+    {
+      name="unknown"; pid="-"
+      if (match($0,/users:\(\(\"[^\"]+\"/))
+        name=substr($0,RSTART+9,RLENGTH-10)
+      if (match($0,/pid=[0-9]+/))
+        pid=substr($0,RSTART+4,RLENGTH-4)
+      count[name SUBSEP pid]++
+    }
+    END {
+      printf "%-24s %-10s %s\n", "PROCESS", "PID", "UDP_SOCKETS"
+      for (key in count) {
+        split(key,a,SUBSEP)
+        printf "%-24s %-10s %d\n", a[1], a[2], count[key]
+      }
+    }' | sort
+else
+  printf 'ss not found; install iproute tools through the approved host process.\n'
+fi
+
+section 'Local ephemeral port range'
+if have sysctl; then
+  run sysctl net.ipv4.ip_local_port_range
+else
+  run cat /proc/sys/net/ipv4/ip_local_port_range
+fi
+
+section 'Investigation notes'
+printf '%s\n' \
+  'UP is not proof of application reachability.' \
+  'A healthy bond is not proof that routes, firewall, multicast joins, or switches are correct.' \
+  'Missing process details in ss usually require elevated privileges.' \
+  'Correlate findings with application logs and approved network telemetry.'
+</code></pre>
+
+    <h3>Bash here-document to create an HTML file</h3>
+    <p>The requested shell pattern is below. Use a <strong>quoted</strong> delimiter so Bash does not expand <code>$variables</code>, command substitutions, or backslashes inside the HTML:</p>
+    <pre><code>cat &gt; linux-host-networking-investigation.html &lt;&lt;'HTML'
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;!-- paste the complete HTML document here --&gt;
+&lt;/html&gt;
+HTML
+</code></pre>
+    <p>Then open it locally:</p><pre><code>xdg-open linux-host-networking-investigation.html</code></pre>
+  </section>
+
+  <section id="checklist"><h2>7. Final investigation checklist</h2>
+    <table><thead><tr><th>Check</th><th>Command / evidence</th><th>Healthy indication</th><th>Follow-up if unexpected</th></tr></thead><tbody>
+      <tr><td>Correct IPv4 owner</td><td><code>ip -br -4 addr</code></td><td>Expected IP/prefix is on the logical bond</td><td>Compare approved NetworkManager profile; do not modify during investigation</td></tr>
+      <tr><td>Bond mode</td><td><code>/proc/net/bonding/bond*</code></td><td>Expected mode and active slave</td><td>Compare host build standard</td></tr>
+      <tr><td>Slave link</td><td>MII, speed, duplex, failures</td><td>UP; consistent speed/duplex; stable counter</td><td>Correlate with NIC and switch logs</td></tr>
+      <tr><td>NetworkManager ownership</td><td><code>nmcli device status</code></td><td>State agrees with host design</td><td>Determine whether external/unmanaged state is intentional</td></tr>
+      <tr><td>Route selection</td><td><code>ip route get DEST</code></td><td>Expected device, source, gateway, table</td><td>Inspect <code>ip rule</code> and all relevant tables</td></tr>
+      <tr><td>UDP listener</td><td><code>sudo ss -uapn</code></td><td>Expected local address/port and PID</td><td>Check application bind settings and namespace</td></tr>
+      <tr><td>Java ownership</td><td><code>ss</code> plus <code>ps</code></td><td>Expected JVM owns socket</td><td>Match PID to deployment/service definition</td></tr>
+      <tr><td>Ephemeral range</td><td><code>sysctl net.ipv4.ip_local_port_range</code></td><td>Matches platform standard</td><td>Assess socket churn/exhaustion; change only through approval</td></tr>
+      <tr><td>Multicast receive path</td><td>Route + socket + group membership + firewall/switch evidence</td><td>All layers agree</td><td>Inspect <code>ip maddr show</code>, packet capture, IGMP, and switch configuration under approval</td></tr>
+    </tbody></table>
+    <div class="danger"><strong>Escalate before changing anything.</strong> Preserve the report, timestamps, destination IP, affected port, PID, and expected network path. A snapshot taken before remediation is often the best evidence.</div>
+  </section>
+  <footer>Self-contained RHEL 9 tutorial · Inline CSS only · No external URLs, images, fonts, scripts, or libraries.</footer>
+</main>
+</body>
+</html>
