@@ -123,6 +123,22 @@ Track mastery per concept rather than only slide completion:
 
 Quiz records should support fields such as `id`, `conceptIds`, `type`, `prompt`, `answer`, `explanation`, `misconceptionFeedback`, `hints`, `difficulty`, `reviewAfter`, `transferPrompt`, `sourceSlides`, and `requireConfidence`. Use only fields needed by the chosen interaction types.
 
+## Final Exam and Remediation
+
+Include a consolidated final exam when the workshop contains multiple modules or the user asks for assessment:
+
+- Use new scenario, diagnosis, or transfer questions rather than copying the in-slide checks.
+- Cover every module and interleave concepts so the exam tests retrieval outside the teaching sequence.
+- Randomize question and answer order deterministically; allow a retake with alternate questions when the source supports a larger question bank.
+- Require confidence ratings and use an explicit passing threshold, normally 80% unless the user specifies otherwise.
+- Report the total score and module-level readiness: `strong` at 80% or higher, `developing` at 60–79%, and `review required` below 60% or when confident-but-wrong answers exist.
+- For every incorrect answer, explain the misconception, show the correct reasoning, identify the module and exact slides to revisit, and provide direct review controls.
+- After review, present a focused retry using a different question or context.
+- Build the review sequence in this order: confident-but-wrong concepts, repeated mistakes, prerequisite concepts, low-confidence correct answers, then remaining failures.
+- Persist exam attempts, confidence, remediation status, and the personalized review plan locally.
+
+Keep exam questions in the companion JSON with fields such as `moduleId`, `conceptIds`, `misconceptionFeedback`, `reviewModule`, `reviewSlides`, `alternateQuestionId`, and `requireConfidence`.
+
 ## ADQ Mode
 
 If the user asks for ADQ or an architecture deep-dive style workshop:
@@ -156,5 +172,8 @@ Before finishing:
 - Confirm every assessed concept has feedback, remediation, and a later retrieval opportunity.
 - Confirm mastery requires successful retrieval in multiple contexts.
 - Confirm the personalized review prioritizes mistakes and low-confidence responses.
+- Confirm the final exam covers every module with questions distinct from the in-slide checks.
+- Confirm every exam mistake routes to an exact module and slide, and focused retries use a different prompt.
+- Confirm exam scoring, readiness bands, confidence handling, retakes, and saved state work as intended.
 - Confirm the slide order, TOC, and keyboard navigation are consistent.
 - Confirm claims in the slides are supported by the provided source material.
