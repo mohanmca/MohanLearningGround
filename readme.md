@@ -175,3 +175,4 @@
 4. [https://hnhiring.com/](https://hnhiring.com/)
 5. [TheInternetRightNow.com](TheInternetRightNow.com)
 6. [hackernews monitoring](https://octolens.com/hackernews-monitoring)
+7. [Hacker News Alerts Dashboard](https://hn.dunkirk.sh/)
