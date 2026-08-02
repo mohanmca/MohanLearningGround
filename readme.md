@@ -169,11 +169,11 @@
 * [Why gitbook](https://www.aizatto.com/why-gitbook)
 
 ## Hackernew related website
-1. [hntrends.net](hntrends.net)
-2. [HNRadar.io](HNRadar.io)
+1. [hntrends.net](https://hntrends.net)
+2. [HNRadar.io](https://HNRadar.io)
 3. [hackernewstrends.com](https://hackernewstrends.com/?q=openai&q=anthropic&sort=recent)
 4. [https://hnhiring.com/](https://hnhiring.com/)
-5. [TheInternetRightNow.com](TheInternetRightNow.com)
+5. [TheInternetRightNow.com](http://www.TheInternetRightNow.com)
 6. [hackernews monitoring](https://octolens.com/hackernews-monitoring)
 7. [Hacker News Alerts Dashboard](https://hn.dunkirk.sh/)
 8. [hackergrep.com](https://hackergrep.com/)
