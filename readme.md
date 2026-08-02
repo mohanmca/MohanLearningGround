@@ -172,3 +172,5 @@
 1. [hntrends.net](hntrends.net)
 2. [HNRadar.io](HNRadar.io)
 3. [hackernewstrends.com](https://hackernewstrends.com/?q=openai&q=anthropic&sort=recent)
+4. [https://hnhiring.com/](https://hnhiring.com/)
+5. [TheInternetRightNow.com](TheInternetRightNow.com)
