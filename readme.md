@@ -176,3 +176,5 @@
 5. [TheInternetRightNow.com](TheInternetRightNow.com)
 6. [hackernews monitoring](https://octolens.com/hackernews-monitoring)
 7. [Hacker News Alerts Dashboard](https://hn.dunkirk.sh/)
+8. [hackergrep.com](https://hackergrep.com/)
+9. [https://hackersearch.net/](https://hackersearch.net/ask?q=is%20microsoft%20bing%20improving?)
