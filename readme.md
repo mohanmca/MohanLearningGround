@@ -174,3 +174,4 @@
 3. [hackernewstrends.com](https://hackernewstrends.com/?q=openai&q=anthropic&sort=recent)
 4. [https://hnhiring.com/](https://hnhiring.com/)
 5. [TheInternetRightNow.com](TheInternetRightNow.com)
+6. [hackernews monitoring](https://octolens.com/hackernews-monitoring)
