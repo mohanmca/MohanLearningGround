@@ -163,8 +163,12 @@
 
 
 ## Inspiring notes organization
-
 * [Everything I know](https://wiki.nikitavoloboev.xyz/)
 * [https://github.com/vincentntang/vincentntang.com](https://www.vincentntang.com/)
 * [Chris's external brain](https://blog.kowalczyk.info/)
 * [Why gitbook](https://www.aizatto.com/why-gitbook)
+
+## Hackernew related website
+1. [hntrends.net](hntrends.net)
+2. [HNRadar.io](HNRadar.io)
+3. [hackernewstrends.com](https://hackernewstrends.com/?q=openai&q=anthropic&sort=recent)
