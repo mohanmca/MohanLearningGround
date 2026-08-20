@@ -163,8 +163,18 @@
 
 
 ## Inspiring notes organization
-
 * [Everything I know](https://wiki.nikitavoloboev.xyz/)
 * [https://github.com/vincentntang/vincentntang.com](https://www.vincentntang.com/)
 * [Chris's external brain](https://blog.kowalczyk.info/)
 * [Why gitbook](https://www.aizatto.com/why-gitbook)
+
+## Hackernew related website
+1. [hntrends.net](https://hntrends.net)
+2. [HNRadar.io](https://HNRadar.io)
+3. [hackernewstrends.com](https://hackernewstrends.com/?q=openai&q=anthropic&sort=recent)
+4. [https://hnhiring.com/](https://hnhiring.com/)
+5. [TheInternetRightNow.com](http://www.TheInternetRightNow.com)
+6. [hackernews monitoring](https://octolens.com/hackernews-monitoring)
+7. [Hacker News Alerts Dashboard](https://hn.dunkirk.sh/)
+8. [hackergrep.com](https://hackergrep.com/)
+9. [https://hackersearch.net/](https://hackersearch.net/ask?q=is%20microsoft%20bing%20improving?)
