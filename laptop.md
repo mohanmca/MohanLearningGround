@@ -7,7 +7,7 @@
 * NXJY1SG0016060168B3400
 * https://store.acer.com/en-sg/sfg16-i71-74n5
 * Windows 11 Home
-* Intel® Core™ Ultra X7 processor 358H (16 Cores, Up to 4.8GHz)
+* [Intel® Core™ Ultra X7 processor 358H (16 Cores, Up to 4.8GHz)](https://www.techpowerup.com/cpu-specs/core-ultra-x7-358h.c4304)
 * Up to 50 TOPS of NPU AI Performance
 * 16" 3K (2880x1800) OLED Display 120Hz, 500nits brightness
 * 32GB LPDDR5X RAM, 1TB PCIe Gen4 SSD
