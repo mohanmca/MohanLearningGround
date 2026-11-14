@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#151b3b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>FIX FORCE! — Comic Memory Arcade</title>
+<style>
+:root { --ink:#172043;--paper:#fff8e9;--white:#fffdf7;--yellow:#ffde59;--pink:#ff668d;--blue:#6bbafb;--teal:#58d6bb;--purple:#b6a1f3;--red:#ec4e5f;--muted:#666e86;--line:#172043;--shadow:4px 5px 0 var(--ink);--radius:18px; }
+* { box-sizing:border-box; }
+html { background:#151b3b; -webkit-text-size-adjust:100%; scroll-padding-bottom:25px; }
+body { margin:0; color:var(--ink);font-family: ui-rounded, "Avenir Next", "Trebuchet MS", "Arial Rounded MT Bold", system-ui, -apple-system, sans-serif; background:radial-gradient(#d7d2bf 0.8px, transparent 0.8px) 0 0 / 20px 20px, var(--paper); min-height:100vh; min-height:100dvh; overscroll-behavior-y:none; }
+button,input,select { font:inherit; }
+button { cursor:pointer; -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+button:focus-visible, input:focus-visible, select:focus-visible {outline:4px solid #4b8df4; outline-offset:2px;}
+button:disabled { opacity:.45; cursor:not-allowed; }
+#app {min-height:100dvh;}
+.shell { width:min(1100px,100%);margin:0 auto; padding:0 17px calc(26px + env(safe-area-inset-bottom)); }
+.topbar {min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:12px; padding:12px 0;}
+.brand { border:0;background:none;color:var(--ink); padding:0; display:flex; gap:10px;align-items:center;text-align:left;}
+.brand-mark { width:44px;height:44px;display:grid;place-items:center;background:var(--yellow);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);border-radius:12px;transform:rotate(-6deg);font-size:22px;}
+.brand strong {font-size:23px;line-height:1;font-weight:1000;letter-spacing:-1.2px;display:block;}
+.brand small {font-size:11px;font-weight:900;letter-spacing:1.8px;color:#596180;}
+.header-right {display:flex;align-items:center;gap:7px;}
+.pill {font-weight:900;font-size:12px;background:var(--white);border:2px solid var(--ink); border-radius:100px; padding:7px 10px;box-shadow:2px 2px 0 var(--ink);white-space:nowrap;}
+.pill.gold {background:var(--yellow)}
+.panel { border:3px solid var(--ink);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow); }
+.hero { display:grid;grid-template-columns:1.2fr .8fr; gap:10px; overflow:hidden;background:var(--yellow);border:4px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--ink);min-height:240px;margin:6px 0 20px;position:relative;}
+.hero-copy {padding:28px 0 25px 24px;z-index:1;}
+.eyebrow {display:inline-block;background:var(--pink);border:2px solid var(--ink);padding:5px 9px;transform:rotate(-3deg);font-size:11px;font-weight:1000;letter-spacing:1.6px;box-shadow:2px 2px 0 var(--ink)}
+h1,h2,h3,p {margin-top:0;}
+h1 {font-size:clamp(39px,7vw,72px);line-height:.92;margin:15px 0 12px;letter-spacing:-2.5px;font-weight:1000;text-shadow:2px 2px #fff;}
+h1 em {font-style:normal;color:#f44770;-webkit-text-stroke:1.4px var(--ink);}
+.hero p {max-width:390px;font-size:14px;line-height:1.5;font-weight:750;margin-bottom:14px;}
+.hero-art {width:100%;height:100%;min-height:225px;align-self:stretch;}
+.cta-row {display:flex;gap:10px;flex-wrap:wrap;}
+.btn {border:3px solid var(--ink);border-radius:13px;padding:11px 16px;background:var(--white);color:var(--ink);font-weight:1000;box-shadow:3px 4px 0 var(--ink);min-height:46px;line-height:1.2;transition:transform .1s,box-shadow .1s;}
+.btn:active,.game-card:active,.choice:active {transform:translate(2px,3px);box-shadow:1px 1px 0 var(--ink);}
+.btn.primary {background:var(--pink);}.btn.yellow {background:var(--yellow)}.btn.teal {background:var(--teal)}.btn.blue{background:var(--blue)}.btn.purple{background:var(--purple)}
+.btn.ghost {background:transparent;box-shadow:none;}.btn.small{padding:7px 11px;min-height:37px;font-size:12px;border-width:2px;box-shadow:2px 2px 0 var(--ink)}
+.btn.wide {width:100%;}.btn.picker {text-align:left;}.btn:disabled:active{transform:none;}
+.section-head {display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:10px;margin:16px 1px 12px;}
+.section-head h2 {font-weight:1000;letter-spacing:-.8px;font-size:26px;margin:0;}
+.section-head p {font-size:12px;font-weight:750;color:var(--muted);margin:3px 0 0}
+.scope-control {border:2px solid var(--ink);border-radius:12px;background:var(--white);padding:6px 9px;font-weight:900;color:var(--ink);max-width:100%;font-size:13px;min-height:40px;}
+.game-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;padding-bottom:8px;}
+.game-card {min-height:169px;border:3px solid var(--ink);border-radius:17px;box-shadow:4px 5px 0 var(--ink);padding:15px 13px 12px;display:flex;flex-direction:column;text-align:left;justify-content:space-between;color:var(--ink);position:relative;transition:transform .1s,box-shadow .1s;}
+.game-card .game-icon {width:52px;height:52px;border:3px solid var(--ink);border-radius:15px;background:rgba(255,255,255,.64);display:grid;place-items:center;font-size:29px;transform:rotate(-7deg);}
+.game-card h3 {font-size:17px;letter-spacing:-.4px;margin:7px 0 3px;font-weight:1000;}
+.game-card p {font-size:11px;margin:0;color:#27304a;line-height:1.35;font-weight:800;}
+.game-card .index {position:absolute;right:12px;top:12px;font-size:12px;font-weight:1000;opacity:.5;}
+.nav {position:fixed;bottom:0;left:0;right:0;z-index:30;background:var(--ink);border-top:4px solid #fff; padding:8px max(10px,env(safe-area-inset-left)) calc(9px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-right));box-shadow:0 -4px 0 var(--ink);}
+.nav-inner {max-width:740px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}
+.nav button {display:flex;align-items:center;justify-content:center;gap:6px;border:2px solid transparent;border-radius:12px;background:transparent;color:#cbd1e5;font-size:12px;font-weight:900;min-height:47px;}
+.nav button.active {background:var(--yellow);color:var(--ink);border-color:#fff;}
+.nav b {font-size:19px;}
+.game-top {display:flex;justify-content:space-between;align-items:center;gap:8px;margin:5px 0 15px;}
+.game-top .back {border:2px solid var(--ink);border-radius:12px;background:#fff;padding:9px 12px;box-shadow:2px 2px 0 var(--ink);font-size:14px;font-weight:900;}
+.game-top .mode-chip {border:2px solid var(--ink);border-radius:99px;padding:8px 11px;background:var(--yellow);font-size:12px;font-weight:1000;max-width:65%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.game-title {margin:2px 0 9px;font-size:clamp(25px,6vw,38px);font-weight:1000;letter-spacing:-1px;line-height:1.06;}
+.game-subtitle {font-size:13px;font-weight:800;color:var(--muted);line-height:1.5;margin:0 0 16px;}
+.scoreline {display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:9px 0 15px;}
+.score-chip {padding:7px 11px;background:#fff;border:2px solid var(--ink);border-radius:12px;font-weight:1000;font-size:12px;}
+.progress {height:14px;background:white;border:2px solid var(--ink);border-radius:30px;overflow:hidden;margin:10px 0 16px;}
+.progress >span {display:block;height:100%;background:var(--teal);transition:width .25s;}
+.question {padding:18px 15px;margin-bottom:15px;text-align:center;}
+.question .kicker {font-size:11px;letter-spacing:1.5px;font-weight:1000;text-transform:uppercase;color:var(--muted);}
+.question .big {font-size:clamp(44px,12vw,84px);line-height:1.1;font-weight:1000;letter-spacing:-2px;overflow-wrap:anywhere;margin:9px 0;}
+.question .mid {font-size:clamp(24px,6vw,43px);line-height:1.18;font-weight:1000;overflow-wrap:anywhere;margin:10px 0;}
+.question .hint {font-size:13px;font-weight:800;color:#58607a;margin-top:9px;}
+.choices {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0;}
+.choice {min-height:66px;padding:11px 9px;border:3px solid var(--ink);border-radius:14px;background:var(--white);box-shadow:3px 4px 0 var(--ink);font-weight:950;color:var(--ink);overflow-wrap:anywhere;font-size:clamp(13px,3.1vw,17px);line-height:1.22;}
+.choice.correct {background:var(--teal)} .choice.wrong {background:var(--pink)} .choice:disabled:not(.correct):not(.wrong){opacity:.6}
+.feedback {padding:12px 14px;border:3px solid var(--ink);border-radius:13px;font-weight:850;font-size:13px;line-height:1.5;background:#e6fff2;margin:10px 0 14px;}
+.feedback.no {background:#ffe1e7;} .feedback.info{background:#e6f1ff;}
+.feedback .tagline {display:block;font-size:18px;font-weight:1000;margin-bottom:3px;}
+.art {display:block;width:100%;height:auto;max-height:220px;}
+.art-box {border:3px solid var(--ink);background:#fdf1cb;border-radius:15px;overflow:hidden;box-shadow:3px 3px 0 var(--ink);}
+.art-caption {padding:9px;border-top:3px solid var(--ink);background:#fffdf4;text-align:center;font-weight:1000;}
+.big-card {max-width:450px;margin:0 auto 15px;}
+.flashcard {width:100%;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);border-radius:20px;min-height:330px;background:var(--yellow);padding:13px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;text-align:center;}
+.flashcard .num {font-size:clamp(66px,17vw,100px);line-height:.95;letter-spacing:-3px;font-weight:1000;}
+.flashcard .reveal-title {font-size:clamp(24px,8vw,41px);font-weight:1000;}
+.flashcard .tap {background:#fff;border:2px solid var(--ink);border-radius:100px;padding:8px 14px;font-weight:1000;font-size:12px;}
+.flashcard .mnemonic-art {max-width:215px;width:100%;max-height:165px;}
+.flash-actions {display:flex;gap:12px;justify-content:center;margin-top:17px;}
+.flash-actions >button {flex:1;max-width:235px;}
+.cols3 {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0;}
+.match-col h3{text-align:center;font-size:12px;letter-spacing:.5px;margin-bottom:8px;}
+.match-tile {min-height:74px;border:3px solid var(--ink);box-shadow:2px 3px 0 var(--ink);border-radius:12px;margin-bottom:9px;width:100%;background:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:5px;font-weight:1000;font-size:clamp(10px,2.7vw,15px);overflow-wrap:anywhere;}
+.match-tile.selected {background:var(--yellow);transform:translate(1px,1px)} .match-tile.matched{background:var(--teal);color:#23524c;opacity:.50;box-shadow:none;}
+.match-tile.num {font-size:25px;background:#fce3ee;}.match-tile.num.selected{background:var(--yellow);}
+.match-tile.peg {background:#dff5ff}.match-tile.peg.selected{background:var(--yellow);}
+.mem-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0;}
+.mem-tile {min-height:94px;border:3px solid var(--ink);border-radius:13px;box-shadow:3px 3px 0 var(--ink);font-size:26px;font-weight:1000;background:var(--blue);word-break:break-word;padding:6px;}
+.mem-tile.up{font-size:clamp(13px,3vw,20px);background:var(--yellow);}.mem-tile.done{background:var(--teal);font-size:20px;box-shadow:none;}
+.story-row {display:flex;align-items:center;gap:9px;padding:6px;border:3px solid var(--ink);border-radius:14px;background:#fff;margin-bottom:9px;box-shadow:2px 2px 0 var(--ink);}
+.story-row .ordinal{min-width:27px;text-align:center;font-size:14px;font-weight:1000;}
+.story-row .thumbnail {width:60px;flex:0 0 60px;border:2px solid var(--ink);border-radius:8px;background:#fff1c6;overflow:hidden;}
+.story-row .words{flex:1;min-width:0;}.story-row .words strong{display:block;font-size:14px;overflow-wrap:anywhere}.story-row .words small{display:block;font-size:11px;font-weight:850;color:var(--muted);}
+.move-buttons {display:flex;flex-direction:column;gap:4px;}.move-buttons button{border:2px solid var(--ink);background:var(--yellow);border-radius:7px;min-height:35px;min-width:39px;font-size:16px;font-weight:1000;}
+.input-row {display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+.text-answer {flex:1;min-width:0;padding:13px 14px;border:3px solid var(--ink);border-radius:14px;box-shadow:3px 3px 0 var(--ink);background:#fff;font-size:20px;font-weight:900;color:var(--ink);}
+.game-end {max-width:550px;margin:20px auto;padding:30px 21px;text-align:center;background:var(--yellow);}
+.game-end h2{font-size:clamp(30px,7vw,52px);font-weight:1000;margin:10px 0 8px;}
+.game-end .trophy{font-size:69px;display:block;filter:drop-shadow(3px 3px 0 var(--ink));}
+.game-end p{font-size:14px;line-height:1.5;font-weight:800;}
+.end-actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:18px;}
+.run-meter{height:24px;background:#fff;border:3px solid var(--ink);border-radius:20px;overflow:hidden;margin:14px 0;}
+.run-meter>span{background:var(--pink);display:block;height:100%;transition:width .12s linear;}
+.terminal{border:3px solid var(--ink);border-radius:14px;background:#1a2347;color:#a7ffe4;box-shadow:4px 4px 0 var(--ink);padding:17px 13px;margin:16px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:clamp(12px,3.4vw,18px);line-height:1.9;overflow-wrap:anywhere;word-break:break-word;}
+.missing{background:var(--yellow);color:var(--ink);border-radius:4px;padding:3px 5px;font-weight:1000;}
+.hangword{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:1000;letter-spacing:5px;text-align:center;overflow-wrap:anywhere;font-size:clamp(22px,6vw,39px);margin:17px 0;min-height:45px;}
+.keyboard{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin:12px 0;}
+.key{font-size:16px;font-weight:1000;border:2px solid var(--ink);border-radius:9px;background:var(--white);min-height:44px;padding:0;box-shadow:2px 2px 0 var(--ink);}
+.key.good{background:var(--teal)}.key.bad{background:#e7e8f0;color:#758098;box-shadow:none;}
+.sort-answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.sort-btn{padding:15px 8px;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);border-radius:13px;font-weight:1000;min-height:65px;color:var(--ink);}
+.sort-btn:nth-child(1){background:var(--yellow)}.sort-btn:nth-child(2){background:var(--pink)}.sort-btn:nth-child(3){background:var(--teal)}.sort-btn:nth-child(4){background:var(--blue)}
+.stat-cards {display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 20px;}
+.stat {background:var(--white);border:3px solid var(--ink);border-radius:14px;box-shadow:3px 3px 0 var(--ink);padding:14px 8px;text-align:center;}
+.stat b{font-size:31px;font-weight:1000;display:block}.stat small{font-size:10px;font-weight:900;color:var(--muted);}
+.deck-search{width:100%;padding:13px;border:3px solid var(--ink);border-radius:13px;background:#fff;font-weight:900;color:var(--ink);box-shadow:2px 3px 0 var(--ink);font-size:16px;}
+.deck-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0;}
+.deck-card {background:#fff;border:3px solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:3px 3px 0 var(--ink);}
+.deck-card .deck-art {height:140px;overflow:hidden;background:#ffe99b;}
+.deck-card .deck-art svg{height:140px;}
+.deck-card .info{padding:10px 11px;}.deck-card .tag-title{font-size:15px;font-weight:1000;overflow-wrap:anywhere;}.deck-card .tag-title b{background:var(--yellow);padding:2px 6px;border:2px solid var(--ink);border-radius:7px;margin-right:3px;}
+.deck-card .sound{font-size:11px;color:var(--muted);margin:6px 0;font-weight:900;}
+.deck-card .assoc{font-size:12px;line-height:1.45;font-weight:750;}
+.legend{background:#fff;border:2px solid var(--ink);border-radius:12px;padding:11px 13px;font-size:12px;font-weight:850;line-height:1.7;margin:12px 0;}
+.toast{position:fixed;top:calc(13px + env(safe-area-inset-top));left:50%;z-index:100;transform:translateX(-50%);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);border-radius:13px;background:var(--yellow);padding:12px 15px;max-width:calc(100vw - 28px);width:max-content;font-size:13px;font-weight:1000;text-align:center;pointer-events:none;}
+.footer-note{font-size:12px;font-weight:750;color:#6f7688;line-height:1.6;margin:15px 0;}
+@media(min-width:760px){.shell{padding-left:27px;padding-right:27px}.game-content{max-width:720px;margin:0 auto;}.mem-grid{grid-template-columns:repeat(4,minmax(0,1fr));}.deck-list{grid-template-columns:repeat(3,minmax(0,1fr));}.hero-copy{padding-left:35px;}}
+@media(max-width:700px){.game-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}.game-card{min-height:165px;padding:11px;}.hero{grid-template-columns:1.15fr .85fr;min-height:215px;}.hero-copy{padding:20px 0 17px 14px;}.hero p{font-size:12px;}.hero-art{min-height:205px;}.brand strong{font-size:20px;}.brand small{font-size:9px;}.pill{font-size:11px;}.game-card h3{font-size:16px;}}
+@media(max-width:380px){.shell{padding-left:12px;padding-right:12px;}.hero{grid-template-columns:1fr .55fr;}.hero p{font-size:11px}.hero h1{font-size:39px}.hero-art{min-height:170px}.game-card{min-height:158px;}.game-card h3{font-size:14px;}.choices{gap:8px;}.choice{font-size:12px;}.stat b{font-size:25px;}.story-row .thumbnail{width:48px;flex-basis:48px;}.hero-copy .cta-row .btn{font-size:11px;padding:9px;}.cols3{gap:5px}.match-tile{min-height:65px;font-size:10px;}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;}}
+
+/* iPhone-first slide-out comic navigation. It never covers game buttons while closed. */
+.menu-btn {width:46px;height:46px;min-width:46px;border:3px solid var(--ink);background:var(--yellow);border-radius:13px;box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;color:var(--ink);font-weight:1000;font-size:25px;line-height:1;}
+.drawer-backdrop{position:fixed;inset:0;background:rgba(12,17,37,.64);z-index:90;}
+.drawer{position:fixed;z-index:91;inset:0 auto 0 0;width:min(83vw,330px);height:100vh;height:100dvh;overflow-y:auto;background:#fff8e9;border-right:4px solid var(--ink);box-shadow:6px 0 0 #ffde59;padding:calc(16px + env(safe-area-inset-top)) 16px calc(25px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:12px;animation:drawer-in .19s ease-out;}
+@keyframes drawer-in{from{transform:translateX(-105%)}to{transform:translateX(0)}}
+.drawer-title{font-weight:1000;font-size:23px;line-height:1.1;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.drawer-close{border:3px solid var(--ink);background:#fff;border-radius:10px;width:43px;height:43px;font-size:24px;font-weight:900;}
+.drawer-link{width:100%;text-align:left;min-height:57px;border:3px solid var(--ink);border-radius:14px;background:#fff;box-shadow:3px 3px 0 var(--ink);padding:10px 14px;font-weight:1000;font-size:17px;color:var(--ink);display:flex;align-items:center;gap:12px;}
+.drawer-link.active{background:var(--yellow)}
+.drawer-note{font-size:12px;line-height:1.5;font-weight:800;color:var(--muted);margin-top:15px;}
+.enum-help{background:#e8f5ff;border:3px solid var(--ink);border-radius:16px;padding:12px;margin:13px 0;}
+.enum-split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:13px 0;}
+.enum-panel{padding:12px;border:3px solid var(--ink);border-radius:15px;background:#fff;box-shadow:3px 3px 0 var(--ink);min-width:0;}
+.enum-panel.event{background:#fff0d2}.enum-panel.status{background:#e0fff7}
+.enum-panel h3{font-size:16px;font-weight:1000;margin:0 0 9px}.enum-panel p{font-size:12px;font-weight:800;line-height:1.4;margin:4px 0}
+.enum-row{display:flex;gap:8px;align-items:center;border-top:1px solid #a3a8b5;padding:8px 0;font-size:12px;font-weight:900;}
+.enum-code{display:grid;place-items:center;flex:0 0 42px;font-size:17px;font-weight:1000;background:#fff;border:2px solid var(--ink);border-radius:8px;padding:4px 3px;}
+.enum-hero{text-align:center;border:3px solid var(--ink);border-radius:17px;background:#fff0d2;padding:12px;margin:15px 0;}
+.enum-hero.status{background:#dffdf1}.enum-hero svg{width:100%;max-height:142px;display:block}
+.enum-prompt{font-size:clamp(21px,5vw,35px);font-weight:1000;overflow-wrap:anywhere;padding:12px 0}
+.enum-rule{font-size:12px;color:#526179;font-weight:900;line-height:1.5;margin:8px 0}
+@media(max-width:480px){.topbar{gap:7px}.header-right .pill.gold{display:none}.brand strong{font-size:18px}.brand small{font-size:8px}.brand-mark{width:35px;height:35px;font-size:18px}.menu-btn{width:43px;height:43px;min-width:43px}.header-right .pill{padding:6px 7px}.enum-split{grid-template-columns:1fr}.enum-hero svg{max-height:110px}}
+</style>
+</head>
+<body><div id="app"></div>
+<script>
+'use strict';
+const TAGS = [{"tag":"1","name":"Account","sounds":"T/D","peg":"Tie","story":"Tie your account to yourself","emoji":"👔","kind":"FIX"},{"tag":"6","name":"AvgPx","sounds":"SH/J","peg":"Shoe","story":"Check the average price of a shoe","emoji":"👟","kind":"FIX"},{"tag":"8","name":"BeginString","sounds":"F/V","peg":"Ivy","story":"Ivy growing at the beginning of the message","emoji":"🌿","kind":"FIX"},{"tag":"9","name":"BodyLength","sounds":"P/B","peg":"Bee","story":"A giant bee measuring its body length","emoji":"🐝","kind":"FIX"},{"tag":"10","name":"CheckSum","sounds":"T-S","peg":"Toes","story":"Count your toes to check the sum","emoji":"🦶","kind":"FIX"},{"tag":"11","name":"ClOrdID","sounds":"T-T","peg":"Tot","story":"A little tot holding a Client Order ID","emoji":"👶","kind":"FIX"},{"tag":"14","name":"CumQty","sounds":"T-R","peg":"Tire","story":"A tire accumulating more and more quantity","emoji":"🛞","kind":"FIX"},{"tag":"15","name":"Currency","sounds":"T-L","peg":"Towel","story":"A towel covered with different currencies","emoji":"🧺","kind":"FIX"},{"tag":"17","name":"ExecID","sounds":"T-K","peg":"Tack","story":"Tack the execution ID onto the trade","emoji":"📌","kind":"FIX"},{"tag":"20","name":"ExecTransType","sounds":"N-S","peg":"Nose","story":"Your nose detects the execution transaction type","emoji":"👃","kind":"FIX"},{"tag":"21","name":"HandlInst","sounds":"N-T","peg":"Net","story":"A net catches the handling instruction","emoji":"🥅","kind":"FIX"},{"tag":"22","name":"SecurityIDSource","sounds":"N-N","peg":"Nun","story":"A nun asks where the Security ID came from","emoji":"🕯️","kind":"FIX"},{"tag":"29","name":"LastCapacity","sounds":"N-B","peg":"Knob","story":"Turn a knob to the last capacity","emoji":"🎛️","kind":"FIX"},{"tag":"30","name":"LastMkt","sounds":"M-S","peg":"Mouse","story":"A mouse runs through the last market","emoji":"🐭","kind":"FIX"},{"tag":"31","name":"LastPx","sounds":"M-T","peg":"Mat","story":"A price label sitting on a mat = LastPx","emoji":"🧘","kind":"FIX"},{"tag":"32","name":"LastQty","sounds":"M-N","peg":"Moon","story":"The moon shows the last quantity","emoji":"🌙","kind":"FIX"},{"tag":"34","name":"MsgSeqNum","sounds":"M-R","peg":"Mower","story":"A mower counts messages in sequence","emoji":"🚜","kind":"FIX"},{"tag":"35","name":"MsgType","sounds":"M-L","peg":"Mule","story":"Different mules carry different message types","emoji":"🫏","kind":"FIX"},{"tag":"37","name":"OrderID","sounds":"M-K","peg":"Mug","story":"Order ID printed on a coffee mug","emoji":"☕","kind":"FIX"},{"tag":"38","name":"OrderQty","sounds":"M-F/V","peg":"Movie","story":"Order 38 tickets for a movie → quantity","emoji":"🎬","kind":"FIX"},{"tag":"39","name":"OrdStatus","sounds":"M-P","peg":"Mop","story":"Mop changes status: New → Working → Done","emoji":"🧹","kind":"FIX"},{"tag":"40","name":"OrdType","sounds":"R-S","peg":"Rose","story":"Different coloured roses = different order types","emoji":"🌹","kind":"FIX"},{"tag":"44","name":"Price","sounds":"R-R","peg":"Roar","story":"You roar when you see the price","emoji":"🦁","kind":"FIX"},{"tag":"48","name":"SecurityID","sounds":"R-F","peg":"Roof","story":"Security ID written on the roof","emoji":"🏠","kind":"FIX"},{"tag":"49","name":"SenderCompID","sounds":"R-P","peg":"Rope","story":"A rope connects you to the sender company","emoji":"🪢","kind":"FIX"},{"tag":"50","name":"SenderSubID","sounds":"L-S","peg":"Lace","story":"A shoelace connects the sender's SubID","emoji":"👟","kind":"FIX"},{"tag":"52","name":"SendingTime","sounds":"L-N","peg":"Lion","story":"A lion checks his watch before sending","emoji":"🦁","kind":"FIX"},{"tag":"54","name":"Side","sounds":"L-R","peg":"Lure","story":"A fishing lure has BUY on one side, SELL on the other","emoji":"🎣","kind":"FIX"},{"tag":"55","name":"Symbol","sounds":"L-L","peg":"Lily","story":"A lily with the stock symbol printed on it","emoji":"🌸","kind":"FIX"},{"tag":"56","name":"TargetCompID","sounds":"L-SH","peg":"Leash","story":"A leash connects to the target company","emoji":"🐕","kind":"FIX"},{"tag":"57","name":"TargetSubID","sounds":"L-K","peg":"Lock","story":"Target SubID opens a lock","emoji":"🔒","kind":"FIX"},{"tag":"58","name":"Text","sounds":"L-F","peg":"Leaf","story":"Write free text on a leaf","emoji":"🍃","kind":"FIX"},{"tag":"59","name":"TimeInForce","sounds":"L-P","peg":"Lip","story":"Your lips shout DAY / IOC / GTC","emoji":"👄","kind":"FIX"},{"tag":"60","name":"TransactTime","sounds":"SH-S","peg":"Cheese","story":"Cheese stamped with the transaction time","emoji":"🧀","kind":"FIX"},{"tag":"66","name":"ListID","sounds":"J-J","peg":"Judge","story":"A judge holding an order list","emoji":"⚖️","kind":"FIX"},{"tag":"75","name":"TradeDate","sounds":"K-L","peg":"Coal","story":"Calendar made from coal showing the trade date","emoji":"🪨","kind":"FIX"},{"tag":"100","name":"ExDestination","sounds":"T-S-S","peg":"Disease","story":"Send the disease to a particular destination","emoji":"🦠","kind":"FIX"},{"tag":"115","name":"OnBehalfOfCompID","sounds":"T-T-L","peg":"Title","story":"Company's title/name you act on behalf of","emoji":"🏷️","kind":"FIX"},{"tag":"116","name":"OnBehalfOfSubID","sounds":"T-T-CH","peg":"To Ditch","story":"A person you act on behalf of jumps into a ditch","emoji":"🕳️","kind":"FIX"},{"tag":"128","name":"DeliverToCompID","sounds":"T-N-F/V","peg":"Tan Ivy","story":"Deliver a pot of tan ivy to the company","emoji":"🪴","kind":"FIX"},{"tag":"129","name":"DeliverToSubID","sounds":"T-N-B","peg":"Tin Boy","story":"A tin boy delivers to the SubID","emoji":"🤖","kind":"FIX"},{"tag":"150","name":"ExecType","sounds":"T-L-S","peg":"Dallas","story":"Imagine a Dallas trader shouting the execution type","emoji":"🤠","kind":"FIX"},{"tag":"151","name":"LeavesQty","sounds":"T-L-T","peg":"Toilet","story":"Remaining quantity (LeavesQty) is sitting on a toilet","emoji":"🚽","kind":"FIX"},{"tag":"167","name":"SecurityType","sounds":"T/D-SH-K","peg":"Dashiki","story":"Different dashiki designs = different security types","emoji":"👘","kind":"FIX"},{"tag":"198","name":"SecondaryOrderID","sounds":"T/D-F/V-B","peg":"Diva Boy","story":"A diva boy carries the secondary order ID","emoji":"🕺","kind":"FIX"},{"tag":"207","name":"SecurityExchange","sounds":"N-S-G","peg":"Nice Guy","story":"A nice guy standing outside the stock exchange","emoji":"😎","kind":"FIX"},{"tag":"527","name":"SecondaryExecID","sounds":"L-N-K","peg":"Link","story":"A link connects primary and secondary execution IDs","emoji":"🔗","kind":"FIX"},{"tag":"528","name":"OrderCapacity","sounds":"L-N-V","peg":"Lenovo","story":"Imagine ordering Lenovo laptops by capacity","emoji":"💻","kind":"FIX"},{"tag":"5011","name":"Root OrderID","sounds":"L-S-T-D","peg":"Lost Dude","story":"A lost dude searches for the root order","emoji":"🧭","kind":"custom"},{"tag":"5012","name":"Root System","sounds":"L-S-T-N","peg":"Last One","story":"The last one points back to the root system","emoji":"🥇","kind":"custom"},{"tag":"9615","name":"Strategy Name","sounds":"B-SH-T-L","peg":"Bus Shuttle","story":"A bus shuttle follows a particular strategy/route","emoji":"🚌","kind":"custom"},{"tag":"9722","name":"SOR Exchange Dest","sounds":"B-K-N-N","peg":"Bacon Nun","story":"A bacon-carrying nun chooses the SOR exchange destination","emoji":"🥓","kind":"custom"}];
+const CORE=[11,37,38,39,40,44,54,55,59,60,150,151].map(String);
+const MAJOR=[['0','S / Z'],['1','T / D'],['2','N'],['3','M'],['4','R'],['5','L'],['6','J / SH / CH'],['7','K / G'],['8','F / V'],['9','P / B']];
+const MODES=[
+{id:'cards',icon:'🃏',title:'Comic Flashcards',desc:'Flip, picture, remember.',bg:'#ffde59'},
+{id:'triple',icon:'🧩',title:'Triple Match',desc:'Number + name + peg word.',bg:'#6bbafb'},
+{id:'decoder',icon:'🔐',title:'Peg Codebreaker',desc:'Decode the Major System.',bg:'#b6a1f3'},
+{id:'reverse',icon:'🔢',title:'Reverse Recall',desc:'Type the tag number.',bg:'#58d6bb'},
+{id:'tiles',icon:'🎴',title:'Memory Tiles',desc:'Flip to find matching pairs.',bg:'#ffaec7'},
+{id:'story',icon:'📖',title:'Story Chain',desc:'Rebuild the comic sequence.',bg:'#ffe17d'},
+{id:'rush',icon:'⚡',title:'Falling Tag Rush',desc:'Beat the dropping clock.',bg:'#88e1f6'},
+{id:'boss',icon:'👾',title:'Boss Battle',desc:'Mixed quiz. Three hearts.',bg:'#e4a8ff'},
+{id:'repair',icon:'🛠️',title:'FIX Message Repair',desc:'Find missing FIX tag IDs.',bg:'#ffbd8b'},
+{id:'hang',icon:'🔤',title:'Letter Rescue',desc:'Uncover names & peg words.',bg:'#a6eccf'},
+{id:'sort',icon:'🗂️',title:'Tag Sorting',desc:'Sort by FIX function.',bg:'#f7b0a4'},
+{id:'relay',icon:'🏁',title:'Three-Way Relay',desc:'Tag ↔ field ↔ peg in 3 legs.',bg:'#aed1ff'},
+{id:'enums',icon:'🎭',title:'Enum Arena 39/150',desc:'Order state vs execution event.',bg:'#ffbc70'}
+];
+const SORTGROUPS={
+ 'Order':[11,37,38,39,40,44,54,59,151,528],
+ 'Execution':[6,14,17,20,29,30,31,32,150,198,527],
+ 'Instrument':[15,22,48,55,167,207],
+ 'Session':[8,9,10,34,35,49,52,56]
+};
+const SORTLOOKUP={};for(const [k,v] of Object.entries(SORTGROUPS))for(const num of v) SORTLOOKUP[String(num)]=k;
+const REPAIRS=[
+{tag:'11',clue:'Client order identifier',msg:'35=D | ??=CL-2026-01 | 55=AAPL | 54=1 | 38=100'},
+{tag:'37',clue:'Broker-assigned order identifier',msg:'35=8 | ??=BKR-204 | 11=CL-2026-01 | 39=0'},
+{tag:'38',clue:'Requested quantity of shares',msg:'35=D | 11=CL-91 | 55=MSFT | ??=100 | 54=1'},
+{tag:'39',clue:'Order status after a partial fill',msg:'35=8 | 37=ORD-40 | ??=1 | 150=F | 151=60'},
+{tag:'40',clue:'Order type',msg:'35=D | 11=CL-91 | ??=2 | 44=187.50 | 54=1'},
+{tag:'44',clue:'Limit price',msg:'35=D | 55=NVDA | 38=20 | 40=2 | ??=125.50'},
+{tag:'54',clue:'Buy/sell side',msg:'35=D | 11=CL-94 | ??=1 | 55=AAPL | 38=100'},
+{tag:'55',clue:'Instrument symbol',msg:'35=D | 11=CL-22 | ??=AAPL | 54=1 | 38=50'},
+{tag:'59',clue:'How long the order stays active',msg:'35=D | 11=CL-91 | ??=0 | 55=IBM | 38=10'},
+{tag:'60',clue:'Transaction time',msg:'35=D | 11=CL-81 | ??=20261113-08:00:00 | 55=IBM'},
+{tag:'150',clue:'Execution event type',msg:'35=8 | 37=ORD-9 | ??=0 | 39=0 | 151=100'},
+{tag:'151',clue:'Quantity still open',msg:'35=8 | 37=ORD-9 | 14=40 | ??=60 | 38=100'}
+];
+// FIX 4.4 enum values deliberately live outside the Major System peg deck.
+// For ExecType (150), F is the TRADE EVENT for partial and full fills;
+// OrdStatus (39) is the resulting STATE (1 or 2 respectively).
+const ENUMS={
+'150':[['0','New','🟢'],['3','Done for day','🌙'],['4','Canceled','🛑'],['5','Replaced','🔁'],['6','Pending Cancel','⏳'],['7','Stopped','✋'],['8','Rejected','🚫'],['9','Suspended','⏸️'],['A','Pending New','📨'],['B','Calculated','🧮'],['C','Expired','⌛'],['D','Restated','📢'],['E','Pending Replace','📝'],['F','Trade','💥'],['G','Trade Correct','🛠️'],['H','Trade Cancel','↩️'],['I','Order Status','📊']],
+'39':[['0','New','🟢'],['1','Partially Filled','🥧'],['2','Filled','🏁'],['3','Done for day','🌙'],['4','Canceled','🛑'],['6','Pending Cancel','⏳'],['7','Stopped','✋'],['8','Rejected','🚫'],['9','Suspended','⏸️'],['A','Pending New','📨'],['B','Calculated','🧮'],['C','Expired','⌛'],['D','Accepted for bidding','🏷️'],['E','Pending Replace','📝']]
+};
+const ENUM_SCENARIOS=[
+{label:'Broker accepts a brand-new order',exec:'0',status:'0',why:'A New event leaves the order in New status.'},
+{label:'100 shares ordered, only 40 traded',exec:'F',status:'1',why:'A Trade event occurred, but the order remains Partially Filled.'},
+{label:'All 100 requested shares were traded',exec:'F',status:'2',why:'Trade is the event; Filled is the final order state.'},
+{label:'A cancel request is acknowledged as pending',exec:'6',status:'6',why:'Pending Cancel is both the current reported event and status in this example.'},
+{label:'Order is canceled with no open shares',exec:'4',status:'4',why:'Canceled event and Canceled status.'},
+{label:'Order is rejected before working',exec:'8',status:'8',why:'Rejected event and Rejected status.'},
+{label:'A replace request has not completed',exec:'E',status:'E',why:'Pending Replace event and Pending Replace status.'},
+{label:'A request modifies a working order successfully',exec:'5',status:'0',why:'Replaced is the report event; the still-working order can have OrdStatus New.'},
+{label:'Existing partly-filled order gets a status inquiry response',exec:'I',status:'1',why:'Order Status is the report event; no new trade occurred. Order is Partially Filled.'},
+{label:'The order expired at the end of its lifetime',exec:'C',status:'C',why:'Expired event and Expired status.'}
+];
+const BYTAG=Object.fromEntries(TAGS.map(t=>[t.tag,t]));
+const app=document.getElementById('app');
+const KEY='fixforce_v1_progress';
+let saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
+const state={screen:'home',scope:saved.scope==='all'?'all':'core',progress:saved.progress||{},high:saved.high||{},game:null,toast:'',deckQuery:'',timer:null,toastTimer:null,session:null,menuOpen:false};
+function persist(){try{localStorage.setItem(KEY,JSON.stringify({scope:state.scope,progress:state.progress,high:state.high}))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function shuffle(a){let x=[...a];for(let i=x.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x;}
+function sample(a,n){return shuffle(a).slice(0,n)}
+function currentDeck(){return state.scope==='core'?CORE.map(t=>BYTAG[t]):TAGS}
+function randomTag(list=currentDeck(),exclude=[]){const filtered=list.filter(t=>!exclude.includes(t.tag));return sample(filtered.length?filtered:list,1)[0];}
+function choiceOptions(correct,list,field){let correctVal=String(correct[field]);let pool=shuffle(list.filter(t=>t.tag!==correct.tag&&String(t[field])!==correctVal));let vals=sample(pool,3).map(t=>String(t[field]));return shuffle([correctVal,...vals]);}
+function isDue(t){const p=state.progress[t.tag];return !p||!p.due||p.due<=Date.now();}
+function weightedPool(src){const a=[...src];return a.sort((x,y)=>{const px=state.progress[x.tag],py=state.progress[y.tag];let wx=(px?.level||0)+(isDue(x)?-4:0),wy=(py?.level||0)+(isDue(y)?-4:0);return wx-wy+(Math.random()-.5)*2;});}
+function record(t,ok){if(!t)return;const p=state.progress[t.tag]||{seen:0,good:0,bad:0,level:0};p.seen++;p.last=Date.now();if(ok){p.good++;p.level=Math.min(6,(p.level||0)+1);p.due=Date.now()+[0,600000,86400000,259200000,604800000,1209600000,2592000000][p.level];}else{p.bad++;p.level=0;p.due=Date.now()+600000;}state.progress[t.tag]=p;persist();}
+function updateHigh(id,score){state.high[id]=Math.max(state.high[id]||0,score);persist()}
+function stopTimer(){if(state.timer){clearInterval(state.timer);state.timer=null}}
+function notify(message){state.toast=message;clearTimeout(state.toastTimer);const node=document.querySelector('.toast');if(node)node.remove();const div=document.createElement('div');div.className='toast';div.textContent=message;document.body.appendChild(div);state.toastTimer=setTimeout(()=>{div.remove();state.toast=''},1800)}
+function art(t,compact=false){if(!t)return '';let label=esc(t.peg),emoji=esc(t.emoji),number=esc(t.tag);return `<svg class="art" viewBox="0 0 300 194" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comic illustration for ${label}">
+<rect width="300" height="194" fill="#fff0ad"/><circle cx="151" cy="87" r="82" fill="#fff9e4" stroke="#172043" stroke-width="3"/>
+<path d="M0 0 L58 46 L26 0 M300 0 L243 48 L273 0 M0 194 L60 151 L31 194 M300 194 L237 149 L266 194" fill="#f7a3b7" stroke="#172043" stroke-width="2"/>
+<path d="M31 48 L66 72 M26 79 L61 88 M272 43 L235 70 M270 84 L237 91 M52 135 L75 118 M250 133 L223 117" stroke="#172043" stroke-width="4" stroke-linecap="round"/>
+<text x="150" y="111" text-anchor="middle" font-size="83" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,sans-serif">${emoji}</text>
+<rect x="5" y="5" rx="12" width="64" height="35" fill="#ff668d" stroke="#172043" stroke-width="3"/><text x="37" y="29" text-anchor="middle" font-family="Arial,sans-serif" font-weight="1000" font-size="19" fill="#172043">${number}</text>
+<rect x="74" y="155" width="152" height="33" rx="8" fill="#fffdf7" stroke="#172043" stroke-width="3"/><text x="150" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="${label.length>11?'15':label.length>8?'18':'21'}" fill="#172043">${label}</text></svg>`}
+function heroArt(){return `<svg class="hero-art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 268" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Comic superhero FIX tag 38 takes off">
+<rect width="330" height="268" fill="#ffde59"/><path d="M150 134 L0 0 L80 0 L169 113 L157 0 L200 0 L195 112 L330 0 L330 68 L218 143 L330 109 L330 176 L217 170 L330 255 L260 268 L190 193 L173 268 L131 268 L149 192 L9 268 L0 220 L119 176 L0 164 L0 108 L125 145" fill="#ff91ac" stroke="#172043" stroke-width="3"/>
+<circle cx="190" cy="144" r="92" fill="#fff8e4" stroke="#172043" stroke-width="5"/>
+<g transform="rotate(-14 188 142)"><rect x="123" y="79" width="132" height="125" rx="16" fill="#6bbafb" stroke="#172043" stroke-width="6"/><rect x="133" y="91" width="112" height="99" rx="9" fill="#fffef5" stroke="#172043" stroke-width="3"/><text x="188" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="58" font-weight="1000" fill="#172043">38</text><text x="188" y="177" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="900" fill="#172043">OrderQty</text></g>
+<path d="M55 30 Q102 -4 139 25 L129 65 L96 53 L78 82 L60 60 Z" fill="#fff" stroke="#172043" stroke-width="4"/><text x="92" y="44" font-family="Arial,sans-serif" font-size="16" font-weight="1000" text-anchor="middle">POW!</text>
+<circle cx="261" cy="57" r="23" fill="#58d6bb" stroke="#172043" stroke-width="4"/><text x="261" y="66" font-size="28" text-anchor="middle">🎬</text>
+<path d="M17 220 L52 213 L40 185 M280 210 L307 225 L288 242" stroke="#172043" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg>`}
+function nav(){if(!state.menuOpen)return '';let x=state.screen==='game'?'games':state.screen;return `<div class="drawer-backdrop" data-action="menu-close"></div><nav class="drawer" aria-label="Side navigation"><div class="drawer-title"><span>⚡ FIX FORCE!</span><button class="drawer-close" data-action="menu-close" aria-label="Close menu">×</button></div>${[['home','🏠','Home'],['games','🎮','Games'],['deck','📚','Tag & Peg Deck'],['enums','🎭','Enum Guide 39/150'],['stats','🏆','My Progress']].map(([key,ico,label])=>`<button class="drawer-link ${x===key?'active':''}" data-action="nav" data-to="${key}">${ico} ${label}</button>`).join('')}<div class="drawer-note">Swipe left to close · Swipe right from the screen edge to open. All the game buttons remain uncovered when this menu is shut.</div></nav>`}
+function header(){let mastered=TAGS.filter(t=>(state.progress[t.tag]?.level||0)>=4).length;return `<header class="topbar"><button class="menu-btn" data-action="menu-toggle" aria-label="Open side menu" aria-expanded="${state.menuOpen}">☰</button><button class="brand" data-action="nav" data-to="home" aria-label="FIX Force home"><span class="brand-mark">⚡</span><span><strong>FIX FORCE!</strong><small>MEMORY ARCADE</small></span></button><div class="header-right"><span class="pill">📚 ${TAGS.length} tags</span><span class="pill gold">⭐ ${mastered} mastered</span></div></header>`}
+function scopeControl(){return `<label><span style="font-size:12px;font-weight:900;margin-right:5px">Deck</span><select class="scope-control" data-scope aria-label="Choose FIX tag deck"><option value="core" ${state.scope==='core'?'selected':''}>Core 12</option><option value="all" ${state.scope==='all'?'selected':''}>All 52</option></select></label>`}
+function gameGrid(){return `<div class="game-grid">${MODES.map((m,i)=>`<button class="game-card" style="background:${m.bg}" data-action="start" data-mode="${m.id}" aria-label="Play ${m.title}"><span class="index">#${String(i+1).padStart(2,'0')}</span><span class="game-icon">${m.icon}</span><div><h3>${m.title}</h3><p>${m.desc}</p></div></button>`).join('')}</div>`}
+function home(){return `<div class="hero"><div class="hero-copy"><span class="eyebrow">100% OFFLINE • 13 GAMES</span><h1>LEARN.<br><em>RECALL.</em><br>POW!</h1><p>Number → FIX field → peg word. Train all three with comic-memory games.</p><div class="cta-row"><button class="btn primary" data-action="start" data-mode="cards">⚡ Play now</button><button class="btn" data-action="nav" data-to="deck">📚 View tags</button></div></div>${heroArt()}</div>
+<div class="section-head"><div><h2>Choose your mission 🎯</h2><p>13 touch-friendly games. One memory universe.</p></div>${scopeControl()}</div>${gameGrid()}
+<div class="legend">🧠 Major System: ${MAJOR.map(([n,s])=>`<b>${n}</b>=${s}`).join(' · ')}. Vowels and W/H/Y may be inserted. Comic peg words and associations follow the supplied memory notes.</div><p class="footer-note">Everything is bundled in this HTML. No account, Wi-Fi, external images or installation required for browser play. Progress is saved on this device when local browser storage is available.</p>`}
+function gameChrome(mode,inner){const m=MODES.find(x=>x.id===mode);return `<div class="game-content"><div class="game-top"><button class="back" data-action="nav" data-to="games">← All games</button><span class="mode-chip">${m?.icon||'🎮'} ${m?.title||'Game'}</span></div>${inner}</div>`}
+function progressBar(num,total){return `<div class="progress" role="progressbar" aria-valuenow="${num}" aria-valuemax="${total}"><span style="width:${total?Math.min(100,Math.round(num*100/total)):0}%"></span></div>`}
+function scoreLine(s,total){return `<div class="scoreline"><span class="score-chip">🎯 ${Math.min(s.i+1,total)} / ${total}</span><span class="score-chip">⭐ ${s.score} points</span>${s.lives!=null?`<span class="score-chip">❤️ ${'❤️'.repeat(Math.max(0,s.lives))||'0'} lives</span>`:''}</div>`}
+function feedbackHtml(s,t){if(s.answer==null)return '';let correct=s.answer===s.expected;return `<div class="feedback ${correct?'':'no'}"><span class="tagline">${correct?'✅ POW! Correct!':'❌ Oops! Recall this:'} ${t?.tag||''} = ${esc(t?.name||'')} = ${esc(t?.peg||'')}</span>${t?esc(t.story):''}</div>`}
+function gameEnd(title,desc,score,total,mode){return gameChrome(mode,`<div class="game-end panel"><span class="trophy">${score>=total*.8?'🏆':'💥'}</span><h2>${title}</h2><p>${desc}</p><div class="scoreline" style="justify-content:center"><span class="score-chip">⭐ ${score} points</span><span class="score-chip">🎮 ${total} challenges</span></div><div class="end-actions"><button class="btn primary" data-action="start" data-mode="${mode}">↻ Play again</button><button class="btn yellow" data-action="nav" data-to="games">🎮 More games</button></div></div>`)}
+function start(mode){stopTimer();state.screen='game';state.game=mode;state.session=null;let pool=weightedPool(currentDeck());if(mode==='cards'){state.session={cards:sample(pool,Math.min(pool.length,15)),i:0,score:0,shown:false};}
+else if(mode==='triple'){state.session={round:0,maxRounds:3,score:0,batch:[],sel:{},matched:[],done:false};newTriple();}
+else if(mode==='reverse'){state.session={items:sample(pool,Math.min(pool.length,12)),i:0,score:0,answer:null,expected:null,hint:false};}
+else if(mode==='tiles'){state.session={round:0,maxRounds:2,score:0,moves:0,open:[],matched:[],busy:false,cards:[],done:false};newTiles();}
+else if(mode==='story'){state.session={round:0,maxRounds:2,score:0,arr:[],hint:false,feedback:''};newStory();}
+else if(mode==='repair'){state.session={items:sample(REPAIRS,12),i:0,score:0,answer:null,expected:null};}
+else if(mode==='hang'){state.session={items:sample(pool,Math.min(8,pool.length)),i:0,score:0,guessed:[],mistakes:0,finished:false,win:false};}
+else if(mode==='enums'){state.session={items:makeEnumQuestions(),i:0,score:0,answer:null};}
+else if(mode==='sort'){let items=Object.values(SORTGROUPS).flatMap(nums=>sample(nums,3).map(String));state.session={items:shuffle(items),i:0,score:0,answer:null,expected:null,hint:false};}
+else if(mode==='rush'){state.session={i:0,score:0,lives:3,max:40,finishAt:Date.now()+50000,deadline:Date.now()+6500,q:null};state.session.q=createQuestion(randomTag(pool),'name');startRushTicker();}
+else if(['decoder','boss','relay'].includes(mode)){
+ let qs=[];
+ if(mode==='decoder'){qs=sample(pool,Math.min(pool.length,12)).map((t,i)=>createQuestion(t,['peg','pegNumber','sounds','pegFromName'][i%4]));}
+ if(mode==='boss'){qs=sample(pool,Math.min(pool.length,15)).map((t,i)=>createQuestion(t,['name','number','peg','pegNumber','pegFromName','nameFromPeg'][i%6]));}
+ if(mode==='relay'){let six=sample(pool,Math.min(6,pool.length));qs=six.flatMap(t=>['name','pegFromName','pegNumber'].map(kind=>createQuestion(t,kind)));}
+ state.session={qs,i:0,score:0,answer:null,expected:null,lives:mode==='boss'?3:null};
+}
+render();window.scrollTo(0,0);}
+function createQuestion(t,type){let prompt='',kicker='',answer='',field='',visual=false;
+switch(type){
+case 'name':kicker='RECALL THE FIX FIELD';prompt=t.tag;answer=t.name;field='name';break;
+case 'number':kicker='RECALL THE FIX NUMBER';prompt=t.name;answer=t.tag;field='tag';break;
+case 'peg':kicker='WHICH PEG WORD ENCODES THIS TAG?';prompt=t.tag;answer=t.peg;field='peg';break;
+case 'pegNumber':kicker='DECODE THE PEG INTO A TAG NUMBER';prompt=t.peg;answer=t.tag;field='tag';visual=true;break;
+case 'nameFromPeg':kicker='PEG WORD → FIX FIELD';prompt=t.peg;answer=t.name;field='name';visual=true;break;
+case 'pegFromName':kicker='FIX FIELD → PEG WORD';prompt=t.name;answer=t.peg;field='peg';break;
+case 'sounds':kicker=`${t.sounds} SOUNDS — FIND THE PEG WORD`;prompt=t.tag;answer=t.peg;field='peg';break;
+}
+let opts=choiceOptions(t,TAGS,field);return {t,type,kicker,prompt,answer,opts,visual};}
+function drawQuestion(q){return `<div class="question panel"><div class="kicker">${esc(q.kicker)}</div>${q.visual?`<div style="max-width:205px;margin:10px auto">${art(q.t)}</div>`:''}<div class="${q.prompt.length>9?'mid':'big'}">${esc(q.prompt)}</div>${q.type==='sounds'?`<div class="hint">Phonetics: ${esc(q.t.sounds)}</div>`:''}</div>`}
+function drawChoices(q,answered){return `<div class="choices">${q.opts.map((opt,i)=>`<button class="choice ${answered!=null?(opt===q.answer?'correct':answered===opt?'wrong':''):''}" data-action="choose" data-value="${esc(opt)}" ${answered!=null?'disabled':''}>${esc(opt)}</button>`).join('')}</div>`}
+function renderQuiz(mode){let s=state.session,total=s.qs.length;if(s.i>=total||mode==='boss'&&s.lives<=0){let won=mode!=='boss'||s.lives>0;updateHigh(mode,s.score);return gameEnd(won?'MISSION COMPLETE!':'BOSS GOT YOU!',mode==='relay'?'You practiced each direction: tag → name → peg → tag.':`You answered ${s.score} of ${s.i} challenges correctly. Keep practicing to strengthen recall.`,s.score,total,mode);}
+let q=s.qs[s.i],answered=s.answer;return gameChrome(mode,`<h1 class="game-title">${mode==='decoder'?'Crack the peg code!':mode==='boss'?'Defeat the Forget-O-Tron!':'The three-way recall relay'}</h1><p class="game-subtitle">${mode==='decoder'?'Decode the sounds, peg words, tag names and numbers.':mode==='boss'?'Three lives. Every memory connection counts.':'Round after round: number → name, name → peg, peg → number.'}</p>${scoreLine(s,total)}${progressBar(s.i,total)}${drawQuestion(q)}${drawChoices(q,answered)}${answered!=null?`${feedbackHtml({answer:answered,expected:q.answer},q.t)}<div style="max-width:235px;margin:12px auto">${art(q.t)}</div><button class="btn primary wide" data-action="next-quiz">${s.i===total-1?'🏁 Finish':'NEXT CHALLENGE →'}</button>`:''}`)}
+function answerQuiz(value){let s=state.session,q=s.qs[s.i];if(s.answer!==null)return;let ok=value===q.answer;s.answer=value;s.expected=q.answer;if(ok)s.score++;else if(state.game==='boss')s.lives--;record(q.t,ok);render();}
+function nextQuiz(){let s=state.session;s.i++;s.answer=null;s.expected=null;render();}
+function renderFlash(){let s=state.session;if(s.i>=s.cards.length){updateHigh('cards',s.score);return gameEnd('COMIC CHAMPION!',`You reviewed ${s.cards.length} FIX tag / peg / field associations. Return later to test long-term recall.`,s.score,s.cards.length,'cards');}
+let t=s.cards[s.i];return gameChrome('cards',`<h1 class="game-title">Comic Flashcards</h1><p class="game-subtitle">Say the FIX field and peg word aloud before you reveal the answer.</p>${scoreLine(s,s.cards.length)}${progressBar(s.i,s.cards.length)}<button class="flashcard" data-action="flip" aria-label="${s.shown?'View the card':'Tap to reveal answer'}">${!s.shown?`<span class="eyebrow">WHO AM I?</span><span class="num">${t.tag}</span><span class="tap">👆 TAP TO REVEAL</span>`:`<span class="reveal-title">${esc(t.name)}</span><div class="mnemonic-art">${art(t)}</div><span class="tap">PEG: ${esc(t.peg)} · ${esc(t.sounds)}</span>`}</button>${s.shown?`<div class="feedback info">💭 ${esc(t.story)}</div><div class="flash-actions"><button class="btn" data-action="flash-rate" data-ok="0">↻ Again</button><button class="btn teal" data-action="flash-rate" data-ok="1">✅ Got it!</button></div>`:`<p class="footer-note" style="text-align:center">Try remembering both ${esc(t.name)} and ${esc(t.peg)} from ${t.tag}.</p>`}`)}
+function newTriple(){let s=state.session;let used=currentDeck();let arr=sample(used,4);if(arr.length<4)arr=sample(TAGS,4);s.batch=arr;s.columns={tag:shuffle(arr),name:shuffle(arr),peg:shuffle(arr)};s.sel={};s.matched=[];s.done=false;}
+function renderTriple(){let s=state.session;if(s.round>=s.maxRounds){updateHigh('triple',s.score);return gameEnd('TRIPLE THREAT!',`You completed ${s.maxRounds} triple-match boards, connecting number, FIX name and memory peg.`,s.score,s.maxRounds*4,'triple')}
+const columns=[['tag','NUMBER'],['name','FIX FIELD'],['peg','PEG IMAGE']];return gameChrome('triple',`<h1 class="game-title">Triple Match 🧩</h1><p class="game-subtitle">Tap one item from each column. All three must belong to the same tag.</p><div class="scoreline"><span class="score-chip">Board ${s.round+1} / ${s.maxRounds}</span><span class="score-chip">✅ ${s.score} matched</span></div>${progressBar(s.matched.length,4)}<div class="cols3">${columns.map(([key,label])=>`<div class="match-col"><h3>${label}</h3>${s.columns[key].map(t=>`<button class="match-tile ${key} ${s.sel[key]===t.tag?'selected':''} ${s.matched.includes(t.tag)?'matched':''}" data-action="triple-pick" data-column="${key}" data-tag="${t.tag}" ${s.matched.includes(t.tag)||s.done?'disabled':''}>${key==='tag'?t.tag:key==='name'?esc(t.name):`${t.emoji}<br>${esc(t.peg)}`}</button>`).join('')}</div>`).join('')}</div>${s.done?`<div class="feedback">💥 Perfect match! Four new connections locked in.</div><button class="btn primary wide" data-action="triple-next">${s.round===s.maxRounds-1?'🏁 Finish':'Next comic board →'}</button>`:`<p class="footer-note">Hint: 38 ⇢ Movie ⇢ OrderQty; 55 ⇢ Lily ⇢ Symbol.</p>`}`)}
+function triplePick(column,tag){let s=state.session;if(s.done||s.matched.includes(tag))return;s.sel[column]=tag;if(Object.keys(s.sel).length===3){let vals=Object.values(s.sel);if(vals.every(x=>x===vals[0])){s.matched.push(tag);s.score++;record(BYTAG[tag],true);notify('💥 Triple match!');if(s.matched.length>=4)s.done=true;}else {notify('Not a triple. Try again!');}s.sel={};}render();}
+function newTiles(){let s=state.session,arr=sample(currentDeck(),6);let cards=[];arr.forEach(t=>{cards.push({id:t.tag,kind:'tag',label:t.tag});cards.push({id:t.tag,kind:'other',label:Math.random()<.5?t.name:`${t.emoji} ${t.peg}`});});s.cards=shuffle(cards);s.open=[];s.matched=[];s.busy=false;s.done=false;}
+function renderTiles(){let s=state.session;if(s.round>=s.maxRounds){updateHigh('tiles',s.score);return gameEnd('MEMORY MASTER!',`You revealed ${s.score} matching pairs in ${s.moves} total flips.`,s.score,s.maxRounds*6,'tiles');}return gameChrome('tiles',`<h1 class="game-title">Memory Tiles 🎴</h1><p class="game-subtitle">Flip two cards. A FIX tag matches either its field name or its peg word.</p><div class="scoreline"><span class="score-chip">Board ${s.round+1} / ${s.maxRounds}</span><span class="score-chip">🎯 ${s.matched.length/2} / 6 pairs</span><span class="score-chip">👆 ${s.moves} turns</span></div><div class="mem-grid">${s.cards.map((c,i)=>{let done=s.matched.includes(i),up=done||s.open.includes(i);return `<button class="mem-tile ${done?'done':up?'up':''}" data-action="tile" data-index="${i}" ${done||s.busy?'disabled':''} aria-label="${up?esc(c.label):'Hidden tile'}">${done?'⭐':up?esc(c.label):'💥'}</button>`}).join('')}</div>${s.done?`<div class="feedback">✅ All six pairs found!</div><button class="btn primary wide" data-action="tiles-next">${s.round===s.maxRounds-1?'Finish →':'Play next board →'}</button>`:''}`)}
+function tilePick(index){let s=state.session;if(s.busy||s.done||s.open.includes(index)||s.matched.includes(index))return;s.open.push(index);if(s.open.length===2){s.moves++;let [a,b]=s.open,ca=s.cards[a],cb=s.cards[b];if(ca.id===cb.id&&ca.kind!==cb.kind){s.matched.push(a,b);s.open=[];s.score++;record(BYTAG[ca.id],true);if(s.matched.length===s.cards.length){s.done=true;notify('ALL MATCHED!')}render();}else{s.busy=true;render();setTimeout(()=>{if(state.game!=='tiles'||state.session!==s)return;s.open=[];s.busy=false;render();},850);}}else render();}
+function newStory(){let s=state.session;let items=CORE.slice(s.round*6,(s.round+1)*6).map(x=>BYTAG[x]);s.arr=shuffle(items);if(s.arr.every((t,i)=>t.tag===items[i].tag))s.arr.reverse();s.feedback='';s.hint=false;}
+function renderStory(){let s=state.session;if(s.round>=s.maxRounds){updateHigh('story',s.score);return gameEnd('STORY SAVED!',`You reconstructed the original 12-part TOT → MUG → MOVIE mnemonic chain.`,s.score,12,'story')}
+let clue=s.round===0?'A little tot receives an ID, buys cinema tickets, cleans, gets roses and roars at the price.':'A fishing lure picks a lily, lips shout instructions, cheese shows time, Dallas executes, and a toilet keeps the leftovers.';return gameChrome('story',`<h1 class="game-title">Story Chain 📖</h1><p class="game-subtitle">Reorder the comic panels using ↑ and ↓ until they match the original 12-scene memory story.</p><div class="scoreline"><span class="score-chip">Chapter ${s.round+1}/2</span><span class="score-chip">📚 ${s.score}/12 in order</span></div><div class="feedback info">📣 STORY CLUE: ${clue}</div>${s.arr.map((t,i)=>`<div class="story-row"><span class="ordinal">${i+1}</span><div class="thumbnail">${art(t,true)}</div><div class="words"><strong>${esc(t.peg)}</strong><small>${esc(t.name)} · ${t.tag}</small></div><div class="move-buttons"><button data-action="story-move" data-index="${i}" data-dir="-1" ${i===0?'disabled':''} aria-label="Move ${esc(t.peg)} up">↑</button><button data-action="story-move" data-index="${i}" data-dir="1" ${i===s.arr.length-1?'disabled':''} aria-label="Move ${esc(t.peg)} down">↓</button></div></div>`).join('')}${s.feedback?`<div class="feedback ${s.feedback==='perfect'?'':'no'}">${s.feedback==='perfect'?'✅ Correct story order!':esc(s.feedback)}</div>`:''}<button class="btn primary wide" data-action="story-check">🔍 Check comic sequence</button>${s.feedback==='perfect'?`<button class="btn teal wide" style="margin-top:12px" data-action="story-next">${s.round===1?'🏁 Finish':'Next chapter →'}</button>`:''}`)}
+function moveStory(index,dir){let s=state.session,j=index+dir;if(j<0||j>=s.arr.length||s.feedback==='perfect')return;[s.arr[index],s.arr[j]]=[s.arr[j],s.arr[index]];s.feedback='';render();}
+function checkStory(){let s=state.session,reference=CORE.slice(s.round*6,(s.round+1)*6);let n=s.arr.filter((t,i)=>t.tag===reference[i]).length;if(n===s.arr.length){s.feedback='perfect';s.score+=6;for(let t of s.arr)record(t,true);}else s.feedback=`${n} of 6 scenes are in the correct position. Shuffle and try again!`;render();}
+function renderReverse(){let s=state.session;if(s.i>=s.items.length){updateHigh('reverse',s.score);return gameEnd('NUMBER NINJA!',`You practiced FIX field → tag number recall. Hints are useful now; direct recall is the goal.`,s.score,s.items.length,'reverse');}
+let t=s.items[s.i];return gameChrome('reverse',`<h1 class="game-title">Reverse Recall 🔢</h1><p class="game-subtitle">See the FIX field name. Type its exact numeric tag. Try before requesting the peg hint.</p>${scoreLine(s,s.items.length)}${progressBar(s.i,s.items.length)}<div class="question panel"><div class="kicker">WHICH FIX TAG NUMBER?</div><div class="mid">${esc(t.name)}</div>${s.hint?`<div style="max-width:220px;margin:10px auto">${art(t)}</div><div class="hint">Peg: ${esc(t.peg)} · ${esc(t.sounds)}</div>`:''}</div>${s.answer===null?`<form data-form="reverse" class="input-row"><input class="text-answer" id="reverse-input" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Enter tag number" autocomplete="off" aria-label="FIX tag number"><button type="submit" class="btn primary">CHECK</button></form><button class="btn small" data-action="reverse-hint">💡 ${s.hint?'Hint revealed':'Show peg hint'}</button>`:`${feedbackHtml(s,t)}<button class="btn primary wide" data-action="reverse-next">${s.i===s.items.length-1?'Finish →':'Next word →'}</button>`}`)}
+function checkReverse(){let s=state.session,t=s.items[s.i];if(s.answer!==null)return;let elem=document.getElementById('reverse-input');let value=elem?.value.trim()||'';if(!/^\d+$/.test(value)){notify('Enter a tag number first.');return;}let ok=String(Number(value))===t.tag;s.answer=ok?t.tag:value;s.expected=t.tag;s.score+=ok?(s.hint?.5:1):0;record(t,ok);render();}
+function renderRepair(){let s=state.session;if(s.i>=s.items.length){updateHigh('repair',s.score);return gameEnd('FIX IS FIXED!',`You identified missing tag numbers in ${s.items.length} illustrative OMS message fragments.`,s.score,s.items.length,'repair');}
+let r=s.items[s.i],t=BYTAG[r.tag],q={t,answer:r.tag,opts:choiceOptions(t,TAGS,'tag')};let msg=esc(r.msg).replace('??','<span class="missing">???</span>');return gameChrome('repair',`<h1 class="game-title">FIX Message Repair 🔧</h1><p class="game-subtitle">A tag number disappeared from an illustrative FIX fragment. Which number belongs in the gap?</p>${scoreLine(s,s.items.length)}${progressBar(s.i,s.items.length)}<div class="terminal">${msg.split(' | ').join('<wbr> &nbsp;|&nbsp; ')}</div><div class="feedback info">🕵️ CLUE: ${esc(r.clue)}</div><div class="choices">${q.opts.map(opt=>`<button class="choice ${s.answer!==null?(opt===r.tag?'correct':s.answer===opt?'wrong':''):''}" data-action="repair-pick" data-value="${esc(opt)}" ${s.answer!==null?'disabled':''}>TAG ${esc(opt)}</button>`).join('')}</div>${s.answer!==null?`${feedbackHtml({answer:s.answer,expected:r.tag},t)}<button class="btn primary wide" data-action="repair-next">${s.i===s.items.length-1?'🏁 Finish':'Next repair →'}</button>`:''}<p class="footer-note">Practice snippets are intentionally incomplete and are not valid full wire-format FIX messages.</p>`)}
+function repairPick(val){let s=state.session,r=s.items[s.i];if(s.answer!=null)return;s.answer=val;s.expected=r.tag;let ok=val===r.tag;s.score+=ok?1:0;record(BYTAG[r.tag],ok);render();}
+
+function renderHang(){let s=state.session;if(s.i>=s.items.length){updateHigh('hang',s.score);return gameEnd('LETTER HERO!',`You solved ${s.score} of ${s.items.length} FIX field and peg-word letter challenges.`,s.score,s.items.length,'hang');}
+let t=s.items[s.i],kind=s.i%2?'peg':'name',answer=t[kind].toUpperCase(),letters=answer.split(''),won=letters.every(c=>!/^[A-Z]$/.test(c)||s.guessed.includes(c)),lost=s.mistakes>=6,done=won||lost;
+if(done&&!s.finished){s.finished=true;s.win=won;if(won)s.score++;record(t,won);}let display=letters.map(c=>/^[A-Z]$/.test(c)?(s.guessed.includes(c)||lost?c:'_'):c).join(' ');
+return gameChrome('hang',`<h1 class="game-title">Letter Rescue 🔤</h1><p class="game-subtitle">Guess the ${kind==='peg'?'memory peg word':'FIX field name'} one letter at a time. Six misses allowed.</p>${scoreLine(s,s.items.length)}${progressBar(s.i,s.items.length)}<div class="question panel"><div class="kicker">${kind==='peg'?'WHICH MEMORY WORD?':'WHICH FIX FIELD?'}</div><div class="big">${esc(t.tag)}</div>${kind==='peg'?`<div class="hint">Sound code: ${esc(t.sounds)}</div>`:''}</div><div class="hangword" aria-label="Word in progress">${esc(display)}</div><div class="scoreline"><span class="score-chip">❌ ${s.mistakes} / 6 misses</span><span class="score-chip">🧩 ${kind==='peg'?'PEG WORD':'FIX FIELD'}</span></div><div class="keyboard">${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(c=>`<button class="key ${s.guessed.includes(c)?answer.includes(c)?'good':'bad':''}" data-action="hang-letter" data-letter="${c}" ${s.guessed.includes(c)||done?'disabled':''}>${c}</button>`).join('')}</div>${done?`${feedbackHtml({answer:won?'YES':'NO',expected:'YES'},t)}<div style="max-width:240px;margin:12px auto">${art(t)}</div><button class="btn primary wide" data-action="hang-next">${s.i===s.items.length-1?'🏁 Finish':'Next rescue →'}</button>`:''}`);
+}
+function hangLetter(letter){let s=state.session;if(s.finished||s.guessed.includes(letter))return;let t=s.items[s.i],answer=(s.i%2?t.peg:t.name).toUpperCase();s.guessed.push(letter);if(!answer.includes(letter))s.mistakes++;render();}
+function renderSort(){let s=state.session;if(s.i>=s.items.length){updateHigh('sort',s.score);return gameEnd('SORTING SUPERHERO!',`You sorted ${s.items.length} tags into practical FIX categories.`,s.score,s.items.length,'sort');}let tag=s.items[s.i],t=BYTAG[tag],expected=SORTLOOKUP[tag];return gameChrome('sort',`<h1 class="game-title">Tag Sorting 🗂️</h1><p class="game-subtitle">Decide which part of trading or messaging the tag belongs to. Some tags fit several contexts; these use one learning category.</p>${scoreLine(s,s.items.length)}${progressBar(s.i,s.items.length)}<div class="question panel"><div class="kicker">SORT THIS FIX FIELD</div><div class="big">${esc(tag)}</div><div class="mid">${esc(t.name)}</div></div><div class="sort-answers">${Object.keys(SORTGROUPS).map(g=>`<button class="sort-btn ${s.answer!==null?(g===expected?'correct':g===s.answer?'wrong':''):''}" data-action="sort-pick" data-value="${g}" ${s.answer!==null?'disabled':''}>${g==='Order'?'📦':g==='Execution'?'✅':g==='Instrument'?'🏷️':'📡'} ${g}</button>`).join('')}</div>${s.answer!==null?`${feedbackHtml({answer:s.answer,expected},t)}<div class="feedback info">Correct grouping: <strong>${esc(expected)}</strong>.</div><button class="btn primary wide" data-action="sort-next">${s.i===s.items.length-1?'🏁 Finish':'Sort next →'}</button>`:''}`)}
+function sortPick(v){let s=state.session;if(s.answer!==null)return;let t=BYTAG[s.items[s.i]],ok=SORTLOOKUP[t.tag]===v;s.answer=v;s.expected=SORTLOOKUP[t.tag];if(ok)s.score++;record(t,ok);render();}
+function startRushTicker(){stopTimer();state.timer=setInterval(()=>{if(state.screen!=='game'||state.game!=='rush'||!state.session){stopTimer();return;}let s=state.session;const now=Date.now();if(now>=s.finishAt||now>=s.deadline){if(now>=s.deadline&&now<s.finishAt){s.lives--;record(s.q.t,false);notify(`TIME! ${s.q.t.tag} = ${s.q.t.name} (${s.q.t.peg})`);rushAdvance();}else{stopTimer();render();}return;}let left=Math.max(0,Math.ceil((s.finishAt-now)/1000));let clock=document.getElementById('rush-clock'),bar=document.getElementById('rush-bar');if(clock)clock.textContent=left+'s';if(bar)bar.style.width=Math.max(0,(s.deadline-now)/6500*100)+'%';},100);}
+function rushAdvance(){let s=state.session;s.i++;if(s.lives<=0||s.i>=s.max||Date.now()>=s.finishAt){stopTimer();render();return;}s.q=createQuestion(randomTag(currentDeck(),[s.q?.t.tag].filter(Boolean)),'name');s.deadline=Date.now()+6500;render();}
+function renderRush(){let s=state.session;if(s.lives<=0||s.i>=s.max||Date.now()>=s.finishAt){stopTimer();updateHigh('rush',s.score);return gameEnd('RUSH COMPLETE!',`You identified ${s.score} tag names while racing the clock.`,s.score,Math.max(1,s.i),'rush');}let q=s.q;return gameChrome('rush',`<h1 class="game-title">Falling Tag Rush ⚡</h1><p class="game-subtitle">Choose the FIX field before the countdown drains. Three lives, fifty seconds total.</p><div class="scoreline"><span class="score-chip">⏳ <span id="rush-clock">${Math.max(0,Math.ceil((s.finishAt-Date.now())/1000))}s</span></span><span class="score-chip">⭐ ${s.score} points</span><span class="score-chip">❤️ ${s.lives} lives</span></div><div class="run-meter"><span id="rush-bar" style="width:${Math.max(0,(s.deadline-Date.now())/6500*100)}%"></span></div>${drawQuestion(q)}<div class="choices">${q.opts.map(opt=>`<button class="choice" data-action="rush-pick" data-value="${esc(opt)}">${esc(opt)}</button>`).join('')}</div><div class="footer-note">Missed answers briefly show the matching tag, field and mnemonic peg.</div>`);}
+function rushPick(value){let s=state.session;if(Date.now()>=s.deadline||Date.now()>=s.finishAt){rushAdvance();return;}let t=s.q.t,ok=value===s.q.answer;if(ok)s.score++;else s.lives--;record(t,ok);notify(ok?'⚡ POW! Correct!':`Remember: ${t.tag} = ${t.name} = ${t.peg}`);rushAdvance();}
+function makeEnumQuestions(){
+ let qs=[];
+ for(const tag of ['150','39']){
+  for(const [code,name,emoji] of ENUMS[tag]){
+    qs.push({tag,code,name,emoji,kind:'code',prompt:`What does ${tag}=${code} mean?`,answer:name,why:`${tag}=${code} means ${name}.`,options:shuffle([name,...sample(ENUMS[tag].filter(x=>x[0]!==code&&x[1]!==name),3).map(x=>x[1])])});
+    qs.push({tag,code,name,emoji,kind:'meaning',prompt:`What is the enum value for ${name} in tag ${tag}?`,answer:code,why:`${tag}=${code} means ${name}.`,options:shuffle([code,...sample(ENUMS[tag].filter(x=>x[0]!==code),3).map(x=>x[0])])});
+  }
+ }
+ for(const c of ENUM_SCENARIOS){
+   qs.push({tag:'150',code:c.exec,name:'Event + State',emoji:'🎬',kind:'scenario',prompt:c.label,answer:`150=${c.exec} / 39=${c.status}`,why:c.why,options:shuffle([`150=${c.exec} / 39=${c.status}`,...sample(ENUM_SCENARIOS.filter(x=>x!==c&&!(x.exec===c.exec&&x.status===c.status)),3).map(x=>`150=${x.exec} / 39=${x.status}`)])});
+ }
+ return sample(qs,20);
+}
+function enumArt(q){let isEvent=q.tag==='150';let color=isEvent?'#ffbc70':'#70dfc5',emoji=q.emoji||'🎭';return `<svg viewBox="0 0 360 126" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${isEvent?'Event stamp':'Status dashboard'} comic">
+<rect x="3" y="3" width="354" height="120" rx="16" fill="${color}" stroke="#172043" stroke-width="5"/>
+<path d="M40 12L62 43L12 52M312 12L291 44L349 54M42 117L67 85L14 71M322 116L286 84L351 69" fill="#fff9db" stroke="#172043" stroke-width="3"/>
+<circle cx="181" cy="62" r="51" fill="#fffdf7" stroke="#172043" stroke-width="4"/><text x="181" y="85" text-anchor="middle" font-size="59" font-family="Apple Color Emoji,Segoe UI Emoji,sans-serif">${emoji}</text>
+<rect x="12" y="9" width="88" height="30" rx="9" fill="#fff" stroke="#172043" stroke-width="3"/><text x="56" y="30" text-anchor="middle" font-size="14" font-weight="900" font-family="Arial,sans-serif">${isEvent?'EVENT':'STATE'}</text>
+<rect x="256" y="88" width="94" height="28" rx="9" fill="#fff" stroke="#172043" stroke-width="3"/><text x="303" y="108" text-anchor="middle" font-size="15" font-weight="900" font-family="Arial,sans-serif">${q.tag}= ?</text></svg>`}
+function renderEnums(){let s=state.session;if(s.i>=s.items.length){updateHigh('enums',s.score);return gameEnd('ENUM LEGEND!',`You drilled FIX 4.4 ExecType events and OrdStatus states independently of Major peg words.`,s.score,s.items.length,'enums');}let q=s.items[s.i];return gameChrome('enums',`<h1 class="game-title">Enum Arena 🎭</h1><p class="game-subtitle">No Major System pegs here. Learn FIX 4.4 enum VALUES using event vs state comics.</p>${scoreLine(s,s.items.length)}${progressBar(s.i,s.items.length)}<div class="enum-help"><b>🎬 150 = ExecType</b>: what happened? <b>📊 39 = OrdStatus</b>: what is the order's current state?<div class="enum-rule">Example: a partial fill → 150=F (Trade event), 39=1 (Partially Filled state).</div></div><div class="enum-hero ${q.tag==='39'?'status':''}">${enumArt(q)}<div class="enum-prompt">${esc(q.prompt)}</div><div class="enum-rule">${q.kind==='scenario'?'Choose the pair in the order: event / state':'Choose the correct FIX 4.4 enum value or description'}</div></div><div class="choices">${q.options.map(opt=>`<button class="choice ${s.answer!==null?(opt===q.answer?'correct':opt===s.answer?'wrong':''):''}" data-action="enum-pick" data-value="${esc(opt)}" ${s.answer!==null?'disabled':''}>${esc(opt)}</button>`).join('')}</div>${s.answer!==null?`<div class="feedback ${s.answer===q.answer?'':'no'}"><span class="tagline">${s.answer===q.answer?'✅ POW!':'💡 Remember:'} ${esc(q.answer)}</span>${esc(q.why)}</div><button class="btn primary wide" data-action="enum-next">${s.i===s.items.length-1?'🏆 Results':'Next enum →'}</button>`:''}<button class="btn yellow wide" data-action="nav" data-to="enums" style="margin-top:12px">📚 Open consolidated enum guide</button>`)}
+function enumPick(val){let s=state.session;if(s.answer!==null)return;let q=s.items[s.i];s.answer=val;if(val===q.answer)s.score++;render();}
+function enumGuide(){return `<div class="section-head"><div><h2>🎭 Event vs State</h2><p>FIX 4.4 consolidated enum reference, separate from the Major System.</p></div></div><div class="enum-help"><b>Think of a comic movie:</b> 🎬 <b>ExecType (150)</b> is the action in the latest frame. 📊 <b>OrdStatus (39)</b> is the status display after that action.<p class="enum-rule">Part fill: 150=F + 39=1 · Full fill: 150=F + 39=2 · Inquiry: 150=I can report 39=1 without a new trade.</p><button class="btn primary" data-action="start" data-mode="enums">🎮 Play Enum Arena</button></div><div class="enum-split">${[['150','🎬 Event (ExecType)'],['39','📊 State (OrdStatus)']].map(([tag,title])=>`<section class="enum-panel ${tag==='150'?'event':'status'}"><h3>${title}</h3><p>${tag==='150'?'What happened in this Execution Report?':'What is the order’s current condition?'}</p>${ENUMS[tag].map(([code,name,emoji])=>`<div class="enum-row"><span class="enum-code">${esc(code)}</span><span>${emoji} ${esc(name)}</span></div>`).join('')}</section>`).join('')}</div><div class="legend"><b>Important FIX 4.4 distinction:</b> There is no 150=1 (Partial Fill) or 150=2 (Fill) in the active 4.4 code list. Use 150=F for a Trade, and 39=1 or 39=2 for the resulting fill state. 39=5 (Replaced) is obsolete in the 4.4 state list.</div>`}
+function deck(){const q=state.deckQuery.toLowerCase().trim(),list=TAGS.filter(t=>!q||[t.tag,t.name,t.peg,t.sounds,t.story].some(s=>s.toLowerCase().includes(q)));return `<div class="section-head"><div><h2>Comic Memory Deck 📚</h2><p>${TAGS.length} FIX tag / peg / number triples</p></div>${scopeControl()}</div><input class="deck-search" data-deck-search placeholder="🔎 Find tag, field or peg word" aria-label="Search the deck" value="${esc(state.deckQuery)}" autocomplete="off"><div class="legend">Memory formula: <b>tag number → Major sounds → peg word → FIX field</b>. Peg words and stories are mnemonic aids, not official FIX definitions. The source includes four custom tags (5011, 5012, 9615, 9722) whose meanings depend on the organization's dictionary.</div><div class="deck-list">${list.map(t=>`<article class="deck-card"><div class="deck-art">${art(t)}</div><div class="info"><div class="tag-title"><b>${esc(t.tag)}</b> ${esc(t.name)}</div><div class="sound">${esc(t.peg)} · ${esc(t.sounds)} ${t.kind==='custom'?'· Custom':''}</div><div class="assoc">${esc(t.story)}</div></div></article>`).join('')}</div>${list.length?'':'<p>No tags match your search.</p>'}`;}
+function stats(){const counts=TAGS.reduce((a,t)=>{let p=state.progress[t.tag]||{};if(p.seen)a.tried++;if((p.level||0)>=4)a.mastered++;if(p.seen&&isDue(t))a.due++;a.answers+=(p.seen||0);a.correct+=(p.good||0);return a;},{tried:0,mastered:0,due:0,answers:0,correct:0});let accuracy=counts.answers?Math.round(100*counts.correct/counts.answers):0;let weak=TAGS.filter(t=>state.progress[t.tag]?.seen).sort((a,b)=>(state.progress[a.tag]?.level||0)-(state.progress[b.tag]?.level||0)).slice(0,8);return `<div class="section-head"><div><h2>Hero Dashboard 🏆</h2><p>Your memory training stays on this device.</p></div></div><div class="stat-cards"><div class="stat"><b>${counts.tried}</b><small>TAGS TRIED</small></div><div class="stat"><b>${counts.mastered}</b><small>MASTERED</small></div><div class="stat"><b>${accuracy}%</b><small>ACCURACY</small></div></div><div class="panel" style="padding:18px;margin-bottom:17px"><h3 style="margin-bottom:5px">📅 Spaced repetition</h3><p style="font-size:14px;line-height:1.55;font-weight:800">${counts.due} practiced tags are due for another review. After a correct answer, review intervals grow from 10 minutes to 1 day, 3 days, 7 days, 14 days and 30 days.</p><button class="btn primary" data-action="start" data-mode="cards">🃏 Review flashcards</button></div><div class="panel" style="padding:18px;margin-bottom:17px"><h3>🎯 Most useful to practice</h3>${weak.length?weak.map(t=>`<div style="display:flex;align-items:center;gap:9px;margin:10px 0"><span style="font-size:25px">${t.emoji}</span><strong style="min-width:52px">${t.tag}</strong><span style="flex:1">${esc(t.name)}</span><small>${esc(t.peg)}</small></div>`).join(''):'<p>Start a game to generate your personal weak-tag list.</p>'}</div><div class="panel" style="padding:18px;margin-bottom:17px"><h3>⭐ Best scores</h3>${MODES.map(m=>`<div style="display:flex;justify-content:space-between;gap:8px;margin:8px 0"><span>${m.icon} ${m.title}</span><strong>${state.high[m.id]||0}</strong></div>`).join('')}</div><p class="footer-note">Spaced repetition is approximate; successful retrieval on separate days is a better measure of memory than winning once. Clearing Safari's website data may reset local progress.</p>`;}
+function navTo(screen){state.menuOpen=false;stopTimer();state.screen=screen;state.game=null;state.session=null;render();try{window.scrollTo({top:0,behavior:'instant'});}catch(e){window.scrollTo(0,0);}}
+function render(){let content='';if(state.screen==='home')content=home();else if(state.screen==='games')content=`<div class="section-head"><div><h2>Pick your power 🎮</h2><p>Twelve peg games use your selected deck. Enum Arena uses FIX 4.4 enums for tags 39 and 150.</p></div>${scopeControl()}</div>${gameGrid()}`;else if(state.screen==='deck')content=deck();else if(state.screen==='enums')content=enumGuide();else if(state.screen==='stats')content=stats();else if(state.screen==='game'){
+ switch(state.game){case 'cards':content=renderFlash();break;case 'triple':content=renderTriple();break;case 'decoder':case 'boss':case 'relay':content=renderQuiz(state.game);break;case 'reverse':content=renderReverse();break;case 'tiles':content=renderTiles();break;case 'story':content=renderStory();break;case 'rush':content=renderRush();break;case 'repair':content=renderRepair();break;case 'hang':content=renderHang();break;case 'sort':content=renderSort();break;case 'enums':content=renderEnums();break;default:content=home();}
+}app.innerHTML=`<div class="shell">${header()}<main>${content}</main></div>${nav()}`;}
+app.addEventListener('click',e=>{
+ const el=e.target.closest('[data-action]');if(!el||el.disabled)return;const a=el.dataset.action,s=state.session;
+ try{
+ switch(a){
+ case 'nav':navTo(el.dataset.to);break;
+ case 'menu-toggle':state.menuOpen=!state.menuOpen;render();break;
+ case 'menu-close':state.menuOpen=false;render();break;
+ case 'enum-pick':enumPick(el.dataset.value);break;
+ case 'enum-next':s.i++;s.answer=null;render();break;
+ case 'start':start(el.dataset.mode);break;
+ case 'flip':s.shown=!s.shown;render();break;
+ case 'flash-rate':{let ok=el.dataset.ok==='1',t=s.cards[s.i];record(t,ok);if(ok)s.score++;s.i++;s.shown=false;render();break;}
+ case 'choose':answerQuiz(el.dataset.value);break;
+ case 'next-quiz':nextQuiz();break;
+ case 'triple-pick':triplePick(el.dataset.column,el.dataset.tag);break;
+ case 'triple-next':s.round++;if(s.round<s.maxRounds)newTriple();render();break;
+ case 'tile':tilePick(Number(el.dataset.index));break;
+ case 'tiles-next':s.round++;if(s.round<s.maxRounds)newTiles();render();break;
+ case 'story-move':moveStory(Number(el.dataset.index),Number(el.dataset.dir));break;
+ case 'story-check':checkStory();break;
+ case 'story-next':s.round++;if(s.round<s.maxRounds)newStory();render();break;
+ case 'reverse-hint':s.hint=true;render();break;
+ case 'reverse-next':s.i++;s.answer=null;s.expected=null;s.hint=false;render();break;
+ case 'repair-pick':repairPick(el.dataset.value);break;
+ case 'repair-next':s.i++;s.answer=null;s.expected=null;render();break;
+ case 'hang-letter':hangLetter(el.dataset.letter);break;
+ case 'hang-next':s.i++;s.guessed=[];s.mistakes=0;s.finished=false;s.win=false;render();break;
+ case 'sort-pick':sortPick(el.dataset.value);break;
+ case 'sort-next':s.i++;s.answer=null;s.expected=null;render();break;
+ case 'rush-pick':rushPick(el.dataset.value);break;
+ }
+ }catch(err){console.error(err);notify('Game hiccup. Try going back and reopening the game.');}
+});
+app.addEventListener('submit',e=>{if(e.target.dataset.form==='reverse'){e.preventDefault();checkReverse();}});
+app.addEventListener('change',e=>{if(e.target.matches('[data-scope]')){state.scope=e.target.value==='all'?'all':'core';persist();render();}});
+app.addEventListener('input',e=>{if(e.target.matches('[data-deck-search]')){let cursor=e.target.selectionStart??0;state.deckQuery=e.target.value;render();const x=document.querySelector('[data-deck-search]');if(x){x.focus();try{x.setSelectionRange(cursor,cursor);}catch(err){}}}});
+// Touch navigation: swipe in from the far-left edge to open, swipe left to close.
+let edgeStart=null;
+document.addEventListener('touchstart',e=>{let t=e.touches[0];if(t&&(state.menuOpen||t.clientX<28))edgeStart={x:t.clientX,y:t.clientY,open:state.menuOpen};else edgeStart=null;},{passive:true});
+document.addEventListener('touchend',e=>{if(!edgeStart)return;let t=e.changedTouches[0],dx=t.clientX-edgeStart.x,dy=t.clientY-edgeStart.y;if(Math.abs(dy)<75){if(!edgeStart.open&&dx>85){state.menuOpen=true;render()}else if(edgeStart.open&&dx< -70){state.menuOpen=false;render()}}edgeStart=null;},{passive:true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&state.menuOpen){state.menuOpen=false;render();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&state.game==='rush'&&state.session){state.session.finishAt=Date.now();}});
+render();
+</script>
+</body>
+</html>
