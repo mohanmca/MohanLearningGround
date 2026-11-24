@@ -1,6 +1,7 @@
 ## TOC
 1. [Table of contents](./TOC.md)
 2. [Quiz](https://indiatruck.in/quiz/programming/index.html)
+3. [LLM Quest](https://programmingtrends.org/llm-quest.html)
 
 ## C++
 * [C++ Manual](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp.md)
