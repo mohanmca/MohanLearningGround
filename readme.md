@@ -183,3 +183,110 @@
 7. [Hacker News Alerts Dashboard](https://hn.dunkirk.sh/)
 8. [hackergrep.com](https://hackergrep.com/)
 9. [https://hackersearch.net/](https://hackersearch.net/ask?q=is%20microsoft%20bing%20improving?)
+
+
+## Kavin Math
+
+[Limerse](https://limerse.com/?utm_source=chatgpt.com) is particularly good because it combines **interactive textbooks, mathematical animations, visual explanations and hands-on exploration**, rather than just video lectures or worksheets.
+
+If you are looking for similar free websites for Secondary 3 E-Math, A-Math and higher-level mathematics, these are my recommendations, ranked by similarity to Limerse.
+
+## **1. Best free alternatives to Limerse**
+
+| Website                                                           | Key features                                                    | Similarity to Limerse |
+| ----------------------------------------------------------------- | --------------------------------------------------------------- | --------------------- |
+| [Mathigon](https://mathigon.org/courses?utm_source=chatgpt.com)   | Interactive textbooks, animations, puzzles and visual lessons   | Very high             |
+| [Mathorio](https://mathorio.com/en?utm_source=chatgpt.com)        | Interactive lessons, graphs, algebra and geometry               | Very high             |
+| [Mathz](https://www.mathz.app/?utm_source=chatgpt.com)            | Interactive high-school lessons from algebra to calculus        | Very high             |
+| [Maths.free](https://maths.free/?utm_source=chatgpt.com)          | Visual lessons, interactive examples and step-by-step solutions | Very high             |
+| [GeoGebra](https://www.geogebra.org/math?utm_source=chatgpt.com)  | Interactive geometry, algebra, calculus and 3D graphs           | High                  |
+| [MathVisuals](https://mathvisuals.online/?utm_source=chatgpt.com) | Interactive mathematical concept demonstrations                 | High                  |
+| [Simulic](https://simulic.com/en/math/?utm_source=chatgpt.com)    | Hands-on mathematical simulations                               | High                  |
+| [Math-Mate](https://www.math-mate.com/?utm_source=chatgpt.com)    | Structured school mathematics lessons through calculus          | Moderate              |
+
+These websites offer free learning content; some may require registration for additional features.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://mathigon.org\&sz=32)
+
+The Mathematical Playground+7
+
+
+
+## **2. Excellent websites for specific mathematics topics**
+
+| Website                                                                                        | Best for                                                              |
+| ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Math Is Fun](https://www.mathsisfun.com/links/interactives-index.html?utm_source=chatgpt.com) | Algebra, geometry and trigonometry                                    |
+| [Math Open Reference](https://www.mathopenref.com/?utm_source=chatgpt.com)                     | Interactive geometry and circle theorems                              |
+| [Desmos](https://www.desmos.com/?utm_source=chatgpt.com)                                       | Functions, quadratic graphs and transformations                       |
+| [Seeing Theory](https://seeing-theory.brown.edu/?utm_source=chatgpt.com)                       | Interactive probability and statistics                                |
+| [Math Insight](https://mathinsight.org/?utm_source=chatgpt.com)                                | Vectors, derivatives and advanced calculus                            |
+| [PhET](https://phet.colorado.edu/?utm_source=chatgpt.com)                                      | Interactive mathematics and physics simulations                       |
+| [3Blue1Brown](https://www.3blue1brown.com/?utm_source=chatgpt.com)                             | Animated explanations of calculus, linear algebra and neural networks |
+| [I Want 2 Study – Singapore MOE](https://iwant2study.moe.edu.sg/?utm_source=chatgpt.com)       | Interactive resources for the Singapore education system              |
+
+[image](https://www.google.com/s2/favicons?domain=https://www.mathsisfun.com\&sz=32)
+
+Math is Fun+7
+
+## **3. Best websites by Singapore Sec 3 mathematics topic**
+
+| Topic                  | Recommended website         |
+| ---------------------- | --------------------------- |
+| Quadratic equations    | Mathorio, GeoGebra          |
+| Simultaneous equations | Mathigon, Mathorio          |
+| Indices and logarithms | Limerse, Maths.free         |
+| Coordinate geometry    | Desmos, Math Open Reference |
+| Trigonometry           | Mathigon, Math Is Fun       |
+| Circle theorems        | Math Open Reference         |
+| Polynomials            | Limerse, GeoGebra           |
+| Probability            | Seeing Theory               |
+| Statistics             | Seeing Theory, GeoGebra     |
+| Matrices               | Limerse, GeoGebra           |
+| Vectors                | Math Insight, Limerse       |
+| Differentiation        | Limerse, Mathz              |
+| Integration            | Limerse, Math Insight       |
+
+## **4. My top five picks**
+
+[image](https://www.google.com/s2/favicons?domain=https://mathigon.org\&sz=32)
+
+**1. [Mathigon](https://mathigon.org/courses?utm_source=chatgpt.com)**
+
+Best overall alternative to Limerse. Encourages mathematical discovery rather than memorisation.
+
+[image](https://www.google.com/s2/favicons?domain=https://mathorio.com\&sz=32)
+
+**2. [Mathorio](https://mathorio.com/en?utm_source=chatgpt.com)**
+
+Best for structured secondary-school learning with interactive explanations.
+
+[image](https://www.google.com/s2/favicons?domain=https://www.mathz.app\&sz=32)
+
+**3. [Mathz](https://www.mathz.app/?utm_source=chatgpt.com)**
+
+68 interactive lessons and 340 questions for Grades 9–12. Advertised as completely free.
+
+[image](https://www.google.com/s2/favicons?domain=https://www.geogebra.org\&sz=32)
+
+**4. [GeoGebra](https://www.geogebra.org/math?utm_source=chatgpt.com)**
+
+Best for experimenting with mathematical concepts by dragging objects and changing variables.
+
+[image](https://www.google.com/s2/favicons?domain=https://maths.free\&sz=32)
+
+**5. [Maths.free](https://maths.free/?utm_source=chatgpt.com)**
+
+Extensive coverage from school mathematics to graduate-level mathematics.
+
+## **5. Singapore syllabus-specific resources**
+
+For Kavin's upcoming Secondary 3 mathematics preparation, I would combine the visual websites above with:
+
+- [Tim Gan Math – Free Resources](https://timganmath.edu.sg/free-resources?utm_source=chatgpt.com) — Singapore E-Math and A-Math notes and exercises.
+- [Singapore MOE Interactive Resources](https://iwant2study.moe.edu.sg/?utm_source=chatgpt.com) — locally developed simulations.
+- [Student Learning Space](https://vle.learning.moe.edu.sg/?utm_source=chatgpt.com) — school-account-based learning.
+
+**Limerse + Mathigon + GeoGebra + Singapore syllabus worksheets** would be an excellent combination for developing both mathematical intuition and examination skills.
+
+The similarity rankings are my qualitative assessment of the websites' advertised features, rather than an exhaustive hands-on test. Most international websites are not specifically aligned with Singapore's syllabus.
