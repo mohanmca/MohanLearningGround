@@ -4,6 +4,9 @@
 3. [LLM Quest](https://programmingtrends.org/llm-quest.html)
 
 ## C++
+1. [Useful math](limerse.com)
+
+## C++
 * [C++ Manual](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp.md)
 * [CPP Basics](https://github.com/mohanmca/MohanLearningGround/blob/master/src/main/md/Tools/cpp/cpp_nptel.md)
 * [CPPCon - Need to watch](https://github.com/mohanmca/MohanLearningGround/tree/master/src/main/md/Tools/cpp)
